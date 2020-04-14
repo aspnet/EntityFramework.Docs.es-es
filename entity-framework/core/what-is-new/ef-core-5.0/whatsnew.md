@@ -1,14 +1,15 @@
 ---
 title: Novedades en EF Core 5.0
+description: Información general sobre las nuevas características de EF Core 5.0
 author: ajcvickers
-ms.date: 03/15/2020
+ms.date: 03/30/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew.md
-ms.openlocfilehash: 08a93555fd76d8a9f6d3011f59d9a34f76d0b22f
-ms.sourcegitcommit: c3b8386071d64953ee68788ef9d951144881a6ab
+ms.openlocfilehash: c047a308cadf44eea577dcab29b68b36942a50df
+ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/24/2020
-ms.locfileid: "80136256"
+ms.lasthandoff: 04/07/2020
+ms.locfileid: "80634278"
 ---
 # <a name="whats-new-in-ef-core-50"></a>Novedades en EF Core 5.0
 
@@ -19,6 +20,64 @@ Esta página no duplica el [plan para EF Core 5.0](plan.md).
 En el plan se describen los temas generales relativos a EF Core 5.0, incluido todo lo que estamos planeando incluir antes de publicar la versión final.
 
 A medida que se publique el contenido, se agregarán vínculos que redirigirán de esta página a la documentación oficial.
+
+## <a name="preview-2"></a>Versión preliminar 2
+
+### <a name="use-a-c-attribute-to-specify-a-property-backing-field"></a>Uso de un atributo de C# para especificar un campo de respaldo de propiedad
+
+Ahora se puede usar un atributo de C# para especificar el campo de respaldo de una propiedad.
+Este atributo permite a EF Core seguir escribiendo y leyendo en el campo de respaldo como sucedería normalmente, incluso si no se puede encontrar el campo de respaldo automáticamente.
+Por ejemplo:
+
+```CSharp
+public class Blog
+{
+    private string _mainTitle;
+
+    public int Id { get; set; }
+
+    [BackingField(nameof(_mainTitle))]
+    public string Title
+    {
+        get => _mainTitle;
+        set => _mainTitle = value;
+    }
+}
+```
+
+En el problema [#2230](https://github.com/dotnet/EntityFramework.Docs/issues/2230) se realiza el seguimiento de la documentación.
+
+### <a name="complete-discriminator-mapping"></a>Asignación completa de discriminador
+
+EF Core usa una columna de discriminador para la [asignación de TPH de una jerarquía de herencia](/ef/core/modeling/inheritance).
+Se posibilitan algunas mejoras de rendimiento siempre que EF Core conozca todos los valores posibles del discriminador.
+EF Core 5.0 ahora implementa estas mejoras.
+
+Por ejemplo, las versiones anteriores de EF Core siempre generaban este SQL para una consulta que devuelve todos los tipos de una jerarquía:
+
+```sql
+SELECT [a].[Id], [a].[Discriminator], [a].[Name]
+FROM [Animal] AS [a]
+WHERE [a].[Discriminator] IN (N'Animal', N'Cat', N'Dog', N'Human')
+```
+
+EF Core 5.0 ahora genera lo siguiente cuando se configura una asignación completa de discriminador:
+
+```sql
+SELECT [a].[Id], [a].[Discriminator], [a].[Name]
+FROM [Animal] AS [a]
+```
+
+Este va a ser el comportamiento predeterminado a partir de la versión preliminar 3.
+
+### <a name="performance-improvements-in-microsoftdatasqlite"></a>Mejoras de rendimiento de Microsoft.Data.Sqlite
+
+Se han realizado dos mejoras de rendimiento para SQLIte:
+
+* La recuperación de datos binarios y de cadena con GetBytes, GetChars y GetTextReader ahora es más eficaz gracias al uso de SqliteBlob y flujos.
+* La inicialización de SqliteConnection ahora es diferida.
+
+Estas mejoras se encuentran en el proveedor Microsoft.Data.Sqlite de ADO.NET y, por lo tanto, también mejoran el rendimiento fuera de EF Core.
 
 ## <a name="preview-1"></a>Versión preliminar 1
 
@@ -33,7 +92,7 @@ En el problema [n.º 2085](https://github.com/dotnet/EntityFramework.Docs/issues
 
 ### <a name="simple-way-to-get-generated-sql"></a>Forma sencilla de generar contenido SQL
 
-EF Core 5.0 presenta el método de extensión `ToQueryString` que devolverá el contenido SQL que EF Core generará al ejecutar una consulta LINQ.
+EF Core 5.0 presenta el método de extensión `ToQueryString`, que devuelve el SQL que EF Core genera al ejecutar una consulta LINQ.
 
 La documentación preliminar se incluye en el [estado semanal de EF del 9 de enero de 2020](https://github.com/dotnet/efcore/issues/19549#issuecomment-572823246).
 
@@ -60,7 +119,7 @@ En el problema [n.º 2186](https://github.com/dotnet/EntityFramework.Docs/issues
 
 Ahora es más fácil crear una instancia de DbContext sin ninguna conexión o cadena de conexión.
 Además, la conexión o la cadena de conexión ahora también se pueden mutar en la instancia de contexto.
-Esto permite que la misma instancia de contexto se conecte dinámicamente a diferentes bases de datos.
+Esta característica permite que la misma instancia de contexto se conecte de forma dinámica a diferentes bases de datos.
 
 En el problema [n.º 2075](https://github.com/dotnet/EntityFramework.Docs/issues/2075) se realiza el seguimiento de la documentación.
 
@@ -85,7 +144,7 @@ En el problema [n.º 2086](https://github.com/dotnet/EntityFramework.Docs/issues
 ### <a name="improved-handling-of-database-null-semantics"></a>Control mejorado de la semántica de valores NULL de base de datos
 
 Normalmente, las bases de datos relacionales tratan NULL como valores desconocidos y, por lo tanto, no son iguales a otros valores NULL.
-C#, por otro lado, trata los valores NULL como valores definidos y los compara igual que con cualquier otro valor NULL.
+Mientras, C# trata NULL como un valor definido que se compara igual que cualquier otro valor NULL.
 De forma predeterminada, EF Core traduce las consultas para que usen la semántica de valores NULL de C#.
 EF Core 5.0 mejora en gran medida la eficacia de dichas traducciones.
 
@@ -94,7 +153,7 @@ En el problema [n.º 1612](https://github.com/dotnet/EntityFramework.Docs/issues
 ### <a name="indexer-properties"></a>Propiedades del indizador
 
 EF Core 5.0 admite la asignación de propiedades de indizador de C#.
-Esto permite a las entidades actuar como bolsas de propiedades en las que las columnas se asignan a las propiedades con nombre en la bolsa.
+Estas propiedades permiten a las entidades actuar como bolsas de propiedades en las que las columnas se asignan a propiedades con nombre de la bolsa.
 
 En el problema [n.º 2018](https://github.com/dotnet/EntityFramework.Docs/issues/2018) se realiza el seguimiento de la documentación.
 
@@ -104,7 +163,7 @@ Las migraciones de EF Core 5.0 ahora pueden generar restricciones CHECK para la
 Por ejemplo:
 
 ```SQL
-MyEnumColumn VARCHAR(10) NOT NULL CHECK (MyEnumColumn IN('Useful', 'Useless', 'Unknown'))
+MyEnumColumn VARCHAR(10) NOT NULL CHECK (MyEnumColumn IN ('Useful', 'Useless', 'Unknown'))
 ```
 
 En el problema [n.º 2082](https://github.com/dotnet/EntityFramework.Docs/issues/2082) se realiza el seguimiento de la documentación.
@@ -112,7 +171,7 @@ En el problema [n.º 2082](https://github.com/dotnet/EntityFramework.Docs/issues
 ### <a name="isrelational"></a>IsRelational
 
 Se ha agregado un nuevo método `IsRelational`, además de los existentes, que son `IsSqlServer`, `IsSqlite` y `IsInMemory`.
-Se puede usar para comprobar si DbContext está usando algún proveedor de bases de datos relacionales.
+Se puede usar este método para comprobar si DbContext está usando algún proveedor de bases de datos relacionales.
 Por ejemplo:
 
 ```CSharp
@@ -138,7 +197,6 @@ builder.Entity<Customer>().Property(c => c.ETag).IsEtagConcurrency();
 
 Después, SaveChanges generará una excepción `DbUpdateConcurrencyException` en un conflicto de simultaneidad, que [se podrá manipular](https://docs.microsoft.com/ef/core/saving/concurrency), por ejemplo, para implementar reintentos.
 
-
 En el problema [n.º 2099](https://github.com/dotnet/EntityFramework.Docs/issues/2099) realiza se el seguimiento de la documentación.
 
 ### <a name="query-translations-for-more-datetime-constructs"></a>Traducciones de consultas para más construcciones DateTime
@@ -146,6 +204,7 @@ En el problema [n.º 2099](https://github.com/dotnet/EntityFramework.Docs/issues
 Ahora las consultas que contienen la nueva construcción DateTime se traducen.
 
 Además, ahora se asignan las funciones de SQL Server que hay a continuación:
+
 * DateDiffWeek
 * DateFromParts
 
