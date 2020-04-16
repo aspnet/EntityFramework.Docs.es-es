@@ -1,69 +1,83 @@
 ---
-title: 'Tipos de entidad sin llave: EF Core'
-description: Configuración de tipos de entidad sin entrada mediante Entity Framework Core
+title: Tipos de entidad sin clave - EF Core
+description: Cómo configurar tipos de entidad sin clave mediante Entity Framework Core
 author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 9/13/2019
 uid: core/modeling/keyless-entity-types
-ms.openlocfilehash: 520c9ed93240c05deee36fa527a3757490fd7082
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 496e1e8983ba2d5e15dbee02607ea3f2c861503e
+ms.sourcegitcommit: 144edccf9b29a7ffad119c235ac9808ec1a46193
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414648"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81434219"
 ---
 # <a name="keyless-entity-types"></a>Tipos de entidad sin llave
 
 > [!NOTE]
-> Esta característica se agregó en EF Core 2,1 bajo el nombre de los tipos de consulta. En EF Core 3,0 se cambió el nombre del concepto a tipos de entidad sin entrada.
+> Esta característica se agregó en EF Core 2.1 bajo el nombre de tipos de consulta. En EF Core 3.0, el concepto se renombró a tipos de entidad sin clave.
 
-Además de los tipos de entidad normales, un modelo de EF Core puede contener _tipos de entidad_sin clave, que se pueden usar para realizar consultas de base de datos con datos que no contengan valores de clave.
+Además de los tipos de entidad normales, un modelo de EF Core puede contener tipos de _entidad sin clave,_ que se pueden usar para realizar consultas de base de datos con datos que no contienen valores de clave.
 
-## <a name="keyless-entity-types-characteristics"></a>Características de tipos de entidad sin llave
+## <a name="defining-keyless-entity-types"></a>Definición de tipos de entidad sin clave
 
-Los tipos de entidad sin llave admiten muchas de las mismas capacidades de asignación que los tipos de entidad normales, como las propiedades de navegación y asignación de herencia. En almacenes relacionales, pueden configurar los objetos de base de datos de destino y las columnas a través de métodos de la API fluidos o las anotaciones de datos.
+Los tipos de entidad sin clave se pueden definir mediante la anotación de datos o la API fluida:
+
+### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
+
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Keyless.cs?Name=Keyless&highlight=1)]
+
+### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Keyless.cs?Name=Keyless&highlight=4)]
+
+***
+
+## <a name="keyless-entity-types-characteristics"></a>Características de los tipos de entidad sin clave
+
+Los tipos de entidad sin clave admiten muchas de las mismas capacidades de asignación que los tipos de entidad normales, como las propiedades de navegación y asignación de herencia. En los almacenes relacionales, pueden configurar los objetos y columnas de la base de datos de destino a través de métodos de API fluidos o anotaciones de datos.
 
 Sin embargo, son diferentes de los tipos de entidad normales en que:
 
-- No se puede definir una clave.
+- No se puede tener una clave definida.
 - Nunca se realiza un seguimiento de los cambios en _DbContext_ y, por lo tanto, nunca se insertan, actualizan o eliminan en la base de datos.
-- Nunca se detectan por convención.
-- Solo admite un subconjunto de capacidades de asignación de navegación, en concreto:
-  - Nunca pueden actuar como el extremo principal de una relación.
-  - Puede que no tengan navegaciones a entidades propiedad
-  - Solo pueden contener propiedades de navegación de referencia que apunten a entidades normales.
-  - Las entidades no pueden contener propiedades de navegación a tipos de entidad sin llave.
-- Debe configurarse con `.HasNoKey()` llamada al método.
-- Se puede asignar a una _consulta de definición_. Una consulta de definición es una consulta declarada en el modelo que actúa como origen de datos para un tipo de entidad sin entrada.
+- Nunca son descubiertos por convención.
+- Solo admite un subconjunto de capacidades de asignación de navegación, específicamente:
+  - Puede que nunca actúen como el final principal de una relación.
+  - Es posible que no tengan navegaciones a entidades de propiedad
+  - Solo pueden contener propiedades de navegación de referencia que apunten a entidades regulares.
+  - Las entidades no pueden contener propiedades de navegación a tipos de entidad sin clave.
+- Es necesario configurarlo `[Keyless]` con una `.HasNoKey()` anotación de datos o una llamada de método.
+- Se puede asignar a una _consulta de definición._ Una consulta de definición es una consulta declarada en el modelo que actúa como origen de datos para un tipo de entidad sin clave.
 
 ## <a name="usage-scenarios"></a>Escenarios de uso
 
-Algunos de los escenarios de uso principales de los tipos de entidad sin llave son:
+Algunos de los principales escenarios de uso para tipos de entidad sin clave son:
 
-- Actúa como el tipo de valor devuelto para [las consultas SQL sin procesar](xref:core/querying/raw-sql).
+- Servir como el tipo de valor devuelto para [consultas SQL sin procesar](xref:core/querying/raw-sql).
 - Asignación a vistas de base de datos que no contienen una clave principal.
-- Asignación de tablas que no tiene definida una clave principal.
-- Asignación de las consultas definidas en el modelo.
+- Asignación a tablas que no tienen definida una clave principal.
+- Asignación a consultas definidas en el modelo.
 
-## <a name="mapping-to-database-objects"></a>Asignación de objetos de base de datos
+## <a name="mapping-to-database-objects"></a>Asignación a objetos de base de datos
 
-La asignación de un tipo de entidad sin llave a un objeto de base de datos se consigue mediante el `ToTable` o `ToView` API fluida. Desde la perspectiva de EF Core, el objeto de base de datos especificado en este método es una _vista_, lo que significa que se trata como un origen de consulta de solo lectura y no puede ser el destino de las operaciones de actualización, inserción o eliminación. Sin embargo, esto no significa que el objeto de base de datos sea realmente necesario para ser una vista de base de datos. Como alternativa, puede tratarse de una tabla de base de datos que se tratará como de solo lectura. Por el contrario, en el caso de los tipos de entidad normales, EF Core supone que un objeto de base de datos especificado en el método `ToTable` se puede tratar como una _tabla_, lo que significa que se puede usar como origen de la consulta, pero también como destino de las operaciones de actualización, eliminación e inserción. De hecho, puede especificar el nombre de una vista de base de datos en `ToTable` y todo debería funcionar bien siempre que la vista esté configurada para ser actualizable en la base de datos.
+La asignación de un tipo de entidad `ToTable` sin clave a un objeto de base de datos se logra mediante la API o `ToView` fluida. Desde la perspectiva de EF Core, el objeto de base de datos especificado en este método es una _vista,_ lo que significa que se trata como un origen de consulta de solo lectura y no puede ser el destino de las operaciones de actualización, inserción o eliminación. Sin embargo, esto no significa que el objeto de base de datos realmente sea necesario para ser una vista de base de datos. También puede ser una tabla de base de datos que se tratará como de solo lectura. Por el contrario, para los tipos de entidad normales, `ToTable` EF Core supone que un objeto de base de datos especificado en el método se puede tratar como una _tabla,_ lo que significa que se puede usar como origen de consulta, pero también se destina a las operaciones de actualización, eliminación e inserción. De hecho, puede especificar el nombre `ToTable` de una vista de base de datos y todo debe funcionar bien siempre que la vista esté configurada para que se pueda actualizar en la base de datos.
 
 > [!NOTE]
-> `ToView` supone que el objeto ya existe en la base de datos y que no lo crearán las migraciones.
+> `ToView`se supone que el objeto ya existe en la base de datos y no se creará mediante migraciones.
 
 ## <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra cómo utilizar los tipos de entidad sin entrada para consultar una vista de base de datos.
+En el ejemplo siguiente se muestra cómo utilizar tipos de entidad sin clave para consultar una vista de base de datos.
 
 > [!TIP]
 > Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) de este artículo en GitHub.
 
-En primer lugar, definimos un modelo sencillo de Blog y Post:
+En primer lugar, definimos un modelo simple blog y publicación:
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#Entities)]
 
-A continuación, definimos una vista de base de datos simple que nos permitirá consultar el número de entradas vinculadas a cada blog:
+A continuación, definimos una vista de base de datos simple que nos permitirá consultar el número de publicaciones asociadas a cada blog:
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#View)]
 
@@ -71,12 +85,12 @@ A continuación, definimos una clase para contener el resultado de la vista de b
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#KeylessEntityType)]
 
-A continuación, configuraremos el tipo de entidad sin llave en _OnModelCreating_ con la API de `HasNoKey`.
-Usamos la API de configuración fluida para configurar la asignación para el tipo de entidad sin llave:
+A continuación, configuramos el tipo de entidad `HasNoKey` sin clave en _OnModelCreating_ mediante la API.
+Usamos una API de configuración fluida para configurar la asignación para el tipo de entidad sin clave:
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#Configuration)]
 
-A continuación, configuramos el `DbContext` para incluir el `DbSet<T>`:
+A continuación, `DbContext` configuramos `DbSet<T>`el para incluir el :
 
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#DbSet)]
 
@@ -85,4 +99,4 @@ Por último, podemos consultar la vista de base de datos de la manera estándar:
 [!code-csharp[Main](../../../samples/core/KeylessEntityTypes/Program.cs#Query)]
 
 > [!TIP]
-> Nota también hemos definido una propiedad de consulta de nivel de contexto (DbSet) para que actúe como raíz para las consultas en este tipo.
+> Tenga en cuenta que también hemos definido una propiedad de consulta de nivel de contexto (DbSet) para que actúe como raíz para las consultas en este tipo.
