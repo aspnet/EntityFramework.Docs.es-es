@@ -4,12 +4,12 @@ author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: 0e7a1ee159cdf5b72448fe6d73c972975b1ab95b
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 7ace80bf326395d3b68f3e745100cd45356d7973
+ms.sourcegitcommit: 144edccf9b29a7ffad119c235ac9808ec1a46193
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78412870"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81434102"
 ---
 # <a name="getting-started-with-ef-core"></a>Introducción a EF Core
 
@@ -95,7 +95,7 @@ Defina una clase de contexto y clases de entidad que conformen el modelo.
 
 EF Core también puede [aplicar ingeniería inversa](../managing-schemas/scaffolding.md) en un modelo desde una base de datos existente.
 
-Sugerencia: En una aplicación real, lo habitual sería colocar cada clase en un archivo independiente y la [cadena de conexión](../miscellaneous/connection-strings.md), en un archivo de configuración o una variable de entorno. Para que el tutorial sea sencillo, todo está incluido en un archivo.
+Sugerencia: Esta aplicación lo hace todo más fácil de forma intencionada. Las [cadenas de conexión](../miscellaneous/connection-strings.md) no se deben almacenar en el código para aplicaciones de producción. Además, es recomendable que divida cada clase de C# en su archivo correspondiente.
 
 ## <a name="create-the-database"></a>Creación de la base de datos
 

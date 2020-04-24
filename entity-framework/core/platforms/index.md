@@ -3,12 +3,12 @@ title: Implementaciones de .NET compatibles - EF Core
 author: bricelam
 ms.date: 03/03/2020
 uid: core/platforms/index
-ms.openlocfilehash: 693d4cae85eddf86d01e17084415147c52a008c7
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 2738645596a325a1a43fd5b2164e370dd8c5893e
+ms.sourcegitcommit: 144edccf9b29a7ffad119c235ac9808ec1a46193
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413070"
+ms.lasthandoff: 04/16/2020
+ms.locfileid: "81434128"
 ---
 # <a name="net-implementations-supported-by-ef-core"></a>Implementaciones de .NET compatibles con EF Core
 
@@ -73,4 +73,4 @@ Al usar EF Core en UWP:
 
 ## <a name="report-issues"></a>Problemas de informes
 
-En el caso de cualquier combinación que no funcione según lo esperado, se recomienda crear incidencias en el [rastreador de problemas de EF Core](https://github.com/aspnet/entityframeworkcore/issues/new). En el caso de problemas relacionados con Xamarin, use el seguimiento de problemas de [Xamarin.Android](https://github.com/xamarin/xamarin-android/issues/new) o de [Xamarin.iOS](https://github.com/xamarin/xamarin-macios/issues/new).
+En el caso de cualquier combinación que no funcione según lo esperado, se recomienda crear nuevos problemas en el [seguimiento de problemas de EF Core](https://github.com/aspnet/entityframeworkcore/issues/new). En el caso de problemas relacionados con Xamarin, use el seguimiento de problemas de [Xamarin.Android](https://github.com/xamarin/xamarin-android/issues/new) o de [Xamarin.iOS](https://github.com/xamarin/xamarin-macios/issues/new).
