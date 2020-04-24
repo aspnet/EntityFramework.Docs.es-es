@@ -3,14 +3,14 @@ title: 'Migraciones de Code First en entornos de equipo: EF6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
-ms.openlocfilehash: b3c4c35d636caf4ddd251dd78e026587abc57d42
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 46c22c997b8db53bb381d0b528c65733f1766849
+ms.sourcegitcommit: 387cbd8109c0fc5ce6bdc85d0dec1aed72ad4c33
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415614"
+ms.lasthandoff: 04/23/2020
+ms.locfileid: "82103170"
 ---
-# <a name="code-first-migrations-in-team-environments"></a>Migraciones de Code First en entornos de equipo
+# <a name="code-first-migrations-in-team-environments"></a>Code First Migrations in Team Environments (Migraciones de Code First en entornos de equipo)
 > [!NOTE]
 > En este artículo se supone que sabe cómo usar Migraciones de Code First en escenarios básicos. Si no lo hace, tendrá que leer [migraciones de Code First](~/ef6/modeling/code-first/migrations/index.md) antes de continuar.
 
@@ -24,7 +24,7 @@ Antes de profundizar en cómo administrar las migraciones de combinación genera
 
 ### <a name="each-team-member-should-have-a-local-development-database"></a>Cada miembro del equipo debe tener una base de datos de desarrollo local
 
-Las migraciones utilizan la **\_\_tabla MigrationsHistory** para almacenar las migraciones que se han aplicado a la base de datos. Si tiene varios desarrolladores que generan distintas migraciones al intentar tener como destino la misma base de datos (y, por tanto, compartir una **\_\_tabla MigrationsHistory** ), las migraciones se van a confundir.
+Las migraciones usan la ** \_ \_tabla MigrationsHistory** para almacenar las migraciones que se han aplicado a la base de datos. Si tiene varios desarrolladores que generan diferentes migraciones al intentar tener como destino la misma base de datos (y, ** \_ \_** por tanto, compartir una tabla MigrationsHistory), las migraciones se van a confundir.
 
 Por supuesto, si tiene miembros del equipo que no están generando migraciones, no hay problemas para que compartan una base de datos de desarrollo central.
 
@@ -98,22 +98,22 @@ Seguiremos el modelo EF y las migraciones a través de una serie de cambios. Par
 
 ![Punto de partida](~/ef6/media/startingpoint.png)
 
-Developer \#1 y Developer \#2 ahora realiza algunos cambios en el modelo de EF en su base de código local. Developer \#1 agrega una propiedad **rating** al **blog** y genera una migración **AddRating** para aplicar los cambios a la base de datos. Developer \#2 agrega una propiedad **Readers** al **blog** y genera la migración de **AddReaders** correspondiente. Ambos desarrolladores ejecutan **Update-Database**para aplicar los cambios a sus bases de datos locales y, a continuación, seguir desarrollando la aplicación.
+Developer \#1 y Developer \#2 ahora realizan algunos cambios en el modelo de EF en su base de código local. Developer \#1 agrega una propiedad **rating** al **blog** y genera una migración **AddRating** para aplicar los cambios a la base de datos. Developer \#2 agrega una propiedad **Readers** al **blog** y genera la migración de **AddReaders** correspondiente. Ambos desarrolladores ejecutan **Update-Database**para aplicar los cambios a sus bases de datos locales y, a continuación, seguir desarrollando la aplicación.
 
 > [!NOTE]
-> Las migraciones llevan el prefijo de una marca de tiempo, por lo que nuestro gráfico representa que la migración de AddReaders de Developer \#2 viene después de la migración de AddRating de Developer \#1. Si Developer \#1 o \#2 generó la migración, en primer lugar no realiza ninguna diferencia con los problemas de trabajo en un equipo o el proceso para combinarlos en la sección siguiente.
+> Las migraciones llevan el prefijo de una marca de tiempo, por lo que nuestro gráfico representa que \#la migración de AddReaders de Developer 2 viene \#después de la migración de AddRating de Developer 1. Si el \#desarrollador 1 \#o 2 generó la migración en primer lugar no realiza ninguna diferencia con los problemas de trabajo en un equipo o el proceso para combinarlos en la sección siguiente.
 
 ![Cambios locales](~/ef6/media/localchanges.png)
 
-El día de la suerte para Developer \#1 a medida que se producen para enviar sus cambios en primer lugar. Dado que no se ha protegido ningún otro usuario desde que se sincronizó su repositorio, solo pueden enviar sus cambios sin realizar ninguna combinación.
+Es el día de la suerte para \#desarrolladores 1 a medida que se producen para enviar sus cambios en primer lugar. Dado que no se ha protegido ningún otro usuario desde que se sincronizó su repositorio, solo pueden enviar sus cambios sin realizar ninguna combinación.
 
 ![Enviar](~/ef6/media/submit.png)
 
-Ahora es el momento de enviar el desarrollador \#2. No son tan afortunados. Dado que otra persona ha enviado cambios desde que se sincronizaron, deberán desplegar los cambios y mezclar. Es posible que el sistema de control de código fuente pueda fusionar mediante combinación automáticamente los cambios en el nivel de código, ya que son muy sencillos. El estado del repositorio local del desarrollador \#2 después de la sincronización se muestra en el gráfico siguiente. 
+Ahora es el momento de enviar \#el desarrollador 2. No son tan afortunados. Dado que otra persona ha enviado cambios desde que se sincronizaron, deberán desplegar los cambios y mezclar. Es posible que el sistema de control de código fuente pueda fusionar mediante combinación automáticamente los cambios en el nivel de código, ya que son muy sencillos. El estado del repositorio \#local del desarrollador 2 después de la sincronización se muestra en el gráfico siguiente. 
 
 ![Extracción](~/ef6/media/pull.png)
 
-En esta fase, el desarrollador \#2 puede ejecutar **Update-Database** , que detectará la nueva migración de **AddRating** (que no se ha aplicado a la base de datos de Developer \#2) y la aplicará. Ahora se agrega la columna **clasificación** a la tabla **blogs** y la base de datos está sincronizada con el modelo.
+En esta fase, \#Developer 2 puede ejecutar **Update-Database** , que detectará la nueva migración de **AddRating** (que no se \#ha aplicado a la base de datos del desarrollador 2) y la aplicará. Ahora se agrega la columna **clasificación** a la tabla **blogs** y la base de datos está sincronizada con el modelo.
 
 Sin embargo, hay un par de problemas:
 
@@ -133,7 +133,7 @@ Hay dos opciones, lo más fácil es generar una migración en blanco que tenga e
 
 En esta opción, se genera una migración en blanco únicamente con el fin de asegurarse de que la migración más reciente tenga almacenada la instantánea del modelo correcta.
 
-Esta opción se puede usar independientemente de quién haya generado la última migración. En el ejemplo que hemos estado siguiendo el desarrollador \#2 está tomando en consideración la combinación y se han producido para generar la última migración. Pero se pueden usar los mismos pasos si Developer \#1 generó la última migración. Los pasos también se aplican si hay varias migraciones implicadas: hemos visto dos con el fin de simplificar el proceso.
+Esta opción se puede usar independientemente de quién haya generado la última migración. En el ejemplo en el que hemos estado \#el desarrollador 2 se está encargando de la combinación y que se han producido para generar la última migración. Pero se pueden usar los mismos pasos si el \#desarrollador 1 generó la última migración. Los pasos también se aplican si hay varias migraciones implicadas: hemos visto dos con el fin de simplificar el proceso.
 
 El siguiente proceso se puede usar para este enfoque, a partir del momento en que se dé cuenta de que tiene cambios que deben sincronizarse desde el control de código fuente.
 
@@ -141,10 +141,11 @@ El siguiente proceso se puede usar para este enfoque, a partir del momento en qu
 2.  Sincronizar con control de código fuente.
 3.  Ejecute **Update-Database** para aplicar las nuevas migraciones que hayan protegido otros desarrolladores.
     **_Nota:_** *si no recibe ninguna advertencia del comando UPDATE-Database, no habrá nuevas migraciones de otros desarrolladores y no será necesario realizar ninguna combinación adicional.*
-4.  Ejecute **Add-migration &lt;pick\_un nombre de\_&gt; – IgnoreChanges** (por ejemplo, **Add-Migration Merge – IgnoreChanges**). Esto genera una migración con todos los metadatos (incluida una instantánea del modelo actual), pero omitirá todos los cambios que detecte al comparar el modelo actual con la instantánea en las últimas Migraciones (lo que significa que obtiene un método **en blanco y** **vertical** ).
-5.  Continúe desarrollando o envíe el control de código fuente (después de ejecutar las pruebas unitarias del curso).
+4.  Ejecute **Add-Migration &lt;\_picking\_name&gt; – IgnoreChanges** (por ejemplo, **Add-Migration Merge – IgnoreChanges**). Esto genera una migración con todos los metadatos (incluida una instantánea del modelo actual), pero omitirá todos los cambios que detecte al comparar el modelo actual con la instantánea en las últimas Migraciones (lo que significa que obtiene un método **en blanco y** **vertical** ).
+5.  Ejecute **Update-Database** para volver a aplicar la migración más reciente con los metadatos actualizados.
+6.  Continúe desarrollando o envíe el control de código fuente (después de ejecutar las pruebas unitarias del curso).
 
-Este es el estado de la base de código local del desarrollador \#2 después de usar este enfoque.
+Este es el estado de la \#base de código local del desarrollador 2 después de usar este enfoque.
 
 ![Migración de mezcla](~/ef6/media/mergemigration.png)
 
@@ -152,7 +153,7 @@ Este es el estado de la base de código local del desarrollador \#2 después de 
 
 Esta opción es muy similar a la opción 1, pero quita la migración en blanco adicional, porque nos encargamos de ello, que quiere archivos de código adicionales en su solución.
 
-**Este enfoque solo es factible si la migración más reciente solo existe en la base de código local y aún no se ha enviado al control de código fuente (por ejemplo, si la última migración fue generada por el usuario que realizó la mezcla)** . La edición de los metadatos de las migraciones que otros desarrolladores pueden haber aplicado ya a su base de datos de desarrollo, o incluso peor si se aplican a una base de datos de producción, puede producir efectos secundarios inesperados. Durante el proceso, vamos a revertir la última migración en nuestra base de datos local y volver a aplicarla con los metadatos actualizados.
+**Este enfoque solo es factible si la migración más reciente solo existe en la base de código local y aún no se ha enviado al control de código fuente (por ejemplo, si la última migración fue generada por el usuario que realizó la mezcla)**. La edición de los metadatos de las migraciones que otros desarrolladores pueden haber aplicado ya a su base de datos de desarrollo, o incluso peor si se aplican a una base de datos de producción, puede producir efectos secundarios inesperados. Durante el proceso, vamos a revertir la última migración en nuestra base de datos local y volver a aplicarla con los metadatos actualizados.
 
 Aunque la última migración debe estar solo en la base de código local, no hay ninguna restricción sobre el número o el orden de las migraciones que lo continúan. Puede haber varias migraciones de varios desarrolladores diferentes y se aplican los mismos pasos: simplemente hemos visto dos con el fin de mantenerlos sencillos.
 
@@ -162,15 +163,15 @@ El siguiente proceso se puede usar para este enfoque, a partir del momento en qu
 2.  Sincronizar con el control de código fuente.
 3.  Ejecute **Update-Database** para aplicar las nuevas migraciones que hayan protegido otros desarrolladores.
     **_Nota:_** *si no recibe ninguna advertencia del comando UPDATE-Database, no habrá nuevas migraciones de otros desarrolladores y no será necesario realizar ninguna combinación adicional.*
-4.  Ejecute **Update-Database – TargetMigration &lt;second\_última\_migración&gt;** (en el ejemplo que hemos estado siguiendo esto sería **Update-Database – TargetMigration AddRating**). De este modo, la base de datos vuelve al estado de la segunda migración, con lo que se "anula la aplicación" de la última migración de la base de datos.
-    **_Nota:_** *este paso es necesario para que sea seguro editar los metadatos de la migración, ya que los metadatos también se almacenan en la \_\_MigrationsHistoryTable de la base de datos. Esta es la razón por la que solo debe usar esta opción si la última migración solo está en la base de código local. Si se ha aplicado la última migración a otras bases de datos, también tendrá que revertirla y volver a aplicar la última migración para actualizar los metadatos.* 
-5.  Ejecute **Add-migration &lt;nombre de\_completo\_incluido\_marca de tiempo\_\_\_&gt; de migración del último** (en el ejemplo que hemos estado siguiendo esto sería algo como **Add-Migration 201311062215252\_AddReaders**).
+4.  Ejecute **Update-Database – TargetMigration &lt;Second\_Last\_Migration&gt; ** (en el ejemplo que hemos estado siguiendo esto sería **Update-Database – TargetMigration AddRating**). De este modo, la base de datos vuelve al estado de la segunda migración, con lo que se "anula la aplicación" de la última migración de la base de datos.
+    **_Nota:_** *este paso es necesario para que sea seguro editar los metadatos de la migración, ya que los metadatos también se \_ \_almacenan en el MigrationsHistoryTable de la base de datos. Esta es la razón por la que solo debe usar esta opción si la última migración solo está en la base de código local. Si se ha aplicado la última migración a otras bases de datos, también tendrá que revertirla y volver a aplicar la última migración para actualizar los metadatos.* 
+5.  Ejecute el **nombre &lt;\_\_completo de Add-\_Migration\_,\_incluida\_la marca de tiempo de la última migración** &gt; (en el ejemplo que hemos estado siguiendo esto sería algo como **Add-Migration 201311062215252\_AddReaders**).
     **_Nota:_** debe *incluir la marca de tiempo para que las migraciones sepan que desea editar la migración existente en lugar de aplicar la técnica scaffolding a una nueva.*
-    De esta forma, se actualizarán los metadatos de la última migración para que coincida con el modelo actual. Obtendrá la siguiente advertencia cuando se complete el comando, pero eso es exactamente lo que desea. "*Solo se volvió a scaffolding el código del diseñador para la migración ' 201311062215252\_AddReaders '. Para volver a aplicar el scaffolding a toda la migración, use el parámetro-Force ".*
+    De esta forma, se actualizarán los metadatos de la última migración para que coincida con el modelo actual. Obtendrá la siguiente advertencia cuando se complete el comando, pero eso es exactamente lo que desea. "*Solo se volvió a scaffolding el código del\_diseñador para la migración ' 201311062215252 AddReaders '. Para volver a aplicar el scaffolding a toda la migración, use el parámetro-Force ".*
 6.  Ejecute **Update-Database** para volver a aplicar la migración más reciente con los metadatos actualizados.
 7.  Continúe desarrollando o envíe el control de código fuente (después de ejecutar las pruebas unitarias del curso).
 
-Este es el estado de la base de código local del desarrollador \#2 después de usar este enfoque.
+Este es el estado de la \#base de código local del desarrollador 2 después de usar este enfoque.
 
 ![Metadatos actualizados](~/ef6/media/updatedmetadata.png)
 
