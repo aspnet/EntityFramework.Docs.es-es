@@ -4,12 +4,12 @@ author: divega
 ms.date: 02/19/2019
 ms.assetid: 2EBE2CCC-E52D-483F-834C-8877F5EB0C0C
 uid: core/what-is-new/ef-core-3.0/index
-ms.openlocfilehash: ebc676930ffc396aa70bb8afb91cf5a0cd43e04d
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 39684cdcc17e3baa4b77cf29d54b626294771332
+ms.sourcegitcommit: 387cbd8109c0fc5ce6bdc85d0dec1aed72ad4c33
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413200"
+ms.lasthandoff: 04/23/2020
+ms.locfileid: "82103144"
 ---
 # <a name="new-features-in-entity-framework-core-30"></a>Características nuevas de Entity Framework Core 3.0
 
@@ -73,7 +73,7 @@ EF Core 3.0 aprovecha varias [características nuevas de C# 8.0](https://docs.
 
 ### <a name="asynchronous-streams"></a>Secuencias asincrónicas
 
-Los resultados de la consulta asincrónica se exponen ahora mediante la nueva interfaz de `IAsyncEnumerable<T>` estándar y se pueden usar con `await foreach`.
+Los resultados de la consulta asincrónica se exponen ahora mediante la nueva interfaz de `await foreach` estándar y se pueden usar con `IAsyncEnumerable<T>`.
 
 ``` csharp
 var orders =
@@ -113,15 +113,15 @@ La nueva API de intercepción en EF Core 3.0 permite proporcionar una lógica pe
 
 De manera similar a las características de intercepción que existían en EF 6, los interceptores le permiten interceptar operaciones antes o después de que sucedan. Cuando las intercepta antes de que sucedan, puede omitir la ejecución y proporcionar resultados alternativos de la lógica de intercepción.
 
-Por ejemplo, para manipular el texto del comando, puede crear `IDbCommandInterceptor`:
+Por ejemplo, para manipular el texto del comando, puede crear `DbCommandInterceptor`:
 
 ``` csharp
 public class HintCommandInterceptor : DbCommandInterceptor
 {
-    public override InterceptionResult ReaderExecuting(
+    public override InterceptionResult<DbDataReader> ReaderExecuting(
         DbCommand command,
         CommandEventData eventData,
-        InterceptionResult result)
+        InterceptionResult<DbDataReader> result)
     {
         // Manipulate the command text, etc. here...
         command.CommandText += " OPTION (OPTIMIZE FOR UNKNOWN)";
