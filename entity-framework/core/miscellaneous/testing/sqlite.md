@@ -1,54 +1,46 @@
 ---
 title: Pruebas con SQLite-EF Core
-author: rowanmiller
-ms.date: 10/27/2016
-ms.assetid: 7a2b75e2-1875-4487-9877-feff0651b5a6
+description: Uso de SQLite para probar una aplicación EF Core
+author: ajcvickers
+ms.date: 04/24/2020
 uid: core/miscellaneous/testing/sqlite
-ms.openlocfilehash: f7f847d8c766c0d4d7577ea6760ee72a17f84933
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 327fdc230df2a3b4094accf93fffa81f92e0a931
+ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414636"
+ms.lasthandoff: 04/29/2020
+ms.locfileid: "82538282"
 ---
-# <a name="testing-with-sqlite"></a>Pruebas con SQLite
+# <a name="using-sqlite-to-test-an-ef-core-application"></a>Uso de SQLite para probar una aplicación EF Core
 
-SQLite tiene un modo en memoria que le permite usar SQLite para escribir pruebas en una base de datos relacional, sin la sobrecarga de las operaciones de base de datos reales.
+> [!WARNING]
+> El uso de SQLite puede ser una manera eficaz de probar una aplicación EF Core.
+> Sin embargo, pueden surgir problemas en los que SQLite se comporta de forma diferente a otros sistemas de base de datos. Vea [código de prueba que usa EF Core](xref:core/miscellaneous/testing/index) para obtener una explicación de los problemas y las ventajas.  
 
-> [!TIP]  
-> Puede ver el [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing) de este artículo en github
+Este documento se basa en los conceptos presentados en el [ejemplo que muestra cómo probar las aplicaciones que usan EF Core](xref:core/miscellaneous/testing/testing-sample).
+Los ejemplos de código que se muestran aquí provienen de este ejemplo.
 
-## <a name="example-testing-scenario"></a>Escenario de prueba de ejemplo
+## <a name="using-sqlite-in-memory-databases"></a>Usar bases de datos en memoria de SQLite
 
-Considere el siguiente servicio que permite al código de la aplicación realizar algunas operaciones relacionadas con blogs. Utiliza internamente un `DbContext` que se conecta a una base de datos SQL Server. Sería útil intercambiar este contexto para conectarse a una base de datos de SQLite en memoria, de modo que podamos escribir pruebas eficaces para este servicio sin tener que modificar el código o hacer mucho trabajo para crear un doble de prueba del contexto.
+Normalmente, SQLite crea bases de datos como archivos simples y accede al archivo en proceso con la aplicación.
+Esto es muy rápido, especialmente cuando se usa una [SSD](https://en.wikipedia.org/wiki/Solid-state_drive)rápida. 
 
-[!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/BusinessLogic/BlogService.cs)]
+SQLite también puede usar bases de datos creadas exclusivamente en memoria.
+Esto es fácil de usar con EF Core siempre que comprenda la duración de la base de datos en memoria:
+* La base de datos se crea cuando se abre la conexión con ella
+* La base de datos se elimina cuando se cierra la conexión con ella.
 
-## <a name="get-your-context-ready"></a>Preparar el contexto
+EF Core usará una conexión que ya está abierta cuando se le proporcione una y nunca intentará cerrarla.
+Por lo tanto, la clave para usar EF Core con una base de datos SQLite en memoria es abrir la conexión antes de pasarla a EF.  
 
-### <a name="avoid-configuring-two-database-providers"></a>Evite configurar dos proveedores de bases de datos
+En el [ejemplo](xref:core/miscellaneous/testing/testing-sample) se consigue con el código siguiente:
 
-En las pruebas, va a configurar externamente el contexto para usar el proveedor de inmemory. Si está configurando un proveedor de base de datos invalidando `OnConfiguring` en el contexto, deberá agregar código condicional para asegurarse de que solo se configura el proveedor de base de datos si aún no se ha configurado ninguno.
+[!code-csharp[SqliteInMemory](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/Tests/SqliteInMemoryItemsControllerTest.cs?name=SqliteInMemory)]
 
-> [!TIP]  
-> Si usa ASP.NET Core, no necesitará este código, ya que el proveedor de la base de datos se configura fuera del contexto (en Startup.cs).
+Aviso:
+* El `CreateInMemoryDatabase` método crea una base de datos en memoria de SQLite y abre la conexión con ella.
+* El creado `DbConnection` se extrae de `ContextOptions` y se guarda.
+* La conexión se elimina cuando se elimina la prueba para que no se pierdan los recursos. 
 
-[!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs#OnConfiguring)]
-
-### <a name="add-a-constructor-for-testing"></a>Agregar un constructor para las pruebas
-
-La manera más sencilla de habilitar las pruebas en una base de datos diferente es modificar el contexto para exponer un constructor que acepta un `DbContextOptions<TContext>`.
-
-[!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/BusinessLogic/BloggingContext.cs#Constructors)]
-
-> [!TIP]  
-> `DbContextOptions<TContext>` indica al contexto toda su configuración, como la base de datos a la que se va a conectar. Este es el mismo objeto que se genera al ejecutar el método de configuración en el contexto.
-
-## <a name="writing-tests"></a>Escribir pruebas
-
-La clave para realizar pruebas con este proveedor es la posibilidad de indicar al contexto que use SQLite y controlar el ámbito de la base de datos en memoria. El ámbito de la base de datos se controla mediante la apertura y el cierre de la conexión. La base de datos está en el ámbito de la duración de la conexión abierta. Normalmente, desea una base de datos limpia para cada método de prueba.
-
->[!TIP]
-> Para usar `SqliteConnection()` y el método de extensión `.UseSqlite()`, haga referencia al paquete NuGet [Microsoft. EntityFrameworkCore. SQLite](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Sqlite/).
-
-[!code-csharp[Main](../../../../samples/core/Miscellaneous/Testing/TestProject/SQLite/BlogServiceTests.cs)]
+> [!NOTE]
+> [Problema #16103](https://github.com/dotnet/efcore/issues/16103) es el seguimiento de las formas de facilitar esta administración de conexiones. 
