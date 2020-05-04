@@ -73,8 +73,12 @@
               href: core/miscellaneous/connection-resiliency.md
             - name: Pruebas
               items:
-                - name: Información general
+                - name: Pruebas de código que usa EF Core
                   href: core/miscellaneous/testing/index.md
+                - name: "Ejemplo de prueba de EF\_Core"
+                  href: core/miscellaneous/testing/testing-sample.md
+                - name: Compartir bases de datos entre pruebas
+                  href: core/miscellaneous/testing/sharing-databases.md
                 - name: Pruebas con SQLite
                   href: core/miscellaneous/testing/sqlite.md
                 - name: Pruebas con InMemory
@@ -111,6 +115,8 @@
               href: core/modeling/backing-field.md
             - name: Conversiones de valores
               href: core/modeling/value-conversions.md
+            - name: Comparadores de valores
+              href: core/modeling/value-comparers.md
             - name: Propagación de datos
               href: core/modeling/data-seeding.md
             - name: Constructores de tipos de entidad
