@@ -1,15 +1,15 @@
 ---
-title: Prueba de componentes mediante EF Core - EF Core
+title: 'Pruebas de código que usa EF Core: EF Core'
 description: Diferentes métodos para probar aplicaciones que usan EF Core
 author: ajcvickers
-ms.date: 03/23/2020
+ms.date: 04/22/2020
 uid: core/miscellaneous/testing/index
-ms.openlocfilehash: b1ab37ebb0a3aae09d5d5b225f746cf83dfba170
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 308128b0d51b9e0d1fc1ebb0ed00e803100efb52
+ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "80634249"
+ms.lasthandoff: 04/29/2020
+ms.locfileid: "82538366"
 ---
 # <a name="testing-code-that-uses-ef-core"></a>Pruebas de código que usa EF Core
 
@@ -20,6 +20,9 @@ Para probar el código que accede a una base de datos, es necesario:
 
 En este documento se describen las ventajas e inconvenientes de cada una de estas opciones y se muestra cómo usar EF Core con cada método.  
 
+> [!TIP]
+> Eche un vistazo al [ejemplo de prueba de EF Core](xref:core/miscellaneous/testing/testing-sample) para ver código que muestra los conceptos descritos aquí. 
+
 ## <a name="all-database-providers-are-not-equal"></a>Todos los proveedores de bases de datos no son iguales
 
 Es muy importante entender que EF Core no está diseñado para extraer cada aspecto del sistema de base de datos subyacente.
@@ -27,10 +30,10 @@ EF Core es un conjunto común de patrones y conceptos que se pueden usar con cua
 Así, los proveedores de bases de datos de EF Core basan el comportamiento y la funcionalidad específicos de base de datos en este marco común.
 Esto permite a cada sistema de base de datos hacer lo que mejor se le da, a la vez que mantiene la homogeneidad, si fuera necesario, con otros sistemas de base de datos. 
 
-Básicamente, esto significa que al cambiar de proveedor de base de datos, cambia el comportamiento de EF Core y no se puede esperar que la aplicación funcione correctamente a menos que tenga en cuenta de forma explícita todas las diferencias de comportamiento.
+Básicamente, esto significa que, al cambiar de proveedor de base de datos, cambia el comportamiento de EF Core y no se puede esperar que la aplicación funcione correctamente, a menos que tenga en cuenta de forma explícita las diferencias de comportamiento.
 Dicho esto, en muchos casos esto funciona, ya que hay un alto grado de homogeneidad entre bases de datos relacionales.
 Esto es bueno y malo.
-Es bueno porque el cambio entre bases de datos puede ser relativamente fácil.
+Es bueno porque el cambio entre sistemas de bases de datos puede ser relativamente fácil.
 Es malo porque puede dar una falsa sensación de seguridad si la aplicación no se prueba por completo en el nuevo sistema de base de datos.  
 
 ## <a name="approach-1-production-database-system"></a>Enfoque 1: Sistema de base de datos de producción
@@ -45,20 +48,22 @@ Afortunadamente, en este caso, la respuesta es bastante fácil: use la instancia
 SQL Azure y SQL Server son muy similares, por lo que realizar las pruebas en SQL Server suele ser una contrapartida razonable.
 Dicho esto, sigue siendo aconsejable ejecutar las pruebas en SQL Azure antes de pasar a producción.
  
-### <a name="localdb"></a>LocalDb 
+### <a name="localdb"></a>LocalDB 
 
 Todos los principales sistemas de base de datos tienen alguna forma de "edición para desarrolladores" para las pruebas locales.
-SQL Server también tiene una característica denominada [LocalDb](/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15).
-La principal ventaja de LocalDb es que inicia la instancia de base de datos a petición.
+SQL Server también tiene una característica denominada [LocalDB](/sql/database-engine/configure-windows/sql-server-express-localdb?view=sql-server-ver15).
+La principal ventaja de LocalDB es que inicia la instancia de base de datos a petición.
 Esto evita que haya un servicio de base de datos ejecutándose en el equipo aunque no se estén ejecutando pruebas.
 
-Pero LocalDb también plantea problemas:
+Pero LocalDB también plantea problemas:
 * No admite todo lo que [SQL Server Developer Edition](/sql/sql-server/editions-and-components-of-sql-server-2016?view=sql-server-ver15).
 * No está disponible en Linux.
 * Puede producir un retraso en la primera serie de pruebas cuando se inicia el servicio.
 
 Personalmente, nunca me ha parecido un problema que haya un servicio de base de datos ejecutándose en el equipo de desarrollo y, en general, recomendaría usar Developer Edition.
-Pero puede ser adecuado para algunas personas, especialmente en equipos de desarrollo menos potentes.  
+Con todo, LocalDB puede ser adecuado para algunas personas, especialmente en equipos de desarrollo menos potentes.
+
+La ejecución de SQL Server (o cualquier otro sistema de base de datos) en un contenedor de Docker (o similar) es otra manera de impedir que el sistema de base de datos se ejecute directamente en el equipo de desarrollo.  
 
 ## <a name="approach-2-sqlite"></a>Enfoque 2: SQLite
 
@@ -105,8 +110,8 @@ Pero nunca se intentan simular DbContext o IQueryable.
 Hacerlo es difícil, engorroso y delicado.
 **No lo haga.**
 
-En su lugar, se usa la base de datos en memoria siempre que se realizan pruebas unitarias de algo que usa DbContext.
-En este caso, el uso de la base de datos en memoria es adecuado porque la prueba no depende del comportamiento de la base de datos.
+En su lugar, se usa la base de datos en memoria de EF siempre que se realizan pruebas unitarias de algo que use DbContext.
+En este caso, el uso de la base de datos en memoria de EF es adecuado porque la prueba no depende del comportamiento de la base de datos.
 Pero no lo haga para probar consultas o actualizaciones reales de la base de datos.   
 
-Vea [Pruebas con InMemory](xref:core/miscellaneous/testing/in-memory) para obtener instrucciones específicas de EF Core sobre el uso de la base de datos en memoria para las pruebas unitarias.
+En el [ejemplo de prueba de EF Core](xref:core/miscellaneous/testing/testing-sample) puede ver pruebas que usan la base de datos en memoria de EF, así como SQL Server y SQLite. 

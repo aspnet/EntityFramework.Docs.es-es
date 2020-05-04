@@ -1,6 +1,6 @@
 ### YamlMime:Hub
 title: Documentación de Entity Framework
-summary: Entity Framework Core es un asignador de base de datos de objeto moderno para .NET. Admite consultas LINQ, seguimiento de cambios, actualizaciones y migraciones de esquemas. EF Core funciona con una gran variedad de bases de datos, incluidas SQL Database (en el entorno local y Azure), SQLite, MySQL, PostgreSQL y Azure Cosmos DB.
+summary: Entity Framework Core es un asignador de base de datos de objeto moderno para .NET. Admite consultas LINQ, seguimiento de cambios, actualizaciones y migraciones de esquemas. EF Core funciona con una gran variedad de bases de datos, incluidas SQL Database (en el entorno local y Azure), SQLite, MySQL, PostgreSQL y Azure Cosmos DB.
 brand: dotnet
 metadata:
   title: Documentación de Entity Framework
@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 04/15/2020
-  ms.openlocfilehash: bfb96b06a2832b489e194fede0c04efebcc7496d
-  ms.sourcegitcommit: 387cbd8109c0fc5ce6bdc85d0dec1aed72ad4c33
+  ms.openlocfilehash: 54cbd0fcda19c4e2f35a3c3d4f350e3fecf3f597
+  ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
   ms.translationtype: HT
   ms.contentlocale: es-ES
-  ms.lasthandoff: 04/23/2020
-  ms.locfileid: "82103105"
+  ms.lasthandoff: 04/29/2020
+  ms.locfileid: "82538376"
 highlightedContent:
   items:
   - title: Entity Framework Core
@@ -48,6 +48,38 @@ additionalContent:
         text: Aplicación web de Razor Pages de ASP.NET Core que accede a SQL Server LocalDB o SQLite con EF Core
       - url: /aspnet/core/data/ef-mvc/
         text: Aplicación web de ASP.NET Core MVC que accede a SQL Server con EF Core
+    - title: Bases de datos admitidas
+      links:
+      - url: core/providers/sql-server/index.md
+        text: SQL Server
+      - url: core/providers/sqlite/index.md
+        text: SQLite
+      - url: http://www.npgsql.org/efcore/index.html
+        text: PostgreSQL
+      - url: https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
+        text: MySQL y MariaDB
+      - url: core/providers/cosmos/index.md
+        text: API de SQL de Cosmos DB
+      - url: core/providers/in-memory/index.md
+        text: En memoria (pruebas)
+      - url: core/providers/index.md
+        text: Todos los proveedores de bases de datos actuales
+    - title: Plataformas
+      links:
+      - url: https://docs.microsoft.com/ef/core/platforms/
+        text: Todas las plataformas compatibles
+      - url: https://docs.microsoft.com/aspnet/core/data/ef-rp/intro
+        text: ASP.NET Core, Razor Pages
+      - url: https://docs.microsoft.com/aspnet/core/data/ef-mvc/
+        text: ASP.NET Core MVC
+      - url: https://docs.microsoft.com/aspnet/core/blazor/dependency-injection?#use-of-entity-framework-dbcontext-from-di
+        text: Servidor Blazor
+      - url: https://docs.microsoft.com/ef/ef6/fundamentals/databinding/wpf
+        text: Windows Presentation Foundation (WPF)
+      - url: https://docs.microsoft.com/ef/ef6/fundamentals/databinding/winforms
+        text: Windows Forms (WinForms)
+      - url: https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+label%3Aarea-xamarin
+        text: Xamarin (compatibilidad parcial)
     - title: Aspectos básicos
       links:
       - url: core/miscellaneous/connection-strings.md
@@ -138,22 +170,6 @@ additionalContent:
         text: Guardado asincrónico
       - url: core/saving/disconnected-entities.md
         text: Entidades desconectadas
-    - title: Bases de datos admitidas
-      links:
-      - url: core/providers/sql-server/index.md
-        text: SQL Server
-      - url: core/providers/sqlite/index.md
-        text: SQLite
-      - url: http://www.npgsql.org/efcore/index.html
-        text: PostgreSQL
-      - url: https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql
-        text: MySQL y MariaDB
-      - url: core/providers/cosmos/index.md
-        text: API de SQL de Cosmos DB
-      - url: core/providers/in-memory/index.md
-        text: En memoria (pruebas)
-      - url: core/providers/index.md
-        text: Todos los proveedores de bases de datos actuales
     - title: Referencia de la línea de comandos
       links:
       - url: core/miscellaneous/cli/index.md
