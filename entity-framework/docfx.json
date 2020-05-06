@@ -27,7 +27,7 @@
       {
         "files": [
           "**.md",
-          "**/toc.yml",
+          "**/*.yml",
           "*.md"
         ],
         "exclude": [
@@ -63,7 +63,8 @@
       }
     ],
     "globalMetadata": {
-      "breadcrumb_path": "/ef/toc.json",
+      "breadcrumb_path": "/ef/breadcrumb/toc.json",
+      "extendBreadcrumb": true,
       "bilingual_type": "hover over",
       "searchScope": [
         "Entity Framework"
@@ -82,12 +83,12 @@
       ],
       "feedback_system": "GitHub",
       "feedback_github_repo": "dotnet/EntityFramework.Docs.es-es",
-      "feedback_product_url": "https://github.com/dotnet/EntityFrameworkCore/issues/new/choose",
-      "uhfHeaderId": "MSDocsHeader-DotNet"
+      "feedback_product_url": "https://github.com/dotnet/efcore/issues/new/choose",
+      "uhfHeaderId": []
     },
     "fileMetadata": {
       "feedback_product_url": {
-        "ef6/**/**.md": "https://github.com/dotnet/EntityFramework6/issues/new"
+        "ef6/**/**.md": "https://github.com/dotnet/ef6/issues/new"
       },
       "ms.technology": {
         "core/**/**.md": "entity-framework-core",
