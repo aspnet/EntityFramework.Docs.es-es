@@ -345,7 +345,7 @@ Por ejemplo, `context.Entry(blog).Property(e => e.Id).CurrentValue` devolverá e
 
 **Comportamiento anterior**
 
-Antes de EF Core 3.0, se realizaba el seguimiento en el estado `DetectChanges` de las entidades sin seguimiento detectadas por `Added` y se insertaban como una fila nueva cuando se llamaba a `SaveChanges`.
+Antes de EF Core 3.0, se realizaba el seguimiento en el estado `Added` de las entidades sin seguimiento detectadas por `DetectChanges` y se insertaban como una fila nueva cuando se llamaba a `SaveChanges`.
 
 **Comportamiento nuevo**
 

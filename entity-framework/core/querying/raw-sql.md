@@ -35,7 +35,7 @@ Las consultas SQL sin formato se pueden usar para ejecutar un procedimiento alma
 >
 > Al indicar cualquier valor proporcionado por el usuario en una consulta SQL sin formato, debe tener cuidado para evitar ataques por inyección de código SQL. Además de validar que dichos valores no contienen caracteres no válidos, use siempre la parametrización que envía los valores separados del texto SQL.
 >
-> En concreto, no pase nunca a `$""` o `FromSqlRaw` una cadena concatenada o interpolada (`ExecuteSqlRaw`) con valores proporcionados por el usuario sin validar. Los métodos `FromSqlInterpolated` y `ExecuteSqlInterpolated` permiten usar la sintaxis de interpolación de cadenas de manera que se protege frente a los ataques por inyección de código SQL.
+> En concreto, no pase nunca a `FromSqlRaw` o `ExecuteSqlRaw` una cadena concatenada o interpolada (`$""`) con valores proporcionados por el usuario sin validar. Los métodos `FromSqlInterpolated` y `ExecuteSqlInterpolated` permiten usar la sintaxis de interpolación de cadenas de manera que se protege frente a los ataques por inyección de código SQL.
 
 En el ejemplo siguiente se pasa un parámetro único a un procedimiento almacenado; para ello, se incluye un marcador de posición de parámetro en la cadena de consulta SQL y se proporciona un argumento adicional. Aunque esta sintaxis se pueda parecer a la de `String.Format`, el valor suministrado se encapsula en un elemento `DbParameter` y el nombre del parámetro generado se inserta donde se haya especificado el marcador de posición `{0}`.
 
