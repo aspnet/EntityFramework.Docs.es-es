@@ -4,12 +4,12 @@ description: Diferentes métodos para probar aplicaciones que usan EF Core
 author: ajcvickers
 ms.date: 04/22/2020
 uid: core/miscellaneous/testing/index
-ms.openlocfilehash: 308128b0d51b9e0d1fc1ebb0ed00e803100efb52
-ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
+ms.openlocfilehash: 415769e9c3c664ce49c9308740d39a65a10807ba
+ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82538366"
+ms.lasthandoff: 05/20/2020
+ms.locfileid: "83672888"
 ---
 # <a name="testing-code-that-uses-ef-core"></a>Pruebas de código que usa EF Core
 
@@ -18,7 +18,7 @@ Para probar el código que accede a una base de datos, es necesario:
 * Ejecutar consultas y actualizaciones en algún otro sistema de base de datos más fácil de administrar.
 * Usar dobles de prueba o algún otro mecanismo para evitar por completo el uso de una base de datos.
 
-En este documento se describen las ventajas e inconvenientes de cada una de estas opciones y se muestra cómo usar EF Core con cada método.  
+En este documento se describen las ventajas y los inconvenientes de cada una de estas opciones, y se muestra cómo usar EF Core con cada método.  
 
 > [!TIP]
 > Eche un vistazo al [ejemplo de prueba de EF Core](xref:core/miscellaneous/testing/testing-sample) para ver código que muestra los conceptos descritos aquí. 
@@ -45,7 +45,7 @@ Pero que cada desarrollador ejecute pruebas en SQL Azure mientras trabaja activa
 Esto muestra la principal contrapartida de estos métodos: ¿cuándo resulta adecuado desviarse del sistema de base de datos de producción para mejorar la eficacia de las pruebas?
 
 Afortunadamente, en este caso, la respuesta es bastante fácil: use la instancia local de SQL Server para las pruebas de desarrollador.
-SQL Azure y SQL Server son muy similares, por lo que realizar las pruebas en SQL Server suele ser una contrapartida razonable.
+SQL Azure y SQL Server son muy similares, por lo que realizar las pruebas en SQL Server suele ser una contrapartida razonable.
 Dicho esto, sigue siendo aconsejable ejecutar las pruebas en SQL Azure antes de pasar a producción.
  
 ### <a name="localdb"></a>LocalDB 
@@ -55,7 +55,7 @@ SQL Server también tiene una característica denominada [LocalDB](/sql/databas
 La principal ventaja de LocalDB es que inicia la instancia de base de datos a petición.
 Esto evita que haya un servicio de base de datos ejecutándose en el equipo aunque no se estén ejecutando pruebas.
 
-Pero LocalDB también plantea problemas:
+LocalDB también presenta algunos inconvenientes:
 * No admite todo lo que [SQL Server Developer Edition](/sql/sql-server/editions-and-components-of-sql-server-2016?view=sql-server-ver15).
 * No está disponible en Linux.
 * Puede producir un retraso en la primera serie de pruebas cuando se inicia el servicio.
@@ -63,7 +63,7 @@ Pero LocalDB también plantea problemas:
 Personalmente, nunca me ha parecido un problema que haya un servicio de base de datos ejecutándose en el equipo de desarrollo y, en general, recomendaría usar Developer Edition.
 Con todo, LocalDB puede ser adecuado para algunas personas, especialmente en equipos de desarrollo menos potentes.
 
-La ejecución de SQL Server (o cualquier otro sistema de base de datos) en un contenedor de Docker (o similar) es otra manera de impedir que el sistema de base de datos se ejecute directamente en el equipo de desarrollo.  
+La ejecución de SQL Server (o cualquier otro sistema de base de datos) en un contenedor de Docker (o similar) es otra manera de evitar que el sistema de base de datos se ejecute directamente en el equipo de desarrollo.  
 
 ## <a name="approach-2-sqlite"></a>Enfoque 2: SQLite
 
@@ -93,9 +93,9 @@ Vea [Pruebas con SQLite](xref:core/miscellaneous/testing/sqlite) para obtener in
 
 EF Core incluye una base de datos en memoria que se usa para las pruebas internas del propio EF Core.
 Esta base de datos en general **no es adecuada como sustituto para probar las aplicaciones que usan EF Core**. De manera específica:
-* No es una base de datos relacional
-* No admite transacciones
-* No está optimizada para el rendimiento
+* No es una base de datos relacional.
+* No admite transacciones.
+* No está optimizada para el rendimiento.
 
 Nada de esto es muy importante a la hora de probar elementos internos de EF Core, ya que se usa específicamente donde la base de datos es irrelevante para la prueba.
 Por otro lado, estos aspectos tienden a ser muy importantes al probar una aplicación que usa EF Core.
