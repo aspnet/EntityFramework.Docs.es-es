@@ -3,12 +3,12 @@ title: 'Controlar los conflictos de simultaneidad: EF6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2318e4d3-f561-4720-bbc3-921556806476
-ms.openlocfilehash: 81ae186201fdfac331b1d4e7836b222545fe78b5
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: a99f824fe256a10b84f539a5339a09624315efa4
+ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416250"
+ms.lasthandoff: 05/20/2020
+ms.locfileid: "83672711"
 ---
 # <a name="handling-concurrency-conflicts"></a>Administrar los conflictos de simultaneidad
 La simultaneidad optimista implica un intento optimista de guardar la entidad en la base de datos, con la esperanza de que los datos no hayan cambiado desde que se cargó la entidad. Si se da cuenta de que los datos han cambiado, se produce una excepción y debe resolver el conflicto antes de intentar volver a guardar. En este tema se explica cómo controlar dichas excepciones en Entity Framework. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  
@@ -52,7 +52,7 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Una buena forma de simular una excepción de simultaneidad es establecer un punto de interrupción en la llamada a SaveChanges y, a continuación, modificar una entidad que se guarda en la base de datos mediante otra herramienta como SQL Management Studio. También puede insertar una línea antes de SaveChanges para actualizar la base de datos directamente mediante SqlCommand. Por ejemplo:  
+Una buena forma de simular una excepción de simultaneidad es establecer un punto de interrupción en la llamada a SaveChanges y, a continuación, modificar una entidad que se guarda en la base de datos mediante otra herramienta como SQL Server Management Studio. También puede insertar una línea antes de SaveChanges para actualizar la base de datos directamente mediante SqlCommand. Por ejemplo:  
 
 ``` csharp
 context.Database.SqlCommand(
@@ -94,7 +94,7 @@ using (var context = new BloggingContext())
 
 ## <a name="custom-resolution-of-optimistic-concurrency-exceptions"></a>Resolución personalizada de excepciones de simultaneidad optimista  
 
-En ocasiones, es posible que desee combinar los valores que hay actualmente en la base de datos con los valores de la entidad. Normalmente, esto requiere una lógica personalizada o una interacción del usuario. Por ejemplo, puede presentar un formulario al usuario que contiene los valores actuales, los valores de la base de datos y un conjunto predeterminado de valores resueltos. El usuario modificara los valores resueltos según sea necesario y estos valores resueltos son los que se guardan en la base de datos. Esto se puede hacer mediante los objetos DbPropertyValues devueltos desde CurrentValues y GetDatabaseValues en la entrada de la entidad. Por ejemplo:  
+En ocasiones, es posible que desee combinar los valores que hay actualmente en la base de datos con los valores de la entidad. Normalmente, esto requiere una lógica personalizada o una interacción del usuario. Por ejemplo, puede presentar un formulario al usuario que contiene los valores actuales, los valores de la base de datos y un conjunto predeterminado de valores resueltos. Después, el usuario editaría los valores resueltos según sea necesario y serían estos valores resueltos que se guardan en la base de datos. Esto se puede hacer mediante los objetos DbPropertyValues devueltos desde CurrentValues y GetDatabaseValues en la entrada de la entidad. Por ejemplo:  
 
 ``` csharp
 using (var context = new BloggingContext())

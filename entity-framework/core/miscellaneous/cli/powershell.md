@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 09/18/2018
 uid: core/miscellaneous/cli/powershell
-ms.openlocfilehash: 0676475d46a8d21dee7bd10e25dd273a11e96ac3
-ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
+ms.openlocfilehash: 698a2cadadb1389f2e659e3ecab2fb21d020322e
+ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82538401"
+ms.lasthandoff: 05/20/2020
+ms.locfileid: "83672939"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Referencia de herramientas de Entity Framework Core: consola del administrador de paquetes en Visual Studio
 
@@ -37,8 +37,8 @@ Para asegurarse de que está obteniendo la versión más reciente de las herrami
   ```xml
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.1.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.1.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
   ```
 
@@ -119,7 +119,7 @@ También es posible [colocar el código de las migraciones en una biblioteca de 
 
 ### <a name="other-target-frameworks"></a>Otras plataformas de destino
 
-Las herramientas de la consola del administrador de paquetes funcionan con proyectos de .NET Core o .NET Framework. Es posible que las aplicaciones que tienen el modelo de EF Core en una biblioteca de clases .NET Standard no tengan un proyecto de .NET Core o .NET Framework. Por ejemplo, esto es cierto para las aplicaciones Xamarin y Plataforma universal de Windows. En tales casos, puede crear un proyecto de aplicación de consola de .NET Core o .NET Framework cuyo único propósito es actuar como proyecto de inicio para las herramientas. El proyecto puede ser un proyecto ficticio sin código &mdash; real, solo es necesario para proporcionar un destino para las herramientas.
+Las herramientas de la consola del administrador de paquetes funcionan con proyectos de .NET Core o .NET Framework. Es posible que las aplicaciones que tienen el modelo de EF Core en una biblioteca de clases .NET Standard no tengan un proyecto de .NET Core o .NET Framework. Por ejemplo, esto es cierto para las aplicaciones Xamarin y Plataforma universal de Windows. En tales casos, puede crear un proyecto de aplicación de consola de .NET Core o .NET Framework cuyo único propósito es actuar como proyecto de inicio para las herramientas. El proyecto puede ser un proyecto ficticio sin código real &mdash; , solo es necesario para proporcionar un destino para las herramientas.
 
 ¿Por qué es necesario un proyecto ficticio? Como se mencionó anteriormente, las herramientas tienen que ejecutar código de aplicación en tiempo de diseño. Para ello, deben usar .NET Core o .NET Framework Runtime. Cuando el modelo de EF Core está en un proyecto que tiene como destino .NET Core o .NET Framework, las herramientas de EF Core toman prestado el tiempo de ejecución del proyecto. No pueden hacerlo si el modelo de EF Core está en una biblioteca de clases .NET Standard. El .NET Standard no es una implementación real de .NET; es una especificación de un conjunto de API que las implementaciones de .NET deben admitir. Por lo tanto .NET Standard no es suficiente para que las herramientas de EF Core ejecuten código de aplicación. El proyecto ficticio que cree para usarlo como proyecto de inicio proporciona una plataforma de destino concreta en la que las herramientas pueden cargar la biblioteca de clases de .NET Standard.
 
@@ -133,9 +133,9 @@ En la tabla siguiente se muestran los parámetros que son comunes a todos los co
 
 | Parámetro                 | Descripción                                                                                                                                                                                                          |
 |:--------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| -Cadena \<de contexto>        | La clase `DbContext` que se va a usar. Nombre de clase solo o completo con espacios de nombres.  Si se omite este parámetro, EF Core encuentra la clase de contexto. Si hay varias clases de contexto, este parámetro es obligatorio. |
-| -> \<de la cadena de proyecto        | Proyecto de destino. Si se omite este parámetro, el **proyecto predeterminado** de la **consola del administrador de paquetes** se utiliza como proyecto de destino.                                                                             |
-| <nobr>-Proyecto</nobr> \<cadena> | Proyecto de inicio. Si se omite este parámetro, el **proyecto de inicio** de **las propiedades** de la solución se usa como proyecto de destino.                                                                                 |
+| -Cadena de contexto \<>        | La clase `DbContext` que se va a usar. Nombre de clase solo o completo con espacios de nombres.  Si se omite este parámetro, EF Core encuentra la clase de contexto. Si hay varias clases de contexto, este parámetro es obligatorio. |
+| -> de la cadena de proyecto \<        | Proyecto de destino. Si se omite este parámetro, el **proyecto predeterminado** de la **consola del administrador de paquetes** se utiliza como proyecto de destino.                                                                             |
+| <nobr>-Proyecto</nobr> \<> de cadena | Proyecto de inicio. Si se omite este parámetro, el **proyecto de inicio** de **las propiedades** de la solución se usa como proyecto de destino.                                                                                 |
 | -Verbose                  | Mostrar resultado detallado.                                                                                                                                                                                                 |
 
 Para mostrar información de ayuda sobre un comando, use el `Get-Help` comando de PowerShell.
@@ -151,9 +151,9 @@ Parámetros:
 
 | Parámetro                         | Descripción                                                                                                             |
 |:----------------------------------|:------------------------------------------------------------------------------------------------------------------------|
-| <nobr>-Nombre \<de cadena><nobr>       | El nombre de la migración. Este es un parámetro posicional y es obligatorio.                                              |
-| <nobr>-OutputDir \<cadena></nobr> | El directorio que se usa para generar los archivos. Las rutas de acceso son relativas al directorio del proyecto de destino. El valor predeterminado es "migraciones". |
-| <nobr>->\<de cadena de espacio de nombres</nobr> | Espacio de nombres que se va a usar para las clases generadas. De forma predeterminada, se genera desde el directorio de salida. |
+| <nobr>-Nombre de \< cadena><nobr>       | El nombre de la migración. Este es un parámetro posicional y es obligatorio.                                              |
+| <nobr>-OutputDir \< cadena></nobr> | El directorio que se usa para generar los archivos. Las rutas de acceso son relativas al directorio del proyecto de destino. El valor predeterminado es "migraciones". |
+| <nobr>->de cadena de espacio de nombres \<</nobr> | Espacio de nombres que se va a usar para las clases generadas. De forma predeterminada, se genera desde el directorio de salida. |
 
 ## <a name="drop-database"></a>Drop-Database
 
@@ -187,15 +187,15 @@ Parámetros:
 
 | Parámetro                          | Descripción                                                                                                                                                                                                                                                             |
 |:-----------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>:>\<de la cadena de conexión</nobr> | La cadena de conexión a la base de datos. En el caso de los proyectos de ASP.NET Core 2. x, el valor puede ser *name =\<nombre de la cadena de conexión>*. En ese caso, el nombre procede de los orígenes de configuración que se configuran para el proyecto. Este es un parámetro posicional y es obligatorio. |
-| <nobr>->\<de cadena del proveedor</nobr>   | Proveedor que se va a usar. Normalmente, es el nombre del paquete NuGet, por ejemplo: `Microsoft.EntityFrameworkCore.SqlServer`. Este es un parámetro posicional y es obligatorio.                                                                                           |
-| -OutputDir \<cadena>               | Directorio en el que se colocarán los archivos. Las rutas de acceso son relativas al directorio del proyecto.                                                                                                                                                                                             |
-| -ContextDir \<cadena>              | Directorio en el que se `DbContext` va a colocar el archivo. Las rutas de acceso son relativas al directorio del proyecto.                                                                                                                                                               |
-| -> \<de cadena de espacio de nombres               | Espacio de nombres que se va a usar para todas las clases generadas. De forma predeterminada, se genera a partir del espacio de nombres raíz y el directorio de salida.                                                                                                                                                                                             |
-| -ContextNamespace \<cadena>        | Espacio de nombres que se va a `DbContext` utilizar para la clase generada. Nota: invalida `-Namespace`.                                                                                                                                                                              |
-| -Cadena \<de contexto>                 | Nombre de la `DbContext` clase que se va a generar.                                                                                                                                                                                                                          |
-| -Schemas \<cadena [] >               | Esquemas de las tablas para las que se van a generar tipos de entidad. Si se omite este parámetro, se incluyen todos los esquemas.                                                                                                                                                             |
-| -Tables \<String [] >                | Tablas para las que se van a generar tipos de entidad. Si se omite este parámetro, se incluyen todas las tablas.                                                                                                                                                                         |
+| <nobr>:>de la cadena de conexión \<</nobr> | La cadena de conexión a la base de datos. En el caso de los proyectos de ASP.NET Core 2. x, el valor puede ser *name = \< nombre de la cadena de conexión>*. En ese caso, el nombre procede de los orígenes de configuración que se configuran para el proyecto. Este es un parámetro posicional y es obligatorio. |
+| <nobr>->de cadena del proveedor \<</nobr>   | Proveedor que se va a usar. Normalmente, es el nombre del paquete NuGet, por ejemplo: `Microsoft.EntityFrameworkCore.SqlServer` . Este es un parámetro posicional y es obligatorio.                                                                                           |
+| -OutputDir \< cadena>               | Directorio en el que se colocarán los archivos. Las rutas de acceso son relativas al directorio del proyecto.                                                                                                                                                                                             |
+| -ContextDir \< cadena>              | Directorio en el que se va a colocar el `DbContext` archivo. Las rutas de acceso son relativas al directorio del proyecto.                                                                                                                                                               |
+| -> de cadena de espacio de nombres \<               | Espacio de nombres que se va a usar para todas las clases generadas. De forma predeterminada, se genera a partir del espacio de nombres raíz y el directorio de salida.                                                                                                                                                                                             |
+| -ContextNamespace \< cadena>        | Espacio de nombres que se va a utilizar para la clase generada `DbContext` . Nota: invalida `-Namespace` .                                                                                                                                                                              |
+| -Cadena de contexto \<>                 | Nombre de la `DbContext` clase que se va a generar.                                                                                                                                                                                                                          |
+| -Schemas \< cadena [] >               | Esquemas de las tablas para las que se van a generar tipos de entidad. Si se omite este parámetro, se incluyen todos los esquemas.                                                                                                                                                             |
+| -Tables \< String [] >                | Tablas para las que se van a generar tipos de entidad. Si se omite este parámetro, se incluyen todas las tablas.                                                                                                                                                                         |
 | -DataAnnotations                   | Use los atributos para configurar el modelo (siempre que sea posible). Si se omite este parámetro, solo se usa la API fluida.                                                                                                                                                      |
 | -UseDatabaseNames                  | Utilice nombres de tabla y columna exactamente como aparecen en la base de datos. Si se omite este parámetro, los nombres de base de datos se cambian para ajustarse mejor a las convenciones de estilo de nombre de C#.                                                                                       |
 | -Force                             | Sobrescribe los archivos existentes.                                                                                                                                                                                                                                               |
@@ -220,10 +220,10 @@ Parámetros:
 
 | Parámetro                | Descripción                                                                                                                                                                                                                |
 |:-------------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| *-Desde> de* \<cadena        | La migración inicial. Las migraciones pueden identificarse por nombre o por identificador. El número 0 es un caso especial que significa *antes de la primera migración*. El valor predeterminado es 0.                                                              |
-| *-A* \<cadena>          | La migración final. Tiene como valor predeterminado la última migración.                                                                                                                                                                      |
+| *-Desde* \<> de cadena        | La migración inicial. Las migraciones pueden identificarse por nombre o por identificador. El número 0 es un caso especial que significa *antes de la primera migración*. El valor predeterminado es 0.                                                              |
+| *-Hasta* \<> de cadena          | La migración final. Tiene como valor predeterminado la última migración.                                                                                                                                                                      |
 | <nobr>-Idempotente</nobr> | Generar un script que se puede usar en una base de datos en cualquier migración.                                                                                                                                                         |
-| :> \<de la cadena de salida        | Archivo en el que se va a escribir el resultado. Si se omite este parámetro, el archivo se crea con un nombre generado en la misma carpeta en que se crean los archivos en tiempo de ejecución de la aplicación, por ejemplo: */obj/Debug/netcoreapp2.1/ghbkztfz.SQL/*. |
+| :> de la cadena de salida \<        | Archivo en el que se va a escribir el resultado. Si se omite este parámetro, el archivo se crea con un nombre generado en la misma carpeta en que se crean los archivos en tiempo de ejecución de la aplicación, por ejemplo: */obj/Debug/netcoreapp2.1/ghbkztfz.SQL/*. |
 
 > [!TIP]
 > Los parámetros para, de y de salida admiten la expansión de pestañas.
@@ -246,8 +246,8 @@ Actualiza la base de datos a la última migración o a una migración especifica
 
 | Parámetro                           | Descripción                                                                                                                                                                                                                                                     |
 |:------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| <nobr>*->de la cadena de migración* \<</nobr> | La migración de destino. Las migraciones pueden identificarse por nombre o por identificador. El número 0 es un caso especial que significa *antes de la primera migración* y hace que se reviertan todas las migraciones. Si no se especifica ninguna migración, el comando toma como valor predeterminado la última migración. |
-| <nobr>:>\<de la cadena de conexión</nobr>  | La cadena de conexión a la base de datos. Tiene como valor predeterminado el especificado en `AddDbContext` o `OnConfiguring`. |
+| <nobr>*-Migración* \<>de cadena</nobr> | La migración de destino. Las migraciones pueden identificarse por nombre o por identificador. El número 0 es un caso especial que significa *antes de la primera migración* y hace que se reviertan todas las migraciones. Si no se especifica ninguna migración, el comando toma como valor predeterminado la última migración. |
+| <nobr>:>de la cadena de conexión \<</nobr>  | La cadena de conexión a la base de datos. Tiene como valor predeterminado el especificado en `AddDbContext` o `OnConfiguring` . |
 
 > [!TIP]
 > El parámetro Migration admite la expansión de pestañas.

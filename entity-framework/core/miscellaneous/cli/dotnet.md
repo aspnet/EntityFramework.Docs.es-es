@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 9e6418d94c01cac520d9e86ab4a1d40460d8af55
-ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
+ms.openlocfilehash: 6eb8b817a809dedf999ccb98307f5d8e2e41c0fb
+ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82538429"
+ms.lasthandoff: 05/20/2020
+ms.locfileid: "83672946"
 ---
 # <a name="entity-framework-core-tools-reference---net-cli"></a>Referencia sobre las herramientas de Entity Framework Core (CLI de .NET)
 
@@ -31,7 +31,7 @@ El procedimiento de instalación depende del tipo y la versión del proyecto:
 
 ### <a name="ef-core-3x"></a>EF Core 3. x
 
-* `dotnet ef`debe instalarse como una herramienta global o local. La mayoría de los `dotnet ef` desarrolladores se instalarán como una herramienta global con el siguiente comando:
+* `dotnet ef`debe instalarse como una herramienta global o local. La mayoría de los desarrolladores se instalarán `dotnet ef` como una herramienta global con el siguiente comando:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef
@@ -41,7 +41,7 @@ El procedimiento de instalación depende del tipo y la versión del proyecto:
 
 * Instale el [SDK de .NET Core](https://www.microsoft.com/net/download/core).
 
-* Instale el paquete `Microsoft.EntityFrameworkCore.Design` más reciente.
+* Instale el paquete más reciente `Microsoft.EntityFrameworkCore.Design` .
 
   ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -51,7 +51,7 @@ El procedimiento de instalación depende del tipo y la versión del proyecto:
 
 * Instale el [SDK de .net Core](https://www.microsoft.com/net/download/core)actual. El SDK debe estar instalado incluso si dispone de la versión más reciente de Visual Studio 2017.
 
-  Esto es todo lo que se necesita para ASP.NET Core 2.1 + porque `Microsoft.EntityFrameworkCore.Design` el paquete se incluye en el [metapaquete Microsoft. AspNetCore. app](/aspnet/core/fundamentals/metapackage-app).
+  Esto es todo lo que se necesita para ASP.NET Core 2.1 + porque el `Microsoft.EntityFrameworkCore.Design` paquete se incluye en el [metapaquete Microsoft. AspNetCore. app](/aspnet/core/fundamentals/metapackage-app).
 
 ### <a name="ef-core-2x-not-aspnet-core"></a>EF Core 2. x (no ASP.NET Core)
 
@@ -59,7 +59,7 @@ Los `dotnet ef` comandos se incluyen en el SDK de .net Core, pero para habilitar
 
 * Instale el [SDK de .net Core](https://www.microsoft.com/net/download/core)actual. El SDK debe instalarse incluso si tiene la versión más reciente de Visual Studio.
 
-* Instale el paquete estable `Microsoft.EntityFrameworkCore.Design` más reciente.
+* Instale el paquete estable más reciente `Microsoft.EntityFrameworkCore.Design` .
 
   ```dotnetcli
   dotnet add package Microsoft.EntityFrameworkCore.Design
@@ -71,7 +71,7 @@ Los `dotnet ef` comandos se incluyen en el SDK de .net Core, pero para habilitar
 
 * Configure la aplicación para que use la versión del SDK de 2.1.200 modificando su archivo [global. JSON](/dotnet/core/tools/global-json) . Este archivo se incluye normalmente en el directorio de la solución (uno encima del proyecto).
 
-* Edite el archivo de proyecto `Microsoft.EntityFrameworkCore.Tools.DotNet` y agréguelo `DotNetCliToolReference` como un elemento. Especifique la versión más reciente de 1. x, por ejemplo: 1.1.6. Vea el ejemplo de archivo de proyecto al final de esta sección.
+* Edite el archivo de proyecto y agréguelo `Microsoft.EntityFrameworkCore.Tools.DotNet` como un `DotNetCliToolReference` elemento. Especifique la versión más reciente de 1. x, por ejemplo: 1.1.6. Vea el ejemplo de archivo de proyecto al final de esta sección.
 
 * Instale la versión 1. x más reciente del `Microsoft.EntityFrameworkCore.Design` paquete, por ejemplo:
 
@@ -99,7 +99,7 @@ Los `dotnet ef` comandos se incluyen en el SDK de .net Core, pero para habilitar
   </Project>
   ```
 
-  Una referencia de paquete `PrivateAssets="All"` con no se expone a los proyectos que hacen referencia a este proyecto. Esta restricción es especialmente útil para los paquetes que normalmente se usan solo durante el desarrollo.
+  Una referencia de paquete con `PrivateAssets="All"` no se expone a los proyectos que hacen referencia a este proyecto. Esta restricción es especialmente útil para los paquetes que normalmente se usan solo durante el desarrollo.
 
 ### <a name="verify-installation"></a>Comprobar la instalación
 
@@ -126,6 +126,12 @@ Entity Framework Core .NET Command-line Tools 2.1.3-rtm-32065
 <Usage documentation follows, not shown.>
 ```
 
+
+## <a name="updating-the-tools"></a>Actualización de las herramientas
+
+Use `dotnet tool update --global dotnet-ef` para actualizar las herramientas globales a la última versión disponible, si tiene instaladas las herramientas de forma local en el uso del proyecto `dotnet tool update dotnet-ef` . Instale una versión específica anexando `--version <VERSION>` al comando. Consulte la sección [actualización](/dotnet/core/tools/dotnet-tool-update) de la documentación de la herramienta dotnet para obtener más detalles.
+
+
 ## <a name="using-the-tools"></a>Uso de las herramientas
 
 Antes de usar las herramientas, puede que tenga que crear un proyecto de inicio o establecer el entorno.
@@ -147,7 +153,7 @@ También es posible [colocar el código de las migraciones en una biblioteca de 
 
 ### <a name="other-target-frameworks"></a>Otras plataformas de destino
 
-Las herramientas de la CLI funcionan con proyectos de .NET Core y proyectos de .NET Framework. Es posible que las aplicaciones que tienen el modelo de EF Core en una biblioteca de clases .NET Standard no tengan un proyecto de .NET Core o .NET Framework. Por ejemplo, esto es cierto para las aplicaciones Xamarin y Plataforma universal de Windows. En tales casos, puede crear un proyecto de aplicación de consola de .NET Core cuyo único propósito es actuar como proyecto de inicio para las herramientas. El proyecto puede ser un proyecto ficticio sin código &mdash; real, solo es necesario para proporcionar un destino para las herramientas.
+Las herramientas de la CLI funcionan con proyectos de .NET Core y proyectos de .NET Framework. Es posible que las aplicaciones que tienen el modelo de EF Core en una biblioteca de clases .NET Standard no tengan un proyecto de .NET Core o .NET Framework. Por ejemplo, esto es cierto para las aplicaciones Xamarin y Plataforma universal de Windows. En tales casos, puede crear un proyecto de aplicación de consola de .NET Core cuyo único propósito es actuar como proyecto de inicio para las herramientas. El proyecto puede ser un proyecto ficticio sin código real &mdash; , solo es necesario para proporcionar un destino para las herramientas.
 
 ¿Por qué es necesario un proyecto ficticio? Como se mencionó anteriormente, las herramientas tienen que ejecutar código de aplicación en tiempo de diseño. Para ello, deben usar el tiempo de ejecución de .NET Core. Cuando el modelo de EF Core está en un proyecto que tiene como destino .NET Core o .NET Framework, las herramientas de EF Core toman prestado el tiempo de ejecución del proyecto. No pueden hacerlo si el modelo de EF Core está en una biblioteca de clases .NET Standard. El .NET Standard no es una implementación real de .NET; es una especificación de un conjunto de API que las implementaciones de .NET deben admitir. Por lo tanto .NET Standard no es suficiente para que las herramientas de EF Core ejecuten código de aplicación. El proyecto ficticio que cree para usarlo como proyecto de inicio proporciona una plataforma de destino concreta en la que las herramientas pueden cargar la biblioteca de clases de .NET Standard.
 
@@ -164,7 +170,7 @@ Para especificar el entorno de ASP.NET Core proyectos, establezca la variable de
 | `-p`              | `--project <PROJECT>`             | Ruta de acceso relativa a la carpeta de proyecto del proyecto de destino.  El valor predeterminado es la carpeta actual.                                                                                                                                                              |
 | `-s`              | `--startup-project <PROJECT>`     | Ruta de acceso relativa a la carpeta de proyecto del proyecto de inicio. El valor predeterminado es la carpeta actual.                                                                                                                                                              |
 |                   | `--framework <FRAMEWORK>`         | Moniker de la [plataforma de destino](/dotnet/standard/frameworks#supported-target-framework-versions) para la [plataforma de destino](/dotnet/standard/frameworks).  Use cuando el archivo del proyecto especifique varias plataformas de destino y desee seleccionar una de ellas. |
-|                   | `--configuration <CONFIGURATION>` | La configuración de compilación, por ejemplo `Debug` : `Release`o.                                                                                                                                                                                                   |
+|                   | `--configuration <CONFIGURATION>` | La configuración de compilación, por ejemplo: `Debug` o `Release` .                                                                                                                                                                                                   |
 |                   | `--runtime <IDENTIFIER>`          | Identificador del Runtime de destino para el que se van a restaurar los paquetes. Para obtener una lista de identificadores de tiempo de ejecución (RID), consulte el [catálogo de RID](/dotnet/core/rid-catalog).                                                                                                      |
 | `-h`              | `--help`                          | Mostrar información de la ayuda.                                                                                                                                                                                                                                        |
 | `-v`              | `--verbose`                       | Mostrar resultado detallado.                                                                                                                                                                                                                                          |
@@ -196,7 +202,7 @@ Opciones:
 
 |                   | Opción                   | Descripción                                              |
 |:------------------|:-------------------------|:---------------------------------------------------------|
-| <nobr>    </nobr> |  `--connection <CONNECTION>`        | La cadena de conexión a la base de datos. Tiene como valor predeterminado el especificado en `AddDbContext` o `OnConfiguring`. |
+| <nobr>    </nobr> |  `--connection <CONNECTION>`        | La cadena de conexión a la base de datos. Tiene como valor predeterminado el especificado en `AddDbContext` o `OnConfiguring` . |
 
 
 En los siguientes ejemplos se actualiza la base de datos a una migración especificada. El primero usa el nombre de la migración y el segundo usa el identificador de migración y una conexión especificada:
@@ -222,8 +228,8 @@ Argumentos:
 
 | Argumento       | Descripción                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<CONNECTION>` | La cadena de conexión a la base de datos. En el caso de los proyectos de ASP.NET Core 2. x, el valor puede ser *name =\<nombre de la cadena de conexión>*. En ese caso, el nombre procede de los orígenes de configuración que se configuran para el proyecto. |
-| `<PROVIDER>`   | Proveedor que se va a usar. Normalmente, es el nombre del paquete NuGet, por ejemplo: `Microsoft.EntityFrameworkCore.SqlServer`.                                                                                           |
+| `<CONNECTION>` | La cadena de conexión a la base de datos. En el caso de los proyectos de ASP.NET Core 2. x, el valor puede ser *name = \< nombre de la cadena de conexión>*. En ese caso, el nombre procede de los orígenes de configuración que se configuran para el proyecto. |
+| `<PROVIDER>`   | Proveedor que se va a usar. Normalmente, es el nombre del paquete NuGet, por ejemplo: `Microsoft.EntityFrameworkCore.SqlServer` .                                                                                           |
 
 Opciones:
 
@@ -231,8 +237,8 @@ Opciones:
 |:----------------|:-----------------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | <nobr>`-d`</nobr> | `--data-annotations`                   | Use los atributos para configurar el modelo (siempre que sea posible). Si se omite esta opción, solo se usa la API fluida.                                                                |
 | `-c`            | `--context <NAME>`                       | Nombre de la `DbContext` clase que se va a generar.                                                                                                                                 |
-|                 | `--context-dir <PATH>`                   | Directorio en el que se `DbContext` va a colocar el archivo de clase. Las rutas de acceso son relativas al directorio del proyecto. Los espacios de nombres se derivan de los nombres de carpeta.                                 |
-|                 | `--context-namespace <NAMESPACE>`        | Espacio de nombres que se va a `DbContext` utilizar para la clase generada. Nota: invalida `--namespace`.                                 |
+|                 | `--context-dir <PATH>`                   | Directorio en el que se va a colocar el `DbContext` archivo de clase. Las rutas de acceso son relativas al directorio del proyecto. Los espacios de nombres se derivan de los nombres de carpeta.                                 |
+|                 | `--context-namespace <NAMESPACE>`        | Espacio de nombres que se va a utilizar para la clase generada `DbContext` . Nota: invalida `--namespace` .                                 |
 | `-f`            | `--force`                                | Sobrescribe los archivos existentes.                                                                                                                                                      |
 | `-o`            | `--output-dir <PATH>`                    | Directorio en el que se colocarán los archivos de clase de entidad. Las rutas de acceso son relativas al directorio del proyecto.                                                                                       |
 | `-n`            | `--namespace <NAMESPACE>`                | Espacio de nombres que se va a usar para todas las clases generadas. De forma predeterminada, se genera a partir del espacio de nombres raíz y el directorio de salida.                    |

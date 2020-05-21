@@ -1,24 +1,22 @@
 ---
-title: 'Ejemplo de prueba de EF Core: EF Core'
-description: Ejemplo que muestra cómo probar las aplicaciones que usan EF Core
-author: ajcvickers
-ms.date: 04/22/2020
-uid: core/miscellaneous/testing/testing-sample
+title: ''
+description: ''
+author: ''
+ms.date: ''
+uid: ''
 no-loc:
 - Item
 - Tag
 - Items
 - Tags
-- items
-- tags
-ms.openlocfilehash: dda7191df7646aa06aab51d8d7891bd0ba155674
-ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
+ms.openlocfilehash: ae073fc0b3a99fb9de07a3e0a42c638fe0838a5a
+ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82564263"
+ms.lasthandoff: 05/20/2020
+ms.locfileid: "83672820"
 ---
-# <a name="ef-core-testing-sample"></a>Ejemplo de prueba de EF Core
+# <a name="ef-core-testing-sample"></a>Ejemplo de prueba de EF Core
 
 > [!TIP]
 > El código de este documento se puede encontrar en GitHub como un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing/ItemsWebApi/).
@@ -34,13 +32,13 @@ El [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/
 
 ### <a name="the-model-and-business-rules"></a>El modelo y las reglas de negocios
 
-El modelo de respaldo de esta API tiene dos tipos Items de Tagsentidad: y.
+El modelo de respaldo de esta API tiene dos tipos Items de entidad: y Tags .
 
-* Itemstienen un nombre que distingue entre mayúsculas y minúsculas y una colección de Tags.
-* Cada Tag una tiene una etiqueta y un recuento que representa el número de veces que se ha Itemaplicado a.
-* Cada Item solo debe tener una Tag con una etiqueta determinada.
+* Itemstienen un nombre que distingue entre mayúsculas y minúsculas y una colección de Tags .
+* Cada Tag una tiene una etiqueta y un recuento que representa el número de veces que se ha aplicado a Item .
+* Cada Item una de ellas solo debe tener una Tag con una etiqueta determinada.
   * Si un elemento se etiqueta con la misma etiqueta más de una vez, se incrementa el recuento de la etiqueta existente con esa etiqueta en lugar de crear una nueva etiqueta. 
-* La eliminación de Item debe eliminar todos los Tagsasociados.
+* La eliminación de Item debe eliminar todos los asociados Tags .
 
 #### <a name="the-item-entity-type"></a>El Item tipo de entidad
 
@@ -48,7 +46,7 @@ El `Item` tipo de entidad:
 
 [!code-csharp[ItemEntityType](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/ItemsWebApi/Item.cs?name=ItemEntityType)]
 
-Y su configuración en `DbContext.OnModelCreating`:
+Y su configuración en `DbContext.OnModelCreating` :
 
 [!code-csharp[ConfigureItem](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/ItemsWebApi/ItemsContext.cs?name=ConfigureItem)]
 
@@ -56,14 +54,14 @@ Observe que el tipo de entidad restringe la manera en que se puede usar para ref
 - La clave principal se asigna directamente al `_id` campo y no se expone públicamente.
   - EF detecta y usa el constructor privado que acepta el valor y el nombre de la clave principal.
 - La `Name` propiedad es de solo lectura y se establece solo en el constructor. 
-- Tagsse exponen `IReadOnlyList<Tag>` como para evitar modificaciones arbitrarias.
-  - EF asocia el `Tags` nombre de la `_tags` propiedad con el campo de respaldo. 
+- Tagsse exponen como `IReadOnlyList<Tag>` para evitar modificaciones arbitrarias.
+  - EF asocia el `Tags` nombre de la propiedad con el `_tags` campo de respaldo. 
   - El `AddTag` método toma una etiqueta de etiqueta e implementa la regla de negocios que se ha descrito anteriormente.
     Es decir, solo se agrega una etiqueta para las etiquetas nuevas.
     En caso contrario, se incrementa el recuento de una etiqueta existente.
 - La `Tags` propiedad de navegación se configura para una relación de varios a uno
-  - No es necesario que una propiedad de navegación de Tag a Item, por lo que no se incluye.
-  - Además, Tag no define una propiedad de clave externa.
+  - No es necesario que una propiedad de navegación de Tag a Item , por lo que no se incluye.
+  - Además, no Tag define una propiedad de clave externa.
     En su lugar, EF creará y administrará una propiedad en el estado de sombra.
 
 #### <a name="the-tag-entity-type"></a>El Tag tipo de entidad
@@ -72,11 +70,11 @@ El `Tag` tipo de entidad:
 
 [!code-csharp[TagEntityType](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/ItemsWebApi/Tag.cs?name=TagEntityType)]
 
-Y su configuración en `DbContext.OnModelCreating`:
+Y su configuración en `DbContext.OnModelCreating` :
 
 [!code-csharp[ConfigureTag](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/ItemsWebApi/ItemsContext.cs?name=ConfigureTag)]
 
-De forma Itemsimilar Tag a, oculta su clave principal y hace `Label` que la propiedad sea de solo lectura.
+De forma similar a Item , Tag oculta su clave principal y hace que la `Label` propiedad sea de solo lectura.
 
 ### <a name="the-itemscontroller"></a>ItemsController
 
@@ -89,15 +87,15 @@ Tiene métodos para obtener todos Items o un Item con un nombre determinado:
 
 [!code-csharp[Get](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/ItemsWebApi/Controllers/ItemsController.cs?name=Get)]
 
-Tiene un método para agregar un nuevo Item:
+Tiene un método para agregar un nuevo Item :
 
 [!code-csharp[PostItem](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/ItemsWebApi/Controllers/ItemsController.cs?name=PostItem)]
 
-Un método para etiquetar Item un con una etiqueta:
+Un método para etiquetar un Item con una etiqueta:
 
 [!code-csharp[PostTag](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/ItemsWebApi/Controllers/ItemsController.cs?name=PostTag)]
 
-Y un método para eliminar un Item y todos los Tagsasociados:
+Y un método para eliminar un Item y todos los asociados Tags :
 
 [!code-csharp[DeleteItem](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/ItemsWebApi/Controllers/ItemsController.cs?name=DeleteItem)]
 
@@ -153,18 +151,18 @@ Por ejemplo:
 
 Aunque la aplicación usa la inserción de dependencias, las pruebas no lo hacen.
 Sería adecuado usar la inserción de dependencias aquí, pero el código adicional que requiere tiene poco valor.
-En su lugar, se crea un DbContext `new` usando y, a continuación, se pasa directamente como la dependencia al controlador.
+En su lugar, se crea un DbContext usando `new` y, a continuación, se pasa directamente como la dependencia al controlador.
 
 Después, cada prueba ejecuta el método sometido a prueba en el controlador y valida que los resultados son los esperados.
 Por ejemplo:
 
 [!code-csharp[CanGetItems](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/Tests/ItemsControllerTest.cs?name=CanGetItems)]
 
-Observe que se usan diferentes instancias de DbContext para inicializar la base de datos y ejecutar las pruebas. Esto garantiza que la prueba no utilice (o se conmute por encima) entidades cuyo seguimiento realiza el contexto al realizar la propagación.
+Observe que se usan diferentes instancias de DbContext para inicializar la base de datos y ejecutar las pruebas. Esto garantiza que la prueba no esté usando (o pasando por) entidades cuyo seguimiento realiza el contexto al realizar la propagación.
 También mejor coincide con lo que ocurre en servicios y aplicaciones Web.
 
 Las pruebas que mutan la base de datos crean una segunda instancia de DbContext en la prueba por motivos similares.
-Es decir, crear un nuevo contexto, limpiar y, a continuación, leerlo desde la base de datos para asegurarse de que los cambios se guardaron realmente en la base de datos. Por ejemplo:
+Es decir, crear un nuevo contexto, limpiar y, a continuación, leerlo desde la base de datos para asegurarse de que los cambios se guardaron en la base de datos. Por ejemplo:
 
 [!code-csharp[CanAddItem](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/Tests/ItemsControllerTest.cs?name=CanAddItem)]
 
@@ -180,9 +178,9 @@ La prueba con un sistema de base de datos diferente al que se usa en la aplicaci
 Estos se describen en el nivel conceptual del [código de prueba que usa EF Core](xref:core/miscellaneous/testing/index).  
 En las secciones siguientes se incluyen dos ejemplos de estos problemas que se muestran en las pruebas de este ejemplo.
 
-### <a name="test-passes-when-application-is-broken"></a>La prueba se supera cuando se interrumpe la aplicación
+### <a name="test-passes-when-the-application-is-broken"></a>La prueba se supera cuando se interrumpe la aplicación
 
-Uno de los requisitos de nuestra aplicación es que "Items tiene un nombre que distingue entre mayúsculas y minúsculas Tagsy una colección de".
+Uno de los requisitos de nuestra aplicación es que " Items tiene un nombre que distingue entre mayúsculas y minúsculas y una colección de Tags ".
 Esto es bastante sencillo de probar:
 
 [!code-csharp[CanAddItemCaseInsensitive](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/Tests/ItemsControllerTest.cs?name=CanAddItemCaseInsensitive)]
@@ -209,9 +207,9 @@ EF Core, por diseño, no cambia estos comportamientos porque forzar un cambio en
 Una vez que sabemos que se trata de un problema, podemos corregir la aplicación y compensar las pruebas.
 Sin embargo, el punto aquí es que este error podría perderse si solo se prueba con la base de datos de EF en memoria o con proveedores de SQLite.
 
-### <a name="test-fails-when-application-is-correct"></a>La prueba produce un error cuando la aplicación es correcta 
+### <a name="test-fails-when-the-application-is-correct"></a>Se produce un error en la prueba cuando la aplicación es correcta 
 
-Otro de los requisitos para nuestra aplicación es que, "eliminar una Item debe eliminar todos los asociados Tags".
+Otro de los requisitos para nuestra aplicación es que "la eliminación de un Item debe eliminar todos los asociados Tags ".
 De nuevo, fácil de probar:
 
 [!code-csharp[DeleteItem](../../../../samples/core/Miscellaneous/Testing/ItemsWebApi/Tests/ItemsControllerTest.cs?name=DeleteItem)]
