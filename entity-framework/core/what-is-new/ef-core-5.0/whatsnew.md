@@ -2,14 +2,14 @@
 title: Novedades en EF Core 5.0
 description: Información general sobre las nuevas características de EF Core 5.0
 author: ajcvickers
-ms.date: 03/30/2020
+ms.date: 05/11/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew.md
-ms.openlocfilehash: c902988920e3b1a6039808fe0658fc19dee2728a
-ms.sourcegitcommit: 387cbd8109c0fc5ce6bdc85d0dec1aed72ad4c33
+ms.openlocfilehash: fcb2eb8df99a06eaf3459835347a4027a363b86b
+ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/23/2020
-ms.locfileid: "82103079"
+ms.lasthandoff: 05/20/2020
+ms.locfileid: "83672852"
 ---
 # <a name="whats-new-in-ef-core-50"></a>Novedades en EF Core 5.0
 
@@ -20,6 +20,38 @@ Esta página no duplica el [plan para EF Core 5.0](plan.md).
 En el plan se describen los temas generales relativos a EF Core 5.0, incluido todo lo que estamos planeando incluir antes de publicar la versión final.
 
 A medida que se publique el contenido, se agregarán vínculos que redirigirán de esta página a la documentación oficial.
+
+## <a name="preview-4"></a>Versión preliminar 4
+
+### <a name="configure-database-precisionscale-in-model"></a>Configuración de la precisión y la escala de la base de datos en el modelo
+
+Ahora se puede especificar la precisión y la escala de una propiedad mediante el generador de modelos.
+Por ejemplo:
+
+```CSharp
+modelBuilder
+    .Entity<Blog>()
+    .Property(b => b.Numeric)
+    .HasPrecision(16, 4);
+```
+
+La precisión y la escala todavía se pueden establecer mediante el tipo completo de base de datos, como "decimal (16, 4)". 
+
+En el problema [n.º 527](https://github.com/dotnet/EntityFramework.Docs/issues/527) se realiza el seguimiento de la documentación.
+
+### <a name="specify-sql-server-index-fill-factor"></a>Especificación del factor de relleno del índice de SQL Server
+
+Ahora se puede especificar el factor de relleno al crear un índice en SQL Server.
+Por ejemplo:
+
+```CSharp
+modelBuilder
+    .Entity<Customer>()
+    .HasIndex(e => e.Name)
+    .HasFillFactor(90);
+```
+
+En el problema [n.º 2378](https://github.com/dotnet/EntityFramework.Docs/issues/2378) se realiza el seguimiento de la documentación.
 
 ## <a name="preview-3"></a>Versión preliminar 3
 
@@ -61,7 +93,7 @@ modelBuilder.Entity<Blog>().Navigation(e => e.Posts).HasField("_myposts");
 Tenga en cuenta que la API de `Navigation` no reemplaza la configuración de la relación,
 sino que permite la configuración adicional de las propiedades de navegación en relaciones ya detectadas o definidas.
 
-En el problema [n.º 2302](https://github.com/dotnet/EntityFramework.Docs/issues/2302) se realiza el seguimiento de la documentación.
+Consulte la [documentación sobre la configuración de las propiedades de navegación](xref:core/modeling/relationships#configuring-navigation-properties).
 
 ### <a name="new-command-line-parameters-for-namespaces-and-connection-strings"></a>Nuevos parámetros de la línea de comandos para espacios de nombres y cadenas de conexión 
 
@@ -72,15 +104,18 @@ Esto puede hacerse para, por ejemplo, aplicar ingeniería inversa a una base de 
 dotnet ef dbcontext scaffold "connection string" Microsoft.EntityFrameworkCore.SqlServer --context-namespace "My.Context" --namespace "My.Model"
 ```
 
+Para más información, consulte la documentación sobre [migraciones](xref:core/managing-schemas/migrations/index#namespaces) e [ingeniería inversa](xref:core/managing-schemas/scaffolding#directories-and-namespaces).
+
+---
 Ahora, además, también puede pasarse una cadena de conexión al comando `database-update`:
 
 ```
 dotnet ef database update --connection "connection string"
 ```
 
-También se han agregado parámetros equivalentes a los comandos de PowerShell que se usan en la consola del administrador de paquetes de VS.
+Para más información, consulte la [documentación sobre herramientas](xref:core/miscellaneous/cli/dotnet#dotnet-ef-database-update).
 
-En el problema [n.º 2303](https://github.com/dotnet/EntityFramework.Docs/issues/2303) se realiza el seguimiento de la documentación.
+También se han agregado parámetros equivalentes a los comandos de PowerShell que se usan en la consola del administrador de paquetes de VS.
 
 ### <a name="enabledetailederrors-has-returned"></a>EnableDetailedErrors ha vuelto
 
