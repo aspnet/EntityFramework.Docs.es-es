@@ -5,12 +5,12 @@ author: roji
 ms.date: 12/10/2019
 ms.assetid: e9dff604-3469-4a05-8f9e-18ac281d82a9
 uid: core/modeling/entity-properties
-ms.openlocfilehash: b67603fbffd1f1c8506bc21f8972c851eb8eef29
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: e4a1867a90df1fb277e7dd44b93d6c2d47895030
+ms.sourcegitcommit: 92d54fe3702e0c92e198334da22bacb42e9842b1
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414570"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84664161"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
 
@@ -52,9 +52,9 @@ Si prefiere configurar las columnas con nombres diferentes, puede hacerlo de la 
 
 Al utilizar una base de datos relacional, el proveedor de base de datos selecciona un tipo de datos basado en el tipo .NET de la propiedad. También tiene en cuenta otros metadatos, como la [longitud máxima](#maximum-length)configurada, si la propiedad forma parte de una clave principal, etc.
 
-Por ejemplo, SQL Server asigna propiedades de `DateTime` a columnas de `datetime2(7)` y `string` propiedades a `nvarchar(max)` columnas (o a `nvarchar(450)` para propiedades que se utilizan como clave).
+Por ejemplo, SQL Server asigna `DateTime` propiedades a `datetime2(7)` las columnas y `string` las propiedades a `nvarchar(max)` las columnas (o a `nvarchar(450)` para las propiedades que se usan como clave).
 
-También puede configurar las columnas para especificar un tipo de datos exacto para una columna. Por ejemplo, el código siguiente configura `Url` como una cadena no Unicode con una longitud máxima de `200` y `Rating` como decimal con precisión de `5` y la escala de `2`:
+También puede configurar las columnas para especificar un tipo de datos exacto para una columna. Por ejemplo, el código siguiente configura `Url` como una cadena no Unicode con una longitud máxima de `200` y `Rating` como decimal con la precisión y la `5` escala de `2` :
 
 ### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
 
@@ -68,7 +68,7 @@ También puede configurar las columnas para especificar un tipo de datos exacto 
 
 ### <a name="maximum-length"></a>Longitud máxima
 
-La configuración de una longitud máxima proporciona una sugerencia al proveedor de base de datos sobre el tipo de datos de columna adecuado que se debe elegir para una propiedad determinada. La longitud máxima solo se aplica a los tipos de datos de matriz, como `string` y `byte[]`.
+La configuración de una longitud máxima proporciona una sugerencia al proveedor de base de datos sobre el tipo de datos de columna adecuado que se debe elegir para una propiedad determinada. La longitud máxima solo se aplica a los tipos de datos de matriz, como `string` y `byte[]` .
 
 > [!NOTE]
 > Entity Framework no realiza ninguna validación de la longitud máxima antes de pasar datos al proveedor. Depende del proveedor o del almacén de datos que se valide si es necesario. Por ejemplo, cuando el destino es SQL Server, si se supera la longitud máxima, se producirá una excepción, ya que el tipo de datos de la columna subyacente no permitirá que se almacenen los datos sobrantes.
@@ -87,16 +87,16 @@ En el ejemplo siguiente, la configuración de una longitud máxima de 500 hará 
 
 ## <a name="required-and-optional-properties"></a>Propiedades obligatorias y opcionales
 
-Una propiedad se considera opcional si es válida para que contenga `null`. Si `null` no es un valor válido que se va a asignar a una propiedad, se considera que es una propiedad obligatoria. Al asignar a un esquema de base de datos relacional, las propiedades requeridas se crean como columnas que no aceptan valores NULL y las propiedades opcionales se crean como columnas que aceptan valores NULL.
+Una propiedad se considera opcional si es válida para que la contenga `null` . Si `null` no es un valor válido que se va a asignar a una propiedad, se considera que es una propiedad obligatoria. Al asignar a un esquema de base de datos relacional, las propiedades requeridas se crean como columnas que no aceptan valores NULL y las propiedades opcionales se crean como columnas que aceptan valores NULL.
 
 ### <a name="conventions"></a>Convenciones
 
-Por Convención, una propiedad cuyo tipo .NET pueda contener NULL se configurará como opcional, mientras que las propiedades cuyo tipo .NET no puede contener valores NULL se configurarán según sea necesario. Por ejemplo, todas las propiedades con tipos de valor .NET (`int`, `decimal`, `bool`, etc.) se configuran según sea necesario y todas las propiedades con tipos de valor .NET que aceptan valores NULL (`int?`, `decimal?`, `bool?`, etc.) se configuran como opcionales.
+Por Convención, una propiedad cuyo tipo .NET pueda contener NULL se configurará como opcional, mientras que las propiedades cuyo tipo .NET no puede contener valores NULL se configurarán según sea necesario. Por ejemplo, todas las propiedades con tipos de valor .net ( `int` , `decimal` , `bool` , etc.) se configuran como necesario y todas las propiedades con tipos de valor de .net que aceptan valores NULL ( `int?` , `decimal?` , `bool?` , etc.) se configuran como opcionales.
 
-C#8 presentó una nueva característica denominada [tipos de referencia que aceptan valores NULL](/dotnet/csharp/tutorials/nullable-reference-types), que permite anotar tipos de referencia, lo que indica si es válido para que contengan null o not. Esta característica está deshabilitada de forma predeterminada y, si está habilitada, modifica el comportamiento de EF Core de la siguiente manera:
+C# 8 presentó una nueva característica denominada [tipos de referencia que aceptan valores NULL](/dotnet/csharp/tutorials/nullable-reference-types), que permite anotar tipos de referencia, lo que indica si es válido que contengan null o not. Esta característica está deshabilitada de forma predeterminada y, si está habilitada, modifica el comportamiento de EF Core de la siguiente manera:
 
-* Si los tipos de referencia que aceptan valores NULL están deshabilitados (el valor predeterminado), todas las propiedades con tipos de referencia de .NET se configuran como opcionales por Convención (por ejemplo, `string`).
-* Si los tipos de referencia que aceptan valores NULL están habilitados, las propiedades C# se configurarán en función de la nulabilidad de su tipo .net: `string?` se configurarán como opcionales, mientras que `string` se configurarán según sea necesario.
+* Si los tipos de referencia que aceptan valores NULL están deshabilitados (el valor predeterminado), todas las propiedades con tipos de referencia de .NET se configuran como opcionales por Convención (por ejemplo, `string` ).
+* Si los tipos de referencia que aceptan valores NULL están habilitados, las propiedades se configurarán según la nulabilidad de C# de su tipo .NET: se `string?` configurarán como opcionales, mientras que se `string` configurarán según sea necesario.
 
 En el ejemplo siguiente se muestra un tipo de entidad con propiedades obligatorias y opcionales, con la característica de referencia que acepta valores NULL deshabilitada (valor predeterminado) y habilitada:
 
@@ -110,7 +110,7 @@ En el ejemplo siguiente se muestra un tipo de entidad con propiedades obligatori
 
 ***
 
-Se recomienda el uso de tipos de referencia que aceptan valores NULL, ya que C# fluye la nulabilidad expresada en el código para EF Core modelo y en la base de datos, e obvia el uso de las anotaciones de datos o la API fluida para expresar el mismo concepto dos veces.
+Se recomienda el uso de tipos de referencia que aceptan valores NULL, ya que fluye la nulabilidad expresada en el código de C# para EF Core modelo de y a la base de datos, e obvia el uso de las anotaciones de datos o la API fluida para expresar el mismo concepto dos veces.
 
 > [!NOTE]
 > Tenga cuidado al habilitar los tipos de referencia que aceptan valores NULL en un proyecto existente: las propiedades de tipo de referencia que se configuraron anteriormente como opcional ahora se configurarán según sea necesario, a menos que se anoten explícitamente para que acepten valores NULL. Al administrar un esquema de base de datos relacional, esto puede provocar que se generen migraciones que modifiquen la nulabilidad de la columna de la base de datos.
@@ -130,3 +130,16 @@ Una propiedad que sería opcional por Convención se puede configurar para que s
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?name=Required&highlight=3-5)]
 
 ***
+
+## <a name="column-collations"></a>Intercalaciones de columna
+
+> [!NOTE]
+> Esta característica se incluye por primera vez en EF Core 5.0.
+
+Una intercalación se puede definir en columnas de texto, determinando cómo se comparan y ordenan. Por ejemplo, lo siguiente configura una columna de SQL Server para que no distinga entre mayúsculas y minúsculas:
+
+[!code-csharp[Main](../../../samples/core/Miscellaneous/Collations/Program.cs?range=42-43)]
+
+Si todas las columnas de una base de datos necesitan usar una intercalación determinada, defina la intercalación en el nivel de base de datos en su lugar.
+
+Puede encontrar información general sobre la compatibilidad de EF Core con las intercalaciones en la página de documentación de la [Intercalación](xref:core/miscellaneous/collations-and-case-sensitivity.md).

@@ -5,12 +5,12 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 10/27/2016
 uid: core/modeling/inheritance
-ms.openlocfilehash: 507854e3acc0347adee612e516b3e2e0b10f55cf
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 0e94013a0b894b162f4bb3ca8e7acb1aca349011
+ms.sourcegitcommit: 92d54fe3702e0c92e198334da22bacb42e9842b1
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414630"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84664057"
 ---
 # <a name="inheritance"></a>Herencia
 
@@ -23,13 +23,13 @@ En este momento, EF Core solo admite el patrón de tabla por jerarquía (TPH). T
 
 ## <a name="entity-type-hierarchy-mapping"></a>Asignación de jerarquía de tipos de entidad
 
-Por Convención, EF solo configurará la herencia si dos o más tipos heredados se incluyen explícitamente en el modelo. EF no buscará automáticamente tipos base o derivados que no se incluyan en el modelo de otra forma.
+Por Convención, EF no buscará automáticamente tipos base o derivados; Esto significa que si desea que se asigne un tipo CLR en la jerarquía, debe especificar explícitamente ese tipo en el modelo. Por ejemplo, si solo se especifica el tipo base de una jerarquía, EF Core incluirá implícitamente todos sus subtipos.
 
-Puede incluir tipos en el modelo exponiendo un DbSet para cada tipo en la jerarquía de herencia:
+En el ejemplo siguiente se expone un DbSet para `Blog` y su subclase `RssBlog` . Si `Blog` tiene cualquier otra subclase, no se incluirá en el modelo.
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/InheritanceDbSets.cs?name=InheritanceDbSets&highlight=3-4)]
 
-Este modelo se asignará al siguiente esquema de la base de datos (tenga en cuenta la columna *discriminada* creada implícitamente, que identifica qué tipo de *blog* se almacena en cada fila):
+Este modelo se asigna al siguiente esquema de la base de datos (tenga en cuenta la columna *discriminadora* creada implícitamente, que identifica qué tipo de *blog* se almacena en cada fila):
 
 ![imagen](_static/inheritance-tph-data.png)
 
@@ -39,7 +39,7 @@ Este modelo se asignará al siguiente esquema de la base de datos (tenga en cuen
 Si no desea exponer un DbSet para una o varias entidades de la jerarquía, también puede usar la API fluida para asegurarse de que se incluyen en el modelo.
 
 > [!TIP]
-> Si no se basa en las convenciones, puede especificar explícitamente el tipo base mediante `HasBaseType`. También puede usar `.HasBaseType((Type)null)` para quitar un tipo de entidad de la jerarquía.
+> Si no se basa en las convenciones, puede especificar el tipo base explícitamente mediante `HasBaseType` . También puede usar `.HasBaseType((Type)null)` para quitar un tipo de entidad de la jerarquía.
 
 ## <a name="discriminator-configuration"></a>Configuración de discriminador
 
