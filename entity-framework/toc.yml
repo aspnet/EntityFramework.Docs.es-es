@@ -31,6 +31,8 @@
                   href: core/what-is-new/ef-core-5.0/plan.md
                 - name: Novedades
                   href: core/what-is-new/ef-core-5.0/whatsnew.md
+                - name: Cambios importantes
+                  href: core/what-is-new/ef-core-5.0/breaking-changes.md
             - name: EF Core 3.0
               items:
                 - name: Características nuevas
@@ -87,6 +89,8 @@
               href: core/miscellaneous/configuring-dbcontext.md
             - name: Tipos de referencia que aceptan valores NULL
               href: core/miscellaneous/nullable-reference-types.md
+            - name: Intercalaciones y distinción de mayúsculas y minúsculas
+              href: core/miscellaneous/collations-and-case-sensitivity.md
         - name: Creación de un modelo
           items:
             - name: Información general

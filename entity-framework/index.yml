@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 04/15/2020
-  ms.openlocfilehash: 54cbd0fcda19c4e2f35a3c3d4f350e3fecf3f597
-  ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
+  ms.openlocfilehash: 1411737453563ac5377dbda2804dd0bd058133a7
+  ms.sourcegitcommit: 92d54fe3702e0c92e198334da22bacb42e9842b1
   ms.translationtype: HT
   ms.contentlocale: es-ES
-  ms.lasthandoff: 04/29/2020
-  ms.locfileid: "82538376"
+  ms.lasthandoff: 06/10/2020
+  ms.locfileid: "84664174"
 highlightedContent:
   items:
   - title: Entity Framework Core
@@ -94,6 +94,8 @@ additionalContent:
         text: Configuración de un DbContext
       - url: core/miscellaneous/nullable-reference-types.md
         text: Tipos de referencia que aceptan valores NULL
+      - url: core/miscellaneous/collations-and-case-sensitivity.md
+        text: Intercalaciones y distinción de mayúsculas y minúsculas
     - title: Creación de un modelo
       links:
       - url: core/modeling/index.md
