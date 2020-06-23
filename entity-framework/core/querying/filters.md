@@ -3,12 +3,12 @@ title: 'Filtros de consulta global: EF Core'
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: 9262ff7970b0502945480c673315071cbc3f44b9
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: f6c59bcbab31edcbed22079a1320c060ce08c6f7
+ms.sourcegitcommit: 92d54fe3702e0c92e198334da22bacb42e9842b1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413766"
+ms.lasthandoff: 06/10/2020
+ms.locfileid: "84664135"
 ---
 # <a name="global-query-filters"></a>Filtros de consulta global
 
@@ -25,7 +25,7 @@ Los filtros de consulta global son predicados de consulta LINQ (una expresión b
 En el ejemplo siguiente se muestra cómo usar los filtros de consulta global para implementar los comportamientos de consulta de multiinquilino y de eliminación temporal en un simple modelo de creación de blogs.
 
 > [!TIP]
-> Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/QueryFilters) de este artículo en GitHub.
+> Puede ver un [ejemplo de servicios multiinquilino](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/QueryFilters) y [ejemplos con navegaciones](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/QueryFiltersNavigations) en GitHub. 
 
 En primer lugar, defina las entidades:
 
@@ -44,6 +44,74 @@ Las expresiones de predicado pasadas a las llamadas de _HasQueryFilter_ ahora se
 
 > [!NOTE]
 > Actualmente no es posible definir varios filtros de consulta en la misma entidad. Solo se aplicará el último. Sin embargo, puede definir un único filtro con varias condiciones mediante el operador lógico _AND_ ([`&&` en C#](https://docs.microsoft.com/dotnet/csharp/language-reference/operators/boolean-logical-operators#conditional-logical-and-operator-)).
+
+## <a name="use-of-navigations"></a>Uso de navegaciones
+
+Las navegaciones se pueden utilizar al definir filtros de consulta global. Se aplican de forma recursiva: cuando se trasladan las navegaciones utilizadas en los filtros de consulta, también se aplican los filtros de consulta definidos en las entidades a las que se hace referencia, lo que puede agregar más navegaciones.
+
+> [!NOTE]
+> Actualmente EF Core no detecta ciclos en las definiciones de filtros de consulta global, por lo que debe tener cuidado al definirlas. Si se especifica incorrectamente, podrían producirse bucles infinitos durante la traslación de consultas.
+
+## <a name="accessing-entity-with-query-filter-using-reqiured-navigation"></a>Acceso a una entidad con filtro de consultas mediante la navegación necesaria
+
+> [!CAUTION]
+> El uso de la navegación necesaria para acceder a la entidad que tiene definido un filtro de consulta global puede producir resultados inesperados. 
+
+La navegación necesaria espera que la entidad relacionada esté siempre presente. Si el filtro de consultas filtra la entidad relacionada necesaria, la entidad principal podría acabar en un estado inesperado. Esto puede dar lugar a que se devuelvan menos elementos de los esperados. 
+
+Para ilustrar el problema, podemos usar las entidades `Blog` y `Post` especificadas anteriormente y el siguiente método _OnModelCreating_:
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<Blog>().HasMany(b => b.Posts).WithOne(p => p.Blog).IsRequired();
+    modelBuilder.Entity<Blog>().HasQueryFilter(b => b.Url.Contains("fish"));
+}
+```
+
+El modelo se puede inicializar con los siguientes datos:
+
+[!code-csharp[Main](../../../samples/core/QueryFiltersNavigations/Program.cs#SeedData)]
+
+Se puede observar el problema al ejecutar dos consultas:
+
+[!code-csharp[Main](../../../samples/core/QueryFiltersNavigations/Program.cs#Queries)]
+
+Con esta configuración, la primera consulta devuelve las 6 `Post`; sin embargo, la segunda consulta solo devuelve 3. Esto sucede porque el método _Include_ de la segunda consulta carga las entidades `Blog` relacionadas. Dado que se requiere la navegación entre `Blog` y `Post`, EF Core utiliza `INNER JOIN` al construir la consulta:
+
+```SQL
+SELECT [p].[PostId], [p].[BlogId], [p].[Content], [p].[IsDeleted], [p].[Title], [t].[BlogId], [t].[Name], [t].[Url]
+FROM [Post] AS [p]
+INNER JOIN (
+    SELECT [b].[BlogId], [b].[Name], [b].[Url]
+    FROM [Blogs] AS [b]
+    WHERE CHARINDEX(N'fish', [b].[Url]) > 0
+) AS [t] ON [p].[BlogId] = [t].[BlogId]
+```
+
+El uso de `INNER JOIN` filtra todos los valores `Post` cuyos `Blog` relacionados se han quitado mediante un filtro de consulta global. 
+
+Se puede solucionar mediante el uso de la navegación opcional, en lugar de la necesaria. De este modo, la primera consulta se mantiene igual que antes, pero la segunda consulta generará `LEFT JOIN` y devolverá 6 resultados.
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<Blog>().HasMany(b => b.Posts).WithOne(p => p.Blog).IsRequired(false);
+    modelBuilder.Entity<Blog>().HasQueryFilter(b => b.Url.Contains("fish"));
+}
+```
+
+Un enfoque alternativo consiste en especificar filtros coherentes en las entidades `Blog` y `Post`.
+De este modo, los filtros coincidentes se aplican tanto a `Blog` como a `Post`. Las `Post` que podrían acabar en un estado inesperado se quitan y ambas consultas devuelven 3 resultados. 
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<Blog>().HasMany(b => b.Posts).WithOne(p => p.Blog).IsRequired();
+    modelBuilder.Entity<Blog>().HasQueryFilter(b => b.Url.Contains("fish"));
+    modelBuilder.Entity<Post>().HasQueryFilter(p => p.Blog.Url.Contains("fish"));
+}
+```
 
 ## <a name="disabling-filters"></a>Deshabilitación de filtros
 

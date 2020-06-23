@@ -2,14 +2,14 @@
 title: Novedades en EF Core 5.0
 description: Información general sobre las nuevas características de EF Core 5.0
 author: ajcvickers
-ms.date: 05/11/2020
+ms.date: 06/02/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew.md
-ms.openlocfilehash: fcb2eb8df99a06eaf3459835347a4027a363b86b
-ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
+ms.openlocfilehash: 45d851a4b08a26dda0c24e20c79f42964fa4fae4
+ms.sourcegitcommit: 1f0f93c66b2b50e03fcbed90260e94faa0279c46
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/20/2020
-ms.locfileid: "83672852"
+ms.lasthandoff: 06/04/2020
+ms.locfileid: "84418951"
 ---
 # <a name="whats-new-in-ef-core-50"></a>Novedades en EF Core 5.0
 
@@ -20,6 +20,117 @@ Esta página no duplica el [plan para EF Core 5.0](plan.md).
 En el plan se describen los temas generales relativos a EF Core 5.0, incluido todo lo que estamos planeando incluir antes de publicar la versión final.
 
 A medida que se publique el contenido, se agregarán vínculos que redirigirán de esta página a la documentación oficial.
+
+## <a name="preview-5"></a>Versión preliminar 5
+
+### <a name="database-collations"></a>Intercalaciones de bases de datos
+
+La intercalación predeterminada de una base de datos puede especificarse ahora en el modelo EF.
+Este pasará a las migraciones generadas para establecer la intercalación cuando se cree la base de datos.
+Por ejemplo:
+
+```CSharp
+modelBuilder.UseCollation("German_PhoneBook_CI_AS");
+```
+
+A continuación, las migraciones generan lo siguiente para crear la base de datos en SQL Server:
+
+```sql
+CREATE DATABASE [Test]
+COLLATE German_PhoneBook_CI_AS;
+```
+
+También se puede especificar la intercalación que se va a usar para columnas de bases de datos concretas.
+Por ejemplo:
+
+```CSharp
+ modelBuilder
+     .Entity<User>()
+     .Property(e => e.Name)
+     .UseCollation("German_PhoneBook_CI_AS");
+```
+
+En el caso de las que no usan migraciones, se aplica a las intercalaciones ingeniería inversa desde la base de datos, al aplicar scaffolding a DbContext.
+
+Por último, `EF.Functions.Collate()` permite realizar consultas ad-hoc mediante diferentes intercalaciones.
+Por ejemplo:
+
+```CSharp
+context.Users.Single(e => EF.Functions.Collate(e.Name, "French_CI_AS") == "Jean-Michel Jarre");
+```
+
+De este modo se generará la siguiente consulta para SQL Server:
+
+```sql
+SELECT TOP(2) [u].[Id], [u].[Name]
+FROM [Users] AS [u]
+WHERE [u].[Name] COLLATE French_CI_AS = N'Jean-Michel Jarre'
+```
+
+Tenga en cuenta que las intercalaciones ad-hoc deben usarse con cuidado, ya que pueden afectar negativamente al rendimiento de la base de datos.
+
+En el problema [n.º 2273](https://github.com/dotnet/EntityFramework.Docs/issues/2273) se hace el seguimiento de la documentación.
+
+### <a name="flow-arguments-into-idesigntimedbcontextfactory"></a>Transmisión de argumentos a IDesignTimeDbContextFactory
+
+Los argumentos se transmiten ahora desde la línea de comandos al método de `CreateDbContext` de [IDesignTimeDbContextFactory](https://docs.microsoft.com/dotnet/api/microsoft.entityframeworkcore.design.idesigntimedbcontextfactory-1?view=efcore-3.1). Por ejemplo, para indicar que se trata de una compilación de desarrollo, se puede pasar un argumento personalizado (por ejemplo, `dev`) en la línea de comandos:
+
+```
+dotnet ef migrations add two --verbose --dev
+``` 
+
+Este argumento pasará entonces a la factoría, donde se puede usar para controlar cómo se crea e inicializa el contexto.
+Por ejemplo:
+
+```CSharp
+public class MyDbContextFactory : IDesignTimeDbContextFactory<SomeDbContext>
+{
+    public SomeDbContext CreateDbContext(string[] args) 
+        => new SomeDbContext(args.Contains("--dev"));
+}
+```
+
+En el problema [n.º 2419](https://github.com/dotnet/EntityFramework.Docs/issues/2419) se hace el seguimiento de la documentación.
+
+### <a name="no-tracking-queries-with-identity-resolution"></a>Consultas de no seguimiento con resolución de la identidad
+
+Ahora se pueden configurar consultas de no seguimiento para hacer la resolución de identidad.
+Por ejemplo, la siguiente consulta creará una instancia de Blog para cada Post, aunque cada blog tenga la misma clave principal. 
+
+```CSharp
+context.Posts.AsNoTracking().Include(e => e.Blog).ToList();
+```
+
+Sin embargo, a costa de que por lo general sea ligeramente más lento y siempre use más memoria, se puede cambiar esta consulta para asegurarse de que solo se crea una instancia de Blog:
+
+```CSharp
+context.Posts.AsNoTracking().PerformIdentityResolution().Include(e => e.Blog).ToList();
+```
+
+Tenga en cuenta que esto solo es útil para consultas de no seguimiento, ya que todas las consultas de seguimiento ya muestran este comportamiento. Además, después de la revisión de la API, se cambiará la sintaxis de `PerformIdentityResolution`.
+Consulte el problema [n.º 19877](https://github.com/dotnet/efcore/issues/19877#issuecomment-637371073).
+
+En el problema [n.º 1895](https://github.com/dotnet/EntityFramework.Docs/issues/1895) se realiza el seguimiento de la documentación.
+
+### <a name="stored-persisted-computed-columns"></a>Columnas calculadas almacenadas (persistentes)
+
+La mayoría de las bases de datos permiten almacenar valores de columnas calculadas después del cálculo.
+Aunque ocupa espacio en disco, la columna se calcula solo una vez al actualizar, en lugar de cada vez que se recupera su valor.
+Esto también permite indizar la columna para algunas bases de datos.
+
+EF Core 5.0 permite configurar las columnas calculadas como almacenadas.
+Por ejemplo:
+ 
+```CSharp
+modelBuilder
+    .Entity<User>()
+    .Property(e => e.SomethingComputed)
+    .HasComputedColumnSql("my sql", stored: true);
+```
+
+### <a name="sqlite-computed-columns"></a>Columnas calculadas de SQLite
+
+EF Core admite ahora columnas calculadas en las bases de datos de SQLite.
 
 ## <a name="preview-4"></a>Versión preliminar 4
 
@@ -50,8 +161,6 @@ modelBuilder
     .HasIndex(e => e.Name)
     .HasFillFactor(90);
 ```
-
-En el problema [n.º 2378](https://github.com/dotnet/EntityFramework.Docs/issues/2378) se realiza el seguimiento de la documentación.
 
 ## <a name="preview-3"></a>Versión preliminar 3
 
