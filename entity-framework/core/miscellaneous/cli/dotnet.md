@@ -4,14 +4,14 @@ author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 6eb8b817a809dedf999ccb98307f5d8e2e41c0fb
-ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
+ms.openlocfilehash: fe378fc962c0d491703a3e77dca4415ad510d673
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/20/2020
-ms.locfileid: "83672946"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370634"
 ---
-# <a name="entity-framework-core-tools-reference---net-cli"></a>Referencia sobre las herramientas de Entity Framework Core (CLI de .NET)
+# <a name="entity-framework-core-tools-reference---net-core-cli"></a>Referencia de herramientas de Entity Framework Core-CLI de .NET Core
 
 Las herramientas de la interfaz de la línea de comandos (CLI) para Entity Framework Core realizar tareas de desarrollo en tiempo de diseño. Por ejemplo, se crean [migraciones](/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-2.0), se aplican migraciones y se genera código para un modelo basado en una base de datos existente. Los comandos son una extensión del comando [dotnet](/dotnet/core/tools) multiplataforma, que forma parte de la [SDK de .net Core](https://www.microsoft.com/net/core). Estas herramientas funcionan con proyectos de .NET Core.
 
@@ -69,7 +69,7 @@ Los `dotnet ef` comandos se incluyen en el SDK de .net Core, pero para habilitar
 
 * Instale la versión SDK de .NET Core 2.1.200. Las versiones posteriores no son compatibles con las herramientas de la CLI para EF Core 1,0 y 1,1.
 
-* Configure la aplicación para que use la versión del SDK de 2.1.200 modificando su archivo [global. JSON](/dotnet/core/tools/global-json) . Este archivo se incluye normalmente en el directorio de la solución (uno encima del proyecto).
+* Configure la aplicación para que use la versión del SDK de 2.1.200 modificando su [global.jsen](/dotnet/core/tools/global-json) el archivo. Este archivo se incluye normalmente en el directorio de la solución (uno encima del proyecto).
 
 * Edite el archivo de proyecto y agréguelo `Microsoft.EntityFrameworkCore.Tools.DotNet` como un `DotNetCliToolReference` elemento. Especifique la versión más reciente de 1. x, por ejemplo: 1.1.6. Vea el ejemplo de archivo de proyecto al final de esta sección.
 
@@ -101,7 +101,7 @@ Los `dotnet ef` comandos se incluyen en el SDK de .net Core, pero para habilitar
 
   Una referencia de paquete con `PrivateAssets="All"` no se expone a los proyectos que hacen referencia a este proyecto. Esta restricción es especialmente útil para los paquetes que normalmente se usan solo durante el desarrollo.
 
-### <a name="verify-installation"></a>Comprobar la instalación
+### <a name="verify-installation"></a>Comprobación de la instalación
 
 Ejecute los siguientes comandos para comprobar que las herramientas de la CLI de EF Core están instaladas correctamente:
 
@@ -172,7 +172,7 @@ Para especificar el entorno de ASP.NET Core proyectos, establezca la variable de
 |                   | `--framework <FRAMEWORK>`         | Moniker de la [plataforma de destino](/dotnet/standard/frameworks#supported-target-framework-versions) para la [plataforma de destino](/dotnet/standard/frameworks).  Use cuando el archivo del proyecto especifique varias plataformas de destino y desee seleccionar una de ellas. |
 |                   | `--configuration <CONFIGURATION>` | La configuración de compilación, por ejemplo: `Debug` o `Release` .                                                                                                                                                                                                   |
 |                   | `--runtime <IDENTIFIER>`          | Identificador del Runtime de destino para el que se van a restaurar los paquetes. Para obtener una lista de identificadores de tiempo de ejecución (RID), consulte el [catálogo de RID](/dotnet/core/rid-catalog).                                                                                                      |
-| `-h`              | `--help`                          | Mostrar información de la ayuda.                                                                                                                                                                                                                                        |
+| `-h`              | `--help`                          | Muestra información de ayuda.                                                                                                                                                                                                                                        |
 | `-v`              | `--verbose`                       | Mostrar resultado detallado.                                                                                                                                                                                                                                          |
 |                   | `--no-color`                      | No colorear la salida.                                                                                                                                                                                                                                        |
 |                   | `--prefix-output`                 | Prefijo de salida con nivel.                                                                                                                                                                                                                                     |
@@ -228,7 +228,7 @@ Argumentos:
 
 | Argumento       | Descripción                                                                                                                                                                                                             |
 |:---------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `<CONNECTION>` | La cadena de conexión a la base de datos. En el caso de los proyectos de ASP.NET Core 2. x, el valor puede ser *name = \< nombre de la cadena de conexión>*. En ese caso, el nombre procede de los orígenes de configuración que se configuran para el proyecto. |
+| `<CONNECTION>` | La cadena de conexión a la base de datos. En el caso de los proyectos de ASP.NET Core 2. x, el valor puede ser *name = \<name of connection string> *. En ese caso, el nombre procede de los orígenes de configuración que se configuran para el proyecto. |
 | `<PROVIDER>`   | Proveedor que se va a usar. Normalmente, es el nombre del paquete NuGet, por ejemplo: `Microsoft.EntityFrameworkCore.SqlServer` .                                                                                           |
 
 Opciones:
@@ -238,13 +238,14 @@ Opciones:
 | <nobr>`-d`</nobr> | `--data-annotations`                   | Use los atributos para configurar el modelo (siempre que sea posible). Si se omite esta opción, solo se usa la API fluida.                                                                |
 | `-c`            | `--context <NAME>`                       | Nombre de la `DbContext` clase que se va a generar.                                                                                                                                 |
 |                 | `--context-dir <PATH>`                   | Directorio en el que se va a colocar el `DbContext` archivo de clase. Las rutas de acceso son relativas al directorio del proyecto. Los espacios de nombres se derivan de los nombres de carpeta.                                 |
-|                 | `--context-namespace <NAMESPACE>`        | Espacio de nombres que se va a utilizar para la clase generada `DbContext` . Nota: invalida `--namespace` .                                 |
+|                 | `--context-namespace <NAMESPACE>`        | Espacio de nombres que se va a utilizar para la clase generada `DbContext` . Nota: invalida `--namespace` . (Disponible en EFCore 5.0.0 en adelante).        |
 | `-f`            | `--force`                                | Sobrescribe los archivos existentes.                                                                                                                                                      |
 | `-o`            | `--output-dir <PATH>`                    | Directorio en el que se colocarán los archivos de clase de entidad. Las rutas de acceso son relativas al directorio del proyecto.                                                                                       |
-| `-n`            | `--namespace <NAMESPACE>`                | Espacio de nombres que se va a usar para todas las clases generadas. De forma predeterminada, se genera a partir del espacio de nombres raíz y el directorio de salida.                    |
+| `-n`            | `--namespace <NAMESPACE>`                | Espacio de nombres que se va a usar para todas las clases generadas. De forma predeterminada, se genera a partir del espacio de nombres raíz y el directorio de salida. (Disponible en EFCore 5.0.0 en adelante).        |
 |                 | <nobr>`--schema <SCHEMA_NAME>...`</nobr> | Esquemas de las tablas para las que se van a generar tipos de entidad. Para especificar varios esquemas, repita `--schema` cada uno de ellos. Si se omite esta opción, se incluyen todos los esquemas.          |
 | `-t`            | `--table <TABLE_NAME>`...                | Tablas para las que se van a generar tipos de entidad. Para especificar varias tablas, repita `-t` o `--table` para cada una de ellas. Si se omite esta opción, se incluyen todas las tablas.                |
 |                 | `--use-database-names`                   | Utilice nombres de tabla y columna exactamente como aparecen en la base de datos. Si se omite esta opción, se cambian los nombres de base de datos para que se ajusten mejor a las convenciones de estilo de nombre de C#. |
+|                 | `--no-onconfiguring`                     | Suprime la generación del `OnConfiguring` método en la clase generada `DbContext` . (Disponible en EFCore 5.0.0 en adelante).        |
 
 En el ejemplo siguiente se scaffoldingan todos los esquemas y las tablas y se colocan los nuevos archivos en la carpeta *Models* .
 
@@ -273,7 +274,7 @@ Opciones:
 |                   | Opción                             | Descripción                                                                                                      |
 |:------------------|:-----------------------------------|:-----------------------------------------------------------------------------------------------------------------|
 | <nobr>`-o`</nobr> | <nobr>`--output-dir <PATH>`</nobr> | El directorio que se usa para generar los archivos. Las rutas de acceso son relativas al directorio del proyecto de destino. El valor predeterminado es "migraciones". |
-| <nobr>`-n`</nobr> | <nobr>`--namespace <NAMESPACE>`</nobr> | Espacio de nombres que se va a usar para las clases generadas. De forma predeterminada, se genera desde el directorio de salida. |
+| <nobr>`-n`</nobr> | <nobr>`--namespace <NAMESPACE>`</nobr> | Espacio de nombres que se va a usar para las clases generadas. De forma predeterminada, se genera desde el directorio de salida. (Disponible en EFCore 5.0.0 en adelante). |
 
 ## <a name="dotnet-ef-migrations-list"></a>lista de migraciones de dotnet EF
 

@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: cb20120154101a9b92b4bf2bc06d20b1dafe88c1
-ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
+ms.openlocfilehash: 2422e7455dc4ef52f0a9d3bdaebfa02f62e6d50f
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/20/2020
-ms.locfileid: "83672970"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370607"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
 
@@ -85,11 +85,11 @@ Scaffold-DbContext ... -Tables Artist, Album
 
 ## <a name="preserving-names"></a>Conservar nombres
 
-Los nombres de tablas y columnas se han corregido para que coincidan mejor con las convenciones de nomenclatura de .NET para tipos y propiedades de forma predeterminada. Si se especifica el `-UseDatabaseNames` modificador en PMC o `--use-database-names` en la opción de la CLI, se deshabilitará este comportamiento para conservar los nombres de las bases de datos originales lo máximo posible. Los identificadores de .NET no válidos seguirán siendo fijos y los nombres sintetizados, como las propiedades de navegación, seguirán conforme a las convenciones de nomenclatura de .NET.
+Los nombres de tablas y columnas se han corregido para que coincidan mejor con las convenciones de nomenclatura de .NET para tipos y propiedades de forma predeterminada. Al especificar el `-UseDatabaseNames` modificador en PMC o la `--use-database-names` opción en el CLI de .net Core, se deshabilitará este comportamiento conservando los nombres de las bases de datos originales lo máximo posible. Los identificadores de .NET no válidos seguirán siendo fijos y los nombres sintetizados, como las propiedades de navegación, seguirán conforme a las convenciones de nomenclatura de .NET.
 
 ## <a name="fluent-api-or-data-annotations"></a>Anotaciones de datos o API fluidas
 
-Los tipos de entidad se configuran mediante la API fluida de forma predeterminada. Especifique `-DataAnnotations` (PMC) o `--data-annotations` (CLI) para usar anotaciones de datos siempre que sea posible.
+Los tipos de entidad se configuran mediante la API fluida de forma predeterminada. Especifique `-DataAnnotations` (PMC) o `--data-annotations` (CLI de .net Core) para usar anotaciones de datos siempre que sea posible.
 
 Por ejemplo, el uso de la API fluida le aplicará esta técnica:
 
@@ -109,7 +109,7 @@ public string Title { get; set; }
 
 ## <a name="dbcontext-name"></a>Nombre de DbContext
 
-El nombre de la clase DbContext con scaffolding será el nombre de la base de datos con sufijo de *contexto* de forma predeterminada. Para especificar otro, use `-Context` en PMC y `--context` en la CLI.
+El nombre de la clase DbContext con scaffolding será el nombre de la base de datos con sufijo de *contexto* de forma predeterminada. Para especificar otro, use `-Context` en PMC y `--context` en el CLI de .net Core.
 
 ## <a name="directories-and-namespaces"></a>Directorios y espacios de nombres
 

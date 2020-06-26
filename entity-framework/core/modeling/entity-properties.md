@@ -1,16 +1,16 @@
 ---
 title: 'Propiedades de la entidad: EF Core'
 description: Cómo configurar y asignar propiedades de entidad mediante Entity Framework Core
-author: roji
-ms.date: 12/10/2019
+author: lajones
+ms.date: 05/27/2020
 ms.assetid: e9dff604-3469-4a05-8f9e-18ac281d82a9
 uid: core/modeling/entity-properties
-ms.openlocfilehash: e4a1867a90df1fb277e7dd44b93d6c2d47895030
-ms.sourcegitcommit: 92d54fe3702e0c92e198334da22bacb42e9842b1
+ms.openlocfilehash: fcf3b0f8480fde2f3ba6b5fd601db115f1d246b8
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84664161"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370518"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
 
@@ -85,6 +85,26 @@ En el ejemplo siguiente, la configuración de una longitud máxima de 500 hará 
 
 ***
 
+### <a name="precision-and-scale"></a>Precisión y escala
+
+A partir de EFCore 5,0, puede usar la API fluida para configurar la precisión y la escala. Indica al proveedor de base de datos cuánto espacio de almacenamiento se necesita para una columna determinada. Solo se aplica a los tipos de datos en los que el proveedor permite variar la precisión y la escala, normalmente solo `decimal` y `DateTime` .
+
+En `decimal` el caso de las propiedades, precisión define el número máximo de dígitos necesarios para expresar cualquier valor que contenga la columna y escala define el número máximo de posiciones decimales necesarias. En `DateTime` el caso de las propiedades, precisión define el número máximo de dígitos necesarios para expresar fracciones de segundos y no se usa la escala.
+
+> [!NOTE]
+> Entity Framework no realiza ninguna validación de precisión o escala antes de pasar los datos al proveedor. Depende del proveedor o del almacén de datos que se validen según corresponda. Por ejemplo, cuando el destino es SQL Server, una columna de tipo de datos no `datetime` permite establecer la precisión, mientras que una `datetime2` puede tener una precisión de entre 0 y 7, ambos inclusive.
+
+En el ejemplo siguiente, la configuración de la `Score` propiedad para que tenga la precisión 14 y la escala 2 hará que se cree una columna de tipo `decimal(14,2)` en SQL Server y la configuración de la `LastUpdated` propiedad para que tenga la precisión 3 producirá una columna de tipo `datetime2(3)` :
+
+#### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/PrecisionAndScale.cs?name=PrecisionAndScale&highlight=3-9)]
+
+> [!NOTE]
+> La escala nunca se define sin necesidad de definir primero la precisión, por lo que la API fluida para definir la escala es `HasPrecision(precision, scale)` .
+
+***
+
 ## <a name="required-and-optional-properties"></a>Propiedades obligatorias y opcionales
 
 Una propiedad se considera opcional si es válida para que la contenga `null` . Si `null` no es un valor válido que se va a asignar a una propiedad, se considera que es una propiedad obligatoria. Al asignar a un esquema de base de datos relacional, las propiedades requeridas se crean como columnas que no aceptan valores NULL y las propiedades opcionales se crean como columnas que aceptan valores NULL.
@@ -142,4 +162,4 @@ Una intercalación se puede definir en columnas de texto, determinando cómo se 
 
 Si todas las columnas de una base de datos necesitan usar una intercalación determinada, defina la intercalación en el nivel de base de datos en su lugar.
 
-Puede encontrar información general sobre la compatibilidad de EF Core con las intercalaciones en la página de documentación de la [Intercalación](xref:core/miscellaneous/collations-and-case-sensitivity.md).
+Puede encontrar información general sobre la compatibilidad de EF Core con las intercalaciones en la página de documentación de la [Intercalación](xref:core/miscellaneous/collations-and-case-sensitivity).

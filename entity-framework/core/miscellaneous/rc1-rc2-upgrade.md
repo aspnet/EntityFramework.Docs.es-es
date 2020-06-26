@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 6d75b229-cc79-4d08-88cd-3a1c1b24d88f
 uid: core/miscellaneous/rc1-rc2-upgrade
-ms.openlocfilehash: 887b7cd539b9c0f5a680398f5039757420228710
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 5500addc98a0c0eb314c4d9f9401fa301ce5c6f6
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414114"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370531"
 ---
 # <a name="upgrading-from-ef-core-10-rc1-to-10-rc2"></a>Actualización de EF Core 1,0 RC1 a 1,0 RC2
 
@@ -25,7 +25,7 @@ Entre RC1 y RC2, cambiamos de "Entity Framework 7" a "Entity Framework Core". Pu
 |:----------------------------------------------------------|:---------------------------------------------------------------------|
 | EntityFramework. MicrosoftSqlServer 7.0.0-RC1-final | Microsoft. EntityFrameworkCore. SqlServer 1.0.0-RC2-final      |
 | EntityFramework. SQLite 7.0.0-RC1-final | Microsoft. EntityFrameworkCore. SQLite 1.0.0-RC2-final      |
-| EntityFramework7. Npgsql 3.1.0-RC1-3     | NpgSql. EntityFrameworkCore. Postgres <to be advised>      |
+| EntityFramework7. Npgsql 3.1.0-RC1-3     | NpgSql. EntityFrameworkCore. Postgres<to be advised>      |
 | EntityFramework. SqlServerCompact35 7.0.0-RC1-final | EntityFrameworkCore. SqlServerCompact35 1.0.0-RC2-final      |
 | EntityFramework. SqlServerCompact40 7.0.0-RC1-final | EntityFrameworkCore. SqlServerCompact40 1.0.0-RC2-final      |
 | EntityFramework. inmemory 7.0.0-RC1-final | Microsoft. EntityFrameworkCore. inmemory 1.0.0-RC2-final      |
@@ -35,13 +35,13 @@ Entre RC1 y RC2, cambiamos de "Entity Framework 7" a "Entity Framework Core". Pu
 
 ## <a name="namespaces"></a>Espacios de nombres
 
-Junto con los nombres de paquete, los espacios de nombres cambiaron de `Microsoft.Data.Entity.*` a `Microsoft.EntityFrameworkCore.*`. Puede controlar este cambio con una búsqueda/reemplazo de `using Microsoft.Data.Entity` con `using Microsoft.EntityFrameworkCore`.
+Junto con los nombres de paquete, los espacios de nombres cambiaron de `Microsoft.Data.Entity.*` a `Microsoft.EntityFrameworkCore.*` . Puede controlar este cambio con la búsqueda y el reemplazo de `using Microsoft.Data.Entity` con `using Microsoft.EntityFrameworkCore` .
 
 ## <a name="table-naming-convention-changes"></a>Cambios en la Convención de nomenclatura de tablas
 
-Un cambio funcional significativo que se llevó a cabo en RC2 era usar el nombre de la propiedad `DbSet<TEntity>` de una entidad determinada como el nombre de tabla al que se asigna, en lugar de simplemente el nombre de clase. Puede leer más sobre este cambio en [el problema del anuncio relacionado](https://github.com/aspnet/Announcements/issues/167).
+Un cambio funcional significativo que se llevó a cabo en RC2 era usar el nombre de la `DbSet<TEntity>` propiedad para una entidad determinada como el nombre de tabla al que se asigna, en lugar de simplemente el nombre de clase. Puede leer más sobre este cambio en [el problema del anuncio relacionado](https://github.com/aspnet/Announcements/issues/167).
 
-En el caso de las aplicaciones RC1 existentes, se recomienda agregar el código siguiente al principio del método `OnModelCreating` para mantener la estrategia de nomenclatura RC1:
+En el caso de las aplicaciones RC1 existentes, se recomienda agregar el código siguiente al inicio del `OnModelCreating` método para mantener la estrategia de nomenclatura RC1:
 
 ``` csharp
 foreach (var entity in modelBuilder.Model.GetEntityTypes())
@@ -54,7 +54,7 @@ Si desea adoptar la nueva estrategia de nomenclatura, se recomienda completar co
 
 ## <a name="adddbcontext--startupcs-changes-aspnet-core-projects-only"></a>AddDbContext/Startup.cs cambia (solo proyectos de ASP.NET Core)
 
-En RC1, tenía que agregar Entity Framework servicios al proveedor de servicios de la aplicación `Startup.ConfigureServices(...)`:
+En RC1, tenía que agregar Entity Framework servicios al proveedor de servicios de aplicaciones `Startup.ConfigureServices(...)` :
 
 ``` csharp
 services.AddEntityFramework()
@@ -63,7 +63,7 @@ services.AddEntityFramework()
     options.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
 ```
 
-En RC2, puede quitar las llamadas a `AddEntityFramework()`, `AddSqlServer()`, etc.:
+En RC2, puede quitar las llamadas a `AddEntityFramework()` , `AddSqlServer()` , etc.:
 
 ``` csharp
 services.AddDbContext<ApplicationDbContext>(options =>
@@ -81,7 +81,7 @@ public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
 
 ## <a name="passing-in-an-iserviceprovider"></a>Pasar un IServiceProvider
 
-Si tiene código RC1 que pasa un `IServiceProvider` al contexto, ahora se mueve a `DbContextOptions`, en lugar de ser un parámetro de constructor independiente. Utilice `DbContextOptionsBuilder.UseInternalServiceProvider(...)` para establecer el proveedor de servicios.
+Si tiene código RC1 que pasa un `IServiceProvider` al contexto, ahora se ha trasladado a `DbContextOptions` , en lugar de ser un parámetro de constructor independiente. Utilice `DbContextOptionsBuilder.UseInternalServiceProvider(...)` para establecer el proveedor de servicios.
 
 ### <a name="testing"></a>Prueba
 
@@ -101,11 +101,11 @@ services.AddEntityFrameworkSqlServer()
 > [!WARNING]  
 > Se recomienda permitir que EF administre internamente sus propios servicios, a menos que tenga un motivo para combinar los servicios de EF internos en el proveedor de servicios de aplicación. La razón principal por la que puede querer hacer esto es usar el proveedor de servicios de aplicación para reemplazar los servicios que EF usa internamente
 
-## <a name="dnx-commands--net-cli-aspnet-core-projects-only"></a>Comandos de DNX = CLI de .NET > (solo para proyectos de ASP.NET Core)
+## <a name="dnx-commands--net-core-cli-aspnet-core-projects-only"></a>Comandos de DNX = CLI de .NET Core de> (solo proyectos de ASP.NET Core)
 
-Si anteriormente usó los comandos `dnx ef` para proyectos de ASP.NET 5, ahora se han pasado a `dotnet ef` comandos. Todavía se aplica la misma sintaxis de comando. Puede usar `dotnet ef --help` para obtener información sobre la sintaxis.
+Si anteriormente usó los `dnx ef` comandos para los proyectos de ASP.net 5, ahora se han pasado a `dotnet ef` comandos. Todavía se aplica la misma sintaxis de comando. Puede usar `dotnet ef --help` para obtener información sobre la sintaxis.
 
-La forma en que se registran los comandos ha cambiado en RC2, debido a que DNX se ha reemplazado por la CLI de .NET. Los comandos se registran ahora en una sección `tools` en `project.json`:
+La forma en que se registran los comandos ha cambiado en RC2, debido a que DNX se ha reemplazado por el CLI de .NET Core. Los comandos se registran ahora en una `tools` sección de `project.json` :
 
 ``` json
 "tools": {
@@ -120,15 +120,15 @@ La forma en que se registran los comandos ha cambiado en RC2, debido a que DNX s
 ```
 
 > [!TIP]  
-> Si usa Visual Studio, ahora puede usar la consola del administrador de paquetes para ejecutar comandos EF para proyectos de ASP.NET Core (esto no se admitía en RC1). Todavía tiene que registrar los comandos en la sección `tools` de `project.json` para hacerlo.
+> Si usa Visual Studio, ahora puede usar la consola del administrador de paquetes para ejecutar comandos EF para proyectos de ASP.NET Core (esto no se admitía en RC1). Todavía tiene que registrar los comandos en la `tools` sección de `project.json` para hacerlo.
 
 ## <a name="package-manager-commands-require-powershell-5"></a>Los comandos del administrador de paquetes requieren PowerShell 5
 
 Si usa los comandos Entity Framework en la consola del administrador de paquetes en Visual Studio, tendrá que asegurarse de que tiene PowerShell 5 instalado. Se trata de un requisito temporal que se quitará en la siguiente versión (consulte el [problema #5327](https://github.com/aspnet/EntityFramework/issues/5327) para obtener más detalles).
 
-## <a name="using-imports-in-projectjson"></a>Usar "Imports" en Project. JSON
+## <a name="using-imports-in-projectjson"></a>Usar "Imports" en project.js
 
-Algunas de las dependencias de EF Core no admiten aún .NET Standard. EF Core en .NET Standard y los proyectos de .NET Core pueden requerir la adición de "Imports" a Project. JSON como una solución temporal.
+Algunas de las dependencias de EF Core no admiten aún .NET Standard. EF Core en .NET Standard y los proyectos de .NET Core pueden requerir la adición de "Imports" a project.jscomo solución temporal.
 
 Al agregar EF, la restauración de NuGet mostrará este mensaje de error:
 

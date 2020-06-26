@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: 5b45f83ca7f02665f52ccfe16b5af506a6046a62
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 2222df84be7bfde3f252766bef1cfab39b476efa
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414708"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370453"
 ---
 # <a name="spatial-data"></a>Datos espaciales
 
@@ -32,7 +32,7 @@ Npgsql.EntityFrameworkCore.PostgreSQL   | [Npgsql. EntityFrameworkCore. PostgreS
 
 ## <a name="reverse-engineering"></a>Ingeniería inversa
 
-Los paquetes de NuGet espaciales también habilitan los modelos de [ingeniería inversa](../managing-schemas/scaffolding.md) con propiedades espaciales, pero debe instalar el paquete ***antes*** de ejecutar `Scaffold-DbContext` o `dotnet ef dbcontext scaffold`. Si no lo hace, recibirá advertencias sobre cómo no encontrar las asignaciones de tipos para las columnas y se omitirán las columnas.
+Los paquetes de NuGet espaciales también habilitan los modelos de [ingeniería inversa](../managing-schemas/scaffolding.md) con propiedades espaciales, pero debe instalar el paquete ***antes*** de ejecutar `Scaffold-DbContext` o `dotnet ef dbcontext scaffold` . Si no lo hace, recibirá advertencias sobre cómo no encontrar las asignaciones de tipos para las columnas y se omitirán las columnas.
 
 ## <a name="nettopologysuite-nts"></a>NetTopologySuite (NTS)
 
@@ -46,12 +46,12 @@ optionsBuilder.UseSqlServer(
     x => x.UseNetTopologySuite());
 ```
 
-Hay varios tipos de datos espaciales. El tipo que use dependerá de los tipos de formas que desee permitir. Esta es la jerarquía de tipos NTS que puede usar para las propiedades del modelo. Están ubicados en el espacio de nombres `NetTopologySuite.Geometries`.
+Hay varios tipos de datos espaciales. El tipo que use dependerá de los tipos de formas que desee permitir. Esta es la jerarquía de tipos NTS que puede usar para las propiedades del modelo. Están ubicados en el `NetTopologySuite.Geometries` espacio de nombres.
 
 * Geometría
   * Punto
   * LineString
-  * Polygon
+  * Polígono
   * GeometryCollection
     * MultiPoint
     * MultiLineString
@@ -89,11 +89,11 @@ class Country
 
 ### <a name="creating-values"></a>Crear valores
 
-Puede usar constructores para crear objetos Geometry; sin embargo, NTS recomienda el uso de un generador de geometría en su lugar. Esto le permite especificar un valor predeterminado de SRID (el sistema de referencia espacial que usan las coordenadas) y le proporciona el control sobre aspectos más avanzados, como el modelo de precisión (usado durante los cálculos) y la secuencia de coordenadas (determina las coordenadas: dimensiones). y las medidas--están disponibles).
+Puede usar constructores para crear objetos Geometry; sin embargo, NTS recomienda el uso de un generador de geometría en su lugar. Esto le permite especificar un valor predeterminado de SRID (el sistema de referencia espacial que usan las coordenadas) y le proporciona el control sobre aspectos más avanzados, como el modelo de precisión (usado durante los cálculos) y la secuencia de coordenadas (determina qué coordenadas--dimensiones y medidas--están disponibles).
 
 ``` csharp
 var geometryFactory = NtsGeometryServices.Instance.CreateGeometryFactory(srid: 4326);
-var currentLocation = geometryFactory.CreatePoint(-122.121512, 47.6739882);
+var currentLocation = geometryFactory.CreatePoint(new Coordinate(-122.121512, 47.6739882));
 ```
 
 > [!NOTE]
@@ -101,7 +101,7 @@ var currentLocation = geometryFactory.CreatePoint(-122.121512, 47.6739882);
 
 ### <a name="longitude-and-latitude"></a>Longitud y latitud
 
-Las coordenadas en NTS están en términos de valores X e y. Para representar la longitud y la latitud, use X para longitud e y para latitud. Tenga en cuenta que esto es **hacia atrás** desde el formato de `latitude, longitude` en el que normalmente se ven estos valores.
+Las coordenadas en NTS están en términos de valores X e y. Para representar la longitud y la latitud, use X para longitud e y para latitud. Tenga en cuenta que esto es **hacia atrás** desde el `latitude, longitude` formato en el que normalmente se ven estos valores.
 
 ### <a name="srid-ignored-during-client-operations"></a>SRID omitido durante las operaciones de cliente
 
@@ -213,15 +213,15 @@ Si usa SQL Server, hay algunos aspectos adicionales que debe tener en cuenta.
 
 ### <a name="geography-or-geometry"></a>Geografía o geometría
 
-De forma predeterminada, las propiedades espaciales se asignan a `geography` columnas en SQL Server. Para usar `geometry`, [Configure el tipo de columna](xref:core/modeling/entity-properties#column-data-types) en el modelo.
+De forma predeterminada, las propiedades espaciales se asignan a `geography` las columnas de SQL Server. Para usar `geometry` , [Configure el tipo de columna](xref:core/modeling/entity-properties#column-data-types) en el modelo.
 
 ### <a name="geography-polygon-rings"></a>Anillos de polígono de geografía
 
-Cuando se usa el tipo de columna `geography`, SQL Server impone requisitos adicionales en el anillo exterior (o shell) y los anillos interiores (o agujeros). El anillo exterior debe estar orientado en sentido contrario a las agujas del reloj y los anillos interiores hacia la derecha. NTS valida esto antes de enviar los valores a la base de datos.
+Al usar el `geography` tipo de columna, SQL Server impone requisitos adicionales en el anillo exterior (o shell) y los anillos interiores (o agujeros). El anillo exterior debe estar orientado en sentido contrario a las agujas del reloj y los anillos interiores hacia la derecha. NTS valida esto antes de enviar los valores a la base de datos.
 
 ### <a name="fullglobe"></a>FullGlobe
 
-SQL Server tiene un tipo de geometría no estándar para representar todo el globo terráqueo cuando se usa el tipo de columna `geography`. También tiene una forma de representar polígonos basados en el globo completo (sin un anillo exterior). Ninguno de ellos es compatible con NTS.
+SQL Server tiene un tipo de geometría no estándar para representar todo el globo terráqueo cuando se usa el `geography` tipo de columna. También tiene una forma de representar polígonos basados en el globo completo (sin un anillo exterior). Ninguno de ellos es compatible con NTS.
 
 > [!WARNING]
 > Los FullGlobe y los polígonos basados en ellos no son compatibles con NTS.
@@ -260,7 +260,7 @@ make install
 
 ### <a name="configuring-srid"></a>Configuración de SRID
 
-En SpatiaLite, las columnas deben especificar un SRID por columna. El valor predeterminado de SRID es `0`. Especifique otro SRID con el método ForSqliteHasSrid.
+En SpatiaLite, las columnas deben especificar un SRID por columna. El valor predeterminado de SRID es `0` . Especifique otro SRID con el método ForSqliteHasSrid.
 
 ``` csharp
 modelBuilder.Entity<City>().Property(c => c.Location)
@@ -345,7 +345,7 @@ Polygon. NumInteriorRings | ✔ | ✔ | ✔ | ✔
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-* [Datos espaciales en SQL Server](https://docs.microsoft.com/sql/relational-databases/spatial/spatial-data-sql-server)
+* [Datos espaciales de SQL Server](https://docs.microsoft.com/sql/relational-databases/spatial/spatial-data-sql-server)
 * [Página principal de SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite)
 * [Documentación espacial Npgsql](https://www.npgsql.org/efcore/mapping/nts.html)
 * [Documentación de PostGIS](https://postgis.net/documentation/)

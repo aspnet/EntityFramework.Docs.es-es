@@ -2,14 +2,14 @@
 title: Versiones y planeamiento de EF Core
 description: Versiones actuales de EF Core y detalles de programación o planeación para próximas versiones
 author: ajcvickers
-ms.date: 03/03/2020
+ms.date: 06/11/2020
 uid: core/what-is-new/index
-ms.openlocfilehash: 89687417685f291b44dcb250c96c5c9fa57da80f
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 7d4f37c227feec0fad9f828999680f834ddd2d4e
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "80634260"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370245"
 ---
 # <a name="ef-core-releases-and-planning"></a>Versiones y planeamiento de EF Core
 
@@ -17,7 +17,7 @@ ms.locfileid: "80634260"
 
 | Release | Marco de trabajo de destino | Compatibilidad hasta | Vínculos
 |:--------|------------------|-----------------|------
-| [EF Core 3.1](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.1.3) | .NET Standard 2.0 | 3 de diciembre de 2022 (LTS) | [Anuncio](https://devblogs.microsoft.com/dotnet/announcing-entity-framework-core-3-1-and-entity-framework-6-4/)
+| [EF Core 3.1](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore) | .NET Standard 2.0 | 3 de diciembre de 2022 (LTS) | [Anuncio](https://devblogs.microsoft.com/dotnet/announcing-entity-framework-core-3-1-and-entity-framework-6-4/)
 | ~~[EF Core 3.0](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/3.0.3)~~ | .NET Standard 2.1 | Expiró el 3 de marzo de 2020 | [Anuncio](https://devblogs.microsoft.com/dotnet/announcing-ef-core-3-0-and-ef-6-3-general-availability/) / [Cambios importantes](ef-core-3.0/breaking-changes.md)
 | ~~[EF Core 2.2](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/2.2.6)~~ | .NET Standard 2.0 | Expiró el 23 de diciembre de 2019 | [Anuncio](https://devblogs.microsoft.com/dotnet/announcing-entity-framework-core-2-2/)
 | [EF Core 2.1](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore/2.1.14) | .NET Standard 2.0 | 21 de agosto de 2021 (LTS) | [Anuncio](https://devblogs.microsoft.com/dotnet/announcing-entity-framework-core-2-1/)
@@ -49,7 +49,7 @@ Por lo general, no hacemos un planeamiento detallado más allá de la siguiente 
 
 La siguiente versión estable planeada es **EF Core 5.0**, programada para noviembre de 2020.
 
-Se ha creado un [plan de alto nivel para EF Core 5.0](ef-core-5.0/plan.md) siguiendo el [proceso de planeamiento de versiones](release-planning.md) documentado.
+Se ha creado un [plan de alto nivel para EF Core 5.0](xref:core/what-is-new/ef-core-5.0/plan) siguiendo el [proceso de planeamiento de versiones](release-planning.md) documentado.
 
 Sus comentarios sobre la planeación son importantes.
 La mejor manera de indicar la importancia de un problema es votar (pulgar arriba 👍) por ese problema en GitHub.
