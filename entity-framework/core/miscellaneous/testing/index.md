@@ -4,12 +4,12 @@ description: Diferentes métodos para probar aplicaciones que usan EF Core
 author: ajcvickers
 ms.date: 04/22/2020
 uid: core/miscellaneous/testing/index
-ms.openlocfilehash: a5ff85a60af1f56a0924d6fa0646195146a6827e
-ms.sourcegitcommit: 1f0f93c66b2b50e03fcbed90260e94faa0279c46
+ms.openlocfilehash: 71222f17ac4cc1b71052a2e7e916ebcedd2ae0f4
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/04/2020
-ms.locfileid: "84418915"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370544"
 ---
 # <a name="testing-code-that-uses-ef-core"></a>Pruebas de código que usa EF Core
 
@@ -92,7 +92,7 @@ Vea [Pruebas con SQLite](xref:core/miscellaneous/testing/sqlite) para obtener in
 ## <a name="approach-3-the-ef-core-in-memory-database"></a>Método 3: Base de datos en memoria de EF Core
 
 EF Core incluye una base de datos en memoria que se usa para las pruebas internas del propio EF Core.
-Esta base de datos en general **no es adecuada como sustituto para probar las aplicaciones que usan EF Core**. De manera específica:
+Esta base de datos en general **no es adecuada para probar las aplicaciones que usan EF Core**. De manera específica:
 
 * No es una base de datos relacional.
 * No admite transacciones.
