@@ -2,13 +2,13 @@
 title: Planeamiento de versiones de EF Core
 author: ajcvickers
 ms.date: 01/28/2020
-uid: core/what-is-new/release_planning.md
-ms.openlocfilehash: 71045b8d49c319a73f74443612bedd84ee33ab8a
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+uid: core/what-is-new/release_planning
+ms.openlocfilehash: df933ac2462fcc18c53f49d862836fd2d6a4dd99
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413544"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370193"
 ---
 # <a name="release-planning-process"></a>Proceso de planeamiento de versiones
 
