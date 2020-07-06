@@ -1,18 +1,18 @@
 ---
 title: Plan para Entity Framework Core 5.0
 author: ajcvickers
-ms.date: 01/14/2020
-uid: core/what-is-new/ef-core-5.0/plan.md
-ms.openlocfilehash: 8b4ca32524869019c04d5a4d4d55967f68181cd7
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.date: 06/11/2020
+uid: core/what-is-new/ef-core-5.0/plan
+ms.openlocfilehash: 249560bc14f72fd524be91bb1670dbaf78ae6b60
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "80136218"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370583"
 ---
 # <a name="plan-for-entity-framework-core-50"></a>Plan para Entity Framework Core 5.0
 
-Como se describe en el [proceso de planeamiento](../release-planning.md), se ha recopilado la información de las partes interesadas en un plan provisional para la versión EF Core 5.0.
+Como se describe en el [proceso de planeamiento](xref:core/what-is-new/release_planning), se ha recopilado la información de las partes interesadas en un plan provisional para la versión EF Core 5.0.
 
 > [!IMPORTANT] 
 > Este plan sigue siendo un trabajo en curso. Nada de esto es un compromiso. Este plan es un punto de partida que evolucionará a medida que se obtenga más información. Es posible que algunos aspectos no planeados en la actualidad se incorporen a la versión 5.0. Es posible que algunos aspectos planeados en la actualidad se eliminen de la versión 5.0.
@@ -29,13 +29,33 @@ EF Core 5.0 no se ejecutará en .NET Framework.
 
 ### <a name="breaking-changes"></a>Cambios importantes
 
-EF Core 5.0 contendrá algunos cambios importantes, pero serán mucho menos graves que en el caso de EF Core 3.0. El objetivo es permitir que la gran mayoría de las aplicaciones se actualicen sin interrupciones.
+EF Core 5.0 contendrá algunos [cambios importantes](xref:core/what-is-new/ef-core-5.0/breaking-changes), pero serán mucho menos drásticos que en el caso de EF Core 3.0. El objetivo es permitir que la gran mayoría de las aplicaciones se actualicen sin interrupciones.
 
 Se espera que haya algunos cambios importantes para los proveedores de bases de datos, especialmente relacionados con la compatibilidad con TPT. Pero se espera que el trabajo para actualizar un proveedor para 5.0 sea menor que el necesario para 3.0.
 
 ## <a name="themes"></a>Temas
 
 Hemos extraído algunas áreas o temas importantes que formarán la base de las grandes inversiones en EF Core 5.0.
+
+## <a name="fully-transparent-many-to-many-mapping-by-convention"></a>Asignación de varios a varios totalmente transparente por convención
+
+Jefes de desarrollo: @smitpatel, @AndriySvyryd y @lajones
+
+Número de seguimiento: [10508](https://github.com/aspnet/EntityFrameworkCore/issues/10508)
+
+Talla de camiseta: L
+
+Estado: En curso
+
+Varios a varios es la [característica más solicitada](https://github.com/aspnet/EntityFrameworkCore/issues/1368) (506 votos aproximadamente) en el trabajo pendiente de GitHub.
+
+La compatibilidad con las relaciones varios a varios se puede dividir en tres áreas principales:
+
+* Propiedades de navegación por omisión, que se describen en el siguiente tema.
+* Tipos de entidad de contenedor de propiedades. Permiten usar un tipo CLR estándar (por ejemplo, `Dictionary`) para las instancias de entidad, de modo que no se necesite un tipo CLR explícito para cada tipo de entidad. Número de seguimiento: [9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914).
+* Facilitar la configuración de relaciones varios a varios.
+
+Además de la compatibilidad con la navegación por omisión, ahora vamos a incorporar estas otras áreas de varios a varios a EF Core 5.0 para proporcionar una experiencia completa.
 
 ## <a name="many-to-many-navigation-properties-aka-skip-navigations"></a>Propiedades de navegación de varios a varios (también denominado "omitir navegaciones")
 
@@ -47,17 +67,10 @@ Talla de camiseta: L
 
 Estado: En curso
 
-Varios a varios es la [característica más solicitada](https://github.com/aspnet/EntityFrameworkCore/issues/1368) (407 votos aproximadamente) en el trabajo pendiente de GitHub.
-
-Se realiza un seguimiento de la compatibilidad con las relaciones de varios a varios en su totalidad como [#10508](https://github.com/aspnet/EntityFrameworkCore/issues/10508). Puede dividirse en tres áreas principales:
-
-* Omitir propiedades de navegación. Permiten usar el modelo para las consultas, etc., sin hacer referencia a la entidad de la tabla de combinación subyacente. ([#19003](https://github.com/aspnet/EntityFrameworkCore/issues/19003))
-* Tipos de entidad de contenedor de propiedades. Permiten usar un tipo CLR estándar (por ejemplo, `Dictionary`) para las instancias de entidad, de modo que no se necesite un tipo CLR explícito para cada tipo de entidad. (Stretch para la versión 5.0: [#9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914)).
-* Facilitar la configuración de relaciones varios a varios. (Stretch para la versión 5.0).
-
-Creemos que el principal obstáculo para los que quieren que se admitan las relaciones varios a varios es la imposibilidad de usar relaciones "naturales", sin hacer referencia a la tabla de combinación, en la lógica de negocios, como las consultas. Es posible que el tipo de entidad de tabla de combinación siga existiendo, pero no debería interferir con la lógica de negocios. Por este motivo hemos optado por abordar la omisión de propiedades de navegación en la versión 5.0.
-
-En este momento, los demás elementos de las relaciones varios a varios se han convertido en un objetivo de extensión para EF Core 5.0. Esto significa que actualmente no se incluyen en el plan para la versión 5.0, pero si todo va bien esperamos incorporarlos.
+Tal y como se describe en el primer tema, la compatibilidad de varios a varios tiene varios aspectos que cabe destacar.
+En este tema se realiza un seguimiento específico del uso de las navegaciones por omisión.
+Creemos que el principal obstáculo para los que quieren que se admitan las relaciones varios a varios es la imposibilidad de usar relaciones "naturales", sin hacer referencia a la tabla de combinación, en la lógica de negocios, como las consultas.
+Es posible que el tipo de entidad de tabla de combinación siga existiendo, pero no debería interferir con la lógica de negocios.
 
 ## <a name="table-per-type-tpt-inheritance-mapping"></a>Asignación de herencia de tabla por tipo (TPT)
 
@@ -69,7 +82,7 @@ Talla de camiseta: XL
 
 Estado: En curso
 
-TPT se va a incluir porque se trata de una característica muy solicitada (aproximadamente 254 votos; en tercera posición) y porque requiere algunos cambios de bajo nivel que consideramos adecuados para la naturaleza fundamental del plan general de .NET 5. Esperamos que esto genere cambios importantes para los proveedores de bases de datos, aunque deberían ser mucho menos graves que los necesarios para la versión 3.0.
+TPT se va a incluir porque se trata de una característica muy solicitada (aproximadamente 289 votos; en tercera posición) y porque requiere algunos cambios de bajo nivel que consideramos adecuados para la naturaleza fundamental del plan general de .NET 5. Esperamos que esto genere cambios importantes para los proveedores de bases de datos, aunque deberían ser mucho menos graves que los necesarios para la versión 3.0.
 
 ## <a name="filtered-include"></a>Inclusión filtrada
 
@@ -81,7 +94,23 @@ Talla de camiseta: M
 
 Estado: En curso
 
-La inclusión filtrada es una característica muy solicitada (aproximadamente 317 votos; en segunda posición) que no requiere demasiado trabajo y que creemos que desbloqueará o facilitará escenarios que actualmente requieren filtros de nivel de modelo o consultas más complejas.
+Inclusión filtrada es una característica muy solicitada (aproximadamente 376 votos; en segunda posición) que no requiere demasiado trabajo y que creemos que desbloqueará o facilitará escenarios que actualmente requieren filtros de nivel de modelo o consultas más complejas.
+
+## <a name="split-include"></a>División de Include
+
+Jefe de desarrollo: @smitpatel
+
+Número de seguimiento: [20892](https://github.com/dotnet/efcore/issues/20892)
+
+Talla de camiseta: L
+
+Estado: En curso
+
+EF Core 3.0 cambió el comportamiento predeterminado para crear una consulta SQL única para una consulta LINQ determinada.
+Esto provocó una gran cantidad de degradaciones de rendimiento para las consultas que usan Include para varias colecciones.
+
+En EF Core 5.0, se mantiene el nuevo comportamiento predeterminado.
+Sin embargo, EF Core 5.0 ahora permite la generación de varias consultas para los métodos Include de las colecciones en los que tener una sola consulta provoca deficiencias en el rendimiento. 
 
 ## <a name="rationalize-totable-toquery-toview-fromsql-etc"></a>Racionalización de ToTable, ToQuery, ToView, FromSql, etc.
 
@@ -184,13 +213,16 @@ Seguimiento realizado por [#1920](https://github.com/dotnet/EntityFramework.Docs
 
 Talla de camiseta: L
 
-Estado: En curso
+Estado: Cut
 
 La idea es facilitar la comprensión de lo que sucede dentro de EF Core. Esto puede ser útil para cualquiera que utilice EF Core, pero la motivación principal es facilitarlo para los usuarios externos:
 
 * Contribuir al código de EF Core
 * Crear proveedores de bases de datos
 * Compilar otras extensiones
+
+Actualización: Desafortunadamente, este plan era demasiado ambicioso.
+Seguimos creyendo que es un aspecto importante, pero lamentablemente no se incluirá en EF Core 5.0.
 
 ## <a name="microsoftdatasqlite-documentation"></a>Documentación de Microsoft.Data.Sqlite
 
@@ -256,4 +288,4 @@ Además, durante la planeación siempre se tienen en cuenta los [problemas más 
 
 ## <a name="feedback"></a>Comentarios
 
-Sus comentarios sobre la planeación son importantes. La mejor manera de indicar la importancia de un problema es votar (pulgar) por ese problema en GitHub. Estos datos se introducirán después en el [proceso de planeación](../release-planning.md) de la próxima versión.
+Sus comentarios sobre la planeación son importantes. La mejor manera de indicar la importancia de un problema es votar (pulgar) por ese problema en GitHub. Estos datos se introducirán después en el [proceso de planeación](xref:core/what-is-new/release_planning) de la próxima versión.

@@ -4,16 +4,16 @@ author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 8b6697cc-7067-4dc2-8007-85d80503d123
 uid: core/querying/client-eval
-ms.openlocfilehash: e01bd146c4dfe7a8d36b641cb52ae366fddd8239
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 429fec2d2da6eb8910ac20531455ec8183096ec6
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413790"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370427"
 ---
 # <a name="client-vs-server-evaluation"></a>Evaluación de cliente frente a servidor
 
-Como norma general, Entity Framework Core intenta evaluar una consulta en el servidor lo máximo posible. EF Core convierte partes de la consulta en parámetros, que se pueden evaluar en el lado cliente. El resto de la consulta (junto con los parámetros generados) se proporciona al proveedor de base de datos para determinar la consulta de base de datos equivalente que se va a evaluar en el servidor. EF Core admite la evaluación de cliente parcial en la proyección de nivel superior (fundamentalmente, la última llamada a `Select()`). Si la proyección de nivel superior de la consulta no se puede traducir en el servidor, EF Core capturará los datos necesarios del servidor y evaluará las partes restantes de la consulta en el cliente. Si EF Core detecta una expresión, en cualquier lugar que no sea la proyección de nivel superior, que no se puede traducir en el servidor, inicia una excepción en tiempo de ejecución. Vea [Funcionamiento de la consulta](xref:core/querying/how-query-works) para saber cómo determina EF Core lo que no se puede traducir al servidor.
+Como norma general, Entity Framework Core intenta evaluar una consulta en el servidor lo máximo posible. EF Core convierte partes de la consulta en parámetros, que se pueden evaluar en el lado cliente. El resto de la consulta (junto con los parámetros generados) se proporciona al proveedor de base de datos para determinar la consulta de base de datos equivalente que se va a evaluar en el servidor. EF Core admite la evaluación de cliente parcial en la proyección de nivel superior (fundamentalmente, la última llamada a `Select()`). Si la proyección de nivel superior de la consulta no se puede traducir en el servidor, EF Core capturará los datos necesarios del servidor y evaluará las partes restantes de la consulta en el cliente. Si EF Core detecta una expresión, en cualquier lugar que no sea la proyección de nivel superior, que no se puede traducir en el servidor, inicia una excepción en tiempo de ejecución. Vea [Funcionamiento de las consultas](xref:core/querying/how-query-works) para saber cómo EF Core determina lo que no se puede traducir al servidor.
 
 > [!NOTE]
 > Antes de la versión 3.0, Entity Framework Core admitía la evaluación de cliente en cualquier parte de la consulta. Para obtener más información, vea la [sección sobre versiones anteriores](#previous-versions).

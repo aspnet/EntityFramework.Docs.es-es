@@ -3,12 +3,12 @@ title: 'Filtros de consulta global: EF Core'
 author: anpete
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: f6c59bcbab31edcbed22079a1320c060ce08c6f7
-ms.sourcegitcommit: 92d54fe3702e0c92e198334da22bacb42e9842b1
+ms.openlocfilehash: 233289b0c50e15f4555b342bc654211ce04c24d3
+ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84664135"
+ms.lasthandoff: 06/25/2020
+ms.locfileid: "85370466"
 ---
 # <a name="global-query-filters"></a>Filtros de consulta global
 
@@ -52,7 +52,7 @@ Las navegaciones se pueden utilizar al definir filtros de consulta global. Se ap
 > [!NOTE]
 > Actualmente EF Core no detecta ciclos en las definiciones de filtros de consulta global, por lo que debe tener cuidado al definirlas. Si se especifica incorrectamente, podrían producirse bucles infinitos durante la traslación de consultas.
 
-## <a name="accessing-entity-with-query-filter-using-reqiured-navigation"></a>Acceso a una entidad con filtro de consultas mediante la navegación necesaria
+## <a name="accessing-entity-with-query-filter-using-required-navigation"></a>Acceso a una entidad con filtro de consultas mediante la navegación necesaria
 
 > [!CAUTION]
 > El uso de la navegación necesaria para acceder a la entidad que tiene definido un filtro de consulta global puede producir resultados inesperados. 
