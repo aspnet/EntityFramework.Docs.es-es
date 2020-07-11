@@ -5,12 +5,12 @@ author: lajones
 ms.date: 05/27/2020
 ms.assetid: e9dff604-3469-4a05-8f9e-18ac281d82a9
 uid: core/modeling/entity-properties
-ms.openlocfilehash: fcf3b0f8480fde2f3ba6b5fd601db115f1d246b8
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: d4e4c50d8c7febf5e42e9aa39352c0bb6a6bd409
+ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370518"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86238221"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
 
@@ -36,7 +36,7 @@ Las propiedades específicas se pueden excluir de la manera siguiente:
 
 Por Convención, cuando se utiliza una base de datos relacional, las propiedades de entidad se asignan a las columnas de la tabla que tienen el mismo nombre que la propiedad.
 
-Si prefiere configurar las columnas con nombres diferentes, puede hacerlo de la siguiente manera:
+Si prefiere configurar las columnas con nombres diferentes, puede hacerlo como fragmento de código siguiente:
 
 ### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
 
@@ -87,7 +87,7 @@ En el ejemplo siguiente, la configuración de una longitud máxima de 500 hará 
 
 ### <a name="precision-and-scale"></a>Precisión y escala
 
-A partir de EFCore 5,0, puede usar la API fluida para configurar la precisión y la escala. Indica al proveedor de base de datos cuánto espacio de almacenamiento se necesita para una columna determinada. Solo se aplica a los tipos de datos en los que el proveedor permite variar la precisión y la escala, normalmente solo `decimal` y `DateTime` .
+A partir de EFCore 5,0, puede usar la API fluida para configurar la precisión y la escala. Indica al proveedor de base de datos cuánto espacio de almacenamiento se necesita para una columna determinada. Solo se aplica a los tipos de datos en los que el proveedor permite que la precisión y la escala varíen, normalmente `decimal` y `DateTime` .
 
 En `decimal` el caso de las propiedades, precisión define el número máximo de dígitos necesarios para expresar cualquier valor que contenga la columna y escala define el número máximo de posiciones decimales necesarias. En `DateTime` el caso de las propiedades, precisión define el número máximo de dígitos necesarios para expresar fracciones de segundos y no se usa la escala.
 
@@ -95,6 +95,10 @@ En `decimal` el caso de las propiedades, precisión define el número máximo de
 > Entity Framework no realiza ninguna validación de precisión o escala antes de pasar los datos al proveedor. Depende del proveedor o del almacén de datos que se validen según corresponda. Por ejemplo, cuando el destino es SQL Server, una columna de tipo de datos no `datetime` permite establecer la precisión, mientras que una `datetime2` puede tener una precisión de entre 0 y 7, ambos inclusive.
 
 En el ejemplo siguiente, la configuración de la `Score` propiedad para que tenga la precisión 14 y la escala 2 hará que se cree una columna de tipo `decimal(14,2)` en SQL Server y la configuración de la `LastUpdated` propiedad para que tenga la precisión 3 producirá una columna de tipo `datetime2(3)` :
+
+#### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
+
+Actualmente no es posible usar anotaciones de datos para configurar.
 
 #### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
 
@@ -116,7 +120,7 @@ Por Convención, una propiedad cuyo tipo .NET pueda contener NULL se configurar�
 C# 8 presentó una nueva característica denominada [tipos de referencia que aceptan valores NULL](/dotnet/csharp/tutorials/nullable-reference-types), que permite anotar tipos de referencia, lo que indica si es válido que contengan null o not. Esta característica está deshabilitada de forma predeterminada y, si está habilitada, modifica el comportamiento de EF Core de la siguiente manera:
 
 * Si los tipos de referencia que aceptan valores NULL están deshabilitados (el valor predeterminado), todas las propiedades con tipos de referencia de .NET se configuran como opcionales por Convención (por ejemplo, `string` ).
-* Si los tipos de referencia que aceptan valores NULL están habilitados, las propiedades se configurarán según la nulabilidad de C# de su tipo .NET: se `string?` configurarán como opcionales, mientras que se `string` configurarán según sea necesario.
+* Si los tipos de referencia que aceptan valores NULL están habilitados, las propiedades se configurarán según la nulabilidad de C# de su tipo .NET: se `string?` configurarán como opcionales, pero se `string` configurarán según sea necesario.
 
 En el ejemplo siguiente se muestra un tipo de entidad con propiedades obligatorias y opcionales, con la característica de referencia que acepta valores NULL deshabilitada (valor predeterminado) y habilitada:
 
@@ -156,7 +160,7 @@ Una propiedad que sería opcional por Convención se puede configurar para que s
 > [!NOTE]
 > Esta característica se incluye por primera vez en EF Core 5.0.
 
-Una intercalación se puede definir en columnas de texto, determinando cómo se comparan y ordenan. Por ejemplo, lo siguiente configura una columna de SQL Server para que no distinga entre mayúsculas y minúsculas:
+Una intercalación se puede definir en columnas de texto, determinando cómo se comparan y ordenan. Por ejemplo, el siguiente fragmento de código configura una columna de SQL Server para que no distinga entre mayúsculas y minúsculas:
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/Collations/Program.cs?range=42-43)]
 

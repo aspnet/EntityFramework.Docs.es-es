@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: 062a7f292d16deb3840fd116f270edb11c6e0687
-ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
+ms.openlocfilehash: e955e93723fc371170641b0b3209cca014ef1c26
+ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/20/2020
-ms.locfileid: "83672922"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86238156"
 ---
 # <a name="connection-strings"></a>Cadenas de conexión
 
@@ -17,7 +17,7 @@ La mayoría de los proveedores de bases de datos requieren algún tipo de cadena
 
 ## <a name="winforms--wpf-applications"></a>Aplicaciones de WinForms & WPF
 
-Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexión probado y probado. La cadena de conexión debe agregarse al archivo app. config de la aplicación (Web. config si usa ASP.NET). Si la cadena de conexión contiene información confidencial, como el nombre de usuario y la contraseña, puede proteger el contenido del archivo de configuración mediante la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager).
+Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexión probado y probado. La cadena de conexión debe agregarse al archivo de App.config de la aplicación (Web.config si usa ASP.NET). Si la cadena de conexión contiene información confidencial, como el nombre de usuario y la contraseña, puede proteger el contenido del archivo de configuración mediante la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager).
 
 ``` xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -31,7 +31,7 @@ Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexi
 ```
 
 > [!TIP]  
-> La `providerName` configuración no es necesaria en EF Core cadenas de conexión almacenadas en el archivo app. config porque el proveedor de base de datos se configura mediante código.
+> La `providerName` configuración no es necesaria en EF Core cadenas de conexión almacenadas en App.config porque el proveedor de base de datos se configura mediante código.
 
 Después, puede leer la cadena de conexión con la `ConfigurationManager` API en el método del contexto `OnConfiguring` . Es posible que tenga que agregar una referencia al `System.Configuration` ensamblado de .NET Framework para poder usar esta API.
 
@@ -73,7 +73,7 @@ Por ejemplo, puede usar la [herramienta Administrador de secretos](/aspnet/core/
 
 ```dotnetcli
 dotnet user-secrets set ConnectionStrings.YourDatabaseAlias "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=YourDatabase"
-dotnet ef dbcontext scaffold Name=YourDatabaseAlias Microsoft.EntityFrameworkCore.SqlServer
+dotnet ef dbcontext scaffold Name=ConnectionStrings.YourDatabaseAlias Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appsettings.json` .
@@ -86,7 +86,7 @@ O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appse
 }
 ```
 
-Después, el contexto se configura normalmente en `Startup.cs` con la cadena de conexión que se lee de la configuración. Tenga en cuenta que el `GetConnectionString()` método busca un valor de configuración cuya clave sea `ConnectionStrings:<connection string name>` . Debe importar el espacio de nombres [Microsoft. Extensions. Configuration](/dotnet/api/microsoft.extensions.configuration) para usar este método de extensión.
+Después, el contexto se configura normalmente en `Startup.cs` con la cadena de conexión que se lee de la configuración. Tenga en cuenta que el `GetConnectionString()` método busca un valor de configuración cuya clave sea `ConnectionStrings:<connection string name>` . Debe importar el espacio de nombres [Microsoft.Extensions.Configprimario](/dotnet/api/microsoft.extensions.configuration) para usar este método de extensión.
 
 ``` csharp
 public void ConfigureServices(IServiceCollection services)
