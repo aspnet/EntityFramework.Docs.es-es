@@ -4,12 +4,12 @@ author: ErikEJ
 ms.date: 04/11/2020
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: 47a5601e996afab9c0aa0538a2a2b47f204f7753
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: 5b7945bd24ac19a82b08f4d5709555cf53485f4c
+ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370361"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86238260"
 ---
 # <a name="ef-core-tools--extensions"></a>Herramientas y extensiones de EF Core
 
@@ -157,6 +157,12 @@ Caché de consulta de segundo nivel y alto rendimiento. Para EF Core: 2.
 
 [Repositorio de GitHub](https://github.com/SteffenMangold/EntityFrameworkCore.Cacheable)
 
+### <a name="entityframeworkcorencache"></a>EntityFrameworkCore.NCache
+
+NCache de Entity Framework Core es un proveedor de caché de segundo nivel distribuido para almacenar en caché resultados de consultas. La arquitectura distribuida de NCache hace que sea más escalable y de alta disponibilidad. Para EF Core 2.
+
+[Sitio web](https://www.alachisoft.com/ncache/ef-core-cache.html)
+
 ### <a name="entity-framework-plus"></a>Entity Framework Plus
 
 Amplía su DbContext con características como: Incluir filtro, Auditoría, Cache, Consulta de futuro, Batch Delete, Actualización por lotes y más. Para EF Core: 2, 3.
@@ -224,3 +230,9 @@ Traductor alternativo de consultas LINQ a expresiones SQL. Para EF Core: 3.
 Incluye compatibilidad con características SQL avanzadas como CTE, copia masiva, sugerencias de tabla, funciones de división de particiones, tablas temporales y operaciones de creación, actualización y eliminación en la base de datos.
 
 [Repositorio de GitHub](https://github.com/linq2db/linq2db.EntityFrameworkCore)
+
+### <a name="efcoresoftdelete"></a>EFCore.SoftDelete
+
+Implementación de entidades de eliminación temporal. Para EF Core: 3.
+
+[NuGet](https://www.nuget.org/packages/EFCore.SoftDelete)

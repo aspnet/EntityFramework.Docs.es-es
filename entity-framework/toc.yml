@@ -144,6 +144,10 @@
               items:
                 - name: Información general
                   href: core/managing-schemas/migrations/index.md
+                - name: Administración de migraciones
+                  href: core/managing-schemas/migrations/managing.md
+                - name: Aplicación de migraciones
+                  href: core/managing-schemas/migrations/applying.md
                 - name: Entornos de equipo
                   href: core/managing-schemas/migrations/teams.md
                 - name: Operaciones personalizadas
