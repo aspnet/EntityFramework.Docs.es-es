@@ -1,15 +1,15 @@
 ---
 title: Proveedor de base de datos de SQLite-limitaciones-EF Core
-author: rowanmiller
-ms.date: 04/09/2017
+author: bricelam
+ms.date: 07/16/2020
 ms.assetid: 94ab4800-c460-4caa-a5e8-acdfee6e6ce2
 uid: core/providers/sqlite/limitations
-ms.openlocfilehash: 17e97da9dfffefeb507fde744b710e6936bff69b
-ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
+ms.openlocfilehash: 393f5e80ce2e11dcb11c2048e06effa27e48dc13
+ms.sourcegitcommit: d85263b5d5d665dbaf94de8832e2917bce048b34
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/20/2020
-ms.locfileid: "83672781"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86451234"
 ---
 # <a name="sqlite-ef-core-database-provider-limitations"></a>Limitaciones del proveedor de base de datos SQLite para EF Core
 
@@ -45,34 +45,36 @@ modelBuilder.Entity<MyEntity>()
 
 El motor de base de datos de SQLite no es compatible con una serie de operaciones de esquema que son compatibles con la mayoría de las demás bases de datos relacionales. Si intenta aplicar una de las operaciones no admitidas a una base de datos de SQLite, se `NotSupportedException` iniciará una.
 
-| Operación            | Se admite? | Requiere versión |
-|:---------------------|:-----------|:-----------------|
-| AddColumn            | ✔          | 1.0              |
-| AddForeignKey        | ✗          |                  |
-| AddPrimaryKey        | ✗          |                  |
-| AddUniqueConstraint  | ✗          |                  |
-| AlterColumn          | ✗          |                  |
-| CreateIndex          | ✔          | 1.0              |
-| CreateTable          | ✔          | 1.0              |
-| DropColumn           | ✗          |                  |
-| DropForeignKey       | ✗          |                  |
-| DropIndex            | ✔          | 1.0              |
-| DropPrimaryKey       | ✗          |                  |
-| DropTable            | ✔          | 1.0              |
-| DropUniqueConstraint | ✗          |                  |
-| RenameColumn         | ✔          | 2.2.2            |
-| RenameIndex          | ✔          | 2.1              |
-| RenameTable          | ✔          | 1.0              |
-| EnsureSchema         | ✔ (no OP)  | 2.0              |
-| DropSchema           | ✔ (no OP)  | 2.0              |
-| Insertar               | ✔          | 2.0              |
-| Actualizar               | ✔          | 2.0              |
-| Eliminar               | ✔          | 2.0              |
+Se intentará volver a generar para realizar determinadas operaciones. Las recompilaciones solo son posibles para los artefactos de base de datos que forman parte del modelo de EF Core. Si un artefacto de base de datos no forma parte del modelo (por ejemplo, si se creó manualmente dentro de una migración), `NotSupportedException` se sigue produciendo una.
+
+| Operación            | Se admite?  | Requiere versión |
+|:---------------------|:------------|:-----------------|
+| AddCheckConstraint   | ✔ (recompilar) | 5.0              |
+| AddColumn            | ✔           | 1.0              |
+| AddForeignKey        | ✔ (recompilar) | 5.0              |
+| AddPrimaryKey        | ✔ (recompilar) | 5.0              |
+| AddUniqueConstraint  | ✔ (recompilar) | 5.0              |
+| AlterColumn          | ✔ (recompilar) | 5.0              |
+| CreateIndex          | ✔           | 1.0              |
+| CreateTable          | ✔           | 1.0              |
+| DropCheckConstraint  | ✔ (recompilar) | 5.0              |
+| DropColumn           | ✔ (recompilar) | 5.0              |
+| DropForeignKey       | ✔ (recompilar) | 5.0              |
+| DropIndex            | ✔           | 1.0              |
+| DropPrimaryKey       | ✔ (recompilar) | 5.0              |
+| DropTable            | ✔           | 1.0              |
+| DropUniqueConstraint | ✔ (recompilar) | 5.0              |
+| RenameColumn         | ✔           | 2.2.2            |
+| RenameIndex          | ✔ (recompilar) | 2.1              |
+| RenameTable          | ✔           | 1.0              |
+| EnsureSchema         | ✔ (no OP)   | 2.0              |
+| DropSchema           | ✔ (no OP)   | 2.0              |
+| Insertar               | ✔           | 2.0              |
+| Actualizar               | ✔           | 2.0              |
+| Eliminar               | ✔           | 2.0              |
 
 ## <a name="migrations-limitations-workaround"></a>Solución de limitaciones de migraciones
 
-Puede solucionar algunas de estas limitaciones escribiendo manualmente el código en las migraciones para realizar una recompilación de la tabla. Una recompilación de la tabla implica cambiar el nombre de la tabla existente, crear otra tabla, copiar los datos en la tabla nueva y eliminar la anterior. Tendrá que usar el `Sql(string)` método para realizar algunos de estos pasos.
+Puede solucionar algunas de estas limitaciones escribiendo manualmente el código en las migraciones para realizar una recompilación. Las recompilaciones de tablas implican la creación de una nueva tabla, la copia de datos en la nueva tabla, la eliminación de la tabla anterior y el cambio de nombre de la nueva tabla. Tendrá que usar el `Sql(string)` método para realizar algunos de estos pasos.
 
 Vea [realizar otros tipos de cambios de esquema de tabla](https://sqlite.org/lang_altertable.html#otheralter) en la documentación de SQLite para obtener más detalles.
-
-En el futuro, EF puede admitir algunas de estas operaciones mediante el enfoque de regeneración de tablas en segundo plano. Puede [realizar un seguimiento de esta característica en nuestro proyecto de github](https://github.com/aspnet/EntityFrameworkCore/issues/329).

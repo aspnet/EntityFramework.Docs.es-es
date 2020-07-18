@@ -3,14 +3,15 @@ title: 'Controlar los conflictos de simultaneidad: EF6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2318e4d3-f561-4720-bbc3-921556806476
-ms.openlocfilehash: a99f824fe256a10b84f539a5339a09624315efa4
-ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
+ms.openlocfilehash: 4d29fd7a4d9b6003f71bc8411cea2d863a4c5429
+ms.sourcegitcommit: d85263b5d5d665dbaf94de8832e2917bce048b34
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/20/2020
-ms.locfileid: "83672711"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86451247"
 ---
-# <a name="handling-concurrency-conflicts"></a>Administrar los conflictos de simultaneidad
+# <a name="handling-concurrency-conflicts-ef6"></a>Controlar los conflictos de simultaneidad (EF6)
+
 La simultaneidad optimista implica un intento optimista de guardar la entidad en la base de datos, con la esperanza de que los datos no hayan cambiado desde que se cargó la entidad. Si se da cuenta de que los datos han cambiado, se produce una excepción y debe resolver el conflicto antes de intentar volver a guardar. En este tema se explica cómo controlar dichas excepciones en Entity Framework. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  
 
 Esta publicación no es el lugar adecuado para una descripción completa de la simultaneidad optimista. En las secciones siguientes se presupone cierto conocimiento de la resolución de simultaneidad y se muestran patrones para tareas comunes.  

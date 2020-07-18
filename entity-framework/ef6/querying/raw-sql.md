@@ -3,14 +3,15 @@ title: 'Consultas SQL sin procesar: EF6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9e1ee76e-2499-408c-81e8-9b6c5d1945a0
-ms.openlocfilehash: 168aee67186535bf2a50705e86bfc5a88147e369
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: d336066b982e682e81067bbdac5b3781524cf6be
+ms.sourcegitcommit: d85263b5d5d665dbaf94de8832e2917bce048b34
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414474"
+ms.lasthandoff: 07/17/2020
+ms.locfileid: "86451221"
 ---
-# <a name="raw-sql-queries"></a>Consultas SQL sin formato
+# <a name="raw-sql-queries-ef6"></a>Consultas SQL sin formato (EF6)
+
 Entity Framework permite realizar consultas con LINQ con las clases de entidad. Sin embargo, puede haber ocasiones en las que desee ejecutar consultas utilizando SQL sin formato directamente en la base de datos. Esto incluye llamar a procedimientos almacenados, que pueden ser útiles para Code First modelos que actualmente no admiten la asignación a procedimientos almacenados. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  
 
 ## <a name="writing-sql-queries-for-entities"></a>Escribir consultas SQL para entidades  
