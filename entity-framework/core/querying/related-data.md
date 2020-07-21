@@ -4,12 +4,12 @@ author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f9fb64e2-6699-4d70-a773-592918c04c19
 uid: core/querying/related-data
-ms.openlocfilehash: 86b9d08377ea8295b746e5f0217a408edcfe1517
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: d3a1810599771befb451715d93454fff63949771
+ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370478"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86238312"
 ---
 # <a name="loading-related-data"></a>Carga de datos relacionados
 
@@ -53,8 +53,53 @@ Es posible que quiera incluir varias entidades relacionadas para una de las enti
 
 [!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs#MultipleLeafIncludes)]
 
-> [!CAUTION]
-> Desde la versión 3.0.0, todas las instancias de `Include` producirán que se agregue una combinación JOIN adicional a las consultas SQL generadas por los proveedores relacionales, mientras que las versiones anteriores generaban consultas SQL adicionales. Esto puede cambiar significativamente el rendimiento de las consultas, tanto para bien como para mal. En concreto, es posible que las consultas LINQ con un número excesivamente alto de operadores `Include` deban dividirse en varias consultas LINQ independientes con el fin de evitar el problema de explosión cartesiana.
+### <a name="single-and-split-queries"></a>Consultas únicas y divididas
+
+> [!NOTE]
+> Esta característica se incluye por primera vez en EF Core 5.0.
+
+En las bases de datos relacionales, todas las entidades relacionadas se cargan de forma predeterminada mediante la introducción de instrucciones JOIN:
+
+```sql
+SELECT [b].[BlogId], [b].[OwnerId], [b].[Rating], [b].[Url], [p].[PostId], [p].[AuthorId], [p].[BlogId], [p].[Content], [p].[Rating], [p].[Title]
+FROM [Blogs] AS [b]
+LEFT JOIN [Post] AS [p] ON [b].[BlogId] = [p].[BlogId]
+ORDER BY [b].[BlogId], [p].[PostId]
+```
+
+Si un blog típico tiene varias entradas relacionadas, las filas de estas entradas duplicarán la información del blog, lo que conduce al problema que se conoce como "explosión cartesiana". A medida que se cargan más relaciones uno a varios, la cantidad de datos duplicados puede crecer y afectar negativamente al rendimiento de la aplicación.
+
+EF le permite especificar que una consulta LINQ determinada se debe *dividir* en varias consultas SQL. En lugar de instrucciones JOIN, las consultas divididas realizan una consulta SQL adicional por cada navegación de uno a varios incluida:
+
+[!code-csharp[Main](../../../samples/core/Querying/RelatedData/Sample.cs?name=AsSplitQuery&highlight=5)]
+
+El resultado es la siguiente consulta SQL:
+
+```sql
+SELECT [b].[BlogId], [b].[OwnerId], [b].[Rating], [b].[Url]
+FROM [Blogs] AS [b]
+ORDER BY [b].[BlogId]
+
+SELECT [p].[PostId], [p].[AuthorId], [p].[BlogId], [p].[Content], [p].[Rating], [p].[Title], [b].[BlogId]
+FROM [Blogs] AS [b]
+INNER JOIN [Post] AS [p] ON [b].[BlogId] = [p].[BlogId]
+ORDER BY [b].[BlogId]
+```
+
+Si bien se evitan los problemas de rendimiento asociados a las instrucciones JOIN y la explosión cartesiana, también existen algunas desventajas:
+
+* Aunque la mayoría de las bases de datos garantizan la coherencia de los datos en las consultas únicas, no sucede lo mismo en el caso de varias consultas. Esto significa que, si la base de datos se actualiza al mismo tiempo que se ejecutan las consultas, es posible que los datos resultantes no sean coherentes. Para resolver este problema, se pueden encapsular las consultas en una transacción serializable o de instantáneas, aunque esta solución puede generar problemas de rendimiento propios. Para más información, consulte la documentación de la base de datos.
+* Cada consulta supone actualmente un recorrido adicional de ida y vuelta de la red a la base de datos; como consecuencia, se puede degradar el rendimiento, en especial cuando la latencia hacia la base de datos es alta (por ejemplo, servicios en la nube). EF Core mejorará esta situación en el futuro gracias al procesamiento por lotes de las consultas en un único recorrido de ida y vuelta.
+* Aunque algunas bases de datos permiten el consumo de los resultados de varias consultas al mismo tiempo (SQL Server con MARS, SQLite), la mayoría de ellas solo permiten sola consulta activa en un momento dado. Esto significa que todos los resultados de las consultas anteriores deben almacenarse en búfer en la memoria de la aplicación antes de ejecutar consultas posteriores, lo que aumenta los requisitos de memoria de una manera importante.
+
+Por desgracia, no hay una estrategia para cargar entidades relacionadas que se ajuste a todos los escenarios. Tenga en cuenta las ventajas y desventajas de las consultas únicas y divididas, y seleccione la que mejor se ajuste a sus necesidades.
+
+> [!NOTE]
+> Las entidades relacionadas uno a uno se cargan siempre a través de instrucciones JOIN, ya que el rendimiento no se ve afectado.
+>
+> Por el momento, el uso de la división de consultas en SQL Server requiere la configuración `MultipleActiveResultSets=true` en la cadena de conexión. Este requisito desaparecerá en una versión preliminar futura.
+>
+> Las versiones preliminares futuras de EF Core 5.0 permitirán especificar la división de consultas como valor predeterminado del contexto.
 
 ### <a name="filtered-include"></a>Inclusión filtrada
 

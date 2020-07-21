@@ -3,21 +3,23 @@ title: Plan para Entity Framework Core 5.0
 author: ajcvickers
 ms.date: 06/11/2020
 uid: core/what-is-new/ef-core-5.0/plan
-ms.openlocfilehash: 249560bc14f72fd524be91bb1670dbaf78ae6b60
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: a107f901b215e7abaa5905852f81c2d9ab094b98
+ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370583"
+ms.lasthandoff: 07/10/2020
+ms.locfileid: "86238325"
 ---
 # <a name="plan-for-entity-framework-core-50"></a>Plan para Entity Framework Core 5.0
 
 Como se describe en el [proceso de planeamiento](xref:core/what-is-new/release_planning), se ha recopilado la información de las partes interesadas en un plan provisional para la versión EF Core 5.0.
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > Este plan sigue siendo un trabajo en curso. Nada de esto es un compromiso. Este plan es un punto de partida que evolucionará a medida que se obtenga más información. Es posible que algunos aspectos no planeados en la actualidad se incorporen a la versión 5.0. Es posible que algunos aspectos planeados en la actualidad se eliminen de la versión 5.0.
 
-### <a name="version-number-and-release-date"></a>Número de versión y fecha de lanzamiento.
+## <a name="general-information"></a>Información general
+
+### <a name="version-number-and-release-date"></a>Número de versión y fecha de lanzamiento
 
 En la actualidad, el lanzamiento de EF Core 5.0 está programado al [mismo tiempo que .NET 5.0](https://devblogs.microsoft.com/dotnet/introducing-net-5/). Se ha elegido la versión "5.0" para la alineación con .NET 5.0.
 
@@ -110,7 +112,7 @@ EF Core 3.0 cambió el comportamiento predeterminado para crear una consulta SQ
 Esto provocó una gran cantidad de degradaciones de rendimiento para las consultas que usan Include para varias colecciones.
 
 En EF Core 5.0, se mantiene el nuevo comportamiento predeterminado.
-Sin embargo, EF Core 5.0 ahora permite la generación de varias consultas para los métodos Include de las colecciones en los que tener una sola consulta provoca deficiencias en el rendimiento. 
+Sin embargo, EF Core 5.0 ahora permite la generación de varias consultas para los métodos Include de la colección en los que tener una sola consulta provoca deficiencias en el rendimiento.
 
 ## <a name="rationalize-totable-toquery-toview-fromsql-etc"></a>Racionalización de ToTable, ToQuery, ToView, FromSql, etc.
 
@@ -165,7 +167,7 @@ Queremos ofrecer una mejor experiencia que permita migrar la base de datos de fo
 
 Lo más probable es que el resultado sea un gran número de pequeñas mejoras en EF Core (por ejemplo, mejores migraciones en SQLite), junto con instrucciones y colaboraciones a largo plazo con otros equipos para mejorar las experiencias de un extremo a otro que van más allá de EF exclusivamente.
 
-## <a name="ef-core-platforms-experience"></a>Experiencia de las plataformas de EF Core 
+## <a name="ef-core-platforms-experience"></a>Experiencia de las plataformas de EF Core
 
 Jefes de desarrollo: @roji y @bricelam
 
@@ -247,10 +249,11 @@ Talla de camiseta: L
 Estado: En curso
 
 Ya se ha iniciado el proceso de actualización de la documentación de las versiones 3.0 y 3.1. También se está trabajando en:
-  * Una revisión de la documentación de introducción para que sea más fácil de seguir
-  * La reorganización de la documentación para facilitar la búsqueda y la adición de referencias cruzadas
-  * La incorporación de más detalles y aclaraciones a la documentación existente
-  * La actualización de los ejemplos y la incorporación de otros nuevos
+
+* Una revisión de la documentación de introducción para que sea más fácil de seguir
+* La reorganización de la documentación para facilitar la búsqueda y la adición de referencias cruzadas
+* La incorporación de más detalles y aclaraciones a la documentación existente
+* La actualización de los ejemplos y la incorporación de otros nuevos
 
 ## <a name="fixing-bugs"></a>Corrección de errores
 
@@ -286,6 +289,6 @@ Se trata de correcciones de errores y mejoras **no** programadas actualmente par
 
 Además, durante la planeación siempre se tienen en cuenta los [problemas más votados](https://github.com/dotnet/efcore/issues?q=is%3Aissue+is%3Aopen+sort%3Areactions-%2B1-desc). Excluir cualquiera de estos problemas de una versión siempre es complicado, pero necesitamos un plan realista para los recursos que tenemos.
 
-## <a name="feedback"></a>Comentarios
+## <a name="suggestions"></a>Sugerencias
 
 Sus comentarios sobre la planeación son importantes. La mejor manera de indicar la importancia de un problema es votar (pulgar) por ese problema en GitHub. Estos datos se introducirán después en el [proceso de planeación](xref:core/what-is-new/release_planning) de la próxima versión.
