@@ -4,16 +4,16 @@ author: roji
 ms.date: 09/09/2019
 ms.assetid: bde4e0ee-fba3-4813-a849-27049323d301
 uid: core/miscellaneous/nullable-reference-types
-ms.openlocfilehash: c16a475c363320cd18804a4efe78ccae1ae22f0d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 3acd446d64a94ffecb12c181e3910528d2293448
+ms.sourcegitcommit: 51148929e3889c48227d96c95c4e310d53a3d2c9
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414150"
+ms.lasthandoff: 07/21/2020
+ms.locfileid: "86873362"
 ---
 # <a name="working-with-nullable-reference-types"></a>Trabajar con tipos de referencia que aceptan valores NULL
 
-C#8 presentó una nueva característica denominada [tipos de referencia que aceptan valores NULL](/dotnet/csharp/tutorials/nullable-reference-types), lo que permite anotar tipos de referencia, lo que indica si es válido que contengan null o not. Si no está familiarizado con esta característica, se recomienda que se familiarice con ella leyendo los C# documentos.
+C# 8 presentó una nueva característica denominada [tipos de referencia que aceptan valores NULL](/dotnet/csharp/tutorials/nullable-reference-types), lo que permite anotar tipos de referencia, lo que indica si es válido para que contengan null o not. Si no está familiarizado con esta característica, se recomienda que se familiarice con ella leyendo los documentos de C#.
 
 En esta página se presenta la compatibilidad de EF Core con tipos de referencia que aceptan valores NULL y se describen los procedimientos recomendados para trabajar con ellos.
 
@@ -26,7 +26,7 @@ La documentación principal sobre las propiedades obligatorias y opcionales y su
 
 ## <a name="dbcontext-and-dbset"></a>DbContext y DbSet
 
-Cuando se habilitan los tipos de referencia que C# aceptan valores NULL, el compilador emite advertencias para cualquier propiedad no inicializada que no acepte valores NULL, ya que estos contendrían el valor null. Como resultado, la práctica común de definir un `DbSet` que no acepta valores NULL en un contexto generará ahora una advertencia. Sin embargo, EF Core siempre inicializa todas las propiedades `DbSet` en tipos derivados de DbContext, por lo que se garantiza que nunca serán null, incluso si el compilador no es consciente de esto. Por lo tanto, se recomienda mantener las propiedades de `DbSet` que no admitan valores NULL, lo que le permite tener acceso a ellas sin comprobaciones nulas, y para silenciar las advertencias del compilador estableciéndolo explícitamente en NULL con la ayuda del operador null-permisivo (!):
+Cuando se habilitan los tipos de referencia que aceptan valores NULL, el compilador de C# emite advertencias para cualquier propiedad no inicializada que no acepte valores NULL, ya que estos contendrían el valor null. Como resultado, la práctica común de tener propiedades DbSet sin inicializar en un tipo de contexto generará ahora una advertencia. Para corregirlo, haga que las propiedades de DbSet sean de solo lectura e inicialícela como se indica a continuación:
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/NullableReferenceTypesContext.cs?name=Context&highlight=3-4)]
 
@@ -65,5 +65,5 @@ Si tiene que hacer esto mucho y los tipos de entidad en cuestión son principalm
 
 ## <a name="limitations"></a>Limitaciones
 
-* La ingeniería inversa no admite C# [ C# actualmente 8 tipos de referencia que aceptan valores NULL (NRTs)](/dotnet/csharp/tutorials/nullable-reference-types): EF Core siempre genera código que supone que la característica está desactivada. Por ejemplo, las columnas de texto que aceptan valores NULL se scaffolding como una propiedad con el tipo `string`, no `string?`, con la API fluida o las anotaciones de datos que se usan para configurar si una propiedad es obligatoria o no. Puede editar el código con scaffolding y reemplazarlo con anotaciones de C# nulabilidad. El seguimiento de la compatibilidad con scaffolding para tipos de referencia que aceptan valores NULL se realiza mediante el problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
+* La ingeniería inversa no admite actualmente los [tipos de referencia que aceptan valores NULL de C# 8 (NRTs)](/dotnet/csharp/tutorials/nullable-reference-types): EF Core siempre genera código de c# que supone que la característica está desactivada. Por ejemplo, las columnas de texto que aceptan valores NULL se scaffolding como una propiedad con `string` el tipo, no `string?` , con la API fluida o las anotaciones de datos que se usan para configurar si una propiedad es obligatoria o no. Puede editar el código con scaffolding y reemplazarlo con anotaciones de nulabilidad de C#. El seguimiento de la compatibilidad con scaffolding para tipos de referencia que aceptan valores NULL se realiza mediante el problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
 * La superficie de la API pública de EF Core todavía no se ha anotado para la nulabilidad (la API pública es "null-desconocen"), lo que a veces es difícil de usar cuando la característica NRT está activada. Esto incluye principalmente los operadores Async LINQ expuestos por EF Core, como [FirstOrDefaultAsync](/dotnet/api/microsoft.entityframeworkcore.entityframeworkqueryableextensions.firstordefaultasync#Microsoft_EntityFrameworkCore_EntityFrameworkQueryableExtensions_FirstOrDefaultAsync__1_System_Linq_IQueryable___0__System_Linq_Expressions_Expression_System_Func___0_System_Boolean___System_Threading_CancellationToken_). Tenemos previsto abordar esto para la versión 5,0.
