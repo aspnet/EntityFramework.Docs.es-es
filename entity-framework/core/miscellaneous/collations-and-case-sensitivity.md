@@ -5,12 +5,12 @@ author: roji
 ms.date: 04/27/2020
 ms.assetid: bde4e0ee-fba3-4813-a849-27049323d301
 uid: core/miscellaneous/collations-and-case-sensitivity
-ms.openlocfilehash: b3874847922cb39aa57d50813e6e50ff7db72eb9
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: 46a13d341c1b721bb243ee2b205bdc2f4d7e7aee
+ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370570"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87526451"
 ---
 # <a name="collations-and-case-sensitivity"></a>Intercalaciones y distinción entre mayúsculas y minúsculas
 
@@ -68,11 +68,11 @@ Tenga en cuenta que algunas bases de datos permiten definir la intercalación al
 
 En .NET, la igualdad de cadena distingue entre mayúsculas y minúsculas de forma predeterminada: `s1 == s2` realiza una comparación ordinal que requiere que las cadenas sean idénticas. Dado que la intercalación predeterminada de las bases de datos varía y porque es deseable para la igualdad simple usar índices, EF Core no intenta traducir la igualdad simple a una operación que distingue entre mayúsculas y minúsculas: la igualdad de C# se traduce directamente a la igualdad de SQL, que puede o no distinguir mayúsculas de minúsculas, según la base de datos específica en uso y su configuración de
 
-Además, .NET proporciona sobrecargas [`string.Equals`](https://docs.microsoft.com/dotnet/api/system.string.equals#System_String_Equals_System_String_System_StringComparison_) para aceptar una [`StringComparison`](https://docs.microsoft.com/dotnet/api/system.stringcomparison) enumeración, que permite especificar la distinción de mayúsculas y minúsculas y la referencia cultural de la comparación. Por diseño, EF Core se abstendrán de traducir estas sobrecargas a SQL y se producirá una excepción al intentar usarlas. En un caso, EF Core no sabe qué intercalación que distingue entre mayúsculas y minúsculas o que no distingue mayúsculas de minúsculas. Lo que es más importante, al aplicar una intercalación en la mayoría de los casos, se evita el uso del índice, lo que afecta significativamente al rendimiento de una construcción .NET muy básica y de uso frecuente. Para forzar que una consulta use la comparación con distinción de mayúsculas y minúsculas o sin distinción de mayúsculas y minúsculas, especifique una intercalación explícitamente mediante `EF.Functions.Collate` como se [detailó anteriormente](#explicit-collations-and-indexes).
+Además, .NET proporciona sobrecargas [`string.Equals`](/dotnet/api/system.string.equals#System_String_Equals_System_String_System_StringComparison_) para aceptar una [`StringComparison`](/dotnet/api/system.stringcomparison) enumeración, que permite especificar la distinción de mayúsculas y minúsculas y la referencia cultural de la comparación. Por diseño, EF Core se abstendrán de traducir estas sobrecargas a SQL y se producirá una excepción al intentar usarlas. En un caso, EF Core no sabe qué intercalación que distingue entre mayúsculas y minúsculas o que no distingue mayúsculas de minúsculas. Lo que es más importante, al aplicar una intercalación en la mayoría de los casos, se evita el uso del índice, lo que afecta significativamente al rendimiento de una construcción .NET muy básica y de uso frecuente. Para forzar que una consulta use la comparación con distinción de mayúsculas y minúsculas o sin distinción de mayúsculas y minúsculas, especifique una intercalación explícitamente mediante `EF.Functions.Collate` como se [detailó anteriormente](#explicit-collations-and-indexes).
 
 ## <a name="database-specific-information"></a>Información específica de la base de datos
 
-* [SQL Server documentación sobre las intercalaciones](https://docs.microsoft.com/sql/relational-databases/collations/collation-and-unicode-support).
-* [Documentación de Microsoft. Data. SQLite sobre las intercalaciones](https://docs.microsoft.com/dotnet/standard/data/sqlite/collation).
+* [SQL Server documentación sobre las intercalaciones](/sql/relational-databases/collations/collation-and-unicode-support).
+* [Documentación de Microsoft. Data. SQLite sobre las intercalaciones](/dotnet/standard/data/sqlite/collation).
 * [Documentación de PostgreSQL sobre las intercalaciones](https://www.postgresql.org/docs/current/collation.html).
 * [Documentación de MySQL sobre intercalaciones](https://dev.mysql.com/doc/refman/en/charset-general.html).

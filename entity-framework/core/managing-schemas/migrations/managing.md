@@ -4,12 +4,12 @@ author: bricelam
 ms.author: bricelam
 ms.date: 05/06/2020
 uid: core/managing-schemas/migrations/managing
-ms.openlocfilehash: e52d3680360a1e83e05f04650c735c5a67680094
-ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
+ms.openlocfilehash: 2097d3cc9232d448191dbebbe3d14d86e80b91fe
+ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86238737"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87526438"
 ---
 # <a name="managing-migrations"></a>Administrar migraciones
 
@@ -97,7 +97,7 @@ migrationBuilder.RenameColumn(
 
 ### <a name="adding-raw-sql"></a>Agregar SQL sin procesar
 
-Aunque el cambio de nombre de una columna se puede lograr a través de una API integrada, en muchos casos no es posible. Por ejemplo, es posible que desee reemplazar `FirstName` `LastColumn` las propiedades y existentes por una sola `FullName` propiedad nueva. La migración generada por EF Core será la siguiente:
+Aunque el cambio de nombre de una columna se puede lograr a través de una API integrada, en muchos casos no es posible. Por ejemplo, es posible que desee reemplazar `FirstName` `LastName` las propiedades y existentes por una sola `FullName` propiedad nueva. La migración generada por EF Core será la siguiente:
 
 ``` csharp
 migrationBuilder.DropColumn(
@@ -109,7 +109,7 @@ migrationBuilder.DropColumn(
     table: "Customer");
 
 migrationBuilder.AddColumn<string>(
-    name: "Name",
+    name: "FullName",
     table: "Customer",
     nullable: true);
 ```
@@ -118,14 +118,14 @@ Como antes, esto provocaría una pérdida de datos no deseada. Para transferir l
 
 ``` csharp
 migrationBuilder.AddColumn<string>(
-    name: "Name",
+    name: "FullName",
     table: "Customer",
     nullable: true);
 
 migrationBuilder.Sql(
 @"
     UPDATE Customer
-    SET Name = FirstName + ' ' + LastName;
+    SET FullName = FirstName + ' ' + LastName;
 ");
 
 migrationBuilder.DropColumn(

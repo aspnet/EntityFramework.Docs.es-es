@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: 19945ef2eb99ac423cc50510edc85439964024b8
-ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
+ms.openlocfilehash: 423e0502a53f2d99dba6938198fffba9cf0f9ade
+ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86238195"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87526477"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
 
@@ -46,7 +46,7 @@ Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook' 
 
 Si tiene un proyecto de ASP.NET Core, puede usar la `Name=<connection-string>` sintaxis para leer la cadena de conexión de la configuración.
 
-Esto funciona bien con la [herramienta de administración de secretos](https://docs.microsoft.com/aspnet/core/security/app-secrets#secret-manager) para mantener la contraseña de la base de datos separada del código base.
+Esto funciona bien con la [herramienta de administración de secretos](/aspnet/core/security/app-secrets#secret-manager) para mantener la contraseña de la base de datos separada del código base.
 
 ```dotnetcli
 dotnet user-secrets set ConnectionStrings.Chinook "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook"

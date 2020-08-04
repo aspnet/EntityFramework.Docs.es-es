@@ -5,12 +5,12 @@ ms.author: bricelam
 ms.date: 11/01/2018
 ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: 2222df84be7bfde3f252766bef1cfab39b476efa
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: 85124b7e252797ccd952d0d332e7309eff97ba56
+ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370453"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87526672"
 ---
 # <a name="spatial-data"></a>Datos espaciales
 
@@ -51,7 +51,7 @@ Hay varios tipos de datos espaciales. El tipo que use dependerá de los tipos de
 * Geometría
   * Punto
   * LineString
-  * Polígono
+  * Polygon
   * GeometryCollection
     * MultiPoint
     * MultiLineString
@@ -345,7 +345,7 @@ Polygon. NumInteriorRings | ✔ | ✔ | ✔ | ✔
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
-* [Datos espaciales de SQL Server](https://docs.microsoft.com/sql/relational-databases/spatial/spatial-data-sql-server)
+* [Datos espaciales de SQL Server](/sql/relational-databases/spatial/spatial-data-sql-server)
 * [Página principal de SpatiaLite](https://www.gaia-gis.it/fossil/libspatialite)
 * [Documentación espacial Npgsql](https://www.npgsql.org/efcore/mapping/nts.html)
 * [Documentación de PostGIS](https://postgis.net/documentation/)

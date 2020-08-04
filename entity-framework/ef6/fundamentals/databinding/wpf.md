@@ -3,19 +3,19 @@ title: Enlace de enlaces con WPF-EF6
 author: divega
 ms.date: 05/19/2020
 ms.assetid: e90d48e6-bea7785-47ef-b756-7b89cce4daf0
-ms.openlocfilehash: c8e9e9a0810d8192e5184abbc7df2e74e4ee7edb
-ms.sourcegitcommit: 59e3d5ce7dfb284457cf1c991091683b2d1afe9d
+ms.openlocfilehash: baeb75b1ee386ca58013048bcc31ea4074604673
+ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 05/20/2020
-ms.locfileid: "83672911"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87526854"
 ---
 # <a name="databinding-with-wpf"></a>Databinding with WPF (Enlace de datos con WPF)
 
 > [!IMPORTANT]
 > **Este documento solo es válido para WPF en el .NET Framework**
 >
-> En este documento se describe el enlace de DataBindings para WPF en el .NET Framework. En el caso de los nuevos proyectos de .NET Core, se recomienda usar [EF Core](/ef/core) en lugar de Entity Framework 6. Se realiza un seguimiento de la documentación de DataBinding en EF Core en el [#778 de problemas](https://github.com/dotnet/EntityFramework.Docs/issues/778).
+> En este documento se describe el enlace de DataBindings para WPF en el .NET Framework. En el caso de los nuevos proyectos de .NET Core, se recomienda usar [EF Core](/ef/core) en lugar de Entity Framework 6. La documentación de DataBinding en EF Core está aquí: [Introducción con WPF](/ef/core/get-started/wpf).
 
 En este tutorial paso a paso se muestra cómo enlazar tipos POCO a controles de WPF en un formulario "maestro-detalles". La aplicación utiliza las API de Entity Framework para rellenar los objetos con datos de la base de datos, realizar un seguimiento de los cambios y conservar los datos en la base de datos.
 
@@ -202,7 +202,7 @@ Vamos a hacer uso de Entity Framework Designer, que se incluye como parte de Vis
 
     ![Elección de los objetos](~/ef6/media/chooseyourobjects.png)
 
-Una vez que se completa el proceso de ingeniería inversa, el nuevo modelo se agrega al proyecto y se abre para que pueda verlo en el Entity Framework Designer. También se ha agregado un archivo app. config al proyecto con los detalles de conexión de la base de datos.
+Una vez que se completa el proceso de ingeniería inversa, el nuevo modelo se agrega al proyecto y se abre para que pueda verlo en el Entity Framework Designer. También se ha agregado un archivo App.config al proyecto con los detalles de conexión de la base de datos.
 
 #### <a name="additional-steps-in-visual-studio-2010"></a>Pasos adicionales en Visual Studio 2010
 

@@ -4,12 +4,12 @@ description: Cómo configurar relaciones entre tipos de entidad al utilizar Enti
 author: AndriySvyryd
 ms.date: 11/21/2019
 uid: core/modeling/relationships
-ms.openlocfilehash: 3ed25b752970cf0f55d38f1ce5b8383f1c90edc3
-ms.sourcegitcommit: 92d54fe3702e0c92e198334da22bacb42e9842b1
+ms.openlocfilehash: 927457c2a5b5ef4a5061fe2e5d28f864eb95c55f
+ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/10/2020
-ms.locfileid: "84664148"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87526737"
 ---
 # <a name="relationships"></a>Relaciones
 
@@ -148,7 +148,7 @@ Si solo tiene una propiedad de navegación, hay sobrecargas sin parámetros de `
 
 ### <a name="configuring-navigation-properties"></a>Configurar propiedades de navegación
 
-Una vez creada la propiedad de navegación, puede que necesite configurarla más adelante. En EFCore 5,0, se ha agregado la nueva API fluida para permitirle realizar esa configuración.
+Una vez creada la propiedad de navegación, puede que necesite configurarla más adelante. En EFCore 5,0, se agrega una nueva API fluida para que pueda realizar esa configuración.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/NavigationConfiguration.cs?name=NavigationConfiguration&highlight=7-9)]
 
