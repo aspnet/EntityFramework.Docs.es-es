@@ -4,12 +4,12 @@ description: Diferentes métodos para probar aplicaciones que usan EF Core
 author: ajcvickers
 ms.date: 04/22/2020
 uid: core/miscellaneous/testing/index
-ms.openlocfilehash: 71222f17ac4cc1b71052a2e7e916ebcedd2ae0f4
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: 7929c284c2794b2fcc95235ae413d56895ebb6e2
+ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370544"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87526815"
 ---
 # <a name="testing-code-that-uses-ef-core"></a>Pruebas de código que usa EF Core
 
@@ -63,7 +63,7 @@ LocalDB también presenta algunos inconvenientes:
 Personalmente, nunca me ha parecido un problema que haya un servicio de base de datos ejecutándose en el equipo de desarrollo y, en general, recomendaría usar Developer Edition.
 Con todo, LocalDB puede ser adecuado para algunas personas, especialmente en equipos de desarrollo menos potentes.
 
-La ejecución de SQL Server (o cualquier otro sistema de base de datos) en un contenedor de Docker (o similar) es otra manera de evitar que el sistema de base de datos se ejecute directamente en el equipo de desarrollo.  
+Otra manera de evitar que el sistema de base de datos se ejecute directamente en el equipo de desarrollo es [ejecutar SQL Server](/sql/linux/quickstart-install-connect-docker?view=sql-server-ver15) (o cualquier otro sistema de base de datos) en un contenedor de Docker (o similar).  
 
 ## <a name="approach-2-sqlite"></a>Enfoque 2: SQLite
 

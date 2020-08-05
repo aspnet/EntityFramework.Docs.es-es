@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 04/15/2020
-  ms.openlocfilehash: 1411737453563ac5377dbda2804dd0bd058133a7
-  ms.sourcegitcommit: 92d54fe3702e0c92e198334da22bacb42e9842b1
+  ms.openlocfilehash: 3b8d9979b559dcac71da64634260c93fa7b3dde2
+  ms.sourcegitcommit: c94a356ab03f2031c4b86aa4e4b6271928b7f4c8
   ms.translationtype: HT
   ms.contentlocale: es-ES
-  ms.lasthandoff: 06/10/2020
-  ms.locfileid: "84664174"
+  ms.lasthandoff: 08/03/2020
+  ms.locfileid: "87538701"
 highlightedContent:
   items:
   - title: Entity Framework Core
@@ -48,6 +48,10 @@ additionalContent:
         text: Aplicación web de Razor Pages de ASP.NET Core que accede a SQL Server LocalDB o SQLite con EF Core
       - url: /aspnet/core/data/ef-mvc/
         text: Aplicación web de ASP.NET Core MVC que accede a SQL Server con EF Core
+      - url: core/get-started/wpf.md
+        text: Aplicación de .NET Core para WPF que accede a SQLite con EF Core
+      - url: core/get-started/xamarin.md
+        text: Aplicación móvil de Xamarin que accede a SQLite con EF Core
     - title: Bases de datos admitidas
       links:
       - url: core/providers/sql-server/index.md
@@ -74,12 +78,12 @@ additionalContent:
         text: ASP.NET Core MVC
       - url: https://docs.microsoft.com/aspnet/core/blazor/dependency-injection?#use-of-entity-framework-dbcontext-from-di
         text: Servidor Blazor
-      - url: https://docs.microsoft.com/ef/ef6/fundamentals/databinding/wpf
+      - url: core/get-started/wpf.md
         text: Windows Presentation Foundation (WPF)
-      - url: https://docs.microsoft.com/ef/ef6/fundamentals/databinding/winforms
+      - url: https://docs.microsoft.com/ef/ef6/fundamentals/databinding/winforms/
         text: Windows Forms (WinForms)
-      - url: https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+label%3Aarea-xamarin
-        text: Xamarin (compatibilidad parcial)
+      - url: core/get-started/xamarin.md
+        text: Xamarin
     - title: Aspectos básicos
       links:
       - url: core/miscellaneous/connection-strings.md
