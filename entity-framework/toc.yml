@@ -65,6 +65,8 @@
               href: core/get-started/install/index.md
             - name: "Tutorial de ASP.NET\_Core >>"
               href: /aspnet/core/data/ef-rp/intro
+            - name: Tutorial de .NET Core para WPF
+              href: core/get-started/wpf.md
             - name: Tutorial de Xamarin
               href: core/get-started/xamarin.md
         - name: Aspectos básicos
