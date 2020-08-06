@@ -3,12 +3,12 @@ title: 'Cambios importantes en EF Core 3.0: EF Core'
 author: ajcvickers
 ms.date: 12/03/2019
 uid: core/what-is-new/ef-core-3.0/breaking-changes
-ms.openlocfilehash: 6e0c17a22b56b206f18e47f678e3e237d5c42375
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: a5e8b46fae63e45282342964a631ca2f830e601b
+ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413562"
+ms.lasthandoff: 08/03/2020
+ms.locfileid: "87526867"
 ---
 # <a name="breaking-changes-included-in-ef-core-30"></a>Cambios importantes incluidos en EF Core 3.0
 
@@ -39,20 +39,20 @@ Los cambios que esperamos que solo afecten a proveedores de base de datos se doc
 | [Solo se pueden especificar métodos de FromSql en raíces de consulta](#fromsql) | Bajo      |
 | [~~La ejecución de consultas se registra en el nivel de depuración~~ Revertido](#qe) | Bajo      |
 | [Los valores de clave temporal ya no se establecen en instancias de entidad](#tkv) | Bajo      |
-| [Las entidades dependientes que comparten la tabla con la entidad de seguridad son ahora opcionales](#de) | Bajo      |
+| [Ahora, las entidades dependientes que comparten la tabla con la entidad de seguridad son opcionales](#de) | Bajo      |
 | [Todas las entidades que compartan una tabla con una columna de token de simultaneidad tienen que asignarla a una propiedad](#aes) | Bajo      |
 | [Las entidades en propiedad no se pueden consultar sin el propietario mediante una consulta de seguimiento](#owned-query) | Bajo      |
-| [Las propiedades heredadas de tipos sin asignar se asignan ahora a una única columna para todos los tipos derivados](#ip) | Bajo      |
+| [Ahora, las propiedades heredadas de tipos sin asignar se asignan a una única columna para todos los tipos derivados](#ip) | Bajo      |
 | [La convención de propiedad de clave externa ya no coincide con el mismo nombre que la propiedad de entidad de seguridad](#fkp) | Bajo      |
-| [La conexión de base de datos ahora se cierra si ya no se usa antes de que se complete TransactionScope](#dbc) | Bajo      |
+| [Ahora, la conexión de base de datos se cierra si ya no se usa antes de que se complete TransactionScope](#dbc) | Bajo      |
 | [Los campos de respaldo se usan de forma predeterminada](#backing-fields-are-used-by-default) | Bajo      |
 | [Inicio de excepciones si se encuentran varios campos de respaldo compatibles](#throw-if-multiple-compatible-backing-fields-are-found) | Bajo      |
 | [Los nombres de propiedades de solo campo deben coincidir con el nombre del campo](#field-only-property-names-should-match-the-field-name) | Bajo      |
 | [AddDbContext/AddDbContextPool ya no llaman a AddLogging ni a AddMemoryCache](#adddbc) | Bajo      |
 | [AddEntityFramework* agrega IMemoryCache con un límite de tamaño](#addentityframework-adds-imemorycache-with-a-size-limit) | Bajo      |
-| [DbContext.Entry realiza ahora una operación DetectChanges local](#dbe) | Bajo      |
+| [Ahora DbContext.Entry realiza una operación DetectChanges local](#dbe) | Bajo      |
 | [El cliente no genera las claves de matriz de cadena y byte de forma predeterminada](#string-and-byte-array-keys-are-not-client-generated-by-default) | Bajo      |
-| [ILoggerFactory es ahora un servicio con ámbito](#ilf) | Bajo      |
+| [Ahora ILoggerFactory es un servicio con ámbito](#ilf) | Bajo      |
 | [En los proxies de carga diferida ya no se supone que las propiedades de navegación están totalmente cargadas](#lazy-loading-proxies-no-longer-assume-navigation-properties-are-fully-loaded) | Bajo      |
 | [La creación excesiva de proveedores de servicios internos ahora es un error de forma predeterminada](#excessive-creation-of-internal-service-providers-is-now-an-error-by-default) | Bajo      |
 | [Comportamiento nuevo de HasOne/HasMany llamado con una sola cadena](#nbh) | Bajo      |
@@ -62,8 +62,8 @@ Los cambios que esperamos que solo afecten a proveedores de base de datos se doc
 | [EF Core ya no envía pragma para el cumplimiento de SQLite FK](#pragma) | Bajo      |
 | [Microsoft.EntityFrameworkCore.Sqlite ahora depende de SQLitePCLRaw.bundle_e_sqlite3](#sqlite3) | Bajo      |
 | [Los valores GUID se almacenan ahora como TEXT en SQLite](#guid) | Bajo      |
-| [Los valores char se almacenan ahora como TEXT en SQLite](#char) | Bajo      |
-| [Los id. de migración ahora se generan usando el calendario de la referencia cultural invariable](#migid) | Bajo      |
+| [Ahora los valores char se almacenan como TEXT en SQLite](#char) | Bajo      |
+| [Ahora los id. de migración se generan usando el calendario de la referencia cultural invariable](#migid) | Bajo      |
 | [La información o los metadatos de la extensión se han quitado de IDbContextOptionsExtension](#xinfo) | Bajo      |
 | [LogQueryPossibleExceptionWithAggregateOperator ha cambiado de nombre](#lqpe) | Bajo      |
 | [Clarificación de la API para nombres de restricciones de claves externas](#clarify) | Bajo      |
@@ -131,7 +131,7 @@ Use EF Core 3.1.
 <a name="no-longer"></a>
 ### <a name="entity-framework-core-is-no-longer-part-of-the-aspnet-core-shared-framework"></a>Entity Framework Core ya no forma parte del marco compartido ASP.NET Core
 
-[Anuncios del problema de seguimiento n.º 325](https://github.com/aspnet/Announcements/issues/325)
+[Anuncios del problema de seguimiento n.º 325](https://github.com/aspnet/Announcements/issues/325)
 
 **Comportamiento anterior**
 
@@ -276,7 +276,7 @@ Las invocaciones de `FromSql` se deben mover para que estén directamente en el 
 
 **Comportamiento anterior**
 
-Antes de EF Core 3.0, se usaba la misma instancia de la entidad para cada aparición de una entidad con un tipo e identificador determinados. Este comportamiento coincide con el de las consultas de seguimiento. Por ejemplo, esta consulta:
+Antes de EF Core 3.0, se usaba la misma instancia de la entidad para cada aparición de una entidad con un tipo e identificador determinados. Este comportamiento coincide con el de las consultas de seguimiento. Fijémonos en esta consulta:
 
 ```csharp
 var results = context.Products.Include(e => e.Category).AsNoTracking().ToList();
@@ -299,7 +299,7 @@ Si se requiere la resolución de identidad, use una consulta de seguimiento.
 
 ### <a name="query-execution-is-logged-at-debug-level-reverted"></a>~~La ejecución de consultas se registra en el nivel de depuración~~ Revertido
 
-[Problema de seguimiento n.º 14523](https://github.com/aspnet/EntityFrameworkCore/issues/14523)
+[Problema de seguimiento n.º 14523](https://github.com/aspnet/EntityFrameworkCore/issues/14523)
 
 Revertimos este cambio porque la nueva configuración de EF Core 3.0 permite a la aplicación especificar el nivel de registro para cualquier evento. Por ejemplo, para cambiar el registro de SQL a `Debug`, configure el nivel de forma explícita en `OnConfiguring` o `AddDbContext`:
 ```csharp
@@ -313,7 +313,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 ### <a name="temporary-key-values-are-no-longer-set-onto-entity-instances"></a>Los valores de clave temporal ya no se establecen en instancias de entidad
 
-[Problema de seguimiento n.º 12378](https://github.com/aspnet/EntityFrameworkCore/issues/12378)
+[Problema de seguimiento n.º 12378](https://github.com/aspnet/EntityFrameworkCore/issues/12378)
 
 **Comportamiento anterior**
 
@@ -341,7 +341,7 @@ Por ejemplo, `context.Entry(blog).Property(e => e.Id).CurrentValue` devolverá e
 
 ### <a name="detectchanges-honors-store-generated-key-values"></a>DetectChanges respeta los valores de clave generados por el almacén
 
-[Problema de seguimiento n.º 14616](https://github.com/aspnet/EntityFrameworkCore/issues/14616)
+[Problema de seguimiento n.º 14616](https://github.com/aspnet/EntityFrameworkCore/issues/14616)
 
 **Comportamiento anterior**
 
@@ -379,7 +379,7 @@ public string Id { get; set; }
 <a name="cascade"></a>
 ### <a name="cascade-deletions-now-happen-immediately-by-default"></a>Las eliminaciones en cascada ahora se realizan inmediatamente de forma predeterminada
 
-[Problema de seguimiento n.º 10114](https://github.com/aspnet/EntityFrameworkCore/issues/10114)
+[Problema de seguimiento n.º 10114](https://github.com/aspnet/EntityFrameworkCore/issues/10114)
 
 **Comportamiento anterior**
 
@@ -392,7 +392,7 @@ Por ejemplo, como resultado de la llamada a `context.Remove()` para eliminar una
 
 **Por qué**
 
-Este cambio se ha realizado para mejorar la experiencia en escenarios de auditoría y enlace de datos, donde es importante comprender qué entidades se van a eliminar _antes_ de llamar a `SaveChanges`.
+Este cambio se ha realizado para mejorar la experiencia en escenarios de auditoría y enlace de datos, donde es importante comprender qué entidades se van a eliminar _antes de llamar a_  `SaveChanges`.
 
 **Mitigaciones**
 
@@ -450,7 +450,7 @@ El comportamiento anterior se puede restaurar con `DeleteBehavior.ClientNoAction
 <a name="qt"></a>
 ### <a name="query-types-are-consolidated-with-entity-types"></a>Los tipos de consulta se consolidan con tipos de entidad
 
-[Problema de seguimiento n.º 14194](https://github.com/aspnet/EntityFrameworkCore/issues/14194)
+[Problema de seguimiento n.º 14194](https://github.com/aspnet/EntityFrameworkCore/issues/14194)
 
 **Comportamiento anterior**
 
@@ -719,7 +719,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 ### <a name="the-foreign-key-property-convention-no-longer-matches-same-name-as-the-principal-property"></a>La convención de propiedad de clave externa ya no coincide con el mismo nombre que la propiedad de entidad de seguridad
 
-[Problema de seguimiento n.º 13274](https://github.com/aspnet/EntityFrameworkCore/issues/13274)
+[Problema de seguimiento n.º 13274](https://github.com/aspnet/EntityFrameworkCore/issues/13274)
 
 **Comportamiento anterior**
 
@@ -839,7 +839,7 @@ using (new TransactionScope())
 
 ### <a name="each-property-uses-independent-in-memory-integer-key-generation"></a>Cada propiedad usa la generación de claves enteras en memoria independiente
 
-[Problema de seguimiento n.º 6872](https://github.com/aspnet/EntityFrameworkCore/issues/6872)
+[Problema de seguimiento n.º 6872](https://github.com/aspnet/EntityFrameworkCore/issues/6872)
 
 **Comportamiento anterior**
 
@@ -861,7 +861,7 @@ En su lugar, considere la posibilidad de no depender de valores de clave especí
 
 ### <a name="backing-fields-are-used-by-default"></a>Los campos de respaldo se usan de forma predeterminada
 
-[Problema de seguimiento n.º 12430](https://github.com/aspnet/EntityFrameworkCore/issues/12430)
+[Problema de seguimiento n.º 12430](https://github.com/aspnet/EntityFrameworkCore/issues/12430)
 
 **Comportamiento anterior**
 
@@ -888,7 +888,7 @@ modelBuilder.UsePropertyAccessMode(PropertyAccessMode.PreferFieldDuringConstruct
 
 ### <a name="throw-if-multiple-compatible-backing-fields-are-found"></a>Inicio de excepciones si se encuentran varios campos de respaldo compatibles
 
-[Problema de seguimiento n.º 12523](https://github.com/aspnet/EntityFrameworkCore/issues/12523)
+[Problema de seguimiento n.º 12523](https://github.com/aspnet/EntityFrameworkCore/issues/12523)
 
 **Comportamiento anterior**
 
@@ -965,11 +965,11 @@ modelBuilder
 
 ### <a name="adddbcontextadddbcontextpool-no-longer-call-addlogging-and-addmemorycache"></a>AddDbContext/AddDbContextPool ya no llaman a AddLogging ni a AddMemoryCache
 
-[Problema de seguimiento n.° 14756](https://github.com/aspnet/EntityFrameworkCore/issues/14756)
+[Problema de seguimiento n.º 14756](https://github.com/aspnet/EntityFrameworkCore/issues/14756)
 
 **Comportamiento anterior**
 
-Antes de EF Core 3.0, la llamada a `AddDbContext` o `AddDbContextPool` también podría registrar los servicios de almacenamiento en caché y de registro con inserción de dependencias a través de llamadas a [AddLogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) y [AddMemoryCache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache).
+Antes de EF Core 3.0, la llamada a `AddDbContext` o `AddDbContextPool` también podría registrar los servicios de almacenamiento en caché y de registro con inserción de dependencias a través de llamadas a [AddLogging](/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) y [AddMemoryCache](/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache).
 
 **Comportamiento nuevo**
 
@@ -981,7 +981,7 @@ EF Core 3.0 no requiere que estos servicios estén en el contenedor de inserci�
 
 **Mitigaciones**
 
-Si la aplicación necesita estos servicios, regístrelos de manera explícita con el contenedor de DI mediante [AddLogging](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) o [AddMemoryCache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache).
+Si la aplicación necesita estos servicios, regístrelos de manera explícita con el contenedor de DI mediante [AddLogging](/dotnet/api/microsoft.extensions.dependencyinjection.loggingservicecollectionextensions.addlogging) o [AddMemoryCache](/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache).
 
 ### <a name="addentityframework-adds-imemorycache-with-a-size-limit"></a>AddEntityFramework* agrega IMemoryCache con un límite de tamaño
 
@@ -1003,13 +1003,13 @@ El uso de IMemoryCache sin un límite podría dar lugar a un uso de memoria no c
 
 En la mayoría de los casos, no es necesario llamar a `AddEntityFramework*` si también se llama a `AddDbContext` o `AddDbContextPool`. Por tanto, la mejor mitigación consiste en quitar la llamada a `AddEntityFramework*`.
 
-Si la aplicación necesita estos servicios, registre de forma explícita una implementación de IMemoryCache con el contenedor de DI por anticipado mediante [AddMemoryCache](https://docs.microsoft.com/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache).
+Si la aplicación necesita estos servicios, registre de forma explícita una implementación de IMemoryCache con el contenedor de DI por anticipado mediante [AddMemoryCache](/dotnet/api/microsoft.extensions.dependencyinjection.memorycacheservicecollectionextensions.addmemorycache).
 
 <a name="dbe"></a>
 
 ### <a name="dbcontextentry-now-performs-a-local-detectchanges"></a>Ahora DbContext.Entry realiza una operación DetectChanges local
 
-[Problema de seguimiento n.º 13552](https://github.com/aspnet/EntityFrameworkCore/issues/13552)
+[Problema de seguimiento n.º 13552](https://github.com/aspnet/EntityFrameworkCore/issues/13552)
 
 **Comportamiento anterior**
 
@@ -1035,7 +1035,7 @@ Llame a `ChangeTracker.DetectChanges()` de forma explícita antes de llamar a `E
 
 ### <a name="string-and-byte-array-keys-are-not-client-generated-by-default"></a>El cliente no genera las claves de matriz de cadena y byte de forma predeterminada
 
-[Problema de seguimiento n.º 14617](https://github.com/aspnet/EntityFrameworkCore/issues/14617)
+[Problema de seguimiento n.º 14617](https://github.com/aspnet/EntityFrameworkCore/issues/14617)
 
 **Comportamiento anterior**
 
@@ -1073,7 +1073,7 @@ public string Id { get; set; }
 
 ### <a name="iloggerfactory-is-now-a-scoped-service"></a>Ahora ILoggerFactory es un servicio con ámbito
 
-[Problema de seguimiento n.º 14698](https://github.com/aspnet/EntityFrameworkCore/issues/14698)
+[Problema de seguimiento n.º 14698](https://github.com/aspnet/EntityFrameworkCore/issues/14698)
 
 **Comportamiento anterior**
 
@@ -1097,7 +1097,7 @@ Si experimenta situaciones como esta, registre un problema en el [rastreador de 
 
 ### <a name="lazy-loading-proxies-no-longer-assume-navigation-properties-are-fully-loaded"></a>En los proxies de carga diferida ya no se supone que las propiedades de navegación están totalmente cargadas
 
-[Problema de seguimiento n.º 12780](https://github.com/aspnet/EntityFrameworkCore/issues/12780)
+[Problema de seguimiento n.º 12780](https://github.com/aspnet/EntityFrameworkCore/issues/12780)
 
 **Comportamiento anterior**
 
@@ -1122,7 +1122,7 @@ Actualice el código de la aplicación para que no intente la carga diferida con
 
 ### <a name="excessive-creation-of-internal-service-providers-is-now-an-error-by-default"></a>La creación excesiva de proveedores de servicios internos ahora es un error de forma predeterminada
 
-[Problema de seguimiento n.º 10236](https://github.com/aspnet/EntityFrameworkCore/issues/10236)
+[Problema de seguimiento n.º 10236](https://github.com/aspnet/EntityFrameworkCore/issues/10236)
 
 **Comportamiento anterior**
 
@@ -1154,7 +1154,7 @@ protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 
 ### <a name="new-behavior-for-hasonehasmany-called-with-a-single-string"></a>Comportamiento nuevo de HasOne/HasMany llamado con una sola cadena
 
-[Problema de seguimiento n.° 9171](https://github.com/aspnet/EntityFrameworkCore/issues/9171)
+[Problema de seguimiento n.º 9171](https://github.com/aspnet/EntityFrameworkCore/issues/9171)
 
 **Comportamiento anterior**
 
@@ -1221,7 +1221,7 @@ Tenga en cuenta que esto niega la reducción de asignación que implica este cam
 
 ### <a name="the-relationaltypemapping-annotation-is-now-just-typemapping"></a>La anotación Relational:TypeMapping ahora es simplemente TypeMapping
 
-[Problema de seguimiento n.º 9913](https://github.com/aspnet/EntityFrameworkCore/issues/9913)
+[Problema de seguimiento n.º 9913](https://github.com/aspnet/EntityFrameworkCore/issues/9913)
 
 **Comportamiento anterior**
 
@@ -1242,7 +1242,7 @@ La acción más apropiada para corregir es usar la superficie de API para accede
 
 ### <a name="totable-on-a-derived-type-throws-an-exception"></a>ToTable en un tipo derivado inicia una excepción 
 
-[Problema de seguimiento n.º 11811](https://github.com/aspnet/EntityFrameworkCore/issues/11811)
+[Problema de seguimiento n.º 11811](https://github.com/aspnet/EntityFrameworkCore/issues/11811)
 
 **Comportamiento anterior**
 
@@ -1263,7 +1263,7 @@ Quite todos los intentos de asignar tipos derivados a otras tablas.
 
 ### <a name="forsqlserverhasindex-replaced-with-hasindex"></a>ForSqlServerHasIndex se ha reemplazado por HasIndex 
 
-[Problema de seguimiento n.º 12366](https://github.com/aspnet/EntityFrameworkCore/issues/12366)
+[Problema de seguimiento n.º 12366](https://github.com/aspnet/EntityFrameworkCore/issues/12366)
 
 **Comportamiento anterior**
 
@@ -1272,7 +1272,7 @@ Antes de EF Core 3.0, `ForSqlServerHasIndex().ForSqlServerInclude()` proporciona
 **Comportamiento nuevo**
 
 A partir de EF Core 3.0, ya se admite el uso de `Include` en un índice en el nivel relacional.
-Mediante `HasIndex().ForSqlServerInclude()`.
+Use `HasIndex().ForSqlServerInclude()`.
 
 **Por qué**
 
@@ -1330,7 +1330,7 @@ Use los nuevos métodos de extensión.
 
 ### <a name="ef-core-no-longer-sends-pragma-for-sqlite-fk-enforcement"></a>EF Core ya no envía pragma para el cumplimiento de SQLite FK
 
-[Problema de seguimiento n.º 12151](https://github.com/aspnet/EntityFrameworkCore/issues/12151)
+[Problema de seguimiento n.º 12151](https://github.com/aspnet/EntityFrameworkCore/issues/12151)
 
 **Comportamiento anterior**
 
