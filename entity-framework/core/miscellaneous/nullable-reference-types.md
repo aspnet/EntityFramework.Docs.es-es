@@ -4,12 +4,12 @@ author: roji
 ms.date: 09/09/2019
 ms.assetid: bde4e0ee-fba3-4813-a849-27049323d301
 uid: core/miscellaneous/nullable-reference-types
-ms.openlocfilehash: 3acd446d64a94ffecb12c181e3910528d2293448
-ms.sourcegitcommit: 51148929e3889c48227d96c95c4e310d53a3d2c9
+ms.openlocfilehash: 7d262ab9fb45535b626ce8d503b31a5e9a4630d3
+ms.sourcegitcommit: 6f7af3f138bf7c724cbdda261f97e5cf7035e8d7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/21/2020
-ms.locfileid: "86873362"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88847571"
 ---
 # <a name="working-with-nullable-reference-types"></a>Trabajar con tipos de referencia que aceptan valores NULL
 
@@ -26,9 +26,11 @@ La documentación principal sobre las propiedades obligatorias y opcionales y su
 
 ## <a name="dbcontext-and-dbset"></a>DbContext y DbSet
 
-Cuando se habilitan los tipos de referencia que aceptan valores NULL, el compilador de C# emite advertencias para cualquier propiedad no inicializada que no acepte valores NULL, ya que estos contendrían el valor null. Como resultado, la práctica común de tener propiedades DbSet sin inicializar en un tipo de contexto generará ahora una advertencia. Para corregirlo, haga que las propiedades de DbSet sean de solo lectura e inicialícela como se indica a continuación:
+Cuando se habilitan los tipos de referencia que aceptan valores NULL, el compilador de C# emite advertencias para cualquier propiedad no inicializada que no acepte valores NULL, ya que estos contendrían el valor null. Como resultado, la práctica común de tener propiedades DbSet sin inicializar en un tipo de contexto generará ahora una advertencia. Esto puede corregirse de la siguiente manera:
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/NullableReferenceTypesContext.cs?name=Context&highlight=3-4)]
+
+Otra estrategia consiste en usar propiedades automáticas que no aceptan valores NULL, pero para inicializarlas en null, mediante el operador null-permisivo (!) para silenciar la advertencia del compilador. El constructor DbContext garantiza que se inicialicen todas las propiedades DbSet y que nunca se observará null en ellas.
 
 ## <a name="non-nullable-properties-and-initialization"></a>Propiedades y inicialización que no aceptan valores NULL
 
