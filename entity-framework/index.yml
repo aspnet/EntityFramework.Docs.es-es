@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 04/15/2020
-  ms.openlocfilehash: 3b8d9979b559dcac71da64634260c93fa7b3dde2
-  ms.sourcegitcommit: c94a356ab03f2031c4b86aa4e4b6271928b7f4c8
+  ms.openlocfilehash: 62ba750c2426cb91a2dd39545f02922ad2686f29
+  ms.sourcegitcommit: 6f7af3f138bf7c724cbdda261f97e5cf7035e8d7
   ms.translationtype: HT
   ms.contentlocale: es-ES
-  ms.lasthandoff: 08/03/2020
-  ms.locfileid: "87538701"
+  ms.lasthandoff: 08/25/2020
+  ms.locfileid: "88847609"
 highlightedContent:
   items:
   - title: Entity Framework Core
@@ -76,7 +76,7 @@ additionalContent:
         text: ASP.NET Core, Razor Pages
       - url: https://docs.microsoft.com/aspnet/core/data/ef-mvc/
         text: ASP.NET Core MVC
-      - url: https://docs.microsoft.com/aspnet/core/blazor/dependency-injection?#use-of-entity-framework-dbcontext-from-di
+      - url: https://docs.microsoft.com/aspnet/core/blazor/blazor-server-ef-core
         text: Servidor Blazor
       - url: core/get-started/wpf.md
         text: Windows Presentation Foundation (WPF)
