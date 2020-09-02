@@ -1,14 +1,14 @@
 ---
 title: Plan para Entity Framework Core 5.0
 author: ajcvickers
-ms.date: 06/11/2020
+ms.date: 08/22/2020
 uid: core/what-is-new/ef-core-5.0/plan
-ms.openlocfilehash: 4abb6f500dce320dd0c32f8f3bf5c529b59fb28b
-ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
+ms.openlocfilehash: a0d41d6df844c9ca2c8a2dc8ba50ca669e23dced
+ms.sourcegitcommit: 6f7af3f138bf7c724cbdda261f97e5cf7035e8d7
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526893"
+ms.lasthandoff: 08/25/2020
+ms.locfileid: "88847584"
 ---
 # <a name="plan-for-entity-framework-core-50"></a>Plan para Entity Framework Core 5.0
 
@@ -25,7 +25,7 @@ En la actualidad, el lanzamiento de EF Core 5.0 está programado al [mismo tiem
 
 ### <a name="supported-platforms"></a>Plataformas compatibles
 
-Está previsto que EF Core 5.0 se ejecute en cualquier plataforma .NET 5.0 en función de la [ convergencia de estas plataformas a .NET Core](https://devblogs.microsoft.com/dotnet/introducing-net-5/). Lo que esto significa en términos de .NET Standard y el TFM real que se usa todavía está por determinar.
+Está previsto que EF Core 5.0 se ejecute en cualquier plataforma de .NET Standard 2.1, incluido .NET 5.0. Esto forma parte de la [convergencia más general a nivel de .NET de las plataformas a .NET Core](https://devblogs.microsoft.com/dotnet/introducing-net-5/).
 
 EF Core 5.0 no se ejecutará en .NET Framework.
 
@@ -47,7 +47,7 @@ Número de seguimiento: [10508](https://github.com/aspnet/EntityFrameworkCore/is
 
 Talla de camiseta: L
 
-Estado: En curso
+Estado: ¡Listo!
 
 Varios a varios es la [característica más solicitada](https://github.com/aspnet/EntityFrameworkCore/issues/1368) (506 votos aproximadamente) en el trabajo pendiente de GitHub.
 
@@ -67,7 +67,7 @@ Seguimiento realizado por [#19003](https://github.com/aspnet/EntityFrameworkCore
 
 Talla de camiseta: L
 
-Estado: En curso
+Estado: ¡Listo!
 
 Tal y como se describe en el primer tema, la compatibilidad de varios a varios tiene varios aspectos que cabe destacar.
 En este tema se realiza un seguimiento específico del uso de las navegaciones por omisión.
@@ -76,13 +76,13 @@ Es posible que el tipo de entidad de tabla de combinación siga existiendo, pero
 
 ## <a name="table-per-type-tpt-inheritance-mapping"></a>Asignación de herencia de tabla por tipo (TPT)
 
-Jefe de desarrollo: @AndriySvyryd
+Jefe de desarrollo: @AndriySvyryd y @smitpatel
 
 Seguimiento realizado por [#2266](https://github.com/aspnet/EntityFrameworkCore/issues/2266)
 
 Talla de camiseta: XL
 
-Estado: En curso
+Estado: ¡Listo!
 
 TPT se va a incluir porque se trata de una característica muy solicitada (aproximadamente 289 votos; en tercera posición) y porque requiere algunos cambios de bajo nivel que consideramos adecuados para la naturaleza fundamental del plan general de .NET 5. Esperamos que esto genere cambios importantes para los proveedores de bases de datos, aunque deberían ser mucho menos graves que los necesarios para la versión 3.0.
 
@@ -94,7 +94,7 @@ Seguimiento realizado por [#1833](https://github.com/aspnet/EntityFrameworkCore/
 
 Talla de camiseta: M
 
-Estado: En curso
+Estado: ¡Listo!
 
 Inclusión filtrada es una característica muy solicitada (aproximadamente 376 votos; en segunda posición) que no requiere demasiado trabajo y que creemos que desbloqueará o facilitará escenarios que actualmente requieren filtros de nivel de modelo o consultas más complejas.
 
@@ -106,7 +106,7 @@ Número de seguimiento: [20892](https://github.com/dotnet/efcore/issues/20892)
 
 Talla de camiseta: L
 
-Estado: En curso
+Estado: ¡Listo!
 
 EF Core 3.0 cambió el comportamiento predeterminado para crear una consulta SQL única para una consulta LINQ determinada.
 Esto provocó una gran cantidad de degradaciones de rendimiento para las consultas que usan Include para varias colecciones.
@@ -114,15 +114,27 @@ Esto provocó una gran cantidad de degradaciones de rendimiento para las consult
 En EF Core 5.0, se mantiene el nuevo comportamiento predeterminado.
 Sin embargo, EF Core 5.0 ahora permite la generación de varias consultas para los métodos Include de la colección en los que tener una sola consulta provoca deficiencias en el rendimiento.
 
+## <a name="required-one-to-one-dependents"></a>Dependencias de uno a uno obligatorias
+
+Jefes de desarrollo: @AndriySvyryd y @smitpatel
+
+Número de seguimiento: [12100](https://github.com/dotnet/efcore/issues/12100)
+
+Talla de camiseta: M
+
+Estado: ¡Listo!
+
+En EF Core 3.0, todas las dependencias, incluidos los tipos de propiedad, son opcionales (por ejemplo, Person.Address puede ser NULL). En EF Core 5.0, se pueden configurar las dependencias según sea necesario.
+
 ## <a name="rationalize-totable-toquery-toview-fromsql-etc"></a>Racionalización de ToTable, ToQuery, ToView, FromSql, etc.
 
-Jefes de desarrollo: @maumar y @smitpatel
+Jefes de desarrollo: @AndriySvyryd y @smitpatel
 
 Seguimiento realizado por [#17270](https://github.com/aspnet/EntityFrameworkCore/issues/17270)
 
 Talla de camiseta: L
 
-Estado: En curso
+Estado: ¡Listo!
 
 Se han realizado avances en versiones anteriores hacia la compatibilidad con SQL sin procesar, tipos sin clave y áreas relacionadas. Pero hay brechas e incoherencias en el funcionamiento en conjunto de todos los elementos. El objetivo para la versión 5.0 es corregirlos y crear una buena experiencia para definir, migrar y usar otros tipos de entidades y sus consultas y artefactos de base de datos asociados. Esto también puede implicar actualizaciones de la API de consulta compilada.
 
@@ -136,7 +148,7 @@ Seguimiento por [problemas etiquetados con `area-query` en el hito 5.0](https://
 
 Talla de camiseta: XL
 
-Estado: En curso
+Estado: ¡Listo!
 
 El código de traducción de consultas se ha reescrito de forma exhaustiva para EF Core 3.0. Por este motivo, el código de consulta tiene un estado mucho más robusto. Para la versión 5.0, no se planean cambios importantes en las consultas más allá de los necesarios para admitir TPT y la omisión de propiedades de navegación. Pero se necesita un trabajo importante para corregir las deudas técnicas generadas tras la revisión de la versión 3.0. También tenemos previsto corregir muchos errores e implementar pequeñas mejoras para mejorar aún más la experiencia general de las consultas.
 
@@ -148,7 +160,9 @@ Seguimiento realizado por [#19587](https://github.com/dotnet/efcore/issues/19587
 
 Talla de camiseta: L
 
-Estado: En curso
+Estado: Ámbito y trabajo hecho
+
+Ámbito: la [característica de conjunto de migraciones](https://github.com/dotnet/efcore/issues/19693) se ha aplazado hasta después de la versión EF Core 5.0. Sin embargo, en EF Core 5.0 se incluirán [otras mejoras de destino relacionadas con las migraciones](https://github.com/dotnet/efcore/issues/19587#issuecomment-668794460).
 
 En la actualidad, muchos desarrolladores migran sus bases de datos en el momento de inicio de la aplicación. Esto es fácil, pero no se recomienda porque:
 
@@ -175,7 +189,9 @@ Seguimiento realizado por [#19588](https://github.com/dotnet/efcore/issues/19588
 
 Talla de camiseta: L
 
-Estado: Sin iniciar
+Estado: Ámbito o hecho
+
+Ámbito: la guía y los ejemplos de la plataforma se publican para Blazor, Xamarin, WinForms y WPF. Xamarin y otros trabajos de AOT o enlazador ahora están previstos para EF Core 6.0.
 
 Disponemos de instrucciones de calidad para usar EF Core en aplicaciones web tradicionales similares a MVC. Las instrucciones para otras plataformas y modelos de aplicación no existen o no están actualizadas. Para EF Core 5.0, el objetivo es investigar, mejorar y documentar la experiencia de uso de EF Core con:
 
@@ -201,7 +217,9 @@ Seguimiento por [problemas etiquetados con `area-perf` en el hito 5.0](https://g
 
 Talla de camiseta: L
 
-Estado: En curso
+Estado: Ámbito y trabajo hecho
+
+Ámbito: se han completado las principales mejoras de rendimiento en el proveedor Npgsql. Ahora se ha planificado otro trabajo de rendimiento para EF Core 6.0.
 
 Para EF Core, el plan es mejorar nuestro conjunto de pruebas comparativas de rendimiento y realizar mejoras de rendimiento dirigidas al tiempo de ejecución. Además, tenemos previsto completar la nueva API de procesamiento por lotes de ADO.NET, que se ha creado como prototipo durante el ciclo de versiones de 3.0. En el nivel de ADO.NET también se planean mejoras de rendimiento adicionales para el proveedor Npgsql.
 
@@ -277,7 +295,7 @@ Desarrolladores: @roji, @maumar, @bricelam, @smitpatel, @AndriySvyryd, @ajcvicke
 
 Talla de camiseta: L
 
-Estado: En curso
+Estado: ¡Listo!
 
 Además de las características más importantes descritas antes, también hay muchas mejoras más pequeñas programadas para la versión 5.0 a fin de corregir los "elementos excluidos". Tenga en cuenta que muchas de estas mejoras también se incluyen en los temas más generales descritos antes.
 
