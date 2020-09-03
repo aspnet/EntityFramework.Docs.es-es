@@ -4,12 +4,12 @@ description: Información general sobre las nuevas características de EF Core 
 author: ajcvickers
 ms.date: 07/20/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew
-ms.openlocfilehash: 3a1f5c7d44ad0e4d648492c4edcf14678c73538e
-ms.sourcegitcommit: 6f7af3f138bf7c724cbdda261f97e5cf7035e8d7
+ms.openlocfilehash: f822e3ae776778749a654377cbd9d9814ca40972
+ms.sourcegitcommit: 12d257db4786487a0c28e9ddd79f176f7cf6edb1
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88847601"
+ms.lasthandoff: 08/28/2020
+ms.locfileid: "89043602"
 ---
 # <a name="whats-new-in-ef-core-50"></a>Novedades en EF Core 5.0
 
@@ -21,7 +21,7 @@ A medida que se publique el contenido, se agregarán vínculos que redirigirán 
 
 ## <a name="preview-8"></a>Versión preliminar 8
 
-## <a name="table-per-type-tpt-mapping"></a>Asignación de tabla por tipo (TPT)
+### <a name="table-per-type-tpt-mapping"></a>Asignación de tabla por tipo (TPT)
 
 De forma predeterminada, EF Core asigna una jerarquía de herencia de tipos .NET a una tabla de base de datos única. Esto se conoce como asignación de tabla por jerarquía (TPH). EF Core 5.0 también permite asignar cada tipo .NET de una jerarquía de herencia a una tabla de base de datos diferente; esto se conoce como asignación de tabla por tipo (TPT).
 
