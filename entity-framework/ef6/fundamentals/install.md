@@ -1,35 +1,37 @@
 ---
 title: Obtener Entity Framework-EF6
+description: Obtener Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 122c38a2-f9e8-4ecc-9c72-a83bc9af7814
-ms.openlocfilehash: 2bdec6a9be228fbe934d0f46aa1bfafdfb2c971c
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/install
+ms.openlocfilehash: bfd016a93de73ada4487a454ec7abd9251aeecfe
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416100"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616255"
 ---
 # <a name="get-entity-framework"></a>Obtener Entity Framework
-Entity Framework está formado por EF Tools para Visual Studio y EF runtime.
+Entity Framework se compone de las herramientas de EF para Visual Studio y el tiempo de ejecución de EF.
 
-## <a name="ef-tools-for-visual-studio"></a>EF Tools para Visual Studio
+## <a name="ef-tools-for-visual-studio"></a>Herramientas de EF para Visual Studio
 
-Entity Framework Tools para Visual Studio incluyen EF Designer y el EF Model Wizard y son necesarios para los flujos de trabajo _database first_ y _model first_. EF Tools es includo en todas las versiones recientes de Visual Studio. Si lleva a cabo una instalación personalizada de Visual Studio, deberá asegurarse el elemento "Entity Frameworks 6 Tools" está seleccionado eligiendo un _workload_ que lo incluya o seleccionandolo como un componente individual.
+El Entity Framework Tools para Visual Studio incluye el diseñador de EF y el Asistente para modelo de EF y son necesarios para los flujos de trabajo primero y modelo primero. Las herramientas de EF se incluyen en todas las versiones recientes de Visual Studio. Si realiza una instalación personalizada de Visual Studio, debe asegurarse de que el elemento "Entity Framework 6 herramientas" esté seleccionado eligiendo una carga de trabajo que lo incluya o seleccionándola como componente individual.
 
-Para algunas versiones anteriores de Visual Studio, EF Tools actualizadas están disponibles como descarga. Consulte [versiones de Visual Studio](~/ef6/what-is-new/visual-studio.md) para obtener instrucciones sobre cómo obtener la versión más reciente de las herramientas de EF disponibles para su versión de Visual Studio.
+En algunas versiones anteriores de Visual Studio, las herramientas de EF actualizadas están disponibles como descarga. Consulte [versiones de Visual Studio](xref:ef6/what-is-new/visual-studio) para obtener instrucciones sobre cómo obtener la versión más reciente de las herramientas de EF disponibles para su versión de Visual Studio.
 
-## <a name="ef-runtime"></a>EF runtime
+## <a name="ef-runtime"></a>Tiempo de ejecución de EF
 
-La versión más reciente de Entity Framework está disponible como el [paquete NuGet EntityFramework](https://nuget.org/packages/EntityFramework/). Si no está familiarizado con el administrador de paquetes NuGet, le recomendamos que lea la [información general de Nuget](https://docs.microsoft.com/nuget/consume-packages/overview-and-workflow).
+La versión más reciente de Entity Framework está disponible como el [paquete NuGet EntityFramework](https://nuget.org/packages/EntityFramework/). Si no está familiarizado con el administrador de paquetes NuGet, le recomendamos que lea la [información general de Nuget](/nuget/consume-packages/overview-and-workflow).
 
-### <a name="installing-the-ef-nuget-package"></a>Instalar EF NuGet package
+### <a name="installing-the-ef-nuget-package"></a>Instalación del paquete de NuGet de EF
 
 Para instalar el paquete EntityFramework, haga clic con el botón derecho en la carpeta **referencias** del proyecto y seleccione **administrar paquetes NuGet..** .
 
 ![Administración de paquetes de NuGet](~/ef6/media/managenugetpackages.png)
 
-### <a name="installing-from-package-manager-console"></a>Instalación desde Package Manager Console
+### <a name="installing-from-package-manager-console"></a>Instalar desde la consola del administrador de paquetes
 
 Como alternativa, puede instalar EntityFramework ejecutando el siguiente comando en la consola del [Administrador de paquetes](https://docs.nuget.org/docs/start-here/using-the-package-manager-console).
 
@@ -47,13 +49,13 @@ Install-Package EntityFramework -Version <number>
 
 Tenga en cuenta que `<number>` representa la versión específica de EF que se va a instalar. Por ejemplo, 6.2.0 es la versión del número para EF 6,2.   
 
-Los EF runtimes anteriores a 4.1 formaban parte de .NET Framework y no se puede instalar por separado.
+Los tiempos de ejecución de EF anteriores a 4,1 formaban parte de .NET Framework y no se pueden instalar por separado.
 
 ### <a name="installing-the-latest-preview"></a>Instalación de la versión preliminar más reciente
 
-Los métodos anteriores le proporcionarán la versión más reciente totalmente compatible con la versión de Entity Framework. A menudo hay versiones preliminares disponibles de Entity Framework que nos encantaría que probara y de las que puede enviarnos sus comentarios.
+Los métodos anteriores le proporcionarán la última versión compatible de Entity Framework. A menudo hay versiones preliminares de Entity Framework disponibles que le encantaría probar y enviarnos sus comentarios.
 
-Para instalar la versión preliminar más reciente de EntityFramework, puede seleccionar **incluir versión** preliminar en la ventana administrar paquetes NuGet. Si no hay ninguna versión preliminar disponible automáticamente obtendrá la última versión compatible de Entity Framework.
+Para instalar la versión preliminar más reciente de EntityFramework, puede seleccionar **incluir versión** preliminar en la ventana administrar paquetes NuGet. Si no hay disponibles versiones preliminares, obtendrá automáticamente la versión más reciente compatible de Entity Framework.
 
 ![Incluir versión preliminar](~/ef6/media/includeprerelease.png)
 

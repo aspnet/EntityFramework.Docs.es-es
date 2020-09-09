@@ -1,15 +1,16 @@
 ---
 title: EF Core de registro
+description: Configuración del registro con Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: f6e35c6d-45b7-4258-be1d-87c1bb67438d
 uid: core/miscellaneous/logging
-ms.openlocfilehash: 4f39e0ad1f061970aae7f7eb7abdc72e4bb0d691
-ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
+ms.openlocfilehash: 56d0e3f8c5ecf56ee6bd6ddf0c9668bb8e3ac12f
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526464"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617746"
 ---
 # <a name="logging"></a>Registro
 
@@ -33,7 +34,7 @@ El registro de EF Core requiere un ILoggerFactory que se configura a su vez con 
 
 Después de instalar los paquetes adecuados, la aplicación debe crear una instancia singleton/global de un LoggerFactory. Por ejemplo, mediante el registrador de consola:
 
-### <a name="version-3x"></a>[Versión 3. x](#tab/v3)
+### <a name="version-3x"></a>[Versión 3.x](#tab/v3)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/Logging/Logging/BloggingContext.cs#DefineLoggerFactory)]
 
@@ -60,7 +61,7 @@ Esta instancia singleton/global se debe registrar con EF Core en `DbContextOptio
 
 La aplicación puede controlar lo que se registra mediante la configuración de un filtro en el ILoggerProvider. Por ejemplo:
 
-### <a name="version-3x"></a>[Versión 3. x](#tab/v3)
+### <a name="version-3x"></a>[Versión 3.x](#tab/v3)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/Logging/Logging/BloggingContextWithFiltering.cs#DefineLoggerFactory)]
 

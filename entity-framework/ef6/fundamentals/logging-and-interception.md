@@ -1,14 +1,16 @@
 ---
 title: 'Registro e intercepción de operaciones de base de datos: EF6'
+description: Registrar e interceptar operaciones de base de datos en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
-ms.openlocfilehash: 35b0284a5ad8b2b732f074589bd458d243312575
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/logging-and-interception
+ms.openlocfilehash: bb5c3392b4f2e1f291d7ac373d07724f56d0eb30
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416106"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616194"
 ---
 # <a name="logging-and-intercepting-database-operations"></a>Registrar e interceptar operaciones de base de datos
 > [!NOTE]
@@ -126,7 +128,7 @@ Al examinar la salida de ejemplo anterior, cada uno de los cuatro comandos regis
 
 Como se indicó anteriormente, el registro en la consola es muy sencillo. También es fácil de registrar en la memoria, el archivo, etc. mediante el uso de diferentes tipos de [TextWriter](https://msdn.microsoft.com/library/system.io.textwriter.aspx).  
 
-Si está familiarizado con LINQ to SQL podría observar que en LINQ to SQL la propiedad log está establecida en el objeto TextWriter real (por ejemplo, Console. out) mientras que en EF la propiedad log está establecida en un método que acepta una cadena (por ejemplo, , Console. Write o Console. out. Write). El motivo es desacoplar EF de TextWriter mediante la aceptación de cualquier delegado que pueda actuar como receptor de cadenas. Por ejemplo, Imagine que ya tiene alguna plataforma de registro y que define un método de registro como el siguiente:  
+Si está familiarizado con LINQ to SQL podría observar que en LINQ to SQL la propiedad log está establecida en el objeto TextWriter real (por ejemplo, Console. out) mientras que en EF la propiedad log está establecida en un método que acepta una cadena (por ejemplo, Console. Write o Console. out. Write). El motivo es desacoplar EF de TextWriter mediante la aceptación de cualquier delegado que pueda actuar como receptor de cadenas. Por ejemplo, Imagine que ya tiene alguna plataforma de registro y que define un método de registro como el siguiente:  
 
 ``` csharp
 public class MyLogger
@@ -194,7 +196,7 @@ Por ejemplo, supongamos que deseamos registrar solo una línea antes de que cada
 - Invalide LogCommand para dar formato y escribir la única línea de SQL  
 - Invalide LogResult para no hacer nada.  
 
-El código tendría un aspecto similar al siguiente:
+El código debería tener un aspecto parecido al siguiente:
 
 ``` csharp
 public class OneLineFormatter : DatabaseLogFormatter
@@ -261,11 +263,11 @@ El código de intercepción se crea en torno al concepto de interfaces de interc
 
 ### <a name="the-interception-context"></a>El contexto de interceptación  
 
-Si se examinan los métodos definidos en cualquiera de las interfaces del interceptor, es evidente que cada llamada recibe un objeto de tipo DbInterceptionContext o algún tipo derivado de este, como DbCommandInterceptionContext\<\>. Este objeto contiene información contextual sobre la acción que está llevando a cabo EF. Por ejemplo, si la acción se realiza en nombre de un DbContext, el DbContext se incluye en el DbInterceptionContext. De forma similar, para los comandos que se ejecutan de forma asincrónica, la marca IsAsync se establece en DbCommandInterceptionContext.  
+Si se examinan los métodos definidos en cualquiera de las interfaces del interceptor, es evidente que cada llamada recibe un objeto de tipo DbInterceptionContext o algún tipo derivado de este, como DbCommandInterceptionContext \<\> . Este objeto contiene información contextual sobre la acción que está llevando a cabo EF. Por ejemplo, si la acción se realiza en nombre de un DbContext, el DbContext se incluye en el DbInterceptionContext. De forma similar, para los comandos que se ejecutan de forma asincrónica, la marca IsAsync se establece en DbCommandInterceptionContext.  
 
 ### <a name="result-handling"></a>Control de resultados  
 
-La clase DbCommandInterceptionContext\<\> contiene una propiedad denominada result, OriginalResult, Exception y OriginalException. Estas propiedades se establecen en NULL/Zero para las llamadas a los métodos de interceptación a los que se llama antes de que se ejecute la operación, es decir, para... Ejecutar métodos. Si la operación se ejecuta y se realiza correctamente, result y OriginalResult se establecen en el resultado de la operación. Estos valores se pueden observar en los métodos de interceptación a los que se llama después de que se haya ejecutado la operación, es decir, en... Métodos ejecutados. Del mismo modo, si se produce la operación, se establecerán las propiedades Exception y OriginalException.  
+La \<\> clase DbCommandInterceptionContext contiene una propiedad denominada result, OriginalResult, Exception y OriginalException. Estas propiedades se establecen en NULL/Zero para las llamadas a los métodos de interceptación a los que se llama antes de que se ejecute la operación, es decir, para... Ejecutar métodos. Si la operación se ejecuta y se realiza correctamente, result y OriginalResult se establecen en el resultado de la operación. Estos valores se pueden observar en los métodos de interceptación a los que se llama después de que se haya ejecutado la operación, es decir, en... Métodos ejecutados. Del mismo modo, si se produce la operación, se establecerán las propiedades Exception y OriginalException.  
 
 #### <a name="suppressing-execution"></a>Suprimir la ejecución  
 

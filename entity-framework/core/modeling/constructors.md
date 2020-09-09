@@ -1,15 +1,16 @@
 ---
 title: 'Tipos de entidad con constructores: EF Core'
+description: Usar constructores para enlazar datos con Entity Framework Core modelo
 author: ajcvickers
 ms.date: 02/23/2018
 ms.assetid: 420AFFE7-B709-4A68-9149-F06F8746FB33
 uid: core/modeling/constructors
-ms.openlocfilehash: ddfaa8eebde388a9d3309f21b8891de593077956
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 58529a3a68e69a31249460d402027274404dce45
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414654"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617536"
 ---
 # <a name="entity-types-with-constructors"></a>Tipos de entidad con constructores
 
@@ -204,7 +205,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 Cosas que hay que tener en cuenta:
 
-* La clave "propiedad" es ahora un campo. No se trata de un campo de `readonly` para que se puedan usar las claves generadas por el almacén.
+* La clave "propiedad" es ahora un campo. No es un `readonly` campo para que se puedan usar claves generadas por el almacén.
 * Las demás propiedades son propiedades de solo lectura establecidas solo en el constructor.
 * Si el valor de la clave principal solo se establece en EF o se lee de la base de datos, no es necesario incluirlo en el constructor. Esto deja la clave "Property" como un campo simple y deja claro que no se debe establecer explícitamente al crear nuevos blogs o publicaciones.
 
@@ -215,10 +216,10 @@ Cosas que hay que tener en cuenta:
 
 EF Core también puede insertar "servicios" en el constructor de un tipo de entidad. Por ejemplo, se puede insertar lo siguiente:
 
-* `DbContext`: la instancia de contexto actual, que también se puede escribir como el tipo de DbContext derivado.
-* `ILazyLoader`-el servicio de carga diferida, consulte la [documentación sobre la carga diferida](../querying/related-data.md) para obtener más detalles.
-* `Action<object, string>`: un delegado de carga diferida; consulte la [documentación sobre la carga diferida](../querying/related-data.md) para obtener más detalles.
-* `IEntityType`: los metadatos de EF Core asociados a este tipo de entidad
+* `DbContext` -la instancia de contexto actual, que también se puede escribir como el tipo de DbContext derivado.
+* `ILazyLoader` -el servicio de carga diferida; consulte la [documentación sobre la carga diferida](xref:core/querying/related-data) para obtener más detalles.
+* `Action<object, string>` -un delegado de carga diferida; consulte la [documentación de carga diferida](xref:core/querying/related-data) para obtener más detalles.
+* `IEntityType` -los metadatos de EF Core asociados a este tipo de entidad
 
 > [!NOTE]  
 > A partir de EF Core 2,1, solo se pueden insertar los servicios conocidos por EF Core. Se está considerando la compatibilidad con la inserción de servicios de aplicación en una versión futura.
@@ -265,7 +266,7 @@ public class Post
 Algunos aspectos que se deben tener en cuenta:
 
 * El constructor es privado, ya que nunca lo llama EF Core, y hay otro constructor público para uso general.
-* El código que usa el servicio inyectado (es decir, el contexto) está defensivo con respecto a que se `null` controlar los casos en los que EF Core no crea la instancia.
+* El código que usa el servicio inyectado (es decir, el contexto) está defensivo con el `null` fin de controlar los casos en los que EF Core no está creando la instancia.
 * Dado que el servicio se almacena en una propiedad de lectura y escritura, se restablecerá cuando la entidad se adjunte a una nueva instancia de contexto.
 
 > [!WARNING]  

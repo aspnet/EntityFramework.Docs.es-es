@@ -1,14 +1,16 @@
 ---
 title: 'Resistencia de conexión y lógica de reintento: EF6'
+description: Resistencia de conexión y lógica de reintento en Entity Framework 6
 author: AndriySvyryd
 ms.date: 11/20/2019
 ms.assetid: 47d68ac1-927e-4842-ab8c-ed8c8698dff2
-ms.openlocfilehash: 50e65bed32d0cfcf42746da0d632f9e990424b97
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/connection-resiliency/retry-logic
+ms.openlocfilehash: 7d05c924f309e410bc457b7e46b0618d38c95569
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/15/2020
-ms.locfileid: "79402112"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616105"
 ---
 # <a name="connection-resiliency-and-retry-logic"></a>Resistencia de conexión y lógica de reintento
 > [!NOTE]
@@ -32,7 +34,7 @@ El reintento de conexión se realiza a través de una implementación de la inte
 
 ## <a name="enabling-an-execution-strategy"></a>Habilitar una estrategia de ejecución  
 
-La manera más sencilla de indicar a EF que use una estrategia de ejecución es con el método SetExecutionStrategy de la clase [DbConfiguration](~/ef6/fundamentals/configuring/code-based.md) :  
+La manera más sencilla de indicar a EF que use una estrategia de ejecución es con el método SetExecutionStrategy de la clase [DbConfiguration](xref:ef6/fundamentals/configuring/code-based) :  
 
 ``` csharp
 public class MyConfiguration : DbConfiguration
@@ -66,7 +68,7 @@ public class MyConfiguration : DbConfiguration
 
 El SqlAzureExecutionStrategy se volverá a intentar de inmediato la primera vez que se produzca un error transitorio, pero se retrasará más tiempo entre cada reintento hasta que se supere el límite máximo de reintentos o hasta que el tiempo total alcanza el retraso máximo.  
 
-Las estrategias de ejecución solo volverán a intentar un número limitado de excepciones que normalmente son transitorias; todavía tendrá que controlar otros errores, así como detectar la excepción RetryLimitExceeded para el caso en el que un error no sea transitorio o tarde demasiado en resolverse. propio.  
+Las estrategias de ejecución solo volverán a intentar un número limitado de excepciones que normalmente son transitorias; todavía tendrá que controlar otros errores, así como detectar la excepción RetryLimitExceeded en caso de que un error no sea transitorio o tarde demasiado en resolverse.  
 
 Hay algunas limitaciones conocidas al usar una estrategia de ejecución de reintento:  
 
@@ -84,7 +86,7 @@ using (var db = new BloggingContext())
 }
 ```  
 
-No se admite la transmisión por secuencias cuando se registra una estrategia de ejecución de reintento. Esta limitación existe porque la conexión podría quitar parte de los resultados que se devuelven. Cuando esto ocurre, EF debe volver a ejecutar toda la consulta, pero no tiene una forma confiable de saber qué resultados se han devuelto (los datos pueden haber cambiado desde que se envió la consulta inicial, por lo que los resultados pueden volver a un orden diferente, por lo que los resultados no tienen un identificador único). , etc.).  
+No se admite la transmisión por secuencias cuando se registra una estrategia de ejecución de reintento. Esta limitación existe porque la conexión podría quitar parte de los resultados que se devuelven. Cuando esto ocurre, EF debe volver a ejecutar toda la consulta pero no tiene una forma confiable de saber qué resultados se han devuelto (los datos pueden haber cambiado desde que se envió la consulta inicial, por lo que los resultados pueden volver a un orden diferente, los resultados pueden no tener un identificador único, etc.).  
 
 ## <a name="user-initiated-transactions-are-not-supported"></a>No se admiten las transacciones iniciadas por el usuario  
 

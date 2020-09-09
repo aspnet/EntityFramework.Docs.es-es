@@ -1,20 +1,21 @@
 ---
 title: 'Tokens de simultaneidad: EF Core'
+description: Configuración de tokens de simultaneidad para el control de simultaneidad optimista en un modelo de Entity Framework Core
 author: AndriySvyryd
 ms.date: 01/03/2020
 ms.assetid: bc8b1cb0-befe-4b67-8004-26e6c5f69385
 uid: core/modeling/concurrency
-ms.openlocfilehash: bfeb611f222f7195fe22d920b452b40cc4addf90
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 57718a1b0146f437bb4126524889c81ae0dfd895
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414624"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617544"
 ---
 # <a name="concurrency-tokens"></a>Tokens de simultaneidad
 
 > [!NOTE]
-> En esta página se documenta cómo configurar los tokens de simultaneidad. Vea [controlar los conflictos de simultaneidad](../saving/concurrency.md) para obtener una explicación detallada de cómo funciona el control de simultaneidad en EF Core y ejemplos de cómo controlar los conflictos de simultaneidad en la aplicación.
+> En esta página se documenta cómo configurar los tokens de simultaneidad. Vea [controlar los conflictos de simultaneidad](xref:core/saving/concurrency) para obtener una explicación detallada de cómo funciona el control de simultaneidad en EF Core y ejemplos de cómo controlar los conflictos de simultaneidad en la aplicación.
 
 Las propiedades configuradas como tokens de simultaneidad se usan para implementar el control de simultaneidad optimista.
 

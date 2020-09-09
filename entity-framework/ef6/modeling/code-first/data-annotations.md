@@ -1,14 +1,16 @@
 ---
 title: 'Code First de anotaciones de datos: EF6'
+description: Code First de las anotaciones de datos en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80abefbd-23c9-4fce-9cd3-520e5df9856e
-ms.openlocfilehash: 17370b83aee9974161b1771e8a1dc99c2de27f0f
-ms.sourcegitcommit: 6f7af3f138bf7c724cbdda261f97e5cf7035e8d7
+uid: ef6/modeling/code-first/data-annotations
+ms.openlocfilehash: 37b2872b5fb40cf0dc346554b2cbb9e3fffd6bdc
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88847623"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617360"
 ---
 # <a name="code-first-data-annotations"></a>Anotaciones de datos de Code First
 > [!NOTE]
@@ -135,7 +137,7 @@ Solo el orden relativo dentro de las propiedades de clave externa debe ser el mi
     }
 ```
 
-## <a name="required"></a>Requerido
+## <a name="required"></a>Obligatorio
 
 La `Required` anotación indica a EF que se requiere una propiedad determinada.
 
@@ -391,7 +393,7 @@ Los índices que abarcan varias columnas se especifican utilizando el mismo nomb
 ## <a name="relationship-attributes-inverseproperty-and-foreignkey"></a>Atributos de relación: InverseProperty y ForeignKey
 
 > [!NOTE]
-> En esta página se proporciona información sobre cómo configurar las relaciones en el modelo de Code First con anotaciones de datos. Para obtener información general sobre las relaciones en EF y cómo obtener acceso a los datos y manipularlos mediante relaciones, vea [relaciones & propiedades de navegación](~/ef6/fundamentals/relationships.md). *
+> En esta página se proporciona información sobre cómo configurar las relaciones en el modelo de Code First con anotaciones de datos. Para obtener información general sobre las relaciones en EF y cómo obtener acceso a los datos y manipularlos mediante relaciones, vea [relaciones & propiedades de navegación](xref:ef6/fundamentals/relationships). *
 
 La Convención Code First se encargará de las relaciones más comunes del modelo, pero hay algunos casos en los que necesita ayuda.
 

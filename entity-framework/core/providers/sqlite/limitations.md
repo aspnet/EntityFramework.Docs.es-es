@@ -1,15 +1,16 @@
 ---
 title: Proveedor de base de datos de SQLite-limitaciones-EF Core
+description: Limitaciones del proveedor de base de datos de Entity Framework Core SQLite en comparación con otros proveedores
 author: bricelam
 ms.date: 07/16/2020
 ms.assetid: 94ab4800-c460-4caa-a5e8-acdfee6e6ce2
 uid: core/providers/sqlite/limitations
-ms.openlocfilehash: 393f5e80ce2e11dcb11c2048e06effa27e48dc13
-ms.sourcegitcommit: d85263b5d5d665dbaf94de8832e2917bce048b34
+ms.openlocfilehash: 2657bf03bc5cd0d5fb45c57e7f7605824deb44d2
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86451234"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616533"
 ---
 # <a name="sqlite-ef-core-database-provider-limitations"></a>Limitaciones del proveedor de base de datos SQLite para EF Core
 
@@ -33,7 +34,7 @@ SQLite no admite de forma nativa los siguientes tipos de datos. EF Core puede le
 
 En lugar de `DateTimeOffset` , se recomienda usar valores DateTime. Al controlar varias zonas horarias, recomendamos convertir los valores a UTC antes de guardar y, a continuación, volver a convertirlos a la zona horaria adecuada.
 
-El `Decimal` tipo proporciona un alto nivel de precisión. Sin embargo, si no necesita ese nivel de precisión, se recomienda usar Double en su lugar. Puede usar un [convertidor de valores](../../modeling/value-conversions.md) para seguir usando decimal en las clases.
+El `Decimal` tipo proporciona un alto nivel de precisión. Sin embargo, si no necesita ese nivel de precisión, se recomienda usar Double en su lugar. Puede usar un [convertidor de valores](xref:core/modeling/value-conversions) para seguir usando decimal en las clases.
 
 ``` csharp
 modelBuilder.Entity<MyEntity>()

@@ -1,19 +1,21 @@
 ---
 title: DataBinding con WinForms-EF6
+description: DataBinding con WinForms en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 80fc5062-2f1c-4dbd-ab6e-b99496784b36
-ms.openlocfilehash: 4b3eee20ff238864b94ef4edfb97c1bae0713300
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/databinding/winforms
+ms.openlocfilehash: 934ea2ae488a7df128746a0607037d85e9b23771
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78416208"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616336"
 ---
-# <a name="databinding-with-winforms"></a>DataBinding con WinForms
+# <a name="databinding-with-winforms"></a>Databinding with WinForms (Enlace de datos con WinForms)
 En este tutorial paso a paso se muestra cómo enlazar tipos POCO a controles de formularios Windows Forms (WinForms) en un formulario "principal-detalle". La aplicación utiliza Entity Framework para rellenar los objetos con datos de la base de datos, realizar un seguimiento de los cambios y conservar los datos en la base de datos.
 
-El modelo define dos tipos que participan en una relación de uno a varios: Category (principal\\Master) y Product (Dependent\\Detail). A continuación, se usan las herramientas de Visual Studio para enlazar los tipos definidos en el modelo con los controles de WinForms. El marco de enlace de datos de WinForms permite la navegación entre objetos relacionados: la selección de filas en la vista maestra hace que la vista de detalles se actualice con los datos secundarios correspondientes.
+El modelo define dos tipos que participan en una relación de uno a varios: categoría ( \\ maestro principal) y producto ( \\ detalle dependiente). A continuación, se usan las herramientas de Visual Studio para enlazar los tipos definidos en el modelo con los controles de WinForms. El marco de enlace de datos de WinForms permite la navegación entre objetos relacionados: la selección de filas en la vista maestra hace que la vista de detalles se actualice con los datos secundarios correspondientes.
 
 Las capturas de pantalla y las listas de código de este tutorial se han tomado de Visual Studio 2013 pero puede completar este tutorial con Visual Studio 2012 o Visual Studio 2010.
 
@@ -25,8 +27,8 @@ Si usa Visual Studio 2010, también tiene que instalar NuGet. Para obtener más 
 
 ## <a name="create-the-application"></a>Crear la aplicación
 
--   Abra Visual Studio.
--   **Archivo-&gt; nuevo proyecto de&gt;....**
+-   Apertura de Visual Studio
+-   **Archivo- &gt; nuevo- &gt; proyecto....**
 -   Seleccione **Windows** en el panel izquierdo y **Windows FormsApplication** en el panel derecho.
 -   Escriba **WinFormswithEFSample** como nombre
 -   Seleccione **Aceptar**.
@@ -34,9 +36,9 @@ Si usa Visual Studio 2010, también tiene que instalar NuGet. Para obtener más 
 ## <a name="install-the-entity-framework-nuget-package"></a>Instalar el paquete NuGet de Entity Framework
 
 -   En Explorador de soluciones, haga clic con el botón derecho en el proyecto **WinFormswithEFSample**
--   Seleccione **administrar paquetes NuGet.** .
+-   Seleccione **administrar paquetes NuGet..** .
 -   En el cuadro de diálogo administrar paquetes NuGet, seleccione la pestaña **en línea** y elija el paquete **EntityFramework**
--   Haga clic en **Instalar**.  
+-   Haz clic en **Instalar**  
     > [!NOTE]
     > Además del ensamblado EntityFramework, también se agrega una referencia a System. ComponentModel. DataAnnotations. Si el proyecto tiene una referencia a System. Data. Entity, se quitará cuando se instale el paquete EntityFramework. El ensamblado System. Data. Entity ya no se utiliza para las aplicaciones de Entity Framework 6.
 
@@ -46,11 +48,11 @@ Las propiedades de colección deben implementar la interfaz IListSource para hab
 
 -   Agregue una clase **ObservableListSource** al proyecto:
     -   Haga clic con el botón derecho en el nombre del proyecto
-    -   Seleccionar **agregar&gt; nuevo elemento**
+    -   Seleccionar **agregar- &gt; nuevo elemento**
     -   Seleccione **clase** y escriba **ObservableListSource** para el nombre de clase.
 -   Reemplace el código generado de forma predeterminada con el código siguiente:
 
-*Esta clase permite el enlace de datos bidireccional y la ordenación. La clase se deriva de ObservableCollection&lt;T&gt; y agrega una implementación explícita de IListSource. El método GetList () de IListSource se implementa para devolver una implementación de IBindingList que permanece sincronizada con ObservableCollection. La implementación de IBindingList generada por ToBindingList admite la ordenación. El método de extensión ToBindingList se define en el ensamblado EntityFramework.*
+*Esta clase permite el enlace de datos bidireccional y la ordenación. La clase se deriva de ObservableCollection &lt; T &gt; y agrega una implementación explícita de IListSource. El método GetList () de IListSource se implementa para devolver una implementación de IBindingList que permanece sincronizada con ObservableCollection. La implementación de IBindingList generada por ToBindingList admite la ordenación. El método de extensión ToBindingList se define en el ensamblado EntityFramework.*
 
 ``` csharp
     using System.Collections;
@@ -77,7 +79,7 @@ Las propiedades de colección deben implementar la interfaz IListSource para hab
     }
 ```
 
-## <a name="define-a-model"></a>Definir un modelo
+## <a name="define-a-model"></a>Definición de un modelo
 
 En este tutorial, puede elegir implementar un modelo mediante Code First o el diseñador de EF. Complete una de las dos secciones siguientes.
 
@@ -134,9 +136,9 @@ Al usar Code First desarrollo, normalmente comienza por escribir .NET Framework 
     }
 ```
 
-Además de definir entidades, debe definir una clase que derive de **DbContext** y exponga las propiedades de **DbSet&lt;de la carpa&gt;** . Las propiedades **DbSet** permiten que el contexto sepa qué tipos desea incluir en el modelo. Los tipos **DbContext** y **DbSet** se definen en el ensamblado EntityFramework.
+Además de definir entidades, debe definir una clase que derive de **DbContext** y exponga propiedades de **DbSet &lt; &gt; ** . Las propiedades **DbSet** permiten que el contexto sepa qué tipos desea incluir en el modelo. Los tipos **DbContext** y **DbSet** se definen en el ensamblado EntityFramework.
 
-Una instancia del tipo derivado de DbContext administra los objetos de entidad durante el tiempo de ejecución, lo que incluye el rellenado de objetos con datos de una base de datos, el seguimiento de cambios y la persistencia de datos en la base de datos.
+Una instancia del tipo derivado de DbContext administra los objetos de entidad durante el tiempo de ejecución, lo que incluye rellenar los objetos con datos de una base de datos, el seguimiento de cambios y la persistencia de datos en la base de datos.
 
 -   Agregue una nueva clase **ProductContext** al proyecto.
 -   Reemplace el código generado de forma predeterminada con el código siguiente:
@@ -162,7 +164,7 @@ Compile el proyecto.
 
 ### <a name="option-2-define-a-model-using-database-first"></a>Opción 2: definir un modelo con Database First
 
-En esta sección se muestra cómo usar Database First para aplicar ingeniería inversa al modelo desde una base de datos mediante el diseñador de EF. Si ha completado la sección anterior (**opción 1: definir un modelo con Code First)** , omita esta sección y vaya directamente a la sección de **carga diferida** .
+En esta sección se muestra cómo usar Database First para aplicar ingeniería inversa al modelo desde una base de datos mediante el diseñador de EF. Si ha completado la sección anterior (**opción 1: definir un modelo con Code First)**, omita esta sección y vaya directamente a la sección de **carga diferida** .
 
 #### <a name="create-an-existing-database"></a>Crear una base de datos existente
 
@@ -175,8 +177,8 @@ El servidor de base de datos que se instala con Visual Studio es diferente en fu
 
 Vamos a generar la base de datos.
 
--   **Explorador de servidores de&gt; de vista**
--   Haga clic con el botón derecho en **conexiones de datos:&gt; agregar conexión...**
+-   **Vista &gt; Explorador de servidores**
+-   Haga clic con el botón derecho en **conexiones de datos: &gt; Agregar conexión...**
 -   Si no se ha conectado a una base de datos desde Explorador de servidores antes de que tenga que seleccionar Microsoft SQL Server como origen de datos
 
     ![Cambiar origen de datos](~/ef6/media/changedatasource.png)
@@ -217,13 +219,13 @@ Vamos a generar la base de datos.
 
 Vamos a hacer uso de Entity Framework Designer, que se incluye como parte de Visual Studio, para crear nuestro modelo.
 
--   **Proyecto-&gt; agregar nuevo elemento...**
+-   **Proyecto- &gt; Agregar nuevo elemento...**
 -   Seleccione **datos** en el menú de la izquierda y, a continuación, **ADO.NET Entity Data Model**
 -   Escriba **ProductModel** como nombre y haga clic en **Aceptar** .
 -   Se iniciará el **Asistente para Entity Data Model**
 -   Seleccione **generar desde la base de datos** y haga clic en **siguiente** .
 
-    ![ChooseModelContents](~/ef6/media/choosemodelcontents.png)
+    ![Elegir contenido de Model](~/ef6/media/choosemodelcontents.png)
 
 -   Seleccione la conexión a la base de datos creada en la primera sección, escriba **ProductContext** como nombre de la cadena de conexión y haga clic en **siguiente** .
 
@@ -233,19 +235,19 @@ Vamos a hacer uso de Entity Framework Designer, que se incluye como parte de Vis
 
     ![Elección de los objetos](~/ef6/media/chooseyourobjects.png)
 
-Una vez que se completa el proceso de ingeniería inversa, el nuevo modelo se agrega al proyecto y se abre para que pueda verlo en el Entity Framework Designer. También se ha agregado un archivo app. config al proyecto con los detalles de conexión de la base de datos.
+Una vez que se completa el proceso de ingeniería inversa, el nuevo modelo se agrega al proyecto y se abre para que pueda verlo en el Entity Framework Designer. También se ha agregado un archivo App.config al proyecto con los detalles de conexión de la base de datos.
 
 #### <a name="additional-steps-in-visual-studio-2010"></a>Pasos adicionales en Visual Studio 2010
 
 Si está trabajando en Visual Studio 2010, tendrá que actualizar el diseñador de EF para usar la generación de código EF6.
 
--   Haga clic con el botón derecho en una zona vacía del modelo en el diseñador de EF y seleccione **Agregar elemento de generación de código.** .
+-   Haga clic con el botón derecho en una zona vacía del modelo en el diseñador de EF y seleccione **Agregar elemento de generación de código..** .
 -   Seleccione **plantillas en línea** en el menú de la izquierda y busque **DbContext**
--   Seleccione el **generador de DbContext de EF 6. x para C\#,** escriba **ProductsModel** como nombre y haga clic en Agregar.
+-   Seleccione el **generador de DbContext de EF 6. x para C \# ,** escriba **ProductsModel** como nombre y haga clic en Agregar.
 
 #### <a name="updating-code-generation-for-data-binding"></a>Actualizar la generación de código para el enlace de datos
 
-EF genera código a partir del modelo mediante plantillas T4. Las plantillas que se incluyen con Visual Studio o que se descargan de la galería de Visual Studio están pensadas para uso general. Esto significa que las entidades generadas a partir de estas plantillas tienen propiedades simples de ICollection&lt;T&gt;. Sin embargo, cuando se realiza el enlace de datos, es aconsejable tener propiedades de colección que implementen IListSource. Este es el motivo por el que hemos creado la clase ObservableListSource anterior y ahora vamos a modificar las plantillas para hacer uso de esta clase.
+EF genera código a partir del modelo mediante plantillas T4. Las plantillas que se incluyen con Visual Studio o que se descargan de la galería de Visual Studio están pensadas para uso general. Esto significa que las entidades generadas a partir de estas plantillas tienen &lt; propiedades ICollection T simples &gt; . Sin embargo, cuando se realiza el enlace de datos, es aconsejable tener propiedades de colección que implementen IListSource. Este es el motivo por el que hemos creado la clase ObservableListSource anterior y ahora vamos a modificar las plantillas para hacer uso de esta clase.
 
 -   Abra el **Explorador de soluciones** y busque el archivo **ProductModel. edmx.**
 -   Busque el archivo **ProductModel.TT** que se anidará en el archivo ProductModel. edmx.
@@ -257,31 +259,31 @@ EF genera código a partir del modelo mediante plantillas T4. Las plantillas que
 -   Busque y reemplace la primera aparición de "**HashSet**" por "**ObservableListSource**". Esta repetición se encuentra en aproximadamente la línea 50. **No** Reemplace la segunda aparición de HashSet que se encuentra más adelante en el código.
 -   Guarde el archivo ProductModel.tt. Esto debería hacer que se vuelva a generar el código para las entidades. Si el código no se vuelve a generar automáticamente, haga clic con el botón derecho en ProductModel.tt y elija "ejecutar herramienta personalizada".
 
-Si ahora abre el archivo Category.cs (que está anidado en ProductModel.tt), debería ver que la colección Products tiene el tipo **ObservableListSource&lt;&gt;de producto** .
+Si ahora abre el archivo Category.cs (que está anidado en ProductModel.tt), debería ver que la colección Products tiene el tipo **ObservableListSource &lt; Product &gt; **.
 
 Compile el proyecto.
 
 ## <a name="lazy-loading"></a>Carga diferida
 
-La propiedad **Products** de la clase **categoría** y la propiedad **categoría** de la clase **Product** son propiedades de navegación. En Entity Framework, las propiedades de navegación proporcionan una manera de navegar por una relación entre dos tipos de entidad.
+La propiedad **Products** de la clase **Category** y la propiedad **Category** de la clase **Product** son propiedades de navegación. En Entity Framework, las propiedades de navegación proporcionan una manera de navegar por una relación entre dos tipos de entidad.
 
-EF ofrece una opción para cargar automáticamente entidades relacionadas desde la base de datos la primera vez que se tiene acceso a la propiedad de navegación. Con este tipo de carga (denominado carga diferida), tenga en cuenta que la primera vez que se tiene acceso a cada propiedad de navegación se ejecutará una consulta independiente en la base de datos si el contenido no está ya en el contexto.
+EF ofrece una opción para cargar automáticamente entidades relacionadas desde la base de datos la primera vez que se tiene acceso a la propiedad de navegación. Con este tipo de carga (denominado carga diferida), tenga en cuenta que la primera vez que se accede a cada propiedad de navegación se ejecutará una consulta independiente en la base de datos si el contenido no está ya en el contexto.
 
 Cuando se usan tipos de entidad POCO, EF consigue la carga diferida mediante la creación de instancias de tipos de proxy derivados durante el tiempo de ejecución y, a continuación, la invalidación de las propiedades virtuales en las clases para agregar el enlace de carga. Para obtener la carga diferida de los objetos relacionados, debe declarar captadores de propiedades de navegación como **Public** y **virtual** (**reemplazable** en Visual Basic) y la clase no debe estar **sellada** (**NotOverridable** en Visual Basic). Cuando se usa Database First propiedades de navegación se convierten automáticamente en virtual para habilitar la carga diferida. En la sección Code First hemos optado por que las propiedades de navegación sean virtuales por la misma razón
 
-## <a name="bind-object-to-controls"></a>Enlazar un objeto a controles
+## <a name="bind-object-to-controls"></a>Enlace de objetos a controles
 
 Agregue las clases que se definen en el modelo como orígenes de datos para esta aplicación de WinForms.
 
--   En el menú principal, seleccione **proyecto-&gt; agregar nuevo origen de datos.** .
-    (en Visual Studio 2010, debe seleccionar **datos-&gt; agregar nuevo origen de datos...** )
+-   En el menú principal, seleccione **proyecto- &gt; Agregar nuevo origen de datos.** ..
+    (en Visual Studio 2010, debe seleccionar **datos- &gt; Agregar nuevo origen de datos.**..)
 -   En la ventana elegir un tipo de origen de datos, seleccione **objeto** y haga clic en **siguiente** .
 -   En el cuadro de diálogo Seleccionar los objetos de datos, **WinFormswithEFSample** dos veces y seleccione **categoría** no es necesario seleccionar el origen de datos del producto, porque lo haremos a través de la propiedad del producto en el origen de datos de la categoría.
 
     ![Origen de datos](~/ef6/media/datasource.png)
 
 -   Haga clic en **Finish** (Finalizar).
-    Si la ventana orígenes de datos no aparece, seleccione **Ver-&gt; otros orígenes de datos de&gt; Windows** .
+    Si la ventana orígenes de datos no aparece, seleccione **Ver- &gt; otras ventanas-otros &gt; orígenes de datos** .
 -   Presione el icono de anclaje para que la ventana orígenes de datos no se oculte automáticamente. Es posible que tenga que presionar el botón actualizar si la ventana ya estaba visible.
 
     ![Origen de datos 2](~/ef6/media/datasource2.png)
@@ -294,17 +296,17 @@ Agregue las clases que se definen en el modelo como orígenes de datos para esta
     -   Presione Aceptar
 -   Seleccione productos en el origen de datos de la categoría y arrástrelos en el formulario. ProductDataGridView y productBindingSource se agregan al formulario.
 -   Edite las columnas en el productDataGridView. Queremos ocultar las columnas CategoryId y categoría y establecer ProductId en solo lectura. La base de datos genera el valor de la propiedad ProductId después de guardar los datos.
-    -   Haga clic con el botón secundario en el control DataGridView y seleccione **Editar columnas.** ...
+    -   Haga clic con el botón secundario en el control DataGridView y seleccione **Editar columnas.**...
     -   Seleccione la columna **ProductID** y establezca **ReadOnly** en **true**.
     -   Seleccione la columna **CategoryID** y presione el botón **quitar** . Haga lo mismo con la columna **categoría** .
-    -   Presione **Aceptar**.
+    -   Haga clic en **Aceptar**.
 
     Hasta ahora, asociamos nuestros controles DataGridView a componentes BindingSource en el diseñador. En la siguiente sección, agregaremos código al código subyacente para establecer categoryBindingSource. DataSource en la colección de entidades cuyo seguimiento realiza actualmente DbContext. Cuando hemos arrastrado y colocado productos desde la categoría, el WinForms se encarga de configurar la propiedad productsBindingSource. DataSource en categoryBindingSource y la propiedad productsBindingSource. DataMember en Products. Debido a este enlace, solo se mostrarán en el productDataGridView los productos que pertenecen a la categoría seleccionada actualmente.
 -   Habilite el botón **Guardar** en la barra de herramientas de navegación; para ello, haga clic con el botón secundario del mouse y seleccione **habilitado**.
 
     ![Diseñador de formulario 1](~/ef6/media/form1-designer.png)
 
--   Agregue el controlador de eventos para el botón Guardar haciendo doble clic en el botón. Esto agregará el controlador de eventos y le llevará al código subyacente para el formulario. El código del controlador de eventos **categoryBindingNavigatorSaveItem\_click** se agregará en la sección siguiente.
+-   Agregue el controlador de eventos para el botón Guardar haciendo doble clic en el botón. Esto agregará el controlador de eventos y le llevará al código subyacente para el formulario. El código del controlador de eventos ** \_ click de categoryBindingNavigatorSaveItem** se agregará en la sección siguiente.
 
 ## <a name="add-the-code-that-handles-data-interaction"></a>Agregar el código que controla la interacción de datos
 

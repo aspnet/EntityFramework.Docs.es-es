@@ -1,14 +1,16 @@
 ---
 title: Compatibilidad con enum-Code First-EF6
+description: 'Compatibilidad con enum: Code First en Entity Framework 6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 77a42501-27c9-4f4b-96df-26c128021467
-ms.openlocfilehash: 1cecbf7065367deb3d202977fe39187bd907d824
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/data-types/enums
+ms.openlocfilehash: 2ed5cd73f8477469d3651ef4bf9f79ce80598ee7
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415794"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617176"
 ---
 # <a name="enum-support---code-first"></a>Compatibilidad con enum-Code First
 > [!NOTE]
@@ -16,7 +18,7 @@ ms.locfileid: "78415794"
 
 Este tutorial de vídeo y paso a paso muestra cómo utilizar tipos de enumeración con Entity Framework Code First. También se muestra cómo usar las enumeraciones en una consulta LINQ.
 
-En este tutorial se utilizará Code First para crear una nueva base de datos, pero también puede usar [code First para asignarla a una base de datos existente](~/ef6/modeling/code-first/workflows/existing-database.md).
+En este tutorial se utilizará Code First para crear una nueva base de datos, pero también puede usar [code First para asignarla a una base de datos existente](xref:ef6/modeling/code-first/workflows/existing-database).
 
 La compatibilidad con la enumeración se presentó en Entity Framework 5. Para usar las nuevas características, como las enumeraciones, los tipos de datos espaciales y las funciones con valores de tabla, debe tener como destino .NET Framework 4,5. Visual Studio 2012 tiene como destino .NET 4,5 de forma predeterminada.
 
@@ -27,7 +29,7 @@ En este vídeo se muestra cómo utilizar tipos de enumeración con Code First de
 
 **Presentada por**: Julia Kornich
 
-**Vídeo**: [wmv](https://download.microsoft.com/download/A/5/8/A583DEE8-FD5C-47EE-A4E1-966DDF39D1DA/HDI-ITPro-MSDN-winvideo-enumwithcodefirst.wmv) | [MP4](https://download.microsoft.com/download/A/5/8/A583DEE8-FD5C-47EE-A4E1-966DDF39D1DA/HDI-ITPro-MSDN-mp4video-enumwithcodefirst.m4v) | [WMV (zip)](https://download.microsoft.com/download/A/5/8/A583DEE8-FD5C-47EE-A4E1-966DDF39D1DA/HDI-ITPro-MSDN-winvideo-enumwithcodefirst.zip)
+**Vídeo**: [WMV](https://download.microsoft.com/download/A/5/8/A583DEE8-FD5C-47EE-A4E1-966DDF39D1DA/HDI-ITPro-MSDN-winvideo-enumwithcodefirst.wmv)  |  [MP4](https://download.microsoft.com/download/A/5/8/A583DEE8-FD5C-47EE-A4E1-966DDF39D1DA/HDI-ITPro-MSDN-mp4video-enumwithcodefirst.m4v)  |  [WMV (zip)](https://download.microsoft.com/download/A/5/8/A583DEE8-FD5C-47EE-A4E1-966DDF39D1DA/HDI-ITPro-MSDN-winvideo-enumwithcodefirst.zip)
 
 ## <a name="pre-requisites"></a>Requisitos previos
 
@@ -39,7 +41,7 @@ Deberá tener instalado Visual Studio 2012, Ultimate, Premium, Professional o We
 
 1.  Abra Visual Studio 2012
 2.  En el menú **archivo** , seleccione **nuevo**y, a continuación, haga clic en **proyecto** .
-3.  En el panel izquierdo, haga clic en **Visual C\#** y, a continuación, seleccione la plantilla de **consola** .
+3.  En el panel izquierdo, haga clic en **Visual C \# **y, a continuación, seleccione la plantilla de **consola** .
 4.  Escriba **EnumCodeFirst** como nombre del proyecto y haga clic en **Aceptar** .
 
 ## <a name="define-a-new-model-using-code-first"></a>Definir un nuevo modelo mediante Code First
@@ -69,16 +71,16 @@ public partial class Department
 
 ## <a name="define-the-dbcontext-derived-type"></a>Definir el tipo derivado de DbContext
 
-Además de definir entidades, debe definir una clase que derive de DbContext y exponga las propiedades de DbSet&lt;de la carpa&gt;. Las propiedades de DbSet&lt;la&gt; de la carpa permiten que el contexto sepa qué tipos desea incluir en el modelo.
+Además de definir entidades, debe definir una clase que derive de DbContext y exponga las propiedades DbSet&lt;TEntity&gt;. Las propiedades DbSet&lt;TEntity&gt; permiten que el contexto sepa qué tipos desea incluir en el modelo.
 
-Una instancia del tipo derivado de DbContext administra los objetos de entidad durante el tiempo de ejecución, lo que incluye el rellenado de objetos con datos de una base de datos, el seguimiento de cambios y la persistencia de datos en la base de datos.
+Una instancia del tipo derivado de DbContext administra los objetos de entidad durante el tiempo de ejecución, lo que incluye rellenar los objetos con datos de una base de datos, el seguimiento de cambios y la persistencia de datos en la base de datos.
 
 Los tipos DbContext y DbSet se definen en el ensamblado EntityFramework. Se agregará una referencia a este archivo DLL mediante el paquete NuGet EntityFramework.
 
 1.  En Explorador de soluciones, haga clic con el botón derecho en el nombre del proyecto.
 2.  Seleccione **administrar paquetes NuGet..** .
 3.  En el cuadro de diálogo administrar paquetes NuGet, seleccione la pestaña **en línea** y elija el paquete **EntityFramework** .
-4.  Haga clic en **Instalar**.
+4.  Haz clic en **Instalar**
 
 Tenga en cuenta que, además del ensamblado EntityFramework, también se agregan las referencias a los ensamblados System. ComponentModel. DataAnnotations y System. Data. Entity.
 
@@ -131,11 +133,11 @@ DepartmentID: 1 Name: English
 
 Al ejecutar la aplicación por primera vez, el Entity Framework crea una base de datos automáticamente. Dado que tenemos instalado Visual Studio 2012, la base de datos se creará en la instancia de LocalDB. De forma predeterminada, el Entity Framework nombra la base de datos después del nombre completo del contexto derivado (para este ejemplo, que es **EnumCodeFirst. EnumTestContext**). Las veces posteriores en las que se utilizará la base de datos existente.  
 
-Tenga en cuenta que si realiza cambios en el modelo una vez creada la base de datos, debe utilizar Migraciones de Code First para actualizar el esquema de la base de datos. Vea [code First en una nueva base de datos](~/ef6/modeling/code-first/workflows/new-database.md) para obtener un ejemplo del uso de las migraciones.
+Tenga en cuenta que si realiza cambios en el modelo una vez creada la base de datos, debe utilizar Migraciones de Code First para actualizar el esquema de la base de datos. Vea [code First en una nueva base de datos](xref:ef6/modeling/code-first/workflows/new-database) para obtener un ejemplo del uso de las migraciones.
 
 Para ver la base de datos y los datos, haga lo siguiente:
 
-1.  En el menú principal de Visual Studio 2012, seleccione **ver** -&gt; **Explorador de objetos de SQL Server**.
+1.  En el menú principal de Visual Studio 2012, seleccione **Ver**  - &gt; **Explorador de objetos de SQL Server**.
 2.  Si LocalDB no está en la lista de servidores, haga clic con el botón secundario del mouse en **SQL Server** y seleccione **Agregar SQL Server** usar la **autenticación de Windows** predeterminada para conectarse a la instancia de LocalDB.
 3.  Expandir el nodo LocalDB
 4.  Desabra la carpeta **bases** de datos para ver la nueva base de datos y vaya a la tabla **Department** . tenga en cuenta que Code First no crea una tabla que se asigne al tipo de enumeración

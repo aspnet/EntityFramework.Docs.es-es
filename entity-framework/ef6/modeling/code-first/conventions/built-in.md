@@ -1,19 +1,21 @@
 ---
 title: 'Convenciones de Code First: EF6'
+description: Convenciones de Code First en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: bc644573-c2b2-4ed7-8745-3c37c41058ad
-ms.openlocfilehash: 4d03a32db5d84eb37c22617a95005b272172a65d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/conventions/built-in
+ms.openlocfilehash: 78471a1d4925e57146b8e9f2f43e57b626d164b6
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415950"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617194"
 ---
 # <a name="code-first-conventions"></a>Convenciones de Code First
-Code First le permite describir un modelo mediante C# o Visual Basic clases .net. La forma básica del modelo se detecta mediante el uso de convenciones. Las convenciones son conjuntos de reglas que se utilizan para configurar automáticamente un modelo conceptual basado en definiciones de clase al trabajar con Code First. Las convenciones se definen en el espacio de nombres System. Data. Entity. ModelConfiguration. Conventions.  
+Code First le permite describir un modelo mediante el uso de clases de C# o Visual Basic .NET. La forma básica del modelo se detecta mediante el uso de convenciones. Las convenciones son conjuntos de reglas que se utilizan para configurar automáticamente un modelo conceptual basado en definiciones de clase al trabajar con Code First. Las convenciones se definen en el espacio de nombres System. Data. Entity. ModelConfiguration. Conventions.  
 
-Puede seguir configurando el modelo con anotaciones de datos o la API fluida. Se da prioridad a la configuración a través de la API fluida, seguida de las anotaciones de datos y, a continuación, las convenciones. Para obtener más información, vea [anotaciones de datos](~/ef6/modeling/code-first/data-annotations.md), [API fluidas, relaciones](~/ef6/modeling/code-first/fluent/relationships.md), [tipos de API fluidas & propiedades](~/ef6/modeling/code-first/fluent/types-and-properties.md) y [API fluida con VB.net](~/ef6/modeling/code-first/fluent/vb.md).  
+Puede seguir configurando el modelo con anotaciones de datos o la API fluida. Se da prioridad a la configuración a través de la API fluida, seguida de las anotaciones de datos y, a continuación, las convenciones. Para obtener más información, vea [anotaciones de datos](xref:ef6/modeling/code-first/data-annotations), [API fluidas, relaciones](xref:ef6/modeling/code-first/fluent/relationships), [tipos de API fluidas & propiedades](xref:ef6/modeling/code-first/fluent/types-and-properties) y [API fluida con VB.net](xref:ef6/modeling/code-first/fluent/vb).  
 
 Puede encontrar una lista detallada de las convenciones de Code First en la documentación de la [API](https://msdn.microsoft.com/library/system.data.entity.modelconfiguration.conventions.aspx). En este tema se proporciona información general sobre las convenciones utilizadas por Code First.  
 
@@ -94,7 +96,7 @@ public class Department
 
 En Entity Framework, las propiedades de navegación proporcionan una manera de navegar por una relación entre dos tipos de entidad. Cada objeto puede tener una propiedad de navegación para cada relación en la que participa. Las propiedades de navegación permiten navegar y administrar las relaciones en ambas direcciones, devolviendo un objeto de referencia (si la multiplicidad es uno o cero o uno) o una colección (si la multiplicidad es muchas). Code First deduce las relaciones basadas en las propiedades de navegación definidas en los tipos.  
 
-Además de las propiedades de navegación, se recomienda incluir las propiedades de clave externa en los tipos que representan los objetos dependientes. Cualquier propiedad con el mismo tipo de datos que la propiedad de clave principal principal y con un nombre que sigue a uno de los siguientes formatos representa una clave externa para la relación: '\<nombre de propiedad de navegación\>\<nombre de propiedad de clave principal de la entidad de seguridad\>', '\<nombre de la clase principal\>\<el nombre de la propiedad de clave principal ', o '\>\<\> Si se encuentran varias coincidencias, se da prioridad en el orden indicado anteriormente. La detección de clave externa no distingue entre mayúsculas y minúsculas. Cuando se detecta una propiedad de clave externa, Code First deduce la multiplicidad de la relación en función de la nulabilidad de la clave externa. Si la propiedad admite valores NULL, la relación se registra como opcional; de lo contrario, la relación se registra según sea necesario.  
+Además de las propiedades de navegación, se recomienda incluir las propiedades de clave externa en los tipos que representan los objetos dependientes. Cualquier propiedad con el mismo tipo de datos que la propiedad de clave principal principal y con un nombre que sigue a uno de los siguientes formatos representa una clave externa para la relación: ' \<navigation property name\> \<principal primary key property name\> ', ' \<principal class name\> \<primary key property name\> ' o ' \<principal primary key property name\> '. Si se encuentran varias coincidencias, se da prioridad en el orden indicado anteriormente. La detección de clave externa no distingue entre mayúsculas y minúsculas. Cuando se detecta una propiedad de clave externa, Code First deduce la multiplicidad de la relación en función de la nulabilidad de la clave externa. Si la propiedad admite valores NULL, la relación se registra como opcional; de lo contrario, la relación se registra según sea necesario.  
 
 Si una clave externa de la entidad dependiente no admite valores NULL, Code First establece Cascade delete en la relación. Si una clave externa de la entidad dependiente admite valores NULL, Code First no establece Cascade delete en la relación y, cuando se elimina la entidad de seguridad, la clave externa se establecerá en NULL. El comportamiento de la multiplicidad y la eliminación en cascada detectados por la Convención se pueden invalidar mediante la API fluida.  
 
@@ -128,7 +130,7 @@ public class Course
 ```  
 
 > [!NOTE]
-> Si tiene varias relaciones entre los mismos tipos (por ejemplo, supongamos que define las clases **Person** y **book** , donde la clase **Person** contiene las propiedades de navegación **ReviewedBooks** y **AuthoredBooks** y la clase **book** contiene las propiedades de navegación **autor** y **Revisor** ), debe configurar manualmente las relaciones mediante anotaciones de datos o la API fluida. Para obtener más información, vea [anotaciones de datos: relaciones](~/ef6/modeling/code-first/data-annotations.md) y [API fluida](~/ef6/modeling/code-first/fluent/relationships.md).  
+> Si tiene varias relaciones entre los mismos tipos (por ejemplo, supongamos que define las clases **Person** y **book** , donde la clase **Person** contiene las propiedades de navegación **ReviewedBooks** y **AuthoredBooks** y la clase **book** contiene las propiedades de navegación **autor** y **Revisor** ), debe configurar manualmente las relaciones mediante anotaciones de datos o la API fluida. Para obtener más información, vea [anotaciones de datos: relaciones](xref:ef6/modeling/code-first/data-annotations) y [API fluida](xref:ef6/modeling/code-first/fluent/relationships).  
 
 ## <a name="complex-types-convention"></a>Convención de tipos complejos  
 
@@ -155,7 +157,7 @@ public class Details
 
 ## <a name="connection-string-convention"></a>Convención de cadena de conexión  
 
-Para obtener información sobre las convenciones que usa DbContext para detectar la conexión que se va a usar [, consulte conexiones y modelos](~/ef6/fundamentals/configuring/connection-strings.md).  
+Para obtener información sobre las convenciones que usa DbContext para detectar la conexión que se va a usar [, consulte conexiones y modelos](xref:ef6/fundamentals/configuring/connection-strings).  
 
 ## <a name="removing-conventions"></a>Quitar convenciones  
 
@@ -178,4 +180,4 @@ public class SchoolEntities : DbContext
 
 ## <a name="custom-conventions"></a>Convenciones personalizadas  
 
-Las convenciones personalizadas se admiten en EF6 en adelante. Para obtener más información, vea [convenciones de Code First personalizadas](~/ef6/modeling/code-first/conventions/custom.md).
+Las convenciones personalizadas se admiten en EF6 en adelante. Para obtener más información, vea [convenciones de Code First personalizadas](xref:ef6/modeling/code-first/conventions/custom).

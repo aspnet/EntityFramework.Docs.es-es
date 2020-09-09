@@ -1,15 +1,16 @@
 ---
 title: Conversiones de valores-EF Core
+description: Configuración de convertidores de valores en un modelo de Entity Framework Core
 author: ajcvickers
 ms.date: 02/19/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/value-conversions
-ms.openlocfilehash: 93774bc1bc3887f982faeac151825a6643c1107c
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 79e54392bf5503b4b651f25ce6e5fc63d418df90
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414558"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616662"
 ---
 # <a name="value-conversions"></a>Conversiones de valores
 
@@ -20,13 +21,13 @@ Los convertidores de valores permiten convertir los valores de propiedad al leer
 
 ## <a name="fundamentals"></a>Aspectos básicos
 
-Los convertidores de valores se especifican en términos de un `ModelClrType` y un `ProviderClrType`. El tipo de modelo es el tipo .NET de la propiedad en el tipo de entidad. El tipo de proveedor es el tipo .NET que entiende el proveedor de base de datos. Por ejemplo, para guardar las enumeraciones como cadenas en la base de datos, el tipo de modelo es el tipo de la enumeración y el tipo de proveedor es `String`. Estos dos tipos pueden ser iguales.
+Los convertidores de valores se especifican en términos de `ModelClrType` y `ProviderClrType` . El tipo de modelo es el tipo .NET de la propiedad en el tipo de entidad. El tipo de proveedor es el tipo .NET que entiende el proveedor de base de datos. Por ejemplo, para guardar las enumeraciones como cadenas en la base de datos, el tipo de modelo es el tipo de la enumeración y el tipo de proveedor es `String` . Estos dos tipos pueden ser iguales.
 
-Las conversiones se definen utilizando dos `Func` árboles de expresión: uno de `ModelClrType` a `ProviderClrType` y otro de `ProviderClrType` a `ModelClrType`. Los árboles de expresión se usan para que se puedan compilar en el código de acceso a la base de datos para conversiones eficientes. En las conversiones complejas, el árbol de expresión puede ser una llamada simple a un método que realiza la conversión.
+Las conversiones se definen mediante dos `Func` árboles de expresión: uno de `ModelClrType` a `ProviderClrType` y el otro de `ProviderClrType` a `ModelClrType` . Los árboles de expresión se usan para que se puedan compilar en el código de acceso a la base de datos para conversiones eficientes. En las conversiones complejas, el árbol de expresión puede ser una llamada simple a un método que realiza la conversión.
 
 ## <a name="configuring-a-value-converter"></a>Configurar un convertidor de valores
 
-Las conversiones de valores se definen en las propiedades del `OnModelCreating` de la `DbContext`. Por ejemplo, considere una enumeración y un tipo de entidad definidos como:
+Las conversiones de valores se definen en las propiedades `OnModelCreating` del de `DbContext` . Por ejemplo, considere una enumeración y un tipo de entidad definidos como:
 
 ``` csharp
 public class Rider
@@ -59,11 +60,11 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 ```
 
 > [!NOTE]  
-> Un valor `null` nunca se pasará a un convertidor de valores. Esto hace que la implementación de conversiones sea más sencilla y permite que se compartan entre propiedades que aceptan valores NULL y que no aceptan valores NULL.
+> `null`Nunca se pasará un valor a un convertidor de valores. Esto hace que la implementación de conversiones sea más sencilla y permite que se compartan entre propiedades que aceptan valores NULL y que no aceptan valores NULL.
 
 ## <a name="the-valueconverter-class"></a>La clase ValueConverter
 
-Al llamar a `HasConversion` como se muestra anteriormente, se creará una instancia de `ValueConverter` y se establecerá en la propiedad. En su lugar, se puede crear el `ValueConverter` explícitamente. Por ejemplo:
+Al llamar a `HasConversion` como se muestra anteriormente, se creará una `ValueConverter` instancia de y se establecerá en la propiedad. `ValueConverter`En su lugar, se puede crear explícitamente. Por ejemplo:
 
 ``` csharp
 var converter = new ValueConverter<EquineBeast, string>(
@@ -83,31 +84,31 @@ Esto puede ser útil cuando varias propiedades usan la misma conversión.
 
 ## <a name="built-in-converters"></a>Convertidores integrados
 
-EF Core incluye un conjunto de clases de `ValueConverter` predefinidas, que se encuentran en el espacio de nombres `Microsoft.EntityFrameworkCore.Storage.ValueConversion`. Dichos componentes son:
+EF Core incluye un conjunto de clases predefinidas `ValueConverter` , que se encuentran en el `Microsoft.EntityFrameworkCore.Storage.ValueConversion` espacio de nombres. Dichos componentes son:
 
-* `BoolToZeroOneConverter`-bool a cero y uno
-* `BoolToStringConverter`-bool a cadenas como "Y" y "N"
-* `BoolToTwoValuesConverter`-bool a dos valores cualesquiera
-* matriz de bytes de `BytesToStringConverter` a una cadena codificada en Base64
-* conversiones de `CastingConverter` que requieren solo una conversión de tipos
-* `CharToStringConverter`-char a una cadena de un solo carácter
-* `DateTimeOffsetToBinaryConverter`-DateTimeOffset a un valor codificado en binario 64 bits
-* `DateTimeOffsetToBytesConverter`-DateTimeOffset a la matriz de bytes
-* `DateTimeOffsetToStringConverter`-DateTimeOffset a cadena
-* `DateTimeToBinaryConverter`: DateTime al valor de 64 bits, incluido DateTimeKind
-* `DateTimeToStringConverter`: fecha y hora en cadena
-* `DateTimeToTicksConverter`: fecha y hora en pasos
-* `EnumToNumberConverter`-enum al número subyacente
-* `EnumToStringConverter`-enum a cadena
-* `GuidToBytesConverter`-GUID a una matriz de bytes
-* `GuidToStringConverter`-GUID a cadena
-* `NumberToBytesConverter`: cualquier valor numérico en una matriz de bytes
-* `NumberToStringConverter`: cualquier valor numérico a cadena
-* `StringToBytesConverter`: cadena en bytes UTF8
-* `TimeSpanToStringConverter`-TimeSpan a String
-* `TimeSpanToTicksConverter`-TimeSpan a ticks
+* `BoolToZeroOneConverter` -Bool a cero y uno
+* `BoolToStringConverter` -Bool a cadenas como "Y" y "N"
+* `BoolToTwoValuesConverter` -Bool a dos valores cualesquiera
+* `BytesToStringConverter` -Matriz de bytes a cadena codificada en Base64
+* `CastingConverter` -Conversiones que requieren solo una conversión de tipo
+* `CharToStringConverter` -Char a cadena de carácter único
+* `DateTimeOffsetToBinaryConverter` -DateTimeOffset a código binario codificado de 64 bits
+* `DateTimeOffsetToBytesConverter` -DateTimeOffset a la matriz de bytes
+* `DateTimeOffsetToStringConverter` -DateTimeOffset a cadena
+* `DateTimeToBinaryConverter` -DateTime al valor de 64 bits, incluido DateTimeKind
+* `DateTimeToStringConverter` -DateTime a cadena
+* `DateTimeToTicksConverter` : Fecha y hora en pasos
+* `EnumToNumberConverter` -Enum al número subyacente
+* `EnumToStringConverter` -Enum a cadena
+* `GuidToBytesConverter` -GUID a matriz de bytes
+* `GuidToStringConverter` -GUID a cadena
+* `NumberToBytesConverter` -Cualquier valor numérico a matriz de bytes
+* `NumberToStringConverter` -Cualquier valor numérico a cadena
+* `StringToBytesConverter` -Cadena en bytes UTF8
+* `TimeSpanToStringConverter` -TimeSpan a cadena
+* `TimeSpanToTicksConverter` -Intervalo de tiempo a pasos
 
-Observe que `EnumToStringConverter` se incluye en esta lista. Esto significa que no es necesario especificar la conversión explícitamente, como se muestra anteriormente. En su lugar, use simplemente el convertidor integrado:
+Tenga en cuenta que `EnumToStringConverter` se incluye en esta lista. Esto significa que no es necesario especificar la conversión explícitamente, como se muestra anteriormente. En su lugar, use simplemente el convertidor integrado:
 
 ``` csharp
 var converter = new EnumToStringConverter<EquineBeast>();
@@ -143,13 +144,13 @@ public class Rider
 }
 ```
 
-A continuación, los valores de enumeración se guardarán como cadenas en la base de datos sin ninguna otra configuración en `OnModelCreating`.
+A continuación, los valores de enumeración se guardarán como cadenas en la base de datos sin ninguna configuración adicional en `OnModelCreating` .
 
 ## <a name="limitations"></a>Limitaciones
 
 Hay algunas limitaciones actuales conocidas del sistema de conversión de valores:
 
-* Como se indicó anteriormente, no se puede convertir `null`.
+* Como se indicó anteriormente, `null` no se puede convertir.
 * Actualmente no hay ninguna manera de distribuir una conversión de una propiedad a varias columnas o viceversa.
 * El uso de conversiones de valores puede afectar a la capacidad de EF Core para traducir expresiones a SQL. Se registrará una advertencia para dichos casos.
 La eliminación de estas limitaciones se está considerando en una versión futura.

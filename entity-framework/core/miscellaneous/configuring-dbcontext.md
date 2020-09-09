@@ -1,15 +1,16 @@
 ---
 title: Configuración de DbContext-EF Core
+description: Estrategias para configurar DbContexts con Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 9614449f6ead393b514f42b718b4cae5f97dfc98
-ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
+ms.openlocfilehash: 3e45199e6fc0c8c105ccb0bb03175b4b08716b3f
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526425"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617802"
 ---
 # <a name="configuring-a-dbcontext"></a>Configuración de un DbContext
 
@@ -23,7 +24,7 @@ Aunque cualquier patrón que proporcione la información de configuración neces
 
 ## <a name="configuring-dbcontextoptions"></a>Configuración de DbContextOptions
 
-`DbContext`debe tener una instancia de `DbContextOptions` para poder realizar cualquier trabajo. La `DbContextOptions` instancia contiene información de configuración como:
+`DbContext` debe tener una instancia de `DbContextOptions` para poder realizar cualquier trabajo. La `DbContextOptions` instancia contiene información de configuración como:
 
 - Proveedor de base de datos que se va a usar, normalmente seleccionado mediante la invocación de un método como `UseSqlServer` o `UseSqlite` . Estos métodos de extensión requieren el paquete de proveedor correspondiente, como `Microsoft.EntityFrameworkCore.SqlServer` o `Microsoft.EntityFrameworkCore.Sqlite` . Los métodos se definen en el `Microsoft.EntityFrameworkCore` espacio de nombres.
 - Cualquier cadena de conexión o identificador de la instancia de base de datos que sea necesario, normalmente se pasa como argumento al método de selección de proveedor mencionado anteriormente
@@ -109,7 +110,7 @@ using (var context = new BloggingContext())
 
 EF Core admite `DbContext` el uso de con un contenedor de inserción de dependencias. El tipo DbContext se puede Agregar al contenedor de servicio mediante el `AddDbContext<TContext>` método.
 
-`AddDbContext<TContext>`hará que el tipo DbContext, `TContext` y el correspondiente `DbContextOptions<TContext>` estén disponibles para la inserción desde el contenedor de servicios.
+`AddDbContext<TContext>` hará que el tipo DbContext, `TContext` y el correspondiente `DbContextOptions<TContext>` estén disponibles para la inserción desde el contenedor de servicios.
 
 Vea [más](#more-reading) información a continuación para obtener más información sobre la inserción de dependencias.
 
@@ -195,4 +196,4 @@ Mediante la inserción de dependencias, esto se puede lograr registrando el cont
 ## <a name="more-reading"></a>Más lecturas
 
 - Lea [inserción de dependencias](/aspnet/core/fundamentals/dependency-injection) para obtener más información sobre el uso de di.
-- Lea [pruebas](testing/index.md) para obtener más información.
+- Lea [pruebas](xref:core/miscellaneous/testing/index) para obtener más información.

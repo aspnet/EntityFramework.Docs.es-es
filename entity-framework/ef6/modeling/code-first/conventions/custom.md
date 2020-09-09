@@ -1,27 +1,29 @@
 ---
 title: 'Convenciones de Code First personalizado: EF6'
+description: Convenciones de Code First personalizadas en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: dd2bdbd9-ae9e-470a-aeb8-d0ba160499b7
-ms.openlocfilehash: cfd7f7cad532dca5227793c04d7d91e977ea5e4e
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/conventions/custom
+ms.openlocfilehash: 69e4b0111394e83195f5c0a81624c7b9e45bda52
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415896"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617267"
 ---
 # <a name="custom-code-first-conventions"></a>Convenciones de Code First personalizadas
 > [!NOTE]
 > **Solo EF6 y versiones posteriores**: las características, las API, etc. que se tratan en esta página se han incluido a partir de Entity Framework 6. Si usa una versión anterior, no se aplica parte o la totalidad de la información.
 
-Al utilizar Code First el modelo se calcula a partir de las clases mediante un conjunto de convenciones. Las [convenciones de Code First](~/ef6/modeling/code-first/conventions/built-in.md) predeterminadas determinan aspectos como la propiedad que se convierte en la clave principal de una entidad, el nombre de la tabla a la que se asigna una entidad y la precisión y escala que una columna decimal tiene de forma predeterminada.
+Al utilizar Code First el modelo se calcula a partir de las clases mediante un conjunto de convenciones. Las [convenciones de Code First](xref:ef6/modeling/code-first/conventions/built-in) predeterminadas determinan aspectos como la propiedad que se convierte en la clave principal de una entidad, el nombre de la tabla a la que se asigna una entidad y la precisión y escala que una columna decimal tiene de forma predeterminada.
 
 A veces, estas convenciones predeterminadas no son ideales para el modelo y debe solucionarse configurando muchas entidades individuales mediante anotaciones de datos o la API fluida. Las convenciones de Code First personalizadas le permiten definir sus propias convenciones que proporcionan valores predeterminados de configuración para el modelo. En este tutorial, exploraremos los distintos tipos de convenciones personalizadas y cómo crear cada una de ellas.
 
 
 ## <a name="model-based-conventions"></a>Convenciones basadas en modelos
 
-En esta página se tratan las convenciones personalizadas de la API de DbModelBuilder. Esta API debe ser suficiente para la creación de la mayoría de las convenciones personalizadas. Sin embargo, también existe la posibilidad de crear convenciones basadas en modelos: convenciones que manipulan el modelo final una vez que se crea: para controlar escenarios avanzados. Para obtener más información, vea [convenciones basadas en modelos](~/ef6/modeling/code-first/conventions/model.md).
+En esta página se tratan las convenciones personalizadas de la API de DbModelBuilder. Esta API debe ser suficiente para la creación de la mayoría de las convenciones personalizadas. Sin embargo, también existe la posibilidad de crear convenciones basadas en modelos: convenciones que manipulan el modelo final una vez que se crea: para controlar escenarios avanzados. Para obtener más información, vea [convenciones basadas en modelos](xref:ef6/modeling/code-first/conventions/model).
 
  
 
@@ -208,7 +210,7 @@ Una vez hecho esto, podemos establecer un valor bool en nuestro atributo para in
                 .Configure(c => c.IsUnicode(c.ClrPropertyInfo.GetCustomAttribute<IsUnicode>().Unicode));
 ```
 
-Esto es bastante sencillo, pero hay una manera más concisa de lograrlo mediante el uso del método Having de la API de convenciones. El método having tiene un parámetro de tipo FUNC&lt;PropertyInfo, T&gt; que acepta el PropertyInfo igual que el método Where, pero se espera que devuelva un objeto. Si el objeto devuelto es null, la propiedad no se configurará, lo que significa que puede filtrar las propiedades con ella como Where, pero es diferente en que también capturará el objeto devuelto y lo pasará al método configure. Esto funciona de la siguiente manera:
+Esto es bastante sencillo, pero hay una manera más concisa de lograrlo mediante el uso del método Having de la API de convenciones. El método having tiene un parámetro de tipo FUNC &lt; PropertyInfo, T &gt; que acepta la PropertyInfo igual que el método Where, pero se espera que devuelva un objeto. Si el objeto devuelto es null, la propiedad no se configurará, lo que significa que puede filtrar las propiedades con ella como Where, pero es diferente en que también capturará el objeto devuelto y lo pasará al método configure. Esto funciona de la siguiente manera:
 
 ``` csharp
     modelBuilder.Properties()
@@ -235,7 +237,7 @@ Una de las cosas que las convenciones de nivel de tipo pueden ser realmente úti
     }
 ```
 
-Este método toma un tipo y devuelve una cadena que usa minúsculas con carácter de subrayado en lugar de CamelCase. En nuestro modelo, esto significa que la clase ProductCategory se asignará a una tabla denominada Product\_categoría en lugar de a ProductCategories.
+Este método toma un tipo y devuelve una cadena que usa minúsculas con carácter de subrayado en lugar de CamelCase. En nuestro modelo, esto significa que la clase ProductCategory se asignará a una tabla denominada Product \_ Category en lugar de ProductCategories.
 
 Una vez que tenemos ese método, podemos llamarlo en una Convención similar a la siguiente:
 
@@ -246,9 +248,9 @@ Una vez que tenemos ese método, podemos llamarlo en una Convención similar a l
 
 Esta Convención configura todos los tipos de nuestro modelo para que se asignen al nombre de tabla que se devuelve desde nuestro método GetTableName. Esta Convención es equivalente a llamar al método ToTable para cada entidad del modelo mediante la API fluida.
 
-Un aspecto que se debe tener en cuenta es que, cuando se llama a ToTable EF, toma la cadena que se proporciona como el nombre exacto de la tabla, sin la pluralización que normalmente haría al determinar los nombres de tabla. Esta es la razón por la que el nombre de la tabla de nuestra Convención es\_categoría del producto en lugar de las categorías Product\_. Podemos resolver esto en nuestra Convención realizando una llamada al servicio de pluralización por nuestra parte.
+Un aspecto que se debe tener en cuenta es que, cuando se llama a ToTable EF, toma la cadena que se proporciona como el nombre exacto de la tabla, sin la pluralización que normalmente haría al determinar los nombres de tabla. Esta es la razón por la que el nombre de la tabla de nuestra Convención es la \_ categoría de producto en lugar de las categorías de productos \_ . Podemos resolver esto en nuestra Convención realizando una llamada al servicio de pluralización por nuestra parte.
 
-En el código siguiente, usaremos la característica de [resolución de dependencias](~/ef6/fundamentals/configuring/dependency-resolution.md) agregada en EF6 para recuperar el servicio de pluralización que EF habría usado y pluralando el nombre de la tabla.
+En el código siguiente, usaremos la característica de [resolución de dependencias](xref:ef6/fundamentals/configuring/dependency-resolution) agregada en EF6 para recuperar el servicio de pluralización que EF habría usado y pluralando el nombre de la tabla.
 
 ``` csharp
     private string GetTableName(Type type)

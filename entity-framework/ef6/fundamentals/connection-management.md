@@ -1,14 +1,16 @@
 ---
 title: 'Administración de conexiones: EF6'
+description: Administración de conexiones en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: ecaa5a27-b19e-4bf9-8142-a3fb00642270
-ms.openlocfilehash: a6352bbbc38c38bd5f30536736ec969056df2c7d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/connection-management
+ms.openlocfilehash: c352e761a9891b5c275f32752f10de13222bf48e
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414870"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617222"
 ---
 # <a name="connection-management"></a>Administración de conexiones
 En esta página se describe el comportamiento de Entity Framework con respecto a cómo pasar conexiones al contexto y la funcionalidad de la API **Database. Connection. Open ()** .  
@@ -27,7 +29,7 @@ public DbContext(DbConnection existingConnection, DbCompiledModel model, bool co
 Es posible utilizarlos, pero tiene que solucionar un par de limitaciones:  
 
 1. Si pasa una conexión abierta a cualquiera de estas, la primera vez que el marco intenta utilizarla, se produce una excepción InvalidOperationException que indica que no puede volver a abrir una conexión que ya está abierta.  
-2. La marca contextOwnsConnection se interpreta para indicar si la conexión del almacén subyacente debe desecharse cuando se desecha el contexto. Sin embargo, independientemente de esa configuración, la conexión del almacén siempre se cierra cuando se desecha el contexto. Por lo tanto, si tiene más de un DbContext con la misma conexión, el contexto que se elimine primero cerrará la conexión (de forma similar si ha mezclado una conexión ADO.NET existente con un DbContext, DbContext siempre cerrará la conexión cuando se elimine). .  
+2. La marca contextOwnsConnection se interpreta para indicar si la conexión del almacén subyacente debe desecharse cuando se desecha el contexto. Sin embargo, independientemente de esa configuración, la conexión del almacén siempre se cierra cuando se desecha el contexto. Por lo tanto, si tiene más de un DbContext con la misma conexión, el contexto que se elimine primero cerrará la conexión (de forma similar si ha mezclado una conexión ADO.NET existente con un DbContext, DbContext siempre cerrará la conexión cuando se elimine).  
 
 Es posible solucionar la primera limitación anterior si se pasa una conexión cerrada y solo se ejecuta código que la abriría una vez que se han creado todos los contextos:  
 
@@ -128,7 +130,7 @@ Además, la marca contextOwnsConnection controla ahora si la conexión se cierra
 Por supuesto, sigue siendo posible que DbContext tome el control de la conexión (solo tiene que establecer contextOwnsConnection en true o usar uno de los otros constructores) si así lo desea.  
 
 > [!NOTE]
-> Existen algunas consideraciones adicionales al usar transacciones con este nuevo modelo. Para obtener más información, consulte [trabajar con transacciones](~/ef6/saving/transactions.md).  
+> Existen algunas consideraciones adicionales al usar transacciones con este nuevo modelo. Para obtener más información, consulte [trabajar con transacciones](xref:ef6/saving/transactions).  
 
 ## <a name="databaseconnectionopen"></a>Database. Connection. Open ()  
 
@@ -140,7 +142,7 @@ En EF5 y versiones anteriores hay un error que indica que **ObjectContext. Conne
 ((IObjectContextAdapter)context).ObjectContext.Connection.State
 ```  
 
-Por separado, si abre la conexión de base de datos mediante una llamada a Database. Connection. Open (), se abrirá hasta la próxima vez que ejecute una consulta o llame a cualquier elemento que requiera una conexión de base de datos (por ejemplo, SaveChanges ()) pero después de que el almacén subyacente la conexión se cerrará. El contexto volverá a abrir y a cerrar la conexión cada vez que se requiera otra operación de base de datos:  
+Por separado, si abre la conexión de base de datos mediante una llamada a Database. Connection. Open (), se abrirá hasta la próxima vez que ejecute una consulta o llame a cualquier elemento que requiera una conexión de base de datos (por ejemplo, SaveChanges ()), pero después de que se cierre la conexión del almacén subyacente. El contexto volverá a abrir y a cerrar la conexión cada vez que se requiera otra operación de base de datos:  
 
 ``` csharp
 using System;

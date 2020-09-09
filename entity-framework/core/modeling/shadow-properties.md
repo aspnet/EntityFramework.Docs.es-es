@@ -1,15 +1,16 @@
 ---
 title: 'Propiedades de sombra: EF Core'
+description: Configurar propiedades de instantáneas en un modelo de Entity Framework Core
 author: AndriySvyryd
 ms.date: 01/03/2020
 ms.assetid: 75369266-d2b9-4416-b118-ed238f81f599
 uid: core/modeling/shadow-properties
-ms.openlocfilehash: b24ff85d8f5910a5625910e7225a94112d769824
-ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
+ms.openlocfilehash: 06dbba7a4f6da247e6afde96debb0762fa55ce7e
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86238286"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616719"
 ---
 # <a name="shadow-properties"></a>Propiedades reemplazadas
 
