@@ -5,12 +5,12 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/05/2019
 uid: core/providers/cosmos/index
-ms.openlocfilehash: 74284bf78f404e376436a1ef5d5933186c85ae49
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 0d88e0a4876755656626621fd9a4ca01d18b5b64
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413060"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619320"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>Proveedor de Azure Cosmos DB para EF Core
 
@@ -54,7 +54,7 @@ Al igual que para otros proveedores, el primer paso es llamar a [UseCosmos](/dot
 > [!WARNING]
 > El punto de conexión y la clave se codifican aquí de forma rígida por motivos de simplicidad pero, en una aplicación de producción, se deben [almacenar de manera segura](/aspnet/core/security/app-secrets#secret-manager).
 
-En este ejemplo, `Order` es una entidad sencilla con una referencia al [tipo owned](../../modeling/owned-entities.md) `StreetAddress`.
+En este ejemplo, `Order` es una entidad sencilla con una referencia al [tipo owned](xref:core/modeling/owned-entities) `StreetAddress`.
 
 [!code-csharp[Order](../../../../samples/core/Cosmos/ModelBuilding/Order.cs?name=Order)]
 
@@ -65,7 +65,7 @@ La acción de guardar y consultar datos sigue el patrón de EF normal:
 [!code-csharp[HelloCosmos](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=HelloCosmos)]
 
 > [!IMPORTANT]
-> Llamar a [EnsureCreatedAsync](/dotnet/api/Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreatedAsync) es necesario para crear los contenedores necesarios e insertar los [datos de inicialización](../../modeling/data-seeding.md) si están presentes en el modelo. Sin embargo, se debe llamar a `EnsureCreatedAsync` solo durante la implementación y no durante la operación normal, porque podría provocar problemas de rendimiento.
+> Llamar a [EnsureCreatedAsync](/dotnet/api/Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreatedAsync) es necesario para crear los contenedores necesarios e insertar los [datos de inicialización](xref:core/modeling/data-seeding) si están presentes en el modelo. Sin embargo, se debe llamar a `EnsureCreatedAsync` solo durante la implementación y no durante la operación normal, porque podría provocar problemas de rendimiento.
 
 ## <a name="cosmos-specific-model-customization"></a>Personalización del modelo específico de Cosmos
 
@@ -77,7 +77,7 @@ Para asignar un tipo de entidad a un contenedor distinto, use [ToContainer](/dot
 
 [!code-csharp[Container](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=Container)]
 
-Para identificar el tipo de entidad que un elemento determinado representa, EF Core agrega un valor de discriminador incluso si no hay tipos de entidad derivados. El nombre y el valor del discriminador [se pueden modificar](../../modeling/inheritance.md).
+Para identificar el tipo de entidad que un elemento determinado representa, EF Core agrega un valor de discriminador incluso si no hay tipos de entidad derivados. El nombre y el valor del discriminador [se pueden modificar](xref:core/modeling/inheritance).
 
 Si ningún otro tipo de entidad se va a almacenar en el mismo contenedor, se puede quitar el discriminador mediante la llamada a [HasNoDiscriminator](/dotnet/api/Microsoft.EntityFrameworkCore.Metadata.Builders.EntityTypeBuilder.HasNoDiscriminator):
 
@@ -164,7 +164,7 @@ De manera interna, EF Core siempre debe tener valores de clave únicos para toda
 
 ## <a name="working-with-disconnected-entities"></a>Trabajo con entidades desconectadas
 
-Cada elemento debe tener un valor `id` único para la clave de partición específica. De manera predeterminada, EF Core genera el valor mediante la concatenación de los valores de discriminador y de clave principal, con "|" como delimitador. Los valores de clave solo se generan cuando una entidad entra en el estado `Added`. Esto podría suponer un problema al [adjuntar entidades](../../saving/disconnected-entities.md) si no tienen una propiedad `id` en el tipo .NET para almacenar el valor.
+Cada elemento debe tener un valor `id` único para la clave de partición específica. De manera predeterminada, EF Core genera el valor mediante la concatenación de los valores de discriminador y de clave principal, con "|" como delimitador. Los valores de clave solo se generan cuando una entidad entra en el estado `Added`. Esto podría suponer un problema al [adjuntar entidades](xref:core/saving/disconnected-entities) si no tienen una propiedad `id` en el tipo .NET para almacenar el valor.
 
 Para evitar esta limitación, se podría crear y establecer el valor `id` de manera manual o marcar la entidad como agregada y, luego, cambiarla al estado deseado:
 
