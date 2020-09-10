@@ -1,19 +1,20 @@
 ---
 title: 'Crear y quitar API: EF Core'
+description: API para crear y quitar bases de datos con Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/07/2018
 uid: core/managing-schemas/ensure-created
-ms.openlocfilehash: 32ac6cd043df73cd041780ec4c8805675adc5ab1
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 25e7352269531e881e83e44ea90108f12d4dcbea
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414324"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619222"
 ---
 # <a name="create-and-drop-apis"></a>Crear y quitar API
 
-Los métodos EnsureCreated y EnsureDeleted proporcionan una alternativa ligera a las [migraciones](migrations/index.md) para administrar el esquema de la base de datos. Estos métodos son útiles en escenarios en los que los datos son transitorios y se pueden quitar cuando cambia el esquema. Por ejemplo, durante el prototipo, en las pruebas o en las memorias caché locales.
+Los métodos EnsureCreated y EnsureDeleted proporcionan una alternativa ligera a las [migraciones](xref:core/managing-schemas/migrations/index) para administrar el esquema de la base de datos. Estos métodos son útiles en escenarios en los que los datos son transitorios y se pueden quitar cuando cambia el esquema. Por ejemplo, durante el prototipo, en las pruebas o en las memorias caché locales.
 
 Algunos proveedores (especialmente los no relacionales) no admiten las migraciones. Para estos proveedores, EnsureCreated suele ser la manera más fácil de inicializar el esquema de la base de datos.
 

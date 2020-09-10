@@ -5,12 +5,12 @@ author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 6ff98d005c0a868d420509571378756c56edc54a
-ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
+ms.openlocfilehash: f65c07c79daf38e733c76f328843c90466c657f5
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86238130"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619333"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidad en propiedad
 
@@ -75,7 +75,7 @@ Para configurar una llamada PK diferente `HasKey` :
 
 ## <a name="mapping-owned-types-with-table-splitting"></a>Asignar tipos de propiedad con división de tabla
 
-Cuando se usan bases de datos relacionales, de forma predeterminada, los tipos de propiedad de propiedad se asignan a la misma tabla que el propietario. Esto requiere dividir la tabla en dos: se usarán algunas columnas para almacenar los datos del propietario, y algunas columnas se utilizarán para almacenar los datos de la entidad propiedad. Se trata de una característica común conocida como [División de tablas](table-splitting.md).
+Cuando se usan bases de datos relacionales, de forma predeterminada, los tipos de propiedad de propiedad se asignan a la misma tabla que el propietario. Esto requiere dividir la tabla en dos: se usarán algunas columnas para almacenar los datos del propietario, y algunas columnas se utilizarán para almacenar los datos de la entidad propiedad. Se trata de una característica común conocida como [División de tablas](xref:core/modeling/table-splitting).
 
 De forma predeterminada, EF Core asignará el nombre a las columnas de la base de datos para las propiedades del tipo de entidad propiedad que sigue al patrón _Navigation_OwnedEntityProperty_. Por lo tanto, las `StreetAddress` propiedades aparecerán en la tabla ' Orders ' con los nombres ' ShippingAddress_Street ' y ' ShippingAddress_City '.
 
@@ -122,7 +122,7 @@ Observe la `WithOwner` llamada usada para definir la propiedad de navegación qu
 
 También es posible lograr este resultado con `OwnedAttribute` en `OrderDetails` y `StreetAddress` .
 
-Además, observe la `Navigation` llamada a. En EFCore 5,0, las propiedades de navegación a los tipos de propiedad se pueden configurar aún más [para las propiedades de navegación que no](relationships.md#configuring-navigation-properties)son de propiedad.
+Además, observe la `Navigation` llamada a. En EFCore 5,0, las propiedades de navegación a los tipos de propiedad se pueden configurar aún más [para las propiedades de navegación que no](xref:core/modeling/relationships#configuring-navigation-properties)son de propiedad.
 
 ## <a name="storing-owned-types-in-separate-tables"></a>Almacenar tipos de propiedad en tablas independientes
 
@@ -145,7 +145,7 @@ Algunas de estas limitaciones son fundamentales para el funcionamiento de los ti
 ### <a name="by-design-restrictions"></a>Restricciones por diseño
 
 - No se puede crear un `DbSet<T>` para un tipo de propiedad
-- No se puede llamar a `Entity<T>()` con un tipo de propiedad en`ModelBuilder`
+- No se puede llamar a `Entity<T>()` con un tipo de propiedad en `ModelBuilder`
 
 ### <a name="current-shortcomings"></a>Deficiencias actuales
 

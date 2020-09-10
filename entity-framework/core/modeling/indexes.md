@@ -1,15 +1,16 @@
 ---
 title: 'Índices: EF Core'
+description: Configurar índices en un modelo de Entity Framework Core
 author: roji
 ms.date: 12/16/2019
 ms.assetid: 85b92003-b692-417d-ac1d-76d40dce664b
 uid: core/modeling/indexes
-ms.openlocfilehash: 9565b499ababace3595153e7159e017d2df1cc5a
-ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
+ms.openlocfilehash: 1ce40a9219dde56478b1ff8891841b53d9ba1934
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526750"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619361"
 ---
 # <a name="indexes"></a>Índices
 

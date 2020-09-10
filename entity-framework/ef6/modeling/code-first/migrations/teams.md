@@ -1,18 +1,20 @@
 ---
 title: 'Migraciones de Code First en entornos de equipo: EF6'
+description: Migraciones de Code First en entornos de equipo en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
-ms.openlocfilehash: 7ab66a8ec29b60bb2e0102fbca5745d352b07325
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+uid: ef6/modeling/code-first/migrations/teams
+ms.openlocfilehash: ec382ecb0b7c99e57447ee50119fc3699fe1f324
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370414"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617038"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Code First Migrations in Team Environments (Migraciones de Code First en entornos de equipo)
 > [!NOTE]
-> En este artículo se supone que sabe cómo usar Migraciones de Code First en escenarios básicos. Si no lo hace, tendrá que leer [migraciones de Code First](~/ef6/modeling/code-first/migrations/index.md) antes de continuar.
+> En este artículo se supone que sabe cómo usar Migraciones de Code First en escenarios básicos. Si no lo hace, tendrá que leer [migraciones de Code First](xref:ef6/modeling/code-first/migrations/index) antes de continuar.
 
 ## <a name="grab-a-coffee-you-need-to-read-this-whole-article"></a>Tome un café, debe leer todo el artículo
 
@@ -107,11 +109,11 @@ Developer \# 1 y Developer \# 2 ahora realizan algunos cambios en el modelo de E
 
 Es el día de la suerte para desarrolladores \# 1 a medida que se producen para enviar sus cambios en primer lugar. Dado que no se ha protegido ningún otro usuario desde que se sincronizó su repositorio, solo pueden enviar sus cambios sin realizar ninguna combinación.
 
-![Enviar](~/ef6/media/submit.png)
+![Enviar cambios](~/ef6/media/submit.png)
 
 Ahora es el momento de enviar el desarrollador \# 2. No son tan afortunados. Dado que otra persona ha enviado cambios desde que se sincronizaron, deberán desplegar los cambios y mezclar. Es posible que el sistema de control de código fuente pueda fusionar mediante combinación automáticamente los cambios en el nivel de código, ya que son muy sencillos. El estado del \# repositorio local del desarrollador 2 después de la sincronización se muestra en el gráfico siguiente. 
 
-![Extracción](~/ef6/media/pull.png)
+![Extraer del control de código fuente](~/ef6/media/pull.png)
 
 En esta fase \# , Developer 2 puede ejecutar **Update-Database** , que detectará la nueva migración de **AddRating** (que no se ha aplicado a la \# base de datos del desarrollador 2) y la aplicará. Ahora se agrega la columna **clasificación** a la tabla **blogs** y la base de datos está sincronizada con el modelo.
 

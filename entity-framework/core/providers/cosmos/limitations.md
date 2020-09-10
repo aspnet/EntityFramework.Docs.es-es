@@ -1,16 +1,16 @@
 ---
 title: Proveedor de Azure Cosmos DB-limitaciones-EF Core
-description: Limitaciones del proveedor de Azure Cosmos DB de Entity Framework Core
+description: Limitaciones del proveedor de Azure Cosmos DB de Entity Framework Core en comparación con otros proveedores
 author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/05/2019
 uid: core/providers/cosmos/limitations
-ms.openlocfilehash: 2631526b152d6ddcacf25173c8d51e4e3cb24500
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 0b8edd9ac5fa3d684498efe222ce11a0356040b8
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414564"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619272"
 ---
 # <a name="ef-core-azure-cosmos-db-provider-limitations"></a>Limitaciones del proveedor de Azure Cosmos DB de EF Core
 
@@ -20,15 +20,15 @@ El proveedor de Cosmos tiene una serie de limitaciones. Muchas de estas limitaci
 
 - Incluso si solo hay un tipo de entidad sin herencia asignada a un contenedor, todavía tiene una propiedad discriminadora.
 - Los tipos de entidad con claves de partición no funcionan correctamente en algunos escenarios
-- no se admiten llamadas `Include`
-- no se admiten llamadas `Join`
+- `Include` no se admiten llamadas
+- `Join` no se admiten llamadas
 
 ## <a name="azure-cosmos-db-sdk-limitations"></a>Limitaciones del SDK de Azure Cosmos DB
 
 - Solo se proporcionan métodos asincrónicos
 
 > [!WARNING]
-> Dado que no hay ninguna versión de sincronización de los métodos de nivel bajo EF Core se basa en, la funcionalidad correspondiente se implementa actualmente llamando a `.Wait()` en el `Task`devuelto. Esto significa que el uso de métodos como `SaveChanges`, o `ToList` en lugar de sus homólogos asincrónicos podría provocar un interbloqueo en la aplicación
+> Dado que no hay ninguna versión de sincronización de los métodos de nivel bajo EF Core se basa en, la funcionalidad correspondiente se implementa actualmente mediante una llamada a `.Wait()` en el devuelto `Task` . Esto significa que el uso de métodos como `SaveChanges` o `ToList` en lugar de sus homólogos asincrónicos podría provocar un interbloqueo en la aplicación
 
 ## <a name="azure-cosmos-db-limitations"></a>Limitaciones de Azure Cosmos DB
 

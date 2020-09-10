@@ -1,14 +1,16 @@
 ---
 title: 'Pruebas con un marco ficticio: EF6'
+description: Probar con un marco ficticio en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: bd66a638-d245-44d4-8e71-b9c6cb335cc7
-ms.openlocfilehash: 790e077c5b30c4a68a96b3c1a99b40893b2bbe55
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/testing/mocking
+ms.openlocfilehash: 01890ab3bb8dbf0caa7b3eff797e53b06bc8ec9b
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415998"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618306"
 ---
 # <a name="testing-with-a-mocking-framework"></a>Probar con un marco ficticio
 > [!NOTE]
@@ -23,7 +25,7 @@ Existen dos enfoques diferentes que se pueden usar para crear una versión en me
 - **Crear sus propios dobles de pruebas** : este enfoque implica escribir su propia implementación en memoria de su contexto y DbSets. Esto le ofrece un gran control sobre cómo se comportan las clases, pero puede implicar la escritura y la propiedad de una cantidad de código razonable.  
 - **Usar un marco ficticio para crear dobles de pruebas** : mediante un marco ficticio (como MOQ), puede tener las implementaciones en memoria del contexto y los conjuntos creados dinámicamente en tiempo de ejecución.  
 
-En este artículo se tratará el uso de un marco ficticio. Para crear sus propios dobles de pruebas, consulte [pruebas con los dobles de pruebas](writing-test-doubles.md).  
+En este artículo se tratará el uso de un marco ficticio. Para crear sus propios dobles de pruebas, consulte [pruebas con los dobles de pruebas](xref:ef6/fundamentals/testing/writing-test-doubles).  
 
 Para demostrar el uso de EF con un marco ficticio, vamos a usar MOQ. La forma más fácil de obtener MOQ es instalar el [paquete MOQ desde NuGet](https://nuget.org/packages/Moq/).  
 
@@ -84,7 +86,7 @@ namespace TestingDemo
 
 Tenga en cuenta que las propiedades de DbSet en el contexto se marcan como virtuales. Esto permitirá que el marco ficticio se derive de nuestro contexto e invalide estas propiedades con una implementación ficticia.  
 
-Si usa Code First, puede editar las clases directamente. Si usa el diseñador de EF, tendrá que editar la plantilla T4 que genera el contexto. Abra el\>de model_name de \<. Archivo Context.tt que está anidado en el archivo edmx, busque el fragmento de código siguiente y agregue la palabra clave virtual como se muestra.  
+Si usa Code First, puede editar las clases directamente. Si usa el diseñador de EF, tendrá que editar la plantilla T4 que genera el contexto. Abra el \<model_name\> . Archivo Context.tt que está anidado en el archivo edmx, busque el fragmento de código siguiente y agregue la palabra clave virtual como se muestra.  
 
 ``` csharp
 public string DbSet(EntitySet entitySet)
@@ -150,7 +152,7 @@ namespace TestingDemo
 
 ## <a name="testing-non-query-scenarios"></a>Probar escenarios que no son de consulta  
 
-Eso es todo lo que necesitamos hacer para empezar a probar los métodos que no son de consulta. La prueba siguiente usa MOQ para crear un contexto. Después crea un\> de blog de DbSet\<y lo conecta para que se devuelva desde la propiedad blogs del contexto. Después, el contexto se usa para crear un nuevo BlogService que se usa para crear un nuevo blog: mediante el método AddBlog. Por último, la prueba comprueba que el servicio agregó un nuevo blog y se llama SaveChanges en el contexto.  
+Eso es todo lo que necesitamos hacer para empezar a probar los métodos que no son de consulta. La prueba siguiente usa MOQ para crear un contexto. Después crea un DbSet \<Blog\> y lo conecta para que se devuelva desde la propiedad blogs del contexto. Después, el contexto se usa para crear un nuevo BlogService que se usa para crear un nuevo blog: mediante el método AddBlog. Por último, la prueba comprueba que el servicio agregó un nuevo blog y se llama SaveChanges en el contexto.  
 
 ``` csharp
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -182,7 +184,7 @@ namespace TestingDemo
 
 ## <a name="testing-query-scenarios"></a>Probar escenarios de consulta  
 
-Para poder ejecutar consultas en nuestra prueba de DbSet doble, es necesario configurar una implementación de IQueryable. El primer paso es crear algunos datos en memoria: usamos una lista\<blog\>. A continuación, creamos un contexto y DBSet\<blog\>, a continuación, conectaremos la implementación de IQueryable para DbSet: simplemente están delegando en el proveedor de LINQ to Objects que funciona con la lista\<T\>.  
+Para poder ejecutar consultas en nuestra prueba de DbSet doble, es necesario configurar una implementación de IQueryable. El primer paso es crear algunos datos en memoria: usamos una lista \<Blog\> . A continuación, creamos un contexto y DBSet \<Blog\> , a continuación, conectamos la implementación de IQueryable para DBSet: simplemente están delegando en el LINQ to Objects proveedor que funciona con la lista \<T\> .  
 
 A continuación, podemos crear un BlogService basado en los dobles de pruebas y asegurarse de que los datos que se obtienen de GetAllBlogs se ordenan por nombre.  
 
@@ -235,7 +237,7 @@ Entity Framework 6 presentó un conjunto de métodos de extensión que se pueden
 
 Dado que Entity Framework consultas usan LINQ, los métodos de extensión se definen en IQueryable y IEnumerable. Sin embargo, dado que solo están diseñados para usarse con Entity Framework puede recibir el siguiente error si intenta utilizarlos en una consulta LINQ que no es una consulta de Entity Framework:
 
-> IQueryable de origen no implementa IDbAsyncEnumerable{0}. Solo los orígenes que implementan IDbAsyncEnumerable se pueden usar para las operaciones asincrónicas de Entity Framework. Para obtener más información, consulte [http://go.microsoft.com/fwlink/?LinkId=287068](https://go.microsoft.com/fwlink/?LinkId=287068).  
+> IQueryable de origen no implementa IDbAsyncEnumerable {0} . Solo los orígenes que implementan IDbAsyncEnumerable se pueden usar para las operaciones asincrónicas de Entity Framework. Para obtener más información, vea [http://go.microsoft.com/fwlink/?LinkId=287068](https://go.microsoft.com/fwlink/?LinkId=287068) .  
 
 Mientras que los métodos asincrónicos solo se admiten cuando se ejecuta en una consulta EF, puede que desee usarlos en la prueba unitaria cuando se ejecuta en una prueba en memoria Double de un DbSet.  
 

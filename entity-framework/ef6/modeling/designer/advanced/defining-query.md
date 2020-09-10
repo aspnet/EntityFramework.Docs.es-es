@@ -1,21 +1,23 @@
 ---
 title: Definición de Query-EF Designer-EF6
+description: Definir el diseñador de Query-EF en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e52a297e-85aa-42f6-a922-ba960f8a4b22
-ms.openlocfilehash: b1589dc12ccb50754c2e950932a2d82bc4869f6b
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/advanced/defining-query
+ms.openlocfilehash: e1962a80c3a94fb17bacf28969629ce949b117a0
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415536"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616828"
 ---
 # <a name="defining-query---ef-designer"></a>Definir el diseñador de consultas-EF
-En este tutorial se muestra cómo agregar una consulta de definición y un tipo de entidad correspondiente a un modelo mediante el diseñador de EF. Una consulta de definición se usa normalmente para proporcionar una funcionalidad similar a la que proporciona una vista de base de datos, pero la vista se define en el modelo, no en la base de datos. Una consulta de definición permite ejecutar una instrucción SQL que se especifica en el elemento **DefiningQuery** de un archivo. edmx. Para obtener más información, vea **DefiningQuery** en la [especificación de SSDL](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).
+En este tutorial se muestra cómo agregar una consulta de definición y un tipo de entidad correspondiente a un modelo mediante el diseñador de EF. Una consulta de definición se usa normalmente para proporcionar una funcionalidad similar a la que proporciona una vista de base de datos, pero la vista se define en el modelo, no en la base de datos. Una consulta de definición permite ejecutar una instrucción SQL que se especifica en el elemento **DefiningQuery**   de un archivo. edmx. Para obtener más información, vea **DefiningQuery** en la [especificación de SSDL](xref:ef6/modeling/designer/advanced/edmx/ssdl-spec).
 
 Al utilizar las consultas de definición, también debe definir un tipo de entidad en el modelo. El tipo de entidad se utiliza para exponer los datos expuestos por la consulta de definición. Tenga en cuenta que los datos que se exponen a través de este tipo de entidad son de solo lectura.
 
-Las consultas con parámetros no se pueden ejecutar como consultas de definición. Sin embargo, los datos se pueden actualizar asignando las funciones de inserción, actualización y eliminación del tipo de entidad que los muestra a los procedimientos almacenados. Para obtener más información, vea [Insert, Update y DELETE con procedimientos almacenados](~/ef6/modeling/designer/stored-procedures/cud.md).
+Las consultas con parámetros no se pueden ejecutar como consultas de definición. Sin embargo, los datos se pueden actualizar asignando las funciones de inserción, actualización y eliminación del tipo de entidad que los muestra a los procedimientos almacenados. Para obtener más información, vea [Insert, Update y DELETE con procedimientos almacenados](xref:ef6/modeling/designer/stored-procedures/cud).
 
 En este tema se muestra cómo realizar las siguientes tareas.
 
@@ -23,12 +25,12 @@ En este tema se muestra cómo realizar las siguientes tareas.
 -   Agregar un tipo de entidad al modelo
 -   Asignar la consulta de definición al tipo de entidad
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Requisitos previos
 
 Para completar este tutorial, necesitará:
 
 - Una versión reciente de Visual Studio.
-- La [base de datos de ejemplo School](~/ef6/resources/school-database.md).
+- La [base de datos de ejemplo School](xref:ef6/resources/school-database).
 
 ## <a name="set-up-the-project"></a>Configurar el proyecto
 
@@ -36,7 +38,7 @@ En este tutorial se usa Visual Studio 2012 o una versión más reciente.
 
 -   Abra Visual Studio.
 -   En el menú **Archivo** , seleccione **Nuevo**y haga clic en **Proyecto**.
--   En el panel izquierdo, haga clic en **Visual C\#** y, a continuación, seleccione la plantilla **aplicación de consola** .
+-   En el panel izquierdo, haga clic en **Visual \# C**y, a continuación, seleccione la plantilla **aplicación de consola** .
 -   Escriba **DefiningQuerySample** como nombre del proyecto y haga clic en **Aceptar**.
 
  
@@ -47,12 +49,12 @@ En este tutorial se usa Visual Studio 2012 o una versión más reciente.
 -   Seleccione **datos** en el menú de la izquierda y, a continuación, seleccione **ADO.NET Entity Data Model** en el panel Plantillas.
 -   Escriba **DefiningQueryModel. edmx** como nombre de archivo y, a continuación, haga clic en **Agregar**.
 -   En el cuadro de diálogo elegir contenido del modelo, seleccione **generar desde la base de datos**y, a continuación, haga clic en **siguiente**.
--   Haga clic en nueva conexión. En el cuadro de diálogo Propiedades de conexión, escriba el nombre del servidor (por ejemplo, **LocalDB)\\mssqllocaldb**), seleccione el método de autenticación, escriba **School** para el nombre de la base de datos y, a continuación, haga clic en **Aceptar**.
+-   Haga clic en nueva conexión. En el cuadro de diálogo Propiedades de conexión, escriba el nombre del servidor (por ejemplo, **(LocalDB) \\ mssqllocaldb**), seleccione el método de autenticación, escriba **School**   como nombre de la base de datos y, a continuación, haga clic en **Aceptar**.
     El cuadro de diálogo elegir la conexión de datos se actualiza con la configuración de conexión de la base de datos.
--   En el cuadro de diálogo elija los objetos de base de datos, compruebe el nodo **tablas** . Se agregarán todas las tablas al modelo **School** .
+-   En el cuadro de diálogo elija los objetos de base de datos, compruebe el nodo **tablas**   . Se agregarán todas las tablas al modelo **School** .
 -   Haga clic en **Finalizar**.
--   En Explorador de soluciones, haga clic con el botón secundario en el archivo **DefiningQueryModel. edmx** y seleccione **abrir con.** ...
--   Seleccione **Editor XML (texto)** .
+-   En Explorador de soluciones, haga clic con el botón secundario en el archivo **DefiningQueryModel. edmx** y seleccione **abrir con.**...
+-   Seleccione **Editor XML (texto)**.
 
     ![Editor XML](~/ef6/media/xmleditor.png)
 
@@ -66,10 +68,10 @@ En este tutorial se usa Visual Studio 2012 o una versión más reciente.
 
 En este paso, usaremos el editor XML para agregar una consulta de definición y un tipo de entidad a la sección SSDL del archivo. edmx. 
 
--   Agregue un elemento de **EntitySet** a la sección SSDL del archivo. edmx (línea 5 a 13). Especifique lo siguiente:
-    -   Solo se especifican los atributos **Name** y **EntityType** del elemento de **EntitySet** .
-    -   El nombre completo del tipo de entidad se usa en el atributo **EntityType** .
-    -   La instrucción SQL que se va a ejecutar se especifica en el elemento **DefiningQuery** .
+-   Agregue un elemento **EntitySet**   a la sección SSDL del archivo. edmx (línea 5 a 13). Especifique lo siguiente:
+    -   Solo **Name**   se especifican los atributos name y **EntityType**   del elemento **EntitySet**   .
+    -   El nombre completo del tipo de entidad se usa en el atributo **EntityType**   .
+    -   La instrucción SQL que se va a ejecutar se especifica en el elemento **DefiningQuery**   .
 
 ``` xml
     <!-- SSDL content -->
@@ -125,7 +127,7 @@ En este paso, usaremos el editor XML para agregar una consulta de definición y 
 
 ## <a name="add-an-entity-type-to-the-model"></a>Agregar un tipo de entidad al modelo
 
-En este paso se agregará el tipo de entidad al modelo conceptual mediante el diseñador de EF.  Tenga en cuenta lo siguiente:
+En este paso se agregará el tipo de entidad al modelo conceptual mediante el diseñador de EF. Tenga en cuenta lo siguiente:
 
 -   El **nombre** de la entidad corresponde al valor del atributo **EntityType** en el elemento **EntitySet** anterior.
 -   Los nombres de propiedad corresponden a los nombres de columna devueltos por la instrucción SQL en el elemento **DefiningQuery** anterior.
@@ -142,9 +144,9 @@ Abra el modelo en el diseñador de EF.
 
 Se muestra el diseñador de entidades, que proporciona una superficie de diseño para editar el modelo.
 
--   Haga clic con el botón secundario en la superficie del diseñador y seleccione **Agregar nuevo**-&gt;**entidad.** .
+-   Haga clic con el botón secundario en la superficie del diseñador y seleccione **Agregar nueva** - &gt; **entidad.**...
 -   Especifique **GradeReport** para el nombre de entidad y el **CourseID** para la **propiedad de clave**.
--   Haga clic con el botón secundario en la entidad **GradeReport** y seleccione **agregar nuevo**-&gt; **propiedad escalar**.
+-   Haga clic con el botón secundario en la entidad **GradeReport** y seleccione **Agregar nueva** - &gt; **propiedad escalar**.
 -   Cambie el nombre predeterminado de la propiedad a **FirstName**.
 -   Agregue otra propiedad escalar y especifique **LastName** como nombre.
 -   Agregue otra propiedad escalar y especifique **grade** como el nombre.
@@ -170,11 +172,11 @@ En este paso, usaremos la ventana detalles de la asignación para asignar los ti
 
 -   Haga clic con el botón secundario en la entidad **GradeReport** en la superficie de diseño y seleccione **asignación de tabla**.  
     Se muestra la ventana detalles de la **asignación** .
--   Seleccione **GradeReport** en la lista desplegable **&lt;agregar una tabla o vista&gt;** (que se encuentra en la **tabla**s).  
+-   Seleccione **GradeReport** en la lista desplegable ** &lt; Agregar una &gt; tabla o vista** (que se encuentra en la **tabla**s).  
     Aparecen las asignaciones predeterminadas entre el tipo de entidad conceptual y Storage **GradeReport** .  
-    Asignación de ![Details3](~/ef6/media/mappingdetails.png)
+    ![Asignación de Details3](~/ef6/media/mappingdetails.png)
 
-Como resultado, el elemento **EntitySetMapping** se agrega a la sección de asignación del archivo. edmx. 
+Como resultado, el elemento **EntitySetMapping**   se agrega a la sección de asignación del archivo. edmx. 
 
 ``` xml
     <EntitySetMapping Name="GradeReports">

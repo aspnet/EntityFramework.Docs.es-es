@@ -1,15 +1,16 @@
 ---
 title: 'Migraciones en entornos de equipo: EF Core'
+description: Prácticas recomendadas para administrar migraciones y resolver conflictos en entornos de equipo con Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 10/30/2017
 uid: core/managing-schemas/migrations/teams
-ms.openlocfilehash: 6c17c56277821159962884aef72d46c624442e20
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 1fbb7173a52218a4d00780ebc76e33600f3558c1
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414246"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619194"
 ---
 # <a name="migrations-in-team-environments"></a>Migraciones en entornos de equipo
 

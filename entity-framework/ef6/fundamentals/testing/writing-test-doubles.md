@@ -1,14 +1,16 @@
 ---
 title: Pruebas con sus propias pruebas dobles-EF6
+description: Las pruebas con su propia prueba se duplican en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 16a8b7c0-2d23-47f4-9cc0-e2eb2e738ca3
-ms.openlocfilehash: 3d8933fb5e17f8c01f3971495a1fcdb5b8cfab57
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/testing/writing-test-doubles
+ms.openlocfilehash: 5c8e50247c0e6ed4081e2403ba60e0738051312b
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78413892"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618234"
 ---
 # <a name="testing-with-your-own-test-doubles"></a>Pruebas con sus propias dobles de pruebas
 > [!NOTE]
@@ -23,7 +25,7 @@ Existen dos enfoques diferentes que se pueden usar para crear una versión en me
 - **Crear sus propios dobles de pruebas** : este enfoque implica escribir su propia implementación en memoria de su contexto y DbSets. Esto le ofrece un gran control sobre cómo se comportan las clases, pero puede implicar la escritura y la propiedad de una cantidad de código razonable.  
 - **Usar un marco ficticio para crear dobles de pruebas** : mediante un marco ficticio (como MOQ), puede tener las implementaciones en memoria de contexto y conjuntos creados dinámicamente en tiempo de ejecución.  
 
-En este artículo se tratará la creación de su propio Double de prueba. Para obtener información sobre el uso de un marco ficticio, vea [probar con un marco ficticio](mocking.md).  
+En este artículo se tratará la creación de su propio Double de prueba. Para obtener información sobre el uso de un marco ficticio, vea [probar con un marco ficticio](xref:ef6/fundamentals/testing/mocking).  
 
 ## <a name="testing-with-pre-ef6-versions"></a>Pruebas con versiones anteriores a EF6  
 
@@ -102,7 +104,7 @@ namespace TestingDemo
 
 Tenga en cuenta que nuestro contexto implementa la interfaz IBloggingContext.  
 
-Si usa Code First, puede modificar el contexto directamente para implementar la interfaz. Si usa el diseñador de EF, tendrá que editar la plantilla T4 que genera el contexto. Abra el\>de model_name de \<. Archivo Context.tt que está anidado en el archivo edmx, busque el fragmento de código siguiente y agréguelo en la interfaz como se muestra.  
+Si usa Code First, puede modificar el contexto directamente para implementar la interfaz. Si usa el diseñador de EF, tendrá que editar la plantilla T4 que genera el contexto. Abra el \<model_name\> . Archivo Context.tt que está anidado en el archivo edmx, busque el fragmento de código siguiente y agréguelo en la interfaz como se muestra.  
 
 ``` csharp  
 <#=Accessibility.ForType(container)#> partial class <#=code.Escape(container)#> : DbContext, IBloggingContext

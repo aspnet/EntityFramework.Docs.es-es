@@ -1,24 +1,26 @@
 ---
 title: 'Code First a una nueva base de datos: EF6'
+description: Code First a una nueva base de datos en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
-ms.openlocfilehash: d540fc6e84049f345ae22998f94c309e0be73fc3
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/workflows/new-database
+ms.openlocfilehash: 4e927bab07ae7a9719c46655e10685b59d0b65dc
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415548"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616887"
 ---
-# <a name="code-first-to-a-new-database"></a>Code First a una nueva base de datos
-Este vídeo y el tutorial paso a paso proporcionan una introducción al desarrollo de Code First que tiene como destino una nueva base de datos. Este escenario incluye establecer como destino una base de datos que no existe y Code First creará, o una base de datos vacía a la que Code First agregará nuevas tablas. Code First permite definir el modelo mediante clases de C\# o VB.Net. Opcionalmente, se puede realizar una configuración adicional mediante atributos en las clases y propiedades o mediante una API fluida.
+# <a name="code-first-to-a-new-database"></a>Code First en una nueva base de datos
+Este vídeo y el tutorial paso a paso proporcionan una introducción al desarrollo de Code First que tiene como destino una nueva base de datos. Este escenario incluye establecer como destino una base de datos que no existe y Code First creará, o una base de datos vacía a la que Code First agregará nuevas tablas. Code First permite definir el modelo mediante \# las clases C o VB.net. Opcionalmente, se puede realizar una configuración adicional mediante atributos en las clases y propiedades o mediante una API fluida.
 
 ## <a name="watch-the-video"></a>Visualización del vídeo
-Este vídeo proporciona una introducción al desarrollo de Code First orientado a una nueva base de datos. Este escenario incluye establecer como destino una base de datos que no existe y Code First creará, o una base de datos vacía a la que Code First agregará nuevas tablas. Code First permite definir el modelo mediante C# las clases o VB.net. Opcionalmente, se puede realizar una configuración adicional mediante atributos en las clases y propiedades o mediante una API fluida.
+Este vídeo proporciona una introducción al desarrollo de Code First orientado a una nueva base de datos. Este escenario incluye establecer como destino una base de datos que no existe y Code First creará, o una base de datos vacía a la que Code First agregará nuevas tablas. Code First permite definir el modelo mediante clases de C# o VB.Net. Opcionalmente, se puede realizar una configuración adicional mediante atributos en las clases y propiedades o mediante una API fluida.
 
 **Presentado por**: [Rowan Miller](https://romiller.com/)
 
-**Vídeo**: [wmv](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv) | [MP4](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v) | [WMV (zip)](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
+**Vídeo**: [WMV](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.wmv)  |  [MP4](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-mp4Video-CodeFirstNewDatabase.m4v)  |  [WMV (zip)](https://download.microsoft.com/download/B/A/5/BA57BADE-D558-4693-8F82-29E64E4084AB/HDI-ITPro-MSDN-winvideo-CodeFirstNewDatabase.zip)
 
 ## <a name="pre-requisites"></a>Requisitos previos
 
@@ -30,8 +32,8 @@ Si usa Visual Studio 2010, también debe tener instalado [NuGet](https://visuals
 
 Para simplificar las cosas, vamos a crear una aplicación de consola básica que use Code First para realizar el acceso a los datos.
 
--   Abra Visual Studio.
--   **Archivo-&gt; nuevo proyecto de&gt;...**
+-   Apertura de Visual Studio
+-   **Archivo- &gt; nuevo- &gt; proyecto...**
 -   Seleccionar **ventanas** en el menú izquierdo y en la **aplicación de consola**
 -   Escriba **CodeFirstNewDatabaseSample** como nombre
 -   Seleccione **Aceptar**.
@@ -66,15 +68,15 @@ Observará que vamos a hacer que las dos propiedades de navegación (blog. posts
 
 ## <a name="3-create-a-context"></a>3. crear un contexto
 
-Ahora es el momento de definir un contexto derivado, que representa una sesión con la base de datos, lo que nos permite consultar y guardar datos. Definimos un contexto que se deriva de System. Data. Entity. DbContext y expone un DbSet con tipo de&gt; de la&lt;de la carpa para cada clase de nuestro modelo.
+Ahora es el momento de definir un contexto derivado, que representa una sesión con la base de datos, lo que nos permite consultar y guardar datos. Definimos un contexto que se deriva de System. Data. Entity. DbContext y expone una carpa DbSet con tipo &lt; &gt; para cada clase de nuestro modelo.
 
 Ahora estamos empezando a usar los tipos del Entity Framework por lo que necesitamos agregar el paquete NuGet EntityFramework.
 
--   **Proyecto:&gt; administrar paquetes NuGet...**
+-   **Proyecto: &gt; administrar paquetes NuGet...**
     Nota: Si no tiene la **Administración de paquetes de NuGet..** . opción debe instalar la [versión más reciente de NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
 -   Seleccione la pestaña **en línea**
 -   Seleccione el paquete **EntityFramework**
--   Haga clic en **Instalar**.
+-   Haz clic en **Instalar**
 
 Agregue una instrucción using para System. Data. Entity en la parte superior de Program.cs.
 
@@ -195,7 +197,7 @@ Por Convención DbContext ha creado una base de datos automáticamente.
 Estas son solo las convenciones predeterminadas y hay varias maneras de cambiar la base de datos que usa Code First. hay más información disponible en la sección **cómo el DbContext detecta el modelo y la conexión a la base de datos** .
 Puede conectarse a esta base de datos mediante Explorador de servidores en Visual Studio
 
--   **Explorador de servidores de&gt; de vista**
+-   **Vista &gt; Explorador de servidores**
 -   Haga clic con el botón derecho en **conexiones de datos** y seleccione **Agregar conexión..** .
 -   Si no se ha conectado a una base de datos desde Explorador de servidores antes de que tenga que seleccionar Microsoft SQL Server como origen de datos
 
@@ -217,11 +219,11 @@ Las migraciones nos permiten tener un conjunto ordenado de pasos que describen c
 
 El primer paso es habilitar Migraciones de Code First para nuestro BloggingContext.
 
--   **Herramientas-administrador de paquetes de la biblioteca de&gt;-&gt; consola del administrador de paquetes**
+-   **Herramientas- &gt; Administrador de paquetes de la biblioteca- &gt; consola del administrador de paquetes**
 -   Ejecute el comando **Enable-Migrations** en la consola del Administrador de paquetes
 -   Se ha agregado una nueva carpeta Migrations al proyecto que contiene dos elementos:
     -   **Configuration.CS** : este archivo contiene la configuración que las migraciones usarán para migrar BloggingContext. No es necesario cambiar nada para este tutorial, pero aquí es donde se pueden especificar los datos de inicialización, registrar proveedores para otras bases de datos, cambiar el espacio de nombres que se generan en las migraciones, etc.
-    -   **&lt;timestamp&gt;\_InitialCreate.CS** : esta es la primera migración, que representa los cambios que ya se han aplicado a la base de datos para que no sea una base de datos vacía a la que se incluyan las tablas blogs y posts. Aunque se permite a Code First crear automáticamente estas tablas, ahora que hemos optado por las migraciones que se han convertido en una migración. Code First también se ha registrado en la base de datos local que ya se ha aplicado esta migración. La marca de tiempo en el nombre de archivo se usa para la ordenación.
+    -   ** &lt; timestamp &gt; \_ InitialCreate.CS** : esta es la primera migración, que representa los cambios que ya se han aplicado a la base de datos para que no sea una base de datos vacía a la que se incluyan las tablas blogs y posts. Aunque se permite a Code First crear automáticamente estas tablas, ahora que hemos optado por las migraciones que se han convertido en una migración. Code First también se ha registrado en la base de datos local que ya se ha aplicado esta migración. La marca de tiempo en el nombre de archivo se usa para la ordenación.
 
     Ahora vamos a hacer un cambio en nuestro modelo, agregaremos una propiedad de dirección URL a la clase de blog:
 
@@ -340,7 +342,7 @@ En la sección anterior, analizamos el uso de anotaciones de datos para compleme
 
 La mayoría de la configuración del modelo se puede realizar con anotaciones de datos simples. La API fluida es una forma más avanzada de especificar la configuración del modelo que abarca todo lo que pueden hacer las anotaciones de datos además de algunas configuraciones más avanzadas que no son posibles con las anotaciones de datos. Las anotaciones de datos y la API fluida se pueden usar juntas.
 
-Para acceder a la API fluida, invalide el método OnModelCreating en DbContext. Supongamos que deseamos cambiar el nombre de la columna en la que se almacena User. DisplayName para mostrar\_nombre.
+Para acceder a la API fluida, invalide el método OnModelCreating en DbContext. Supongamos que deseamos cambiar el nombre de la columna en la que se almacena User. DisplayName para mostrar el \_ nombre.
 
 -   Invalide el método OnModelCreating en BloggingContext con el siguiente código
 
@@ -363,7 +365,7 @@ public class BloggingContext : DbContext
 -   Use el comando **Add-Migration ChangeDisplayName** para aplicar scaffolding a una migración para aplicar estos cambios a la base de datos.
 -   Ejecute el comando **Update-Database** para aplicar la nueva migración a la base de datos.
 
-Ahora se ha cambiado el nombre de la columna DisplayName para mostrar\_nombre:
+Ahora se ha cambiado el nombre de la columna DisplayName a nombre para mostrar \_ :
 
 ![Esquema con nombre para mostrar cambiado](~/ef6/media/schemawithdisplaynamerenamed.png)
 

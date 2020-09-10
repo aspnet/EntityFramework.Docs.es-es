@@ -1,26 +1,28 @@
 ---
 title: 'Configuración basada en código: EF6'
+description: Configuración basada en código en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 13886d24-2c74-4a00-89eb-aa0dee328d83
-ms.openlocfilehash: 079a4ab30af74eac8b1f51ece5801ff40a867a29
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/configuring/code-based
+ms.openlocfilehash: 643aefff1d8a143e7df8251eff4e5051e2c6bd08
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414804"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618499"
 ---
 # <a name="code-based-configuration"></a>Configuración basada en código
 > [!NOTE]
 > **Solo EF6 y versiones posteriores**: las características, las API, etc. que se tratan en esta página se han incluido a partir de Entity Framework 6. Si usa una versión anterior, no se aplica parte o la totalidad de la información.  
 
-La configuración de una aplicación Entity Framework se puede especificar en un archivo de configuración (App. config/Web. config) o mediante código. Este último se conoce como configuración basada en código.  
+La configuración de una aplicación Entity Framework se puede especificar en un archivo de configuración (app.config/web.config) o mediante código. Este último se conoce como configuración basada en código.  
 
-La configuración de un archivo de configuración se describe en un [artículo independiente](config-file.md). El archivo de configuración tiene prioridad sobre la configuración basada en código. En otras palabras, si se establece una opción de configuración en el código y en el archivo de configuración, se usa la configuración del archivo de configuración.  
+La configuración de un archivo de configuración se describe en un [artículo independiente](xref:ef6/fundamentals/configuring/config-file). El archivo de configuración tiene prioridad sobre la configuración basada en código. En otras palabras, si se establece una opción de configuración en el código y en el archivo de configuración, se usa la configuración del archivo de configuración.  
 
 ## <a name="using-dbconfiguration"></a>Usar DbConfiguration  
 
-La configuración basada en código en EF6 y versiones posteriores se consigue mediante la creación de una subclase de System. Data. Entity. config. DbConfiguration. Se deben seguir las siguientes directrices para crear subclases de DbConfiguration:  
+La configuración basada en código en EF6 y versiones posteriores se consigue mediante la creación de una subclase de System.Data.Entity.Config. DbConfiguration. Se deben seguir las siguientes directrices para crear subclases de DbConfiguration:  
 
 - Cree solo una clase DbConfiguration para la aplicación. Esta clase especifica la configuración de todo el dominio de aplicación.  
 - Coloque la clase DbConfiguration en el mismo ensamblado que la clase DbContext. (Consulte la sección *mover DbConfiguration* si desea cambiar esto).  

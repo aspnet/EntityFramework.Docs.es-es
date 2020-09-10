@@ -1,21 +1,23 @@
 ---
 title: 'Configuración del archivo de configuración: EF6'
+description: Configuración del archivo de configuración en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 000044c6-1d32-4cf7-ae1f-ea21d86ebf8f
-ms.openlocfilehash: 86389e4a3a3bac46e2a4cf2da648a4b19e29f3c3
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/configuring/config-file
+ms.openlocfilehash: ac257c0da8da4dff852ec24f7de91c62c68f92d8
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414858"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618490"
 ---
 # <a name="configuration-file-settings"></a>Configuración del archivo de configuración
 Entity Framework permite especificar una serie de valores desde el archivo de configuración. En general, EF sigue un comportamiento de "Convención sobre configuración": todos los valores de configuración descritos en esta publicación tienen un comportamiento predeterminado, solo tiene que preocuparse por cambiar el valor cuando el valor predeterminado ya no satisface sus requisitos.  
 
 ## <a name="a-code-based-alternative"></a>Una alternativa basada en código  
 
-Todos estos valores también se pueden aplicar mediante código. A partir de EF6, se presentó la [configuración basada en código](code-based.md), que proporciona una manera centralizada de aplicar la configuración desde el código. Antes de EF6, todavía se puede aplicar la configuración desde el código, pero es necesario usar varias API para configurar distintas áreas. La opción del archivo de configuración permite cambiar fácilmente esta configuración durante la implementación sin necesidad de actualizar el código.
+Todos estos valores también se pueden aplicar mediante código. A partir de EF6, se presentó la [configuración basada en código](xref:ef6/fundamentals/configuring/code-based), que proporciona una manera centralizada de aplicar la configuración desde el código. Antes de EF6, todavía se puede aplicar la configuración desde el código, pero es necesario usar varias API para configurar distintas áreas. La opción del archivo de configuración permite cambiar fácilmente esta configuración durante la implementación sin necesidad de actualizar el código.
 
 ## <a name="the-entity-framework-configuration-section"></a>La sección de configuración Entity Framework  
 
@@ -36,7 +38,7 @@ La sección **entityFramework** se agregó automáticamente al archivo de config
 
 ## <a name="connection-strings"></a>Cadenas de conexión  
 
-En [esta página](~/ef6/fundamentals/configuring/connection-strings.md) se proporcionan más detalles sobre cómo Entity Framework determina la base de datos que se va a usar, incluidas las cadenas de conexión en el archivo de configuración.  
+En [esta página](xref:ef6/fundamentals/configuring/connection-strings) se proporcionan más detalles sobre cómo Entity Framework determina la base de datos que se va a usar, incluidas las cadenas de conexión en el archivo de configuración.  
 
 Las cadenas de conexión van en el elemento **connectionStrings** estándar y no requieren la sección **entityFramework** .  
 
@@ -72,7 +74,7 @@ Los modelos basados en el diseñador EF usan cadenas de conexión EF especiales.
 
 ## <a name="code-based-configuration-type-ef6-onwards"></a>Tipo de configuración basada en código (EF6 en adelante)  
 
-A partir de EF6, puede especificar el DbConfiguration para EF que se va a usar para la [configuración basada en código](code-based.md) en la aplicación. En la mayoría de los casos, no es necesario especificar esta configuración, ya que EF detectará automáticamente el DbConfiguration. Para obtener detalles sobre Cuándo es posible que tenga que especificar DbConfiguration en el archivo de configuración, consulte la sección **mover DbConfiguration** de [configuración basada en código](code-based.md).  
+A partir de EF6, puede especificar el DbConfiguration para EF que se va a usar para la [configuración basada en código](xref:ef6/fundamentals/configuring/code-based) en la aplicación. En la mayoría de los casos, no es necesario especificar esta configuración, ya que EF detectará automáticamente el DbConfiguration. Para obtener detalles sobre Cuándo es posible que tenga que especificar DbConfiguration en el archivo de configuración, consulte la sección **mover DbConfiguration** de [configuración basada en código](xref:ef6/fundamentals/configuring/code-based).  
 
 Para establecer un tipo DbConfiguration, especifique el nombre del tipo calificado con el ensamblado en el elemento **codeConfigurationType** .  
 
@@ -180,7 +182,7 @@ Por ejemplo, SqlCeConnectionFactory, que se incluye en Entity Framework, requier
 </entityFramework>
 ```  
 
-Si no establece un generador de conexiones predeterminado, Code First usa SqlConnectionFactory, que apunta a `.\SQLEXPRESS`. SqlConnectionFactory también tiene un constructor que permite invalidar partes de la cadena de conexión. Si desea utilizar una instancia de SQL Server distinta de `.\SQLEXPRESS` puede usar este constructor para establecer el servidor.  
+Si no establece un generador de conexiones predeterminado, Code First usa SqlConnectionFactory, que apunta a `.\SQLEXPRESS` . SqlConnectionFactory también tiene un constructor que permite invalidar partes de la cadena de conexión. Si desea utilizar una instancia de SQL Server distinta de `.\SQLEXPRESS` , puede usar este constructor para establecer el servidor.  
 
 La configuración siguiente hará que Code First use **MyDatabaseServer** para los contextos que no tienen un conjunto de cadenas de conexión explícitas.  
 
@@ -206,7 +208,7 @@ Los inicializadores de base de datos se configuran en función del contexto. Se 
 
 De forma predeterminada, Code First contextos se configuran para usar el inicializador CreateDatabaseIfNotExists. Hay un atributo **disableDatabaseInitialization** en el elemento de **contexto** que se puede usar para deshabilitar la inicialización de la base de datos.  
 
-Por ejemplo, la siguiente configuración deshabilita la inicialización de la base de datos para el contexto blog. BlogContext definido en myAssembly. dll.  
+Por ejemplo, la siguiente configuración deshabilita la inicialización de la base de datos para el contexto blog. BlogContext definido en MyAssembly.dll.  
 
 ``` xml  
 <contexts>
@@ -240,7 +242,7 @@ Los parámetros de constructor utilizan la misma sintaxis que los generadores de
 
 Puede configurar uno de los inicializadores de base de datos genéricos que se incluyen en Entity Framework. El atributo **Type** utiliza el formato de .NET Framework para los tipos genéricos.  
 
-Por ejemplo, si usa Migraciones de Code First, puede configurar la base de datos que se va a migrar automáticamente mediante el inicializador de `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>`.  
+Por ejemplo, si usa Migraciones de Code First, puede configurar la base de datos que se va a migrar automáticamente mediante el `MigrateDatabaseToLatestVersion<TContext, TMigrationsConfiguration>` inicializador.  
 
 ``` xml
 <contexts>

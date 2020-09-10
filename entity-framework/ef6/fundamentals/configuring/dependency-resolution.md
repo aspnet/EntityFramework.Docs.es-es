@@ -1,14 +1,16 @@
 ---
 title: 'Resolución de dependencias: EF6'
+description: Resolución de dependencias en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 32d19ac6-9186-4ae1-8655-64ee49da55d0
-ms.openlocfilehash: 6082124481f5795bbcb62fff2bb6a58ecdcb48e4
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/configuring/dependency-resolution
+ms.openlocfilehash: c23253dc5a413077e3980fcfa18ea83b5fc3970e
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414798"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618417"
 ---
 # <a name="dependency-resolution"></a>Resolución de dependencias
 > [!NOTE]
@@ -27,9 +29,9 @@ EF normalmente llama al método GetService y se controla mediante una implementa
 
 A menos que se indique lo contrario, cualquier objeto devuelto debe ser seguro para subprocesos, ya que se puede utilizar como singleton. En muchos casos, el objeto devuelto es un generador, en cuyo caso el propio generador debe ser seguro para subprocesos, pero no es necesario que el objeto devuelto por el generador sea seguro para subprocesos, ya que se solicita una nueva instancia desde el generador para cada uso.
 
-En este artículo no se incluyen detalles completos sobre cómo implementar IDbDependencyResolver, sino que actúa como referencia para los tipos de servicio (es decir, la interfaz y los tipos de clase base) para los que EF llama a GetService y la semántica del objeto de clave para cada uno de estos llama.
+En este artículo no se incluyen detalles completos sobre cómo implementar IDbDependencyResolver, sino que actúa como referencia para los tipos de servicio (es decir, la interfaz y los tipos de clase base) para los que EF llama a GetService y la semántica del objeto de clave para cada una de estas llamadas.
 
-## <a name="systemdataentityidatabaseinitializertcontext"></a>System. Data. Entity. IDatabaseInitializer < TContext\>  
+## <a name="systemdataentityidatabaseinitializertcontext"></a>System. Data. Entity. IDatabaseInitializer<TContext\>  
 
 **Versión introducida**: EF 6.0.0  
 
@@ -37,7 +39,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 
 **Clave**: no se utiliza; será null  
 
-## <a name="funcsystemdataentitymigrationssqlmigrationsqlgenerator"></a>FUNC < System. Data. Entity. Migrations. SQL. MigrationSqlGenerator\>  
+## <a name="funcsystemdataentitymigrationssqlmigrationsqlgenerator"></a>FUNC<System. Data. Entity. Migrations. SQL. MigrationSqlGenerator\>  
 
 **Versión introducida**: EF 6.0.0
 
@@ -46,7 +48,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 **Key**: una cadena que contiene el nombre invariable del proveedor ADO.net que especifica el tipo de base de datos para el que se generará SQL. Por ejemplo, se devuelve el generador de SQL Server SQL para la clave "System. Data. SqlClient".  
 
 >[!NOTE]
-> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](~/ef6/fundamentals/providers/provider-model.md) .  
+> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](xref:ef6/fundamentals/providers/provider-model) .  
 
 ## <a name="systemdataentitycorecommondbproviderservices"></a>System. Data. Entity. Core. Common. DbProviderServices  
 
@@ -57,18 +59,18 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 **Key**: una cadena que contiene el nombre invariable del proveedor ADO.net que especifica el tipo de base de datos para el que se necesita un proveedor. Por ejemplo, se devuelve el proveedor de SQL Server para la clave "System. Data. SqlClient".  
 
 >[!NOTE]
-> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](~/ef6/fundamentals/providers/provider-model.md) .  
+> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](xref:ef6/fundamentals/providers/provider-model) .  
 
 ## <a name="systemdataentityinfrastructureidbconnectionfactory"></a>System. Data. Entity. Infrastructure. IDbConnectionFactory  
 
 **Versión introducida**: EF 6.0.0  
 
-**Objeto devuelto**: el generador de conexión que se usará cuando EF cree una conexión de base de datos por Convención. Es decir, cuando no se proporciona ninguna conexión o cadena de conexión a EF, y no se encuentra ninguna cadena de conexión en App. config o Web. config, este servicio se usa para crear una conexión por Convención. Cambiar el generador de conexiones puede permitir que EF use otro tipo de base de datos (por ejemplo, SQL Server Compact Edition) de forma predeterminada.  
+**Objeto devuelto**: el generador de conexión que se usará cuando EF cree una conexión de base de datos por Convención. Es decir, cuando no se proporciona ninguna conexión o cadena de conexión a EF, y no se encuentra ninguna cadena de conexión en el app.config o web.config, este servicio se usa para crear una conexión por Convención. Cambiar el generador de conexiones puede permitir que EF use otro tipo de base de datos (por ejemplo, SQL Server Compact Edition) de forma predeterminada.  
 
 **Clave**: no se utiliza; será null  
 
 >[!NOTE]
-> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](~/ef6/fundamentals/providers/provider-model.md) .  
+> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](xref:ef6/fundamentals/providers/provider-model) .  
 
 ## <a name="systemdataentityinfrastructureimanifesttokenservice"></a>System. Data. Entity. Infrastructure. IManifestTokenService  
 
@@ -88,7 +90,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 
 **Clave**: no se utiliza; será null  
 
-## <a name="funcdbcontext-systemdataentityinfrastructureidbmodelcachekey"></a>FUNC < DbContext, System. Data. Entity. Infrastructure. IDbModelCacheKey\>  
+## <a name="funcdbcontext-systemdataentityinfrastructureidbmodelcachekey"></a>FUNC<DbContext, System. Data. Entity. Infrastructure. IDbModelCacheKey\>  
 
 **Versión introducida**: EF 6.0.0  
 
@@ -105,9 +107,9 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 **Clave**: DbSptialServices se solicita de dos maneras. En primer lugar, se solicitan servicios espaciales específicos del proveedor mediante un objeto DbProviderInfo (que contiene el nombre invariable y el token del manifiesto) como clave. En segundo lugar, se puede solicitar a DbSpatialServices sin clave. Se usa para resolver el "proveedor espacial global", que se usa al crear tipos independientes de DbGeography o DbGeometry.  
 
 >[!NOTE]
-> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](~/ef6/fundamentals/providers/provider-model.md) .  
+> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](xref:ef6/fundamentals/providers/provider-model) .  
 
-## <a name="funcsystemdataentityinfrastructureidbexecutionstrategy"></a>FUNC < System. Data. Entity. Infrastructure. IDbExecutionStrategy\>  
+## <a name="funcsystemdataentityinfrastructureidbexecutionstrategy"></a>FUNC<System. Data. Entity. Infrastructure. IDbExecutionStrategy\>  
 
 **Versión introducida**: EF 6.0.0  
 
@@ -116,18 +118,18 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 **Key**: un objeto ExecutionStrategyKey que contiene el nombre invariable del proveedor y, opcionalmente, un nombre de servidor para el que se usará la estrategia de ejecución.  
 
 >[!NOTE]
-> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](~/ef6/fundamentals/providers/provider-model.md) .  
+> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](xref:ef6/fundamentals/providers/provider-model) .  
 
-## <a name="funcdbconnection-string-systemdataentitymigrationshistoryhistorycontext"></a>FUNC < DbConnection, String, System. Data. Entity. Migrations. History. HistoryContext\>  
+## <a name="funcdbconnection-string-systemdataentitymigrationshistoryhistorycontext"></a>FUNC<DbConnection, String, System. Data. Entity. Migrations. History. HistoryContext\>  
 
 **Versión introducida**: EF 6.0.0  
 
-**Objeto devuelto**: un generador que permite a un proveedor configurar la asignación de HistoryContext a la tabla `__MigrationHistory` utilizada por las migraciones de EF. HistoryContext es un DbContext de Code First y se puede configurar mediante la API fluida normal para cambiar aspectos como el nombre de la tabla y las especificaciones de asignación de columnas.  
+**Objeto devuelto**: un generador que permite a un proveedor configurar la asignación de HistoryContext a la `__MigrationHistory` tabla usada por las migraciones de EF. HistoryContext es un DbContext de Code First y se puede configurar mediante la API fluida normal para cambiar aspectos como el nombre de la tabla y las especificaciones de asignación de columnas.  
 
 **Clave**: no se utiliza; será null  
 
 >[!NOTE]
-> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](~/ef6/fundamentals/providers/provider-model.md) .  
+> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](xref:ef6/fundamentals/providers/provider-model) .  
 
 ## <a name="systemdatacommondbproviderfactory"></a>System. Data. Common. DbProviderFactory  
 
@@ -138,7 +140,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 **Key**: una cadena que contiene el nombre invariable del proveedor ADO.net  
 
 >[!NOTE]
-> Normalmente, este servicio no se cambia directamente, ya que la implementación predeterminada usa el registro del proveedor ADO.NET normal. Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](~/ef6/fundamentals/providers/provider-model.md) .  
+> Normalmente, este servicio no se cambia directamente, ya que la implementación predeterminada usa el registro del proveedor ADO.NET normal. Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](xref:ef6/fundamentals/providers/provider-model) .  
 
 ## <a name="systemdataentityinfrastructureiproviderinvariantname"></a>System. Data. Entity. Infrastructure. IProviderInvariantName  
 
@@ -149,7 +151,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 **Key**: la instancia de DbProviderFactory para la que se requiere un nombre invariable.  
 
 >[!NOTE]
-> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](~/ef6/fundamentals/providers/provider-model.md) .  
+> Para obtener más información sobre los servicios relacionados con el proveedor en EF6, consulte la sección [modelo de proveedor EF6](xref:ef6/fundamentals/providers/provider-model) .  
 
 ## <a name="systemdataentitycoremappingviewgenerationiviewassemblycache"></a>System. Data. Entity. Core. Mapping. ViewGeneration. IViewAssemblyCache  
 
@@ -175,7 +177,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 
 **Clave**: no se utiliza; será null.  
 
-## <a name="funcsystemdataentitydbcontext-actionstring-systemdataentityinfrastructureinterceptiondatabaselogformatter"></a>FUNC < System. Data. Entity. DbContext, Action < cadena\>, System. Data. Entity. Infrastructure. intercepción. DatabaseLogFormatter\>  
+## <a name="funcsystemdataentitydbcontext-actionstring-systemdataentityinfrastructureinterceptiondatabaselogformatter"></a>FUNC<System. Data. Entity. DbContext, Action<String \> , System. Data. Entity. Infrastructure. intercepción. DatabaseLogFormatter\>  
 
 **Versión introducida**: EF 6.0.0  
 
@@ -183,7 +185,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 
 **Clave**: no se utiliza; será null.  
 
-## <a name="funcsystemdataentitydbcontext"></a>FUNC < System. Data. Entity. DbContext\>  
+## <a name="funcsystemdataentitydbcontext"></a>FUNC<System. Data. Entity. DbContext\>  
 
 **Versión introducida**: EF 6.1.0  
 
@@ -191,7 +193,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 
 **Key**: el objeto de tipo para el tipo de DbContext derivado para el que se necesita un generador.  
 
-## <a name="funcsystemdataentitycoremetadataedmimetadataannotationserializer"></a>FUNC < System. Data. Entity. Core. Metadata. Edm. IMetadataAnnotationSerializer\>  
+## <a name="funcsystemdataentitycoremetadataedmimetadataannotationserializer"></a>FUNC<System. Data. Entity. Core. Metadata. Edm. IMetadataAnnotationSerializer\>  
 
 **Versión introducida**: EF 6.1.0  
 
@@ -199,7 +201,7 @@ En este artículo no se incluyen detalles completos sobre cómo implementar IDbD
 
 **Key**: nombre de la anotación que se va a serializar o deserializar.  
 
-## <a name="funcsystemdataentityinfrastructuretransactionhandler"></a>FUNC < System. Data. Entity. Infrastructure. TransactionHandler\>  
+## <a name="funcsystemdataentityinfrastructuretransactionhandler"></a>FUNC<System. Data. Entity. Infrastructure. TransactionHandler\>  
 
 **Versión introducida**: EF 6.1.0  
 

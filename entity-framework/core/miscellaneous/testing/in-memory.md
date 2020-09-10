@@ -1,15 +1,15 @@
 ---
 title: 'Prueba con la base de datos de EF en memoria: EF Core'
+description: Uso de la base de datos de EF en memoria para probar una aplicación Entity Framework Core
 author: ajcvickers
-description: Uso de la base de datos de EF en memoria para probar una aplicación EF Core
 ms.date: 10/27/2016
 uid: core/miscellaneous/testing/in-memory
-ms.openlocfilehash: f31b3bdedb8c339dbb6baa9d7f2031d023d5757f
-ms.sourcegitcommit: 79e460f76b6664e1da5886d102bd97f651d2ffff
+ms.openlocfilehash: 353f67fb0e78fefa74fc77d302e505bacb692ed4
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/29/2020
-ms.locfileid: "82538347"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619401"
 ---
 # <a name="testing-with-the-ef-in-memory-database"></a>Pruebas con la base de datos en memoria de EF
 

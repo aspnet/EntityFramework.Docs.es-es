@@ -1,15 +1,16 @@
 ---
 title: 'Trabajar con tipos de referencia que aceptan valores NULL: EF Core'
+description: Trabajar con tipos de referencia que aceptan valores NULL de C# al usar Entity Framework Core
 author: roji
 ms.date: 09/09/2019
 ms.assetid: bde4e0ee-fba3-4813-a849-27049323d301
 uid: core/miscellaneous/nullable-reference-types
-ms.openlocfilehash: 7d262ab9fb45535b626ce8d503b31a5e9a4630d3
-ms.sourcegitcommit: 6f7af3f138bf7c724cbdda261f97e5cf7035e8d7
+ms.openlocfilehash: 361fe0351a5da97fcdc54421db1c268248b7cfea
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88847571"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619402"
 ---
 # <a name="working-with-nullable-reference-types"></a>Trabajar con tipos de referencia que aceptan valores NULL
 

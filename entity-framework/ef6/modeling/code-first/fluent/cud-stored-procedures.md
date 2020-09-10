@@ -1,14 +1,16 @@
 ---
 title: 'Code First procedimientos almacenados de inserción, actualización y eliminación: EF6'
+description: Code First los procedimientos almacenados de inserción, actualización y eliminación en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9a7ae7f9-4072-4843-877d-506dd7eef576
-ms.openlocfilehash: bfc56671814aec1965ac054ff901297e5cdbbecb
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/fluent/cud-stored-procedures
+ms.openlocfilehash: 4db54d7199baa408017159e25ce79a9d70707c59
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415776"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618127"
 ---
 # <a name="code-first-insert-update-and-delete-stored-procedures"></a>Code First procedimientos almacenados de inserción, actualización y eliminación
 > [!NOTE]
@@ -28,7 +30,7 @@ modelBuilder
 
 Esto hará que Code First utilice algunas convenciones para generar la forma esperada de los procedimientos almacenados en la base de datos.  
 
-- Tres procedimientos almacenados denominados **\<type_name\>_Insert**, **\<** type_name\>_Update y **\<** type_name\>_Delete (por ejemplo, Blog_Insert, Blog_Update y Blog_Delete).  
+- Tres procedimientos almacenados denominados ** \<type_name\> _Insert**, ** \<type_name\> _Update** y ** \<type_name\> _Delete** (por ejemplo, Blog_Insert, Blog_Update y Blog_Delete).  
 - Los nombres de parámetro se corresponden con los nombres de propiedad.  
   > [!NOTE]
   > Si usa HasColumnName () o el atributo de columna para cambiar el nombre de la columna de una propiedad determinada, este nombre se utiliza para los parámetros en lugar del nombre de la propiedad.  
@@ -162,7 +164,7 @@ END
 
 ## <a name="relationships-without-a-foreign-key-in-the-class-independent-associations"></a>Relaciones sin una clave externa en la clase (asociaciones independientes)  
 
-Cuando se incluye una propiedad de clave externa en la definición de clase, se puede cambiar el nombre del parámetro correspondiente de la misma manera que cualquier otra propiedad. Cuando existe una relación sin una propiedad de clave externa en la clase, el nombre del parámetro predeterminado es **\<navigation_property_name\>_\<primary_key_name** \>.  
+Cuando se incluye una propiedad de clave externa en la definición de clase, se puede cambiar el nombre del parámetro correspondiente de la misma manera que cualquier otra propiedad. Cuando existe una relación sin una propiedad de clave externa en la clase, el nombre del parámetro predeterminado es ** \<navigation_property_name\> _ \<primary_key_name\> **.  
 
 Por ejemplo, las siguientes definiciones de clase darían lugar a la espera de un parámetro Blog_BlogId en los procedimientos almacenados para insertar y actualizar las entradas.  
 
@@ -214,7 +216,7 @@ Los procedimientos almacenados de actualización y eliminación también pueden 
 
 - Si la entidad contiene tokens de simultaneidad, el procedimiento almacenado puede tener opcionalmente un parámetro de salida que devuelve el número de filas actualizadas o eliminadas (filas afectadas). Este tipo de parámetro se debe configurar mediante el método RowsAffectedParameter.  
 De forma predeterminada, EF usa el valor devuelto por ExecuteNonQuery para determinar el número de filas afectadas. La especificación de un parámetro de salida de filas afectado es útil si se realiza cualquier lógica en el procedimiento almacenado, lo que daría lugar a que el valor devuelto de ExecuteNonQuery fuera incorrecto (desde la perspectiva del EF) al final de la ejecución.  
-- Para cada token de simultaneidad habrá un parámetro denominado **\<property_name\>_Original** (por ejemplo, Timestamp_Original). Se pasará el valor original de esta propiedad, que es el valor cuando se consulta desde la base de datos.  
+- Para cada token de simultaneidad habrá un parámetro denominado ** \<property_name\> _Original** (por ejemplo, Timestamp_Original). Se pasará el valor original de esta propiedad, que es el valor cuando se consulta desde la base de datos.  
     - Los tokens de simultaneidad calculados por la base de datos, como las marcas de tiempo, solo tendrán un parámetro de valor original.  
     - Las propiedades no calculadas que se establecen como tokens de simultaneidad también tendrán un parámetro para el nuevo valor en el procedimiento de actualización. Utiliza las convenciones de nomenclatura ya descritas para los nuevos valores. Un ejemplo de este tipo de token sería usar la dirección URL de un blog como un token de simultaneidad, el nuevo valor es necesario porque puede actualizarse a un nuevo valor por el código (a diferencia de un token de marca de tiempo que solo se actualiza en la base de datos).  
 
@@ -330,8 +332,8 @@ modelBuilder
 
 Si no se proporciona ninguna otra configuración, se utiliza de forma predeterminada la siguiente forma de procedimiento almacenado.  
 
-- Dos procedimientos almacenados denominados **\<type_one\>\<type_two\>_Insert** y **\<** type_one\>\<type_two\>_Delete (por ejemplo, PostTag_Insert y PostTag_Delete).  
-- Los parámetros serán los valores de clave de cada tipo. Nombre de cada parámetro que se va **\<type_name\>_\<property_name**\>(por ejemplo, Post_PostId y Tag_TagId).
+- Dos procedimientos almacenados denominados ** \<type_one\> \<type_two\> _Insert** y ** \<type_one\> \<type_two\> _Delete** (por ejemplo, PostTag_Insert y PostTag_Delete).  
+- Los parámetros serán los valores de clave de cada tipo. El nombre de cada parámetro es ** \<type_name\> _ \<property_name\> ** (por ejemplo, Post_PostId y Tag_TagId).
 
 Estos son los procedimientos almacenados de inserción y actualización de ejemplo.  
 

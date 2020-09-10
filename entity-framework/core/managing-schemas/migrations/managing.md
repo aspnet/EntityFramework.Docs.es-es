@@ -1,15 +1,16 @@
 ---
 title: 'Administración de migraciones: EF Core'
+description: Agregar, quitar y administrar de otro modo migraciones de esquemas de base de datos con Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 05/06/2020
 uid: core/managing-schemas/migrations/managing
-ms.openlocfilehash: 2097d3cc9232d448191dbebbe3d14d86e80b91fe
-ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
+ms.openlocfilehash: 366824cecab57a0f1744fa58cc12e5d3f6675723
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526438"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617964"
 ---
 # <a name="managing-migrations"></a>Administrar migraciones
 

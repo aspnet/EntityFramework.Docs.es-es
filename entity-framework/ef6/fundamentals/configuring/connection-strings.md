@@ -1,14 +1,16 @@
 ---
 title: 'Cadenas de conexión y modelos: EF6'
+description: Cadenas de conexión y modelos de Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 294bb138-978f-4fe2-8491-fdf3cd3c60c4
-ms.openlocfilehash: 2c9f084107e4de7f5439bf0082b46a3b538496e0
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/configuring/connection-strings
+ms.openlocfilehash: 2203d7f2168dc9d4ae5a6b1914742c7c2b6fbf77
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415956"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618437"
 ---
 # <a name="connection-strings-and-models"></a>Cadenas de conexión y modelos
 En este tema se explica cómo Entity Framework detecta qué conexión de base de datos se va a usar y cómo se puede cambiar. Los modelos creados con Code First y EF Designer se describen en este tema.  
@@ -58,9 +60,9 @@ public class BloggingContext : DbContext
 
 En este ejemplo DbContext usa "BloggingDatabase" como nombre de la base de datos y crea una cadena de conexión para esta base de datos mediante SQL Express (instalado con Visual Studio 2010) o LocalDB (instalado con Visual Studio 2012). Si ambos están instalados, se usará SQL Express.  
 
-## <a name="use-code-first-with-connection-string-in-appconfigwebconfig-file"></a>Usar Code First con una cadena de conexión en el archivo app. config/Web. config  
+## <a name="use-code-first-with-connection-string-in-appconfigwebconfig-file"></a>Usar Code First con la cadena de conexión en el archivo de app.config/web.config  
 
-Puede optar por colocar una cadena de conexión en el archivo app. config o Web. config. Por ejemplo:  
+Puede optar por colocar una cadena de conexión en el archivo de app.config o web.config. Por ejemplo:  
 
 ``` xml  
 <configuration>
@@ -86,7 +88,7 @@ public class BloggingContext : DbContext
 }
 ```  
 
-Como alternativa, puede usar el formato "Name =\<nombre de cadena de conexión\>" para la cadena que se pasa al constructor DbContext. Por ejemplo:  
+Como alternativa, puede usar el formato "name = \<connection string name\> " para la cadena que se pasa al constructor DbContext. Por ejemplo:  
 
 ``` csharp  
 public class BloggingContext : DbContext
@@ -100,11 +102,11 @@ public class BloggingContext : DbContext
 
 Este formulario hace que sea explícito esperar que la cadena de conexión se encuentre en el archivo de configuración. Se producirá una excepción si no se encuentra una cadena de conexión con el nombre especificado.  
 
-## <a name="databasemodel-first-with-connection-string-in-appconfigwebconfig-file"></a>Base de datos/Model First con una cadena de conexión en el archivo app. config/Web. config  
+## <a name="databasemodel-first-with-connection-string-in-appconfigwebconfig-file"></a>Base de datos/Model First con una cadena de conexión en el archivo de app.config/web.config  
 
 Los modelos creados con EF Designer son diferentes de Code First en que el modelo ya existe y no se genera a partir del código cuando se ejecuta la aplicación. El modelo normalmente existe como archivo EDMX en el proyecto.  
 
-El diseñador agregará una cadena de conexión de EF al archivo app. config o Web. config. Esta cadena de conexión es especial, ya que contiene información sobre cómo encontrar la información en el archivo EDMX. Por ejemplo:  
+El diseñador agregará una cadena de conexión EF al archivo app.config o web.config. Esta cadena de conexión es especial, ya que contiene información sobre cómo encontrar la información en el archivo EDMX. Por ejemplo:  
 
 ``` xml  
 <configuration>  

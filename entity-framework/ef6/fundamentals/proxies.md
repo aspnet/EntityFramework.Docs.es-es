@@ -1,14 +1,16 @@
 ---
 title: 'Trabajo con servidores proxy: EF6'
+description: Trabajo con servidores proxy en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 869ee4dc-06f1-471d-8e0e-0a1a2bc59c30
-ms.openlocfilehash: 8f7d2e8b41ece28efe8d1df3b0679e6e4510d64a
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/fundamentals/proxies
+ms.openlocfilehash: 26493ecf1a894a1cd421f574de38678661f324a0
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415992"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618363"
 ---
 # <a name="working-with-proxies"></a>Trabajar con servidores proxy
 Al crear instancias de tipos de entidad POCO, Entity Framework a menudo crea instancias de un tipo derivado generado dinámicamente que actúa como un proxy para la entidad. Este proxy invalida algunas propiedades virtuales de la entidad para insertar enlaces para realizar acciones automáticamente cuando se tiene acceso a la propiedad. Por ejemplo, este mecanismo se usa para admitir la carga diferida de relaciones. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  

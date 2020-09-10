@@ -1,20 +1,22 @@
 ---
 title: Migraciones de Code First automática-EF6
+description: Migraciones de Code First automática en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 0eb86787-2161-4cb4-9cb8-67c5d6e95650
-ms.openlocfilehash: 2713afaf09707b7696e90464aac9945c2d82d274
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/migrations/automatic
+ms.openlocfilehash: 541adf5aed517685b54d675730996c12ff0c824a
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415704"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618086"
 ---
 # <a name="automatic-code-first-migrations"></a>Migraciones de Code First automática
 Las migraciones automáticas permiten usar Migraciones de Code First sin tener un archivo de código en el proyecto para cada cambio que realice. No todos los cambios se pueden aplicar automáticamente; por ejemplo, el cambio de nombre de columna requiere el uso de una migración basada en código.
 
 > [!NOTE]
-> En este artículo se supone que sabe cómo usar Migraciones de Code First en escenarios básicos. Si no lo hace, tendrá que leer [migraciones de Code First](~/ef6/modeling/code-first/migrations/index.md) antes de continuar.
+> En este artículo se supone que sabe cómo usar Migraciones de Code First en escenarios básicos. Si no lo hace, tendrá que leer [migraciones de Code First](xref:ef6/modeling/code-first/migrations/index) antes de continuar.
 
 ## <a name="recommendation-for-team-environments"></a>Recomendación para entornos de equipo
 
@@ -97,7 +99,7 @@ Es hora de realizar más cambios en el modelo.
     public string Url { get; set; }
 ```
 
-Si tuviera que ejecutar la aplicación de nuevo, obtendría una excepción InvalidOperationException que indicaba que el *modelo de respaldo del contexto ' BlogContext ' ha cambiado desde que se creó la base de datos. Considere la posibilidad de usar Migraciones de Code First para actualizar la base de datos (* [ *http://go.microsoft.com/fwlink/?LinkId=238269* ](https://go.microsoft.com/fwlink/?LinkId=238269) *).*
+Si tuviera que ejecutar la aplicación de nuevo, obtendría una excepción InvalidOperationException que indicaba que el *modelo de respaldo del contexto ' BlogContext ' ha cambiado desde que se creó la base de datos. Considere la posibilidad de usar Migraciones de Code First para actualizar la base de datos (* [*http://go.microsoft.com/fwlink/?LinkId=238269*](https://go.microsoft.com/fwlink/?LinkId=238269) *).*
 
 Como sugiere la excepción, es hora de empezar a usar Migraciones de Code First. Dado que queremos usar migraciones automáticas, vamos a especificar el modificador **– EnableAutomaticMigrations** .
 

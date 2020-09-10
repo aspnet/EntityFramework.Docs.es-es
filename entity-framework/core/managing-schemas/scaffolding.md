@@ -1,22 +1,23 @@
 ---
 title: 'Ingeniería inversa: EF Core'
+description: Aplicar ingeniería inversa a un modelo a partir de una base de datos existente mediante Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/13/2018
 ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: 423e0502a53f2d99dba6938198fffba9cf0f9ade
-ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
+ms.openlocfilehash: e88be834aa1f2f3be41657f07bc7ace3e34c58aa
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526477"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619217"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
 
 La ingeniería inversa es el proceso de scaffolding de las clases de tipo de entidad y una clase DbContext basada en un esquema de base de datos. Puede realizarse mediante el `Scaffold-DbContext` comando de EF Core herramientas de la consola del administrador de paquetes (PMC) o el `dotnet ef dbcontext scaffold` comando de las herramientas de la interfaz de la línea de comandos (CLI) de .net.
 
-## <a name="installing"></a>Instalación
+## <a name="installing"></a>Instalación de
 
 Antes de la ingeniería inversa, deberá instalar las herramientas de [PMC](xref:core/miscellaneous/cli/powershell) (solo en Visual Studio) o las [herramientas](xref:core/miscellaneous/cli/dotnet)de la CLI. Vea los vínculos para obtener más información.
 
@@ -155,9 +156,9 @@ Por último, el modelo se usa para generar código. Las clases de tipo de entida
 
 ## <a name="limitations"></a>Limitaciones
 
-* No todo lo relacionado con un modelo se puede representar mediante un esquema de la base de datos. Por ejemplo, la información sobre las [**jerarquías de herencia**](../modeling/inheritance.md), los [**tipos de propiedad**](../modeling/owned-entities.md)y la [**División de tablas**](../modeling/table-splitting.md) no están presentes en el esquema de la base de datos. Por este motivo, estas construcciones nunca se aplicarán a ingeniería inversa.
+* No todo lo relacionado con un modelo se puede representar mediante un esquema de la base de datos. Por ejemplo, la información sobre las [**jerarquías de herencia**](xref:core/modeling/inheritance), los [**tipos de propiedad**](xref:core/modeling/owned-entities)y la [**División de tablas**](xref:core/modeling/table-splitting) no están presentes en el esquema de la base de datos. Por este motivo, estas construcciones nunca se aplicarán a ingeniería inversa.
 * Además, es posible que **algunos tipos de columna** no sean compatibles con el proveedor de EF Core. Estas columnas no se incluirán en el modelo.
-* Puede definir [**tokens de simultaneidad**](../modeling/concurrency.md)en un modelo de EF Core para evitar que dos usuarios actualicen la misma entidad al mismo tiempo. Algunas bases de datos tienen un tipo especial para representar este tipo de columna (por ejemplo, rowversion en SQL Server), en cuyo caso se puede aplicar ingeniería inversa a esta información; sin embargo, no se aplicarán ingeniería inversa a otros tokens de simultaneidad.
+* Puede definir [**tokens de simultaneidad**](xref:core/modeling/concurrency)en un modelo de EF Core para evitar que dos usuarios actualicen la misma entidad al mismo tiempo. Algunas bases de datos tienen un tipo especial para representar este tipo de columna (por ejemplo, rowversion en SQL Server), en cuyo caso se puede aplicar ingeniería inversa a esta información; sin embargo, no se aplicarán ingeniería inversa a otros tokens de simultaneidad.
 * [La característica de tipo de referencia que acepta valores NULL de C# 8](/dotnet/csharp/tutorials/nullable-reference-types) no se admite actualmente en técnicas de ingeniería inversa: EF Core siempre genera código C# que supone que la característica está deshabilitada. Por ejemplo, las columnas de texto que aceptan valores NULL se scaffolding como una propiedad con `string` el tipo, no `string?` , con la API fluida o las anotaciones de datos que se usan para configurar si una propiedad es obligatoria o no. Puede editar el código con scaffolding y reemplazarlo con anotaciones de nulabilidad de C#. El seguimiento de la compatibilidad con scaffolding para tipos de referencia que aceptan valores NULL se realiza mediante el problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
 
 ## <a name="customizing-the-model"></a>Personalización del modelo

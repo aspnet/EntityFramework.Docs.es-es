@@ -1,14 +1,16 @@
 ---
 title: Code First espaciales-EF6
+description: Code First espacial en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: d617aed1-15f2-48a9-b187-186991c666e3
-ms.openlocfilehash: 018f480c1f0f1e74fc9f7a8950a6880e96f1facc
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/data-types/spatial
+ms.openlocfilehash: 8c2d47a66979a228fdc4902857df999a21945547
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415788"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618155"
 ---
 # <a name="spatial---code-first"></a>Code First espacial
 > [!NOTE]
@@ -16,11 +18,11 @@ ms.locfileid: "78415788"
 
 En el tutorial de vídeo y paso a paso se muestra cómo asignar tipos espaciales con Entity Framework Code First. También se muestra cómo usar una consulta LINQ para buscar una distancia entre dos ubicaciones.
 
-En este tutorial se utilizará Code First para crear una nueva base de datos, pero también puede usar [code First a una base de datos existente](~/ef6/modeling/code-first/workflows/existing-database.md).
+En este tutorial se utilizará Code First para crear una nueva base de datos, pero también puede usar [code First a una base de datos existente](xref:ef6/modeling/code-first/workflows/existing-database).
 
 La compatibilidad con tipos espaciales se presentó en Entity Framework 5. Tenga en cuenta que para usar las nuevas características, como el tipo espacial, las enumeraciones y las funciones con valores de tabla, debe tener como destino .NET Framework 4,5. Visual Studio 2012 tiene como destino .NET 4,5 de forma predeterminada.
 
-Para usar los tipos de datos espaciales, también debe usar un proveedor de Entity Framework que tenga compatibilidad espacial. Consulte [compatibilidad con proveedores para tipos espaciales](~/ef6/fundamentals/providers/spatial-support.md) para obtener más información.
+Para usar los tipos de datos espaciales, también debe usar un proveedor de Entity Framework que tenga compatibilidad espacial. Consulte [compatibilidad con proveedores para tipos espaciales](xref:ef6/fundamentals/providers/spatial-support) para obtener más información.
 
 Hay dos tipos de datos espaciales principales: Geography y Geometry. El tipo de datos Geography almacena los datos de datos elipsoidales (por ejemplo, las coordenadas de latitud y longitud de GPS). El tipo de datos Geometry representa el sistema de coordenadas euclidiana (plano).
 
@@ -29,7 +31,7 @@ Este vídeo muestra cómo asignar tipos espaciales con Entity Framework Code Fir
 
 **Presentada por**: Julia Kornich
 
-**Vídeo**: [wmv](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.wmv) | [MP4](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-mp4video-spatialwithcodefirst.m4v) | [WMV (zip)](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.zip)
+**Vídeo**: [WMV](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.wmv)  |  [MP4](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-mp4video-spatialwithcodefirst.m4v)  |  [WMV (zip)](https://download.microsoft.com/download/9/1/3/913EA17E-6F97-41D8-A4FE-805A0D83D26A/HDI-ITPro-MSDN-winvideo-spatialwithcodefirst.zip)
 
 ## <a name="pre-requisites"></a>Requisitos previos
 
@@ -39,7 +41,7 @@ Deberá tener instalado Visual Studio 2012, Ultimate, Premium, Professional o We
 
 1.  Abra Visual Studio 2012
 2.  En el menú **archivo** , seleccione **nuevo**y, a continuación, haga clic en **proyecto** .
-3.  En el panel izquierdo, haga clic en **Visual C\#** y, a continuación, seleccione la plantilla de **consola** .
+3.  En el panel izquierdo, haga clic en **Visual C \# **y, a continuación, seleccione la plantilla de **consola** .
 4.  Escriba **SpatialCodeFirst** como nombre del proyecto y haga clic en **Aceptar** .
 
 ## <a name="define-a-new-model-using-code-first"></a>Definir un nuevo modelo mediante Code First
@@ -67,16 +69,16 @@ public class University
 
 ## <a name="define-the-dbcontext-derived-type"></a>Definir el tipo derivado de DbContext
 
-Además de definir entidades, debe definir una clase que derive de DbContext y exponga las propiedades de DbSet&lt;de la carpa&gt;. Las propiedades de DbSet&lt;la&gt; de la carpa permiten que el contexto sepa qué tipos desea incluir en el modelo.
+Además de definir entidades, debe definir una clase que derive de DbContext y exponga las propiedades DbSet&lt;TEntity&gt;. Las propiedades DbSet&lt;TEntity&gt; permiten que el contexto sepa qué tipos desea incluir en el modelo.
 
-Una instancia del tipo derivado de DbContext administra los objetos de entidad durante el tiempo de ejecución, lo que incluye el rellenado de objetos con datos de una base de datos, el seguimiento de cambios y la persistencia de datos en la base de datos.
+Una instancia del tipo derivado de DbContext administra los objetos de entidad durante el tiempo de ejecución, lo que incluye rellenar los objetos con datos de una base de datos, el seguimiento de cambios y la persistencia de datos en la base de datos.
 
 Los tipos DbContext y DbSet se definen en el ensamblado EntityFramework. Se agregará una referencia a este archivo DLL mediante el paquete NuGet EntityFramework.
 
 1.  En Explorador de soluciones, haga clic con el botón derecho en el nombre del proyecto.
 2.  Seleccione **administrar paquetes NuGet..** .
 3.  En el cuadro de diálogo administrar paquetes NuGet, seleccione la pestaña **en línea** y elija el paquete **EntityFramework** .
-4.  Haga clic en **Instalar**.
+4.  Haz clic en **Instalar**
 
 Tenga en cuenta que, además del ensamblado EntityFramework, también se agrega una referencia al ensamblado System. ComponentModel. DataAnnotations.
 
@@ -140,11 +142,11 @@ The closest University to you is: School of Fine Art.
 
 Al ejecutar la aplicación por primera vez, el Entity Framework crea una base de datos automáticamente. Dado que tenemos instalado Visual Studio 2012, la base de datos se creará en la instancia de LocalDB. De forma predeterminada, el Entity Framework nombra la base de datos después del nombre completo del contexto derivado (en este ejemplo, que es **SpatialCodeFirst. UniversityContext**). Las veces posteriores en las que se utilizará la base de datos existente.  
 
-Tenga en cuenta que si realiza cambios en el modelo una vez creada la base de datos, debe utilizar Migraciones de Code First para actualizar el esquema de la base de datos. Vea [code First en una nueva base de datos](~/ef6/modeling/code-first/workflows/new-database.md) para obtener un ejemplo del uso de las migraciones.
+Tenga en cuenta que si realiza cambios en el modelo una vez creada la base de datos, debe utilizar Migraciones de Code First para actualizar el esquema de la base de datos. Vea [code First en una nueva base de datos](xref:ef6/modeling/code-first/workflows/new-database) para obtener un ejemplo del uso de las migraciones.
 
 Para ver la base de datos y los datos, haga lo siguiente:
 
-1.  En el menú principal de Visual Studio 2012, seleccione **ver** -&gt; **Explorador de objetos de SQL Server**.
+1.  En el menú principal de Visual Studio 2012, seleccione **Ver**  - &gt; **Explorador de objetos de SQL Server**.
 2.  Si LocalDB no está en la lista de servidores, haga clic con el botón secundario del mouse en **SQL Server** y seleccione **Agregar SQL Server** usar la **autenticación de Windows** predeterminada para conectarse a la instancia de LocalDB.
 3.  Expandir el nodo LocalDB
 4.  Desdoblar la carpeta **bases** de datos para ver la nueva base de datos y examinar la tabla **universidades**

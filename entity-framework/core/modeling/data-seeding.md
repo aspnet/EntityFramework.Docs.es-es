@@ -1,16 +1,17 @@
 ---
 title: 'Propagación de datos: EF Core'
+description: Usar la inicialización de datos para rellenar una base de datos con un conjunto inicial de datos mediante Entity Framework Core
 author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/02/2018
 ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/data-seeding
-ms.openlocfilehash: 5c056c600f696ad1443ddb7b8c95c4b0ead06d21
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: cdf189a4d2ec00f2bb094045541a98d1a66ffefc
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414576"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619388"
 ---
 # <a name="data-seeding"></a>Propagación de datos
 
@@ -32,7 +33,7 @@ A diferencia de EF6, en EF Core, la propagación de datos se puede asociar a un 
 > [!NOTE]
 > Las migraciones solo tienen en cuenta los cambios del modelo al determinar qué operación se debe realizar para obtener los datos de inicialización en el estado deseado. Por lo tanto, es posible que se pierdan los cambios realizados en los datos fuera de las migraciones o se produzca un error.
 
-Por ejemplo, se configurarán los datos de inicialización de una `Blog` en `OnModelCreating`:
+Como ejemplo, se configurarán los datos de inicialización de un `Blog` en `OnModelCreating` :
 
 [!code-csharp[BlogSeed](../../../samples/core/Modeling/DataSeeding/DataSeedingContext.cs?name=BlogSeed)]
 
@@ -55,7 +56,7 @@ Una vez que se han agregado los datos al modelo, se deben usar las [migraciones]
 > [!TIP]
 > Si necesita aplicar las migraciones como parte de una implementación automatizada, puede [crear un script SQL](xref:core/managing-schemas/migrations/index#generate-sql-scripts) que se pueda obtener como vista previa antes de la ejecución.
 
-Como alternativa, puede usar `context.Database.EnsureCreated()` para crear una nueva base de datos que contenga los datos de inicialización, por ejemplo, para una base de datos de prueba o cuando se usa el proveedor en memoria o cualquier base de datos que no sea de relación. Tenga en cuenta que si la base de datos ya existe, `EnsureCreated()` no actualizará el esquema ni los datos de inicialización en la base de datos. En el caso de las bases de datos relacionales, no debe llamar a `EnsureCreated()` si tiene previsto usar las migraciones.
+Como alternativa, puede usar `context.Database.EnsureCreated()` para crear una nueva base de datos que contenga los datos de inicialización, por ejemplo, para una base de datos de prueba o cuando se usa el proveedor en memoria o cualquier base de datos que no sea de relación. Tenga en cuenta que si la base de datos ya existe, no `EnsureCreated()` actualizará el esquema ni los datos de inicialización en la base de datos. En el caso de las bases de datos relacionales, no debe llamar a `EnsureCreated()` si planea usar las migraciones.
 
 ### <a name="limitations-of-model-seed-data"></a>Limitaciones de los datos de inicialización del modelo
 
@@ -76,7 +77,7 @@ Si el escenario incluye alguno de los siguientes, se recomienda usar la lógica 
 
 ## <a name="manual-migration-customization"></a>Personalización de la migración manual
 
-Cuando se agrega una migración, los cambios en los datos especificados con `HasData` se transforman en llamadas a `InsertData()`, `UpdateData()`y `DeleteData()`. Una manera de resolver algunas de las limitaciones de `HasData` es agregar manualmente estas llamadas o [operaciones personalizadas](xref:core/managing-schemas/migrations/operations) a la migración.
+Cuando se agrega una migración, los cambios en los datos especificados con `HasData` se transforman en llamadas a `InsertData()` , `UpdateData()` y `DeleteData()` . Una manera de resolver algunas de las limitaciones de `HasData` es agregar manualmente estas llamadas o [operaciones personalizadas](xref:core/managing-schemas/migrations/operations) a la migración.
 
 [!code-csharp[CustomInsert](../../../samples/core/Modeling/DataSeeding/Migrations/20181102235626_Initial.cs?name=CustomInsert)]
 

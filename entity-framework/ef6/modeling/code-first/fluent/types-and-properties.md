@@ -1,19 +1,21 @@
 ---
 title: 'API fluida: configuración y asignación de propiedades y tipos: EF6'
+description: 'API fluida: configuración y asignación de propiedades y tipos en Entity Framework 6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 648ed274-c501-4630-88e0-d728ab5c4057
-ms.openlocfilehash: 7371cc99142ccf8fc6bea237d7d58d1e67fcecec
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/fluent/types-and-properties
+ms.openlocfilehash: d49da416b2df5828fce5618cc196e22dfbc2bd34
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415758"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618050"
 ---
 # <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>API fluida: configuración y asignación de propiedades y tipos
 Al trabajar con Entity Framework Code First el comportamiento predeterminado es asignar las clases POCO a las tablas mediante un conjunto de convenciones incorporadas en EF. Sin embargo, a veces no puede o no desea seguir estas convenciones y debe asignar entidades a un valor distinto del que dictan las convenciones.  
 
-Hay dos formas principales de configurar EF para que use un elemento que no sea convenciones, como [anotaciones](~/ef6/modeling/code-first/data-annotations.md) o API fluida de EFS. Las anotaciones solo cubren un subconjunto de la funcionalidad de la API fluida, por lo que hay escenarios de asignación que no se pueden lograr mediante anotaciones. Este artículo está diseñado para demostrar cómo usar la API fluida para configurar las propiedades.  
+Hay dos formas principales de configurar EF para que use un elemento que no sea convenciones, como [anotaciones](xref:ef6/modeling/code-first/data-annotations) o API fluida de EFS. Las anotaciones solo cubren un subconjunto de la funcionalidad de la API fluida, por lo que hay escenarios de asignación que no se pueden lograr mediante anotaciones. Este artículo está diseñado para demostrar cómo usar la API fluida para configurar las propiedades.  
 
 Normalmente, se tiene acceso a la API fluida de Code First mediante la invalidación del método [OnModelCreating](https://msdn.microsoft.com/library/system.data.entity.dbcontext.onmodelcreating.aspx) en [DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext.aspx)derivado. Los ejemplos siguientes están diseñados para mostrar cómo realizar varias tareas con la API fluida y permiten copiar el código y personalizarlo para que se adapte a su modelo; si desea ver el modelo con el que se pueden usar tal cual, se proporciona al final de este artículo.  
 
@@ -29,7 +31,7 @@ modelBuilder.HasDefaultSchema("sales");
 
 ### <a name="custom-conventions-ef6-onwards"></a>Convenciones personalizadas (EF6 en adelante)  
 
-A partir de EF6, puede crear sus propias convenciones para complementar las incluidas en Code First. Para obtener más información, vea [convenciones de Code First personalizadas](~/ef6/modeling/code-first/conventions/custom.md).  
+A partir de EF6, puede crear sus propias convenciones para complementar las incluidas en Code First. Para obtener más información, vea [convenciones de Code First personalizadas](xref:ef6/modeling/code-first/conventions/custom).  
 
 ## <a name="property-mapping"></a>Asignación de propiedades  
 
@@ -100,7 +102,7 @@ modelBuilder
     .HasColumnAnnotation("Index", new IndexAnnotation(new IndexAttribute()));
 ```  
 
-Para obtener una lista completa de los valores disponibles en **IndexAttribute**, consulte la sección *Índice* de [code First anotaciones de datos](~/ef6/modeling/code-first/data-annotations.md). Esto incluye la personalización del nombre del índice, la creación de índices únicos y la creación de índices de varias columnas.  
+Para obtener una lista completa de los valores disponibles en **IndexAttribute**, consulte la sección *Índice* de [code First anotaciones de datos](xref:ef6/modeling/code-first/data-annotations). Esto incluye la personalización del nombre del índice, la creación de índices únicos y la creación de índices de varias columnas.  
 
 Puede especificar varias anotaciones de índice en una sola propiedad pasando una matriz de **IndexAttribute** al constructor de **IndexAnnotation**.  
 
@@ -321,7 +323,7 @@ modelBuilder.Entity<OfficeAssignment>().ToTable("Instructor");
 
 ### <a name="mapping-an-entity-type-to-insertupdatedelete-stored-procedures-ef6-onwards"></a>Asignar un tipo de entidad para insertar/actualizar/eliminar procedimientos almacenados (EF6 en adelante)  
 
-A partir de EF6, puede asignar una entidad para usar procedimientos almacenados para INSERT UPDATE y DELETE. Para obtener más información, vea [code First INSERT/UPDATE/DELETE Stored Procedures](~/ef6/modeling/code-first/fluent/cud-stored-procedures.md).  
+A partir de EF6, puede asignar una entidad para usar procedimientos almacenados para INSERT UPDATE y DELETE. Para obtener más información, vea [code First INSERT/UPDATE/DELETE Stored Procedures](xref:ef6/modeling/code-first/fluent/cud-stored-procedures).  
 
 ## <a name="model-used-in-samples"></a>Modelo usado en los ejemplos  
 

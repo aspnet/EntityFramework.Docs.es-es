@@ -1,15 +1,16 @@
 ---
 title: 'Migraciones con varios proveedores: EF Core'
+description: Usar migraciones para administrar esquemas de base de datos cuando el destino es varios proveedores de bases de datos con Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/08/2017
 uid: core/managing-schemas/migrations/providers
-ms.openlocfilehash: 388829992687e626648889a47130cc61df1c0d1f
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: df38af6ac700a530894b98e1f29bbe804831bad5
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370630"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619184"
 ---
 # <a name="migrations-with-multiple-providers"></a>Migraciones con varios proveedores
 
@@ -78,5 +79,5 @@ if (migrationBuilder.ActiveProvider == "Microsoft.EntityFrameworkCore.SqlServer"
 }
 ```
 
-  [1]: ../../miscellaneous/cli/index.md
-  [2]: projects.md
+  [1]: xref:core/miscellaneous/cli/index
+  [2]: xref:core/managing-schemas/migrations/projects

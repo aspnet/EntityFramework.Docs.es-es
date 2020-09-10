@@ -1,22 +1,24 @@
 ---
 title: API fluida con VB.NET-EF6
+description: API fluida con VB.NET en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 763dc6a2-764a-4600-896c-f6f13abf56ec
-ms.openlocfilehash: 1c889877b827408919c6170cf997e8805cc607cf
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/fluent/vb
+ms.openlocfilehash: d6430ee254c6f0d5f093961d25902326022226cd
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415752"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616982"
 ---
 # <a name="fluent-api-with-vbnet"></a>API fluida con VB.NET
-Code First permite definir el modelo mediante clases de C\# o VB.NET. Opcionalmente, se puede realizar una configuración adicional mediante atributos en las clases y propiedades o mediante una API fluida. En este tutorial se muestra cómo realizar una configuración de API fluida mediante VB.NET.
+Code First permite definir el modelo mediante \# las clases C o VB.net. Opcionalmente, se puede realizar una configuración adicional mediante atributos en las clases y propiedades o mediante una API fluida. En este tutorial se muestra cómo realizar una configuración de API fluida mediante VB.NET.
 
 En esta página se supone que tiene un conocimiento básico de Code First. Consulte los siguientes tutoriales para obtener más información sobre Code First:
 
--   [Code First en una nueva base de datos](~/ef6/modeling/code-first/workflows/new-database.md)
--   [Code First a una base de datos existente](~/ef6/modeling/code-first/workflows/existing-database.md)
+-   [Code First en una nueva base de datos](xref:ef6/modeling/code-first/workflows/new-database)
+-   [Code First a una base de datos existente](xref:ef6/modeling/code-first/workflows/existing-database)
 
 ## <a name="pre-requisites"></a>Requisitos previos
 
@@ -28,8 +30,8 @@ Si usa Visual Studio 2010, también debe tener instalado [NuGet](https://visuals
 
 Para simplificar las cosas, vamos a crear una aplicación de consola básica que use Code First para realizar el acceso a los datos.
 
--   Abra Visual Studio.
--   **Archivo-&gt; nuevo proyecto de&gt;...**
+-   Apertura de Visual Studio
+-   **Archivo- &gt; nuevo- &gt; proyecto...**
 -   Seleccionar **ventanas** en el menú izquierdo y en la **aplicación de consola**
 -   Escriba **CodeFirstVBSample** como nombre
 -   Seleccione **Aceptar**.
@@ -137,14 +139,14 @@ End Class
 
 Estamos a punto de empezar a usar tipos del Entity Framework por lo que necesitamos agregar el paquete NuGet EntityFramework.
 
--   \* * Proyecto:&gt; **administrar paquetes NuGet...**
+-   * * Proyecto: &gt; **administrar paquetes NuGet...**
 > [!NOTE]
 > Si no tiene la **Administración de paquetes de NuGet..** . opción debe instalar la [versión más reciente de NuGet](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c)
 -   Seleccione la pestaña **en línea**
 -   Seleccione el paquete **EntityFramework**
--   Haga clic en **Instalar**.
+-   Haz clic en **Instalar**
 
-Ahora es el momento de definir un contexto derivado, que representa una sesión con la base de datos, lo que nos permite consultar y guardar datos. Definimos un contexto que se deriva de System. Data. Entity. DbContext y expone un DbSet con tipo de&gt; de la&lt;de la carpa para cada clase de nuestro modelo.
+Ahora es el momento de definir un contexto derivado, que representa una sesión con la base de datos, lo que nos permite consultar y guardar datos. Definimos un contexto que se deriva de System. Data. Entity. DbContext y expone una carpa DbSet con tipo &lt; &gt; para cada clase de nuestro modelo.
 
 -   Agregue una nueva clase al proyecto, escriba **SchoolContext** para el nombre de clase.
 -   Reemplace el contenido de la nueva clase por el código siguiente.
@@ -171,7 +173,7 @@ End Class
 
 ## <a name="configuring-with-the-fluent-api"></a>Configuración con la API fluida
 
-En esta sección se muestra cómo usar las API fluidas para configurar los tipos para la asignación de tablas, las propiedades para la asignación de columnas y las relaciones entre las tablas\\tipo en el modelo. La API fluida se expone a través del tipo **DbModelBuilder** y se suele acceder a ella mediante la invalidación del método **OnModelCreating** en **DbContext**.
+En esta sección se muestra cómo usar las API fluidas para configurar los tipos para la asignación de tablas, las propiedades para la asignación de columnas y las relaciones entre \\ el tipo de tablas en el modelo. La API fluida se expone a través del tipo **DbModelBuilder** y se suele acceder a ella mediante la invalidación del método **OnModelCreating** en **DbContext**.
 
 -   Copie el código siguiente y agréguelo al método **OnModelCreating** definido en la clase **SchoolContext** . los comentarios explican lo que hace cada asignación
 

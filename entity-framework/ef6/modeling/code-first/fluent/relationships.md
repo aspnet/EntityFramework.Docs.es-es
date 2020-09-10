@@ -1,18 +1,20 @@
 ---
 title: API fluida-Relationships-EF6
+description: 'API fluidas: relaciones en Entity Framework 6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: fd73b4f8-16d5-40f1-9640-885ceafe67a1
-ms.openlocfilehash: 05f282c02699f8bf3c71197ac5e01000f1855917
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/code-first/fluent/relationships
+ms.openlocfilehash: 8cc56f7341df6da7f60f649308ea7042ef23b537
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415764"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617007"
 ---
 # <a name="fluent-api---relationships"></a>API fluidas: relaciones
 > [!NOTE]
-> En esta página se proporciona información sobre cómo configurar las relaciones en el modelo de Code First mediante la API fluida. Para obtener información general sobre las relaciones en EF y cómo obtener acceso a los datos y manipularlos mediante relaciones, vea [relaciones & propiedades de navegación](~/ef6/fundamentals/relationships.md).  
+> En esta página se proporciona información sobre cómo configurar las relaciones en el modelo de Code First mediante la API fluida. Para obtener información general sobre las relaciones en EF y cómo obtener acceso a los datos y manipularlos mediante relaciones, vea [relaciones & propiedades de navegación](xref:ef6/fundamentals/relationships).  
 
 Cuando se trabaja con Code First, se define el modelo definiendo las clases CLR del dominio. De forma predeterminada, Entity Framework utiliza las convenciones de Code First para asignar las clases al esquema de la base de datos. Si utiliza las convenciones de nomenclatura de Code First, en la mayoría de los casos puede confiar en Code First para configurar las relaciones entre las tablas en función de las claves externas y las propiedades de navegación que defina en las clases. Si no sigue las convenciones al definir las clases, o si desea cambiar la forma en que funcionan las convenciones, puede usar la API fluida o las anotaciones de datos para configurar las clases de modo que Code First pueda asignar las relaciones entre las tablas.  
 
@@ -95,8 +97,8 @@ Puede configurar la eliminación en cascada en una relación mediante el método
 
 Puede quitar estas convenciones de eliminación en cascada mediante:  
 
-modelBuilder. Conventions. Remove\<OneToManyCascadeDeleteConvention\>()  
-modelBuilder. Conventions. Remove\<ManyToManyCascadeDeleteConvention\>()  
+modelBuilder. Conventions. Remove \<OneToManyCascadeDeleteConvention\> ()  
+modelBuilder. Conventions. Remove \<ManyToManyCascadeDeleteConvention\> ()  
 
 El código siguiente configura la relación para que sea necesaria y, a continuación, deshabilita la eliminación en cascada.  
 
