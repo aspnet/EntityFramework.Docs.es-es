@@ -1,15 +1,16 @@
 ---
 title: 'Portabilidad de EF6 a EF Core: portabilidad de un modelo basado en código - EF'
+description: Información específica acerca de cómo migrar una aplicación de modelo basada en código de Entity Framework 6 a Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 2dce1a50-7d84-4856-abf6-2763dd9be99d
 uid: efcore-and-ef6/porting/port-code
-ms.openlocfilehash: 0a99eac2091c07d8bcf7d4e5e4bdc2afcaeee810
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: d3920e6132576e3a93dd0ffb9dac1412b6e511aa
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413862"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619616"
 ---
 # <a name="porting-an-ef6-code-based-model-to-ef-core"></a>Portabilidad de un modelo basado en código de EF6 a EF Core
 
@@ -17,7 +18,7 @@ Si ha leído todas las advertencias y está a punto para realizar la portabilida
 
 ## <a name="install-ef-core-nuget-packages"></a>Instalación de los paquetes NuGet de EF Core
 
-Para usar EF Core, instale el paquete NuGet correspondiente al proveedor de base de datos que quiera usar. Por ejemplo, cuando el destino es SQL Server, tendría que instalar `Microsoft.EntityFrameworkCore.SqlServer`. Para obtener más información, vea [Proveedores de bases de datos](../../core/providers/index.md).
+Para usar EF Core, instale el paquete NuGet correspondiente al proveedor de base de datos que quiera usar. Por ejemplo, cuando el destino es SQL Server, tendría que instalar `Microsoft.EntityFrameworkCore.SqlServer`. Para obtener más información, vea [Proveedores de bases de datos](xref:core/providers/index).
 
 Si tiene previsto usar migraciones, también debe instalar el paquete `Microsoft.EntityFrameworkCore.Tools`.
 
@@ -29,7 +30,7 @@ La mayoría de las API que se usan en EF6 se encuentran en el espacio de nombres
 
 ## <a name="context-configuration-connection-etc"></a>Configuración del contexto (conexión, etc.)
 
-Como se describe en [Asegurarse de que EF Core funcionará para la aplicación](ensure-requirements.md), la detección de la base de datos a la que se va a conectar EF Core tiene menos secretos. Tendrá que reemplazar el método `OnConfiguring` en el contexto derivado y usar la API específica del proveedor de base de datos para configurar la conexión a la base de datos.
+Como se describe en [Asegurarse de que EF Core funcionará para la aplicación](xref:efcore-and-ef6/porting/index), la detección de la base de datos a la que se va a conectar EF Core tiene menos secretos. Tendrá que reemplazar el método `OnConfiguring` en el contexto derivado y usar la API específica del proveedor de base de datos para configurar la conexión a la base de datos.
 
 La mayoría de las aplicaciones EF6 almacenan la cadena de conexión en el archivo `App/Web.config` de las aplicaciones. En EF Core, esta cadena de conexión se lee mediante la API `ConfigurationManager`. Es posible que tenga que agregar una referencia al ensamblado del marco `System.Configuration` para poder usar esta API.
 
