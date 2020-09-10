@@ -1,14 +1,15 @@
 ---
 title: Métodos abreviados de teclado de Entity Framework Designer-EF6
+description: Entity Framework Designer métodos abreviados de teclado en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 3c76cdd5-17c5-4c54-a6a5-cf21b974636b
-ms.openlocfilehash: c75eafcca0863faa1ad64202e98b61832827377c
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 8b93581e68e3a5d83685794f034c50cfe74eee9f
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415314"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620467"
 ---
 # <a name="entity-framework-designer-keyboard-shortcuts"></a>Métodos abreviados de teclado Entity Framework Designer
 Esta página proporciona una lista de shorcuts de teclado disponibles en las distintas pantallas de la Entity Framework Tools para Visual Studio.
@@ -19,31 +20,31 @@ Esta página proporciona una lista de shorcuts de teclado disponibles en las dis
 
 ![Asistente uno](~/ef6/media/wizardone.png)
 
-| Método abreviado  | Acción                                                     | Notas                                               |
+| Acceso directo  | Acción                                                     | Notas                                               |
 |:----------|:-----------------------------------------------------------|:----------------------------------------------------|
 | **Alt + n** | Pasar a la siguiente pantalla                                        | No está disponible para todas las selecciones del contenido del modelo. |
 | **Alt + f** | Finalice el asistente.                                              | No está disponible para todas las selecciones del contenido del modelo. |
-| **Alt + w** | Cambiar el foco a "¿Qué debe contener el modelo?" Corregir. |                                                     |
+| **Alt + w** | Cambiar el foco a "¿Qué debe contener el modelo?" . |                                                     |
 
 ### <a name="step-two-choose-your-connection"></a>Paso dos: elegir la conexión
 
 ![Asistente dos](~/ef6/media/wizardtwo.png)
 
-| Método abreviado  | Acción                                                     | Notas                                                   |
+| Acceso directo  | Acción                                                     | Notas                                                   |
 |:----------|:-----------------------------------------------------------|:--------------------------------------------------------|
 | **Alt + n** | Pasar a la siguiente pantalla                                        |                                                         |
 | **ALT + p** | Pasar a la pantalla anterior                                    |                                                         |
-| **Alt + w** | Cambiar el foco a "¿Qué debe contener el modelo?" Corregir. |                                                         |
+| **Alt + w** | Cambiar el foco a "¿Qué debe contener el modelo?" . |                                                         |
 | **Alt + c** | Abra la ventana "propiedades de conexión".                    | Permite la definición de una nueva conexión de base de datos. |
 | **Alt + e** | Excluir datos confidenciales de la cadena de conexión          |                                                         |
 | **ALT + i** | Incluir datos confidenciales en la cadena de conexión            |                                                         |
-| **Alt + s** | Activar o desactivar la opción "Guardar configuración de conexión en App. config" |                                                         |
+| **Alt + s** | Alternar la opción "Guardar configuración de conexión en App.Config" |                                                         |
 
 ### <a name="step-three-choose-your-version"></a>Paso tres: elegir la versión
 
 ![Asistente tres](~/ef6/media/wizardthree.png)
 
-| Método abreviado  | Acción                                             | Notas                                                                                 |
+| Acceso directo  | Acción                                             | Notas                                                                                 |
 |:----------|:---------------------------------------------------|:--------------------------------------------------------------------------------------|
 | **Alt + n** | Pasar a la siguiente pantalla                                |                                                                                       |
 | **ALT + p** | Pasar a la pantalla anterior                            |                                                                                       |
@@ -53,7 +54,7 @@ Esta página proporciona una lista de shorcuts de teclado disponibles en las dis
 
 ![Asistente cuatro](~/ef6/media/wizardfour.png)
 
-| Método abreviado  | Acción                                                                                    | Notas                                                               |
+| Acceso directo  | Acción                                                                                    | Notas                                                               |
 |:----------|:------------------------------------------------------------------------------------------|:--------------------------------------------------------------------|
 | **Alt + f** | Finalice el asistente.                                                                             |                                                                     |
 | **ALT + p** | Pasar a la pantalla anterior                                                                   |                                                                     |
@@ -62,7 +63,7 @@ Esta página proporciona una lista de shorcuts de teclado disponibles en las dis
 | **Alt + k** | Alternar la opción "incluir columnas de clave externa en el modelo"                              | No está disponible para todas las selecciones del contenido del modelo.                 |
 | **ALT + i** | Alternar la opción "importar funciones y procedimientos almacenados seleccionados en el modelo de entidad" | No está disponible para todas las selecciones del contenido del modelo.                 |
 | **Alt + m** | Cambia el foco al campo de texto "espacio de nombres del modelo".                                        | No está disponible para todas las selecciones del contenido del modelo.                 |
-| **Espacio** | Alternar selección en elemento                                                               | Si el elemento tiene elementos secundarios, todos los elementos secundarios también se alternarán |
+| **Espacia** | Alternar selección en elemento                                                               | Si el elemento tiene elementos secundarios, todos los elementos secundarios también se alternarán |
 | **Left**  | Contraer árbol secundario                                                                       |                                                                     |
 | **Right** | Expandir árbol secundario                                                                         |                                                                     |
 | **Up** (Arriba)    | Navegar al elemento anterior en el árbol                                                      |                                                                     |
@@ -72,22 +73,22 @@ Esta página proporciona una lista de shorcuts de teclado disponibles en las dis
 
 ![Superficie del diseñador](~/ef6/media/designersurface.png)
 
-| Método abreviado                                                                                | Acción                      | Notas                                                                                                                                                                                                                               |
+| Acceso directo                                                                                | Acción                      | Notas                                                                                                                                                                                                                               |
 |:----------------------------------------------------------------------------------------|:----------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Espacio/entrar**                                                                         | Alternar selección            | Alterna la selección en el objeto que tiene el foco.                                                                                                                                                                                         |
+| **Espacio/Entrar**                                                                         | Alternar selección            | Alterna la selección en el objeto que tiene el foco.                                                                                                                                                                                         |
 | **Esc**                                                                                 | Cancelar selección            | Cancela la selección actual.                                                                                                                                                                                                      |
-| **Ctrl + A**                                                                            | Seleccionar todo                  | Selecciona todas las formas en la superficie de diseño.                                                                                                                                                                                       |
+| **CTRL+A**                                                                            | Seleccionar todo                  | Selecciona todas las formas en la superficie de diseño.                                                                                                                                                                                       |
 | **Flecha arriba**                                                                            | Subir                     | Sube la entidad seleccionada un incremento de la cuadrícula. <br/> Si está en una lista, se desplaza al subcampo relacionado anterior.                                                                                                                            |
 | **Flecha abajo**                                                                          | Bajar                   | Baja una entidad seleccionada un incremento de la cuadrícula. <br/> Si se encuentra en una lista, se desplaza al siguiente subcampo relacionado.                                                                                                                              |
 | **Flecha izquierda**                                                                          | Moverse a la izquierda                   | Mueve la entidad seleccionada a la izquierda un incremento de la cuadrícula. <br/> Si está en una lista, se desplaza al subcampo relacionado anterior.                                                                                                                          |
 | **Flecha derecha**                                                                         | Moverse a la derecha                  | Mueve la entidad seleccionada a la derecha un incremento de la cuadrícula. <br/> Si se encuentra en una lista, se desplaza al siguiente subcampo relacionado.                                                                                                                             |
 | **Mayús + Flecha izquierda**                                                                  | Tamaño de la forma izquierda             | Reduce el ancho de la entidad seleccionada en un incremento de la cuadrícula.                                                                                                                                                                     |
 | **Mayús + Flecha derecha**                                                                 | Tamaño de la forma derecha            | Aumenta el ancho de la entidad seleccionada en un incremento de la cuadrícula.                                                                                                                                                                   |
-| **Inicio**                                                                                | Primer elemento del mismo nivel                  | Mueve el foco y la selección al primer objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                         |
-| **Finalizar**                                                                                 | Último elemento del mismo nivel                   | Mueve el foco y la selección al último objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                          |
-| **Ctrl + Inicio**                                                                         | Primer elemento del mismo nivel (foco)          | Igual que el primer elemento del mismo nivel, pero mueve el foco en lugar de mover el foco y la selección.                                                                                                                                                          |
-| **Ctrl + fin**                                                                          | Último elemento del mismo nivel (foco)           | Igual que el último elemento del mismo nivel, pero mueve el foco en lugar de mover el foco y la selección.                                                                                                                                                           |
-| **Tabulación**                                                                                 | Siguiente elemento del mismo nivel                   | Mueve el foco y la selección al siguiente objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                          |
+| **Página principal**                                                                                | Primer elemento del mismo nivel                  | Mueve el foco y la selección al primer objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                         |
+| **Fin**                                                                                 | Último elemento del mismo nivel                   | Mueve el foco y la selección al último objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                          |
+| **CTRL+Inicio**                                                                         | Primer elemento del mismo nivel (foco)          | Igual que el primer elemento del mismo nivel, pero mueve el foco en lugar de mover el foco y la selección.                                                                                                                                                          |
+| **CTRL+Fin**                                                                          | Último elemento del mismo nivel (foco)           | Igual que el último elemento del mismo nivel, pero mueve el foco en lugar de mover el foco y la selección.                                                                                                                                                           |
+| **Pestaña**                                                                                 | Siguiente elemento del mismo nivel                   | Mueve el foco y la selección al siguiente objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                          |
 | **Mayús+Tab**                                                                           | Anterior del mismo nivel               | Mueve el foco y la selección al objeto anterior en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                      |
 | **Alt + Ctrl + Tab**                                                                        | Siguiente elemento del mismo nivel (foco)           | Igual que el siguiente elemento del mismo nivel, pero mueve el foco en lugar de mover el foco y la selección.                                                                                                                                                           |
 | **Alt + Ctrl + Mayús + Tab**                                                                  | Anterior del mismo nivel (enfoque)       | Igual que el elemento anterior del mismo nivel, pero mueve el foco en lugar de mover el foco y la selección.                                                                                                                                                       |
@@ -96,13 +97,13 @@ Esta página proporciona una lista de shorcuts de teclado disponibles en las dis
 | **Ctrl + &lt;**                                                                         | Ascend (Focus)              | Igual que el comando Ascend, pero mueve el foco sin selección.                                                                                                                                                                          |
 | **Ctrl + &gt;**                                                                         | Descendente (foco)             | Igual que el comando descendente, pero mueve el foco sin selección.                                                                                                                                                                         |
 | **Mayús + fin**                                                                         | Seguir a conectado         | Desde una entidad, se mueve a una entidad a la que está conectada esta entidad.                                                                                                                                                               |
-| **Supr**                                                                                 | Eliminar                      | Elimine un objeto o un conector del diagrama.                                                                                                                                                                                     |
+| **Resguardo**                                                                                 | Eliminar                      | Elimine un objeto o un conector del diagrama.                                                                                                                                                                                     |
 | **Complemento**                                                                                 | Insertar                      | Agrega una nueva propiedad a una entidad cuando se selecciona el encabezado de compartimiento "propiedades escalares" o una propiedad en sí.                                                                                                           |
 | **AvPág**                                                                               | Desplazar diagrama hacia arriba           | Desplaza la superficie de diseño hacia arriba, en incrementos iguales al 75% del alto de la superficie de diseño actualmente visible.                                                                                                                    |
 | **Av Pág**                                                                             | Desplazar diagrama hacia abajo         | Desplaza la superficie de diseño hacia abajo.                                                                                                                                                                                                    |
 | **Mayús + Av Pág**                                                                     | Desplazar diagrama a la derecha        | Desplaza la superficie de diseño a la derecha.                                                                                                                                                                                            |
 | **Mayús + re pág**                                                                       | Desplazar diagrama a la izquierda         | Desplaza la superficie de diseño a la izquierda.                                                                                                                                                                                             |
-| **F2**                                                                                  | Entrar en el modo de edición             | Método abreviado de teclado estándar para entrar en el modo de edición de un control de texto.                                                                                                                                                               |
+| **F2**                                                                                  | Acceso al modo de edición             | Método abreviado de teclado estándar para entrar en el modo de edición de un control de texto.                                                                                                                                                               |
 | **Mayús + F10**                                                                         | Mostrar menú contextual       | Método abreviado de teclado estándar para mostrar el menú contextual de un elemento seleccionado.                                                                                                                                                          |
 | **Control + Mayús + clic con el botón primario del mouse**  <br/> **Control + Mayús + MouseWheel hacia delante**  | Zoom semántico            | Acerca el área de la vista de diagrama debajo del puntero del mouse.                                                                                                                                                                 |
 | **Control + Mayús + clic con el botón secundario del mouse** <br/> **Control + Mayús + MouseWheel hacia atrás** | Alejar semántica           | Aleja el área de la vista de diagrama debajo del puntero del mouse. Vuelve a centrar el diagrama cuando aleja el centro del diagrama actual.                                                                          |
@@ -115,20 +116,20 @@ Esta página proporciona una lista de shorcuts de teclado disponibles en las dis
 
 ![Métodos abreviados de detalles de asignación](~/ef6/media/mappingdetailsshortcuts.png)
 
-| Método abreviado                  | Acción         | Notas                                                                                                                                 |
+| Acceso directo                  | Acción         | Notas                                                                                                                                 |
 |:--------------------------|:---------------|:--------------------------------------------------------------------------------------------------------------------------------------|
-| **Tabulación**                   | Cambiar contexto | Cambia entre el área de la ventana principal y la barra de herramientas de la izquierda.                                                                     |
+| **Pestaña**                   | Cambiar contexto | Cambia entre el área de la ventana principal y la barra de herramientas de la izquierda.                                                                     |
 | **Teclas de dirección**            | Navegación     | Subir y bajar filas, o de derecha a izquierda entre las columnas del área de la ventana principal. Desplácese entre los botones de la barra de herramientas de la izquierda. |
-| **Entrar** <br/> **Espacio** | Seleccionar         | Selecciona un botón de la barra de herramientas de la izquierda.                                                                                          |
+| **Entrar** <br/> **Espacia** | Seleccionar         | Selecciona un botón de la barra de herramientas de la izquierda.                                                                                          |
 | **Alt + flecha abajo**      | Abrir lista      | Desplegar una lista si se selecciona una celda que tenga una lista desplegable.                                                                     |
 | **Entrar**                 | Seleccionar lista    | Selecciona un elemento de una lista desplegable.                                                                                               |
 | **Esc**                   | Cerrar lista     | Cierra una lista desplegable.                                                                                                              |
 
 ## <a name="visual-studio-navigation"></a>Navegación de Visual Studio
 
-Entity Framework también proporciona una serie de acciones que pueden tener los métodos abreviados de teclado personalizados asignados (no se asignan accesos directos de forma predeterminada). Para crear estos métodos abreviados personalizados, haga clic en el menú herramientas y, a continuación, en opciones.  En entorno, elija teclado.  Desplácese hacia abajo en la lista en el centro hasta que pueda seleccionar el comando que desee, escriba el acceso directo en el cuadro de texto "presionar teclas de método abreviado" y haga clic en asignar. Los métodos abreviados posibles son los siguientes:
+Entity Framework también proporciona una serie de acciones que pueden tener los métodos abreviados de teclado personalizados asignados (no se asignan accesos directos de forma predeterminada). Para crear estos métodos abreviados personalizados, haga clic en el menú herramientas y, a continuación, en opciones.En entorno, elija teclado.Desplácese hacia abajo en la lista en el centro hasta que pueda seleccionar el comando que desee, escriba el acceso directo en el cuadro de texto "presionar teclas de método abreviado" y haga clic en asignar. Los métodos abreviados posibles son los siguientes:
 
-| Método abreviado                                                                                       |
+| Acceso directo                                                                                       |
 |:-----------------------------------------------------------------------------------------------|
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. Add. ComplexProperty. ComplexTypes**        |
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.AddCodeGenerationItem**                   |
@@ -163,16 +164,16 @@ Entity Framework también proporciona una serie de acciones que pueden tener los
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.MappingDetails**                          |
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. ModelBrowser**                            |
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveDiagramstoSeparateFile**              |
-| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveProperties. Down**                     |
+| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.Down**                     |
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.Down5**                    |
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.ToBottom**                 |
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.ToTop**                    |
-| **OtherContextMenus. MicrosoftDataEntityDesignContext. MoveProperties. up**                       |
+| **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.Up**                       |
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.MoveProperties.Up5**                      |
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.MovetonewDiagram**                        |
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. Open**                                    |
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. refactorizar. MovetoNewComplexType**           |
-| **OtherContextMenus. MicrosoftDataEntityDesignContext. refactorizar. Rename**                         |
+| **OtherContextMenus.MicrosoftDataEntityDesignContext.Refactor.Rename**                         |
 | **OtherContextMenus.MicrosoftDataEntityDesignContext.RemovefromDiagram**                       |
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. Rename**                                  |
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. ScalarPropertyFormat. DisplayName**        |
@@ -205,5 +206,5 @@ Entity Framework también proporciona una serie de acciones que pueden tener los
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. zoom**                             |
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. ZoomOut**                            |
 | **OtherContextMenus. MicrosoftDataEntityDesignContext. zoom. ZoomtoFit**                          |
-| **Ver. EntityDataModelBrowser**                                                                |
-| **Ver. EntityDataModelMappingDetails**                                                         |
+| **View.EntityDataModelBrowser**                                                                |
+| **View.EntityDataModelMappingDetails**                                                         |

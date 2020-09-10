@@ -1,21 +1,22 @@
 ---
 title: Referencia de herramientas de EF Core (CLI de .NET)-EF Core
+description: Guía de referencia de las herramientas de CLI de .NET Core de Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 07/11/2019
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: 8ff2f3481c7f0c255def3272ca53370faba33e95
-ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
+ms.openlocfilehash: b5f4941b1a1cf5674d9cc998dd0aed0c0469ff27
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86238182"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619431"
 ---
 # <a name="entity-framework-core-tools-reference---net-core-cli"></a>Referencia de herramientas de Entity Framework Core-CLI de .NET Core
 
-Las herramientas de la interfaz de la línea de comandos (CLI) para Entity Framework Core realizar tareas de desarrollo en tiempo de diseño. Por ejemplo, se crean [migraciones](/aspnet/core/data/ef-mvc/migrations?view=aspnetcore-2.0), se aplican migraciones y se genera código para un modelo basado en una base de datos existente. Los comandos son una extensión del comando [dotnet](/dotnet/core/tools) multiplataforma, que forma parte de la [SDK de .net Core](https://www.microsoft.com/net/core). Estas herramientas funcionan con proyectos de .NET Core.
+Las herramientas de la interfaz de la línea de comandos (CLI) para Entity Framework Core realizar tareas de desarrollo en tiempo de diseño. Por ejemplo, se crean [migraciones](/aspnet/core/data/ef-mvc/migrations), se aplican migraciones y se genera código para un modelo basado en una base de datos existente. Los comandos son una extensión del comando [dotnet](/dotnet/core/tools) multiplataforma, que forma parte de la [SDK de .net Core](https://www.microsoft.com/net/core). Estas herramientas funcionan con proyectos de .NET Core.
 
-Si usa Visual Studio, se recomienda usar en su lugar las herramientas de la [consola del administrador de paquetes](powershell.md) :
+Si usa Visual Studio, se recomienda usar en su lugar las herramientas de la [consola del administrador de paquetes](xref:core/miscellaneous/cli/powershell) :
 
 * Funcionan automáticamente con el proyecto actual seleccionado en la **consola del administrador de paquetes** sin necesidad de cambiar manualmente los directorios.
 * Abren automáticamente los archivos generados por un comando una vez completado el comando.
@@ -31,7 +32,7 @@ El procedimiento de instalación depende del tipo y la versión del proyecto:
 
 ### <a name="ef-core-3x"></a>EF Core 3. x
 
-* `dotnet ef`debe instalarse como una herramienta global o local. La mayoría de los desarrolladores se instalarán `dotnet ef` como una herramienta global con el siguiente comando:
+* `dotnet ef` debe instalarse como una herramienta global o local. La mayoría de los desarrolladores se instalarán `dotnet ef` como una herramienta global con el siguiente comando:
 
   ```dotnetcli
   dotnet tool install --global dotnet-ef

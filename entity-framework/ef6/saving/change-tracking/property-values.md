@@ -1,14 +1,16 @@
 ---
 title: 'Trabajar con valores de propiedad: EF6'
+description: Trabajar con valores de propiedad en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: e3278b4b-9378-4fdb-923d-f64d80aaae70
-ms.openlocfilehash: d8a18182754980d79b71df3f227b30c4ce40366f
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/saving/change-tracking/property-values
+ms.openlocfilehash: 53c0829920c77768eae26d23c3da7d0553f44b62
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414378"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619970"
 ---
 # <a name="working-with-property-values"></a>Trabajar con valores de propiedad
 En la mayoría de los casos, Entity Framework se encargará del seguimiento del estado, los valores originales y los valores actuales de las propiedades de las instancias de la entidad. Sin embargo, puede haber algunos casos, como escenarios desconectados, donde desea ver o manipular la información que EF tiene sobre las propiedades. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  

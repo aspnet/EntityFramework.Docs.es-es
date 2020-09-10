@@ -1,14 +1,15 @@
 ---
 title: Casos prácticos de Entity Framework-EF6
+description: Casos prácticos de Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: cd5d3ae3-717d-4095-a2ef-0e8fd72b1a2f
-ms.openlocfilehash: d7982a3f89ac1e57b48039d828f287adf6dc5068
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: f6cabe34cfbdc5f15758678f458b2c0898198137
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414462"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620242"
 ---
 # <a name="microsoft-case-studies-for-entity-framework"></a>Casos prácticos de Microsoft para Entity Framework
 En los casos prácticos de esta página se resaltan algunos proyectos de producción reales que han empleado Entity Framework.
@@ -49,7 +50,7 @@ A pesar de que los miembros del equipo se dividen en varios países, el equipo s
  .NET era la elección para el desarrollo rápido y rentable ". – Zachary Olsen, arquitecto  
 
 ## <a name="silverware"></a>Silverware
-Con más de 15 años de experiencia en el desarrollo de soluciones de punto de venta (POS) para grupos de restaurante pequeños y de tamaño mediano, el equipo de desarrollo de silverware se ha establecido para mejorar su producto con características de nivel empresarial más grandes con el fin de atraer más cadenas de restaurante.
+Con más de 15 años de experiencia en el desarrollo de soluciones de punto de venta (POS) para grupos de restaurante pequeños y medianas, el equipo de desarrollo de silverware se ha establecido para mejorar su producto con características de nivel empresarial más para atraer cadenas de restaurante más grandes.
 Con la versión más reciente de las herramientas de desarrollo de Microsoft, podían crear la nueva solución cuatro veces más rápido que antes.
 Las nuevas características clave como LINQ y el Entity Framework facilitan el traslado de Crystal Reports a SQL Server 2008 y SQL Server Reporting Services (SSRS) para sus necesidades de informes y almacenamiento de datos.
 

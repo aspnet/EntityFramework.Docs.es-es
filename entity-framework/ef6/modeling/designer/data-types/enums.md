@@ -1,14 +1,16 @@
 ---
 title: 'Compatibilidad con la enumeración: EF Designer-EF6'
+description: 'Compatibilidad con la enumeración: EF Designer en Entity Framework 6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: c6ae6d8f-1ace-47db-ad47-b1718f1ba082
-ms.openlocfilehash: 92a763b84a04d3ce7ec0853ef2a4852356cf7997
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/data-types/enums
+ms.openlocfilehash: 316e8160cfd69d9912d63260471eee3df0eb58f6
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415356"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620510"
 ---
 # <a name="enum-support---ef-designer"></a>Compatibilidad con la enumeración: EF Designer
 > [!NOTE]
@@ -16,7 +18,7 @@ ms.locfileid: "78415356"
 
 Este tutorial de vídeo y paso a paso muestra cómo utilizar tipos de enumeración con el Entity Framework Designer. También se muestra cómo usar las enumeraciones en una consulta LINQ.
 
-En este tutorial se utilizará Model First para crear una nueva base de datos, pero el diseñador de EF también puede usarse con el flujo de trabajo de [Database First](~/ef6/modeling/designer/workflows/database-first.md) para asignar a una base de datos existente.
+En este tutorial se utilizará Model First para crear una nueva base de datos, pero el diseñador de EF también puede usarse con el flujo de trabajo de [Database First](xref:ef6/modeling/designer/workflows/database-first) para asignar a una base de datos existente.
 
 La compatibilidad con la enumeración se presentó en Entity Framework 5. Para usar las nuevas características, como las enumeraciones, los tipos de datos espaciales y las funciones con valores de tabla, debe tener como destino .NET Framework 4,5. Visual Studio 2012 tiene como destino .NET 4,5 de forma predeterminada.
 
@@ -27,7 +29,7 @@ En este vídeo se muestra cómo utilizar tipos de enumeración con el Entity Fra
 
 **Presentada por**: Julia Kornich
 
-**Vídeo**: [wmv](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.wmv) | [MP4](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-mp4video-enumwithdesiger.m4v) | [WMV (zip)](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.zip)
+**Vídeo**: [WMV](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.wmv)  |  [MP4](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-mp4video-enumwithdesiger.m4v)  |  [WMV (zip)](https://download.microsoft.com/download/0/7/A/07ADECC9-7893-415D-9F20-8B97D46A37EC/HDI-ITPro-MSDN-winvideo-enumwithdesiger.zip)
 
 ## <a name="pre-requisites"></a>Requisitos previos
 
@@ -37,7 +39,7 @@ Deberá tener instalado Visual Studio 2012, Ultimate, Premium, Professional o We
 
 1.  Abra Visual Studio 2012
 2.  En el menú **archivo** , seleccione **nuevo**y, a continuación, haga clic en **proyecto** .
-3.  En el panel izquierdo, haga clic en **Visual C\#** y, a continuación, seleccione la plantilla de **consola** .
+3.  En el panel izquierdo, haga clic en **Visual C \# **y, a continuación, seleccione la plantilla de **consola** .
 4.  Escriba **EnumEFDesigner** como nombre del proyecto y haga clic en **Aceptar** .
 
 ## <a name="create-a-new-model-using-the-ef-designer"></a>Crear un nuevo modelo con EF Designer
@@ -58,10 +60,10 @@ El asistente realiza las siguientes acciones:
 
 ## <a name="add-a-new-entity-type"></a>Agregar un nuevo tipo de entidad
 
-1.  Haga clic con el botón secundario en un área vacía de la superficie de diseño, seleccione **agregar&gt; entidad**, aparecerá el cuadro de diálogo nueva entidad.
+1.  Haga clic con el botón secundario en un área vacía de la superficie de diseño, seleccione **agregar- &gt; entidad**, aparecerá el cuadro de diálogo nueva entidad.
 2.  Especifique **Department** como nombre de tipo y especifique **departmentId** como nombre de la propiedad de clave y deje el tipo como **Int32** .
 3.  Haga clic en **Aceptar**
-4.  Haga clic con el botón derecho en la entidad y seleccione **Agregar nueva&gt; propiedad escalar** .
+4.  Haga clic con el botón derecho en la entidad y seleccione **Agregar nueva &gt; propiedad-escalar** .
 5.  Cambiar el nombre de la nueva propiedad a **nombre**
 6.  Cambie el tipo de la nueva propiedad a **Int32** (de forma predeterminada, la nueva propiedad es de tipo cadena) para cambiar el tipo, abra el ventana Propiedades y cambie la propiedad Type a **Int32** .
 7.  Agregue otra propiedad escalar y cambie su nombre a **presupuesto**, cambie el tipo a **decimal** .
@@ -95,11 +97,11 @@ Si cambia a la ventana Explorador de modelos, verá que el tipo también se agre
 Ahora se puede generar una base de datos basada en el modelo.
 
 1.  Haga clic con el botón secundario en un espacio vacío en la superficie de Entity Designer y seleccione **generar base de datos a partir del modelo** .
-2.  Aparece el cuadro de diálogo elegir la conexión de datos del Asistente para generar base de datos, haga clic en el botón **nueva conexión** especifique **(LocalDB)\\mssqllocaldb** para el nombre del servidor y **EnumTest** para la base de datos y haga clic en **Aceptar** .
+2.  Aparece el cuadro de diálogo elegir la conexión de datos del Asistente para generar base de datos, haga clic en el botón **nueva conexión** especifique **(LocalDB) \\ mssqllocaldb** para el nombre del servidor y **EnumTest** para la base de datos y haga clic en **Aceptar** .
 3.  Aparecerá un cuadro de diálogo en el que se le pregunta si desea crear una nueva base de datos, haga clic en **sí**.
 4.  Haga clic en **siguiente** y el Asistente para crear bases de datos genera el lenguaje de definición de datos (DDL) para crear una base de datos. la DDL generada se muestra en el cuadro de diálogo Resumen y configuración. tenga en cuenta que el DDL no contiene una definición para una tabla que se asigna al tipo de enumeración
 5.  Haga clic en **Finalizar** al hacer clic en finalizar no se ejecuta el script DDL.
-6.  El Asistente para crear bases de datos hace lo siguiente: abre **EnumTest. edmx. SQL** en el editor de T-SQL genera las secciones de asignación y esquema de almacenamiento del archivo edmx agrega información de la cadena de conexión al archivo app. config.
+6.  El Asistente para crear bases de datos hace lo siguiente: abre **EnumTest. edmx. SQL** en el editor de T-SQL genera el esquema de almacenamiento y las secciones de asignación del archivo edmx agrega información de la cadena de conexión al archivo App.config
 7.  Haga clic con el botón secundario del mouse en el editor de T-SQL y seleccione **Ejecutar** el cuadro de diálogo conectar con el servidor, escriba la información de conexión del paso 2 y haga clic en **conectar** .
 8.  Para ver el esquema generado, haga clic con el botón derecho en el nombre de la base de datos en Explorador de objetos de SQL Server y seleccione **Actualizar** .
 

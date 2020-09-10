@@ -1,14 +1,16 @@
 ---
 title: Diseñador espacial-EF-EF6
+description: Diseñador espacial-EF en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 06baa6e1-d680-4a95-845b-81305c87a962
-ms.openlocfilehash: a9c54fbc14dd02ce5d4d91449a0d5f9e72f7f0f7
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/data-types/spatial
+ms.openlocfilehash: 10430d6a043182e5536dfad148dc4158cf4c96c9
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415332"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620489"
 ---
 # <a name="spatial---ef-designer"></a>Diseñador espacial-EF
 > [!NOTE]
@@ -16,11 +18,11 @@ ms.locfileid: "78415332"
 
 En el tutorial de vídeo y paso a paso se muestra cómo asignar tipos espaciales con el Entity Framework Designer. También se muestra cómo usar una consulta LINQ para buscar una distancia entre dos ubicaciones.
 
-En este tutorial se utilizará Model First para crear una nueva base de datos, pero el diseñador de EF también puede usarse con el flujo de trabajo de [Database First](~/ef6/modeling/designer/workflows/database-first.md) para asignar a una base de datos existente.
+En este tutorial se utilizará Model First para crear una nueva base de datos, pero el diseñador de EF también puede usarse con el flujo de trabajo de [Database First](xref:ef6/modeling/designer/workflows/database-first) para asignar a una base de datos existente.
 
 La compatibilidad con tipos espaciales se presentó en Entity Framework 5. Tenga en cuenta que para usar las nuevas características, como el tipo espacial, las enumeraciones y las funciones con valores de tabla, debe tener como destino .NET Framework 4,5. Visual Studio 2012 tiene como destino .NET 4,5 de forma predeterminada.
 
-Para usar los tipos de datos espaciales, también debe usar un proveedor de Entity Framework que tenga compatibilidad espacial. Consulte [compatibilidad con proveedores para tipos espaciales](~/ef6/fundamentals/providers/spatial-support.md) para obtener más información.
+Para usar los tipos de datos espaciales, también debe usar un proveedor de Entity Framework que tenga compatibilidad espacial. Consulte [compatibilidad con proveedores para tipos espaciales](xref:ef6/fundamentals/providers/spatial-support) para obtener más información.
 
 Hay dos tipos de datos espaciales principales: Geography y Geometry. El tipo de datos Geography almacena los datos de datos elipsoidales (por ejemplo, las coordenadas de latitud y longitud de GPS). El tipo de datos Geometry representa el sistema de coordenadas euclidiana (plano).
 
@@ -29,7 +31,7 @@ Este vídeo muestra cómo asignar tipos espaciales con el Entity Framework Desig
 
 **Presentada por**: Julia Kornich
 
-**Vídeo**: [wmv](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.wmv) | [MP4](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-mp4video-spatialwithdesigner.m4v) | [WMV (zip)](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.zip)
+**Vídeo**: [WMV](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.wmv)  |  [MP4](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-mp4video-spatialwithdesigner.m4v)  |  [WMV (zip)](https://download.microsoft.com/download/E/C/9/EC9E6547-8983-4C1F-A919-D33210E4B213/HDI-ITPro-MSDN-winvideo-spatialwithdesigner.zip)
 
 ## <a name="pre-requisites"></a>Requisitos previos
 
@@ -39,7 +41,7 @@ Deberá tener instalado Visual Studio 2012, Ultimate, Premium, Professional o We
 
 1.  Abra Visual Studio 2012
 2.  En el menú **archivo** , seleccione **nuevo**y, a continuación, haga clic en **proyecto** .
-3.  En el panel izquierdo, haga clic en **Visual C\#** y, a continuación, seleccione la plantilla de **consola** .
+3.  En el panel izquierdo, haga clic en **Visual C \# **y, a continuación, seleccione la plantilla de **consola** .
 4.  Escriba **SpatialEFDesigner** como nombre del proyecto y haga clic en **Aceptar** .
 
 ## <a name="create-a-new-model-using-the-ef-designer"></a>Crear un nuevo modelo con EF Designer
@@ -60,10 +62,10 @@ El asistente realiza las siguientes acciones:
 
 ## <a name="add-a-new-entity-type"></a>Agregar un nuevo tipo de entidad
 
-1.  Haga clic con el botón secundario en un área vacía de la superficie de diseño, seleccione **agregar&gt; entidad**, aparecerá el cuadro de diálogo nueva entidad.
+1.  Haga clic con el botón secundario en un área vacía de la superficie de diseño, seleccione **agregar- &gt; entidad**, aparecerá el cuadro de diálogo nueva entidad.
 2.  Especifique **Universidad** como nombre de tipo y especifique **UniversityID** para el nombre de la propiedad de clave y deje el tipo como **Int32** .
 3.  Haga clic en **Aceptar**
-4.  Haga clic con el botón derecho en la entidad y seleccione **Agregar nueva&gt; propiedad escalar** .
+4.  Haga clic con el botón derecho en la entidad y seleccione **Agregar nueva &gt; propiedad-escalar** .
 5.  Cambiar el nombre de la nueva propiedad a **nombre**
 6.  Agregue otra propiedad escalar y cámbiela a **Ubicación** . abra el ventana Propiedades y cambie el tipo de la nueva propiedad a **geografía** .
 7.  Guardar el modelo y compilar el proyecto
@@ -75,11 +77,11 @@ El asistente realiza las siguientes acciones:
 Ahora se puede generar una base de datos basada en el modelo.
 
 1.  Haga clic con el botón secundario en un espacio vacío en la superficie de Entity Designer y seleccione **generar base de datos a partir del modelo** .
-2.  Se muestra el cuadro de diálogo elegir la conexión de datos del Asistente para generar base de datos, haga clic en el botón **nueva conexión** especifique **(LocalDB)\\mssqllocaldb** para el nombre del servidor y la **Universidad** para la base de datos y haga clic en **Aceptar** .
+2.  Se muestra el cuadro de diálogo elegir la conexión de datos del Asistente para generar base de datos, haga clic en el botón **nueva conexión** especifique **(LocalDB) \\ mssqllocaldb** para el nombre del servidor y la **Universidad** para la base de datos y haga clic en **Aceptar** .
 3.  Aparecerá un cuadro de diálogo en el que se le pregunta si desea crear una nueva base de datos, haga clic en **sí**.
 4.  Haga clic en **siguiente** y el Asistente para crear bases de datos genera el lenguaje de definición de datos (DDL) para crear una base de datos. la DDL generada se muestra en el cuadro de diálogo Resumen y configuración. tenga en cuenta que el DDL no contiene una definición para una tabla que se asigna al tipo de enumeración
 5.  Haga clic en **Finalizar** al hacer clic en finalizar no se ejecuta el script DDL.
-6.  El Asistente para crear bases de datos hace lo siguiente: abre **UniversityModel. edmx. SQL** en el editor de T-SQL genera las secciones de asignación y esquema de almacenamiento del archivo edmx agrega información de la cadena de conexión al archivo app. config.
+6.  El Asistente para crear bases de datos hace lo siguiente: abre **UniversityModel. edmx. SQL** en el editor de T-SQL genera el esquema de almacenamiento y las secciones de asignación del archivo edmx agrega información de la cadena de conexión al archivo App.config
 7.  Haga clic con el botón secundario del mouse en el editor de T-SQL y seleccione **Ejecutar** el cuadro de diálogo conectar con el servidor, escriba la información de conexión del paso 2 y haga clic en **conectar** .
 8.  Para ver el esquema generado, haga clic con el botón derecho en el nombre de la base de datos en Explorador de objetos de SQL Server y seleccione **Actualizar** .
 

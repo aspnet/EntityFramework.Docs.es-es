@@ -1,14 +1,16 @@
 ---
 title: 'Datos locales: EF6'
+description: Datos locales en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2eda668b-1e5d-487d-9a8c-0e3beef03fcb
-ms.openlocfilehash: efd646348d8a18bbeed2d0a0e708d4d36eb26eac
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/querying/local-data
+ms.openlocfilehash: f7c4c8904a2985901491e423f655d4aea79f666d
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414486"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620303"
 ---
 # <a name="local-data"></a>Datos locales
 La ejecución de una consulta LINQ directamente en una DbSet siempre enviará una consulta a la base de datos, pero se puede tener acceso a los datos que están actualmente en memoria mediante la propiedad DbSet. local. También puede acceder a la información adicional EF realiza el seguimiento de las entidades mediante los métodos DbContext. entry y DbContext. ChangeTracker. entrys. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  

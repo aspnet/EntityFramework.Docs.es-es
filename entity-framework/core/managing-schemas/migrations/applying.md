@@ -1,15 +1,16 @@
 ---
 title: 'Aplicación de migraciones: EF Core'
+description: Estrategias para aplicar migraciones de esquema a las bases de datos de desarrollo y de producción con Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 05/06/2020
 uid: core/managing-schemas/migrations/applying
-ms.openlocfilehash: f83a014651fdf2262a603fb91da7984672690197
-ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
+ms.openlocfilehash: c83194057d58f8278bfbb5264623858e6c022d8f
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86238736"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619464"
 ---
 # <a name="applying-migrations"></a>Aplicación de migraciones
 
@@ -112,7 +113,7 @@ Script-Migration -Idempotent
 
 ***
 
-## <a name="command-line-tools"></a>Herramientas de línea de comandos
+## <a name="command-line-tools"></a>Herramientas de la línea de comandos
 
 Las herramientas de línea de comandos de EF se pueden usar para aplicar migraciones a una base de datos. Aunque es productivo para el desarrollo y las pruebas locales de las migraciones, este enfoque no es idóneo para la administración de bases de datos de producción:
 

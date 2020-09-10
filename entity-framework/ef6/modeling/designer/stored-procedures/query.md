@@ -1,14 +1,16 @@
 ---
 title: 'Procedimientos almacenados de consulta del diseñador: EF6'
+description: Procedimientos almacenados de consulta del diseñador en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9554ed25-c5c1-43be-acad-5da37739697f
-ms.openlocfilehash: 2e0092b526278597e8477d47eeb642598647bb91
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/stored-procedures/query
+ms.openlocfilehash: c647516e1c6ea010c791df6857782b2304ceed1c
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415206"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620357"
 ---
 # <a name="designer-query-stored-procedures"></a>Procedimientos almacenados de consulta del diseñador
 En este tutorial paso a paso se muestra cómo usar el Entity Framework Designer (EF Designer) para importar procedimientos almacenados en un modelo y, a continuación, llamar a los procedimientos almacenados importados para recuperar los resultados. 
@@ -18,34 +20,34 @@ Tenga en cuenta que Code First no admite la asignación a funciones o procedimie
 var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]")`;
 ```
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Requisitos previos
 
 Para completar este tutorial, necesitará:
 
 - Una versión reciente de Visual Studio.
-- La [base de datos de ejemplo School](~/ef6/resources/school-database.md).
+- La [base de datos de ejemplo School](xref:ef6/resources/school-database).
 
 ## <a name="set-up-the-project"></a>Configurar el proyecto
 
 -   Abra Visual Studio 2012.
--   Seleccionar **archivo-&gt; nuevo-&gt; proyecto**
--   En el panel izquierdo, haga clic en **Visual C\#** y, a continuación, seleccione la plantilla de **consola** .
--   Escriba **EFwithSProcsSample** como nombre.
+-   Seleccionar **archivo- &gt; nuevo- &gt; proyecto**
+-   En el panel izquierdo, haga clic en **Visual C \# **y, a continuación, seleccione la plantilla de **consola** .
+-   Escriba **EFwithSProcsSample**   como nombre.
 -   Seleccione  **Aceptar**.
 
 ## <a name="create-a-model"></a>Creación de un modelo
 
--   Haga clic con el botón derecho en el proyecto en Explorador de soluciones y seleccione **agregar&gt; nuevo elemento**.
+-   Haga clic con el botón derecho en el proyecto en Explorador de soluciones y seleccione **agregar &gt; nuevo elemento**.
 -   Seleccione **datos** en el menú de la izquierda y, a continuación, seleccione **ADO.NET Entity Data Model** en el panel Plantillas.
 -   Escriba **EFwithSProcsModel. edmx** como nombre de archivo y, a continuación, haga clic en **Agregar**.
 -   En el cuadro de diálogo elegir contenido del modelo, seleccione **generar desde la base de datos**y, a continuación, haga clic en **siguiente**.
 -   Haga clic en **nueva conexión**.  
-    En el cuadro de diálogo Propiedades de conexión, escriba el nombre del servidor (por ejemplo, **LocalDB)\\mssqllocaldb**), seleccione el método de autenticación, escriba **School** para el nombre de la base de datos y, a continuación, haga clic en **Aceptar**.  
+    En el cuadro de diálogo Propiedades de conexión, escriba el nombre del servidor (por ejemplo, **(LocalDB) \\ mssqllocaldb**), seleccione el método de autenticación, escriba **School**   como nombre de la base de datos y, a continuación, haga clic en **Aceptar**.  
     El cuadro de diálogo elegir la conexión de datos se actualiza con la configuración de conexión de la base de datos.
--   En el cuadro de diálogo elija los objetos de base de datos, active la casilla de **tablas** para seleccionar todas las tablas.  
+-   En el cuadro de diálogo elija los objetos de base de datos, active la casilla **tablas**   para seleccionar todas las tablas.  
     Además, seleccione los siguientes procedimientos almacenados en el nodo **procedimientos almacenados y funciones** : **GetStudentGrades** y **GetDepartmentName**. 
 
-    ![Importar](~/ef6/media/import.jpg)
+    ![Importar procedimientos almacenados](~/ef6/media/import.jpg)
 
     *A partir de Visual Studio 2012, el diseñador de EF admite la importación masiva de procedimientos almacenados. La **importación de funciones y procedimientos almacenados seleccionados en el modelo de entidad** está activada de forma predeterminada.*
 -   Haga clic en **Finalizar**.
@@ -56,7 +58,7 @@ Para que una importación de función devuelva un tipo de entidad, las columnas 
 
 -   Haga clic con el botón secundario en la superficie de diseño y seleccione **Explorador de modelos**.
 -   En el **Explorador de modelos**, seleccione **importaciones de función**y, a continuación, haga doble clic en la función **GetStudentGrades** .
--   En el cuadro de diálogo Editar importación de función, seleccione **entidades** y elija **StudentGrade**.  
+-   En el cuadro de diálogo Editar importación de función, seleccione **entidades**   y elija **StudentGrade**.  
     *La casilla **importación de función con composición** en la parte superior del cuadro de diálogo de **importaciones de funciones** le permitirá asignar funciones que admiten composición. Si activa esta casilla, solo aparecerán las funciones que admiten composición (funciones con valores de tabla) en la lista desplegable **procedimiento almacenado o nombre de función** . Si no activa esta casilla, solo se mostrarán en la lista las funciones que no admiten composición.*
 
 ## <a name="use-the-model"></a>Usar el modelo

@@ -1,19 +1,21 @@
 ---
 title: 'Especificación de SSDL: EF6'
+description: Especificación de SSDL en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: a4af4b1a-40f4-48cc-b2e0-fa8f5d9d5419
-ms.openlocfilehash: b20d1f99f1da9c53a8a164fccc461e07d19c879d
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/advanced/edmx/ssdl-spec
+ms.openlocfilehash: ab50579649c2e1b19d113cd127e52be995516e27
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415476"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620592"
 ---
 # <a name="ssdl-specification"></a>Especificación SSDL
 El lenguaje de definición de esquemas de almacenamiento (SSDL) es un lenguaje basado en XML que describe el modelo de almacenamiento de una aplicación Entity Framework.
 
-En una aplicación Entity Framework, los metadatos del modelo de almacenamiento se cargan desde un archivo. SSDL (escrito en SSDL) en una instancia de System. Data. Metadata. Edm. StoreItemCollection y es accesible mediante métodos en el Clase System. Data. Metadata. Edm. MetadataWorkspace. Entity Framework usa los metadatos del modelo de almacenamiento para traducir las consultas en el modelo conceptual para almacenar comandos específicos.
+En una aplicación Entity Framework, los metadatos del modelo de almacenamiento se cargan desde un archivo. SSDL (escrito en SSDL) en una instancia de System. Data. Metadata. Edm. StoreItemCollection y es accesible mediante métodos en la clase System. Data. Metadata. Edm. MetadataWorkspace. Entity Framework usa los metadatos del modelo de almacenamiento para traducir las consultas en el modelo conceptual para almacenar comandos específicos.
 
 El Entity Framework Designer (EF Designer) almacena la información del modelo de almacenamiento en un archivo. edmx en tiempo de diseño. En tiempo de compilación, Entity Designer usa información en un archivo. edmx para crear el archivo. SSDL que Entity Framework necesita en tiempo de ejecución.
 
@@ -31,7 +33,7 @@ Un elemento **Association** en el lenguaje de definición de esquemas de almacen
 
 El elemento **Association** puede tener los elementos secundarios siguientes (en el orden mostrado):
 
--   Documentación (cero o uno)
+-   Documentation (cero o uno)
 -   End (exactamente dos)
 -   ReferentialConstraint (cero o uno)
 -   Elementos Annotation (cero o más)
@@ -49,7 +51,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento **Association** que utiliza un elemento **ReferentialConstraint** para especificar las columnas que participan en la restricción de clave externa de **FK\_CustomerOrders** :
+En el ejemplo siguiente se muestra un elemento **Association** que utiliza un elemento **ReferentialConstraint** para especificar las columnas que participan en la restricción FOREIGN KEY externa de **FK \_ ** :
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -78,7 +80,7 @@ Los conjuntos de asociaciones SSDL están asignados a conjuntos de asociaciones 
 
 El elemento **AssociationSet** puede tener los elementos secundarios siguientes (en el orden mostrado):
 
--   Documentación (cero o uno)
+-   Documentation (cero o uno)
 -   End (cero o dos)
 -   Elementos Annotation (cero o más)
 
@@ -96,7 +98,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento **AssociationSet** que representa la restricción de clave externa `FK_CustomerOrders` en la base de datos subyacente:
+En el ejemplo siguiente se muestra un elemento **AssociationSet** que representa la `FK_CustomerOrders` restricción FOREIGN KEY en la base de datos subyacente:
 
 ``` xml
  <AssociationSet Name="FK_CustomerOrders"
@@ -180,7 +182,7 @@ La sintaxis de SSDL siguiente muestra la declaración de un **EntitySet** seguid
  </Schema>
 ```
 
-Puede usar procedimientos almacenados en el Entity Framework para habilitar escenarios de lectura y escritura en las vistas. Puede usar una vista del origen de datos o una vista de Entity SQL como tabla base para recuperar datos y para el procesamiento de cambios por parte de los procedimientos almacenados.
+Puede usar procedimientos almacenados en el Entity Framework para habilitar escenarios de lectura y escritura en las vistas.Puede usar una vista del origen de datos o una vista de Entity SQL como tabla base para recuperar datos y para el procesamiento de cambios por parte de los procedimientos almacenados.
 
 Puede usar el elemento **DefiningQuery** para tener como destino Microsoft SQL Server Compact 3,5. Aunque SQL Server Compact 3,5 no admite procedimientos almacenados, puede implementar una funcionalidad similar con el elemento **DefiningQuery** . Otro caso donde puede ser útil es en la creación de procedimientos almacenados para resolver una desigualdad entre los tipos de datos utilizados en el lenguaje de programación y los del origen de datos. Podría escribir una **DefiningQuery** que toma un determinado conjunto de parámetros y, a continuación, llama a un procedimiento almacenado con un conjunto diferente de parámetros, por ejemplo, un procedimiento almacenado que elimina datos.
 
@@ -206,7 +208,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento Association que utiliza un elemento **ReferentialConstraint** para especificar las columnas que participan en la restricción de clave externa de **FK\_CustomerOrders** . El elemento **dependiente** especifica la columna **CustomerID** de la tabla **Order** como el extremo dependiente de la restricción.
+En el ejemplo siguiente se muestra un elemento Association que utiliza un elemento **ReferentialConstraint** para especificar las columnas que participan en la restricción de clave externa de **FK \_ CustomerOrders** . El elemento **dependiente** especifica la columna **CustomerID** de la tabla **Order** como el extremo dependiente de la restricción.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -269,7 +271,7 @@ Un elemento **End** (como elemento secundario del elemento **Association** ) esp
 Un elemento **End** puede tener los elementos secundarios siguientes (en el orden mostrado):
 
 -   Documentation (cero o un elemento)
--   Aleliminar (cero o un elemento)
+-   OnDelete (cero o un elemento)
 -   Elementos Annotation (cero o más elementos)
 
 #### <a name="applicable-attributes"></a>Atributos aplicables
@@ -280,14 +282,14 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 |:-----------------|:------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Tipo**         | Sí         | El nombre completo del conjunto de entidades SSDL que está en el extremo de la restricción de clave externa.                                                                                                                                                                                                                                                                                          |
 | **Rol**         | No          | El valor del atributo **role** en el elemento principal o dependiente del elemento ReferentialConstraint correspondiente (si se usa).                                                                                                                                                                                                                                             |
-| **Multiplicidad** | Sí         | **1**, **0.. 1**o **\*** en función del número de filas que pueden estar al final de la restricción FOREIGN KEY. <br/> **1** indica que existe exactamente una fila en el extremo de la restricción de clave externa. <br/> **0.. 1** indica que hay cero o una fila en el extremo de la restricción de clave externa. <br/> **\*** indica que hay cero, una o más filas en el extremo de la restricción de clave externa. |
+| **Multiplicidad** | Sí         | **1**, **0.. 1**o, **\*** dependiendo del número de filas que puedan estar al final de la restricción FOREIGN KEY. <br/> **1** indica que existe exactamente una fila en el extremo de la restricción de clave externa. <br/> **0.. 1** indica que hay cero o una fila en el extremo de la restricción de clave externa. <br/> **\*** indica que hay cero, una o más filas en el extremo de la restricción de clave externa. |
 
 > [!NOTE]
 > Se puede aplicar cualquier número de atributos de anotación (atributos XML personalizados) al elemento **final** . Sin embargo, es posible que los atributos personalizados no pertenezcan a ningún espacio de nombres XML reservado para CSDL. Dos atributos personalizados cualesquiera no pueden tener nombres completos idénticos.
 
 #### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento **Association** que define la restricción de clave externa de **FK\_CustomerOrders** . Los valores de **multiplicidad** especificados en cada elemento **final** indican que muchas filas de la tabla **Orders** se pueden asociar a una fila de la tabla **Customers** , pero solo se puede asociar una fila de la tabla **Customers** a una fila de la tabla **Orders** . Además, el elemento **aldelete** indica que todas las filas de la tabla **Orders** que hacen referencia a una fila determinada de la tabla **Customers** se eliminarán si se elimina la fila de la tabla **Customers** .
+En el ejemplo siguiente se muestra un elemento **Association** que define la restricción de clave externa de **FK \_ CustomerOrders** . Los valores de **multiplicidad** especificados en cada elemento **final** indican que muchas filas de la tabla **Orders** se pueden asociar a una fila de la tabla **Customers** , pero solo se puede asociar una fila de la tabla **Customers** a una fila de la tabla **Orders** . Además, el elemento **aldelete** indica que todas las filas de la tabla **Orders** que hacen referencia a una fila determinada de la tabla **Customers** se eliminarán si se elimina la fila de la tabla **Customers** .
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -314,7 +316,7 @@ El elemento **End** (como elemento secundario del elemento **AssociationSet** ) 
 
 Un elemento **End** puede tener los elementos secundarios siguientes (en el orden mostrado):
 
--   Documentación (cero o uno)
+-   Documentation (cero o uno)
 -   Elementos Annotation (cero o más)
 
 #### <a name="applicable-attributes"></a>Atributos aplicables
@@ -323,7 +325,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo | Es obligatorio | Value                                                                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------|
-| **#A4**  | Sí         | El nombre del conjunto de entidades SSDL que está en el extremo de la restricción de clave externa.                                      |
+| **EntitySet**  | Sí         | El nombre del conjunto de entidades SSDL que está en el extremo de la restricción de clave externa.                                      |
 | **Rol**       | No          | El valor de uno de los atributos de **rol** especificados en un elemento **final** del elemento Association correspondiente. |
 
 > [!NOTE]
@@ -411,7 +413,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo | Es obligatorio | Value                                                                                    |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------|
-| **Nombre**       | Sí         | El nombre del conjunto de entidades.                                                              |
+| **Nombre**       | Sí         | Nombre del conjunto de entidades.                                                              |
 | **EntityType** | Sí         | El nombre completo del tipo de entidad para el que el conjunto de entidades contiene las instancias. |
 | **Esquema**     | No          | El esquema de base de datos.                                                                     |
 | **Table**      | No          | La tabla de base de datos.                                                                      |
@@ -484,7 +486,7 @@ El elemento **function** del lenguaje de definición de esquemas de almacenamien
 
 El elemento **function** puede tener los elementos secundarios siguientes (en el orden mostrado):
 
--   Documentación (cero o uno)
+-   Documentation (cero o uno)
 -   Parámetro (cero o más)
 -   CommandText (cero o uno)
 -   ReturnType (cero o más)
@@ -492,7 +494,7 @@ El elemento **function** puede tener los elementos secundarios siguientes (en el
 
 Un tipo de valor devuelto para una función debe especificarse con el elemento **ReturnType** o el atributo **ReturnType** (consulte a continuación), pero no ambos.
 
-Los procedimientos almacenados que se especifican en el modelo de almacenamiento se pueden importar en el modelo conceptual de una aplicación. Para obtener más información, vea [consultar con procedimientos almacenados](~/ef6/modeling/designer/stored-procedures/query.md). El elemento de **función** también se puede utilizar para definir funciones personalizadas en el modelo de almacenamiento.  
+Los procedimientos almacenados que se especifican en el modelo de almacenamiento se pueden importar en el modelo conceptual de una aplicación. Para obtener más información, vea [consultar con procedimientos almacenados](xref:ef6/modeling/designer/stored-procedures/query). El elemento de **función** también se puede utilizar para definir funciones personalizadas en el modelo de almacenamiento.  
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
 
@@ -574,7 +576,7 @@ El elemento **aldelete** del lenguaje de definición de esquemas de almacenamien
 
 Un elemento **aldelete** puede tener los elementos secundarios siguientes (en el orden mostrado):
 
--   Documentación (cero o uno)
+-   Documentation (cero o uno)
 -   Elementos Annotation (cero o más)
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
@@ -590,7 +592,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento **Association** que define la restricción de clave externa de **FK\_CustomerOrders** . El elemento **aldelete** indica que se eliminarán todas las filas de la tabla **Orders** que hagan referencia a una fila determinada de la tabla **Customers** si se elimina la fila de la tabla **Customers** .
+En el ejemplo siguiente se muestra un elemento **Association** que define la restricción de clave externa de **FK \_ CustomerOrders** . El elemento **aldelete** indica que se eliminarán todas las filas de la tabla **Orders** que hagan referencia a una fila determinada de la tabla **Customers** si se elimina la fila de la tabla **Customers** .
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -617,7 +619,7 @@ El elemento **Parameter** del lenguaje de definición de esquemas de almacenamie
 
 El elemento **Parameter** puede tener los elementos secundarios siguientes (en el orden mostrado):
 
--   Documentación (cero o uno)
+-   Documentation (cero o uno)
 -   Elementos Annotation (cero o más)
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
@@ -626,7 +628,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo | Es obligatorio | Value                                                                                                                                                                                                                           |
 |:---------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nombre**       | Sí         | El nombre del parámetro.                                                                                                                                                                                                      |
+| **Nombre**       | Sí         | Nombre del parámetro.                                                                                                                                                                                                      |
 | **Tipo**       | Sí         | El tipo de parámetro.                                                                                                                                                                                                             |
 | **Modo**       | No          | **In**, **out**o **INOUT** dependiendo de si el parámetro es un parámetro de entrada, de salida o de entrada/salida.                                                                                                                |
 | **MaxLength**  | No          | Longitud máxima permitida del parámetro.                                                                                                                                                                                            |
@@ -676,7 +678,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento Association que utiliza un elemento **ReferentialConstraint** para especificar las columnas que participan en la restricción de clave externa de **FK\_CustomerOrders** . El elemento **principal** especifica la columna **CustomerID** de la tabla **Customer** como el extremo principal de la restricción.
+En el ejemplo siguiente se muestra un elemento Association que utiliza un elemento **ReferentialConstraint** para especificar las columnas que participan en la restricción de clave externa de **FK \_ CustomerOrders** . El elemento **principal** especifica la columna **CustomerID** de la tabla **Customer** como el extremo principal de la restricción.
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -752,7 +754,7 @@ El elemento **PropertyRef** en el lenguaje de definición de esquemas de almacen
 
 El elemento **PropertyRef** solo puede tener los siguientes elementos secundarios:
 
--   Documentación (cero o uno)
+-   Documentation (cero o uno)
 -   Elementos Annotation
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
@@ -792,9 +794,9 @@ El elemento **ReferentialConstraint** es un elemento secundario opcional del ele
 
 El elemento **ReferentialConstraint** puede tener los siguientes elementos secundarios:
 
--   Documentación (cero o uno)
+-   Documentation (cero o uno)
 -   Principal (exactamente uno)
--   Dependiente (exactamente uno)
+-   Dependent (exactamente uno)
 -   Elementos Annotation (cero o más)
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
@@ -803,7 +805,7 @@ Se puede aplicar cualquier número de atributos de anotación (atributos XML per
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento **Association** que utiliza un elemento **ReferentialConstraint** para especificar las columnas que participan en la restricción de clave externa de **FK\_CustomerOrders** :
+En el ejemplo siguiente se muestra un elemento **Association** que utiliza un elemento **ReferentialConstraint** para especificar las columnas que participan en la restricción FOREIGN KEY externa de **FK \_ ** :
 
 ``` xml
  <Association Name="FK_CustomerOrders">
@@ -902,7 +904,7 @@ El elemento **Schema** puede contener cero o más de los siguientes elementos se
 
 El elemento **Schema** usa el atributo **namespace** para definir el espacio de nombres para el tipo de entidad y los objetos de asociación en un modelo de almacenamiento. Dentro de un espacio de nombres, no puede haber dos objetos con el mismo nombre.
 
-Un espacio de nombres del modelo de almacenamiento es diferente del espacio de nombres XML del elemento **Schema** . Un espacio de nombres del modelo de almacenamiento (tal y como se define en el atributo de **espacio de nombres** ) es un contenedor lógico para tipos de entidad y tipos de asociación. El espacio de nombres XML (indicado por el atributo **xmlns** ) de un elemento **Schema** es el espacio de nombres predeterminado para los elementos secundarios y los atributos del elemento **Schema** . Los espacios de nombres XML con el formato https://schemas.microsoft.com/ado/YYYY/MM/edm/ssdl (donde YYYY y MM representan un año y un mes respectivamente) se reservan para SSDL. No puede haber elementos y atributos personalizados en espacios de nombres que tengan este formato.
+Un espacio de nombres del modelo de almacenamiento es diferente del espacio de nombres XML del elemento **Schema** . Un espacio de nombres del modelo de almacenamiento (tal y como se define en el atributo de **espacio de nombres** ) es un contenedor lógico para tipos de entidad y tipos de asociación. El espacio de nombres XML (indicado por el atributo **xmlns** ) de un elemento **Schema** es el espacio de nombres predeterminado para los elementos secundarios y los atributos del elemento **Schema** . Los espacios de nombres XML del formulario https://schemas.microsoft.com/ado/YYYY/MM/edm/ssdl (donde YYYY y mm representan un año y un mes respectivamente) se reservan para SSDL. No puede haber elementos y atributos personalizados en espacios de nombres que tengan este formato.
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
 
@@ -912,7 +914,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 |:--------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **Espacio de nombres**             | Sí         | El espacio de nombres del modelo de almacenamiento. El valor del atributo **namespace** se usa para formar el nombre completo de un tipo. Por ejemplo, si un **EntityType** denominado *Customer* está en el espacio de nombres ExampleModel. Store, el nombre completo del **EntityType** es ExampleModel. Store. Customer. <br/> Las siguientes cadenas no se pueden usar como el valor del atributo **namespace** : **System**, **Transient**o **EDM**. El valor del atributo **namespace** no puede ser el mismo que el valor del atributo **namespace** del elemento Schema de CSDL. |
 | **Alias**                 | No          | Un identificador usado en lugar del nombre del espacio de nombres. Por ejemplo, si un **EntityType** denominado *Customer* está en el espacio de nombres ExampleModel. Store y el valor del atributo **alias** es *StorageModel*, puede usar StorageModel. Customer como nombre completo del **EntityType.**                                                                                                                                                                                                                                                                                    |
-| **Proveedor**              | Sí         | Proveedor de datos.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| **Proveedor**              | Sí         | El proveedor de datos.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
 | **ProviderManifestToken** | Sí         | Un token que indica al proveedor qué manifiesto del proveedor debe devolver. No se define ningún formato para el token. El proveedor define los valores para el token. Para obtener información sobre los tokens del manifiesto del proveedor de SQL Server, vea SqlClient para Entity Framework.                                                                                                                                                                                                                                                                                                                        |
 
 ### <a name="example"></a>Ejemplo

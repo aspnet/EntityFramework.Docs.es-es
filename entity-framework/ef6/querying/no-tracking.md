@@ -1,14 +1,16 @@
 ---
 title: 'Consultas sin seguimiento: EF6'
+description: Consultas sin seguimiento en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: f80ac260-c2dc-484d-94a3-3424fd862f8b
-ms.openlocfilehash: 44d58e14a2550bd08a8edd68b467237f6f5b5978
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/querying/no-tracking
+ms.openlocfilehash: eb9e29c219e0cdf1e379cf8bb925f4226b1434a9
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414480"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620288"
 ---
 # <a name="no-tracking-queries"></a>consultas de no seguimiento
 En ocasiones, es posible que desee obtener las entidades de una consulta, pero el contexto no puede realizar el seguimiento de esas entidades. Esto puede dar lugar a un mejor rendimiento cuando se consulta un gran número de entidades en escenarios de solo lectura. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  

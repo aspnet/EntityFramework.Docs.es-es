@@ -1,14 +1,16 @@
 ---
 title: Database First EF6
+description: Database First en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: cc6ffdb3-388d-4e79-a201-01ec2577c949
-ms.openlocfilehash: d40cff4ddccf43a394ef4f244653372a5a89b05a
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/workflows/database-first
+ms.openlocfilehash: 095fc6d6882df306816e65995ff314f1a0e7178a
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415176"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620454"
 ---
 # <a name="database-first"></a>Database First
 Este vídeo y el tutorial paso a paso proporcionan una introducción al desarrollo de Database First mediante Entity Framework. Database First permite aplicar ingeniería inversa a un modelo a partir de una base de datos existente. El modelo se almacena en un archivo EDMX (extensión. EDMX) y se puede ver y editar en el Entity Framework Designer. Las clases con las que interactúa en la aplicación se generan automáticamente a partir del archivo EDMX.
@@ -18,7 +20,7 @@ Este vídeo proporciona una introducción al desarrollo de Database First median
 
 **Presentado por**: [Rowan Miller](https://romiller.com/)
 
-**Vídeo**: [wmv](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv) | [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v) | [WMV (zip)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
+**Vídeo**: [WMV](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.wmv)  |  [MP4](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-mp4video-databasefirst.m4v)  |  [WMV (zip)](https://download.microsoft.com/download/8/F/0/8F0B5F63-4939-4DC8-A726-FF139B37F8D8/HDI-ITPro-MSDN-winvideo-databasefirst.zip)
 
 ## <a name="pre-requisites"></a>Requisitos previos
 
@@ -41,9 +43,9 @@ El servidor de base de datos que se instala con Visual Studio es diferente en fu
 
 Vamos a generar la base de datos.
 
--   Abra Visual Studio.
--   **Explorador de servidores de&gt; de vista**
--   Haga clic con el botón derecho en **conexiones de datos:&gt; agregar conexión...**
+-   Apertura de Visual Studio
+-   **Vista &gt; Explorador de servidores**
+-   Haga clic con el botón derecho en **conexiones de datos: &gt; Agregar conexión...**
 -   Si no se ha conectado a una base de datos desde Explorador de servidores antes de que tenga que seleccionar Microsoft SQL Server como origen de datos
 
     ![Seleccionar origen de datos](~/ef6/media/selectdatasource.png)
@@ -83,8 +85,8 @@ CREATE TABLE [dbo].[Posts] (
 
 Para simplificar las cosas, vamos a crear una aplicación de consola básica que use el Database First para realizar el acceso a los datos:
 
--   Abra Visual Studio.
--   **Archivo-&gt; nuevo proyecto de&gt;...**
+-   Apertura de Visual Studio
+-   **Archivo- &gt; nuevo- &gt; proyecto...**
 -   Seleccionar **ventanas** en el menú izquierdo y en la **aplicación de consola**
 -   Escriba **DatabaseFirstSample** como nombre
 -   Seleccione **Aceptar**.
@@ -95,7 +97,7 @@ Para simplificar las cosas, vamos a crear una aplicación de consola básica que
 
 Vamos a hacer uso de Entity Framework Designer, que se incluye como parte de Visual Studio, para crear nuestro modelo.
 
--   **Proyecto-&gt; agregar nuevo elemento...**
+-   **Proyecto- &gt; Agregar nuevo elemento...**
 -   Seleccione **datos** en el menú de la izquierda y, a continuación, **ADO.NET Entity Data Model**
 -   Escriba **BloggingModel** como nombre y haga clic en **Aceptar** .
 -   Se iniciará el **Asistente para Entity Data Model**
@@ -113,7 +115,7 @@ Vamos a hacer uso de Entity Framework Designer, que se incluye como parte de Vis
 
  
 
-Una vez que se completa el proceso de ingeniería inversa, el nuevo modelo se agrega al proyecto y se abre para que pueda verlo en el Entity Framework Designer. También se ha agregado un archivo app. config al proyecto con los detalles de conexión de la base de datos.
+Una vez que se completa el proceso de ingeniería inversa, el nuevo modelo se agrega al proyecto y se abre para que pueda verlo en el Entity Framework Designer. También se ha agregado un archivo App.config al proyecto con los detalles de conexión de la base de datos.
 
 ![Modelo inicial](~/ef6/media/modelinitial.png)
 
@@ -123,17 +125,17 @@ Si está trabajando en Visual Studio 2010, hay algunos pasos adicionales que deb
 
 En primer lugar, necesitamos obtener la versión más reciente de Entity Framework de NuGet.
 
--   **Proyecto:&gt; administrar paquetes NuGet...** 
-    *si no tiene la opción **administrar paquetes Nuget...** , debe instalar la [versión más reciente de Nuget](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) .*
+-   **Proyecto: &gt; Administrar paquetes de NuGet...** 
+     *Si no tiene la opción **administrar paquetes Nuget...** , debe instalar la [versión más reciente de Nuget](https://visualstudiogallery.msdn.microsoft.com/27077b70-9dad-4c64-adcf-c7cf6bc9970c) .*
 -   Seleccione la pestaña **en línea**
 -   Seleccione el paquete **EntityFramework**
--   Haga clic en **Instalar**.
+-   Haz clic en **Instalar**
 
 A continuación, necesitamos cambiar nuestro modelo para generar código que haga uso de la API de DbContext, que se presentó en versiones posteriores de Entity Framework.
 
 -   Haga clic con el botón derecho en una zona vacía del modelo en el diseñador de EF y seleccione **Agregar elemento de generación de código..** .
 -   Seleccione **plantillas en línea** en el menú de la izquierda y busque **DbContext**
--   Seleccione el **generador de DbContext de EF 5. x para C\#** , escriba **BloggingModel** como nombre y haga clic en **Agregar** .
+-   Seleccione el **generador de DbContext de EF 5. x \# para C**, escriba **BloggingModel** como nombre y haga clic en **Agregar** .
 
     ![Plantilla DbContext](~/ef6/media/dbcontexttemplate.png)
 

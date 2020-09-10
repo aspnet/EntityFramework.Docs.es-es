@@ -1,14 +1,16 @@
 ---
 title: 'Especificación de MSL: EF6'
+description: Especificación de MSL en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 13ae7bc1-74b4-4ee4-8d73-c337be841467
-ms.openlocfilehash: 8990d1373ea2121ce11337a43dbcdf3b9e1532bd
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/advanced/edmx/msl-spec
+ms.openlocfilehash: 4ec43f48f82b83bd85b47fe234be143d0e4d2560
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415482"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620622"
 ---
 # <a name="msl-specification"></a>Especificación MSL
 El lenguaje de especificación de asignaciones (MSL) es un lenguaje basado en XML que describe la asignación entre el modelo conceptual y el modelo de almacenamiento de una aplicación Entity Framework.
@@ -17,7 +19,7 @@ En una aplicación Entity Framework, la asignación de metadatos se carga desde 
 
 El Entity Framework Designer (EF Designer) almacena la información de asignación en un archivo. edmx en tiempo de diseño. En tiempo de compilación, Entity Designer usa información en un archivo. edmx para crear el archivo. MSL que Entity Framework necesita en tiempo de ejecución.
 
-Los nombres de todos los tipos de modelos conceptuales o de almacenamiento a los que se hace referencia en MSL deben estar calificados con sus respectivos nombres de espacios de nombres. Para obtener información sobre el nombre del espacio de nombres del modelo conceptual, vea [especificación de CSDL](~/ef6/modeling/designer/advanced/edmx/csdl-spec.md). Para obtener información sobre el nombre del espacio de nombres del modelo de almacenamiento, vea [SSDL Specification](~/ef6/modeling/designer/advanced/edmx/ssdl-spec.md).
+Los nombres de todos los tipos de modelos conceptuales o de almacenamiento a los que se hace referencia en MSL deben estar calificados con sus respectivos nombres de espacios de nombres. Para obtener información sobre el nombre del espacio de nombres del modelo conceptual, vea [especificación de CSDL](xref:ef6/modeling/designer/advanced/edmx/csdl-spec). Para obtener información sobre el nombre del espacio de nombres del modelo de almacenamiento, vea [SSDL Specification](xref:ef6/modeling/designer/advanced/edmx/ssdl-spec).
 
 Las versiones de MSL se diferencian en los espacios de nombres XML.
 
@@ -37,14 +39,14 @@ El elemento **alias** no puede tener elementos secundarios.
 
 En la tabla siguiente se describen los atributos que se pueden aplicar al elemento **alias** .
 
-| Nombre del atributo | Es obligatorio | Value                                                                     |
+| Nombre del atributo | Es obligatorio | Valor                                                                     |
 |:---------------|:------------|:--------------------------------------------------------------------------|
 | **Clave**        | Sí         | El alias para el espacio de nombres especificado por el atributo de **valor** . |
 | **Valor**      | Sí         | Espacio de nombres para el que el valor del elemento **key** es un alias.     |
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento **alias** que define un alias, `c`, para los tipos que se definen en el modelo conceptual.
+En el ejemplo siguiente se muestra un elemento **alias** que define un alias, `c` , para los tipos que se definen en el modelo conceptual.
 
 ``` xml
  <Mapping Space="C-S"
@@ -131,7 +133,7 @@ Considere también el siguiente procedimiento almacenado:
                                 WHERE CourseID=@CourseID;
 ```
 
-Para asignar la función de actualización de la entidad `Course` a este procedimiento almacenado, debe proporcionar un valor al parámetro **departmentId** . El valor para `DepartmentID` no corresponde a una propiedad del tipo de entidad; está contenido en una asociación independiente cuya asignación se muestra aquí:
+Para asignar la función de actualización de la `Course` entidad a este procedimiento almacenado, debe proporcionar un valor al parámetro **departmentId** . El valor para `DepartmentID` no corresponde a una propiedad del tipo de entidad; está contenido en una asociación independiente cuya asignación se muestra aquí:
 
 ``` xml
  <AssociationSetMapping Name="FK_Course_Department"
@@ -146,7 +148,7 @@ Para asignar la función de actualización de la entidad `Course` a este procedi
  </AssociationSetMapping>
 ```
 
-En el código siguiente se muestra el elemento **AssociationEnd** que se usa para asignar la propiedad **departmentId** de la Asociación de **FK\_Course\_Department** al procedimiento almacenado **UpdateCourse** (al que se asigna la función de actualización del tipo de entidad **Course** ):
+En el código siguiente se muestra el elemento **AssociationEnd** que se usa para asignar la propiedad **departmentId** de la Asociación de **Departamento de FK \_ Course \_ ** al procedimiento almacenado **UpdateCourse** (al que se asigna la función de actualización del tipo de entidad **Course** ):
 
 ``` xml
  <EntitySetMapping Name="Courses">
@@ -191,7 +193,7 @@ El elemento **AssociationSetMapping** puede tener los siguientes elementos secun
 
 -   QueryView (cero o uno)
 -   EndProperty (cero o dos)
--   Condición (cero o más)
+-   Condition (cero o más)
 -   ModificationFunctionMapping (cero o uno)
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
@@ -201,12 +203,12 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 | Nombre del atributo     | Es obligatorio | Value                                                                                       |
 |:-------------------|:------------|:--------------------------------------------------------------------------------------------|
 | **Nombre**           | Sí         | El nombre del conjunto de asociaciones del modelo conceptual que se está asignando.                      |
-| **NombreDeTipo**       | No          | El nombre completo, calificado con el espacio de nombres, del tipo de asociación del modelo conceptual que se está asignando. |
+| **TypeName**       | No          | El nombre completo, calificado con el espacio de nombres, del tipo de asociación del modelo conceptual que se está asignando. |
 | **StoreEntitySet** | No          | El nombre de la tabla que se está asignando.                                                 |
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento **AssociationSetMapping** en el que el **curso de FK\_\_** Asociación de Departamento establecida en el modelo conceptual se asigna a la tabla **Course** en la base de datos. Las asignaciones entre las propiedades de tipo de asociación y las columnas de tabla se especifican en los elementos secundarios **EndProperty** .
+En el ejemplo siguiente se muestra un elemento **AssociationSetMapping** en el que el conjunto de asociaciones del **Departamento del \_ curso \_ de FK** en el modelo conceptual se asigna a la tabla **Course** en la base de datos. Las asignaciones entre las propiedades de tipo de asociación y las columnas de tabla se especifican en los elementos secundarios **EndProperty** .
 
 ``` xml
  <AssociationSetMapping Name="FK_Course_Department"
@@ -230,7 +232,7 @@ El elemento de propiedad **complexType** puede tener los siguientes elementos se
 -   ScalarProperty (cero o más)
 -   **ComplexProperty** (cero o más)
 -   ComplextTypeMapping (cero o más)
--   Condición (cero o más)
+-   Condition (cero o más)
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
 
@@ -239,7 +241,7 @@ En la tabla siguiente se describen los atributos aplicables al elemento **Comple
 | Nombre del atributo | Es obligatorio | Value                                                                                            |
 |:---------------|:------------|:-------------------------------------------------------------------------------------------------|
 | **Nombre**       | Sí         | El nombre de la propiedad compleja de un tipo de entidad del modelo conceptual que se está asignando. |
-| **NombreDeTipo**   | No          | El nombre completo, calificado con el espacio de nombres, del tipo de propiedad del modelo conceptual.                              |
+| **TypeName**   | No          | El nombre completo, calificado con el espacio de nombres, del tipo de propiedad del modelo conceptual.                              |
 
 ### <a name="example"></a>Ejemplo
 
@@ -308,7 +310,7 @@ En la tabla siguiente se describen los atributos aplicables al elemento **Comple
 
 | Nombre del atributo | Es obligatorio | Value                                                                  |
 |:---------------|:------------|:-----------------------------------------------------------------------|
-| **NombreDeTipo**   | Sí         | El nombre completo, incluido el espacio de nombres, del tipo complejo que se está asignando. |
+| **TypeName**   | Sí         | El nombre completo, incluido el espacio de nombres, del tipo complejo que se está asignando. |
 
 ### <a name="example"></a>Ejemplo
 
@@ -562,7 +564,7 @@ En la tabla siguiente se describen los atributos aplicables al elemento **EndPro
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra un elemento **AssociationSetMapping** en el que la Asociación de **FK\_Course\_Department** del modelo conceptual está asignada a la tabla **Course** de la base de datos. Las asignaciones entre las propiedades de tipo de asociación y las columnas de tabla se especifican en los elementos secundarios **EndProperty** .
+En el ejemplo siguiente se muestra un elemento **AssociationSetMapping** en el que la Asociación de **Departamento de FK \_ \_ Course** en el modelo conceptual se asigna a la tabla **Course** de la base de datos. Las asignaciones entre las propiedades de tipo de asociación y las columnas de tabla se especifican en los elementos secundarios **EndProperty** .
 
 ``` xml
  <AssociationSetMapping Name="FK_Course_Department"
@@ -745,7 +747,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo | Es obligatorio | Value                                                                                                                                                                                                |
 |:---------------|:------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **NombreDeTipo**   | Sí         | El nombre completo, calificado con el espacio de nombres, del tipo de entidad del modelo conceptual que se está asignando. <br/> Si el tipo es abstracto o un tipo derivado, el valor debe ser `IsOfType(Namespace-qualified_type_name)`. |
+| **TypeName**   | Sí         | El nombre completo, calificado con el espacio de nombres, del tipo de entidad del modelo conceptual que se está asignando. <br/> Si el tipo es abstracto o un tipo derivado, el valor debe ser `IsOfType(Namespace-qualified_type_name)`. |
 
 ### <a name="example"></a>Ejemplo
 
@@ -783,7 +785,7 @@ En el ejemplo siguiente se muestra un elemento EntitySetMapping con dos elemento
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra la asignación de una jerarquía de tipos en la que el tipo raíz es abstracto. Tenga en cuenta el uso de la sintaxis de `IsOfType` para los atributos **TypeName** .
+En el ejemplo siguiente se muestra la asignación de una jerarquía de tipos en la que el tipo raíz es abstracto. Tenga en cuenta el uso de la `IsOfType` sintaxis para los atributos **TypeName** .
 
 ``` xml
  <EntitySetMapping Name="People">
@@ -982,7 +984,7 @@ El ejemplo siguiente se basa en el modelo School y muestra el elemento **InsertF
 
 El elemento **mapping** del lenguaje de especificación de asignaciones (MSL) contiene información para la asignación de objetos que se definen en un modelo conceptual a una base de datos (tal y como se describe en un modelo de almacenamiento). Para obtener más información, vea especificación de CSDL y especificación de SSDL.
 
-El elemento **mapping** es el elemento raíz de una especificación de asignación. El espacio de nombres XML para la asignación de especificaciones es https://schemas.microsoft.com/ado/2009/11/mapping/cs.
+El elemento **mapping** es el elemento raíz de una especificación de asignación. El espacio de nombres XML para las especificaciones de asignación es https://schemas.microsoft.com/ado/2009/11/mapping/cs .
 
 El elemento de asignación puede tener los elementos secundarios siguientes (en el orden mostrado):
 
@@ -997,7 +999,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo | Es obligatorio | Value                                                 |
 |:---------------|:------------|:------------------------------------------------------|
-| **Espacio**      | Sí         | **C-S**. Este es un valor fijo y no se puede cambiar. |
+| **Espacia**      | Sí         | **C-S**. Este es un valor fijo y no se puede cambiar. |
 
 ### <a name="example"></a>Ejemplo
 
@@ -1042,7 +1044,7 @@ El elemento **MappingFragment** puede tener los siguientes elementos secundarios
 
 -   ComplexType (cero o más)
 -   ScalarProperty (cero o más)
--   Condición (cero o más)
+-   Condition (cero o más)
 
 ### <a name="applicable-attributes"></a>Atributos aplicables
 
@@ -1213,7 +1215,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo | Es obligatorio | Value                                                                         |
 |:---------------|:------------|:------------------------------------------------------------------------------|
-| **NombreDeTipo**   | No          | El nombre del tipo de modelo conceptual que se está asignando mediante la vista de consulta. |
+| **TypeName**   | No          | El nombre del tipo de modelo conceptual que se está asignando mediante la vista de consulta. |
 
 ### <a name="example"></a>Ejemplo
 
@@ -1253,7 +1255,7 @@ Dado que la consulta solo devuelve un subconjunto de los miembros del tipo **Dep
 
 ### <a name="example"></a>Ejemplo
 
-En el ejemplo siguiente se muestra el elemento **QueryView** como elemento secundario de un elemento **AssociationSetMapping** y se define una asignación de solo lectura para la Asociación de `FK_Course_Department` en el modelo School.
+En el ejemplo siguiente se muestra el elemento **QueryView** como elemento secundario de un elemento **AssociationSetMapping** y se define una asignación de solo lectura para la `FK_Course_Department` asociación en el modelo School.
 
 ``` xml
  <EntityContainerMapping StorageEntityContainer="SchoolModelStoreContainer"

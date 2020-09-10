@@ -1,14 +1,16 @@
 ---
 title: 'Controlar los conflictos de simultaneidad: EF6'
+description: Controlar los conflictos de simultaneidad en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 2318e4d3-f561-4720-bbc3-921556806476
-ms.openlocfilehash: 4d29fd7a4d9b6003f71bc8411cea2d863a4c5429
-ms.sourcegitcommit: d85263b5d5d665dbaf94de8832e2917bce048b34
+uid: ef6/saving/concurrency
+ms.openlocfilehash: 1cec47ce346e8a6c86338747c01fba4d030e7388
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/17/2020
-ms.locfileid: "86451247"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619879"
 ---
 # <a name="handling-concurrency-conflicts-ef6"></a>Controlar los conflictos de simultaneidad (EF6)
 
@@ -16,7 +18,7 @@ La simultaneidad optimista implica un intento optimista de guardar la entidad en
 
 Esta publicación no es el lugar adecuado para una descripción completa de la simultaneidad optimista. En las secciones siguientes se presupone cierto conocimiento de la resolución de simultaneidad y se muestran patrones para tareas comunes.  
 
-Muchos de estos patrones hacen uso de los temas que se describen en [trabajar con valores de propiedad](~/ef6/saving/change-tracking/property-values.md).  
+Muchos de estos patrones hacen uso de los temas que se describen en [trabajar con valores de propiedad](xref:ef6/saving/change-tracking/property-values).  
 
 La resolución de problemas de simultaneidad cuando se usan asociaciones independientes (donde la clave externa no está asignada a una propiedad de la entidad) es mucho más difícil que cuando se usan asociaciones de clave externa. Por lo tanto, si va a realizar la resolución de simultaneidad en la aplicación, se recomienda que asigne siempre las claves externas a las entidades. Todos los ejemplos siguientes suponen que está usando asociaciones de clave externa.  
 
@@ -64,7 +66,7 @@ El método de entradas de DbUpdateConcurrencyException devuelve las instancias d
 
 ## <a name="resolving-optimistic-concurrency-exceptions-as-client-wins"></a>Resolver excepciones de simultaneidad optimista como cliente WINS  
 
-El ejemplo anterior que usa la recarga se denomina a veces Database WINS o Store WINS porque los valores de la entidad se sobrescriben con los valores de la base de datos. En ocasiones, es posible que desee hacer lo contrario y sobrescribir los valores de la base de datos con los valores actualmente en la entidad. Esto se denomina a veces cliente WINS y se puede hacer obteniendo los valores de la base de datos actual y estableciéndolo como valores originales de la entidad. (Vea [trabajar con valores de propiedad](~/ef6/saving/change-tracking/property-values.md) para obtener información sobre los valores actuales y originales). Por ejemplo:  
+El ejemplo anterior que usa la recarga se denomina a veces Database WINS o Store WINS porque los valores de la entidad se sobrescriben con los valores de la base de datos. En ocasiones, es posible que desee hacer lo contrario y sobrescribir los valores de la base de datos con los valores actualmente en la entidad. Esto se denomina a veces cliente WINS y se puede hacer obteniendo los valores de la base de datos actual y estableciéndolo como valores originales de la entidad. (Vea [trabajar con valores de propiedad](xref:ef6/saving/change-tracking/property-values) para obtener información sobre los valores actuales y originales). Por ejemplo:  
 
 ``` csharp
 using (var context = new BloggingContext())

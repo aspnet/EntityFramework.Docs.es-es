@@ -1,23 +1,25 @@
 ---
 title: 'División de entidades del diseñador: EF6'
+description: División de entidades del diseñador en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: aa2dd48a-1f0e-49dd-863d-d6b4f5834832
-ms.openlocfilehash: ba1895ae491cec909ff88a8784eea82f1876f595
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/entity-splitting
+ms.openlocfilehash: d3be4e54d4bcd3ca253d8970c612acddf48dbaf4
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415266"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620525"
 ---
 # <a name="designer-entity-splitting"></a>División de entidades del diseñador
-En este tutorial se muestra cómo asignar un tipo de entidad a dos tablas modificando un modelo con el Entity Framework Designer (EF Designer). Puede asignar una entidad a varias tablas cuando estas comparten una clave común. Los conceptos que se aplican a la asignación de un tipo de entidad a dos tablas se amplían fácilmente para asignar un tipo de entidad a más de dos tablas.
+En este tutorial se muestra cómo asignar un tipo de entidad a dos tablas modificando un modelo con el Entity Framework Designer (EF Designer). Puede asignar una entidad a varias tablas cuando estas comparten una clave común. Los conceptos que se aplican en la asignación de un tipo de entidad a dos tablas se extienden con facilidad a la asignación de un tipo de entidad a más de dos tablas.
 
 En la imagen siguiente se muestran las ventanas principales que se usan al trabajar con el diseñador de EF.
 
 ![EF Designer](~/ef6/media/efdesigner.png)
 
-## <a name="prerequisites"></a>Prerequisites
+## <a name="prerequisites"></a>Requisitos previos
 
 Visual Studio 2012 o Visual Studio 2010, Ultimate, Premium, Professional o Web Express.
 
@@ -30,20 +32,20 @@ El servidor de base de datos que se instala con Visual Studio es diferente en fu
 
 En primer lugar, vamos a crear una base de datos con dos tablas que se van a combinar en una sola entidad.
 
--   Abra Visual Studio.
--   **Explorador de servidores de&gt; de vista**
--   Haga clic con el botón derecho en **conexiones de datos:&gt; agregar conexión...**
+-   Apertura de Visual Studio
+-   **Vista &gt; Explorador de servidores**
+-   Haga clic con el botón derecho en **conexiones de datos: &gt; Agregar conexión...**
 -   Si no se ha conectado a una base de datos desde Explorador de servidores antes de que tenga que seleccionar **Microsoft SQL Server** como origen de datos
 -   Conéctese a LocalDB o a SQL Express, en función de la que haya instalado.
 -   Escriba **EntitySplitting** como nombre de la base de datos
 -   Seleccione **Aceptar** y se le preguntará si desea crear una nueva base de datos, seleccione **sí** .
 -   La nueva base de datos aparecerá ahora en Explorador de servidores
 -   Si usa Visual Studio 2012
-    -   Haga clic con el botón derecho en la base de datos en Explorador de servidores y seleccione **nueva consulta** .
+    -   Haga clic con el botón derecho en la base de datos en el Explorador de servidores y seleccione **Nueva consulta**
     -   Copie el siguiente código SQL en la nueva consulta, haga clic con el botón derecho en la consulta y seleccione **Ejecutar** .
 -   Si usa Visual Studio 2010
-    -   Seleccionar **datos-&gt; el editor de TRANSACT SQL-&gt; nueva consulta..** .
-    -   Escriba **.\\SQLEXPRESS** como nombre del servidor y haga clic en **Aceptar** .
+    -   Seleccionar **datos: &gt; Editor de Transact SQL: &gt; nueva conexión de consulta...**
+    -   Escriba **. \\ SQLEXPRESS** como nombre del servidor y haga clic en **Aceptar**
     -   Seleccione la base de datos **EntitySplitting** en la lista desplegable de la parte superior del editor de consultas.
     -   Copie el siguiente código SQL en la nueva consulta, haga clic con el botón derecho en la consulta y seleccione **ejecutar SQL** .
 
@@ -64,10 +66,10 @@ CONSTRAINT [FK_Person_PersonInfo] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Per
 );
 ```
 
-## <a name="create-the-project"></a>Creación del proyecto
+## <a name="create-the-project"></a>Crear el proyecto
 
 -   En el menú **Archivo** , seleccione **Nuevo**y haga clic en **Proyecto**.
--   En el panel izquierdo, haga clic en **Visual C\#** y, a continuación, seleccione la plantilla **aplicación de consola** .
+-   En el panel izquierdo, haga clic en **Visual \# C**y, a continuación, seleccione la plantilla **aplicación de consola** .
 -   Escriba **MapEntityToTablesSample** como nombre del proyecto y haga clic en **Aceptar**.
 -   Haga clic en **no** si se le pide que guarde la consulta SQL creada en la primera sección.
 
@@ -78,7 +80,7 @@ CONSTRAINT [FK_Person_PersonInfo] FOREIGN KEY ([PersonId]) REFERENCES [dbo].[Per
 -   Escriba **MapEntityToTablesModel. edmx** como nombre de archivo y, a continuación, haga clic en **Agregar**.
 -   En el cuadro de diálogo elegir contenido del modelo, seleccione **generar desde la base de datos**y, a continuación, haga clic en **siguiente.**
 -   Seleccione la conexión **EntitySplitting** en el menú desplegable y haga clic en **siguiente**.
--   En el cuadro de diálogo elija los objetos de base de datos, active la casilla situada junto al nodo **tablas** .
+-   En el cuadro de diálogo elija los objetos de base de datos, active la casilla situada junto al nodo **tablas**   .
     Se agregarán todas las tablas de la base de datos **EntitySplitting** al modelo.
 -   Haga clic en **Finalizar**.
 
@@ -88,20 +90,20 @@ Se muestra el diseñador de entidades, que proporciona una superficie de diseño
 
 En este paso, actualizaremos el tipo de entidad **Person** para combinar datos de las tablas **Person** y **PersonInfo** .
 
--   Seleccione las propiedades de **correo electrónico** y **teléfono** de la entidad **PersonInfo **y presione las teclas **Ctrl + X** .
+-   Seleccione las propiedades de **correo electrónico**   y **teléfono** de la entidad **PersonInfo **y presione las teclas **Ctrl + X** .
 -   Seleccione la entidad **Person **y presione las teclas **Ctrl + V** .
--   En la superficie de diseño, seleccione la entidad **PersonInfo** y presione el botón **eliminar** del teclado.
+-   En la superficie de diseño, seleccione la entidad **PersonInfo**   y presione el botón **eliminar** en el teclado.
 -   Haga clic en **no** cuando se le pregunte si desea quitar la tabla **PersonInfo** del modelo, vamos a asignarla a la entidad **Person** .
 
     ![Eliminar tablas](~/ef6/media/deletetables.png)
 
-Los pasos siguientes requieren la ventana detalles de la **asignación** . Si no puede ver esta ventana, haga clic con el botón secundario en la superficie de diseño y seleccione detalles de la **asignación**.
+Los pasos siguientes requieren la ventana detalles de la **asignación**   . Si no puede ver esta ventana, haga clic con el botón secundario en la superficie de diseño y seleccione detalles de la **asignación**.
 
--   Seleccione la **persona** tipo de entidad y haga clic en **&lt;agregar una tabla o vista&gt;**  en la ventana detalles de la **asignación** .
--   Seleccione **PersonInfo ** de la lista desplegable.
-    La ventana detalles de la **asignación** se actualiza con las asignaciones de columnas predeterminadas, estas son correctas para nuestro escenario.
+-   Seleccione el **Person**   tipo de entidad person y haga clic en ** &lt; Agregar una &gt; tabla o vista**   en la ventana detalles de la **asignación**   .
+-   Seleccione **PersonInfo **   en la lista desplegable.
+    La ventana detalles de la **asignación**   se actualiza con las asignaciones de columnas predeterminadas, que son correctas para nuestro escenario.
 
-El tipo de entidad  **persona** está asignado ahora a las tablas **Person** y **PersonInfo** .
+El **Person**   tipo de entidad Person ahora se asigna a las tablas **Person**   y **PersonInfo**   .
 
 ![Asignación 2](~/ef6/media/mapping2.png)
 
@@ -141,4 +143,4 @@ Las siguientes instrucciones T-SQL se ejecutaron en la base de datos como result
     ![Insertar 2](~/ef6/media/insert2.png)
 -   La siguiente **selección** se ejecutó como resultado de enumerar las personas en la base de datos. Combina los datos de la tabla **Person** y **PersonInfo** .
 
-    ![Seleccionar](~/ef6/media/select.png)
+    ![Selección de la combinación de datos person y PersonInfo](~/ef6/media/select.png)

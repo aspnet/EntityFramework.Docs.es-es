@@ -1,17 +1,19 @@
 ---
 title: 'Procedimientos almacenados con varios conjuntos de resultados: EF6'
+description: Procedimientos almacenados con varios conjuntos de resultados en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 1b3797f9-cd3d-4752-a55e-47b84b399dc1
-ms.openlocfilehash: 098ed88ba52e211965baf3660f0e51bd74c71efd
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/advanced/multiple-result-sets
+ms.openlocfilehash: 39b8ae171b7cee263554b6ff94bed6bd8f1e0c39
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415458"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620577"
 ---
 # <a name="stored-procedures-with-multiple-result-sets"></a>Procedimientos almacenados con varios conjuntos de resultados
-A veces, al utilizar procedimientos almacenados, deberá devolver más de un conjunto de resultados. Este escenario se usa normalmente para reducir el número de recorridos de ida y vuelta de base de datos necesarios para crear una sola pantalla. Antes de EF5, Entity Framework permitiría que se llamara al procedimiento almacenado, pero solo devolvería el primer conjunto de resultados al código de llamada.
+A veces, al utilizar procedimientos almacenados, deberá devolver más de un conjunto de resultados. Este escenario se usa normalmente para reducir el número de recorridos de ida y vuelta de base de datos necesarios para crear una sola pantalla.Antes de EF5, Entity Framework permitiría que se llamara al procedimiento almacenado, pero solo devolvería el primer conjunto de resultados al código de llamada.
 
 En este artículo se muestran dos formas de usar para tener acceso a más de un conjunto de resultados de un procedimiento almacenado en Entity Framework. Una que usa solo código y funciona con Code First y el diseñador de EF y otro que solo funciona con EF Designer. Las herramientas y la compatibilidad con API para esto deberían mejorar en versiones futuras de Entity Framework.
 

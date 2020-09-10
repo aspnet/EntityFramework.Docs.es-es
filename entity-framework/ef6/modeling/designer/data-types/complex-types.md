@@ -1,14 +1,16 @@
 ---
 title: 'Tipos complejos: EF Designer: EF6'
+description: 'Tipos complejos: EF Designer en Entity Framework 6'
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 9a8228ef-acfd-4575-860d-769d2c0e18a1
-ms.openlocfilehash: a3c5578acee23688c04772d2dd0a2221779af562
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+uid: ef6/modeling/designer/data-types/complex-types
+ms.openlocfilehash: 87b62c119894486cbb54adfc8d3af6208a6618a8
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78415428"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620608"
 ---
 # <a name="complex-types---ef-designer"></a>Tipos complejos: EF Designer
 En este tema se muestra cómo asignar tipos complejos con el Entity Framework Designer (EF Designer) y cómo consultar entidades que contienen propiedades de tipo complejo.
@@ -28,7 +30,7 @@ Al trabajar con objetos que representan tipos complejos, tenga en cuenta lo sigu
 
 -   Los tipos complejos no tienen claves y, por lo tanto, no pueden existir de forma independiente. Los tipos complejos solo pueden existir como propiedades de tipos de entidad u otros tipos complejos.
 -   Los tipos complejos no pueden participar en asociaciones y no pueden contener propiedades de navegación.
--   Las propiedades de tipo complejo no pueden ser **null**. Se produce una **excepción InvalidOperationException **cuando se llama a **DbContext. SaveChanges** y se encuentra un objeto complejo null. Las propiedades escalares de objetos complejos pueden ser **null**.
+-   Las propiedades de tipo complejo no pueden ser **null**. Se produce una **excepción InvalidOperationException **cuando se llama a **DbContext. SaveChanges**   y se encuentra un objeto complejo null. Las propiedades escalares de objetos complejos pueden ser **null**.
 -   Los tipos complejos no pueden heredar de otros tipos complejos.
 -   Debe definir el tipo complejo como una **clase**. 
 -   EF detecta los cambios en los miembros de un objeto de tipo complejo cuando se llama a **DbContext. DetectChanges** . Entity Framework llama automáticamente a **DetectChanges** cuando se llama a los siguientes miembros: **DbSet. Find**, **DbSet. local**, **DbSet. Remove**, **DbSet. Add**, **DbSet. Attach**, **dbcontext. SaveChanges**, **dbcontext. GetValidationErrors**, **dbcontext. entry**, **DbChangeTracker. Entries**.
@@ -37,21 +39,21 @@ Al trabajar con objetos que representan tipos complejos, tenga en cuenta lo sigu
 
 Si ya tiene una entidad en el modelo conceptual, puede que desee refactorizar algunas de las propiedades en una propiedad de tipo complejo.
 
-En la superficie del diseñador, seleccione una o varias propiedades (excepto las propiedades de navegación) de una entidad, haga clic con el botón derecho y seleccione **refactorizar-&gt; moverse al nuevo tipo complejo**.
+En la superficie del diseñador, seleccione una o varias propiedades (excepto las propiedades de navegación) de una entidad, haga clic con el botón derecho y seleccione **refactorizar- &gt; desplazar al nuevo tipo complejo**.
 
-![Refactorización](~/ef6/media/refactor.png)
+![Refactorizar en nuevo tipo complejo](~/ef6/media/refactor.png)
 
 Un nuevo tipo complejo con las propiedades seleccionadas se agrega al **Explorador de modelos**. Se asigna un nombre predeterminado al tipo complejo.
 
 Una propiedad compleja del tipo que se acaba de crear reemplaza las propiedades seleccionadas. Se conservan todas las asignaciones de propiedades.
 
-![Refactorizar 2](~/ef6/media/refactor2.png)
+![Refactorizar en nuevo tipo complejo 2](~/ef6/media/refactor2.png)
 
 ## <a name="create-a-new-complex-type"></a>Crear un nuevo tipo complejo
 
 También puede crear un nuevo tipo complejo que no contenga las propiedades de una entidad existente.
 
-Haga clic con el botón secundario en la carpeta **tipos complejos** en el explorador de modelos, seleccione **AgregarNuevo tipo complejo.** . Como alternativa, puede seleccionar la carpeta **tipos complejos** y presionar la tecla **Insertar** del teclado.
+Haga clic con el botón secundario en la carpeta **tipos complejos** en el explorador de modelos, seleccione **AgregarNuevo tipo complejo..**.. Como alternativa, puede seleccionar la carpeta **tipos complejos** y presionar la tecla **Insertar**del   teclado.
 
 ![Agregar nuevo tipo complejo](~/ef6/media/addnewcomplextype.png)
 
@@ -59,11 +61,11 @@ Un nuevo tipo complejo se agrega a la carpeta con un nombre predeterminado. Ahor
 
 ## <a name="add-properties-to-a-complex-type"></a>Agregar propiedades a un tipo complejo
 
-Las propiedades de un tipo complejo pueden ser tipos escalares o los tipos complejos existentes. Sin embargo, las propiedades de tipo complejo no pueden tener las referencias circulares. Por ejemplo, un tipo complejo **OnsiteCourseDetails** no puede tener una propiedad de tipo complejo **OnsiteCourseDetails**.
+Las propiedades de un tipo complejo pueden ser tipos escalares o los tipos complejos existentes. Sin embargo, las propiedades de tipo complejo no pueden tener las referencias circulares. Por ejemplo, un tipo complejo **OnsiteCourseDetails**   no puede tener una propiedad de tipo complejo **OnsiteCourseDetails**.
 
 Puede agregar una propiedad a un tipo complejo de cualquiera de las formas enumeradas a continuación.
 
--   Haga clic con el botón secundario en un tipo complejo en el explorador de modelos, seleccione **Agregar**y, a continuación, seleccione **propiedad escalar** o **propiedad compleja**y, a continuación, seleccione el tipo de propiedad que desee. Como alternativa, puede seleccionar un tipo complejo y, a continuación, presionar la tecla **insertar** del teclado.  
+-   Haga clic con el botón secundario en un tipo complejo en el explorador de modelos, seleccione **Agregar**, seleccione **propiedad escalar**   o **propiedad compleja**y, a continuación, seleccione el tipo de propiedad que desee. Como alternativa, puede seleccionar un tipo complejo y, a continuación, presionar la tecla **Insertar**del   teclado.  
 
     ![Agregar propiedades a un tipo complejo](~/ef6/media/addpropertiestocomplextype.png)
 
@@ -90,21 +92,21 @@ Al cambiar el nombre de un tipo complejo, todas las referencias al tipo se actua
 
 - O BIEN
 
--   Haga clic con el botón secundario en un tipo complejo en el **Explorador de modelos** y seleccione **propiedades**. Edite el nombre en la ventana **propiedades** .
+-   Haga clic con el botón secundario en un tipo complejo en el **Explorador de modelos** y seleccione **propiedades**. Edite el nombre en la ventana **propiedades**   .
 
 ## <a name="add-an-existing-complex-type-to-an-entity-and-map-its-properties-to-table-columns"></a>Agregar un tipo complejo existente a una entidad y asignar sus propiedades a las columnas de la tabla
 
 1.  Haga clic con el botón secundario en una entidad, seleccione **Agregar nuevo**y seleccione **propiedad compleja**.
     Se agrega a la entidad una propiedad de tipo complejo con un nombre predeterminado. Se asigna un tipo predeterminado (que se elige entre los tipos complejos existentes) a la propiedad.
-2.  Asigne el tipo deseado a la propiedad en la ventana **propiedades** .
+2.  Asigne el tipo deseado a la propiedad en la ventana **propiedades**   .
     Después de agregar una propiedad de tipo complejo a una entidad, debe asignar sus propiedades a las columnas de una tabla.
-3.  Haga clic con el botón secundario en un tipo de entidad en la superficie de diseño o en el del **Explorador de modelos** y seleccione **asignaciones de tablas**.
-    Las asignaciones de tabla se muestran en la ventana detalles de la **asignación** .
-4.  Expanda la **&lt;asignar a nombre de tabla&gt;**  nodo.
-    Aparece una **asignación de columna** nodo.
-5.  Expanda las **asignaciones de columna** nodo.
-    Aparece una lista de todas las columnas de la tabla. Las propiedades predeterminadas (si existen) a las que se asignan las columnas aparecen en el encabezado **valor/propiedad** .
-6.  Seleccione la columna que desea asignar y, a continuación, haga clic con el botón secundario en el campo de **valor o propiedad** correspondiente.
+3.  Haga clic con el botón secundario en un tipo de entidad en la superficie de diseño o en el **Explorador de modelos**   y seleccione **asignaciones de tablas**.
+    Las asignaciones de tabla se muestran en la ventana detalles de la **asignación**   .
+4.  Expanda el nodo **asigna a &lt; nombre &gt; de tabla**   .
+    Aparece un nodo **asignaciones de columnas**   .
+5.  Expanda el nodo **asignaciones de columnas**   .
+    Aparece una lista de todas las columnas de la tabla. Las propiedades predeterminadas (si existen) a las que se asignan las columnas aparecen bajo el encabezado **valor/propiedad**   .
+6.  Seleccione la columna que desea asignar y, a continuación, haga clic con el botón secundario en el campo de **valor o propiedad**correspondiente   .
     Se muestra una lista desplegable de todas las propiedades escalares.
 7.  Seleccione la propiedad apropiada.
 
@@ -113,7 +115,7 @@ Al cambiar el nombre de un tipo complejo, todas las referencias al tipo se actua
 8.  Repita los pasos 6 y 7 para cada columna de tabla.
 
 >[!NOTE]
-> Para eliminar una asignación de columna, seleccione la columna que desea asignar y, a continuación, haga clic en el campo **valor/propiedad** . A continuación, seleccione **eliminar** en la lista desplegable.
+> Para eliminar una asignación de columna, seleccione la columna que desea asignar y, a continuación, haga clic en el campo **valor/propiedad**   . A continuación, seleccione **eliminar** en la lista desplegable.
 
 ## <a name="map-a-function-import-to-a-complex-type"></a>Asignación de una importación de función a un tipo complejo
 
@@ -124,9 +126,9 @@ Las importaciones de función se basan en procedimientos almacenados. Para asign
     ![Importaciones de función](~/ef6/media/functionimports.png)
 
 -   Rellene los valores para la nueva importación de función de la siguiente forma:
-    -   Especifique el procedimiento almacenado para el que va a crear una importación de función en el campo **nombre de procedimiento almacenado** . El campo es una lista desplegable que muestra todos los procedimientos almacenados del modelo de almacenamiento.
-    -   Especifique el nombre de la importación de función en el campo **nombre de importación de función** .
-    -   Seleccione **complejo** como tipo de valor devuelto y, a continuación, especifique el tipo de valor devuelto complejo específico eligiendo el tipo adecuado en la lista desplegable.
+    -   Especifique el procedimiento almacenado para el que va a crear una importación de función en el campo **nombre del procedimiento almacenado**   . El campo es una lista desplegable que muestra todos los procedimientos almacenados del modelo de almacenamiento.
+    -   Especifique el nombre de la importación de función en el campo Nombre de la **importación de función**   .
+    -   Seleccione **complejo**   como el tipo de valor devuelto y, a continuación, especifique el tipo de valor devuelto complejo específico eligiendo el tipo adecuado en la lista desplegable.
 
         ![Editar importación de función](~/ef6/media/editfunctionimport.png)
 
@@ -136,7 +138,7 @@ Las importaciones de función se basan en procedimientos almacenados. Para asign
 ### <a name="customize-column-mapping-for-function-import"></a>Personalizar la asignación de columnas para la importación de función
 
 -   Haga clic con el botón derecho en la importación de función en el explorador de modelos y seleccione **función importar asignación**.
-    Aparece la ventana detalles de la **asignación** y muestra la asignación predeterminada para la importación de función. Las flechas indican las asignaciones entre los valores de columna y de propiedad. De forma predeterminada, se presupone que los nombres de columna son los mismos que los nombres de propiedad del tipo complejo. Los nombres de columna predeterminados aparecen en texto gris.
+    Aparece la ventana detalles de la **asignación**   y muestra la asignación predeterminada para la importación de función. Las flechas indican las asignaciones entre los valores de columna y de propiedad. De forma predeterminada, se presupone que los nombres de columna son los mismos que los nombres de propiedad del tipo complejo. Los nombres de columna predeterminados aparecen en texto gris.
 -   Si es necesario, cambie los nombres de columna para que coincidan con los nombres de columna devueltos por el procedimiento almacenado que corresponden a la importación de función.
 
 ## <a name="delete-a-complex-type"></a>Eliminar un tipo complejo
