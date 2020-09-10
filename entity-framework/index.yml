@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 04/15/2020
-  ms.openlocfilehash: 62ba750c2426cb91a2dd39545f02922ad2686f29
-  ms.sourcegitcommit: 6f7af3f138bf7c724cbdda261f97e5cf7035e8d7
+  ms.openlocfilehash: ff8102a3fd1ad7263ac60befd59a48380aab34ed
+  ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
   ms.translationtype: HT
   ms.contentlocale: es-ES
-  ms.lasthandoff: 08/25/2020
-  ms.locfileid: "88847609"
+  ms.lasthandoff: 09/09/2020
+  ms.locfileid: "89619507"
 highlightedContent:
   items:
   - title: Entity Framework Core
@@ -35,7 +35,7 @@ highlightedContent:
     url: efcore-and-ef6/index.md
   - title: Explorador de referencia de API
     itemType: reference
-    url: https://docs.microsoft.com/dotnet/api/?view=efcore-3.1
+    url: /dotnet/api/?view=efcore-3.1
 additionalContent:
   sections:
   - title: Desarrollo con Entity Framework Core
@@ -70,17 +70,17 @@ additionalContent:
         text: Todos los proveedores de bases de datos actuales
     - title: Plataformas
       links:
-      - url: https://docs.microsoft.com/ef/core/platforms/
+      - url: core/platforms/index.md
         text: Todas las plataformas compatibles
-      - url: https://docs.microsoft.com/aspnet/core/data/ef-rp/intro
+      - url: /aspnet/core/data/ef-rp/intro
         text: ASP.NET Core, Razor Pages
-      - url: https://docs.microsoft.com/aspnet/core/data/ef-mvc/
+      - url: /aspnet/core/data/ef-mvc/
         text: ASP.NET Core MVC
-      - url: https://docs.microsoft.com/aspnet/core/blazor/blazor-server-ef-core
+      - url: /aspnet/core/blazor/blazor-server-ef-core
         text: Servidor Blazor
       - url: core/get-started/wpf.md
         text: Windows Presentation Foundation (WPF)
-      - url: https://docs.microsoft.com/ef/ef6/fundamentals/databinding/winforms/
+      - url: ef6/fundamentals/databinding/winforms.md
         text: Windows Forms (WinForms)
       - url: core/get-started/xamarin.md
         text: Xamarin
