@@ -1,15 +1,16 @@
 ---
 title: Introducción - EF Core
+description: Tutorial de introducción para Entity Framework Core
 author: rick-anderson
 ms.date: 09/17/2019
 ms.assetid: 3c88427c-20c6-42ec-a736-22d3eccd5071
 uid: core/get-started/index
-ms.openlocfilehash: 7181df6ee73b09f196940178ffed38d96b075258
-ms.sourcegitcommit: ebfd3382fc583bc90f0da58e63d6e3382b30aa22
+ms.openlocfilehash: e33a18c8d3d72078eaaeba9c8cf0a1afca0cb66c
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 06/25/2020
-ms.locfileid: "85370323"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618005"
 ---
 # <a name="getting-started-with-ef-core"></a>Introducción a EF Core
 
@@ -54,7 +55,7 @@ cd EFGetStarted
 
 ## <a name="install-entity-framework-core"></a>Instalación de Entity Framework Core
 
-Para instalar EF Core, instale el paquete de los proveedores de bases de datos de EF Core que quiera establecer como destino. Este tutorial usa SQLite porque se ejecuta en todas las plataformas compatibles con .NET Core. Para obtener una lista de proveedores disponibles, vea [Proveedores de bases de datos](../providers/index.md).
+Para instalar EF Core, instale el paquete de los proveedores de bases de datos de EF Core que quiera establecer como destino. Este tutorial usa SQLite porque se ejecuta en todas las plataformas compatibles con .NET Core. Para obtener una lista de proveedores disponibles, vea [Proveedores de bases de datos](xref:core/providers/index).
 
 ### <a name="net-core-cli"></a>[CLI de .NET Core](#tab/netcore-cli)
 
@@ -93,9 +94,9 @@ Defina una clase de contexto y clases de entidad que conformen el modelo.
 
 [!code-csharp[Main](../../../samples/core/GetStarted/Model.cs)]
 
-EF Core también puede [aplicar ingeniería inversa](../managing-schemas/scaffolding.md) en un modelo desde una base de datos existente.
+EF Core también puede [aplicar ingeniería inversa](xref:core/managing-schemas/scaffolding) en un modelo desde una base de datos existente.
 
-Sugerencia: Esta aplicación lo hace todo más fácil de forma intencionada. Las [cadenas de conexión](../miscellaneous/connection-strings.md) no se deben almacenar en el código para aplicaciones de producción. Además, es recomendable que divida cada clase de C# en su archivo correspondiente.
+Sugerencia: Esta aplicación lo hace todo más fácil de forma intencionada. Las [cadenas de conexión](xref:core/miscellaneous/connection-strings) no se deben almacenar en el código para aplicaciones de producción. Además, es recomendable que divida cada clase de C# en su archivo correspondiente.
 
 ## <a name="create-the-database"></a>Creación de la base de datos
 
@@ -112,7 +113,7 @@ Los pasos siguientes usan [migraciones](xref:core/managing-schemas/migrations/in
   dotnet ef database update
   ```
 
-  Esto instala [dotnet ef](../miscellaneous/cli/dotnet.md) y el paquete de diseño necesario para ejecutar el comando en un proyecto. El comando `migrations` aplica la técnica scaffolding a una migración para crear el conjunto inicial de tablas para el modelo. El comando `database update` crea la base de datos y le aplica la nueva migración.
+  Esto instala [dotnet ef](xref:core/miscellaneous/cli/dotnet) y el paquete de diseño necesario para ejecutar el comando en un proyecto. El comando `migrations` aplica la técnica scaffolding a una migración para crear el conjunto inicial de tablas para el modelo. El comando `database update` crea la base de datos y le aplica la nueva migración.
 
 ### <a name="visual-studio"></a>[Visual Studio](#tab/visual-studio)
 
@@ -124,7 +125,7 @@ Los pasos siguientes usan [migraciones](xref:core/managing-schemas/migrations/in
   Update-Database
   ```
 
-  Esto instala las [herramientas de PMC para EF Core](../miscellaneous/cli/powershell.md). El comando `Add-Migration` aplica la técnica scaffolding a una migración para crear el conjunto inicial de tablas para el modelo. El comando `Update-Database` crea la base de datos y le aplica la nueva migración.
+  Esto instala las [herramientas de PMC para EF Core](xref:core/miscellaneous/cli/powershell). El comando `Add-Migration` aplica la técnica scaffolding a una migración para crear el conjunto inicial de tablas para el modelo. El comando `Update-Database` crea la base de datos y le aplica la nueva migración.
 
 ---
 

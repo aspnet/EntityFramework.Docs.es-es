@@ -1,14 +1,16 @@
 ---
 title: 'Plantillas de generación de código del diseñador: EF6'
+description: Plantillas de generación de código del diseñador en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 56e00fa2-f9f0-48b3-8006-f8266ca7e74b
-ms.openlocfilehash: e4e99a86e7c273682c85eba06042af9a2a837d12
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+uid: ef6/modeling/designer/codegen/index
+ms.openlocfilehash: edc8fe3c269336d59d5bb7a10582881584215b1c
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413290"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620565"
 ---
 # <a name="designer-code-generation-templates"></a>Plantillas de generación de código del diseñador
 Cuando se crea un modelo con Entity Framework Designer, las clases y el contexto derivado se generan automáticamente. Además de la generación de código predeterminada, también se proporcionan una serie de plantillas que pueden usarse para personalizar el código que se genera. Estas plantillas se proporcionan como plantillas de texto T4, lo que permite personalizarlas en caso necesario.
@@ -30,11 +32,11 @@ El equipo de Entity Framework proporciona las siguientes plantillas:
 
 Esta plantilla genera clases de entidad POCO simples y un contexto que se deriva de DbContext mediante EF6.
 Es la plantilla recomendada, a menos que tenga motivos para usar una de las otras plantillas que se indican a continuación.
-También es la plantilla de generación de código que se obtiene de forma predeterminada si se usan versiones recientes de Visual Studio (de Visual Studio 2013 en adelante): Al crear un modelo, se usa esta plantilla de forma predeterminada y los archivos T4 (.tt) se anidados bajo el archivo .edmx.
+También es la plantilla de generación de código que se obtiene de forma predeterminada cuando se usan versiones recientes de Visual Studio (Visual Studio 2013 y versiones posteriores): cuando se crea un nuevo modelo, se usa esta plantilla de forma predeterminada y los archivos T4 (.tt) se anidan en el archivo .edmx.
 
 #### <a name="older-versions-of-visual-studio"></a>Versiones anteriores de Visual Studio
-- **Visual Studio 2012:** para obtener las plantillas **DbContextGenerator de EF 6.x**, tiene que instalar la versión más reciente de **Entity Framework Tools para Visual Studio**: vea la página [Obtener Entity Framework](~/ef6/fundamentals/install.md) para más información.
-- **Visual Studio 2010:** las plantillas **DbContextGenerator de EF 6.x** no están disponibles para Visual Studio 2010.
+- **Visual Studio 2012:** para obtener las plantillas **EF 6.x DbContextGenerator**, tiene que instalar la versión más reciente de **Entity Framework Tools para Visual Studio**: vea la página [Get Entity Framework](xref:ef6/fundamentals/install) (Obtener Entity Framework) para obtener más información.
+- **Visual Studio 2010:** las plantillas **EF 6.x DbContextGenerator** no están disponibles para Visual Studio 2010.
 
 #### <a name="dbcontext-generator-for-ef-5x"></a>Generador de DbContext para EF 5.x
 
@@ -86,18 +88,18 @@ Si usa Visual Studio 2012 o 2013, tiene que seleccionar la pestaña **Online** a
 - [Generador de EntityObject para EF 5.x para VB.NET](https://visualstudiogallery.msdn.microsoft.com/92c0129e-40dc-488c-a836-7e30846dfb30)
 - [Generador de EntityObject para EF 5.x para sitios web de VB.NET](https://visualstudiogallery.msdn.microsoft.com/5dd7f75c-8c98-4eb7-b4bc-06f0d0b03b41)
 
-Si solo quiere la generación de código de ObjectContext y no necesita editar la plantilla, puede [revertir a la generación de código de EntityObject](~/ef6/modeling/designer/codegen/legacy-objectcontext.md).
+Si solo quiere la generación de código de ObjectContext y no necesita editar la plantilla, puede [revertir a la generación de código de EntityObject](xref:ef6/modeling/designer/codegen/legacy-objectcontext).
 
 Si usa Visual Studio 2010, esta plantilla ya está instalada. Si crea un nuevo modelo en Visual Studio 2010, esta plantilla se usa de forma predeterminada, pero los archivos .tt no se incluyen en el proyecto. Si quiere personalizar la plantilla, tiene que agregarla al proyecto.
 
 ### <a name="self-tracking-entities-ste-generator"></a>Generador de entidades de autoseguimiento (STE)
 
-Esta plantilla genera clases de entidad de autoseguimiento y un contexto que se deriva de ObjectContext. En una aplicación de EF, un contexto es el responsable de realizar el seguimiento de los cambios en las entidades. Pero en los escenarios de n niveles, es posible que el contexto no esté disponible en el nivel que modifica las entidades. Las entidades de autoseguimiento ayudan a realizar el seguimiento de los cambios en cualquier nivel. Para obtener más información, vea [Entidades de autoseguimiento](~/ef6/fundamentals/disconnected-entities/self-tracking-entities/index.md).
+Esta plantilla genera clases de entidad de autoseguimiento y un contexto que se deriva de ObjectContext. En una aplicación de EF, un contexto es el responsable de realizar el seguimiento de los cambios en las entidades. Pero en los escenarios de n niveles, es posible que el contexto no esté disponible en el nivel que modifica las entidades. Las entidades de autoseguimiento ayudan a realizar el seguimiento de los cambios en cualquier nivel. Para obtener más información, vea [Entidades de autoseguimiento](xref:ef6/fundamentals/disconnected-entities/self-tracking-entities/index).
 
 > [!NOTE]
 > La plantilla STE no se recomienda
 
-Ya no se recomienda usar la plantilla STE en las aplicaciones nuevas, aunque sigue estando disponible para la compatibilidad con las aplicaciones existentes. Visite el artículo sobre [entidades desconectadas](~/ef6/fundamentals/disconnected-entities/index.md) para ver otras opciones recomendadas para escenarios de n niveles.
+Ya no se recomienda usar la plantilla STE en las aplicaciones nuevas, aunque sigue estando disponible para la compatibilidad con las aplicaciones existentes. Visite el artículo sobre [entidades desconectadas](xref:ef6/fundamentals/disconnected-entities/index) para ver otras opciones recomendadas para escenarios de n niveles.
 
 > [!NOTE]
 > No hay ninguna versión para EF 6.x de la plantilla STE.
@@ -155,11 +157,11 @@ Para empezar a usar una plantilla de generación de código, haga clic con el bo
 
 Si ya ha instalado la plantilla que quiere usar (o estaba incluida en Visual Studio), estará disponible en la sección **Código** o **Datos** del menú izquierdo.
 
-![Instalado](~/ef6/media/installed.png)
+![Plantilla instalada](~/ef6/media/installed.png)
 
 Si aún no tiene instalada la plantilla, seleccione **Online** en el menú izquierdo y busque la plantilla que quiere.
 
-![Buscar](~/ef6/media/search.png) 
+![Buscar plantilla](~/ef6/media/search.png) 
 
 Si usa Visual Studio 2012, los nuevos archivos .tt aparecen anidados en el archivo .edmx.*
 

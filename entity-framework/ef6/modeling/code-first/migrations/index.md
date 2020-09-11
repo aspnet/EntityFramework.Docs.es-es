@@ -1,14 +1,16 @@
 ---
 title: 'Migraciones de Code First: EF6'
+description: Migraciones de Code First en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 36591d8f-36e1-4835-8a51-90f34f633d1e
-ms.openlocfilehash: e5a91af73bab9d45b0f1f4242ce503c6b6f407f6
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+uid: ef6/modeling/code-first/migrations/index
+ms.openlocfilehash: b2200a91b087cf6f2dff0803b710e2518193af40
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413310"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616970"
 ---
 # <a name="code-first-migrations"></a>Migraciones de Code First
 Migraciones de Code First es la manera recomendada de desarrollar el esquema de base de datos de la aplicación si usa el flujo de trabajo de Code First. Migraciones proporciona un conjunto de herramientas que permiten:
@@ -298,9 +300,9 @@ Si quiere revertir a una base de datos vacía, puede usar el comando **Update-Da
 
 Si otro desarrollador quiere estos cambios en su equipo, puede sincronizar una vez que se protejan los cambios en el control de código fuente. Cuando tenga las nuevas migraciones, puede ejecutar el comando Update-Database para que los cambios se apliquen localmente. Pero si queremos enviar estos cambios a un servidor de prueba y, finalmente, a producción, probablemente querremos un script SQL que podamos pasar al DBA.
 
--   Ejecute el comando **Update-Database**, pero esta vez especifique la marca **–Script** para que los cambios se escriban en un script en lugar de aplicarse. También se especifican una migración de origen y de destino para las que generar el script. Queremos un script que abarque desde una base de datos vacía ( **$InitialDatabase**) a la versión más reciente (migración **AddPostAbstract**).
+-   Ejecute el comando **Update-Database**, pero esta vez especifique la marca **–Script** para que los cambios se escriban en un script en lugar de aplicarse. También se especifican una migración de origen y de destino para las que generar el script. Queremos un script que abarque desde una base de datos vacía (**$InitialDatabase**) a la versión más reciente (migración **AddPostAbstract**).
     *Si no se especifica una migración de destino, Migraciones usa la última migración como destino. Si no se especifica una migración de origen, Migraciones usa el estado actual de la base de datos.*
--   Ejecute el comando **Update-Database -Script -SourceMigration: $InitialDatabase -TargetMigration: AddPostAbstract** en la consola del Administrador de paquetes.
+-   Ejecute el comando **Update-Database -Script -SourceMigration: $InitialDatabase -TargetMigration: AddPostAbstract** en la consola del Administrador de paquetes
 
 Migraciones de Code First ejecuta la canalización de migración, pero en lugar de aplicar los cambios, los escribe en un archivo .sql. Una vez que se ha generado el script, se abre automáticamente en Visual Studio, listo para verse o guardarse.
 

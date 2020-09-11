@@ -1,15 +1,16 @@
 ---
 title: Herramientas y extensiones - EF Core
+description: Herramientas y extensiones externas para Entity Framework Core
 author: ErikEJ
 ms.date: 04/11/2020
 ms.assetid: 14fffb6c-a687-4881-a094-af4a1359a296
 uid: core/extensions/index
-ms.openlocfilehash: f450742b761ef3daf35e32cf87c63a8ee8a7b8c3
-ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
+ms.openlocfilehash: e8198e0b0a51968336be97ea7d7a4b65e856d32f
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87526412"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618011"
 ---
 # <a name="ef-core-tools--extensions"></a>Herramientas y extensiones de EF Core
 

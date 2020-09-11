@@ -1,14 +1,16 @@
 ---
 title: 'Consulta y búsqueda de entidades: EF6'
+description: Consulta y búsqueda de entidades en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 65bb3db2-2226-44af-8864-caa575cf1b46
-ms.openlocfilehash: 29a86817e250a2f53ecaa73e8fa4bf93452f0497
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+uid: ef6/querying/index
+ms.openlocfilehash: 4bfdc59527ab75e7a2e08dc743a1974246643aa3
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78412980"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89620329"
 ---
 # <a name="querying-and-finding-entities"></a>Consulta y búsqueda de entidades
 En este tema se tratan las distintas formas de consultar datos mediante Entity Framework, incluidos LINQ y el método Find. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  
@@ -41,7 +43,7 @@ Tenga en cuenta que DbSet e IDbSet siempre crean las consultas en la base de dat
 
 Cuando se devuelven los resultados de la base de datos, los objetos que no existen en el contexto se adjuntan a él. Si un objeto ya está en el contexto, se devuelve el objeto existente (los valores actual y original de las propiedades del objeto en la entrada **no** se sobrescriben con valores de la base de datos).  
 
-Cuando se realiza una consulta, las entidades que se han agregado al contexto pero aún no se han guardado en la base de datos no se devuelven como parte del conjunto de resultados. Para obtener los datos que se encuentran en el contexto, vea [Datos locales](~/ef6/querying/local-data.md).  
+Cuando se realiza una consulta, las entidades que se han agregado al contexto pero aún no se han guardado en la base de datos no se devuelven como parte del conjunto de resultados. Para obtener los datos que se encuentran en el contexto, vea [Datos locales](xref:ef6/querying/local-data).  
 
 Si una consulta no devuelve filas de la base de datos, el resultado será una colección vacía, en lugar de **null**.  
 

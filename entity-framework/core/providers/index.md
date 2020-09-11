@@ -1,14 +1,15 @@
 ---
 title: Proveedores de bases de datos - EF Core
+description: Información sobre proveedores de Entity Framework Core compatibles específicos y sobre los proveedores en general
 author: ajcvickers
 ms.date: 12/17/2019
 uid: core/providers/index
-ms.openlocfilehash: 7970636ab68b04d4d8583a4c126864ecc27ce6b2
-ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
+ms.openlocfilehash: 99e1b162cb610b8f086501d0af3896ffa4635358
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86238169"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618996"
 ---
 # <a name="database-providers"></a>Proveedores de bases de datos
 

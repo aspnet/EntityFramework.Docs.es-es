@@ -1,14 +1,16 @@
 ---
 title: 'Entidades de autoseguimiento: EF6'
+description: Entidades de autoseguimiento en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
 ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
-ms.openlocfilehash: 3bb9759d89fbd0c10b911625aa7d0afd7747de14
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+uid: ef6/fundamentals/disconnected-entities/self-tracking-entities/index
+ms.openlocfilehash: 0e771c0f147589112779359ab8c06344eb05b8fc
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413360"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616187"
 ---
 # <a name="self-tracking-entities"></a>Entidades de autoseguimiento
 
@@ -21,12 +23,12 @@ Use STE solo si el contexto no está disponible en un nivel en el que se realiza
 
 Este elemento de plantilla genera dos archivos .tt (plantilla de texto):  
 
-- El archivo **\<nombreDelModelo\>.tt** genera los tipos de entidad y una clase del asistente que contiene la lógica de seguimiento de cambios que usan las entidades de autoseguimiento y los métodos de extensión que permiten establecer el estado en las entidades de autoseguimiento.  
-- El archivo **\<nombreDelModelo\>.Context.tt** genera un contexto derivado y una clase de extensión que contiene métodos **ApplyChanges** para las clases **ObjectContext** y **ObjectSet**. Estos métodos examinan la información del seguimiento de cambios contenida en el grafo de entidades con seguimiento propio para deducir el conjunto de operaciones que se deben realizar con el fin de guardar los cambios en la base de datos.  
+- El archivo **\<model name\>.tt** genera los tipos de entidad y una clase del asistente que contiene la lógica de seguimiento de cambios que usan las entidades de autoseguimiento y los métodos de extensión que permiten establecer el estado en las entidades de autoseguimiento.  
+- El archivo **\<model name\>.Context.tt** genera un contexto derivado y una clase de extensión que contiene métodos **ApplyChanges** para las clases **ObjectContext** y **ObjectSet**. Estos métodos examinan la información del seguimiento de cambios contenida en el grafo de entidades con seguimiento propio para deducir el conjunto de operaciones que se deben realizar con el fin de guardar los cambios en la base de datos.  
 
 ## <a name="get-started"></a>Introducción  
 
-Para comenzar, visite la página [Self-Tracking Entities Walkthrough](walkthrough.md) (Tutorial sobre entidades de autoseguimiento).  
+Para comenzar, visite la página [Self-Tracking Entities Walkthrough](xref:ef6/fundamentals/disconnected-entities/self-tracking-entities/walkthrough) (Tutorial sobre entidades de autoseguimiento).  
 
 ## <a name="functional-considerations-when-working-with-self-tracking-entities"></a>Consideraciones funcionales al trabajar con entidades de seguimiento propio  
 > [!IMPORTANT]

@@ -1,15 +1,16 @@
 ---
 title: 'Proveedores de Entity Framework: EF6'
+description: Proveedores de Entity Framework en Entity Framework 6
 author: divega
 ms.date: 06/27/2018
 ms.assetid: 7BFB7763-CD6C-4520-93A2-7B265F5FA586
 uid: ef6/fundamentals/providers/index
-ms.openlocfilehash: 661398e7d6037875ce0cdb15c221a729d1f0c7d8
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 5140fefeb118b6e70ac27ab010d813d03ec7000c
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413340"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89615877"
 ---
 # <a name="entity-framework-6-providers"></a>Proveedores de Entity Framework 6
 > [!NOTE]
@@ -87,7 +88,7 @@ En este código, "SqlCeProviderServices.ProviderInvariantName" es una comodidad 
 
 ## <a name="what-if-the-provider-i-need-isnt-available"></a>¿Qué ocurre si el proveedor que necesito no está disponible?
 
-Si el proveedor está disponible para versiones anteriores de EF, se le anima a ponerse en contacto con el propietario del proveedor y pedirle que cree una versión de EF6. Debe incluir una referencia a la [documentación para el modelo de proveedor de EF6](~/ef6/fundamentals/providers/provider-model.md).
+Si el proveedor está disponible para versiones anteriores de EF, se le anima a ponerse en contacto con el propietario del proveedor y pedirle que cree una versión de EF6. Debe incluir una referencia a la [documentación para el modelo de proveedor de EF6](xref:ef6/fundamentals/providers/provider-model).
 
 ## <a name="can-i-write-a-provider-myself"></a>¿Puedo escribir un proveedor por mí mismo?
 

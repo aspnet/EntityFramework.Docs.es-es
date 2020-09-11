@@ -1,15 +1,16 @@
 ---
 title: Proveedor de base de datos InMemory - EF Core
+description: Información sobre el proveedor de base de datos InMemory de Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 9af0cba7-7605-4f8f-9cfa-dd616fcb880c
 uid: core/providers/in-memory/index
-ms.openlocfilehash: fd31c8ef2dc2e35e69f9845933a5578a5ff84c9c
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 6af1d61a6ff76b82cc0096edbf095a6338d21109
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413010"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619000"
 ---
 # <a name="ef-core-in-memory-database-provider"></a>Proveedor de base de datos InMemory para EF Core
 
@@ -37,7 +38,7 @@ Install-Package Microsoft.EntityFrameworkCore.InMemory
 
 Los siguientes recursos le ayudarán a empezar a trabajar con este proveedor.
 
-* [Pruebas con InMemory](../../miscellaneous/testing/in-memory.md)
+* [Pruebas con InMemory](xref:core/miscellaneous/testing/in-memory)
 * [Pruebas de la aplicación de ejemplo UnicornStore](https://github.com/rowanmiller/UnicornStore/blob/master/UnicornStore/src/UnicornStore.Tests/Controllers/ShippingControllerTests.cs)
 
 ## <a name="supported-database-engines"></a>Motores de base de datos compatibles

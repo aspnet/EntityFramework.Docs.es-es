@@ -1,15 +1,16 @@
 ---
 title: Guardado de datos - EF Core
+description: Información general sobre cómo guardar datos con Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ef044629-feca-4fd1-a48f-d208daedaf92
 uid: core/saving/index
-ms.openlocfilehash: c610ea2a9138482f93d2d54c9085ef827af276c8
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 13e7c470e71f9cf9a1112aad18a8902e2235cef1
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413100"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616318"
 ---
 # <a name="saving-data"></a>Guardado de datos
 

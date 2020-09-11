@@ -33,30 +33,28 @@
                   href: core/what-is-new/ef-core-5.0/whatsnew.md
                 - name: Cambios importantes
                   href: core/what-is-new/ef-core-5.0/breaking-changes.md
-            - name: EF Core 3.0
+            - name: "EF Core\_3.x"
               items:
                 - name: Características nuevas
-                  href: core/what-is-new/ef-core-3.0/index.md
+                  href: core/what-is-new/ef-core-3.x/index.md
                 - name: Cambios importantes
-                  href: core/what-is-new/ef-core-3.0/breaking-changes.md
-            - name: EF Core 2.2
-              href: core/what-is-new/ef-core-2.2.md
+                  href: core/what-is-new/ef-core-3.x/breaking-changes.md
             - name: EF Core 2.1
               href: core/what-is-new/ef-core-2.1.md
-            - name: EF Core 2.0
-              href: core/what-is-new/ef-core-2.0.md
-            - name: EF Core 1.1
-              href: core/what-is-new/ef-core-1.1.md
-            - name: EF Core 1.0
-              href: core/what-is-new/ef-core-1.0.md
-            - name: Actualización desde versiones anteriores
+            - name: Fuera de soporte técnico
               items:
-                - name: De 1.0 RC1 a RC2
-                  href: core/miscellaneous/rc1-rc2-upgrade.md
-                - name: De 1.0 RC2 a RTM
-                  href: core/miscellaneous/rc2-rtm-upgrade.md
-                - name: De 1.x a 2.0
-                  href: core/miscellaneous/1x-2x-upgrade.md
+                - name: EF Core 2.2
+                  href: core/what-is-new/ef-core-2.2.md
+                - name: EF Core 2.0
+                  items:
+                    - name: Nuevas características
+                      href: core/what-is-new/ef-core-2.0/index.md
+                    - name: "Actualización desde la versión\_1.x"
+                      href: core/what-is-new/ef-core-2.0/upgrade.md
+                - name: EF Core 1.1
+                  href: core/what-is-new/ef-core-1.1.md
+                - name: EF Core 1.0
+                  href: core/what-is-new/ef-core-1.0.md
         - name: Primeros pasos
           items:
             - name: Tutorial de EF Core
@@ -75,6 +73,8 @@
           items:
             - name: Cadenas de conexión
               href: core/miscellaneous/connection-strings.md
+            - name: Programación asincrónica
+              href: core/miscellaneous/async.md
             - name: Registro
               href: core/miscellaneous/logging.md
             - name: Resistencia de conexión
@@ -180,8 +180,6 @@
               href: core/querying/complex-query-operators.md
             - name: Carga de datos relacionados
               href: core/querying/related-data.md
-            - name: Consultas asincrónicas
-              href: core/querying/async.md
             - name: Consultas SQL sin formato
               href: core/querying/raw-sql.md
             - name: Filtros de consulta global
@@ -204,8 +202,6 @@
               href: core/saving/concurrency.md
             - name: Transacciones
               href: core/saving/transactions.md
-            - name: Guardado asincrónico
-              href: core/saving/async.md
             - name: Entidades desconectadas
               href: core/saving/disconnected-entities.md
             - name: Valores explícitos para propiedades generadas
@@ -220,6 +216,8 @@
               items:
                 - name: Información general
                   href: core/providers/sql-server/index.md
+                - name: Índices
+                  href: core/providers/sql-server/indexes.md
                 - name: Tablas optimizadas para memoria
                   href: core/providers/sql-server/memory-optimized-tables.md
                 - name: "Especificación de opciones de Azure\_SQL Database"

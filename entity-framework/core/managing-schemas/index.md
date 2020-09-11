@@ -1,13 +1,15 @@
 ---
 title: Administración de esquemas de base de datos - EF Core
+description: Información general sobre las estrategias para administrar esquemas de base de datos con Entity Framework Core
 author: bricelam
 ms.date: 10/30/2017
-ms.openlocfilehash: 2da17865cb0192fb3e6e3396e4ca5f31fde9c52a
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+uid: core/managing-schemas/index
+ms.openlocfilehash: e4f8c82125534e9e7e0c2de552bce336a544a2aa
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78412740"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619503"
 ---
 # <a name="managing-database-schemas"></a>Administración de esquemas de base de datos
 
@@ -20,7 +22,6 @@ Si quiere que el esquema de la base de datos sea el origen verdadero, use [Ingen
 > [!NOTE]
 > Las [API de creación y eliminación][3] también pueden crear el esquema de la base de datos a partir del modelo de EF Core. Pero son principalmente para pruebas, creación de prototipos y otros escenarios donde la eliminación de la base de datos es aceptable.
 
-
-  [1]: migrations/index.md
-  [2]: scaffolding.md
-  [3]: ensure-created.md
+  [1]: xref:core/managing-schemas/migrations/index
+  [2]: xref:core/managing-schemas/scaffolding
+  [3]: xref:core/managing-schemas/ensure-created

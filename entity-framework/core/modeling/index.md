@@ -1,21 +1,22 @@
 ---
 title: 'Creación y configuración de un modelo: EF Core'
+description: Información general sobre la creación y configuración de un modelo con Entity Framework Core
 author: rowanmiller
 ms.date: 11/05/2019
 ms.assetid: 88253ff3-174e-485c-b3f8-768243d01ee1
 uid: core/modeling/index
-ms.openlocfilehash: 0f44d9684ca5c8435d83085f9038860309bd82a2
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: e980f11b08bee7b07156a80c6bead829e7a8b654
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78412780"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616750"
 ---
 # <a name="creating-and-configuring-a-model"></a>Creación y configuración de un modelo
 
 Entity Framework usa un conjunto de convenciones para compilar un modelo basado en la forma de las clases de entidad. Puede especificar una configuración adicional para complementar o reemplazar lo que se ha detectado por convención.
 
-Este artículo trata de la configuración que se puede aplicar a un modelo para cualquier almacén de datos y que se puede aplicar al elegir como destino cualquier base de datos relacional. Los proveedores también pueden habilitar la configuración específica de un almacén de datos determinado. Para obtener documentación sobre la configuración específica del proveedor, vea la sección  [Proveedores de bases de datos](../providers/index.md) .
+Este artículo trata de la configuración que se puede aplicar a un modelo para cualquier almacén de datos y que se puede aplicar al elegir como destino cualquier base de datos relacional. Los proveedores también pueden habilitar la configuración específica de un almacén de datos determinado. Para obtener documentación sobre la configuración específica del proveedor, vea la sección  [Proveedores de bases de datos](xref:core/providers/index) .
 
 > [!TIP]  
 > Puede ver un  [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples)  de este artículo en GitHub.
