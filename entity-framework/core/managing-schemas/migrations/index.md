@@ -1,30 +1,31 @@
 ---
 title: 'Descripción general de las migraciones: EF Core'
+description: Información general sobre el uso de migraciones para administrar esquemas de base de datos con Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 05/06/2020
 uid: core/managing-schemas/migrations/index
-ms.openlocfilehash: 8539a8da6f0051d3737efc583f0adfaf05fb2d3d
-ms.sourcegitcommit: 31536e52b838a84680d2e93e5bb52fb16df72a97
+ms.openlocfilehash: f1197fb869c33c34672d20e9b727cd187c9c5601
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 07/10/2020
-ms.locfileid: "86238234"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619475"
 ---
-# <a name="migrations-overview"></a><span data-ttu-id="7d4de-102">Descripción general de las migraciones</span><span class="sxs-lookup"><span data-stu-id="7d4de-102">Migrations Overview</span></span>
+# <a name="migrations-overview"></a><span data-ttu-id="d6450-103">Descripción general de las migraciones</span><span class="sxs-lookup"><span data-stu-id="d6450-103">Migrations Overview</span></span>
 
-<span data-ttu-id="7d4de-103">En proyectos reales, los modelos de datos cambian a medida que se implementan características: se agregan o se quitan nuevas entidades o propiedades, y los esquemas de base de datos se deben cambiar según corresponda para mantenerlos sincronizados con la aplicación.</span><span class="sxs-lookup"><span data-stu-id="7d4de-103">In real world projects, data models change as features get implemented: new entities or properties are added and removed, and database schemas needs to be changed accordingly to be kept in sync with the application.</span></span> <span data-ttu-id="7d4de-104">La característica de migraciones de EF Core proporciona una manera de actualizar incrementalmente el esquema de la base de datos para mantenerla sincronizada con el modelo de datos de la aplicación al tiempo que se conservan los datos existentes en la base de datos.</span><span class="sxs-lookup"><span data-stu-id="7d4de-104">The migrations feature in EF Core provides a way to incrementally update the database schema to keep it in sync with the application's data model while preserving existing data in the database.</span></span>
+<span data-ttu-id="d6450-104">En proyectos reales, los modelos de datos cambian a medida que se implementan características: se agregan o se quitan nuevas entidades o propiedades, y los esquemas de base de datos se deben cambiar según corresponda para mantenerlos sincronizados con la aplicación.</span><span class="sxs-lookup"><span data-stu-id="d6450-104">In real world projects, data models change as features get implemented: new entities or properties are added and removed, and database schemas needs to be changed accordingly to be kept in sync with the application.</span></span> <span data-ttu-id="d6450-105">La característica de migraciones de EF Core proporciona una manera de actualizar incrementalmente el esquema de la base de datos para mantenerla sincronizada con el modelo de datos de la aplicación al tiempo que se conservan los datos existentes en la base de datos.</span><span class="sxs-lookup"><span data-stu-id="d6450-105">The migrations feature in EF Core provides a way to incrementally update the database schema to keep it in sync with the application's data model while preserving existing data in the database.</span></span>
 
-<span data-ttu-id="7d4de-105">A nivel general, las migraciones funcionan de esta forma:</span><span class="sxs-lookup"><span data-stu-id="7d4de-105">At a high level, migrations function in the following way:</span></span>
+<span data-ttu-id="d6450-106">A nivel general, las migraciones funcionan de esta forma:</span><span class="sxs-lookup"><span data-stu-id="d6450-106">At a high level, migrations function in the following way:</span></span>
 
-* <span data-ttu-id="7d4de-106">Cuando se introduce un cambio en el modelo de datos, el desarrollador usa herramientas de EF Core para agregar una migración correspondiente en la que se describan las actualizaciones necesarias para mantener sincronizado el esquema de la base de datos. EF Core compara el modelo actual con una instantánea del modelo anterior para determinar las diferencias y genera los archivos de origen de la migración, de los que se puede realizar el seguimiento en el control de código fuente del proyecto como cualquier otro archivo de código fuente.</span><span class="sxs-lookup"><span data-stu-id="7d4de-106">When a data model change is introduced, the developer uses EF Core tools to add a corresponding migration describing the updates necessary to keep the database schema in sync. EF Core compares the current model against a snapshot of the old model to determine the differences, and generates migration source files; the files can be tracked in your project's source control like any other source file.</span></span>
-* <span data-ttu-id="7d4de-107">Una vez que se ha generado una migración nueva, haya varias maneras de aplicarla a una base de datos.</span><span class="sxs-lookup"><span data-stu-id="7d4de-107">Once a new migration has been generated, it can be applied to a database in various ways.</span></span> <span data-ttu-id="7d4de-108">EF Core registra todas las migraciones aplicadas en una tabla de historial especial, lo que le permite saber qué migraciones se han aplicado y cuáles no.</span><span class="sxs-lookup"><span data-stu-id="7d4de-108">EF Core records all applied migrations in a special history table, allowing it to know which migrations have been applied and which haven't.</span></span>
+* <span data-ttu-id="d6450-107">Cuando se introduce un cambio en el modelo de datos, el desarrollador usa herramientas de EF Core para agregar una migración correspondiente en la que se describan las actualizaciones necesarias para mantener sincronizado el esquema de la base de datos. EF Core compara el modelo actual con una instantánea del modelo anterior para determinar las diferencias y genera los archivos de origen de la migración, de los que se puede realizar el seguimiento en el control de código fuente del proyecto como cualquier otro archivo de código fuente.</span><span class="sxs-lookup"><span data-stu-id="d6450-107">When a data model change is introduced, the developer uses EF Core tools to add a corresponding migration describing the updates necessary to keep the database schema in sync. EF Core compares the current model against a snapshot of the old model to determine the differences, and generates migration source files; the files can be tracked in your project's source control like any other source file.</span></span>
+* <span data-ttu-id="d6450-108">Una vez que se ha generado una migración nueva, haya varias maneras de aplicarla a una base de datos.</span><span class="sxs-lookup"><span data-stu-id="d6450-108">Once a new migration has been generated, it can be applied to a database in various ways.</span></span> <span data-ttu-id="d6450-109">EF Core registra todas las migraciones aplicadas en una tabla de historial especial, lo que le permite saber qué migraciones se han aplicado y cuáles no.</span><span class="sxs-lookup"><span data-stu-id="d6450-109">EF Core records all applied migrations in a special history table, allowing it to know which migrations have been applied and which haven't.</span></span>
 
-<span data-ttu-id="7d4de-109">El resto de esta página es una guía para principiantes paso a paso sobre el uso de las migraciones.</span><span class="sxs-lookup"><span data-stu-id="7d4de-109">The rest of this page is a step-by-step beginner's guide for using migrations.</span></span> <span data-ttu-id="7d4de-110">Consulte las demás páginas de esta sección para obtener información más detallada.</span><span class="sxs-lookup"><span data-stu-id="7d4de-110">Consult the other pages in this section for more in-depth information.</span></span>
+<span data-ttu-id="d6450-110">El resto de esta página es una guía para principiantes paso a paso sobre el uso de las migraciones.</span><span class="sxs-lookup"><span data-stu-id="d6450-110">The rest of this page is a step-by-step beginner's guide for using migrations.</span></span> <span data-ttu-id="d6450-111">Consulte las demás páginas de esta sección para obtener información más detallada.</span><span class="sxs-lookup"><span data-stu-id="d6450-111">Consult the other pages in this section for more in-depth information.</span></span>
 
-## <a name="getting-started"></a><span data-ttu-id="7d4de-111">Introducción</span><span class="sxs-lookup"><span data-stu-id="7d4de-111">Getting started</span></span>
+## <a name="getting-started"></a><span data-ttu-id="d6450-112">Introducción</span><span class="sxs-lookup"><span data-stu-id="d6450-112">Getting started</span></span>
 
-<span data-ttu-id="7d4de-112">Imagine que acaba de completar la primera aplicación de EF Core, que contiene el siguiente modelo simple:</span><span class="sxs-lookup"><span data-stu-id="7d4de-112">Let's assume you've just completed your first EF Core application, which contains the following simple model:</span></span>
+<span data-ttu-id="d6450-113">Imagine que acaba de completar la primera aplicación de EF Core, que contiene el siguiente modelo simple:</span><span class="sxs-lookup"><span data-stu-id="d6450-113">Let's assume you've just completed your first EF Core application, which contains the following simple model:</span></span>
 
 ```c#
 public class Blog
@@ -34,26 +35,26 @@ public class Blog
 }
 ```
 
-<span data-ttu-id="7d4de-113">Durante el desarrollo, es posible que haya usado las [API Create y Drop](xref:core/managing-schemas/ensure-created) para realizar una iteración rápida y cambiar el modelo según las necesidades, pero ahora que la aplicación se destina a producción, necesita una manera de desarrollar de forma segura el esquema sin quitar la base de datos completa.</span><span class="sxs-lookup"><span data-stu-id="7d4de-113">During development, you may have used the [Create and Drop APIs](xref:core/managing-schemas/ensure-created) to iterate quickly, changing your model as needed; but now that your application is going to production, you need a way to safely evolve the schema without dropping the entire database.</span></span>
+<span data-ttu-id="d6450-114">Durante el desarrollo, es posible que haya usado las [API Create y Drop](xref:core/managing-schemas/ensure-created) para realizar una iteración rápida y cambiar el modelo según las necesidades, pero ahora que la aplicación se destina a producción, necesita una manera de desarrollar de forma segura el esquema sin quitar la base de datos completa.</span><span class="sxs-lookup"><span data-stu-id="d6450-114">During development, you may have used the [Create and Drop APIs](xref:core/managing-schemas/ensure-created) to iterate quickly, changing your model as needed; but now that your application is going to production, you need a way to safely evolve the schema without dropping the entire database.</span></span>
 
-### <a name="install-the-tools"></a><span data-ttu-id="7d4de-114">Instalar las herramientas</span><span class="sxs-lookup"><span data-stu-id="7d4de-114">Install the tools</span></span>
+### <a name="install-the-tools"></a><span data-ttu-id="d6450-115">Instalar las herramientas</span><span class="sxs-lookup"><span data-stu-id="d6450-115">Install the tools</span></span>
 
-<span data-ttu-id="7d4de-115">En primer lugar, tendrá que instalar las [herramientas de línea de comandos de EF Core](xref:core/miscellaneous/cli/index):</span><span class="sxs-lookup"><span data-stu-id="7d4de-115">First, you'll have to install the [EF Core command-line tools](xref:core/miscellaneous/cli/index):</span></span>
+<span data-ttu-id="d6450-116">En primer lugar, tendrá que instalar las [herramientas de línea de comandos de EF Core](xref:core/miscellaneous/cli/index):</span><span class="sxs-lookup"><span data-stu-id="d6450-116">First, you'll have to install the [EF Core command-line tools](xref:core/miscellaneous/cli/index):</span></span>
 
-* <span data-ttu-id="7d4de-116">Por lo general, se recomienda usar las [herramientas de la CLI de .NET Core](xref:core/miscellaneous/cli/dotnet), que funcionan en todas las plataformas.</span><span class="sxs-lookup"><span data-stu-id="7d4de-116">We generally recommend using the [.NET Core CLI tools](xref:core/miscellaneous/cli/dotnet), which work on all platforms.</span></span>
-* <span data-ttu-id="7d4de-117">Si se siente más cómodo trabajando en Visual Studio o tiene experiencia con las migraciones de EF6, también puede usar las [ herramientas de la consola del administrador de paquetes](xref:core/miscellaneous/cli/powershell).</span><span class="sxs-lookup"><span data-stu-id="7d4de-117">If you're more comfortable working inside Visual Studio or have experience with EF6 migrations, you can also use the [Package Manager Console tools](xref:core/miscellaneous/cli/powershell).</span></span>
+* <span data-ttu-id="d6450-117">Por lo general, se recomienda usar las [herramientas de la CLI de .NET Core](xref:core/miscellaneous/cli/dotnet), que funcionan en todas las plataformas.</span><span class="sxs-lookup"><span data-stu-id="d6450-117">We generally recommend using the [.NET Core CLI tools](xref:core/miscellaneous/cli/dotnet), which work on all platforms.</span></span>
+* <span data-ttu-id="d6450-118">Si se siente más cómodo trabajando en Visual Studio o tiene experiencia con las migraciones de EF6, también puede usar las [ herramientas de la consola del administrador de paquetes](xref:core/miscellaneous/cli/powershell).</span><span class="sxs-lookup"><span data-stu-id="d6450-118">If you're more comfortable working inside Visual Studio or have experience with EF6 migrations, you can also use the [Package Manager Console tools](xref:core/miscellaneous/cli/powershell).</span></span>
 
-### <a name="create-your-first-migration"></a><span data-ttu-id="7d4de-118">Creación de la primera migración</span><span class="sxs-lookup"><span data-stu-id="7d4de-118">Create your first migration</span></span>
+### <a name="create-your-first-migration"></a><span data-ttu-id="d6450-119">Creación de la primera migración</span><span class="sxs-lookup"><span data-stu-id="d6450-119">Create your first migration</span></span>
 
-<span data-ttu-id="7d4de-119">Ya está listo para agregar la primera migración.</span><span class="sxs-lookup"><span data-stu-id="7d4de-119">You're now ready to add your first migration!</span></span> <span data-ttu-id="7d4de-120">Indique a EF Core que cree una migración llamada **InitialCreate**:</span><span class="sxs-lookup"><span data-stu-id="7d4de-120">Instruct EF Core to create a migration named **InitialCreate**:</span></span>
+<span data-ttu-id="d6450-120">Ya está listo para agregar la primera migración.</span><span class="sxs-lookup"><span data-stu-id="d6450-120">You're now ready to add your first migration!</span></span> <span data-ttu-id="d6450-121">Indique a EF Core que cree una migración llamada **InitialCreate**:</span><span class="sxs-lookup"><span data-stu-id="d6450-121">Instruct EF Core to create a migration named **InitialCreate**:</span></span>
 
-#### <a name="net-core-cli"></a>[<span data-ttu-id="7d4de-121">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="7d4de-121">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+#### <a name="net-core-cli"></a>[<span data-ttu-id="d6450-122">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="d6450-122">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate
 ```
 
-#### <a name="visual-studio"></a>[<span data-ttu-id="7d4de-122">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="7d4de-122">Visual Studio</span></span>](#tab/vs)
+#### <a name="visual-studio"></a>[<span data-ttu-id="d6450-123">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d6450-123">Visual Studio</span></span>](#tab/vs)
 
 ``` powershell
 Add-Migration InitialCreate
@@ -61,18 +62,18 @@ Add-Migration InitialCreate
 
 ***
 
-<span data-ttu-id="7d4de-123">EF Core creará un directorio denominado **Migrations** (Migraciones) en el proyecto y generará varios archivos.</span><span class="sxs-lookup"><span data-stu-id="7d4de-123">EF Core will create a directory called **Migrations** in your project, and generate some files.</span></span> <span data-ttu-id="7d4de-124">Es recomendable inspeccionar lo que EF Core ha generado exactamente y, posiblemente, rectificarlo, pero este paso se omitirá por ahora.</span><span class="sxs-lookup"><span data-stu-id="7d4de-124">It's a good idea to inspect what exactly EF Core generated - and possibly amend it - but we'll skip over that for now.</span></span>
+<span data-ttu-id="d6450-124">EF Core creará un directorio denominado **Migrations** (Migraciones) en el proyecto y generará varios archivos.</span><span class="sxs-lookup"><span data-stu-id="d6450-124">EF Core will create a directory called **Migrations** in your project, and generate some files.</span></span> <span data-ttu-id="d6450-125">Es recomendable inspeccionar lo que EF Core ha generado exactamente y, posiblemente, rectificarlo, pero este paso se omitirá por ahora.</span><span class="sxs-lookup"><span data-stu-id="d6450-125">It's a good idea to inspect what exactly EF Core generated - and possibly amend it - but we'll skip over that for now.</span></span>
 
-### <a name="create-your-database-and-schema"></a><span data-ttu-id="7d4de-125">Creación de la base de datos y el esquema</span><span class="sxs-lookup"><span data-stu-id="7d4de-125">Create your database and schema</span></span>
+### <a name="create-your-database-and-schema"></a><span data-ttu-id="d6450-126">Creación de la base de datos y el esquema</span><span class="sxs-lookup"><span data-stu-id="d6450-126">Create your database and schema</span></span>
 
-<span data-ttu-id="7d4de-126">En este momento puede hacer que EF cree la base de datos y el esquema a partir de la migración.</span><span class="sxs-lookup"><span data-stu-id="7d4de-126">At this point you can have EF create your database and create your schema from the migration.</span></span> <span data-ttu-id="7d4de-127">Esto también se puede hacer mediante:</span><span class="sxs-lookup"><span data-stu-id="7d4de-127">This can be done via the following:</span></span>
+<span data-ttu-id="d6450-127">En este momento puede hacer que EF cree la base de datos y el esquema a partir de la migración.</span><span class="sxs-lookup"><span data-stu-id="d6450-127">At this point you can have EF create your database and create your schema from the migration.</span></span> <span data-ttu-id="d6450-128">Esto también se puede hacer mediante:</span><span class="sxs-lookup"><span data-stu-id="d6450-128">This can be done via the following:</span></span>
 
-#### <a name="net-core-cli"></a>[<span data-ttu-id="7d4de-128">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="7d4de-128">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+#### <a name="net-core-cli"></a>[<span data-ttu-id="d6450-129">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="d6450-129">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
 ```dotnetcli
 dotnet ef database update
 ```
-#### <a name="visual-studio"></a>[<span data-ttu-id="7d4de-129">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="7d4de-129">Visual Studio</span></span>](#tab/vs)
+#### <a name="visual-studio"></a>[<span data-ttu-id="d6450-130">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d6450-130">Visual Studio</span></span>](#tab/vs)
 
 ``` powershell
 Update-Database
@@ -80,11 +81,11 @@ Update-Database
 
 ***
 
-<span data-ttu-id="7d4de-130">Eso es todo: la aplicación está lista para ejecutarse en la base de datos nueva y no es necesario escribir una sola línea de SQL.</span><span class="sxs-lookup"><span data-stu-id="7d4de-130">That's all there is to it - your application is ready to run on your new database, and you didn't need to write a single line of SQL.</span></span> <span data-ttu-id="7d4de-131">Tenga en cuenta que esta manera de aplicar migraciones resulta idónea para el desarrollo local, pero es menos adecuada para los entornos de producción; vea la página [Aplicación de migraciones](xref:core/managing-schemas/migrations/applying) para obtener más información.</span><span class="sxs-lookup"><span data-stu-id="7d4de-131">Note that this way of applying migrations is ideal for local development, but is less suitable for production environments - see the [Applying Migrations page](xref:core/managing-schemas/migrations/applying) for more info.</span></span>
+<span data-ttu-id="d6450-131">Eso es todo: la aplicación está lista para ejecutarse en la base de datos nueva y no es necesario escribir una sola línea de SQL.</span><span class="sxs-lookup"><span data-stu-id="d6450-131">That's all there is to it - your application is ready to run on your new database, and you didn't need to write a single line of SQL.</span></span> <span data-ttu-id="d6450-132">Tenga en cuenta que esta manera de aplicar migraciones resulta idónea para el desarrollo local, pero es menos adecuada para los entornos de producción; vea la página [Aplicación de migraciones](xref:core/managing-schemas/migrations/applying) para obtener más información.</span><span class="sxs-lookup"><span data-stu-id="d6450-132">Note that this way of applying migrations is ideal for local development, but is less suitable for production environments - see the [Applying Migrations page](xref:core/managing-schemas/migrations/applying) for more info.</span></span>
 
-### <a name="evolving-your-model"></a><span data-ttu-id="7d4de-132">Evolución del modelo</span><span class="sxs-lookup"><span data-stu-id="7d4de-132">Evolving your model</span></span>
+### <a name="evolving-your-model"></a><span data-ttu-id="d6450-133">Evolución del modelo</span><span class="sxs-lookup"><span data-stu-id="d6450-133">Evolving your model</span></span>
 
-<span data-ttu-id="7d4de-133">Han pasado unos días y le piden que agregue una marca de tiempo de creación a los blogs.</span><span class="sxs-lookup"><span data-stu-id="7d4de-133">A few days have passed, and you're asked to add a creation timestamp to your blogs.</span></span> <span data-ttu-id="7d4de-134">Ha realizado los cambios necesarios en la aplicación y el ahora modelo tiene este aspecto:</span><span class="sxs-lookup"><span data-stu-id="7d4de-134">You've done the necessary changes to your application, and your model now looks like this:</span></span>
+<span data-ttu-id="d6450-134">Han pasado unos días y le piden que agregue una marca de tiempo de creación a los blogs.</span><span class="sxs-lookup"><span data-stu-id="d6450-134">A few days have passed, and you're asked to add a creation timestamp to your blogs.</span></span> <span data-ttu-id="d6450-135">Ha realizado los cambios necesarios en la aplicación y el ahora modelo tiene este aspecto:</span><span class="sxs-lookup"><span data-stu-id="d6450-135">You've done the necessary changes to your application, and your model now looks like this:</span></span>
 
 ```c#
 public class Blog
@@ -95,15 +96,15 @@ public class Blog
 }
 ```
 
-<span data-ttu-id="7d4de-135">Ahora el modelo y la base de datos de producción están desincronizados; tendrá que agregar una nueva columna al esquema de la base de datos.</span><span class="sxs-lookup"><span data-stu-id="7d4de-135">Your model and your production database are now out of sync - we must add a new column to your database schema.</span></span> <span data-ttu-id="7d4de-136">Cree una migración para esto:</span><span class="sxs-lookup"><span data-stu-id="7d4de-136">Let's create a new migration for this:</span></span>
+<span data-ttu-id="d6450-136">Ahora el modelo y la base de datos de producción están desincronizados; tendrá que agregar una nueva columna al esquema de la base de datos.</span><span class="sxs-lookup"><span data-stu-id="d6450-136">Your model and your production database are now out of sync - we must add a new column to your database schema.</span></span> <span data-ttu-id="d6450-137">Cree una migración para esto:</span><span class="sxs-lookup"><span data-stu-id="d6450-137">Let's create a new migration for this:</span></span>
 
-#### <a name="net-core-cli"></a>[<span data-ttu-id="7d4de-137">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="7d4de-137">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+#### <a name="net-core-cli"></a>[<span data-ttu-id="d6450-138">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="d6450-138">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
 ```dotnetcli
 dotnet ef migrations add AddBlogCreatedTimestamp
 ```
 
-#### <a name="visual-studio"></a>[<span data-ttu-id="7d4de-138">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="7d4de-138">Visual Studio</span></span>](#tab/vs)
+#### <a name="visual-studio"></a>[<span data-ttu-id="d6450-139">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d6450-139">Visual Studio</span></span>](#tab/vs)
 
 ``` powershell
 Add-Migration AddBlogCreatedTimestamp
@@ -111,18 +112,18 @@ Add-Migration AddBlogCreatedTimestamp
 
 ***
 
-<span data-ttu-id="7d4de-139">Tenga en cuenta que a las migraciones se les proporciona un nombre descriptivo para que después sea más fácil entender el historial del proyecto.</span><span class="sxs-lookup"><span data-stu-id="7d4de-139">Note that we give migrations a descriptive name, to make it easier to understand the project history later.</span></span>
+<span data-ttu-id="d6450-140">Tenga en cuenta que a las migraciones se les proporciona un nombre descriptivo para que después sea más fácil entender el historial del proyecto.</span><span class="sxs-lookup"><span data-stu-id="d6450-140">Note that we give migrations a descriptive name, to make it easier to understand the project history later.</span></span>
 
-<span data-ttu-id="7d4de-140">Como no se trata de la primera migración del proyecto, ahora EF Core compara el modelo actualizado con una instantánea del modelo anterior, antes de que se agregara la columna; la instantánea del modelo es uno de los archivos generados por EF Core cuando se agrega una migración y se inserta en el control de código fuente.</span><span class="sxs-lookup"><span data-stu-id="7d4de-140">Since this isn't the project's first migration, EF Core now compares your updated model against a snapshot of the old model, before the column was added; the model snapshot is one of the files generated by EF Core when you add a migration, and is checked into source control.</span></span> <span data-ttu-id="7d4de-141">En función de esa comparación, EF Core detecta que se ha agregado una columna y agrega la migración adecuada.</span><span class="sxs-lookup"><span data-stu-id="7d4de-141">Based on that comparison, EF Core detects that a column has been added, and adds the appropriate migration.</span></span>
+<span data-ttu-id="d6450-141">Como no se trata de la primera migración del proyecto, ahora EF Core compara el modelo actualizado con una instantánea del modelo anterior, antes de que se agregara la columna; la instantánea del modelo es uno de los archivos generados por EF Core cuando se agrega una migración y se inserta en el control de código fuente.</span><span class="sxs-lookup"><span data-stu-id="d6450-141">Since this isn't the project's first migration, EF Core now compares your updated model against a snapshot of the old model, before the column was added; the model snapshot is one of the files generated by EF Core when you add a migration, and is checked into source control.</span></span> <span data-ttu-id="d6450-142">En función de esa comparación, EF Core detecta que se ha agregado una columna y agrega la migración adecuada.</span><span class="sxs-lookup"><span data-stu-id="d6450-142">Based on that comparison, EF Core detects that a column has been added, and adds the appropriate migration.</span></span>
 
-<span data-ttu-id="7d4de-142">Ahora puede aplicar la migración como antes:</span><span class="sxs-lookup"><span data-stu-id="7d4de-142">You can now apply your migration as before:</span></span>
+<span data-ttu-id="d6450-143">Ahora puede aplicar la migración como antes:</span><span class="sxs-lookup"><span data-stu-id="d6450-143">You can now apply your migration as before:</span></span>
 
-#### <a name="net-core-cli"></a>[<span data-ttu-id="7d4de-143">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="7d4de-143">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+#### <a name="net-core-cli"></a>[<span data-ttu-id="d6450-144">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="d6450-144">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
 ```dotnetcli
 dotnet ef database update
 ```
-#### <a name="visual-studio"></a>[<span data-ttu-id="7d4de-144">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="7d4de-144">Visual Studio</span></span>](#tab/vs)
+#### <a name="visual-studio"></a>[<span data-ttu-id="d6450-145">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="d6450-145">Visual Studio</span></span>](#tab/vs)
 
 ``` powershell
 Update-Database
@@ -130,8 +131,8 @@ Update-Database
 
 ***
 
-<span data-ttu-id="7d4de-145">Tenga en cuenta que, en esta ocasión, EF detecta que la base de datos ya existe.</span><span class="sxs-lookup"><span data-stu-id="7d4de-145">Note that this time, EF detects that the database already exists.</span></span> <span data-ttu-id="7d4de-146">Además, cuando antes se ha aplicado la primera migración, esta operación se ha registrado en una tabla de historial de migraciones especial en la base de datos, lo que permite que EF solo aplique de forma automática la nueva migración.</span><span class="sxs-lookup"><span data-stu-id="7d4de-146">In addition, when our first migration was applied above, this fact was recorded in a special migrations history table in your database; this allows EF to automatically apply only the new migration.</span></span>
+<span data-ttu-id="d6450-146">Tenga en cuenta que, en esta ocasión, EF detecta que la base de datos ya existe.</span><span class="sxs-lookup"><span data-stu-id="d6450-146">Note that this time, EF detects that the database already exists.</span></span> <span data-ttu-id="d6450-147">Además, cuando antes se ha aplicado la primera migración, esta operación se ha registrado en una tabla de historial de migraciones especial en la base de datos, lo que permite que EF solo aplique de forma automática la nueva migración.</span><span class="sxs-lookup"><span data-stu-id="d6450-147">In addition, when our first migration was applied above, this fact was recorded in a special migrations history table in your database; this allows EF to automatically apply only the new migration.</span></span>
 
-### <a name="next-steps"></a><span data-ttu-id="7d4de-147">Pasos siguientes</span><span class="sxs-lookup"><span data-stu-id="7d4de-147">Next steps</span></span>
+### <a name="next-steps"></a><span data-ttu-id="d6450-148">Pasos siguientes</span><span class="sxs-lookup"><span data-stu-id="d6450-148">Next steps</span></span>
 
-<span data-ttu-id="7d4de-148">Lo anterior solo era una breve introducción a las migraciones.</span><span class="sxs-lookup"><span data-stu-id="7d4de-148">The above was only a brief introduction to migrations.</span></span> <span data-ttu-id="7d4de-149">Consulte las demás páginas de documentación para obtener más información sobre cómo [administrar migraciones](xref:core/managing-schemas/migrations/managing), [aplicarlas](xref:core/managing-schemas/migrations/applying) y otros aspectos.</span><span class="sxs-lookup"><span data-stu-id="7d4de-149">Please consult the other documentation pages to learn more about [managing migrations](xref:core/managing-schemas/migrations/managing), [applying them](xref:core/managing-schemas/migrations/applying), and other aspects.</span></span> <span data-ttu-id="7d4de-150">La [referencia de herramientas de la CLI de .NET Core](xref:core/miscellaneous/cli/index) también contiene información útil sobre los distintos comandos</span><span class="sxs-lookup"><span data-stu-id="7d4de-150">The [.NET Core CLI tool reference](xref:core/miscellaneous/cli/index) also contains useful information on the different commands</span></span>
+<span data-ttu-id="d6450-149">Lo anterior solo era una breve introducción a las migraciones.</span><span class="sxs-lookup"><span data-stu-id="d6450-149">The above was only a brief introduction to migrations.</span></span> <span data-ttu-id="d6450-150">Consulte las demás páginas de documentación para obtener más información sobre cómo [administrar migraciones](xref:core/managing-schemas/migrations/managing), [aplicarlas](xref:core/managing-schemas/migrations/applying) y otros aspectos.</span><span class="sxs-lookup"><span data-stu-id="d6450-150">Please consult the other documentation pages to learn more about [managing migrations](xref:core/managing-schemas/migrations/managing), [applying them](xref:core/managing-schemas/migrations/applying), and other aspects.</span></span> <span data-ttu-id="d6450-151">La [referencia de herramientas de la CLI de .NET Core](xref:core/miscellaneous/cli/index) también contiene información útil sobre los distintos comandos</span><span class="sxs-lookup"><span data-stu-id="d6450-151">The [.NET Core CLI tool reference](xref:core/miscellaneous/cli/index) also contains useful information on the different commands</span></span>
