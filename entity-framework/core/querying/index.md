@@ -3,14 +3,13 @@ title: Consulta de datos - EF Core
 description: Información general sobre la realización de consultas en Entity Framework Core
 author: smitpatel
 ms.date: 10/03/2019
-ms.assetid: 7c65ec3e-46c8-48f8-8232-9e31f96c277b
 uid: core/querying/index
-ms.openlocfilehash: 028c640a17c4946158c86bdf1a663a4050f55921
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 0bc1ef7d5595d5ed534a118fdc33e1a78648582e
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616332"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071126"
 ---
 # <a name="querying-data"></a>Consulta de datos
 

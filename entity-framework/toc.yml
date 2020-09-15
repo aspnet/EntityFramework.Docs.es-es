@@ -172,14 +172,24 @@
           items:
             - name: Información general
               href: core/querying/index.md
+            - name: Carga de datos relacionados
+              items:
+                - name: Información general
+                  href: core/querying/related-data/index.md
+                - name: Carga diligente
+                  href: core/querying/related-data/eager.md
+                - name: Carga explícita
+                  href: core/querying/related-data/explicit.md
+                - name: Carga diferida
+                  href: core/querying/related-data/lazy.md
+                - name: Datos relacionados y serialización
+                  href: core/querying/related-data/serialization.md
             - name: Diferencias entre la evaluación de cliente y servidor
               href: core/querying/client-eval.md
             - name: Diferencias entre seguimiento y sin seguimiento
               href: core/querying/tracking.md
             - name: Operadores de consulta complejos
               href: core/querying/complex-query-operators.md
-            - name: Carga de datos relacionados
-              href: core/querying/related-data.md
             - name: Consultas SQL sin formato
               href: core/querying/raw-sql.md
             - name: Filtros de consulta global

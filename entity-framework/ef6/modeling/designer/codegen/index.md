@@ -3,14 +3,13 @@ title: 'Plantillas de generación de código del diseñador: EF6'
 description: Plantillas de generación de código del diseñador en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 56e00fa2-f9f0-48b3-8006-f8266ca7e74b
 uid: ef6/modeling/designer/codegen/index
-ms.openlocfilehash: edc8fe3c269336d59d5bb7a10582881584215b1c
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 4a8225d0186174ea2e2effbc1241389afcbe3921
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620565"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070203"
 ---
 # <a name="designer-code-generation-templates"></a>Plantillas de generación de código del diseñador
 Cuando se crea un modelo con Entity Framework Designer, las clases y el contexto derivado se generan automáticamente. Además de la generación de código predeterminada, también se proporcionan una serie de plantillas que pueden usarse para personalizar el código que se genera. Estas plantillas se proporcionan como plantillas de texto T4, lo que permite personalizarlas en caso necesario.

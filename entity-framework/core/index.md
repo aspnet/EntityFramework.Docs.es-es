@@ -3,14 +3,13 @@ title: Información general de Entity Framework Core - EF Core
 description: Información general de Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
-ms.assetid: bc2a2676-bc46-493f-bf49-e3cc97994d57
 uid: core/index
-ms.openlocfilehash: 4816f2d57590ddd2ad4807daa2cc1c5000cd5713
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 1d320ecae06d9c05fe3a14ec955f7151de6a56e5
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619487"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071932"
 ---
 # <a name="entity-framework-core"></a>Entity Framework Core
 

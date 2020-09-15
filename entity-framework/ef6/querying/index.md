@@ -3,14 +3,13 @@ title: 'Consulta y búsqueda de entidades: EF6'
 description: Consulta y búsqueda de entidades en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 65bb3db2-2226-44af-8864-caa575cf1b46
 uid: ef6/querying/index
-ms.openlocfilehash: 4bfdc59527ab75e7a2e08dc743a1974246643aa3
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: d55c88280bcf164457da89ec58c180e9aa1ad12d
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620329"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90072998"
 ---
 # <a name="querying-and-finding-entities"></a>Consulta y búsqueda de entidades
 En este tema se tratan las distintas formas de consultar datos mediante Entity Framework, incluidos LINQ y el método Find. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  

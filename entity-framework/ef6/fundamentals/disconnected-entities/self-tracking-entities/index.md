@@ -3,14 +3,13 @@ title: 'Entidades de autoseguimiento: EF6'
 description: Entidades de autoseguimiento en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 5e60f5be-7bbb-4bf8-835e-0ac808d6c84a
 uid: ef6/fundamentals/disconnected-entities/self-tracking-entities/index
-ms.openlocfilehash: 0e771c0f147589112779359ab8c06344eb05b8fc
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 9d5985a3f66b58a74536a1a56486bfc37c3f9f4d
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616187"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070593"
 ---
 # <a name="self-tracking-entities"></a>Entidades de autoseguimiento
 

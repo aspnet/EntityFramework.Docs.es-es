@@ -3,14 +3,13 @@ title: Información general de Entity Framework 6 - EF6
 description: Información general de Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 8ae74d63-6bad-4686-b325-bbf9d68f3743
 uid: ef6/index
-ms.openlocfilehash: 62365a650568525604e82f4363c4e2483a2e7354
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: aff7aee51c4e12b278f7cab8b5122ee0edbbac0f
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618175"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90072127"
 ---
 # <a name="entity-framework-6"></a>Entity Framework 6
 Entity Framework 6 (EF6) es un asignador relacional de objetos (O/RM) probado para .NET con muchos años de desarrollo de características y estabilización.
