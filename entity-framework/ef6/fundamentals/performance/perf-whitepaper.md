@@ -3,14 +3,13 @@ title: Consideraciones de rendimiento para EF4, EF5 y EF6-EF6
 description: Consideraciones de rendimiento para Entity Framework 4, 5 y 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: d6d5a465-6434-45fa-855d-5eb48c61a2ea
 uid: ef6/fundamentals/performance/perf-whitepaper
-ms.openlocfilehash: 9d70eab61caace02f59f3c555ef416c45d4f8f45
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 65584382df3d510f314a576f41c5dee3d2e718e7
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616171"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070541"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>Consideraciones de rendimiento para EF 4, 5 y 6
 Por David Obando, Eric Dettinger y otros

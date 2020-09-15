@@ -4,15 +4,14 @@ description: Un registro de cambios en Entity Framework Core los proveedores de 
 author: ajcvickers
 ms.author: avickers
 ms.date: 08/08/2018
-ms.assetid: 7CEF496E-A5B0-4F5F-B68E-529609B23EF9
 ms.technology: entity-framework-core
 uid: core/providers/provider-log
-ms.openlocfilehash: b1377df81ad8697a6fc8d5dd5c23198bdf598368
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 52e4e2c2929cb50585572e4057e88a25c137ad2a
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618982"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071295"
 ---
 # <a name="provider-impacting-changes"></a>Cambios que afectan al proveedor
 

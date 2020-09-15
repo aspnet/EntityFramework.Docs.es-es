@@ -3,13 +3,12 @@ title: Capacidad de prueba y Entity Framework 4,0-EF6
 description: Capacidad de prueba y Entity Framework 4,0
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 9430e2ab-261c-4e8e-8545-2ebc52d7a247
-ms.openlocfilehash: e1ded772bfee4f1870a891eaa525b33da8e9d3bc
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 439e2af6b0c851a2ab70d6d9ed1004deb83b1a0e
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618349"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070515"
 ---
 # <a name="testability-and-entity-framework-40"></a>Capacidad de prueba y Entity Framework 4,0
 Scott Allen

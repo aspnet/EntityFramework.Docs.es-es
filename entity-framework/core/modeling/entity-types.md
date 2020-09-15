@@ -3,14 +3,13 @@ title: 'Tipos de entidad: EF Core'
 description: Cómo configurar y asignar tipos de entidad mediante Entity Framework Core
 author: roji
 ms.date: 12/03/2019
-ms.assetid: cbe6935e-2679-4b77-8914-a8d772240cf1
 uid: core/modeling/entity-types
-ms.openlocfilehash: b3d9ad753637d021d9aa52965da38091ae690f77
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: fead7f9e37efb7f674f429acbfd16c2ca78480d4
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414582"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071516"
 ---
 # <a name="entity-types"></a>Tipos de entidad
 
@@ -18,13 +17,13 @@ La inclusión de un DbSet de un tipo en el contexto significa que se incluye en 
 
 ## <a name="including-types-in-the-model"></a>Incluir tipos en el modelo
 
-Por Convención, los tipos que se exponen en las propiedades de DbSet en el contexto se incluyen en el modelo como entidades. También se incluyen los tipos de entidad que se especifican en el método `OnModelCreating`, al igual que los tipos que se encuentran al explorar de forma recursiva las propiedades de navegación de otros tipos de entidades detectadas.
+Por Convención, los tipos que se exponen en las propiedades de DbSet en el contexto se incluyen en el modelo como entidades. También se incluyen los tipos de entidad que se especifican en el `OnModelCreating` método, al igual que los tipos que se encuentran al explorar de forma recursiva las propiedades de navegación de otros tipos de entidades detectadas.
 
 En el ejemplo de código siguiente, se incluyen todos los tipos:
 
 * `Blog` se incluye porque se expone en una propiedad DbSet en el contexto.
-* `Post` se incluye porque se detecta a través de la propiedad de navegación `Blog.Posts`.
-* `AuditEntry` porque se especifica en `OnModelCreating`.
+* `Post` se incluye porque se detecta a través de la `Blog.Posts` propiedad de navegación.
+* `AuditEntry` porque se especifica en `OnModelCreating` .
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/EntityTypes.cs?name=EntityTypes&highlight=3,7,16)]
 
@@ -60,7 +59,7 @@ Puede configurar manualmente el nombre de la tabla:
 
 ## <a name="table-schema"></a>Esquema de tabla
 
-Al utilizar una base de datos relacional, las tablas se crean por Convención en el esquema predeterminado de la base de datos. Por ejemplo, Microsoft SQL Server usará el esquema de `dbo` (SQLite no admite esquemas).
+Al utilizar una base de datos relacional, las tablas se crean por Convención en el esquema predeterminado de la base de datos. Por ejemplo, Microsoft SQL Server usará el `dbo` esquema (SQLite no admite esquemas).
 
 Puede configurar las tablas que se van a crear en un esquema específico de la siguiente manera:
 

@@ -3,14 +3,13 @@ title: 'Cadenas de conexión: EF Core'
 description: Administrar cadenas de conexión en entornos diferentes con Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
-ms.assetid: aeb0f5f8-b212-4f89-ae83-c642a5190ba0
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: 5b37daa9ba2869ee58c1b95ad9cbaf6b2b491391
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: e4283ada88a557e4f1e3eeea3de2634a7d0dce61
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617767"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071685"
 ---
 # <a name="connection-strings"></a>Cadenas de conexión
 
@@ -34,7 +33,7 @@ Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexi
 > [!TIP]  
 > La `providerName` configuración no es necesaria en EF Core cadenas de conexión almacenadas en App.config porque el proveedor de base de datos se configura mediante código.
 
-Después, puede leer la cadena de conexión con la `ConfigurationManager` API en el método del contexto `OnConfiguring` . Es posible que tenga que agregar una referencia al `System.Configuration` ensamblado de .NET Framework para poder usar esta API.
+Después, puede leer la cadena de conexión con la `ConfigurationManager` API en el método del contexto `OnConfiguring` . Es posible que tenga que agregar una referencia al ensamblado del marco `System.Configuration` para poder usar esta API.
 
 ``` csharp
 public class BloggingContext : DbContext

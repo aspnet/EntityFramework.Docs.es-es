@@ -3,14 +3,13 @@ title: Programación asincrónica-EF Core
 description: Consulta y almacenamiento de datos de forma asincrónica con Entity Framework Core
 author: roji
 ms.date: 9/2/2020
-ms.assetid: 38f71624-7a68-4c72-a918-3e7b858ef090
 uid: core/miscellaneous/async
-ms.openlocfilehash: c5dff82fe2442cd5a21c143933cac2c5d4588281
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: cefbe32b34a38ed6d749ef3ddfff210d5db12332
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620720"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071905"
 ---
 # <a name="asynchronous-programming"></a>Programación asincrónica
 

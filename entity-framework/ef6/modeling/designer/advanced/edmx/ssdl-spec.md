@@ -3,14 +3,13 @@ title: 'Especificación de SSDL: EF6'
 description: Especificación de SSDL en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: a4af4b1a-40f4-48cc-b2e0-fa8f5d9d5419
 uid: ef6/modeling/designer/advanced/edmx/ssdl-spec
-ms.openlocfilehash: ab50579649c2e1b19d113cd127e52be995516e27
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: dbcd4c771e8ca1324a0520f9c8ca13ba4661487b
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620592"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070216"
 ---
 # <a name="ssdl-specification"></a>Especificación SSDL
 El lenguaje de definición de esquemas de almacenamiento (SSDL) es un lenguaje basado en XML que describe el modelo de almacenamiento de una aplicación Entity Framework.
@@ -628,7 +627,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo | Es obligatorio | Value                                                                                                                                                                                                                           |
 |:---------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nombre**       | Sí         | Nombre del parámetro.                                                                                                                                                                                                      |
+| **Nombre**       | Sí         | El nombre del parámetro.                                                                                                                                                                                                      |
 | **Tipo**       | Sí         | El tipo de parámetro.                                                                                                                                                                                                             |
 | **Modo**       | No          | **In**, **out**o **INOUT** dependiendo de si el parámetro es un parámetro de entrada, de salida o de entrada/salida.                                                                                                                |
 | **MaxLength**  | No          | Longitud máxima permitida del parámetro.                                                                                                                                                                                            |

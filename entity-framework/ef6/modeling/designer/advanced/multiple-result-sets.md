@@ -3,21 +3,20 @@ title: 'Procedimientos almacenados con varios conjuntos de resultados: EF6'
 description: Procedimientos almacenados con varios conjuntos de resultados en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 1b3797f9-cd3d-4752-a55e-47b84b399dc1
 uid: ef6/modeling/designer/advanced/multiple-result-sets
-ms.openlocfilehash: 39b8ae171b7cee263554b6ff94bed6bd8f1e0c39
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 6b213b944ca06a7ca141746d86f1127be2fd7d87
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620577"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070229"
 ---
 # <a name="stored-procedures-with-multiple-result-sets"></a>Procedimientos almacenados con varios conjuntos de resultados
 A veces, al utilizar procedimientos almacenados, deberá devolver más de un conjunto de resultados. Este escenario se usa normalmente para reducir el número de recorridos de ida y vuelta de base de datos necesarios para crear una sola pantalla.Antes de EF5, Entity Framework permitiría que se llamara al procedimiento almacenado, pero solo devolvería el primer conjunto de resultados al código de llamada.
 
 En este artículo se muestran dos formas de usar para tener acceso a más de un conjunto de resultados de un procedimiento almacenado en Entity Framework. Una que usa solo código y funciona con Code First y el diseñador de EF y otro que solo funciona con EF Designer. Las herramientas y la compatibilidad con API para esto deberían mejorar en versiones futuras de Entity Framework.
 
-## <a name="model"></a>Modelo
+## <a name="model"></a>Modelado
 
 En los ejemplos de este artículo se usa un blog básico y un modelo de publicaciones en el que un blog tiene muchas publicaciones y una publicación pertenece a un solo blog. Usaremos un procedimiento almacenado en la base de datos que devuelva todos los blogs y publicaciones, algo parecido a esto:
 

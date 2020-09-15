@@ -4,14 +4,13 @@ description: Usar datos espaciales en un modelo de Entity Framework Core
 author: bricelam
 ms.author: bricelam
 ms.date: 11/01/2018
-ms.assetid: 2BDE29FC-4161-41A0-841E-69F51CCD9341
 uid: core/modeling/spatial
-ms.openlocfilehash: 42386fb132f135d725a2068d91dc49c7f613e277
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 8c08835f2d6211e6be5852b58b35f003f823bded
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616694"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071438"
 ---
 # <a name="spatial-data"></a>Datos espaciales
 

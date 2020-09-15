@@ -3,14 +3,13 @@ title: 'Secuencias: EF Core'
 description: Configurar secuencias en un modelo de Entity Framework Core
 author: roji
 ms.date: 12/18/2019
-ms.assetid: 94f81a92-3c72-4e14-912a-f99310374e42
 uid: core/modeling/sequences
-ms.openlocfilehash: 1a212f3944ca95ebc7675ff29b2687c82fdf7fc7
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 8848a7237934091c1253ec61a37eea1c4326d1cb
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619077"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071399"
 ---
 # <a name="sequences"></a>Secuencias
 

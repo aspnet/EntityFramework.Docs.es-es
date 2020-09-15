@@ -3,14 +3,13 @@ title: Configuración de DbContext-EF Core
 description: Estrategias para configurar DbContexts con Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
-ms.assetid: d7a22b5a-4c5b-4e3b-9897-4d7320fcd13f
 uid: core/miscellaneous/configuring-dbcontext
-ms.openlocfilehash: 3e45199e6fc0c8c105ccb0bb03175b4b08716b3f
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 95b855c01b4b0b721eb91d53e0257295527ea44e
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617802"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071698"
 ---
 # <a name="configuring-a-dbcontext"></a>Configuración de un DbContext
 

@@ -4,14 +4,13 @@ description: Usar la inicialización de datos para rellenar una base de datos co
 author: AndriySvyryd
 ms.author: ansvyryd
 ms.date: 11/02/2018
-ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/data-seeding
-ms.openlocfilehash: cdf189a4d2ec00f2bb094045541a98d1a66ffefc
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 1d7adbe45c4cbc64a39485c76d8f516e32ffeba5
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619388"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071607"
 ---
 # <a name="data-seeding"></a>Propagación de datos
 

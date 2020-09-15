@@ -4,14 +4,13 @@ description: Aplicar ingeniería inversa a un modelo a partir de una base de dat
 author: bricelam
 ms.author: bricelam
 ms.date: 11/13/2018
-ms.assetid: 6263EF7D-4989-42E6-BDEE-45DA770342FB
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: e88be834aa1f2f3be41657f07bc7ace3e34c58aa
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 86aa6d22ebe8e5c1d654c83d4c292a1ed5842ddd
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619217"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071919"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
 

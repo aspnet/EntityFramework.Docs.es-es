@@ -3,14 +3,13 @@ title: 'Administración de conexiones: EF6'
 description: Administración de conexiones en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: ecaa5a27-b19e-4bf9-8142-a3fb00642270
 uid: ef6/fundamentals/connection-management
-ms.openlocfilehash: c352e761a9891b5c275f32752f10de13222bf48e
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: e2097f5ed0471d309292625990cc5f9a598c5b2a
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617222"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070567"
 ---
 # <a name="connection-management"></a>Administración de conexiones
 En esta página se describe el comportamiento de Entity Framework con respecto a cómo pasar conexiones al contexto y la funcionalidad de la API **Database. Connection. Open ()** .  

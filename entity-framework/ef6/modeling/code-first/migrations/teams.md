@@ -3,14 +3,13 @@ title: 'Migraciones de Code First en entornos de equipo: EF6'
 description: Migraciones de Code First en entornos de equipo en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 4c2d9a95-de6f-4e97-9738-c1f8043eff69
 uid: ef6/modeling/code-first/migrations/teams
-ms.openlocfilehash: ec382ecb0b7c99e57447ee50119fc3699fe1f324
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: c3f12788f2aba85f54dc062bdb6a7919be47b56d
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617038"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90072231"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Code First Migrations in Team Environments (Migraciones de Code First en entornos de equipo)
 > [!NOTE]

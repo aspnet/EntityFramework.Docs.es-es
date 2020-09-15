@@ -3,14 +3,13 @@ title: Alternar entre varios modelos con el mismo tipo de DbContext EF Core
 description: Alternar entre varios modelos con el mismo tipo DbContext mediante Entity Framework Core
 author: AndriySvyryd
 ms.date: 01/03/2020
-ms.assetid: 3154BF3C-1749-4C60-8D51-AE86773AA116
 uid: core/modeling/dynamic-model
-ms.openlocfilehash: 436cb46e002438f391c654b64efdfacf494d580d
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 0e0af67eab5262ab2b26edadea470c753b6349a0
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617522"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071529"
 ---
 # <a name="alternating-between-multiple-models-with-the-same-dbcontext-type"></a>Alternar entre varios modelos con el mismo tipo DbContext
 

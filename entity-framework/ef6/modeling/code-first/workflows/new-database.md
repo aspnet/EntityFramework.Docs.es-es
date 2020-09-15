@@ -3,14 +3,13 @@ title: 'Code First a una nueva base de datos: EF6'
 description: Code First a una nueva base de datos en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 2df6cb0a-7d8b-4e28-9d05-e2b9a90125af
 uid: ef6/modeling/code-first/workflows/new-database
-ms.openlocfilehash: 4e927bab07ae7a9719c46655e10685b59d0b65dc
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 96d76162383149c045178954196e1294331918a8
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616887"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070372"
 ---
 # <a name="code-first-to-a-new-database"></a>Code First en una nueva base de datos
 Este vídeo y el tutorial paso a paso proporcionan una introducción al desarrollo de Code First que tiene como destino una nueva base de datos. Este escenario incluye establecer como destino una base de datos que no existe y Code First creará, o una base de datos vacía a la que Code First agregará nuevas tablas. Code First permite definir el modelo mediante \# las clases C o VB.net. Opcionalmente, se puede realizar una configuración adicional mediante atributos en las clases y propiedades o mediante una API fluida.

@@ -3,14 +3,13 @@ title: EF Core de registro
 description: Configuración del registro con Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
-ms.assetid: f6e35c6d-45b7-4258-be1d-87c1bb67438d
 uid: core/miscellaneous/logging
-ms.openlocfilehash: 56d0e3f8c5ecf56ee6bd6ddf0c9668bb8e3ac12f
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 0fd1c83f01989095a813727390179db2327b610d
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617746"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90071672"
 ---
 # <a name="logging"></a>Registro
 
