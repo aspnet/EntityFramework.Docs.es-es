@@ -3,13 +3,12 @@ title: 'Selección de Entity Framework versión en tiempo de ejecución para los
 description: Selección de Entity Framework versión en tiempo de ejecución para los modelos EF Designer en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 7ace90a6-46f8-4f55-a88c-7cad9620085c
-ms.openlocfilehash: 77830aaa3c7365e05e867d4ced88bdb8a11e7d6b
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 2025ca5e46c7d9a38ba596d57c023a2c1b224129
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620394"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073271"
 ---
 # <a name="selecting-entity-framework-runtime-version-for-ef-designer-models"></a>Selección de Entity Framework versión en tiempo de ejecución para los modelos EF Designer
 > [!NOTE]

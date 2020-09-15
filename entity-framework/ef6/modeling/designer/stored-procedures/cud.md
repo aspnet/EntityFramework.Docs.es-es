@@ -3,14 +3,13 @@ title: 'Procedimientos almacenados del diseñador CUD: EF6'
 description: Procedimientos almacenados CUD del diseñador en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 1e773972-2da5-45e0-85a2-3cf3fbcfa5cf
 uid: ef6/modeling/designer/stored-procedures/cud
-ms.openlocfilehash: f722cb3ac0b6ce21e685dbb7bffe571fa7b783d5
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: fae795922980452cf062a62e3cbb47de49b49c74
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620368"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073219"
 ---
 # <a name="designer-cud-stored-procedures"></a>Procedimientos almacenados CUD del diseñador
 
@@ -31,7 +30,7 @@ Al asignar las operaciones CUD a los procedimientos almacenados, se aplican las 
 - Si el servidor genera el valor de clave principal para la fila insertada, debe volver a asignar este valor a la propiedad clave de la entidad. En el ejemplo siguiente, el **InsertPerson**   procedimiento almacenado InsertPerson devuelve la clave principal recién creada como parte del conjunto de resultados del procedimiento almacenado. La clave principal se asigna a la clave de entidad (**PersonID**) mediante la característica ** &lt; Agregar enlaces &gt; de resultados**   del diseñador de EF.
 - Las llamadas a procedimientos almacenados se asignan 1:1 con las entidades del modelo conceptual. Por ejemplo, si implementa una jerarquía de herencia en el modelo conceptual y, a continuación, asigna los procedimientos almacenados CUD para las entidades **primaria** (base) y **secundaria** (derivada), al guardar los cambios **secundarios** solo se llamará a los procedimientos almacenados del **elemento secundario**, no se desencadenarán las llamadas a procedimientos almacenados del **elemento primario**.
 
-## <a name="prerequisites"></a>Requisitos previos
+## <a name="prerequisites"></a>Prerrequisitos
 
 Para completar este tutorial, necesitará:
 

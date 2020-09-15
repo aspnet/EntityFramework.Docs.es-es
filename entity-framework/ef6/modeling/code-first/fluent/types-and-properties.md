@@ -3,14 +3,13 @@ title: 'API fluida: configuración y asignación de propiedades y tipos: EF6'
 description: 'API fluida: configuración y asignación de propiedades y tipos en Entity Framework 6'
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 648ed274-c501-4630-88e0-d728ab5c4057
 uid: ef6/modeling/code-first/fluent/types-and-properties
-ms.openlocfilehash: d49da416b2df5828fce5618cc196e22dfbc2bd34
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: ddd56ff280b72adbfd2247a4f1a85e37bf2f4879
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618050"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90072595"
 ---
 # <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>API fluida: configuración y asignación de propiedades y tipos
 Al trabajar con Entity Framework Code First el comportamiento predeterminado es asignar las clases POCO a las tablas mediante un conjunto de convenciones incorporadas en EF. Sin embargo, a veces no puede o no desea seguir estas convenciones y debe asignar entidades a un valor distinto del que dictan las convenciones.  

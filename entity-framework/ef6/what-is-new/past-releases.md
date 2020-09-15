@@ -3,14 +3,13 @@ title: Versiones anteriores de Entity Framework-EF6
 description: Versiones anteriores de Entity Framework
 author: divega
 ms.date: 09/12/2019
-ms.assetid: 1060bb99-765f-4f32-aaeb-d6635d3dbd3e
 uid: ef6/what-is-new/past-releases
-ms.openlocfilehash: e9dce5c545027658a98b375e7ffa15ebbb77369c
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 97ad8015f5302adbe98a63132f1b34009aa68468
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619731"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073648"
 ---
 # <a name="past-releases-of-entity-framework"></a>Versiones anteriores de Entity Framework
 
@@ -164,7 +163,7 @@ Esta es una lista de contenido que colocamos en concreto para la versión EF 5:
     -   [Funciones con valores de tabla](xref:ef6/modeling/designer/advanced/tvfs)
     -   [Varios diagramas por modelo](xref:ef6/modeling/designer/multiple-diagrams)
 -   Configuración del modelo
-    -   [Crear un modelo](xref:ef6/modeling/index)
+    -   [Creación de un modelo](xref:ef6/modeling/index)
     -   [Conexiones y modelos](xref:ef6/fundamentals/configuring/connection-strings)
     -   [Consideraciones de rendimiento](xref:ef6/fundamentals/performance/perf-whitepaper)
     -   [Trabajar con Microsoft SQL Azure](xref:ef6/fundamentals/connection-resiliency/retry-logic)

@@ -3,14 +3,13 @@ title: Obtener ayuda con Entity Framework-EF6
 description: Obtener ayuda con Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 592cae61-02e1-485a-bbb0-a508ade9c67d
 uid: ef6/resources/get-help
-ms.openlocfilehash: 7d0e90a79596233d0d58b9dea31bc79465e985bc
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: e027293169895c0d9a4041e9fb367d49c9b3ce57
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620228"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073852"
 ---
 # <a name="get-help-using-entity-framework"></a>Obtener ayuda con Entity Framework
 ## <a name="stackoverflow-questions-questions-about-using-ef"></a>![Preguntas de StackOverflow](~/ef6/media/stackoverflow.png) Preguntas sobre el uso de EF  

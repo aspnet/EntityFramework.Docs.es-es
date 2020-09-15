@@ -3,14 +3,13 @@ title: Actualización a Entity Framework 6-EF6
 description: Actualización a Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 29958ae5-85d3-4585-9ba6-550b8ec9393a
 uid: ef6/what-is-new/upgrading-to-ef6
-ms.openlocfilehash: b27504e3b18c668a1c41142b9cd5e697944cb5fa
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 118853ad9b53fe2157f50b329bddc31d3135d75a
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619706"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90074047"
 ---
 # <a name="upgrading-to-entity-framework-6"></a>Actualización a Entity Framework 6
 

@@ -3,13 +3,12 @@ title: Validación-EF6
 description: Validación en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 77d6a095-c0d0-471e-80b9-8f9aea6108b2
-ms.openlocfilehash: 0e0f5c581681e7b21b6591ade1541d774e7280bc
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 29f5e22d7f2e388d6e8271a35d10bbf6e318eafa
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619812"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073696"
 ---
 # <a name="data-validation"></a>Validación de datos
 > [!NOTE]

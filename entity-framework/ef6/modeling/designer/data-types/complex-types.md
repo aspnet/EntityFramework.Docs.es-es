@@ -3,14 +3,13 @@ title: 'Tipos complejos: EF Designer: EF6'
 description: 'Tipos complejos: EF Designer en Entity Framework 6'
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 9a8228ef-acfd-4575-860d-769d2c0e18a1
 uid: ef6/modeling/designer/data-types/complex-types
-ms.openlocfilehash: 87b62c119894486cbb54adfc8d3af6208a6618a8
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 6ebba9ea36ddad1a25b21bf98a6ac3090c327144
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620608"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073518"
 ---
 # <a name="complex-types---ef-designer"></a>Tipos complejos: EF Designer
 En este tema se muestra cómo asignar tipos complejos con el Entity Framework Designer (EF Designer) y cómo consultar entidades que contienen propiedades de tipo complejo.

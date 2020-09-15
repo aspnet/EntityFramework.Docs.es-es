@@ -3,14 +3,13 @@ title: 'Vistas de asignación previamente generadas: EF6'
 description: Vistas de asignación previamente generadas en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 917ba9c8-6ddf-4631-ab8c-c4fb378c2fcd
 uid: ef6/fundamentals/performance/pre-generated-views
-ms.openlocfilehash: 8318030603339c45c5c8459db580b7a8de5febda
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: b69c1eea1e219d76a8de1b2cf3b88de2cf74c8f0
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89615857"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073557"
 ---
 # <a name="pre-generated-mapping-views"></a>Vistas de asignación generadas previamente
 Antes de que el Entity Framework pueda ejecutar una consulta o guardar cambios en el origen de datos, debe generar un conjunto de vistas de asignación para tener acceso a la base de datos. Estas vistas de asignación son un conjunto de Entity SQL instrucción que representa la base de datos de forma abstracta y forman parte de los metadatos que se almacenan en caché por dominio de aplicación. Si crea varias instancias del mismo contexto en el mismo dominio de aplicación, volverán a usar las vistas de asignación de los metadatos almacenados en caché en lugar de volver a generarlas. Dado que la generación de la vista de asignación es una parte significativa del costo total de ejecutar la primera consulta, el Entity Framework permite generar previamente vistas de asignación e incluirlas en el proyecto compilado.Para obtener más información, vea  [consideraciones de rendimiento (Entity Framework)](xref:ef6/fundamentals/performance/perf-whitepaper).

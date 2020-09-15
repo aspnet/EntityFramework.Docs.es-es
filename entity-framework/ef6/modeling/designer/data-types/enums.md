@@ -3,14 +3,13 @@ title: 'Compatibilidad con la enumeración: EF Designer-EF6'
 description: 'Compatibilidad con la enumeración: EF Designer en Entity Framework 6'
 author: divega
 ms.date: 10/23/2016
-ms.assetid: c6ae6d8f-1ace-47db-ad47-b1718f1ba082
 uid: ef6/modeling/designer/data-types/enums
-ms.openlocfilehash: 316e8160cfd69d9912d63260471eee3df0eb58f6
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: f3dff2c71cfdeb32183865265144a938eff087c0
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620510"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073128"
 ---
 # <a name="enum-support---ef-designer"></a>Compatibilidad con la enumeración: EF Designer
 > [!NOTE]

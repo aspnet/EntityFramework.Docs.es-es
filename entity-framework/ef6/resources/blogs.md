@@ -3,13 +3,12 @@ title: 'Entity Framework blogs: EF6'
 description: Blogs de Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: f8fcfb34-35de-4e82-b419-8f99fd2eb92a
-ms.openlocfilehash: 7dffdd87254c1cca84e229ecf480197c2bc65f90
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: c4985ae52e5bab943f29191c18fb87696e009f77
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620251"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073865"
 ---
 # <a name="entity-framework-blogs"></a>Entity Framework blogs
 Además de la documentación del producto, estos blogs pueden ser una fuente de información útil sobre Entity Framework:

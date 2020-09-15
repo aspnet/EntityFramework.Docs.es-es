@@ -3,14 +3,13 @@ title: 'Resistencia de conexión y lógica de reintento: EF6'
 description: Resistencia de conexión y lógica de reintento en Entity Framework 6
 author: AndriySvyryd
 ms.date: 11/20/2019
-ms.assetid: 47d68ac1-927e-4842-ab8c-ed8c8698dff2
 uid: ef6/fundamentals/connection-resiliency/retry-logic
-ms.openlocfilehash: 7d05c924f309e410bc457b7e46b0618d38c95569
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 3e71e973be5a23c86f873e9adf1bf00f4b6def58
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616105"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073193"
 ---
 # <a name="connection-resiliency-and-retry-logic"></a>Resistencia de conexión y lógica de reintento
 > [!NOTE]

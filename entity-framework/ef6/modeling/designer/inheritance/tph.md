@@ -3,14 +3,13 @@ title: 'Herencia TPH del diseñador: EF6'
 description: Herencia TPH del diseñador en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 72d26a8e-20ab-4500-bd13-394a08e73394
 uid: ef6/modeling/designer/inheritance/tph
-ms.openlocfilehash: 117730c3f16718f309aff6a1c59697a0a03d9708
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 39675f9533dfef0ddad1867e3b70cd13b30708ea
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620501"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90073401"
 ---
 # <a name="designer-tph-inheritance"></a>Herencia TPH del diseñador
 En este tutorial paso a paso se muestra cómo implementar la herencia de tabla por jerarquía (TPH) en el modelo conceptual con el Entity Framework Designer (EF Designer). La herencia TPH utiliza una tabla de base de datos para mantener los datos de todos los tipos de entidad en una jerarquía de herencia.
@@ -25,7 +24,7 @@ Tabla por tipo (TPT) es otro tipo de herencia en la que las tablas independiente
 
 El tiempo de ejecución de Entity Framework admite la herencia de tipo de tabla por hormigón (TPC) y los modelos de herencia mixto, pero no son compatibles con el diseñador de EF. Si desea utilizar la herencia de TPC o mixta, tiene dos opciones: usar Code First o editar manualmente el archivo EDMX. Si decide trabajar con el archivo EDMX, la ventana detalles de la asignación se colocará en "modo seguro" y no podrá usar el diseñador para cambiar las asignaciones.
 
-## <a name="prerequisites"></a>Requisitos previos
+## <a name="prerequisites"></a>Prerrequisitos
 
 Para completar este tutorial, necesitará:
 

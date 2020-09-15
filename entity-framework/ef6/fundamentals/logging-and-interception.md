@@ -3,14 +3,13 @@ title: 'Registro e intercepción de operaciones de base de datos: EF6'
 description: Registrar e interceptar operaciones de base de datos en Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: b5ee7eb1-88cc-456e-b53c-c67e24c3f8ca
 uid: ef6/fundamentals/logging-and-interception
-ms.openlocfilehash: bb5c3392b4f2e1f291d7ac373d07724f56d0eb30
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 858e96a781933da52725efa56087bc27db06257d
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616194"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90072673"
 ---
 # <a name="logging-and-intercepting-database-operations"></a>Registrar e interceptar operaciones de base de datos
 > [!NOTE]
