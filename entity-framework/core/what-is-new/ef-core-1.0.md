@@ -1,15 +1,16 @@
 ---
 title: Novedades de EF Core 1.0 - EF Core
+description: Cambios y mejoras en Entity Framework Core 1.0
 author: divega
 ms.date: 10/27/2016
 ms.assetid: 20A25111-AEBE-4BC2-83A5-3F651952DF72
 uid: core/what-is-new/ef-core-1.0
-ms.openlocfilehash: 2cd2a54d75ed3f0caa8b674dfb56babcfcc13592
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: adde26095a11016796f6bd616978c3ccc0fe4c18
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413598"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618853"
 ---
 # <a name="features-included-in-ef-core-10"></a>Características incluidas en EF Core 1.0
 
@@ -99,7 +100,7 @@ A través de `DbContext.Entry` y `DbContext.ChangeTracker`.
 
 La nueva API `DbContext.AttachGraph` ayuda a volver a adjuntar entidades a un contexto para guardar las entidades nuevas o modificadas.
 
-## <a name="saving-data"></a>Guardar datos
+## <a name="saving-data"></a>Guardado de datos
 
 ### <a name="basic-save-functionality"></a>Funcionalidad básica de guardado
 
@@ -177,4 +178,4 @@ Diseñado para habilitar fácilmente la realización de pruebas sin conectarse a
 
 ### <a name="3rd-party-providers"></a>Proveedores de terceros
 
-Existen varios proveedores disponibles para otros motores de base de datos. Para una lista completa, consulte [Proveedores de bases de datos](../providers/index.md).
+Existen varios proveedores disponibles para otros motores de base de datos. Para una lista completa, consulte [Proveedores de bases de datos](xref:core/providers/index).

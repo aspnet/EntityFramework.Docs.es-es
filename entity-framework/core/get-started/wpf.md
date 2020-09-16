@@ -1,15 +1,16 @@
 ---
 title: 'Introducción a WPF: EF Core'
+description: Tutorial de introducción al uso de WPF con Entity Framework Core
 author: jeremylikness
 ms.author: jeliknes
 ms.date: 07/24/2020
 uid: core/get-started/wpf
-ms.openlocfilehash: 958fc579a72a9bf3c97c5551d55777df6c32293f
-ms.sourcegitcommit: 949faaba02e07e44359e77d7935f540af5c32093
+ms.openlocfilehash: 1198da5c9564663ca26392b33462c727275a432d
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/03/2020
-ms.locfileid: "87535607"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619305"
 ---
 # <a name="getting-started-with-wpf"></a>Introducción a WPF
 
@@ -81,14 +82,14 @@ Agregue una nueva clase `ProductContext.cs` al proyecto con la siguiente definic
 [!code-csharp[](../../../samples/core/WPF/GetStartedWPF/GetStartedWPF/ProductContext.cs)]
 
 * `DbSet` informa a EF Core de qué entidades de C# se deben asignar a la base de datos.
-* Hay varias maneras de configurar `DbContext` de EF Core. Puede leer sobre ellas en: [Configuración de un DbContext](/ef/core/miscellaneous/configuring-dbcontext).
+* Hay varias maneras de configurar `DbContext` de EF Core. Puede leer sobre ellas en: [Configuración de un DbContext](xref:core/miscellaneous/configuring-dbcontext).
 * En este ejemplo se usa la invalidación `OnConfiguring` para especificar un archivo de datos de Sqlite.
 * La llamada a `UseLazyLoadingProxies` indica a EF Core que implemente la carga diferida, por lo que las entidades secundarias se cargan automáticamente cuando se obtiene acceso a ellas desde el elemento primario.
 
 Presione **CTRL + MAYÚS + B** o vaya a **Compilar &gt; Compilar solución** para compilar el proyecto.
 
 > [!TIP]
-> Obtenga información sobre los distintos pasos para mantener sincronizados la base de datos y los modelos de EF Core: [Administración de esquemas de base de datos](/ef/core/managing-schemas).
+> Obtenga información sobre los distintos pasos para mantener sincronizados la base de datos y los modelos de EF Core: [Administración de esquemas de base de datos](xref:core/managing-schemas/index).
 
 ## <a name="lazy-loading"></a>Carga diferida
 
@@ -149,7 +150,7 @@ El código declara una instancia de larga duración de `ProductContext`. El obje
 [!code-csharp[](../../../samples/core/WPF/GetStartedWPF/GetStartedWPF/MainWindow.xaml.cs)]
 
 > [!NOTE]
-> El código usa una llamada a `EnsureCreated()` para compilar la base de datos en la primera ejecución. Esto es aceptable para demostraciones, pero en las aplicaciones de producción debe examinar [migraciones](/ef/core/managing-schemas/migrations/) para administrar el esquema. El código también se ejecuta de forma sincrónica porque usa una base de datos SQLite local. En escenarios de producción que normalmente implican un servidor remoto, considere la posibilidad de utilizar las versiones asincrónicas de los métodos `Load` y `SaveChanges`.
+> El código usa una llamada a `EnsureCreated()` para compilar la base de datos en la primera ejecución. Esto es aceptable para demostraciones, pero en las aplicaciones de producción debe examinar [migraciones](xref:core/managing-schemas/migrations/index) para administrar el esquema. El código también se ejecuta de forma sincrónica porque usa una base de datos SQLite local. En escenarios de producción que normalmente implican un servidor remoto, considere la posibilidad de utilizar las versiones asincrónicas de los métodos `Load` y `SaveChanges`.
 
 ## <a name="test-the-wpf-application"></a>Prueba de una aplicación WPF
 
@@ -159,18 +160,18 @@ Para compilar y ejecutar la aplicación, presione **F5** o seleccione **Depurar 
 
 ## <a name="property-change-notification"></a>Notificación de cambio de propiedad
 
-Este ejemplo se basa en cuatro pasos para sincronizar las entidades con la interfaz de usuario. 
+Este ejemplo se basa en cuatro pasos para sincronizar las entidades con la interfaz de usuario.
 
 1. La llamada inicial a `_context.Categories.Load()` carga los datos de categorías.
 1. Los proxies de carga diferida cargan los datos de los productos dependientes.
 1. El seguimiento de cambios integrado de EF Core realiza las modificaciones necesarias en las entidades, incluidas las inserciones y eliminaciones, cuando se llama a `_context.SaveChanges()`.
 1. Las llamadas a `DataGridView.Items.Refresh()` fuerzan una recarga con los identificadores recién generados.
 
-Esto sirve para el ejemplo de introducción, pero puede que necesite código adicional para otros escenarios. Los controles de WPF representan la interfaz de usuario mediante la lectura de los campos y las propiedades de las entidades. Cuando se edita un valor en la interfaz de usuario (UI), ese valor se pasa a la entidad. Al cambiar el valor de una propiedad directamente en la entidad, como cargarla desde la base de datos, WPF no reflejará inmediatamente los cambios en la interfaz de usuario. El motor de representación debe recibir notificaciones de los cambios. El proyecto lo hizo llamando manualmente a `Refresh()`. Una manera sencilla de automatizar esta notificación es mediante la implementación de la interfaz [INotifyPropertyChanged](/dotnet/api/system.componentmodel.inotifypropertychanged). Los componentes de WPF detectarán automáticamente la interfaz y se registrarán para los eventos de cambio. La entidad es responsable de generar estos eventos. 
+Esto sirve para el ejemplo de introducción, pero puede que necesite código adicional para otros escenarios. Los controles de WPF representan la interfaz de usuario mediante la lectura de los campos y las propiedades de las entidades. Cuando se edita un valor en la interfaz de usuario (UI), ese valor se pasa a la entidad. Al cambiar el valor de una propiedad directamente en la entidad, como cargarla desde la base de datos, WPF no reflejará inmediatamente los cambios en la interfaz de usuario. El motor de representación debe recibir notificaciones de los cambios. El proyecto lo hizo llamando manualmente a `Refresh()`. Una manera sencilla de automatizar esta notificación es mediante la implementación de la interfaz [INotifyPropertyChanged](/dotnet/api/system.componentmodel.inotifypropertychanged). Los componentes de WPF detectarán automáticamente la interfaz y se registrarán para los eventos de cambio. La entidad es responsable de generar estos eventos.
 
 > [!TIP]
 > Para obtener más información sobre cómo administrar los cambios, lea: [Implementación de la notificación de cambio de propiedad](/dotnet/framework/wpf/data/how-to-implement-property-change-notification).
 
 ## <a name="next-steps"></a>Pasos siguientes
 
-Más información sobre la [Configuración de un DbContext](/ef/core/miscellaneous/configuring-dbcontext).
+Más información sobre la [Configuración de un DbContext](xref:core/miscellaneous/configuring-dbcontext).

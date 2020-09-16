@@ -1,15 +1,16 @@
 ---
 title: Novedades de EF Core 2.1 - EF Core
+description: Cambios y mejoras en Entity Framework Core 2.1
 author: divega
 ms.date: 02/20/2018
 ms.assetid: 585F90A3-4D5A-4DD1-92D8-5243B14E0FEC
 uid: core/what-is-new/ef-core-2.1
-ms.openlocfilehash: ba3a26bcd76cd0b9615b13f32456e7280afe533a
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 5aa8aa5d3578b9f69e63adaf731a1642f748c5c2
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413568"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618753"
 ---
 # <a name="new-features-in-ef-core-21"></a>Novedades de EF Core 2.1
 

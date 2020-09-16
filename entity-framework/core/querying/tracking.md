@@ -1,15 +1,16 @@
 ---
 title: 'Consultas de seguimiento frente a consultas de no seguimiento: EF Core'
+description: Información sobre las consultas de seguimiento y no seguimiento en Entity Framework Core
 author: smitpatel
 ms.date: 10/10/2019
 ms.assetid: e17e060c-929f-4180-8883-40c438fbcc01
 uid: core/querying/tracking
-ms.openlocfilehash: a6c71c12f429f1324abe91d1b2cef96312bec051
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: f49c6a3e1dc84dff72d80e3ef0f9bbe149d58a72
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413700"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617420"
 ---
 # <a name="tracking-vs-no-tracking-queries"></a>Consultas de seguimiento frente a consultas de no seguimiento
 

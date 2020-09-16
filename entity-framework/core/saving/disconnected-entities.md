@@ -1,20 +1,21 @@
 ---
 title: 'Entidades desconectadas: EF Core'
+description: Trabajo con entidades desconectadas y sin seguimiento en varias instancias de contexto en Entity Framework Core
 author: ajcvickers
 ms.author: avickers
 ms.date: 10/27/2016
 ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 421531e68ac98c0553938f1c24892701f22fef3c
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 52ba838c4d54771c51737c3940e5a88659f94144
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413658"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617276"
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 
-Una DbContext realizará seguimiento automático de las entidades que se devuelven de la base de datos. De ese modo, los cambios hechos en estas entidades se detectarán cuando se llame a SaveChanges y la base de datos se actualizará según sea necesario. Consulte [Basic Save](basic.md) (Guardado básico) y [Related Data](related-data.md) (Datos relacionados) para información detallada.
+Una DbContext realizará seguimiento automático de las entidades que se devuelven de la base de datos. De ese modo, los cambios hechos en estas entidades se detectarán cuando se llame a SaveChanges y la base de datos se actualizará según sea necesario. Consulte [Basic Save](xref:core/saving/basic) (Guardado básico) y [Related Data](xref:core/saving/related-data) (Datos relacionados) para información detallada.
 
 Sin embargo, en algunas ocasiones las entidades se consultan mediante el uso de una instancia de contexto y luego se guardan con una instancia distinta. Esto suele ocurrir en escenarios "desconectados", como una aplicación web, en los que las entidades se consultan, se envían al cliente, se modifican, se envían de vuelta al servidor en una solicitud y, a continuación, se guardan. En este caso, la segunda instancia de contexto debe saber si las entidades son nuevas (y se deben insertar) o existentes (y se deben actualizar).
 

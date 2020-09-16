@@ -1,18 +1,19 @@
 ---
 title: Plan para Entity Framework Core 5.0
+description: Características planeadas para Entity Framework Core 5.0
 author: ajcvickers
 ms.date: 08/22/2020
 uid: core/what-is-new/ef-core-5.0/plan
-ms.openlocfilehash: a0d41d6df844c9ca2c8a2dc8ba50ca669e23dced
-ms.sourcegitcommit: 6f7af3f138bf7c724cbdda261f97e5cf7035e8d7
+ms.openlocfilehash: 5ac7a48a70959b625b7c602ee48dc08a360bee73
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 08/25/2020
-ms.locfileid: "88847584"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618669"
 ---
 # <a name="plan-for-entity-framework-core-50"></a>Plan para Entity Framework Core 5.0
 
-Como se describe en el [proceso de planeamiento](xref:core/what-is-new/release_planning), se ha recopilado la información de las partes interesadas en un plan provisional para la versión EF Core 5.0.
+Como se describe en el [proceso de planeamiento](xref:core/what-is-new/release-planning), se ha recopilado la información de las partes interesadas en un plan provisional para la versión EF Core 5.0.
 
 > [!IMPORTANT]
 > Este plan sigue siendo un trabajo en curso. Nada de esto es un compromiso. Este plan es un punto de partida que evolucionará a medida que se obtenga más información. Es posible que algunos aspectos no planeados en la actualidad se incorporen a la versión 5.0. Es posible que algunos aspectos planeados en la actualidad se eliminen de la versión 5.0.
@@ -309,4 +310,4 @@ Además, durante la planeación siempre se tienen en cuenta los [problemas más 
 
 ## <a name="suggestions"></a>Sugerencias
 
-Sus comentarios sobre la planeación son importantes. La mejor manera de indicar la importancia de un problema es votar (pulgar) por ese problema en GitHub. Estos datos se introducirán después en el [proceso de planeación](xref:core/what-is-new/release_planning) de la próxima versión.
+Sus comentarios sobre la planeación son importantes. La mejor manera de indicar la importancia de un problema es votar (pulgar) por ese problema en GitHub. Estos datos se introducirán después en el [proceso de planeación](xref:core/what-is-new/release-planning) de la próxima versión.

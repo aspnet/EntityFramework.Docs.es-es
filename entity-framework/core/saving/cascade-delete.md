@@ -1,21 +1,22 @@
 ---
 title: 'Eliminación en cascada: EF Core'
+description: Configuración de los comportamientos de eliminación para entidades relacionadas al eliminar una entidad de seguridad
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: ee8e14ec-2158-4c9c-96b5-118715e2ed9e
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 6e92b869d691d0224abf1997d9eb7ea035489c5d
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: cf17e6586b89376b2d7fcc0f9cbfc8e1c4f6ba58
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413670"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617410"
 ---
 # <a name="cascade-delete"></a>Eliminación en cascada
 
 En la terminología de las bases de datos, la eliminación en cascada se usa habitualmente para describir una característica que permite eliminar una fila para desencadenar de manera automática la eliminación de las filas relacionadas. Un concepto estrechamente relacionado que también abarcan los comportamientos de eliminación de EF Core es la eliminación automática de una entidad secundaria cuando se interrumpe su relación con una entidad primaria. Esto normalmente se conoce como la "eliminación de entidades huérfanas".
 
-EF Core implementa varios comportamientos de eliminación distintos y permite configurar estos comportamientos de las relaciones individuales. EF Core también implementa convenciones que configuran automáticamente útiles comportamientos de eliminación predeterminados para cada relación en función de la [obligatoriedad de la relación](../modeling/relationships.md#required-and-optional-relationships).
+EF Core implementa varios comportamientos de eliminación distintos y permite configurar estos comportamientos de las relaciones individuales. EF Core también implementa convenciones que configuran automáticamente útiles comportamientos de eliminación predeterminados para cada relación en función de la [obligatoriedad de la relación](xref:core/modeling/relationships#required-and-optional-relationships).
 
 ## <a name="delete-behaviors"></a>Comportamientos de eliminación
 
@@ -58,7 +59,7 @@ En el caso de las relaciones obligatorias (clave externa que no admite un valor 
 
 En las tablas anteriores, *None* puede dar lugar a una infracción de restricción. Por ejemplo, si se elimina una entidad principal o secundaria pero no se hace ninguna acción para cambiar la clave externa de una entidad dependiente o secundaria, es probable que la base de datos genere una excepción en SaveChanges debido a una infracción de restricción externa.
 
-En un nivel superior:
+En un alto nivel:
 
 * Si tiene entidades que no pueden existir sin una entidad primaria y quiere que EF se encargue de eliminar automáticamente las entidades secundarias, use *Cascade*.
   * Habitualmente, las entidades que no pueden existir sin una entidad primaria usan las relaciones obligatorias, en las que el valor predeterminado es *Cascade*.
@@ -71,7 +72,7 @@ En un nivel superior:
 > En EF Core, a diferencia de lo que ocurre en EF6, los efectos en cascada no se producen de inmediato, sino que solo cuando se llama a SaveChanges.
 
 > [!NOTE]  
-> **Cambios en EF Core 2.0:** en versiones anteriores, *Restrict* haría que las propiedades de claves externas opcionales de las entidades dependientes con seguimiento se establecieran en NULL y que este fuera el comportamiento de eliminación predeterminado de las relaciones opcionales. En EF Core 2.0, se introdujo *ClientSetNull* para representar ese comportamiento y se transformó en el valor predeterminado de las relaciones opcionales. El comportamiento de *Restrict* se ajustó para que nunca haya efectos secundarios en las entidades dependientes.
+> **Cambios en EF Core 2.0:** en versiones anteriores, *Restrict* supondría que las propiedades de claves externas opcionales de las entidades dependientes con seguimiento se establezcan en NULL y que este fuese el comportamiento de eliminación predeterminado de las relaciones opcionales. En EF Core 2.0, se introdujo *ClientSetNull* para representar ese comportamiento y se transformó en el valor predeterminado de las relaciones opcionales. El comportamiento de *Restrict* se ajustó para que nunca haya efectos secundarios en las entidades dependientes.
 
 ## <a name="entity-deletion-examples"></a>Ejemplos de eliminación de entidades
 

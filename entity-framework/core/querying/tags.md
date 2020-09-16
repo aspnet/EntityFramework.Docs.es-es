@@ -1,15 +1,16 @@
 ---
 title: Etiquetas de consulta - EF Core
+description: Uso de etiquetas de consulta para ayudar a identificar consultas específicas en los mensajes de registro que emite Entity Framework Core
 author: divega
 ms.date: 11/14/2018
 ms.assetid: 73C7A627-C8E9-452D-9CD5-AFCC8FEFE395
 uid: core/querying/tags
-ms.openlocfilehash: e8415b237df45ce652dcd152013f4f12a992aed7
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: bf80057d29160bd5ef6ae26ee6d447fc3c3f0fec
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413832"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617489"
 ---
 # <a name="query-tags"></a>Etiquetas de consulta
 

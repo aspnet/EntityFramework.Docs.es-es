@@ -1,15 +1,16 @@
 ---
 title: 'EF6 y EF Core: uso en la misma aplicación'
+description: Instrucciones sobre el uso de Entity Framework Core y Entity Framework 6 en la misma aplicación
 author: ajcvickers
 ms.date: 01/23/2019
 ms.assetid: a06e3c35-110c-4294-a1e2-32d2c31c90a7
 uid: efcore-and-ef6/side-by-side
-ms.openlocfilehash: bcf0a26535c4ec880a9ac25478c987fb683f6d26
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 9bd3d837a333eb23be4cb3095b7f387ad303376d
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413868"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89619545"
 ---
 # <a name="using-ef-core-and-ef6-in-the-same-application"></a>Uso de EF Core y EF6 en la misma aplicación
 

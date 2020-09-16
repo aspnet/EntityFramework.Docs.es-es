@@ -1,15 +1,16 @@
 ---
 title: 'Guardado de datos relacionados: EF Core'
+description: Información sobre cómo guardar grafos de entidades relacionadas y administrar relaciones en Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
 ms.assetid: 07b6680f-ffcf-412c-9857-f997486b386c
 uid: core/saving/related-data
-ms.openlocfilehash: 86d32b6172ee21c12a15e9ed4bb0142afc99c8bd
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 118d5933dd543a03bbe16fd8be1f00b7304e39c4
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413616"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89618888"
 ---
 # <a name="saving-related-data"></a>Guardado de datos relacionados
 
@@ -53,9 +54,9 @@ Quitar una relación puede tener efectos secundarios en la entidad dependiente, 
 
 De manera predeterminada, en el caso de las relaciones obligatorias, hay configurado un comportamiento de eliminación en cascada y la entidad secundaria o dependiente se eliminará de la base de datos. En el caso de las relaciones opcionales, no hay configurada una eliminación en cascada de manera predeterminada, pero la propiedad de clave externa se establecerá en NULL.
 
-Consulte la sección sobre las [relaciones obligatorias y opcionales](../modeling/relationships.md#required-and-optional-relationships) para más información sobre cómo se puede configurar la obligatoriedad de las relaciones.
+Consulte la sección sobre las [relaciones obligatorias y opcionales](xref:core/modeling/relationships#required-and-optional-relationships) para más información sobre cómo se puede configurar la obligatoriedad de las relaciones.
 
-Consulte el artículo sobre la [eliminación en cascada](cascade-delete.md) para más detalles sobre el funcionamiento de los comportamientos de eliminación en cascada, cómo se pueden configurar de manera explícita y cómo se seleccionan por convención.
+Consulte el artículo sobre la [eliminación en cascada](xref:core/saving/cascade-delete) para más detalles sobre el funcionamiento de los comportamientos de eliminación en cascada, cómo se pueden configurar de manera explícita y cómo se seleccionan por convención.
 
 En el ejemplo siguiente, se configura una eliminación en cascada en la relación entre `Blog` y `Post`, por lo que la entidad `post` se elimina de la base de datos.
 

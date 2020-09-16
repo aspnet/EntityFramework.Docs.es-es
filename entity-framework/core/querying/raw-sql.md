@@ -1,15 +1,16 @@
 ---
 title: 'Consultas SQL sin formato: EF Core'
+description: Uso de SQL sin formato para consultas en Entity Framework Core
 author: smitpatel
 ms.date: 10/08/2019
 ms.assetid: 70aae9b5-8743-4557-9c5d-239f688bf418
 uid: core/querying/raw-sql
-ms.openlocfilehash: a54bb67c0fce9d621382f6372e70fe4cdca48a20
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 3b95c15b2b07d1eeecf1603e6bfbb29f4931d5cc
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413718"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89617509"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL sin formato
 
@@ -28,7 +29,7 @@ Las consultas SQL sin formato se pueden usar para ejecutar un procedimiento alma
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedure)]
 
-## <a name="passing-parameters"></a>Paso de parámetros
+## <a name="passing-parameters"></a>Pasar parámetros
 
 > [!WARNING]
 > **Use siempre la parametrización para las consultas SQL sin formato**
@@ -55,6 +56,9 @@ También puede construir un elemento DbParameter y suministrarlo como un valor d
 `FromSqlRaw` permite usar parámetros con nombre en la cadena de consulta SQL, lo que resulta útil cuando un procedimiento almacenado tiene parámetros opcionales:
 
 [!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureNamedSqlParameter)]
+
+> [!NOTE]
+> **Orden de los parámetros** Entity Framework Core pasa parámetros basados en el orden de la matriz de `SqlParameter[]`. Al pasar varios `SqlParameter`, el orden de la cadena SQL debe coincidir con el orden de los parámetros en la definición del procedimiento almacenado. Si no lo hace, al ejecutar el procedimiento pueden producirse excepciones de conversión de tipos o un comportamiento inesperado.
 
 ## <a name="composing-with-linq"></a>Redacción con LINQ
 

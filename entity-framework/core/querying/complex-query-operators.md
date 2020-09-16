@@ -1,15 +1,16 @@
 ---
 title: 'Operadores de consulta complejos: EF Core'
+description: Información detallada sobre los operadores de consulta LINQ más complejos cuando se usa Entity Framework Core
 author: smitpatel
 ms.date: 10/03/2019
 ms.assetid: 2e187a2a-4072-4198-9040-aaad68e424fd
 uid: core/querying/complex-query-operators
-ms.openlocfilehash: 44c2695ea003da043925740a52596fd27da638f8
-ms.sourcegitcommit: 9b562663679854c37c05fca13d93e180213fb4aa
+ms.openlocfilehash: 61a46361cc4bc1635174aaf2ca3260fa67fc6aaf
+ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 04/07/2020
-ms.locfileid: "78413778"
+ms.lasthandoff: 09/09/2020
+ms.locfileid: "89616450"
 ---
 # <a name="complex-query-operators"></a>Operadores de consulta complejos
 
@@ -86,7 +87,7 @@ FROM [Blogs] AS [b]
 OUTER APPLY [Posts] AS [p]
 ```
 
-## <a name="groupby"></a>GROUP BY
+## <a name="groupby"></a>GroupBy
 
 Los operadores GroupBy de LINQ crean un resultado de tipo `IGrouping<TKey, TElement>`, donde `TKey` y `TElement` podrían ser cualquier tipo arbitrario. Además, `IGrouping` implementa `IEnumerable<TElement>`, lo que significa que se puede redactar sobre este elemento con cualquier operador de LINQ después de la agrupación. Como ninguna estructura de base de datos puede representar una instancia de `IGrouping`, en la mayoría de los casos los operadores GroupBy no tienen ninguna traducción. Cuando se aplica un operador de agregado a cada grupo, lo que devuelve un valor escalar, se puede traducir a `GROUP BY` de SQL en las bases de datos relacionales. `GROUP BY` de SQL también es restrictivo. Requiere que se agrupe solo por valores escalares. La proyección solo puede contener columnas de clave de agrupación o cualquier agregado aplicado en una columna. EF Core identifica este patrón y lo traduce al servidor, como en el ejemplo siguiente:
 
@@ -112,7 +113,7 @@ ORDER BY [p].[AuthorId]
 
 Los operadores de agregado que admite EF Core son los siguientes
 
-- Average
+- Media
 - Count
 - LongCount
 - Max
