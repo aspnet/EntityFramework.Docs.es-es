@@ -3,14 +3,13 @@ title: Novedades de EF Core 2.2 - EF Core
 description: Cambios y mejoras en Entity Framework Core 2.2
 author: divega
 ms.date: 11/14/2018
-ms.assetid: 998C04F3-676A-4FCF-8450-CFB0457B4198
 uid: core/what-is-new/ef-core-2.2
-ms.openlocfilehash: 5d248c4dcf760ee7ae86417f5d7a000848a4f97e
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 68e3cbd5c7345330a47f1457c9b096fee5dd49e9
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618726"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90072334"
 ---
 # <a name="new-features-in-ef-core-22"></a>Novedades de EF Core 2.2
 

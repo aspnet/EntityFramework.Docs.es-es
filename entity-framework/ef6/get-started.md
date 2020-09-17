@@ -3,14 +3,13 @@ title: 'Introducción a Entity Framework 6: EF6'
 description: Introducción a Entity Framework 6
 author: divega
 ms.date: 10/23/2016
-ms.assetid: 66ce9113-81d2-480f-8c16-d00ec405b2f7
 uid: ef6/get-started
-ms.openlocfilehash: a03fa403bedc260def3f8110a028e972824cb756
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 825fe3716ade947f1660c8131100a1c3acba5a1d
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618199"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90072140"
 ---
 # <a name="get-started-with-entity-framework-6"></a>Introducción a Entity Framework 6
 

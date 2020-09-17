@@ -3,14 +3,13 @@ title: 'Transacciones: EF Core'
 description: Administración de transacciones para obtener atomicidad al guardar datos con Entity Framework Core
 author: rowanmiller
 ms.date: 10/27/2016
-ms.assetid: d3e6515b-8181-482c-a790-c4a6778748c1
 uid: core/saving/transactions
-ms.openlocfilehash: 2674fdc59cb08e5faf2302270629c446abc2670c
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: d824db6a4d6e1fc0fc385f007ccfc2c6cbbcae79
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618921"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070840"
 ---
 # <a name="using-transactions"></a>Usar transacciones
 

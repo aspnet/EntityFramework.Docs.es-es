@@ -4,14 +4,13 @@ description: Trabajo con entidades desconectadas y sin seguimiento en varias ins
 author: ajcvickers
 ms.author: avickers
 ms.date: 10/27/2016
-ms.assetid: 2533b195-d357-4056-b0e0-8698971bc3b0
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: 52ba838c4d54771c51737c3940e5a88659f94144
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: d9b6d2d2c0761dd6f670ba51f935c866e10460b7
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617276"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90070892"
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 
