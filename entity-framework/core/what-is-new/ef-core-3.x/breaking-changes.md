@@ -4,12 +4,12 @@ description: Lista completa de los cambios importantes introducidos en Entity Fr
 author: ajcvickers
 ms.date: 09/05/2020
 uid: core/what-is-new/ef-core-3.x/breaking-changes
-ms.openlocfilehash: 644e61994dab4e9993c6a78792ff584c57fbe48a
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: e348cb630d91ebe4536b73b9a7bd9a7b6a46db79
+ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620692"
+ms.lasthandoff: 09/14/2020
+ms.locfileid: "90072244"
 ---
 # <a name="breaking-changes-included-in-ef-core-3x"></a>Cambios importantes incluidos en EF Core 3.x
 
@@ -178,7 +178,7 @@ Para poder administrar las migraciones o aplicar scaffolding a `DbContext`, inst
     $ dotnet tool install --global dotnet-ef
   ```
 
-También se puede obtener una herramienta local cuando se restauran las dependencias de un proyecto que la declara como una dependencia de herramientas mediante un [archivo de manifiesto de herramientas](https://github.com/dotnet/cli/issues/10288).
+También se puede obtener una herramienta local cuando se restauran las dependencias de un proyecto que la declara como una dependencia de herramientas mediante un [archivo de manifiesto de herramientas](/dotnet/core/tools/global-tools#install-a-local-tool).
 
 <a name="fromsql"></a>
 ### <a name="fromsql-executesql-and-executesqlasync-have-been-renamed"></a>FromSql, ExecuteSql y ExecuteSqlAsync han cambiado de nombre
@@ -478,6 +478,9 @@ Esto todavía no se configurará por convención para evitar una configuración 
 * **`DbQuery<>`** : en su lugar se debe usar `DbSet<>`.
 * **`DbContext.Query<>()`** : en su lugar se debe usar `DbContext.Set<>()`.
 * **`IQueryTypeConfiguration<TQuery>`** : en su lugar se debe usar `IEntityTypeConfiguration<TEntity>`**.
+
+> [!NOTE]
+> Debido a [un problema en la versión 3.x](https://github.com/dotnet/efcore/issues/19537), al consultar entidades sin clave que tienen todas las propiedades establecidas en `null` se devolverá un `null` en lugar de una entidad, si este problema es aplicable a su escenario, agregue también lógica para administrar `null` en los resultados.
 
 <a name="config"></a>
 ### <a name="configuration-api-for-owned-type-relationships-has-changed"></a>La API de configuración para las relaciones de tipo de propiedad ha cambiado
