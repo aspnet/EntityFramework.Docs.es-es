@@ -4,12 +4,12 @@ description: Uso de la resistencia de conexión para reintentar automáticamente
 author: rowanmiller
 ms.date: 11/15/2016
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: f4077672a9234bf66dc488d7450f437452e542b6
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 25b754334edd15532780cb4e40682bc211620c76
+ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071711"
+ms.lasthandoff: 09/24/2020
+ms.locfileid: "91210298"
 ---
 # <a name="connection-resiliency"></a>Resistencia de conexión
 
@@ -55,7 +55,7 @@ Sin embargo, si el código inicia una transacción mediante `BeginTransaction()`
 
 > InvalidOperationException: la estrategia de ejecución configurada ' SqlServerRetryingExecutionStrategy ' no admite transacciones iniciadas por el usuario. Use la estrategia de ejecución que devuelve "DbContext.Database.CreateExecutionStrategy()" para ejecutar todas las operaciones en la transacción como una unidad que se puede reintentar.
 
-La solución consiste en invocar manualmente la estrategia de ejecución con un delegado que representa todo lo que se debe ejecutar. Si se produce un error transitorio, la estrategia de ejecución invoca al delegado de nuevo.
+La solución consiste en invocar manualmente la estrategia de ejecución con un delegado que representa todo lo que se debe ejecutar. Si se produce un error transitorio, la estrategia de ejecución vuelve a invocar al delegado.
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/ConnectionResiliency/Program.cs#ManualTransaction)]
 
@@ -107,3 +107,7 @@ Si necesita usar claves generadas por el almacén o necesita una manera genéric
 
 > [!NOTE]
 > Asegúrese de que el contexto utilizado para la comprobación tenga definida una estrategia de ejecución, ya que es probable que se produzca un error en la conexión durante la comprobación si se produjo un error durante la confirmación de la transacción.
+
+## <a name="additional-resources"></a>Recursos adicionales
+
+* [Solución de problemas de errores de conexión transitorios en Azure SQL Database y SQL Instancia administrada](/azure/azure-sql/database/troubleshoot-common-connectivity-issues)
