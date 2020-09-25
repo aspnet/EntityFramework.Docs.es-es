@@ -4,12 +4,12 @@ description: Información sobre proveedores de Entity Framework Core compatibles
 author: ajcvickers
 ms.date: 12/17/2019
 uid: core/providers/index
-ms.openlocfilehash: 99e1b162cb610b8f086501d0af3896ffa4635358
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 4a5490beccfb4d038f7dde04399ec3493941ac83
+ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618996"
+ms.lasthandoff: 09/24/2020
+ms.locfileid: "91210359"
 ---
 # <a name="database-providers"></a>Proveedores de bases de datos
 
@@ -32,7 +32,7 @@ Entity Framework Core puede tener acceso a muchas bases de datos diferentes a tr
 | [Npgsql.EntityFrameworkCore.PostgreSQL](https://www.nuget.org/packages/Npgsql.EntityFrameworkCore.PostgreSQL)                                                                         | PostgreSQL                 | [Equipo de desarrollo de Npgsql](https://github.com/npgsql)                          |                          | 3.1               | [Documentación](https://www.npgsql.org/efcore/index.html)                                                                                                                                                   |
 | [Pomelo.EntityFrameworkCore.MySql](https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MySql)                                                                                   | MySQL, MariaDB             | [Proyecto Pomelo Foundation](https://github.com/PomeloFoundation)              |                          | 3.1               | [Archivo Léame](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql/blob/master/README.md)                                                                                               |
 | [MySql.Data.EntityFrameworkCore](https://www.nuget.org/packages/MySql.Data.EntityFrameworkCore)                                                                                       | MySQL                      | [Proyecto MySQL](https://dev.mysql.com) (Oracle)                               |                          | 3.1               | [Documentación](https://dev.mysql.com/doc/connector-net/en/connector-net-entityframework-core.html)                                                                                                         |
-| [Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Oracle.EntityFrameworkCore/)                                                                                              | Oracle DB 11.2 y versiones posteriores     | [Oracle](https://www.oracle.com/technetwork/topics/dotnet/)                   | Beta                     | 3.1               | [Sitio web](https://www.oracle.com/technetwork/topics/dotnet/)                                                                                                                                       |
+| [Oracle.EntityFrameworkCore](https://www.nuget.org/packages/Oracle.EntityFrameworkCore/)                                                                                              | Oracle DB 11.2 y versiones posteriores     | [Oracle](https://www.oracle.com/technetwork/topics/dotnet/)                   |                          | 3.1               | [Sitio web](https://www.oracle.com/technetwork/topics/dotnet/)                                                                                                                                       |
 | [Devart.Data.MySql.EFCore](https://www.nuget.org/packages/Devart.Data.MySql.EFCore/)                                                                                                  | De MySQL 5 en adelante            | [DevArt](https://www.devart.com/)                                             | Pagado                     | 3.1               | [Documentación](https://www.devart.com/dotconnect/mysql/docs/)                                                                                                                                              |
 | [Devart.Data.Oracle.EFCore](https://www.nuget.org/packages/Devart.Data.Oracle.EFCore/)                                                                                                | Oracle DB 9.2.0.4 y versiones posteriores  | [DevArt](https://www.devart.com/)                                             | Pagado                     | 3.1               | [Documentación](https://www.devart.com/dotconnect/oracle/docs/)                                                                                                                                             |
 | [Devart.Data.PostgreSql.EFCore](https://www.nuget.org/packages/Devart.Data.PostgreSql.EFCore/)                                                                                        | De PostgreSQL 8.0 en adelante     | [DevArt](https://www.devart.com/)                                             | Pagado                     | 3.1               | [Documentación](https://www.devart.com/dotconnect/postgresql/docs/)                                                                                                                                         |
