@@ -2,15 +2,14 @@
 title: 'Proveedor de Azure Cosmos DB: EF Core'
 description: Documentación del proveedor de bases de datos que permite usar Entity Framework Core con SQL API de Azure Cosmos DB
 author: AndriySvyryd
-ms.author: ansvyryd
-ms.date: 11/05/2019
+ms.date: 09/14/2020
 uid: core/providers/cosmos/index
-ms.openlocfilehash: 188c5b10aefa784715c0bbf2d50337d65c21fd62
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 94ba29f3f2643e8f563a460e17dce9d15cb7c2df
+ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071373"
+ms.lasthandoff: 09/24/2020
+ms.locfileid: "91210346"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>Proveedor de Azure Cosmos DB para EF Core
 
@@ -66,6 +65,18 @@ La acción de guardar y consultar datos sigue el patrón de EF normal:
 
 > [!IMPORTANT]
 > Llamar a [EnsureCreatedAsync](/dotnet/api/Microsoft.EntityFrameworkCore.Storage.IDatabaseCreator.EnsureCreatedAsync) es necesario para crear los contenedores necesarios e insertar los [datos de inicialización](xref:core/modeling/data-seeding) si están presentes en el modelo. Sin embargo, se debe llamar a `EnsureCreatedAsync` solo durante la implementación y no durante la operación normal, porque podría provocar problemas de rendimiento.
+
+## <a name="cosmos-options"></a>Opciones de Cosmos
+
+El proveedor de Cosmos DB también se puede configurar con una sola cadena de conexión y especificar otras opciones para personalizar la conexión:
+
+[!code-csharp[Configuration](../../../../samples/core/Cosmos/ModelBuilding/OptionsContext.cs?name=Configuration)]
+
+> [!NOTE]
+> La mayoría de estas opciones son nuevas en EF Core Cosmos 5.0.
+
+> [!TIP]
+> Consulte la [documentación de las opciones de Azure Cosmos DB](/dotnet/api/microsoft.azure.cosmos.cosmosclientoptions) para ver una descripción detallada del efecto que tiene cada opción arriba mencionada.
 
 ## <a name="cosmos-specific-model-customization"></a>Personalización del modelo específico de Cosmos
 
