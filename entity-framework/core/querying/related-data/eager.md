@@ -4,12 +4,12 @@ description: Carga diligente de datos relacionados con Entity Framework Core
 author: roji
 ms.date: 9/8/2020
 uid: core/querying/related-data/eager
-ms.openlocfilehash: f7e33895293e1d7b8b32a135d60b58dd1f050621
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 5ac15a85b28f21588639f34cbaa9ef76f366f7b5
+ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90078895"
+ms.lasthandoff: 09/24/2020
+ms.locfileid: "91210472"
 ---
 # <a name="eager-loading-of-related-data"></a>Carga diligente de datos relacionados
 
@@ -92,7 +92,7 @@ También puede configurar consultas divididas como el valor predeterminado para 
 
 Cuando las consultas divididas están configuradas como valor predeterminado, todavía es posible configurar consultas específicas para que se ejecuten como consultas únicas:
 
-[!code-csharp[Main](../../../../samples/core/Querying/RelatedData/Sample.cs?name=AsSplitQuery&highlight=5)]
+[!code-csharp[Main](../../../../samples/core/Querying/RelatedData/Sample.cs?name=AsSingleQuery&highlight=5)]
 
 Si el modo de división de consultas no se especifica de forma explícita, ni globalmente ni en la consulta, y EF Core detecta que una sola consulta carga varios métodos Include de la colección, se emite una advertencia para llamar la atención sobre las posibles incidencias de rendimiento resultantes. Establecer el modo de consulta en SingleQuery hará que no se genere la advertencia.
 
