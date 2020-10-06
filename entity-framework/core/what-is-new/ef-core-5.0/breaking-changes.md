@@ -4,12 +4,12 @@ description: Lista completa de los cambios importantes introducidos en Entity Fr
 author: bricelam
 ms.date: 09/09/2020
 uid: core/what-is-new/ef-core-5.0/breaking-changes
-ms.openlocfilehash: 63fd1d1a01b7a72fd34bb9a0130191131306426c
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 8e9df4e2ff81e20cf5a36855247c5aff89ea2394
+ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070801"
+ms.lasthandoff: 09/24/2020
+ms.locfileid: "91210372"
 ---
 # <a name="breaking-changes-in-ef-core-50"></a>Cambios importantes en EF Core 5.0
 
@@ -29,6 +29,7 @@ Es posible que los siguientes cambios de API y comportamiento puedan interrumpir
 | [Se llama a los generadores de valores cuando se cambia el estado de la entidad de Desasociado a Sin cambios, Actualizado o Eliminado](#non-added-generation) | Bajo        |
 | [IMigrationsModelDiffer ahora usa IRelationalModel](#relational-model).                                                                 | Bajo        |
 | [Los discriminadores son de solo lectura](#read-only-discriminators).                                                                             | Bajo        |
+| [Los métodos EF.Functions específicos del proveedor se inician para el proveedor InMemory](#no-client-methods)                                              | Bajo        |
 
 <a name="geometric-sqlite"></a>
 
@@ -193,7 +194,7 @@ Anteriormente, se llamaba a los métodos de extensión `GetPropertyName` y `SetP
 
 **Comportamiento nuevo**
 
-La API antigua estaba obsoleta y se agregaron nuevos métodos: `GetJsonPropertyName`, `SetJsonPropertyName`
+La API antigua se ha quitado y se han agregado métodos nuevos: `GetJsonPropertyName` y `SetJsonPropertyName`.
 
 **Por qué**
 
@@ -201,7 +202,7 @@ Este cambio elimina la ambigüedad en torno a lo que estos métodos configuran.
 
 **Mitigaciones**
 
-Use la nueva API o suspenda temporalmente las advertencias obsoletas.
+Use la API nueva.
 
 <a name="non-added-generation"></a>
 
@@ -320,3 +321,25 @@ Las definiciones de consulta se introdujeron inicialmente como vistas del lado c
 
 En el caso de los proveedores relacionales, use el método `ToSqlQuery` en `OnModelCreating` y pase una cadena SQL que se utilice como tipo de entidad.
 En el caso del proveedor en memoria, use el método `ToInMemoryQuery` en `OnModelCreating` y pase una consulta LINQ que se utilice como tipo de entidad.
+
+<a name="no-client-methods"></a>
+
+### <a name="provider-specific-effunctions-methods-throw-for-inmemory-provider"></a>Los métodos EF.Functions específicos del proveedor se inician para el proveedor InMemory.
+
+[Incidencia de seguimiento n.º 20294](https://github.com/dotnet/efcore/issues/20294)
+
+**Comportamiento anterior**
+
+Los métodos EF.Functions específicos del proveedor incluían la implementación para la ejecución del cliente, lo cual les permitía ejecutarse en el proveedor de InMemory. Por ejemplo, `EF.Functions.DateDiffDay` es un método específico de SQL Server que funcionaba en el proveedor InMemory.
+
+**Comportamiento nuevo**
+
+Los métodos específicos del proveedor se han actualizado para producir una excepción en el cuerpo del método a fin de bloquear su evaluación en el lado cliente.
+
+**Por qué**
+
+Los métodos específicos del proveedor se asignan a una función de base de datos. El cálculo realizado por la función de base de datos asignada no siempre se puede replicar en el lado cliente en LINQ. Esto puede provocar que el resultado del servidor sea diferente al ejecutar el mismo método en el cliente. Dado que estos métodos se usan en LINQ para traducir a funciones específicas de base de datos, no es necesario que se evalúen en el lado cliente. Dado que el proveedor InMemory es una base de datos *diferente*, estos métodos no están disponibles para este proveedor. Al intentar ejecutarlos para el proveedor InMemory o cualquier otro proveedor que no traduzca estos métodos, se produce una excepción.
+
+**Mitigaciones**
+
+Dado que no hay forma de imitar el comportamiento de las funciones de base de datos con precisión, debe probar las consultas que las contienen en el mismo tipo de base de datos que en producción.

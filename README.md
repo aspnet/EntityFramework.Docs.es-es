@@ -10,19 +10,19 @@ Los problemas de documentación para EF Core y EF6 se deben archivar en este rep
 
 Considere la posibilidad de enviar una solicitud de incorporación de cambios en lugar de presentar una incidencia. Esto se puede realizar completamente desde la web:
 
-* Busque el archivo que se va a actualizar en este repositorio y haga clic en él para abrirlo.
+* En la esquina superior derecha del documento, seleccione el icono del lápiz: ![imagen](https://user-images.githubusercontent.com/3605364/93646907-e75ef680-f9a2-11ea-847a-c5c3839f3aa8.png).
 
-![imagen](https://user-images.githubusercontent.com/1430078/64454137-10199400-d09f-11e9-9d1a-b7fdca2c518e.png)
+  Nota: Es posible que necesite ensanchar la ventana del explorador para ver el icono del lápiz.
 
 * Haga clic en el botón Editar (✏️) para editarlo en el explorador web.
 
 ![imagen](https://user-images.githubusercontent.com/1430078/64454321-85856480-d09f-11e9-85a6-1c93bc6611e2.png)
 
-* Cuando termine, agregue un título y una descripción y, después, use la opción "Crear una rama e iniciar una solicitud de incorporación de cambios" .
+* Cuando termine, agregue un título y una descripción y, después, use la opción **Crear una rama e iniciar una solicitud de incorporación de cambios** .
 
 ![imagen](https://user-images.githubusercontent.com/1430078/64454455-dac17600-d09f-11e9-922b-0346117011f5.png)
 
-(Tenga en cuenta que también puede clonar este repositorio y realizar una PR de GitHub de la forma habitual).
+Tenga en cuenta que también puede clonar este repositorio y realizar una PR de GitHub de la forma habitual.
 
 ## <a name="making-more-substantial-changes"></a>Realizar cambios más importantes
 
