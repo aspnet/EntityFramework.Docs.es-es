@@ -1,15 +1,15 @@
 ---
 title: 'Code First de anotaciones de datos: EF6'
 description: Code First de las anotaciones de datos en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/data-annotations
-ms.openlocfilehash: dd91ddf674f2235190e50beb847e569a898ad59b
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: f6bf063ab99c5b7ef01993aec8fd6bdd06dd8f7d
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90074069"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066478"
 ---
 # <a name="code-first-data-annotations"></a>Anotaciones de datos de Code First
 > [!NOTE]
@@ -370,7 +370,7 @@ De forma predeterminada, los índices no son únicos, pero puede usar el `IsUniq
     }
 ```
 
-### <a name="multiple-column-indexes"></a>Índices de varias columnas
+### <a name="multiple-column-indexes"></a>Índices de Multiple-Column
 
 Los índices que abarcan varias columnas se especifican utilizando el mismo nombre en varias anotaciones de índice para una tabla determinada. Al crear índices de varias columnas, debe especificar un orden para las columnas en el índice. Por ejemplo, el código siguiente crea un índice de varias columnas en `Rating` y `BlogId` denominado **IX \_ BlogIdAndRating**. `BlogId` es la primera columna del índice y `Rating` es el segundo.
 

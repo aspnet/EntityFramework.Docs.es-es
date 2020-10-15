@@ -1,15 +1,15 @@
 ---
 title: 'Convenciones de Code First: EF6'
 description: Convenciones de Code First en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/conventions/built-in
-ms.openlocfilehash: 71e865d674d6bef7aaf65d95abe1b1add96d890f
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: d5b7419258a9e45af5437fae5084a78ebc05f115
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072610"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066452"
 ---
 # <a name="code-first-conventions"></a>Convenciones de Code First
 Code First le permite describir un modelo mediante el uso de clases de C# o Visual Basic .NET. La forma básica del modelo se detecta mediante el uso de convenciones. Las convenciones son conjuntos de reglas que se utilizan para configurar automáticamente un modelo conceptual basado en definiciones de clase al trabajar con Code First. Las convenciones se definen en el espacio de nombres System. Data. Entity. ModelConfiguration. Conventions.  

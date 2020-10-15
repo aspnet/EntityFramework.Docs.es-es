@@ -1,15 +1,15 @@
 ---
 title: Migraciones de Code First automática-EF6
 description: Migraciones de Code First automática en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/migrations/automatic
-ms.openlocfilehash: e7bd9ff7d9dcecb7fecf213306047a53fc04135c
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 8152cdf642258a30d98f3750bf1ca4ccd2859978
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072569"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066413"
 ---
 # <a name="automatic-code-first-migrations"></a>Migraciones de Code First automática
 Las migraciones automáticas permiten usar Migraciones de Code First sin tener un archivo de código en el proyecto para cada cambio que realice. No todos los cambios se pueden aplicar automáticamente; por ejemplo, el cambio de nombre de columna requiere el uso de una migración basada en código.

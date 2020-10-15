@@ -1,17 +1,17 @@
 ---
-title: 'Convenciones basadas en modelos: EF6'
-description: Convenciones basadas en modelos en Entity Framework 6
-author: divega
+title: 'Convenciones de Model-Based: EF6'
+description: Convenciones de Model-Based en Entity Framework 6
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/conventions/model
-ms.openlocfilehash: bcb7a88f4d9fc994b51300ac30ec58671be370c8
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: c4978277ced72cc5c017af5f69b8760f316087d5
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90074008"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066439"
 ---
-# <a name="model-based-conventions"></a>Convenciones basadas en modelos
+# <a name="model-based-conventions"></a>Convenciones de Model-Based
 > [!NOTE]
 > **Solo EF6 y versiones posteriores**: las características, las API, etc. que se tratan en esta página se han incluido a partir de Entity Framework 6. Si usa una versión anterior, no se aplica parte o la totalidad de la información.  
 
