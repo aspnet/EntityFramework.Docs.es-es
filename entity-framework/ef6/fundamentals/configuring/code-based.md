@@ -1,15 +1,15 @@
 ---
 title: 'Configuración basada en código: EF6'
 description: Configuración basada en código en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/configuring/code-based
-ms.openlocfilehash: 67bb7ebd620c90ebe80983cc5baa6cab032907f8
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: ff86b542dead260190bbb0b0788a231f720fbeaf
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070736"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063287"
 ---
 # <a name="code-based-configuration"></a>Configuración basada en código
 > [!NOTE]

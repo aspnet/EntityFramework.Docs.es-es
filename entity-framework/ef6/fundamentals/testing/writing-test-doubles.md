@@ -1,15 +1,15 @@
 ---
 title: Pruebas con sus propias pruebas dobles-EF6
 description: Las pruebas con su propia prueba se duplican en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/testing/writing-test-doubles
-ms.openlocfilehash: 575007c5568049e6508d1bd6435597a1acd843ab
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 16a237edd4ff8ce72800cfd623de93a08469cfe1
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070437"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062820"
 ---
 # <a name="testing-with-your-own-test-doubles"></a>Pruebas con sus propias dobles de pruebas
 > [!NOTE]

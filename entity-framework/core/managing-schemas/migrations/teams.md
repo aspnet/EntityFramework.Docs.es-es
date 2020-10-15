@@ -2,15 +2,14 @@
 title: 'Migraciones en entornos de equipo: EF Core'
 description: Prácticas recomendadas para administrar migraciones y resolver conflictos en entornos de equipo con Entity Framework Core
 author: bricelam
-ms.author: bricelam
 ms.date: 10/30/2017
 uid: core/managing-schemas/migrations/teams
-ms.openlocfilehash: 1fbb7173a52218a4d00780ebc76e33600f3558c1
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 90549b369624301bc183e5a8a3cc1d6a92bb7008
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619194"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062508"
 ---
 # <a name="migrations-in-team-environments"></a>Migraciones en entornos de equipo
 
@@ -20,7 +19,7 @@ Al trabajar con migraciones en entornos de equipo, preste especial atención al 
 
 Al fusionar mediante combinación las migraciones de sus compañeros de equipo, puede obtener conflictos en el archivo de instantánea del modelo. Si los dos cambios no están relacionados, la combinación es trivial y las dos migraciones pueden coexistir. Por ejemplo, puede obtener un conflicto de fusión mediante combinación en la configuración del tipo de entidad Customer, que tiene el siguiente aspecto:
 
-``` output
+```output
 <<<<<<< Mine
 b.Property<bool>("Deactivated");
 =======
@@ -30,7 +29,7 @@ b.Property<int>("LoyaltyPoints");
 
 Puesto que ambas propiedades deben existir en el modelo final, complete la combinación agregando ambas propiedades. En muchos casos, es posible que el sistema de control de versiones combine automáticamente estos cambios.
 
-``` csharp
+```csharp
 b.Property<bool>("Deactivated");
 b.Property<int>("LoyaltyPoints");
 ```
@@ -41,7 +40,7 @@ En estos casos, la migración y la migración de su compañero son independiente
 
 A veces se produce un conflicto real al combinar el modelo de instantánea de modelo. Por ejemplo, usted y su compañero de equipo pueden cambiar el nombre de la misma propiedad.
 
-``` output
+```output
 <<<<<<< Mine
 b.Property<string>("Username");
 =======

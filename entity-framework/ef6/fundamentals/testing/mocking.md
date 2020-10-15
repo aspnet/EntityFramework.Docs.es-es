@@ -1,15 +1,15 @@
 ---
 title: 'Pruebas con un marco ficticio: EF6'
 description: Probar con un marco ficticio en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/testing/mocking
-ms.openlocfilehash: ebd57ca2127bab32c94d806f8213739a6e0b4f0a
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 893d9f921adc148465830dee5dbfebca4d4c8f50
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070489"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062924"
 ---
 # <a name="testing-with-a-mocking-framework"></a>Probar con un marco ficticio
 > [!NOTE]

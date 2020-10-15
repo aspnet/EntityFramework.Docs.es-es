@@ -2,15 +2,14 @@
 title: Referencia de herramientas de EF Core (CLI de .NET)-EF Core
 description: Guía de referencia de las herramientas de CLI de .NET Core de Entity Framework Core
 author: bricelam
-ms.author: bricelam
-ms.date: 09/17/2020
+ms.date: 10/13/2020
 uid: core/miscellaneous/cli/dotnet
-ms.openlocfilehash: ee1caebcda93f627d285878f8594688a0f08c194
-ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
+ms.openlocfilehash: 4056fb99659ee3390d16b18eca9b12cfc8a2dd03
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/24/2020
-ms.locfileid: "91210398"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062521"
 ---
 # <a name="entity-framework-core-tools-reference---net-core-cli"></a>Referencia de herramientas de Entity Framework Core-CLI de .NET Core
 
@@ -24,59 +23,37 @@ Al usar Visual Studio, considere la posibilidad de usar las herramientas de la [
 
 ## <a name="installing-the-tools"></a>Instalación de las herramientas
 
-El procedimiento de instalación depende del tipo y la versión del proyecto:
+`dotnet ef` se puede instalar como una herramienta global o local. La mayoría de los desarrolladores prefieren instalar `dotnet ef` como una herramienta global con el siguiente comando:
 
-* EF Core 3. x y 5. x
-* ASP.NET Core versión 2,1 y versiones posteriores
-* EF Core 2. x
+```dotnetcli
+dotnet tool install --global dotnet-ef
+```
 
-### <a name="ef-core-3x-and-5x"></a>EF Core 3. x y 5. x
+Para usarlo como una herramienta local, restaure las dependencias de un proyecto que la declara como una dependencia de herramientas mediante un [archivo de manifiesto](/dotnet/core/tools/global-tools#install-a-local-tool)de la herramienta.
 
-* `dotnet ef` debe instalarse como una herramienta global o local. La mayoría de los desarrolladores prefieren instalar `dotnet ef` como una herramienta global con el siguiente comando:
+Actualice la herramienta de herramientas con el siguiente comando:
 
-  ```dotnetcli
-  dotnet tool install --global dotnet-ef
-  ```
+```dotnetcli
+dotnet tool update --global dotnet-ef
+```
 
-  `dotnet ef` también se puede usar como una herramienta local. Para usarlo como una herramienta local, restaure las dependencias de un proyecto que la declara como una dependencia de herramientas mediante un [archivo de manifiesto](/dotnet/core/tools/global-tools#install-a-local-tool)de la herramienta.
+Antes de poder usar las herramientas en un proyecto específico, deberá agregar el `Microsoft.EntityFrameworkCore.Design` paquete a ella.
 
-* Instale el [SDK de .NET Core](https://www.microsoft.com/net/download/core).
-* Instale el paquete más reciente `Microsoft.EntityFrameworkCore.Design` .
+```dotnetcli
+dotnet add package Microsoft.EntityFrameworkCore.Design
+```
 
-  ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.Design
-  ```
-
-### <a name="aspnet-core-21"></a>ASP.NET Core 2.1 +
-
-* Instale el [SDK de .net Core](https://www.microsoft.com/net/download/core)actual. El SDK debe instalarse incluso si tiene la versión más reciente de Visual Studio.
-
-  Esto es todo lo que se necesita para ASP.NET Core 2.1 + porque el `Microsoft.EntityFrameworkCore.Design` paquete se incluye en el [metapaquete Microsoft. AspNetCore. app](/aspnet/core/fundamentals/metapackage-app).
-
-### <a name="ef-core-2x-not-aspnet-core"></a>EF Core 2. x (no ASP.NET Core)
-
-Los `dotnet ef` comandos se incluyen en el SDK de .net Core, pero para habilitar los comandos que tiene para instalar el `Microsoft.EntityFrameworkCore.Design` paquete.
-
-* Instale el [SDK de .net Core](https://www.microsoft.com/net/download/core)actual. El SDK debe instalarse incluso si tiene la versión más reciente de Visual Studio.
-
-* Instale el paquete estable más reciente `Microsoft.EntityFrameworkCore.Design` .
-
-  ```dotnetcli
-  dotnet add package Microsoft.EntityFrameworkCore.Design
-  ```
-
-### <a name="verify-installation"></a>Comprobar la instalación
+### <a name="verify-installation"></a>Comprobación de la instalación
 
 Ejecute los siguientes comandos para comprobar que las herramientas de la CLI de EF Core están instaladas correctamente:
 
   ```dotnetcli
-  dotnet restore
   dotnet ef
   ```
 
 La salida del comando identifica la versión de las herramientas en uso:
 
-```console
+```output
 
                      _/\__
                ---==/    \\

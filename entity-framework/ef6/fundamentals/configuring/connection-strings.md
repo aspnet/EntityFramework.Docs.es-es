@@ -1,15 +1,15 @@
 ---
 title: 'Cadenas de conexión y modelos: EF6'
 description: Cadenas de conexión y modelos de Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/configuring/connection-strings
-ms.openlocfilehash: 45db461b18cde3bc1f1fccadec3c8ece6dd16832
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: c60acb965b7062f3cd35dab94ee8dfe48394969a
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070788"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063392"
 ---
 # <a name="connection-strings-and-models"></a>Cadenas de conexión y modelos
 En este tema se explica cómo Entity Framework detecta qué conexión de base de datos se va a usar y cómo se puede cambiar. Los modelos creados con Code First y EF Designer se describen en este tema.  

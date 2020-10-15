@@ -1,15 +1,15 @@
 ---
 title: 'Cadenas de conexión: EF Core'
 description: Administrar cadenas de conexión en entornos diferentes con Entity Framework Core
-author: rowanmiller
+author: bricelam
 ms.date: 10/27/2016
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: e4283ada88a557e4f1e3eeea3de2634a7d0dce61
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: f657d39f66e6a757380ca25436a638b47c11cd12
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071685"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062326"
 ---
 # <a name="connection-strings"></a>Cadenas de conexión
 
@@ -19,7 +19,7 @@ La mayoría de los proveedores de bases de datos requieren algún tipo de cadena
 
 Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexión probado y probado. La cadena de conexión debe agregarse al archivo de App.config de la aplicación (Web.config si usa ASP.NET). Si la cadena de conexión contiene información confidencial, como el nombre de usuario y la contraseña, puede proteger el contenido del archivo de configuración mediante la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager).
 
-``` xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
 
@@ -30,12 +30,12 @@ Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexi
 </configuration>
 ```
 
-> [!TIP]  
+> [!TIP]
 > La `providerName` configuración no es necesaria en EF Core cadenas de conexión almacenadas en App.config porque el proveedor de base de datos se configura mediante código.
 
 Después, puede leer la cadena de conexión con la `ConfigurationManager` API en el método del contexto `OnConfiguring` . Es posible que tenga que agregar una referencia al ensamblado del marco `System.Configuration` para poder usar esta API.
 
-``` csharp
+```csharp
 public class BloggingContext : DbContext
 {
     public DbSet<Blog> Blogs { get; set; }
@@ -52,7 +52,7 @@ public class BloggingContext : DbContext
 
 Las cadenas de conexión en una aplicación UWP suelen ser una conexión SQLite que solo especifica un nombre de archivo local. Normalmente no contienen información confidencial y no es necesario cambiarla a medida que se implementa una aplicación. Como tal, estas cadenas de conexión suelen quedar en el código, como se muestra a continuación. Si quiere moverlos fuera del código, UWP admite el concepto de configuración, consulte la [sección configuración de la aplicación de la documentación de UWP](/windows/uwp/app-settings/store-and-retrieve-app-data) para obtener más información.
 
-``` csharp
+```csharp
 public class BloggingContext : DbContext
 {
     public DbSet<Blog> Blogs { get; set; }
@@ -78,7 +78,7 @@ dotnet ef dbcontext scaffold Name=ConnectionStrings.YourDatabaseAlias Microsoft.
 
 O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appsettings.json` .
 
-``` json
+```json
 {
   "ConnectionStrings": {
     "BloggingDatabase": "Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;"
@@ -88,7 +88,7 @@ O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appse
 
 Después, el contexto se configura normalmente en `Startup.cs` con la cadena de conexión que se lee de la configuración. Tenga en cuenta que el `GetConnectionString()` método busca un valor de configuración cuya clave sea `ConnectionStrings:<connection string name>` . Debe importar el espacio de nombres [Microsoft.Extensions.Configprimario](/dotnet/api/microsoft.extensions.configuration) para usar este método de extensión.
 
-``` csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddDbContext<BloggingContext>(options =>

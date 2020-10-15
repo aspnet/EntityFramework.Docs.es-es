@@ -1,15 +1,15 @@
 ---
 title: 'Resistencia de conexión: EF Core'
 description: Uso de la resistencia de conexión para reintentar automáticamente los comandos con Entity Framework Core
-author: rowanmiller
+author: AndriySvyryd
 ms.date: 11/15/2016
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: 25b754334edd15532780cb4e40682bc211620c76
-ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
+ms.openlocfilehash: db0666a49cbd41ef3eacf447eaeed1fb54ffcbf4
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/24/2020
-ms.locfileid: "91210298"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92061923"
 ---
 # <a name="connection-resiliency"></a>Resistencia de conexión
 
@@ -23,7 +23,7 @@ Cuando se configuran las opciones para el contexto, se especifica una estrategia
 
 o en `Startup.cs` para una aplicación ASP.net Core:
 
-``` csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddDbContext<PicnicContext>(
@@ -37,7 +37,7 @@ public void ConfigureServices(IServiceCollection services)
 
 Existe un mecanismo para registrar una estrategia de ejecución personalizada propia si desea cambiar cualquiera de los valores predeterminados.
 
-``` csharp
+```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
 {
     optionsBuilder
@@ -65,7 +65,7 @@ Este enfoque también se puede usar con transacciones de ambiente.
 
 ## <a name="transaction-commit-failure-and-the-idempotency-issue"></a>Error de confirmación de la transacción y el problema Idempotencia
 
-En general, cuando se produce un error de conexión, se revierte la transacción actual. Sin embargo, si se quita la conexión mientras se confirma la transacción, se desconoce el estado resultante de la transacción. 
+En general, cuando se produce un error de conexión, se revierte la transacción actual. Sin embargo, si se quita la conexión mientras se confirma la transacción, se desconoce el estado resultante de la transacción.
 
 De forma predeterminada, la estrategia de ejecución reintentará la operación como si la transacción se revirtió, pero si no es así, se producirá una excepción si el nuevo estado de la base de datos es incompatible o podría provocar daños en los **datos** si la operación no se basa en un estado determinado, por ejemplo, al insertar una nueva fila con valores de clave generados automáticamente.
 

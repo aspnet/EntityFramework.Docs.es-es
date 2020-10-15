@@ -1,20 +1,37 @@
 ---
 title: EF Core de registro
 description: Configuración del registro con Entity Framework Core
-author: rowanmiller
-ms.date: 10/27/2016
+author: ajcvickers
+ms.date: 10/06/2020
 uid: core/miscellaneous/logging
-ms.openlocfilehash: 0fd1c83f01989095a813727390179db2327b610d
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 389834b3822aeeaefb8c085538bc6359ccfa7094
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071672"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063015"
 ---
 # <a name="logging"></a>Registro
 
-> [!TIP]  
+> [!TIP]
 > Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Logging) de este artículo en GitHub.
+
+## <a name="simple-logging"></a>Registro sencillo
+
+> [!NOTE]
+> Esta característica se agregó en EF Core 5,0.
+
+Entity Framework Core (EF Core) genera mensajes de registro para operaciones como ejecutar una consulta o guardar cambios en la base de datos. Se puede tener acceso a ellos desde cualquier tipo de aplicación mediante el uso de [LogTo](https://github.com/dotnet/efcore/blob/ec3df8fd7e4ea4ebeebfa747619cef37b23ab2c6/src/EFCore/DbContextOptionsBuilder.cs#L135) <!-- Issue #2748 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> --> al [configurar una instancia de DbContext](xref:core/miscellaneous/configuring-dbcontext). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType> . Por ejemplo:
+
+<!--
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        => optionsBuilder.LogTo(Console.WriteLine);
+-->
+[!code-csharp[LogToConsole](../../../samples/core/Miscellaneous/Logging/SimpleLogging/Program.cs?name=LogToConsole)]
+
+Este concepto es similar a <xref:System.Data.Entity.Database.Log?displayProperty=nameWithType> en EF6.
+
+Consulte [registro sencillo](xref:core/miscellaneous/events/simple-logging) para obtener más información.
 
 ## <a name="aspnet-core-applications"></a>Aplicaciones de ASP.NET Core
 
@@ -42,7 +59,7 @@ Después de instalar los paquetes adecuados, la aplicación debe crear una insta
 > [!NOTE]
 > En el ejemplo de código siguiente se usa un `ConsoleLoggerProvider` constructor que ha quedado obsoleto en la versión 2,2 y se ha reemplazado en 3,0. Es seguro omitir y suprimir las advertencias al usar 2,2.
 
-``` csharp
+```csharp
 public static readonly LoggerFactory MyLoggerFactory
     = new LoggerFactory(new[] { new ConsoleLoggerProvider((_, __) => true, true) });
 ```
@@ -69,7 +86,7 @@ La aplicación puede controlar lo que se registra mediante la configuración de 
 > [!NOTE]
 > En el ejemplo de código siguiente se usa un `ConsoleLoggerProvider` constructor que ha quedado obsoleto en la versión 2,2 y se ha reemplazado en 3,0. Es seguro omitir y suprimir las advertencias al usar 2,2.
 
-``` csharp
+```csharp
 public static readonly LoggerFactory MyLoggerFactory
     = new LoggerFactory(new[]
     {

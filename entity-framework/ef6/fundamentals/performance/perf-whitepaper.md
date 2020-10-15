@@ -1,15 +1,15 @@
 ---
 title: Consideraciones de rendimiento para EF4, EF5 y EF6-EF6
 description: Consideraciones de rendimiento para Entity Framework 4, 5 y 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/performance/perf-whitepaper
-ms.openlocfilehash: 65584382df3d510f314a576f41c5dee3d2e718e7
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: ae9374401b66f0493f7318ffcbfd9c4d6a24ada5
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070541"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063431"
 ---
 # <a name="performance-considerations-for-ef-4-5-and-6"></a>Consideraciones de rendimiento para EF 4, 5 y 6
 Por David Obando, Eric Dettinger y otros
@@ -22,7 +22,7 @@ Publicado: abril 2012
 
 ## <a name="1-introduction"></a>1. Introducción
 
-Los marcos de trabajo de asignación relacional de objetos son una manera cómoda de proporcionar una abstracción para el acceso a datos en una aplicación orientada a objetos. En el caso de las aplicaciones .NET, se recomienda que el O el RM de Microsoft se Entity Framework. Sin embargo, con cualquier abstracción, el rendimiento puede ser un problema.
+Object-Relational marcos de asignación son una forma cómoda de proporcionar una abstracción para el acceso a datos en una aplicación orientada a objetos. En el caso de las aplicaciones .NET, se recomienda que el O el RM de Microsoft se Entity Framework. Sin embargo, con cualquier abstracción, el rendimiento puede ser un problema.
 
 Estas notas del producto se han escrito para mostrar las consideraciones de rendimiento al desarrollar aplicaciones mediante Entity Framework, para ofrecer a los desarrolladores una idea de los algoritmos internos de Entity Framework que pueden afectar al rendimiento y para proporcionar sugerencias para la investigación y la mejora del rendimiento en sus aplicaciones que usan Entity Framework. Hay una serie de buenos temas sobre el rendimiento que ya están disponibles en la web y también hemos intentado apuntar a estos recursos siempre que sea posible.
 

@@ -1,18 +1,17 @@
 ---
-title: 'Proveedor de base de datos de Microsoft SQL Server: tablas con optimización para memoria-EF Core'
-description: Cómo usar tablas optimizadas para memoria con el proveedor de base de datos de SQL Server Entity Framework Core
+title: Tabla de Memory-Optimized de Microsoft SQL Server proveedor de base de datos-EF Core
+description: Cómo usar Memory-Optimized tablas con el proveedor de base de datos de SQL Server Entity Framework Core
 author: AndriySvyryd
-ms.author: ansvyryd
 ms.date: 11/05/2019
 uid: core/providers/sql-server/memory-optimized-tables
-ms.openlocfilehash: a504fb3487aea6dd36abf204a7427095e3d29118
-ms.sourcegitcommit: cc0ff36e46e9ed3527638f7208000e8521faef2e
+ms.openlocfilehash: 42b2a2ffafb2234e1ce7a6d0844234509a4b5b94
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 03/06/2020
-ms.locfileid: "78414768"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063925"
 ---
-# <a name="memory-optimized-tables-support-in-sql-server-ef-core-database-provider"></a>Compatibilidad con tablas optimizadas para memoria en EF Core proveedor de bases de datos de SQL Server
+# <a name="memory-optimized-tables-support-in-sql-server-ef-core-database-provider"></a>Compatibilidad de tablas Memory-Optimized en SQL Server proveedor de bases de datos EF Core
 
 [Las tablas optimizadas para memoria](/sql/relational-databases/in-memory-oltp/memory-optimized-tables) son una característica de SQL Server en la que toda la tabla reside en memoria. Una segunda copia de los datos de la tabla se conserva en el disco pero solo por la durabilidad. Los datos de las tablas optimizadas para memoria solo se leen del disco durante la recuperación de la base de datos. Por ejemplo, después de reiniciar el servidor.
 

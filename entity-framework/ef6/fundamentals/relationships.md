@@ -1,15 +1,15 @@
 ---
 title: 'Relaciones, propiedades de navegación y claves externas: EF6'
 description: Relaciones, propiedades de navegación y claves externas en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/relationships
-ms.openlocfilehash: 65caacfbd860b5b896695c208b55b9c66d11255d
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 956a24051c89d410e052ab02f073e693e1934a74
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072257"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062976"
 ---
 # <a name="relationships-navigation-properties-and-foreign-keys"></a>Relaciones, propiedades de navegación y claves externas
 

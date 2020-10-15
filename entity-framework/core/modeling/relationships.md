@@ -2,14 +2,14 @@
 title: 'Relaciones: EF Core'
 description: Cómo configurar relaciones entre tipos de entidad al utilizar Entity Framework Core
 author: AndriySvyryd
-ms.date: 11/21/2019
+ms.date: 10/01/2020
 uid: core/modeling/relationships
-ms.openlocfilehash: 9946b2190cb3c3973f245d44da7e359b60845541
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 71d960a15dfb938af1dcc7035dc2587df7ad4677
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619109"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063847"
 ---
 # <a name="relationships"></a>Relaciones
 
@@ -148,7 +148,10 @@ Si solo tiene una propiedad de navegación, hay sobrecargas sin parámetros de `
 
 ### <a name="configuring-navigation-properties"></a>Configurar propiedades de navegación
 
-Una vez creada la propiedad de navegación, puede que necesite configurarla más adelante. En EFCore 5,0, se agrega una nueva API fluida para que pueda realizar esa configuración.
+> [!NOTE]
+> Esta característica se agregó en EF Core 5,0.
+
+Una vez creada la propiedad de navegación, puede que necesite configurarla más adelante.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/NavigationConfiguration.cs?name=NavigationConfiguration&highlight=7-9)]
 
@@ -224,6 +227,8 @@ Si desea que la clave externa haga referencia a una propiedad que no sea la clav
 
 Puede usar la API fluida para configurar si la relación es obligatoria u opcional. En última instancia, controla si la propiedad de clave externa es obligatoria u opcional. Esto es muy útil cuando se usa una clave externa de estado de sombra. Si tiene una propiedad de clave externa en la clase de entidad, la necesidad de la relación se determina en función de si la propiedad de clave externa es necesaria u opcional (vea [propiedades obligatorias y opcionales](xref:core/modeling/entity-properties#required-and-optional-properties) para obtener más información).
 
+Las propiedades de clave externa se encuentran en el tipo de entidad dependiente, por lo que si se configuran como requeridas, significa que todas las entidades dependientes deben tener una entidad principal correspondiente.
+
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/Required.cs?name=Required&highlight=6)]
 
 > [!NOTE]
@@ -254,8 +259,69 @@ Al configurar la clave externa, debe especificar el tipo de entidad dependiente:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/OneToOne.cs?name=OneToOne&highlight=11)]
 
+El lado dependiente se considera opcional de forma predeterminada, pero se puede configurar según sea necesario. Sin embargo, EF no validará si se proporcionó una entidad dependiente, por lo que esta configuración solo marcará una diferencia cuando la asignación de base de datos permita su aplicación. Un escenario común para esto son los tipos de referencia que usan la división de tablas de forma predeterminada.
+
+[!code-csharp[Main](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=Required&highlight=11-12)]
+
+Con esta configuración, las columnas correspondientes a se `ShippingAddress` marcarán como que no aceptan valores NULL en la base de datos.
+
+> [!NOTE]
+> Si usa [tipos de referencia que no aceptan valores NULL](/dotnet/csharp/nullable-references) , `IsRequired` no es necesario llamar a.
+
+> [!NOTE]
+> La capacidad de configurar si el dependiente es necesario se agregó en EF Core 5,0.
+
 ### <a name="many-to-many"></a>Varios a varios
 
-Todavía no se admiten las relaciones de varios a varios sin una clase de entidad para representar la tabla de combinación. Sin embargo, puede representar una relación de varios a varios incluyendo una clase de entidad para la tabla de combinación y asignando dos relaciones uno a varios independientes.
+Una relación de varios a varios requiere una propiedad de navegación de colección en ambos lados. Se detectarán por Convención como otros tipos de relaciones.
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyShared.cs?name=ManyToManyShared)]
+
+La forma en que se implementa esta relación en la base de datos es mediante una tabla de combinación que contiene claves externas a `Post` y `Tag` . Por ejemplo, esto es lo que EF creará en una base de datos relacional para el modelo anterior.
+
+```sql
+CREATE TABLE [Posts] (
+    [PostId] int NOT NULL IDENTITY,
+    [Title] nvarchar(max) NULL,
+    [Content] nvarchar(max) NULL,
+    CONSTRAINT [PK_Posts] PRIMARY KEY ([PostId])
+);
+
+CREATE TABLE [Tags] (
+    [TagId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_Tags] PRIMARY KEY ([TagId])
+);
+
+CREATE TABLE [PostTag] (
+    [PostId] int NOT NULL,
+    [TagId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_PostTag] PRIMARY KEY ([PostId], [TagId]),
+    CONSTRAINT [FK_PostTag_Posts_PostId] FOREIGN KEY ([PostId]) REFERENCES [Posts] ([PostId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_PostTag_Tags_TagId] FOREIGN KEY ([TagId]) REFERENCES [Tags] ([TagId]) ON DELETE CASCADE
+);
+```
+
+Internamente, EF crea un tipo de entidad para representar la tabla de combinación a la que se hará referencia como el tipo de entidad de combinación. No hay ningún tipo de CLR específico que se pueda usar para esto, por lo que `Dictionary<string, object>` se utiliza. Puede haber más de una relación de varios a varios en el modelo, por lo que el tipo de entidad de combinación debe recibir un nombre único, en este caso `PostTag` . La característica que lo permite se denomina tipo de entidad de tipo compartido.
+
+Las navegaciones de varios a varios se llaman omitir navegaciones, ya que omiten el tipo de entidad de combinación. Si está empleando la configuración masiva, todas las navegaciones de omitir se pueden obtener de `GetSkipNavigations` .
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyShared.cs?name=Metadata)]
+
+Es habitual aplicar la configuración al tipo de entidad de combinación. Esta acción se puede realizar a través de `UsingEntity` .
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyShared.cs?name=SharedConfiguration)]
+
+Se pueden proporcionar [datos de inicialización del modelo](xref:core/modeling/data-seeding) para el tipo de entidad de combinación mediante el uso de tipos anónimos. Puede examinar la vista de depuración del modelo para determinar los nombres de propiedad creados por la Convención.
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyShared.cs?name=Seeding)]
+
+Los datos adicionales se pueden almacenar en el tipo de entidad de combinación, pero para ello es mejor crear un tipo de CLR de tipo. Al configurar la relación con un tipo de entidad de combinación personalizada, se deben especificar explícitamente las claves externas.
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyPayload.cs?name=ManyToManyPayload)]
+
+> [!NOTE]
+> La capacidad de configurar relaciones varios a varios se agregó en EF Core 5,0, para la versión anterior, use el siguiente enfoque.
+
+También puede representar una relación de varios a varios agregando el tipo de entidad de combinación y asignando dos relaciones uno a varios independientes.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToMany.cs?name=ManyToMany&highlight=11-14,16-19,39-46)]

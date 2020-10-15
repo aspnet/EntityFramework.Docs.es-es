@@ -2,15 +2,14 @@
 title: 'Crear y quitar API: EF Core'
 description: API para crear y quitar bases de datos con Entity Framework Core
 author: bricelam
-ms.author: bricelam
 ms.date: 11/07/2018
 uid: core/managing-schemas/ensure-created
-ms.openlocfilehash: 25e7352269531e881e83e44ea90108f12d4dcbea
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: c23311fbb8254ba183a6fd1661bba915aedc9a97
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619222"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062339"
 ---
 # <a name="create-and-drop-apis"></a>Crear y quitar API
 
@@ -27,7 +26,7 @@ La transición de EnsureCreated a migraciones no es una experiencia sin problema
 
 El método EnsureDeleted quitará la base de datos si existe. Si no tiene los permisos adecuados, se produce una excepción.
 
-``` csharp
+```csharp
 // Drop the database if it exists
 dbContext.Database.EnsureDeleted();
 ```
@@ -36,7 +35,7 @@ dbContext.Database.EnsureDeleted();
 
 EnsureCreated creará la base de datos si no existe e inicializará el esquema de la base de datos. Si existe alguna tabla (incluidas las tablas de otra clase DbContext), el esquema no se inicializará.
 
-``` csharp
+```csharp
 // Create the database if it doesn't exist
 dbContext.Database.EnsureCreated();
 ```
@@ -48,7 +47,7 @@ dbContext.Database.EnsureCreated();
 
 Para obtener el SQL que usa EnsureCreated, puede utilizar el método GenerateCreateScript.
 
-``` csharp
+```csharp
 var sql = dbContext.Database.GenerateCreateScript();
 ```
 
@@ -56,7 +55,7 @@ var sql = dbContext.Database.GenerateCreateScript();
 
 EnsureCreated solo funciona cuando no hay ninguna tabla presente en la base de datos. Si es necesario, puede escribir su propia comprobación para ver si es necesario inicializar el esquema y usar el servicio IRelationalDatabaseCreator subyacente para inicializar el esquema.
 
-``` csharp
+```csharp
 // TODO: Check whether the schema needs to be initialized
 
 // Initialize the schema for this DbContext

@@ -2,15 +2,14 @@
 title: 'Ingeniería inversa: EF Core'
 description: Aplicar ingeniería inversa a un modelo a partir de una base de datos existente mediante Entity Framework Core
 author: bricelam
-ms.author: bricelam
 ms.date: 11/13/2018
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: 86aa6d22ebe8e5c1d654c83d4c292a1ed5842ddd
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: e1b4ed8d5209688fbe5c89ae60cf0d981136305f
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071919"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92061975"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
 
@@ -36,7 +35,7 @@ dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog
 
 ### <a name="visual-studio"></a>[Visual Studio](#tab/vs)
 
-``` powershell
+```powershell
 Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook' Microsoft.EntityFrameworkCore.SqlServer
 ```
 
@@ -77,7 +76,7 @@ La `-Schemas` opción se puede usar para incluir todas las tablas de un esquema,
 
 Para incluir varias tablas, use una matriz:
 
-``` powershell
+```powershell
 Scaffold-DbContext ... -Tables Artist, Album
 ```
 
@@ -93,7 +92,7 @@ Los tipos de entidad se configuran mediante la API fluida de forma predeterminad
 
 Por ejemplo, el uso de la API fluida le aplicará esta técnica:
 
-``` csharp
+```csharp
 entity.Property(e => e.Title)
     .IsRequired()
     .HasMaxLength(160);
@@ -101,7 +100,7 @@ entity.Property(e => e.Title)
 
 Aunque el uso de anotaciones de datos es scaffolding:
 
-``` csharp
+```csharp
 [Required]
 [StringLength(160)]
 public string Title { get; set; }
@@ -133,13 +132,13 @@ dotnet ef dbcontext scaffold ... --namespace Your.Namespace --context-namespace 
 
 Puede especificar el directorio en el que se usan las clases scaffolding usando `-OutputDir` y `-ContextDir` se puede usar para aplicar scaffolding a la clase DbContext en un directorio independiente de las clases de tipo de entidad:
 
-``` powershell
+```powershell
 Scaffold-DbContext ... -ContextDir Data -OutputDir Models
 ```
 
 De forma predeterminada, el espacio de nombres será el espacio de nombres raíz más los nombres de los subdirectorios del directorio raíz del proyecto. Sin embargo, desde EFCore 5,0 en adelante, puede invalidar el espacio de nombres para todas las clases de salida mediante `-Namespace` . También puede invalidar el espacio de nombres solo para la clase DbContext mediante `-ContextNamespace` .
 
-``` powershell
+```powershell
 Scaffold-DbContext ... -Namespace Your.Namespace -ContextNamespace Your.DbContext.Namespace
 ```
 

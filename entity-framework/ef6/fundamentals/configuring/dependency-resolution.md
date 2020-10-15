@@ -1,15 +1,15 @@
 ---
 title: 'Resolución de dependencias: EF6'
 description: Resolución de dependencias en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/configuring/dependency-resolution
-ms.openlocfilehash: 24e932646f0c44f642bff3f6db321590abae1c8d
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 84f2391cdad974bb14aecd7e8650d46e78e47b75
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070554"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063314"
 ---
 # <a name="dependency-resolution"></a>Resolución de dependencias
 > [!NOTE]

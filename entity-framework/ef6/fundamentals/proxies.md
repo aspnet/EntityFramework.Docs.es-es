@@ -1,15 +1,15 @@
 ---
 title: 'Trabajo con servidores proxy: EF6'
 description: Trabajo con servidores proxy en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/proxies
-ms.openlocfilehash: e626a7dff67497a2fbb3dcd169704814ea4cf2cf
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 741fd72ee66b98ab132fb85f71c3101712e433fa
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070502"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063210"
 ---
 # <a name="working-with-proxies"></a>Trabajar con servidores proxy
 Al crear instancias de tipos de entidad POCO, Entity Framework a menudo crea instancias de un tipo derivado generado dinámicamente que actúa como un proxy para la entidad. Este proxy invalida algunas propiedades virtuales de la entidad para insertar enlaces para realizar acciones automáticamente cuando se tiene acceso a la propiedad. Por ejemplo, este mecanismo se usa para admitir la carga diferida de relaciones. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  
@@ -61,7 +61,7 @@ Tenga en cuenta que el método Create solo creará una instancia del tipo de ent
 
 Los tipos de proxy tienen nombres que tienen un aspecto similar al siguiente:  
 
-System. Data. Entity. DynamicProxies. Blog_5E43C6C196972BF0754973E48C9C941092D86818CD94005E9A759B70BF6E48E6  
+System.Data.Entity.DynamicProxies.Blog_5E43C6C196972BF0754973E48C9C941092D86818CD94005E9A759B70BF6E48E6  
 
 Puede encontrar el tipo de entidad para este tipo de proxy mediante el método GetObjectType de ObjectContext. Por ejemplo:  
 

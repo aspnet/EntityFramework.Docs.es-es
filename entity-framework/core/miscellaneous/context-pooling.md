@@ -5,12 +5,12 @@ author: rick-anderson
 ms.author: riande
 ms.date: 9/19/2020
 uid: core/miscellaneous/context-pooling
-ms.openlocfilehash: fd5f53ff97a73895f0c4239439730dd8cb3ecc29
-ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
+ms.openlocfilehash: 8638c838511be85bd994751b9911b107974dfe2f
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/24/2020
-ms.locfileid: "91215589"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92061962"
 ---
 # <a name="dbcontext-pooling"></a>Agrupación de DbContext
 
@@ -20,7 +20,7 @@ El patrón típico en una aplicación ASP.NET Core con EF Core implica registrar
 
 <xref:Microsoft.Extensions.DependencyInjection.EntityFrameworkServiceCollectionExtensions.AddDbContextPool%2A> habilita un grupo de instancias de contexto reutilizables. Para usar la agrupación de contexto, use el `AddDbContextPool` método en lugar de `AddDbContext` durante el registro del servicio:
 
-``` csharp
+```csharp
 services.AddDbContextPool<BloggingContext>(
     options => options.UseSqlServer(connectionString));
 ```
@@ -37,7 +37,7 @@ Se debe crear un perfiles de las aplicaciones y probarlas para mostrar que la in
 
 `AddDbContextPool` tiene algunas limitaciones en lo que se puede hacer en el `OnConfiguring` método del contexto.
 
-> [!WARNING]  
+> [!WARNING]
 > Evite el uso de la agrupación de contexto en aplicaciones que mantienen el estado. Por ejemplo, los campos privados en el contexto que no se deberían compartir entre las solicitudes. EF Core solo restablece el estado que se conoce antes de agregar una instancia de contexto al grupo.
 
 La agrupación de contexto funciona mediante la reutilización de la misma instancia de contexto en todas las solicitudes. Esto significa que se registra de forma eficaz como [Singleton](/aspnet/core/fundamentals/dependency-injection#service-lifetimes) en lo que se refiere a la propia instancia para que pueda persistir.

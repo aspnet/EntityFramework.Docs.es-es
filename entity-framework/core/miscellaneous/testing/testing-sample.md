@@ -11,12 +11,12 @@ no-loc:
 - Tags
 - items
 - tags
-ms.openlocfilehash: 839f932f48e1cc6cb1b4c86d5e1405e888d5227a
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 07cde296f07a883ba6abf45f94a31e072fb6d6cb
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617659"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063054"
 ---
 # <a name="ef-core-testing-sample"></a>Ejemplo de prueba de EF Core
 
@@ -183,7 +183,7 @@ Dos pruebas ligeramente más complicadas cubren la lógica de negocios en torno 
 ## <a name="issues-using-different-database-providers"></a>Problemas con diferentes proveedores de bases de datos
 
 La prueba con un sistema de base de datos diferente al que se usa en la aplicación de producción puede provocar problemas.
-Estos se describen en el nivel conceptual del [código de prueba que usa EF Core](xref:core/miscellaneous/testing/index).  
+Estos se describen en el nivel conceptual del [código de prueba que usa EF Core](xref:core/miscellaneous/testing/index).
 En las secciones siguientes se incluyen dos ejemplos de estos problemas que se muestran en las pruebas de este ejemplo.
 
 ### <a name="test-passes-when-the-application-is-broken"></a>La prueba se supera cuando se interrumpe la aplicación
@@ -197,7 +197,7 @@ La ejecución de esta prueba en la base de datos en memoria de EF indica que tod
 Todo sigue teniendo el aspecto correcto al usar SQLite.
 Pero se produce un error en la prueba cuando se ejecuta en SQL Server.
 
-```console
+```output
 System.InvalidOperationException : Sequence contains more than one element
    at System.Linq.ThrowHelper.ThrowMoreThanOneElementException()
    at System.Linq.Enumerable.Single[TSource](IEnumerable`1 source)
@@ -224,7 +224,7 @@ De nuevo, fácil de probar:
 
 Esta prueba se supera en SQL Server y SQLite, pero produce un error con la base de datos de EF en memoria.
 
-```console
+```output
 Assert.False() Failure
 Expected: False
 Actual:   True

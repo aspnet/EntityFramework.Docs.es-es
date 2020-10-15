@@ -1,15 +1,15 @@
 ---
 title: Escribir un proveedor de base de datos-EF Core
 description: Información sobre cómo escribir un nuevo proveedor de Entity Framework Core
-author: anmiller
+author: ajcvickers
 ms.date: 10/27/2016
 uid: core/providers/writing-a-provider
-ms.openlocfilehash: b6054696711eb4bf865841428f58ca41791676f9
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: db02402c6651401aacaca9c3538c29f526c6720a
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071217"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062703"
 ---
 # <a name="writing-a-database-provider"></a>Escritura de un proveedor de base de datos
 

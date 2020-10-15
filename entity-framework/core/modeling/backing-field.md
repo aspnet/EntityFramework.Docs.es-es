@@ -1,15 +1,15 @@
 ---
 title: 'Campos de respaldo: EF Core'
 description: Configurar campos de respaldo para las propiedades de un modelo de Entity Framework Core
-author: rowanmiller
+author: ajcvickers
 ms.date: 10/27/2016
 uid: core/modeling/backing-field
-ms.openlocfilehash: 48ef28e7b880fee571cb1857601fb2cead535fbf
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 4f5680b14c7f0e1fa5128d366f2960c4ae9b3735
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071633"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063691"
 ---
 # <a name="backing-fields"></a>Campos de respaldo
 
@@ -17,7 +17,7 @@ Los campos de respaldo permiten a EF leer o escribir en un campo en lugar de una
 
 ## <a name="basic-configuration"></a>Configuración básica
 
-Por Convención, se detectarán los campos siguientes como campos de respaldo para una propiedad determinada (que se muestra en orden de prioridad). 
+Por Convención, se detectarán los campos siguientes como campos de respaldo para una propiedad determinada (que se muestra en orden de prioridad).
 
 * `_<camel-cased property name>`
 * `_<property name>`
@@ -63,6 +63,6 @@ EF intentará buscar una propiedad CLR con el nombre especificado o un campo si 
 
 Es posible que tenga que hacer referencia a una propiedad de solo campo desde las consultas LINQ, pero estos campos suelen ser privados. Puede usar el `EF.Property(...)` método en una consulta LINQ para hacer referencia al campo:
 
-``` csharp
+```csharp
 var blogs = db.blogs.OrderBy(b => EF.Property<string>(b, "_validatedUrl"));
 ```

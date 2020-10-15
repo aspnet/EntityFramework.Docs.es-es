@@ -2,14 +2,14 @@
 title: 'Tipos de entidad: EF Core'
 description: Cómo configurar y asignar tipos de entidad mediante Entity Framework Core
 author: roji
-ms.date: 12/03/2019
+ms.date: 10/06/2020
 uid: core/modeling/entity-types
-ms.openlocfilehash: fead7f9e37efb7f674f429acbfd16c2ca78480d4
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: bfefa29c08679a1524c00769b3495d75a301e2d3
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071516"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062235"
 ---
 # <a name="entity-types"></a>Tipos de entidad
 
@@ -40,6 +40,19 @@ Si no desea incluir un tipo en el modelo, puede excluirlo:
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/IgnoreType.cs?name=IgnoreType&highlight=3)]
 
 ***
+
+### <a name="excluding-from-migrations"></a>Exclusión de las migraciones
+
+> [!NOTE]
+> La capacidad de excluir las tablas de las migraciones se agregó en EF Core 5,0.
+
+A veces resulta útil tener el mismo tipo de entidad asignado en varios `DbContext` tipos. Esto es especialmente cierto cuando se usan [contextos delimitados](https://www.martinfowler.com/bliki/BoundedContext.html), para los que es común tener un `DbContext` tipo diferente para cada contexto enlazado.
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableExcludeFromMigrations.cs?name=TableExcludeFromMigrations&highlight=4)]
+
+Con esta configuración, las migraciones no crearán la `blogs` tabla, pero `Blog` se incluirán en el modelo y se pueden usar con normalidad.
+
+Si necesita empezar a administrar la tabla con las migraciones de nuevo, se debe crear una nueva migración en la que `blogs` no se excluya. La siguiente migración contendrá los cambios realizados en la tabla.
 
 ## <a name="table-name"></a>Nombre de la tabla
 
@@ -78,3 +91,14 @@ En lugar de especificar el esquema de cada tabla, también puede definir el esqu
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/DefaultSchema.cs?name=DefaultSchema&highlight=3)]
 
 Tenga en cuenta que al establecer el esquema predeterminado también se verán afectados otros objetos de base de datos, como las secuencias.
+
+## <a name="view-mapping"></a>Vista de la asignación
+
+Los tipos de entidad pueden asignarse a vistas de base de datos mediante la API fluida.
+
+> [!Note]
+> EF supondrá que la vista a la que se hace referencia ya existe en la base de datos, no la creará automáticamente en una migración.
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ViewNameAndSchema.cs?name=ViewNameAndSchema&highlight=1)]
+
+ La asignación a una vista quitará la asignación de tabla predeterminada, pero el tipo de entidad también se puede asignar explícitamente a una tabla. En este caso, la asignación de consultas se usará para las consultas y la asignación de tabla se usará para las actualizaciones.

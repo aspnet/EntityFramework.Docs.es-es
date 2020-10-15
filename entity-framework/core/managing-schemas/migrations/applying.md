@@ -2,15 +2,14 @@
 title: 'Aplicación de migraciones: EF Core'
 description: Estrategias para aplicar migraciones de esquema a las bases de datos de desarrollo y de producción con Entity Framework Core
 author: bricelam
-ms.author: bricelam
 ms.date: 05/06/2020
 uid: core/managing-schemas/migrations/applying
-ms.openlocfilehash: cde83a944e1e698a7f8a00c4692c0ce08a87b5ab
-ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
+ms.openlocfilehash: 68d482a34e5f5c7acf968acdfd8825e1d21ecb13
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/24/2020
-ms.locfileid: "91210411"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062352"
 ---
 # <a name="applying-migrations"></a>Aplicación de migraciones
 
@@ -65,7 +64,7 @@ Puede usar un valor `from` que sea más reciente que el valor `to` para generar 
 
 Lo siguiente genera un script SQL desde una base de datos vacía a la migración más reciente:
 
-``` powershell
+```powershell
 Script-Migration
 ```
 
@@ -107,13 +106,13 @@ dotnet ef migrations script --idempotent
 
 #### <a name="visual-studio"></a>[Visual Studio](#tab/vs)
 
-``` powershell
+```powershell
 Script-Migration -Idempotent
 ```
 
 ***
 
-## <a name="command-line-tools"></a>Herramientas de la línea de comandos
+## <a name="command-line-tools"></a>Herramientas de línea de comandos
 
 Las herramientas de línea de comandos de EF se pueden usar para aplicar migraciones a una base de datos. Aunque es productivo para el desarrollo y las pruebas locales de las migraciones, este enfoque no es idóneo para la administración de bases de datos de producción:
 
@@ -143,13 +142,13 @@ Tenga en cuenta que esto puede usarse también para revertir a una migración an
 
 La siguiente actualización de la base de datos a la migración más reciente:
 
-``` powershell
+```powershell
 Update-Database
 ```
 
 La siguiente actualización de la base de datos a una migración determinada:
 
-``` powershell
+```powershell
 Update-Database AddNewTables
 ```
 
@@ -174,7 +173,7 @@ Es posible que la propia aplicación aplique migraciones mediante programación,
 
 Para aplicar las migraciones mediante programación, llame a `context.Database.Migrate()` . Por ejemplo, una aplicación típica de ASP.NET puede hacer lo siguiente:
 
-```c#
+```csharp
 public static void Main(string[] args)
 {
     var host = CreateHostBuilder(args).Build();

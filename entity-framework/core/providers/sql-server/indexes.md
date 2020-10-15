@@ -2,15 +2,14 @@
 title: 'Proveedor de base de datos de Microsoft SQL Server: índices EF Core'
 description: Características de índice específicas del proveedor de SQL Server de Entity Framework Core
 author: roji
-ms.author: shrojans
 ms.date: 9/1/2020
 uid: core/providers/sql-server/indexes
-ms.openlocfilehash: 3830377562fcc6a59239cd2c09d1419bbd00922e
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: a01ab3d12f5bf5f05f0925c93d90c0ee40fe977c
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89620716"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92061871"
 ---
 # <a name="index-features-specific-to-the-entity-framework-core-sql-server-provider"></a>Características de índice específicas del proveedor de SQL Server de Entity Framework Core
 

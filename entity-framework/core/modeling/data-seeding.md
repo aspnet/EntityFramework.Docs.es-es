@@ -2,15 +2,14 @@
 title: 'Propagación de datos: EF Core'
 description: Usar la inicialización de datos para rellenar una base de datos con un conjunto inicial de datos mediante Entity Framework Core
 author: AndriySvyryd
-ms.author: ansvyryd
 ms.date: 11/02/2018
 uid: core/modeling/data-seeding
-ms.openlocfilehash: 1d7adbe45c4cbc64a39485c76d8f516e32ffeba5
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: f8284d7473c6fbcafde25d01ec0709c2d50b666f
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071607"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063704"
 ---
 # <a name="data-seeding"></a>Propagación de datos
 
@@ -23,9 +22,6 @@ Hay varias maneras de lograrlo en EF Core:
 * Lógica de inicialización personalizada
 
 ## <a name="model-seed-data"></a>Datos de inicialización del modelo
-
-> [!NOTE]
-> Esta característica es nueva en EF Core 2.1.
 
 A diferencia de EF6, en EF Core, la propagación de datos se puede asociar a un tipo de entidad como parte de la configuración del modelo. A continuación, las [migraciones](xref:core/managing-schemas/migrations/index) de EF Core pueden calcular automáticamente las operaciones de inserción, actualización o eliminación que se deben aplicar al actualizar la base de datos a una nueva versión del modelo.
 

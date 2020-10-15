@@ -2,15 +2,14 @@
 title: Referencia de herramientas de EF Core (consola del administrador de paquetes)-EF Core
 description: Guía de referencia de la consola del administrador de paquetes de Visual Studio Entity Framework Core
 author: bricelam
-ms.author: bricelam
-ms.date: 09/09/2020
+ms.date: 10/13/2020
 uid: core/miscellaneous/cli/powershell
-ms.openlocfilehash: 5dca397978c60c12610d9080caba972a66b079b6
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 3a9599288d74013bf4da910c64bc858539c0c32c
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071867"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062391"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Referencia de herramientas de Entity Framework Core: consola del administrador de paquetes en Visual Studio
 
@@ -20,50 +19,15 @@ Si no usa Visual Studio, se recomienda usar en su lugar las [herramientas de lí
 
 ## <a name="installing-the-tools"></a>Instalación de las herramientas
 
-Los procedimientos para instalar y actualizar las herramientas difieren entre ASP.NET Core 2.1 + y versiones anteriores u otros tipos de proyecto.
-
-### <a name="aspnet-core-version-21-and-later"></a>ASP.NET Core versión 2,1 y versiones posteriores
-
-Las herramientas se incluyen automáticamente en un proyecto ASP.NET Core 2.1 + porque el `Microsoft.EntityFrameworkCore.Tools` paquete se incluye en el [metapaquete Microsoft. AspNetCore. app](/aspnet/core/fundamentals/metapackage-app).
-
-Por lo tanto, no tiene que hacer nada para instalar las herramientas, pero tiene que:
-
-* Restaure los paquetes antes de usar las herramientas en un nuevo proyecto.
-* Instale un paquete para actualizar las herramientas a una versión más reciente.
-
-Para asegurarse de que está obteniendo la versión más reciente de las herramientas, se recomienda que realice también el siguiente paso:
-
-* Edite el archivo *. csproj* y agregue una línea que especifique la versión más reciente del paquete [Microsoft. EntityFrameworkCore. Tools](https://www.nuget.org/packages/Microsoft.EntityFrameworkCore.Tools/) . Por ejemplo, el archivo *. csproj* podría incluir un `ItemGroup` que tiene el siguiente aspecto:
-
-  ```xml
-  <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.App" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="3.1.3" />
-    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
-  </ItemGroup>
-  ```
-
-Actualice las herramientas cuando reciba un mensaje similar al del ejemplo siguiente:
-
-> La versión de herramientas de EF Core ' 2.1.1-RTM-30846 ' es anterior a la del runtime ' 2.1.3-RTM-32065 '. Actualice las herramientas para las últimas características y correcciones de errores.
-
-Para actualizar las herramientas:
-
-* Instale la versión más reciente del SDK de .NET Core.
-* Actualice Visual Studio a la última versión.
-* Edite el archivo *. csproj* para que incluya una referencia de paquete al paquete de herramientas más reciente, como se mostró anteriormente.
-
-### <a name="other-versions-and-project-types"></a>Otras versiones y tipos de proyecto
-
 Instale las herramientas de la consola del administrador de paquetes ejecutando el siguiente comando en la **consola del administrador de paquetes**:
 
-``` powershell
+```powershell
 Install-Package Microsoft.EntityFrameworkCore.Tools
 ```
 
 Actualice las herramientas ejecutando el siguiente comando en la **consola del administrador de paquetes**.
 
-``` powershell
+```powershell
 Update-Package Microsoft.EntityFrameworkCore.Tools
 ```
 
@@ -71,13 +35,13 @@ Update-Package Microsoft.EntityFrameworkCore.Tools
 
 Ejecute este comando para comprobar que las herramientas están instaladas:
 
-``` powershell
+```powershell
 Get-Help about_EntityFrameworkCore
 ```
 
 La salida tiene el siguiente aspecto (no indica qué versión de las herramientas está usando):
 
-```console
+```output
 
                      _/\__
                ---==/    \\
@@ -145,7 +109,7 @@ Para mostrar información de ayuda sobre un comando, use el `Get-Help` comando d
 > [!TIP]
 > Los parámetros context, Project y proyecto admiten la expansión de pestañas.
 
-## <a name="add-migration"></a>Agregar-migración
+## <a name="add-migration"></a>Add-Migration
 
 Agrega una nueva migración.
 
@@ -239,7 +203,7 @@ Ejemplo que scaffolding solo selecciona tablas y crea el contexto en una carpeta
 Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Connection=True;" Microsoft.EntityFrameworkCore.SqlServer -OutputDir Models -Tables "Blog","Post" -ContextDir Context -Context BlogContext -ContextNamespace New.Namespace
 ```
 
-## <a name="script-dbcontext"></a>Script: DbContext
+## <a name="script-dbcontext"></a>Script-DbContext
 
 Genera un script SQL desde DbContext. Omite las migraciones. Agregado en EF Core 3,0.
 
@@ -251,7 +215,7 @@ Parámetros:
 
 Los [parámetros comunes](#common-parameters) se enumeran a continuación.
 
-## <a name="script-migration"></a>Script: migración
+## <a name="script-migration"></a>Script-Migration
 
 Genera un script SQL que aplica todos los cambios de una migración seleccionada a otra migración seleccionada.
 
@@ -282,7 +246,7 @@ En el ejemplo siguiente se crea un script para todas las migraciones después de
 Script-Migration -From 20180904195021_InitialCreate
 ```
 
-## <a name="update-database"></a>Actualizar base de datos
+## <a name="update-database"></a>Update-Database
 
 Actualiza la base de datos a la última migración o a una migración especificada.
 
