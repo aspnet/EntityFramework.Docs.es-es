@@ -1,25 +1,25 @@
 ---
 title: 'Cadenas de conexión: EF Core'
 description: Administrar cadenas de conexión en entornos diferentes con Entity Framework Core
-author: rowanmiller
+author: bricelam
 ms.date: 10/27/2016
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: e4283ada88a557e4f1e3eeea3de2634a7d0dce61
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: f657d39f66e6a757380ca25436a638b47c11cd12
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071685"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062326"
 ---
-# <a name="connection-strings"></a><span data-ttu-id="7916b-103">Cadenas de conexión</span><span class="sxs-lookup"><span data-stu-id="7916b-103">Connection Strings</span></span>
+# <a name="connection-strings"></a><span data-ttu-id="bccf0-103">Cadenas de conexión</span><span class="sxs-lookup"><span data-stu-id="bccf0-103">Connection Strings</span></span>
 
-<span data-ttu-id="7916b-104">La mayoría de los proveedores de bases de datos requieren algún tipo de cadena de conexión para conectarse a la base de datos.</span><span class="sxs-lookup"><span data-stu-id="7916b-104">Most database providers require some form of connection string to connect to the database.</span></span> <span data-ttu-id="7916b-105">A veces, esta cadena de conexión contiene información confidencial que debe protegerse.</span><span class="sxs-lookup"><span data-stu-id="7916b-105">Sometimes this connection string contains sensitive information that needs to be protected.</span></span> <span data-ttu-id="7916b-106">También es posible que necesite cambiar la cadena de conexión a medida que mueva la aplicación entre entornos, como desarrollo, pruebas y producción.</span><span class="sxs-lookup"><span data-stu-id="7916b-106">You may also need to change the connection string as you move your application between environments, such as development, testing, and production.</span></span>
+<span data-ttu-id="bccf0-104">La mayoría de los proveedores de bases de datos requieren algún tipo de cadena de conexión para conectarse a la base de datos.</span><span class="sxs-lookup"><span data-stu-id="bccf0-104">Most database providers require some form of connection string to connect to the database.</span></span> <span data-ttu-id="bccf0-105">A veces, esta cadena de conexión contiene información confidencial que debe protegerse.</span><span class="sxs-lookup"><span data-stu-id="bccf0-105">Sometimes this connection string contains sensitive information that needs to be protected.</span></span> <span data-ttu-id="bccf0-106">También es posible que necesite cambiar la cadena de conexión a medida que mueva la aplicación entre entornos, como desarrollo, pruebas y producción.</span><span class="sxs-lookup"><span data-stu-id="bccf0-106">You may also need to change the connection string as you move your application between environments, such as development, testing, and production.</span></span>
 
-## <a name="winforms--wpf-applications"></a><span data-ttu-id="7916b-107">Aplicaciones de WinForms & WPF</span><span class="sxs-lookup"><span data-stu-id="7916b-107">WinForms & WPF Applications</span></span>
+## <a name="winforms--wpf-applications"></a><span data-ttu-id="bccf0-107">Aplicaciones de WinForms & WPF</span><span class="sxs-lookup"><span data-stu-id="bccf0-107">WinForms & WPF Applications</span></span>
 
-<span data-ttu-id="7916b-108">Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexión probado y probado.</span><span class="sxs-lookup"><span data-stu-id="7916b-108">WinForms, WPF, and ASP.NET 4 applications have a tried and tested connection string pattern.</span></span> <span data-ttu-id="7916b-109">La cadena de conexión debe agregarse al archivo de App.config de la aplicación (Web.config si usa ASP.NET).</span><span class="sxs-lookup"><span data-stu-id="7916b-109">The connection string should be added to your application's App.config file (Web.config if you are using ASP.NET).</span></span> <span data-ttu-id="7916b-110">Si la cadena de conexión contiene información confidencial, como el nombre de usuario y la contraseña, puede proteger el contenido del archivo de configuración mediante la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager).</span><span class="sxs-lookup"><span data-stu-id="7916b-110">If your connection string contains sensitive information, such as username and password, you can protect the contents of the configuration file using the [Secret Manager tool](/aspnet/core/security/app-secrets#secret-manager).</span></span>
+<span data-ttu-id="bccf0-108">Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexión probado y probado.</span><span class="sxs-lookup"><span data-stu-id="bccf0-108">WinForms, WPF, and ASP.NET 4 applications have a tried and tested connection string pattern.</span></span> <span data-ttu-id="bccf0-109">La cadena de conexión debe agregarse al archivo de App.config de la aplicación (Web.config si usa ASP.NET).</span><span class="sxs-lookup"><span data-stu-id="bccf0-109">The connection string should be added to your application's App.config file (Web.config if you are using ASP.NET).</span></span> <span data-ttu-id="bccf0-110">Si la cadena de conexión contiene información confidencial, como el nombre de usuario y la contraseña, puede proteger el contenido del archivo de configuración mediante la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager).</span><span class="sxs-lookup"><span data-stu-id="bccf0-110">If your connection string contains sensitive information, such as username and password, you can protect the contents of the configuration file using the [Secret Manager tool](/aspnet/core/security/app-secrets#secret-manager).</span></span>
 
-``` xml
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
 
@@ -30,12 +30,12 @@ ms.locfileid: "90071685"
 </configuration>
 ```
 
-> [!TIP]  
-> <span data-ttu-id="7916b-111">La `providerName` configuración no es necesaria en EF Core cadenas de conexión almacenadas en App.config porque el proveedor de base de datos se configura mediante código.</span><span class="sxs-lookup"><span data-stu-id="7916b-111">The `providerName` setting is not required on EF Core connection strings stored in App.config because the database provider is configured via code.</span></span>
+> [!TIP]
+> <span data-ttu-id="bccf0-111">La `providerName` configuración no es necesaria en EF Core cadenas de conexión almacenadas en App.config porque el proveedor de base de datos se configura mediante código.</span><span class="sxs-lookup"><span data-stu-id="bccf0-111">The `providerName` setting is not required on EF Core connection strings stored in App.config because the database provider is configured via code.</span></span>
 
-<span data-ttu-id="7916b-112">Después, puede leer la cadena de conexión con la `ConfigurationManager` API en el método del contexto `OnConfiguring` .</span><span class="sxs-lookup"><span data-stu-id="7916b-112">You can then read the connection string using the `ConfigurationManager` API in your context's `OnConfiguring` method.</span></span> <span data-ttu-id="7916b-113">Es posible que tenga que agregar una referencia al ensamblado del marco `System.Configuration` para poder usar esta API.</span><span class="sxs-lookup"><span data-stu-id="7916b-113">You may need to add a reference to the `System.Configuration` framework assembly to be able to use this API.</span></span>
+<span data-ttu-id="bccf0-112">Después, puede leer la cadena de conexión con la `ConfigurationManager` API en el método del contexto `OnConfiguring` .</span><span class="sxs-lookup"><span data-stu-id="bccf0-112">You can then read the connection string using the `ConfigurationManager` API in your context's `OnConfiguring` method.</span></span> <span data-ttu-id="bccf0-113">Es posible que tenga que agregar una referencia al ensamblado del marco `System.Configuration` para poder usar esta API.</span><span class="sxs-lookup"><span data-stu-id="bccf0-113">You may need to add a reference to the `System.Configuration` framework assembly to be able to use this API.</span></span>
 
-``` csharp
+```csharp
 public class BloggingContext : DbContext
 {
     public DbSet<Blog> Blogs { get; set; }
@@ -48,11 +48,11 @@ public class BloggingContext : DbContext
 }
 ```
 
-## <a name="universal-windows-platform-uwp"></a><span data-ttu-id="7916b-114">Plataforma universal de Windows (UWP)</span><span class="sxs-lookup"><span data-stu-id="7916b-114">Universal Windows Platform (UWP)</span></span>
+## <a name="universal-windows-platform-uwp"></a><span data-ttu-id="bccf0-114">Plataforma universal de Windows (UWP)</span><span class="sxs-lookup"><span data-stu-id="bccf0-114">Universal Windows Platform (UWP)</span></span>
 
-<span data-ttu-id="7916b-115">Las cadenas de conexión en una aplicación UWP suelen ser una conexión SQLite que solo especifica un nombre de archivo local.</span><span class="sxs-lookup"><span data-stu-id="7916b-115">Connection strings in a UWP application are typically a SQLite connection that just specifies a local filename.</span></span> <span data-ttu-id="7916b-116">Normalmente no contienen información confidencial y no es necesario cambiarla a medida que se implementa una aplicación.</span><span class="sxs-lookup"><span data-stu-id="7916b-116">They typically do not contain sensitive information, and do not need to be changed as an application is deployed.</span></span> <span data-ttu-id="7916b-117">Como tal, estas cadenas de conexión suelen quedar en el código, como se muestra a continuación.</span><span class="sxs-lookup"><span data-stu-id="7916b-117">As such, these connection strings are usually fine to be left in code, as shown below.</span></span> <span data-ttu-id="7916b-118">Si quiere moverlos fuera del código, UWP admite el concepto de configuración, consulte la [sección configuración de la aplicación de la documentación de UWP](/windows/uwp/app-settings/store-and-retrieve-app-data) para obtener más información.</span><span class="sxs-lookup"><span data-stu-id="7916b-118">If you wish to move them out of code then UWP supports the concept of settings, see the [App Settings section of the UWP documentation](/windows/uwp/app-settings/store-and-retrieve-app-data) for details.</span></span>
+<span data-ttu-id="bccf0-115">Las cadenas de conexión en una aplicación UWP suelen ser una conexión SQLite que solo especifica un nombre de archivo local.</span><span class="sxs-lookup"><span data-stu-id="bccf0-115">Connection strings in a UWP application are typically a SQLite connection that just specifies a local filename.</span></span> <span data-ttu-id="bccf0-116">Normalmente no contienen información confidencial y no es necesario cambiarla a medida que se implementa una aplicación.</span><span class="sxs-lookup"><span data-stu-id="bccf0-116">They typically do not contain sensitive information, and do not need to be changed as an application is deployed.</span></span> <span data-ttu-id="bccf0-117">Como tal, estas cadenas de conexión suelen quedar en el código, como se muestra a continuación.</span><span class="sxs-lookup"><span data-stu-id="bccf0-117">As such, these connection strings are usually fine to be left in code, as shown below.</span></span> <span data-ttu-id="bccf0-118">Si quiere moverlos fuera del código, UWP admite el concepto de configuración, consulte la [sección configuración de la aplicación de la documentación de UWP](/windows/uwp/app-settings/store-and-retrieve-app-data) para obtener más información.</span><span class="sxs-lookup"><span data-stu-id="bccf0-118">If you wish to move them out of code then UWP supports the concept of settings, see the [App Settings section of the UWP documentation](/windows/uwp/app-settings/store-and-retrieve-app-data) for details.</span></span>
 
-``` csharp
+```csharp
 public class BloggingContext : DbContext
 {
     public DbSet<Blog> Blogs { get; set; }
@@ -65,20 +65,20 @@ public class BloggingContext : DbContext
 }
 ```
 
-## <a name="aspnet-core"></a><span data-ttu-id="7916b-119">ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="7916b-119">ASP.NET Core</span></span>
+## <a name="aspnet-core"></a><span data-ttu-id="bccf0-119">ASP.NET Core</span><span class="sxs-lookup"><span data-stu-id="bccf0-119">ASP.NET Core</span></span>
 
-<span data-ttu-id="7916b-120">En ASP.NET Core el sistema de configuración es muy flexible y la cadena de conexión podría almacenarse en `appsettings.json` , una variable de entorno, el almacén de secretos de usuario u otro origen de configuración.</span><span class="sxs-lookup"><span data-stu-id="7916b-120">In ASP.NET Core the configuration system is very flexible, and the connection string could be stored in `appsettings.json`, an environment variable, the user secret store, or another configuration source.</span></span> <span data-ttu-id="7916b-121">Consulte la [sección configuración de la documentación de ASP.net Core](/aspnet/core/fundamentals/configuration) para obtener más detalles.</span><span class="sxs-lookup"><span data-stu-id="7916b-121">See the [Configuration section of the ASP.NET Core documentation](/aspnet/core/fundamentals/configuration) for more details.</span></span>
+<span data-ttu-id="bccf0-120">En ASP.NET Core el sistema de configuración es muy flexible y la cadena de conexión podría almacenarse en `appsettings.json` , una variable de entorno, el almacén de secretos de usuario u otro origen de configuración.</span><span class="sxs-lookup"><span data-stu-id="bccf0-120">In ASP.NET Core the configuration system is very flexible, and the connection string could be stored in `appsettings.json`, an environment variable, the user secret store, or another configuration source.</span></span> <span data-ttu-id="bccf0-121">Consulte la [sección configuración de la documentación de ASP.net Core](/aspnet/core/fundamentals/configuration) para obtener más detalles.</span><span class="sxs-lookup"><span data-stu-id="bccf0-121">See the [Configuration section of the ASP.NET Core documentation](/aspnet/core/fundamentals/configuration) for more details.</span></span>
 
-<span data-ttu-id="7916b-122">Por ejemplo, puede usar la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager) para almacenar la contraseña de la base de datos y, a continuación, en la técnica scaffolding, usar una cadena de conexión que solo conste de `Name=<database-alias>` .</span><span class="sxs-lookup"><span data-stu-id="7916b-122">For instance, you can use the [Secret Manager tool](/aspnet/core/security/app-secrets#secret-manager) to store your database password and then, in scaffolding, use a connection string that simply consists of `Name=<database-alias>`.</span></span>
+<span data-ttu-id="bccf0-122">Por ejemplo, puede usar la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager) para almacenar la contraseña de la base de datos y, a continuación, en la técnica scaffolding, usar una cadena de conexión que solo conste de `Name=<database-alias>` .</span><span class="sxs-lookup"><span data-stu-id="bccf0-122">For instance, you can use the [Secret Manager tool](/aspnet/core/security/app-secrets#secret-manager) to store your database password and then, in scaffolding, use a connection string that simply consists of `Name=<database-alias>`.</span></span>
 
 ```dotnetcli
 dotnet user-secrets set ConnectionStrings.YourDatabaseAlias "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=YourDatabase"
 dotnet ef dbcontext scaffold Name=ConnectionStrings.YourDatabaseAlias Microsoft.EntityFrameworkCore.SqlServer
 ```
 
-<span data-ttu-id="7916b-123">O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appsettings.json` .</span><span class="sxs-lookup"><span data-stu-id="7916b-123">Or the following example shows the connection string stored in `appsettings.json`.</span></span>
+<span data-ttu-id="bccf0-123">O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appsettings.json` .</span><span class="sxs-lookup"><span data-stu-id="bccf0-123">Or the following example shows the connection string stored in `appsettings.json`.</span></span>
 
-``` json
+```json
 {
   "ConnectionStrings": {
     "BloggingDatabase": "Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;"
@@ -86,9 +86,9 @@ dotnet ef dbcontext scaffold Name=ConnectionStrings.YourDatabaseAlias Microsoft.
 }
 ```
 
-<span data-ttu-id="7916b-124">Después, el contexto se configura normalmente en `Startup.cs` con la cadena de conexión que se lee de la configuración.</span><span class="sxs-lookup"><span data-stu-id="7916b-124">Then the context is typically configured in `Startup.cs` with the connection string being read from configuration.</span></span> <span data-ttu-id="7916b-125">Tenga en cuenta que el `GetConnectionString()` método busca un valor de configuración cuya clave sea `ConnectionStrings:<connection string name>` .</span><span class="sxs-lookup"><span data-stu-id="7916b-125">Note the `GetConnectionString()` method looks for a configuration value whose key is `ConnectionStrings:<connection string name>`.</span></span> <span data-ttu-id="7916b-126">Debe importar el espacio de nombres [Microsoft.Extensions.Configprimario](/dotnet/api/microsoft.extensions.configuration) para usar este método de extensión.</span><span class="sxs-lookup"><span data-stu-id="7916b-126">You need to import the [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration) namespace to use this extension method.</span></span>
+<span data-ttu-id="bccf0-124">Después, el contexto se configura normalmente en `Startup.cs` con la cadena de conexión que se lee de la configuración.</span><span class="sxs-lookup"><span data-stu-id="bccf0-124">Then the context is typically configured in `Startup.cs` with the connection string being read from configuration.</span></span> <span data-ttu-id="bccf0-125">Tenga en cuenta que el `GetConnectionString()` método busca un valor de configuración cuya clave sea `ConnectionStrings:<connection string name>` .</span><span class="sxs-lookup"><span data-stu-id="bccf0-125">Note the `GetConnectionString()` method looks for a configuration value whose key is `ConnectionStrings:<connection string name>`.</span></span> <span data-ttu-id="bccf0-126">Debe importar el espacio de nombres [Microsoft.Extensions.Configprimario](/dotnet/api/microsoft.extensions.configuration) para usar este método de extensión.</span><span class="sxs-lookup"><span data-stu-id="bccf0-126">You need to import the [Microsoft.Extensions.Configuration](/dotnet/api/microsoft.extensions.configuration) namespace to use this extension method.</span></span>
 
-``` csharp
+```csharp
 public void ConfigureServices(IServiceCollection services)
 {
     services.AddDbContext<BloggingContext>(options =>
