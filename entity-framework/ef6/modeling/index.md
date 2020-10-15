@@ -1,15 +1,15 @@
 ---
 title: 'Creación de un modelo: EF6'
 description: Creación de un modelo en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 07/05/2018
 uid: ef6/modeling/index
-ms.openlocfilehash: 74b018c75bea72b07e137483f80bf8785a91cd0d
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: ba1aacc55feaf7bd8fdbc7667b64ba3842c538f9
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073037"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065958"
 ---
 # <a name="creating-a-model"></a>Creación de un modelo
 

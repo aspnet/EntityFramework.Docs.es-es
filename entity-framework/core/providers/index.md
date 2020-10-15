@@ -4,12 +4,12 @@ description: Información sobre proveedores de Entity Framework Core compatibles
 author: ajcvickers
 ms.date: 12/17/2019
 uid: core/providers/index
-ms.openlocfilehash: 4a5490beccfb4d038f7dde04399ec3493941ac83
-ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
+ms.openlocfilehash: 76acd8bbb833fa7c377cc90cdb67278130694bd1
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/24/2020
-ms.locfileid: "91210359"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064003"
 ---
 # <a name="database-providers"></a>Proveedores de bases de datos
 
@@ -17,11 +17,11 @@ Entity Framework Core puede tener acceso a muchas bases de datos diferentes a tr
 
 ## <a name="current-providers"></a>Proveedores actuales
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Los proveedores de EF Core se componen de una serie de orígenes. No todos los proveedores se mantienen como parte del [proyecto Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore). Al considerar un proveedor, evalúe la calidad, las licencias, el soporte técnico, etc. a fin de asegurarse de que satisface los requisitos. Además, asegúrese de revisar la documentación de cada proveedor para obtener información detallada de compatibilidad de versiones.
 
-> [!IMPORTANT]  
-> Por lo general, los proveedores de EF Core funcionan en versiones secundarias, pero no en todas las versiones principales. Por ejemplo, un proveedor publicado para EF Core 2.1 debería funcionar con EF Core 2.2, pero no con EF Core 3.0. 
+> [!IMPORTANT]
+> Por lo general, los proveedores de EF Core funcionan en versiones secundarias, pero no en todas las versiones principales. Por ejemplo, un proveedor publicado para EF Core 2.1 debería funcionar con EF Core 2.2, pero no con EF Core 3.0.
 
 | Paquete NuGet                                                                                                                                                                         | Motores de base de datos compatibles | Mantenedor o proveedor                                                           | Notas o requisitos     | Creado para la versión | Vínculos útiles                                                                                                                                                                                       |
 |:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:---------------------------|:------------------------------------------------------------------------------|:-------------------------|:------------------|:---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -48,7 +48,6 @@ Entity Framework Core puede tener acceso a muchas bases de datos diferentes a tr
 | [Teradata.EntityFrameworkCore](https://www.nuget.org/packages/Teradata.EntityFrameworkCore/)                                                                                          | Teradata Database 16.10 en adelante | [Teradata](https://downloads.teradata.com/download/connectivity/net-data-provider-for-teradata) |   | 2.2               |[Sitio web](https://www.nuget.org/packages/Teradata.EntityFrameworkCore/)                                                                                                                            |
 | [EntityFrameworkCore.FirebirdSql](https://www.nuget.org/packages/EntityFrameworkCore.FirebirdSql/)                                                                                    | Firebird 2.5 y 3.x       | [Rafael Almeida](https://github.com/ralmsdeveloper)                           |                          | 2.1               | [Wiki](https://github.com/ralmsdeveloper/EntityFrameworkCore.FirebirdSQL/wiki)                                                                                                                     |
 | [EntityFrameworkCore.OpenEdge](https://www.nuget.org/packages/EntityFrameworkCore.OpenEdge/)                                                                                          | Progress OpenEdge          | [Alex Wiese](https://github.com/alexwiese)                                    |                          | 2.1               | [Archivo Léame](https://github.com/alexwiese/EntityFrameworkCore.OpenEdge/blob/master/README.md)                                                                                                          |
-| [Pomelo.EntityFrameworkCore.MyCat](https://www.nuget.org/packages/Pomelo.EntityFrameworkCore.MyCat)                                                                                   | Servidor MyCAT               | [Proyecto Pomelo Foundation](https://github.com/PomeloFoundation)              | Solo versión preliminar          | 1.1               | [Archivo Léame](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MyCat/blob/master/README.md)                                                                                               |
 
 ## <a name="adding-a-database-provider-to-your-application"></a>Agregar un proveedor de bases de datos a la aplicación
 
@@ -62,7 +61,7 @@ dotnet add package provider_package_name
 
 ## <a name="visual-studio"></a>[Visual Studio](#tab/vs)
 
-``` powershell
+```powershell
 install-package provider_package_name
 ```
 
@@ -71,10 +70,10 @@ install-package provider_package_name
 Una vez instalado, se configurará el proveedor en su `DbContext`, ya sea en el método `OnConfiguring` o el método `AddDbContext` si se usa un contenedor de inserción de dependencias.
 Por ejemplo, la línea siguiente configura el proveedor de SQL Server con la cadena de conexión pasada:
 
-``` csharp
+```csharp
 optionsBuilder.UseSqlServer(
     "Server=(localdb)\mssqllocaldb;Database=MyDatabase;Trusted_Connection=True;");
-```  
+```
 
 Los proveedores de bases de datos pueden ampliar EF Core para habilitar una funcionalidad única para bases de datos específicas.
 Algunos conceptos son comunes a la mayoría de las bases de datos y se incluyen en los componentes principales de EF Core.
@@ -84,7 +83,7 @@ Por ejemplo, el proveedor de SQL Server permite [configurar tablas optimizadas p
 Otros conceptos son específicos de una clase de proveedores.
 Por ejemplo, los proveedores de EF Core para bases de datos relacionales se basan en la biblioteca común `Microsoft.EntityFrameworkCore.Relational`, que proporciona API para configurar asignaciones de tabla y columna, restricciones de clave externa, etc. Los proveedores normalmente se distribuyen como paquetes NuGet.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Cuando se publica una nueva versión de revisión de EF Core, suele incluir actualizaciones del paquete `Microsoft.EntityFrameworkCore.Relational`.
 > Cuando se agrega un proveedor de bases de datos relacional, este paquete se convierte en una dependencia transitiva de la aplicación.
 > Pero muchos proveedores se publican independientemente de EF Core y es posible que no puedan actualizarse para que se basen en la versión de revisión más reciente de ese paquete.

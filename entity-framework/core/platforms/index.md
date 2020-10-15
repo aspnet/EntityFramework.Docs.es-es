@@ -4,12 +4,12 @@ description: Información sobre las plataformas admitidas en las versiones de En
 author: bricelam
 ms.date: 06/26/2020
 uid: core/platforms/index
-ms.openlocfilehash: f57002af869c16eeedf931085f5e5ff9e72e2984
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 3efec5fda2aecf44306a9d41386de1e9b9612850
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616651"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063977"
 ---
 # <a name="net-implementations-supported-by-ef-core"></a>Implementaciones de .NET compatibles con EF Core
 
@@ -45,13 +45,13 @@ Es posible que las aplicaciones que tengan como destino .NET Framework deban mod
 
 Edite el archivo de proyecto y asegúrese de que la siguiente entrada aparece en el grupo de propiedades inicial:
 
-``` xml
+```xml
 <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
 ```
 
 En los proyectos de prueba, asegúrese también de que la entrada siguiente está presente:
 
-``` xml
+```xml
 <GenerateBindingRedirectsOutputType>true</GenerateBindingRedirectsOutputType>
 ```
 
@@ -59,7 +59,7 @@ Si quiere usar una versión anterior de Visual Studio, asegúrese de que [actua
 
 Si es posible, también se recomienda migrar de packages.config de NuGet a PackageReference. Agregue la propiedad siguiente al archivo del proyecto:
 
-``` xml
+```xml
 <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
 ```
 

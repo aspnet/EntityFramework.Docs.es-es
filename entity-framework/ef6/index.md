@@ -1,15 +1,15 @@
 ---
 title: Información general de Entity Framework 6 - EF6
 description: Información general de Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/index
-ms.openlocfilehash: aff7aee51c4e12b278f7cab8b5122ee0edbbac0f
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 09b7cb9e0141e9739b15d6c9789286c2e47018cc
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072127"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065399"
 ---
 # <a name="entity-framework-6"></a>Entity Framework 6
 Entity Framework 6 (EF6) es un asignador relacional de objetos (O/RM) probado para .NET con muchos años de desarrollo de características y estabilización.
@@ -40,7 +40,7 @@ EF Core es una reescritura completa y contiene muchas características nuevas qu
 Considere el uso de EF Core en las aplicaciones nuevas si el conjunto de características se ajusta a los requisitos.
 En [Comparar EF Core y EF6](xref:efcore-and-ef6/index) se examina el proceso de elección más detalladamente.
 
-## <a name="get-started"></a>[Introducción](xref:ef6/get-started)
+## <a name="get-started"></a>[Primeros pasos](xref:ef6/get-started)
 
 Agregue el paquete NuGet de EntityFramework al proyecto o instale [Entity Framework Tools para Visual Studio](https://aka.ms/AA6i8c5). Luego, vea vídeos, lea tutoriales y consulte documentación avanzada, que le ayudarán a sacar el máximo partido de EF6.
 
