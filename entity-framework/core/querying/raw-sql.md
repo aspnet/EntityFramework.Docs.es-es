@@ -4,29 +4,29 @@ description: Uso de SQL sin formato para consultas en Entity Framework Core
 author: smitpatel
 ms.date: 10/08/2019
 uid: core/querying/raw-sql
-ms.openlocfilehash: 13f5cbfbd7a110394402bff74d51b5fcda04c642
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 9c480d13c46c7c84554996bcb581627a1df318dd
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071139"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062599"
 ---
 # <a name="raw-sql-queries"></a>Consultas SQL sin formato
 
 Entity Framework Core le permite descender hasta las consultas SQL sin formato cuando trabaja con una base de datos relacional. Las consultas SQL sin formato son útiles si la consulta que quiere no se puede expresar mediante LINQ. Las consultas SQL sin formato también se utilizan si el uso de una consulta LINQ genera una consulta SQL ineficaz. Las consultas SQL sin formato pueden devolver tipos de entidad normales o [tipos de entidad sin clave](xref:core/modeling/keyless-entity-types) que forman parte del modelo.
 
 > [!TIP]  
-> Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying/) de este artículo en GitHub.
+> Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying/RawSQL) de este artículo en GitHub.
 
 ## <a name="basic-raw-sql-queries"></a>Consultas SQL básicas sin formato
 
 Puede usar el método de extensión `FromSqlRaw` para empezar una consulta LINQ basada en una consulta SQL sin formato. `FromSqlRaw` solo se puede usar en raíces de consulta, es decir, directamente en `DbSet<>`.
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRaw)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlRaw)]
 
 Las consultas SQL sin formato se pueden usar para ejecutar un procedimiento almacenado.
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedure)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlRawStoredProcedure)]
 
 ## <a name="passing-parameters"></a>Pasar parámetros
 
@@ -39,22 +39,22 @@ Las consultas SQL sin formato se pueden usar para ejecutar un procedimiento alma
 
 En el ejemplo siguiente se pasa un parámetro único a un procedimiento almacenado; para ello, se incluye un marcador de posición de parámetro en la cadena de consulta SQL y se proporciona un argumento adicional. Aunque esta sintaxis se pueda parecer a la de `String.Format`, el valor suministrado se encapsula en un elemento `DbParameter` y el nombre del parámetro generado se inserta donde se haya especificado el marcador de posición `{0}`.
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureParameter)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlRawStoredProcedureParameter)]
 
 `FromSqlInterpolated` es similar a `FromSqlRaw`, pero permite usar la sintaxis de interpolación de cadenas. Al igual que `FromSqlRaw`, `FromSqlInterpolated` solo se puede usar en raíces de consulta. Como en el ejemplo anterior, el valor se convierte a `DbParameter` y no es vulnerable a la inyección de código SQL.
 
 > [!NOTE]
 > Antes de la versión 3.0, `FromSqlRaw` y `FromSqlInterpolated` eran dos sobrecargas denominadas `FromSql`. Para obtener más información, vea la [sección sobre versiones anteriores](#previous-versions).
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedStoredProcedureParameter)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlInterpolatedStoredProcedureParameter)]
 
 También puede construir un elemento DbParameter y suministrarlo como un valor de parámetro. Dado que se usa un marcador de posición de parámetro SQL normal, en lugar de un marcador de posición de cadena, `FromSqlRaw` se puede usar de forma segura:
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureSqlParameter)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlRawStoredProcedureSqlParameter)]
 
 `FromSqlRaw` permite usar parámetros con nombre en la cadena de consulta SQL, lo que resulta útil cuando un procedimiento almacenado tiene parámetros opcionales:
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlRawStoredProcedureNamedSqlParameter)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlRawStoredProcedureNamedSqlParameter)]
 
 > [!NOTE]
 > **Orden de los parámetros** Entity Framework Core pasa parámetros basados en el orden de la matriz de `SqlParameter[]`. Al pasar varios `SqlParameter`, el orden de la cadena SQL debe coincidir con el orden de los parámetros en la definición del procedimiento almacenado. Si no lo hace, al ejecutar el procedimiento pueden producirse excepciones de conversión de tipos o un comportamiento inesperado.
@@ -63,7 +63,7 @@ También puede construir un elemento DbParameter y suministrarlo como un valor d
 
 Puede redactar sobre la consulta SQL sin formato inicial mediante operadores de LINQ. EF Core la tratará como una subconsulta y redactará sobre ella en la base de datos. En el ejemplo siguiente se usa una consulta SQL sin formato que realiza una selección en una función con valores de tabla (TVF). Y después se redacta sobre ella con LINQ para realizar el filtrado y la ordenación.
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedComposed)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlInterpolatedComposed)]
 
 La consulta anterior genera el código SQL siguiente:
 
@@ -80,7 +80,7 @@ ORDER BY [b].[Rating] DESC
 
 El método `Include` puede usarse para incluir datos relacionados, igual que cualquier otra consulta LINQ:
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedInclude)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlInterpolatedInclude)]
 
 La redacción con LINQ requiere que la consulta SQL sin procesar se pueda redactar, ya que EF Core tratará el código SQL proporcionado como una subconsulta. Las consultas SQL que se pueden redactar empiezan con la palabra clave `SELECT`. Es más, el código SQL que se pasa no debe contener ningún carácter ni opción que no sea válido en una subconsulta, como los siguientes:
 
@@ -96,7 +96,7 @@ Las consultas que usan los métodos `FromSqlRaw` o `FromSqlInterpolated` siguen 
 
 En el ejemplo siguiente se usa una consulta SQL sin formato que realiza una selección en una función con valores de tabla (TVF) y después deshabilita el seguimiento de cambios con la llamada a `AsNoTracking`:
 
-[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Sample.cs#FromSqlInterpolatedAsNoTracking)]
+[!code-csharp[Main](../../../samples/core/Querying/RawSQL/Program.cs#FromSqlInterpolatedAsNoTracking)]
 
 ## <a name="limitations"></a>Limitaciones
 

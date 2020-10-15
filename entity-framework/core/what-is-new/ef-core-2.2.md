@@ -1,15 +1,15 @@
 ---
 title: Novedades de EF Core 2.2 - EF Core
 description: Cambios y mejoras en Entity Framework Core 2.2
-author: divega
+author: ajcvickers
 ms.date: 11/14/2018
 uid: core/what-is-new/ef-core-2.2
-ms.openlocfilehash: 68e3cbd5c7345330a47f1457c9b096fee5dd49e9
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: ca71c7479254b25fe932e6abf43fe0fd8f1781b3
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072334"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065698"
 ---
 # <a name="new-features-in-ef-core-22"></a>Novedades de EF Core 2.2
 
@@ -27,7 +27,7 @@ Los tipos espaciales pueden usarse directamente con el [proveedor en memoria de 
 
 Una vez que se instala la extensión del proveedor, puede agregar propiedades de los tipos admitidos a las entidades. Por ejemplo:
 
-``` csharp
+```csharp
 using NetTopologySuite.Geometries;
 
 namespace MyApp
@@ -36,7 +36,7 @@ namespace MyApp
   {
     [Key]
     public string Name { get; set; }
-  
+
     [Required]
     public Point Location { get; set; }
   }
@@ -45,7 +45,7 @@ namespace MyApp
 
 Luego puede guardar entidades con datos espaciales:
 
-``` csharp
+```csharp
 using (var context = new MyDbContext())
 {
     context.Add(
@@ -60,11 +60,11 @@ using (var context = new MyDbContext())
 
 Y puede ejecutar consultas de base de datos basadas en datos y operaciones espaciales:
 
-``` csharp
-  var nearestFriends =
-      (from f in context.Friends
-      orderby f.Location.Distance(myLocation) descending
-      select f).Take(5).ToList();
+```csharp
+var nearestFriends =
+    (from f in context.Friends
+    orderby f.Location.Distance(myLocation) descending
+    select f).Take(5).ToList();
 ```
 
 Para obtener más información sobre esta característica, consulte la [documentación sobre tipos espaciales](xref:core/modeling/spatial).
@@ -85,7 +85,7 @@ Pero en las bases de datos orientadas a documentos, tenemos previsto anidar enti
 
 Puede usar la característica mediante una llamada a la nueva API OwnsMany():
 
-``` csharp
+```csharp
 modelBuilder.Entity<Customer>().OwnsMany(c => c.Addresses);
 ```
 
@@ -98,16 +98,16 @@ Esta característica simplifica la correlación de las consultas LINQ en el cód
 Para aprovechar las ventajas de las etiquetas de consulta, anote una consulta LINQ mediante el nuevo método TagWith().
 Uso de la consulta espacial de un ejemplo anterior:
 
-``` csharp
-  var nearestFriends =
-      (from f in context.Friends.TagWith(@"This is my spatial query!")
-      orderby f.Location.Distance(myLocation) descending
-      select f).Take(5).ToList();
+```csharp
+var nearestFriends =
+    (from f in context.Friends.TagWith(@"This is my spatial query!")
+    orderby f.Location.Distance(myLocation) descending
+    select f).Take(5).ToList();
 ```
 
 Esta consulta LINQ producirá la siguiente salida SQL:
 
-``` sql
+```sql
 -- This is my spatial query!
 
 SELECT TOP(@__p_1) [f].[Name], [f].[Location]

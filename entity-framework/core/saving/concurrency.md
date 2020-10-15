@@ -1,15 +1,15 @@
 ---
 title: 'Administración de los conflictos de simultaneidad: EF Core'
 description: Administración de conflictos cuando los mismos datos se actualizan de forma simultánea con Entity Framework Core
-author: rowanmiller
+author: ajcvickers
 ms.date: 03/03/2018
 uid: core/saving/concurrency
-ms.openlocfilehash: 7e3781879b39e6c30a0c981b5e0b74baf2b2863b
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: b596a99db431331bb12a28fc6ddc06f1c941b67c
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89617296"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063028"
 ---
 # <a name="handling-concurrency-conflicts"></a>Administrar los conflictos de simultaneidad
 
@@ -40,7 +40,7 @@ Si no se afectó ninguna fila, se detecta un conflicto de simultaneidad y EF Cor
 
 Por ejemplo, queremos configurar `LastName` en `Person` como token de simultaneidad. Luego, toda operación de actualización en Person incluirá la comprobación de la simultaneidad en la cláusula `WHERE`:
 
-``` sql
+```sql
 UPDATE [Person] SET [FirstName] = @p1
 WHERE [PersonId] = @p0 AND [LastName] = @p2;
 ```
@@ -70,4 +70,4 @@ El enfoque general para controlar un conflicto de simultaneidad es:
 
 En el ejemplo siguiente, `Person.FirstName` y `Person.LastName` están configurados como tokens de simultaneidad. Hay un comentario `// TODO:` en la ubicación donde se incluye la lógica específica de la aplicación para elegir el valor que se guardará.
 
-[!code-csharp[Main](../../../samples/core/Saving/Concurrency/Sample.cs?name=ConcurrencyHandlingCode&highlight=34-35)]
+[!code-csharp[Main](../../../samples/core/Saving/Concurrency/Sample.cs?name=ConcurrencyHandlingCode&highlight=33-34)]

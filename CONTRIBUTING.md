@@ -33,13 +33,13 @@ Estos son algunos ejemplos de [sintaxis de fragmento de código DFM](http://dotn
 
 Para representar un archivo de código completo como un fragmento de código:
 
-``` none
+```none
 [!code-csharp[Main](../../../samples/core/saving/Program.cs)]
 ```
 
 Para representar una parte de un archivo como un fragmento de código mediante el uso de números de línea:
 
-``` none
+```none
 [!code-csharp[Main](../../../samples/core/saving/Program.cs?range=1-10]
 ```
 
@@ -47,13 +47,13 @@ Para fragmentos de código en C#, haga referencia a una [región de C#](https://
 
 Para representar una región de C# denominada "snippet_Example":
 
-``` none
+```none
 [!code-csharp[Main](../../../samples/core/saving/Program.cs?name=snippet_Example)]
 ```
 
 Para resaltar las líneas seleccionadas en un fragmento representado (normalmente se representa con el color de fondo amarillo):
 
-``` none
+```none
 [!code-csharp[Main](../../../samples/core/saving/Program.cs?name=snippet_Example&highlight=1-3,10,20-25)]
 ```
 
@@ -69,7 +69,7 @@ DocFX requiere .NET Framework en Windows o Mono para Linux o macOS.
 * Agregue DocFX a la ruta de acceso.
 * En una ventana de línea de comandos, desplácese hasta el repositorio clonado (que contiene el archivo *docfx.json*) y ejecute el siguiente comando:
 
-   ``` console
+   ```console
    docfx -t default --serve
    ```
 
@@ -82,7 +82,7 @@ DocFX requiere .NET Framework en Windows o Mono para Linux o macOS.
 * Extraiga en `\bin\docfx`.
 * Cree un alias para **docfx**:
 
-  ``` console
+  ```console
   function docfx {
     mono $HOME/bin/docfx/docfx.exe
   }

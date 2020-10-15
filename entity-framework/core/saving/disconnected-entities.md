@@ -2,15 +2,14 @@
 title: 'Entidades desconectadas: EF Core'
 description: Trabajo con entidades desconectadas y sin seguimiento en varias instancias de contexto en Entity Framework Core
 author: ajcvickers
-ms.author: avickers
 ms.date: 10/27/2016
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: d9b6d2d2c0761dd6f670ba51f935c866e10460b7
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: f21cc71ef11ee4ef37618a68d5a5219e8174bf8b
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070892"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92063574"
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 
@@ -73,9 +72,6 @@ Sin embargo, si la entidad usa valores de clave generados automáticamente, el m
 [!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#InsertOrUpdateSingleEntity)]
 
 Habitualmente, el método Update marca la entidad para actualización y no para inserción. Sin embargo, si la entidad tiene una clave generada automáticamente y no se estableció ningún valor de clave, la entidad se marca automáticamente para inserción.
-
-> [!TIP]  
-> Este comportamiento se introdujo en EF Core 2.0. En las versiones anteriores siempre es necesario elegir explícitamente si agregar o actualizar.
 
 Si la entidad no usa claves generadas automáticamente, la aplicación debe decidir si la entidad se debe inserta ro actualizar. Por ejemplo:
 

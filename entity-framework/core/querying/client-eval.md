@@ -4,12 +4,12 @@ description: Evaluación de consultas de cliente y servidor con Entity Framework
 author: smitpatel
 ms.date: 10/03/2019
 uid: core/querying/client-eval
-ms.openlocfilehash: 41be7da26423f50017f57a7686f65bd8baf69ef5
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: f2e80541439de8cc824c182e52400f730dd2af48
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071178"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062716"
 ---
 # <a name="client-vs-server-evaluation"></a>Evaluación de cliente frente a servidor
 
@@ -19,21 +19,21 @@ Como norma general, Entity Framework Core intenta evaluar una consulta en el ser
 > Antes de la versión 3.0, Entity Framework Core admitía la evaluación de cliente en cualquier parte de la consulta. Para obtener más información, vea la [sección sobre versiones anteriores](#previous-versions).
 
 > [!TIP]
-> Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying) de este artículo en GitHub.
+> Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying/ClientEvaluation) de este artículo en GitHub.
 
 ## <a name="client-evaluation-in-the-top-level-projection"></a>Evaluación de cliente en la proyección de nivel superior
 
 En el ejemplo siguiente, se usa un método auxiliar para estandarizar las direcciones URL para blogs, que se devuelven desde una base de datos de SQL Server. Como el proveedor de SQL Server no tiene información de cómo se implementa este método, no es posible traducirlo a código SQL. Todos los demás aspectos de la consulta se evalúan en la base de datos, pero es el cliente quien pasa la `URL` devuelta mediante este método.
 
-[!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ClientProjection)]
+[!code-csharp[Main](../../../samples/core/Querying/ClientEvaluation/Program.cs#ClientProjection)]
 
-[!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ClientMethod)]
+[!code-csharp[Main](../../../samples/core/Querying/ClientEvaluation/Program.cs#ClientMethod)]
 
 ## <a name="unsupported-client-evaluation"></a>Evaluación de cliente no admitida
 
 Aunque la evaluación de cliente es útil, en ocasiones puede generar un rendimiento bajo. Considere la consulta siguiente, en la que ahora el método auxiliar se usa en un filtro WHERE. Como el filtro no se puede aplicar en la base de datos, se deben extraer todos los datos de la memoria para aplicar el filtro en el cliente. Según el filtro y la cantidad de datos en el servidor, la evaluación de cliente podría dar lugar a un rendimiento deficiente. Por tanto, Entity Framework Core bloquea esa evaluación de cliente e inicia una excepción en tiempo de ejecución.
 
-[!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ClientWhere)]
+[!code-csharp[Main](../../../samples/core/Querying/ClientEvaluation/Program.cs#ClientWhere)]
 
 ## <a name="explicit-client-evaluation"></a>Evaluación explícita de cliente
 
@@ -44,7 +44,7 @@ Es posible que tenga que forzar la evaluación de cliente de forma explícita en
 
 En esos casos, puede participar de forma explícita en la evaluación de cliente si llamada a métodos como `AsEnumerable` o `ToList` (`AsAsyncEnumerable` o `ToListAsync` para async). Al usar `AsEnumerable` se haría streaming de los resultados, pero al usar `ToList` se almacenarían en búfer mediante la creación de una lista, que también consume memoria adicional. Como si se realizara la enumeración varias veces, el almacenamiento de los resultados en una lista es más útil, ya que solo hay una consulta a la base de datos. En función del uso determinado, debe evaluar qué método es más útil para cada caso.
 
-[!code-csharp[Main](../../../samples/core/Querying/ClientEval/Sample.cs#ExplicitClientEval)]
+[!code-csharp[Main](../../../samples/core/Querying/ClientEvaluation/Program.cs#ExplicitClientEvaluation)]
 
 ## <a name="potential-memory-leak-in-client-evaluation"></a>Posible fuga de memoria en la evaluación de cliente
 

@@ -4,12 +4,12 @@ description: Lista completa de los cambios importantes introducidos en Entity Fr
 author: ajcvickers
 ms.date: 09/05/2020
 uid: core/what-is-new/ef-core-3.x/breaking-changes
-ms.openlocfilehash: e348cb630d91ebe4536b73b9a7bd9a7b6a46db79
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: a656f3182c57689fea076ed2c7731e37fe1c4a28
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072244"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065672"
 ---
 # <a name="breaking-changes-included-in-ef-core-3x"></a>Cambios importantes incluidos en EF Core 3.x
 
@@ -110,7 +110,7 @@ Si una consulta no se puede traducir totalmente, vuelva a escribirla en un forma
 
 [Problema de seguimiento n.º 15498](https://github.com/aspnet/EntityFrameworkCore/issues/15498)
 
-> [!IMPORTANT] 
+> [!IMPORTANT]
 > EF Core 3.1 vuelve a tener como objetivo a .NET Standard 2.0. Esto reincorpora la compatibilidad con .NET Framework.
 
 **Comportamiento anterior**
@@ -144,7 +144,8 @@ A partir de la versión 3.0, el marco compartido ASP.NET Core no incluye EF Core
 
 **Por qué**
 
-Antes de este cambio, para obtener EF Core se necesitaban varios pasos en función de si la aplicación se destinaba a ASP.NET Core y SQL Server o no. Además, la actualización de ASP.NET Core forzaba la de EF Core y el proveedor de SQL Server, lo que no siempre es deseable.
+Antes de este cambio, para obtener EF Core se necesitaban varios pasos en función de si la aplicación se destinaba a ASP.NET Core y SQL Server o no.
+Además, la actualización de ASP.NET Core forzaba la de EF Core y el proveedor de SQL Server, lo que no siempre es deseable.
 
 Con este cambio, la experiencia de obtención de EF Core es la misma en todos los proveedores, implementaciones admitidas de .NET y tipos de aplicación.
 Ahora los desarrolladores también pueden controlar exactamente cuándo se actualizan EF Core y los proveedores de datos de EF Core.
@@ -160,11 +161,11 @@ Para usar EF Core en una aplicación ASP.NET Core 3.0 o cualquier otra aplicaci�
 
 **Comportamiento anterior**
 
-Antes de 3.0, la herramienta `dotnet ef` se incluía en el SDK de .NET Core y estaba disponible para usarse desde la línea de comandos de cualquier proyecto sin necesidad de realizar pasos adicionales. 
+Antes de 3.0, la herramienta `dotnet ef` se incluía en el SDK de .NET Core y estaba disponible para usarse desde la línea de comandos de cualquier proyecto sin necesidad de realizar pasos adicionales.
 
 **Comportamiento nuevo**
 
-A partir de la versión 3.0, el SDK de .NET no incluye la herramienta `dotnet ef`, por lo que antes de poder usarla tendrá que instalarla de forma explícita como una herramienta local o global. 
+A partir de la versión 3.0, el SDK de .NET no incluye la herramienta `dotnet ef`, por lo que antes de poder usarla tendrá que instalarla de forma explícita como una herramienta local o global.
 
 **Por qué**
 
@@ -174,8 +175,8 @@ Este cambio nos permite distribuir y actualizar `dotnet ef` como una herramienta
 
 Para poder administrar las migraciones o aplicar scaffolding a `DbContext`, instale `dotnet-ef` como herramienta global:
 
-  ``` console
-    $ dotnet tool install --global dotnet-ef
+  ```dotnetcli
+  dotnet tool install --global dotnet-ef
   ```
 
 También se puede obtener una herramienta local cuando se restauran las dependencias de un proyecto que la declara como una dependencia de herramientas mediante un [archivo de manifiesto de herramientas](/dotnet/core/tools/global-tools#install-a-local-tool).
@@ -327,7 +328,7 @@ A partir de la versión 3.0, en EF Core se almacena el valor de clave temporal c
 
 **Por qué**
 
-Este cambio se ha realizado para evitar que los valores de clave temporales se conviertan erróneamente en permanentes cuando una entidad de la que previamente una instancia de `DbContext` ha realizado el seguimiento se mueve a otra instancia de `DbContext`. 
+Este cambio se ha realizado para evitar que los valores de clave temporales se conviertan erróneamente en permanentes cuando una entidad de la que previamente una instancia de `DbContext` ha realizado el seguimiento se mueve a otra instancia de `DbContext`.
 
 **Mitigaciones**
 
@@ -491,7 +492,7 @@ Esto todavía no se configurará por convención para evitar una configuración 
 
 **Comportamiento anterior**
 
-Antes de EF Core 3.0, la configuración de la relación de propiedad se realizaba directamente después de la llamada a `OwnsOne` o `OwnsMany`. 
+Antes de EF Core 3.0, la configuración de la relación de propiedad se realizaba directamente después de la llamada a `OwnsOne` o `OwnsMany`.
 
 **Comportamiento nuevo**
 
@@ -512,7 +513,7 @@ modelBuilder.Entity<Order>.OwnsOne(e => e.Details, eb =>
         eb.WithOwner()
             .HasForeignKey(e => e.AlternateId)
             .HasConstraintName("FK_OrderDetails");
-            
+
         eb.ToTable("OrderDetails");
         eb.HasKey(e => e.AlternateId);
         eb.HasIndex(e => e.Id);
@@ -1136,7 +1137,7 @@ Antes de EF Core 3.0, se registraba una advertencia para una aplicación que cre
 
 **Comportamiento nuevo**
 
-A partir de EF Core 3.0, ahora esta advertencia se considera un error y se inicia una excepción. 
+A partir de EF Core 3.0, ahora esta advertencia se considera un error y se inicia una excepción.
 
 **Por qué**
 
@@ -1246,13 +1247,13 @@ Ahora, las asignaciones de tipos se usan para algo más que solo para proveedore
 Esto solo interrumpirá a las aplicaciones que acceden directamente a la asignación de tipos como una anotación, lo que no es habitual.
 La acción más apropiada para corregir es usar la superficie de API para acceder a las asignaciones de tipos en lugar de usar directamente la anotación.
 
-### <a name="totable-on-a-derived-type-throws-an-exception"></a>ToTable en un tipo derivado inicia una excepción 
+### <a name="totable-on-a-derived-type-throws-an-exception"></a>ToTable en un tipo derivado inicia una excepción
 
 [Problema de seguimiento n.º 11811](https://github.com/aspnet/EntityFrameworkCore/issues/11811)
 
 **Comportamiento anterior**
 
-Antes de EF Core 3.0, la llamada a `ToTable()` en un tipo derivado se omitía, ya que la única estrategia asignación de herencia era TPH, lo que no es válido. 
+Antes de EF Core 3.0, la llamada a `ToTable()` en un tipo derivado se omitía, ya que la única estrategia asignación de herencia era TPH, lo que no es válido.
 
 **Comportamiento nuevo**
 
@@ -1267,7 +1268,7 @@ Este cambio evita interrupciones en el futuro, cuando se convierta en una operac
 
 Quite todos los intentos de asignar tipos derivados a otras tablas.
 
-### <a name="forsqlserverhasindex-replaced-with-hasindex"></a>ForSqlServerHasIndex se ha reemplazado por HasIndex 
+### <a name="forsqlserverhasindex-replaced-with-hasindex"></a>ForSqlServerHasIndex se ha reemplazado por HasIndex
 
 [Problema de seguimiento n.º 12366](https://github.com/aspnet/EntityFrameworkCore/issues/12366)
 
@@ -1397,7 +1398,7 @@ El formato binario de los GUID no está normalizado. El almacenamiento de los va
 
 Puede migrar las bases de datos existentes al nuevo formato ejecutando SQL de la siguiente forma.
 
-``` sql
+```sql
 UPDATE MyTable
 SET GuidColumn = hex(substr(GuidColumn, 4, 1)) ||
                  hex(substr(GuidColumn, 3, 1)) ||
@@ -1414,7 +1415,7 @@ WHERE typeof(GuidColumn) == 'blob';
 
 En EF Core, también puede seguir usando el comportamiento anterior configurando un convertidor de valores en estas propiedades.
 
-``` csharp
+```csharp
 modelBuilder
     .Entity<MyEntity>()
     .Property(e => e.GuidProperty)
@@ -1447,7 +1448,7 @@ El almacenamiento de valores como TEXT es más natural y mejora la compatibilida
 
 Puede migrar las bases de datos existentes al nuevo formato ejecutando SQL de la siguiente forma.
 
-``` sql
+```sql
 UPDATE MyTable
 SET CharColumn = char(CharColumn)
 WHERE typeof(CharColumn) = 'integer';
@@ -1455,7 +1456,7 @@ WHERE typeof(CharColumn) = 'integer';
 
 En EF Core, también puede seguir usando el comportamiento anterior configurando un convertidor de valores en estas propiedades.
 
-``` csharp
+```csharp
 modelBuilder
     .Entity<MyEntity>()
     .Property(e => e.CharProperty)
@@ -1490,7 +1491,7 @@ Esta cambio afecta a todas las personas que usan un calendario no gregoriano en 
 
 Puede ver el id. de migración en el atributo Migration de los archivos de diseñador de la migración.
 
-``` diff
+```diff
  [DbContext(typeof(MyDbContext))]
 -[Migration("25620318122820_MyMigration")]
 +[Migration("20190318122820_MyMigration")]
@@ -1500,7 +1501,7 @@ Puede ver el id. de migración en el atributo Migration de los archivos de dise�
 
 También debe actualizarse la tabla de historial de migraciones.
 
-``` sql
+```sql
 UPDATE __EFMigrationsHistory
 SET MigrationId = CONCAT(LEFT(MigrationId, 4)  - 543, SUBSTRING(MigrationId, 4, 150))
 ```
@@ -1517,7 +1518,7 @@ Antes de EF Core 3.0, `UseRowNumberForPaging` se podía usar para generar SQL p
 
 **Comportamiento nuevo**
 
-A partir de EF Core 3.0, EF solo genera SQL para la paginación que únicamente es compatible con las versiones posteriores de SQL Server. 
+A partir de EF Core 3.0, EF solo genera SQL para la paginación que únicamente es compatible con las versiones posteriores de SQL Server.
 
 **Por qué**
 
@@ -1643,7 +1644,7 @@ Este paquete solo está destinado a usarse en tiempo de diseño. Las aplicacione
 
 Si tiene que hacer referencia a este paquete para invalidar el comportamiento en tiempo de diseño de EF Core, puede actualizar los metadatos de elementos PackageReference del proyecto.
 
-``` xml
+```xml
 <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.0.0">
   <PrivateAssets>all</PrivateAssets>
   <!-- Remove IncludeAssets to allow compiling against the assembly -->
@@ -1722,7 +1723,7 @@ Si el código toma una dependencia directa en System.Data.SqlClient, debe cambia
 
 <a name="mersa"></a>
 
-### <a name="multiple-ambiguous-self-referencing-relationships-must-be-configured"></a>Se deben configurar varias relaciones de referencia automática ambiguas 
+### <a name="multiple-ambiguous-self-referencing-relationships-must-be-configured"></a>Se deben configurar varias relaciones de referencia automática ambiguas
 
 [Problema de seguimiento n.º 13573](https://github.com/aspnet/EntityFrameworkCore/issues/13573)
 
@@ -1731,7 +1732,7 @@ Si el código toma una dependencia directa en System.Data.SqlClient, debe cambia
 Un tipo de entidad con varias propiedades de navegación unidireccional de referencia automática y claves externas coincidentes se configuró incorrectamente como una única relación. Por ejemplo:
 
 ```csharp
-public class User 
+public class User
 {
         public Guid Id { get; set; }
         public User CreatedBy { get; set; }
@@ -1758,7 +1759,7 @@ modelBuilder
      .Entity<User>()
      .HasOne(e => e.CreatedBy)
      .WithMany();
- 
+
  modelBuilder
      .Entity<User>()
      .HasOne(e => e.UpdatedBy)
