@@ -1,15 +1,15 @@
 ---
 title: 'Trabajar con valores de propiedad: EF6'
 description: Trabajar con valores de propiedad en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/saving/change-tracking/property-values
-ms.openlocfilehash: 30c8e7dbd59f0eb3ec15c0f57f022afd90fd80f8
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: deb110df1dbb2b433b54b98a684bc06e696c4351
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073761"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064450"
 ---
 # <a name="working-with-property-values"></a>Trabajar con valores de propiedad
 En la mayoría de los casos, Entity Framework se encargará del seguimiento del estado, los valores originales y los valores actuales de las propiedades de las instancias de la entidad. Sin embargo, puede haber algunos casos, como escenarios desconectados, donde desea ver o manipular la información que EF tiene sobre las propiedades. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  
@@ -288,7 +288,7 @@ El objeto clonado puede ser útil para resolver problemas relacionados con las a
 
 ## <a name="getting-and-setting-the-current-or-original-values-of-complex-properties"></a>Obtener y establecer los valores actuales o originales de propiedades complejas  
 
-El valor de un objeto complejo completo se puede leer y establecer mediante el método de propiedad, tal como puede ser para una propiedad primitiva. Además, puede explorar en profundidad el objeto complejo y leer o establecer las propiedades de ese objeto, o incluso un objeto anidado. Estos son algunos ejemplos:  
+El valor de un objeto complejo completo se puede leer y establecer mediante el método de propiedad, tal como puede ser para una propiedad primitiva. Además, puede explorar en profundidad el objeto complejo y leer o establecer las propiedades de ese objeto, o incluso un objeto anidado. A continuación se muestran algunos ejemplos:  
 
 ``` csharp
 using (var context = new BloggingContext())

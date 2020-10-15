@@ -1,15 +1,15 @@
 ---
 title: API fluida-Relationships-EF6
 description: 'API fluidas: relaciones en Entity Framework 6'
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/fluent/relationships
-ms.openlocfilehash: 73e910279540fc93845aeebdfd79af9b95c60fae
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 7c62dfd788afda41f4c940836152b9114aa545e1
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073930"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065165"
 ---
 # <a name="fluent-api---relationships"></a>API fluidas: relaciones
 > [!NOTE]

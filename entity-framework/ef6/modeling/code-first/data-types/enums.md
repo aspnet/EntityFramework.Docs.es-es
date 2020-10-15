@@ -1,15 +1,15 @@
 ---
 title: Compatibilidad con enum-Code First-EF6
 description: 'Compatibilidad con enum: Code First en Entity Framework 6'
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/data-types/enums
-ms.openlocfilehash: e9e1412afb097cc4c944be63130dba0496a80f14
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: d12a7427f217eec21b1428dda78d0b7a9e88d07d
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073982"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065321"
 ---
 # <a name="enum-support---code-first"></a>Compatibilidad con enum-Code First
 > [!NOTE]

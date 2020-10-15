@@ -1,15 +1,15 @@
 ---
 title: 'Especificación de MSL: EF6'
 description: Especificación de MSL en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/designer/advanced/edmx/msl-spec
-ms.openlocfilehash: 36527b9827a7576f73c9ef476462d9392b601984
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 0780a549d4cbb60bf84bbed927d52588e99148e1
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070118"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066348"
 ---
 # <a name="msl-specification"></a>Especificación MSL
 El lenguaje de especificación de asignaciones (MSL) es un lenguaje basado en XML que describe la asignación entre el modelo conceptual y el modelo de almacenamiento de una aplicación Entity Framework.

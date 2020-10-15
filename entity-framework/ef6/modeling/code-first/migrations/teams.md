@@ -1,15 +1,15 @@
 ---
 title: 'Migraciones de Code First en entornos de equipo: EF6'
 description: Migraciones de Code First en entornos de equipo en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/migrations/teams
-ms.openlocfilehash: c3f12788f2aba85f54dc062bdb6a7919be47b56d
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: c617dc3c34e829585b21766c7738bd622890b286
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072231"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065087"
 ---
 # <a name="code-first-migrations-in-team-environments"></a>Code First Migrations in Team Environments (Migraciones de Code First en entornos de equipo)
 > [!NOTE]
@@ -141,7 +141,7 @@ El siguiente proceso se puede usar para este enfoque, a partir del momento en qu
 1.  Asegúrese de que los cambios de modelos pendientes en la base de código local se han escrito en una migración. Este paso garantiza que no se pierda ningún cambio legítimo cuando llegue el momento de generar la migración en blanco.
 2.  Sincronizar con control de código fuente.
 3.  Ejecute **Update-Database** para aplicar las nuevas migraciones que hayan protegido otros desarrolladores.
-    **_Nota:_** *si no recibe ninguna advertencia del comando UPDATE-Database, no habrá nuevas migraciones de otros desarrolladores y no será necesario realizar ninguna combinación adicional.*
+    **_Nota:_** *si no recibe ninguna advertencia del comando Update-Database, no habrá nuevas migraciones de otros desarrolladores y no será necesario realizar ninguna combinación adicional.*
 4.  Ejecute **Add-Migration &lt; picking \_ \_ name &gt; – IgnoreChanges** (por ejemplo, **Add-Migration Merge – IgnoreChanges**). Esto genera una migración con todos los metadatos (incluida una instantánea del modelo actual), pero omitirá todos los cambios que detecte al comparar el modelo actual con la instantánea en las últimas Migraciones (lo que significa que obtiene un método **en blanco y** **vertical** ).
 5.  Ejecute **Update-Database** para volver a aplicar la migración más reciente con los metadatos actualizados.
 6.  Continúe desarrollando o envíe el control de código fuente (después de ejecutar las pruebas unitarias del curso).
@@ -163,7 +163,7 @@ El siguiente proceso se puede usar para este enfoque, a partir del momento en qu
 1.  Asegúrese de que los cambios de modelos pendientes en la base de código local se han escrito en una migración. Este paso garantiza que no se pierda ningún cambio legítimo cuando llegue el momento de generar la migración en blanco.
 2.  Sincronizar con el control de código fuente.
 3.  Ejecute **Update-Database** para aplicar las nuevas migraciones que hayan protegido otros desarrolladores.
-    **_Nota:_** *si no recibe ninguna advertencia del comando UPDATE-Database, no habrá nuevas migraciones de otros desarrolladores y no será necesario realizar ninguna combinación adicional.*
+    **_Nota:_** *si no recibe ninguna advertencia del comando Update-Database, no habrá nuevas migraciones de otros desarrolladores y no será necesario realizar ninguna combinación adicional.*
 4.  Ejecute **Update-Database – TargetMigration &lt; Second \_ Last \_ Migration &gt; ** (en el ejemplo que hemos estado siguiendo esto sería **Update-Database – TargetMigration AddRating**). De este modo, la base de datos vuelve al estado de la segunda migración, con lo que se "anula la aplicación" de la última migración de la base de datos.
     **_Nota:_** *este paso es necesario para que sea seguro editar los metadatos de la migración, ya que los metadatos también se almacenan en el \_ \_ MigrationsHistoryTable de la base de datos. Esta es la razón por la que solo debe usar esta opción si la última migración solo está en la base de código local. Si se ha aplicado la última migración a otras bases de datos, también tendrá que revertirla y volver a aplicar la última migración para actualizar los metadatos.* 
 5.  Ejecute el ** &lt; nombre completo de Add-Migration \_ \_ , incluida la \_ marca de tiempo de la \_ \_ última \_ migración** &gt; (en el ejemplo que hemos estado siguiendo esto sería algo como **Add-Migration 201311062215252 \_ AddReaders**).

@@ -1,15 +1,15 @@
 ---
 title: Revertir a ObjectContext en Entity Framework Designer-EF6
 description: Revertir a ObjectContext en Entity Framework Designer en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/designer/codegen/legacy-objectcontext
-ms.openlocfilehash: 9ceb8ef43e4df083fe3cc5e63862ba2eb338f659
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 563c1defd12a72836a158d9c2398202c421dd6f3
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90069969"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064944"
 ---
 # <a name="reverting-to-objectcontext-in-entity-framework-designer"></a>Revertir a ObjectContext en Entity Framework Designer
 Con la versión anterior de Entity Framework un modelo creado con EF Designer generaría un contexto derivado de ObjectContext y clases de entidad derivadas de EntityObject.
@@ -30,7 +30,7 @@ Si usa VB.NET, debe seleccionar el botón **Mostrar todos los archivos** para ve
 
 ![Mostrar todos los archivos](~/ef6/media/showallfiles.png)
 
-### <a name="2-re-enable-objectcontext-code-generation"></a>2. volver a habilitar la generación de código de ObjectContext
+### <a name="2-re-enable-objectcontext-code-generation"></a>2. Re-Enable la generación de código de ObjectContext
 
 Abra el modelo en el diseñador de EF, haga clic con el botón derecho en una sección en blanco de la superficie de diseño y seleccione **propiedades**.
 

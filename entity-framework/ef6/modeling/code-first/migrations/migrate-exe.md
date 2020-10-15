@@ -1,15 +1,15 @@
 ---
 title: Uso de migrate.exe-EF6
 description: Usar migrate.exe en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/migrations/migrate-exe
-ms.openlocfilehash: 421b0a186afabdaa225816e0e5967633a95de959
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: f57f56f7e3fe876c7265526bf6541e3c9e91ca7d
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072179"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066374"
 ---
 # <a name="using-migrateexe"></a>Usar migrate.exe
 Migraciones de Code First se puede utilizar para actualizar una base de datos desde Visual Studio, pero también se puede ejecutar mediante la herramienta de línea de comandos migrate.exe. Esta página proporcionará información general rápida sobre cómo usar migrate.exe para ejecutar migraciones en una base de datos de.
@@ -84,7 +84,7 @@ Si desea especificar una cadena de conexión en la línea de comandos, también 
 
 ## <a name="common-problems"></a>Problemas habituales
 
-| Mensaje de error                                                                                                                                                                                                                                                                                                                      | Soluciones                                                                                                                                                                                                                                                                                             |
+| Mensaje de error                                                                                                                                                                                                                                                                                                                      | Solución                                                                                                                                                                                                                                                                                             |
 |:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|:-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Excepción no controlada: System. IO. FileLoadException: no se pudo cargar el archivo o ensamblado ' EntityFramework, version = 5.0.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089 ' o una de sus dependencias. La definición del manifiesto del ensamblado encontrado no coincide con la referencia de ensamblado. (Excepción de HRESULT: 0x80131040)         | Esto suele significar que se está ejecutando una aplicación de .NET 4 sin el archivo de Redirect.config. Debe copiar el Redirect.config en la misma ubicación que migrate.exe y cambiarle el nombre a migrate.exe.config.                                                                                       |
 | Excepción no controlada: System. IO. FileLoadException: no se pudo cargar el archivo o ensamblado ' EntityFramework, version = 4.4.0.0, Culture = neutral, PublicKeyToken = b77a5c561934e089 ' o una de sus dependencias. La definición del manifiesto del ensamblado encontrado no coincide con la referencia de ensamblado. (Excepción de HRESULT: 0x80131040)          | Esta excepción significa que está ejecutando una aplicación .NET 4,5 con la Redirect.config copiada en la ubicación migrate.exe. Si la aplicación es .NET 4,5, no es necesario tener el archivo de configuración con las redirecciones dentro de. Elimine el archivo de migrate.exe.config.                                    |

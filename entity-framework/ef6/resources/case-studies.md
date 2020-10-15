@@ -1,14 +1,14 @@
 ---
 title: Casos prácticos de Entity Framework-EF6
 description: Casos prácticos de Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
-ms.openlocfilehash: 342929f70aa09704c934bd1d89e177f6953bfc43
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: ca2315ac8aad8d28240f4bef6c962de0f63ac0df
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073826"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064671"
 ---
 # <a name="microsoft-case-studies-for-entity-framework"></a>Casos prácticos de Microsoft para Entity Framework
 En los casos prácticos de esta página se resaltan algunos proyectos de producción reales que han empleado Entity Framework.
@@ -17,7 +17,7 @@ En los casos prácticos de esta página se resaltan algunos proyectos de producc
 
 ## <a name="epicor"></a>Epopeya
 La epopeya es una empresa de software global de gran tamaño (con más de 400 desarrolladores) que desarrolla soluciones de planeamiento de recursos empresariales (ERP) para empresas de más de 150 países.
-Su producto insignia, Epicr 9, se basa en una arquitectura orientada a servicios (SOA) mediante el .NET Framework.
+Su producto insignia, Epicr 9, se basa en una arquitectura de Service-Oriented (SOA) mediante el .NET Framework.
 Se enfrenta a numerosas solicitudes de clientes para proporcionar compatibilidad con Language Integrated Query (LINQ) y también para reducir la carga en sus servidores de SQL back-end, el equipo decidió actualizar a Visual Studio 2010 y el .NET Framework 4,0.
 Con el Entity Framework 4,0, pudieron alcanzar estos objetivos y simplificar enormemente el desarrollo y el mantenimiento.
 En concreto, la compatibilidad con T4 enriquecida del Entity Framework les permitió tomar el control completo de su código generado y compilar automáticamente características de ahorro de rendimiento como las consultas precompiladas y el almacenamiento en caché.

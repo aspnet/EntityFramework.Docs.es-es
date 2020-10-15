@@ -1,15 +1,15 @@
 ---
 title: 'Carga de entidades relacionadas: EF6'
 description: Carga de entidades relacionadas en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/querying/related-data
-ms.openlocfilehash: d1bf04f9d9017291ef3f5ec0809095df856329cd
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 30d5bcff0696b4886655f5413e4878f1a611cf88
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073878"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064697"
 ---
 # <a name="loading-related-entities"></a>Carga de entidades relacionadas
 

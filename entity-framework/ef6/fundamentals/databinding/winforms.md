@@ -1,15 +1,15 @@
 ---
 title: DataBinding con WinForms-EF6
 description: DataBinding con WinForms en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/databinding/winforms
-ms.openlocfilehash: b316aea0a36edc8586a81427825ed4ee11fc9ef3
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: ef2f19831cd5ce8b1faefeb51f23faef4e167529
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073232"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065685"
 ---
 # <a name="databinding-with-winforms"></a>Databinding with WinForms (Enlace de datos con WinForms)
 En este tutorial paso a paso se muestra cómo enlazar tipos POCO a controles de formularios Windows Forms (WinForms) en un formulario "principal-detalle". La aplicación utiliza Entity Framework para rellenar los objetos con datos de la base de datos, realizar un seguimiento de los cambios y conservar los datos en la base de datos.

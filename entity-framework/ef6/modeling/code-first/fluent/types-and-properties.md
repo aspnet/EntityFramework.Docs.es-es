@@ -1,15 +1,15 @@
 ---
 title: 'API fluida: configuración y asignación de propiedades y tipos: EF6'
 description: 'API fluida: configuración y asignación de propiedades y tipos en Entity Framework 6'
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/fluent/types-and-properties
-ms.openlocfilehash: ddd56ff280b72adbfd2247a4f1a85e37bf2f4879
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 821672bcb797314c96189443ace7f875a79c8582
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072595"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065152"
 ---
 # <a name="fluent-api---configuring-and-mapping-properties-and-types"></a>API fluida: configuración y asignación de propiedades y tipos
 Al trabajar con Entity Framework Code First el comportamiento predeterminado es asignar las clases POCO a las tablas mediante un conjunto de convenciones incorporadas en EF. Sin embargo, a veces no puede o no desea seguir estas convenciones y debe asignar entidades a un valor distinto del que dictan las convenciones.  
@@ -18,7 +18,7 @@ Hay dos formas principales de configurar EF para que use un elemento que no sea 
 
 Normalmente, se tiene acceso a la API fluida de Code First mediante la invalidación del método [OnModelCreating](https://msdn.microsoft.com/library/system.data.entity.dbcontext.onmodelcreating.aspx) en [DbContext](https://msdn.microsoft.com/library/system.data.entity.dbcontext.aspx)derivado. Los ejemplos siguientes están diseñados para mostrar cómo realizar varias tareas con la API fluida y permiten copiar el código y personalizarlo para que se adapte a su modelo; si desea ver el modelo con el que se pueden usar tal cual, se proporciona al final de este artículo.  
 
-## <a name="model-wide-settings"></a>Configuración para todo el modelo  
+## <a name="model-wide-settings"></a>Configuración de Model-Wide  
 
 ### <a name="default-schema-ef6-onwards"></a>Esquema predeterminado (EF6 en adelante)  
 

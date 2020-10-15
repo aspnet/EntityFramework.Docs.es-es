@@ -1,14 +1,14 @@
 ---
 title: 'Selección de Entity Framework versión en tiempo de ejecución para los modelos de EF Designer: EF6'
 description: Selección de Entity Framework versión en tiempo de ejecución para los modelos EF Designer en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
-ms.openlocfilehash: 2025ca5e46c7d9a38ba596d57c023a2c1b224129
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: dcd06ed9585028b3a318d867b03980254979a32f
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073271"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066101"
 ---
 # <a name="selecting-entity-framework-runtime-version-for-ef-designer-models"></a>Selección de Entity Framework versión en tiempo de ejecución para los modelos EF Designer
 > [!NOTE]
@@ -27,7 +27,7 @@ EF6 se deshabilitará si ya tiene instalada una versión anterior de EF (ya que 
 1.  Haga clic con el botón derecho en el proyecto en Explorador de soluciones y seleccione **administrar paquetes NuGet...**
 2.  Seleccionar **actualizaciones**
 3.  Seleccione **EntityFramework** (Asegúrese de que se va a actualizar a la versión que quiera)
-4.  Haga clic en **Actualizar**
+4.  Haga clic en **Update** (Actualizar).
 
  
 

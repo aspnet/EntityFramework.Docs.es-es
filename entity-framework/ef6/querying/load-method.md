@@ -1,15 +1,15 @@
 ---
 title: El método Load-EF6
 description: El método Load en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/querying/load-method
-ms.openlocfilehash: 1e6dd172eebdc177dad8ef312c8d14083a409410
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 055d7dd6957a31cb876904af55a1126bb944d338
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072972"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065904"
 ---
 # <a name="the-load-method"></a>El método de carga
 Hay varios escenarios en los que puede que desee cargar entidades de la base de datos en el contexto sin hacer nada inmediatamente con esas entidades. Un buen ejemplo es la carga de entidades para el enlace de datos como se describe en [datos locales](xref:ef6/querying/local-data). Una forma habitual de hacerlo es escribir una consulta LINQ y, a continuación, llamar a ToList en ella, solo para descartar inmediatamente la lista creada. El método de extensión de carga funciona igual que ToList, salvo que evita la creación de la lista por completo.  

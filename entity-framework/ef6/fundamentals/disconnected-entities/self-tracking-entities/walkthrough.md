@@ -1,17 +1,17 @@
 ---
-title: 'Tutorial de entidades de seguimiento propio: EF6'
+title: 'Self-Tracking de entidades Tutorial: EF6'
 description: Tutorial de entidades de seguimiento propio para Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/disconnected-entities/self-tracking-entities/walkthrough
-ms.openlocfilehash: 398be11d330f5a7413f5a84424217ea3eda446ef
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 7c50bbc9fad10a474728b03e79b685c549cf675d
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072803"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065607"
 ---
-# <a name="self-tracking-entities-walkthrough"></a>Tutorial de entidades de seguimiento propio
+# <a name="self-tracking-entities-walkthrough"></a>Tutorial de Self-Tracking entidades
 > [!IMPORTANT]
 > Ya no se recomienda usar la plantilla Entidades de autoseguimiento. Solo sigue estando disponible para la compatibilidad con las aplicaciones existentes. Si la aplicación necesita trabajar con gráficos desconectados de entidades, considere otras alternativas, como [Trackable Entities](https://trackableentities.github.io/), que es una tecnología similar a Entidades de autoseguimiento pero que la comunidad desarrolla de forma más activa, o escriba código personalizado mediante la API de seguimiento de cambios de bajo nivel.
 
@@ -23,7 +23,7 @@ Este tutorial realiza las siguientes acciones:
 
 -   Crea una base de datos a la que se tiene acceso.
 -   Crea una biblioteca de clases que contiene el modelo.
--   Intercambia la plantilla generador de entidades de seguimiento propio.
+-   Intercambia la plantilla Self-Tracking Entity generator.
 -   Mueve las clases de entidad a un proyecto independiente.
 -   Crea un servicio WCF que expone las operaciones para consultar y guardar entidades.
 -   Crea aplicaciones cliente (consola y WPF) que consumen el servicio.
@@ -104,7 +104,7 @@ Ahora vamos a crear un modelo simple en EF Designer para tener acceso a la base 
 
 ## <a name="swap-to-ste-code-generation"></a>Intercambio a la generación de código de STE
 
-Ahora es necesario deshabilitar la generación de código y el intercambio predeterminados para las entidades de seguimiento propio.
+Ahora es necesario deshabilitar la generación de código y el intercambio predeterminados para Self-Tracking entidades.
 
 ### <a name="if-you-are-using-visual-studio-2012"></a>Si usa Visual Studio 2012
 
@@ -118,13 +118,13 @@ Ahora es necesario deshabilitar la generación de código y el intercambio prede
 ### <a name="if-you-are-using-visual-studio-2010"></a>Si usa Visual Studio 2010
 
 -   Haga clic con el botón secundario en un área vacía de la superficie de EF Designer y seleccione **Agregar elemento de generación de código..** .
--   Seleccione **código** en el panel izquierdo y, a continuación, **ADO.net generador de entidades de seguimiento propio** .
+-   Seleccione **código** en el panel izquierdo y, a continuación, **ADO.net Self-Tracking Entity generator**
 -   Escriba **STETemplate** como nombre y haga clic en **Agregar** .
 -   Los archivos **STETemplate.TT** y **STETemplate.Context.TT** se agregan directamente al proyecto
 
 ## <a name="move-entity-types-into-separate-project"></a>Traslado de tipos de entidad a un proyecto independiente
 
-Para usar entidades de seguimiento propio, nuestra aplicación cliente necesita acceso a las clases de entidad generadas a partir de nuestro modelo. Dado que no queremos exponer todo el modelo a la aplicación cliente, vamos a trasladar las clases de entidad a un proyecto independiente.
+Para usar Self-Tracking entidades, nuestra aplicación cliente necesita acceso a las clases de entidad generadas a partir de nuestro modelo. Dado que no queremos exponer todo el modelo a la aplicación cliente, vamos a trasladar las clases de entidad a un proyecto independiente.
 
 El primer paso es dejar de generar las clases de entidad en el proyecto existente:
 

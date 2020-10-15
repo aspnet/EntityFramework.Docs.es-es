@@ -2,15 +2,14 @@
 title: Opciones de Azure SQL Database de proveedor de base de datos Microsoft SQL Server-EF Core
 description: Cómo especificar el nivel de servicio y de rendimiento para Azure SQL Database con el proveedor de base de datos de SQL Server Entity Framework Core
 author: AndriySvyryd
-ms.author: ansvyryd
 ms.date: 11/05/2019
 uid: core/providers/sql-server/azure-sql-database
-ms.openlocfilehash: 3863a5a224ba26df8cb319844bc2af4158d2497a
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 9b2cc5e0790beb41295dcea6ae30c4ad15b537fa
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618955"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065373"
 ---
 # <a name="specifying-azure-sql-database-options"></a>Especificación de opciones de Azure SQL Database
 

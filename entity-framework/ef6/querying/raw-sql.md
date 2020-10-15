@@ -1,15 +1,15 @@
 ---
 title: 'Consultas SQL sin procesar: EF6'
 description: Consultas SQL sin procesar en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/querying/raw-sql
-ms.openlocfilehash: 30fab3029d71fb560493af279231e46828aa43d4
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: da813ede818b24a5e7930202bfa761d65e4e6b72
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073891"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064723"
 ---
 # <a name="raw-sql-queries-ef6"></a>Consultas SQL sin formato (EF6)
 

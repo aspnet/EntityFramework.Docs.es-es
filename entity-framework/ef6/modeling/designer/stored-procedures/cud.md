@@ -1,15 +1,15 @@
 ---
 title: 'Procedimientos almacenados del diseñador CUD: EF6'
 description: Procedimientos almacenados CUD del diseñador en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/designer/stored-procedures/cud
-ms.openlocfilehash: fae795922980452cf062a62e3cbb47de49b49c74
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 167504d3abbd156f426c481c410a1953bc047de4
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073219"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066127"
 ---
 # <a name="designer-cud-stored-procedures"></a>Procedimientos almacenados CUD del diseñador
 
@@ -30,7 +30,7 @@ Al asignar las operaciones CUD a los procedimientos almacenados, se aplican las 
 - Si el servidor genera el valor de clave principal para la fila insertada, debe volver a asignar este valor a la propiedad clave de la entidad. En el ejemplo siguiente, el **InsertPerson**   procedimiento almacenado InsertPerson devuelve la clave principal recién creada como parte del conjunto de resultados del procedimiento almacenado. La clave principal se asigna a la clave de entidad (**PersonID**) mediante la característica ** &lt; Agregar enlaces &gt; de resultados**   del diseñador de EF.
 - Las llamadas a procedimientos almacenados se asignan 1:1 con las entidades del modelo conceptual. Por ejemplo, si implementa una jerarquía de herencia en el modelo conceptual y, a continuación, asigna los procedimientos almacenados CUD para las entidades **primaria** (base) y **secundaria** (derivada), al guardar los cambios **secundarios** solo se llamará a los procedimientos almacenados del **elemento secundario**, no se desencadenarán las llamadas a procedimientos almacenados del **elemento primario**.
 
-## <a name="prerequisites"></a>Prerrequisitos
+## <a name="prerequisites"></a>Requisitos previos
 
 Para completar este tutorial, necesitará:
 

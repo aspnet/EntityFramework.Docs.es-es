@@ -1,14 +1,14 @@
 ---
 title: Herramientas & extensiones-EF6
 description: Herramientas & extensiones en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
-ms.openlocfilehash: e5f9deb0e965118193832ae8ffa3f2b294e6d604
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 84891073c5285e43f73b8a326c5c96180d6c3311
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073800"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064476"
 ---
 # <a name="entity-framework-tools--extensions"></a>Extensiones de & de Entity Framework Tools
 > [!IMPORTANT]  

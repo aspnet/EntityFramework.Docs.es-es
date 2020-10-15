@@ -1,15 +1,15 @@
 ---
 title: Code First espaciales-EF6
 description: Code First espacial en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/code-first/data-types/spatial
-ms.openlocfilehash: 5d18624cdcef8db3e604277aeef1c3a2d05bfcab
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 6942829809e37b5d62f61488ff6a190c8a38febb
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073969"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065243"
 ---
 # <a name="spatial---code-first"></a>Code First espacial
 > [!NOTE]

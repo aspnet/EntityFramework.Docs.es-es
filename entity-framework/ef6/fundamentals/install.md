@@ -1,22 +1,22 @@
 ---
 title: Obtener Entity Framework-EF6
 description: Obtener Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/install
-ms.openlocfilehash: 9254f835f5007a213c49557165f6830c30711f1f
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 7dc4c560cc4eb24a1c5d5dac0c9e28883de471b0
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072790"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065464"
 ---
 # <a name="get-entity-framework"></a>Obtener Entity Framework
 Entity Framework se compone de las herramientas de EF para Visual Studio y el tiempo de ejecución de EF.
 
 ## <a name="ef-tools-for-visual-studio"></a>Herramientas de EF para Visual Studio
 
-El Entity Framework Tools para Visual Studio incluye el diseñador de EF y el Asistente para modelo de EF y son necesarios para los flujos de trabajo primero y modelo primero. Las herramientas de EF se incluyen en todas las versiones recientes de Visual Studio. Si realiza una instalación personalizada de Visual Studio, debe asegurarse de que el elemento "Entity Framework 6 herramientas" esté seleccionado eligiendo una carga de trabajo que lo incluya o seleccionándola como componente individual.
+El [Entity Framework Tools para Visual Studio](/visualstudio/data-tools/entity-data-model-tools-in-visual-studio) incluye el diseñador de EF y el Asistente para modelo de EF y son necesarios para los flujos de trabajo primero y modelo primero. Las herramientas de EF se incluyen en todas las versiones recientes de Visual Studio. Si realiza una instalación personalizada de Visual Studio, debe asegurarse de que el elemento "Entity Framework 6 herramientas" esté seleccionado eligiendo una carga de trabajo que lo incluya o seleccionándola como componente individual.
 
 En algunas versiones anteriores de Visual Studio, las herramientas de EF actualizadas están disponibles como descarga. Consulte [versiones de Visual Studio](xref:ef6/what-is-new/visual-studio) para obtener instrucciones sobre cómo obtener la versión más reciente de las herramientas de EF disponibles para su versión de Visual Studio.
 

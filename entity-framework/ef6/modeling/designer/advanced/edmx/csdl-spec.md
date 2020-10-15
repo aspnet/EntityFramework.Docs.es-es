@@ -1,15 +1,15 @@
 ---
 title: 'Especificación de CSDL: EF6'
 description: Especificación de CSDL en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/designer/advanced/edmx/csdl-spec
-ms.openlocfilehash: a4abfcd6438ca92fff4448844e0812060b1ae029
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 9fdd8fc5ed16f7ba7d11e79a9449f120f5d579c2
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070411"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066361"
 ---
 # <a name="csdl-specification"></a>Especificación CSDL
 El lenguaje de definición de esquemas conceptuales (CSDL) es un lenguaje basado en XML que describe las entidades, las relaciones y las funciones que conforman un modelo conceptual de una aplicación controlada por datos. Este modelo conceptual puede ser utilizado por el Entity Framework o WCF Data Services. Los metadatos que se describen con CSDL los utiliza el Entity Framework para asignar entidades y relaciones que se definen en un modelo conceptual a un origen de datos. Para obtener más información, vea [especificación de SSDL](xref:ef6/modeling/designer/advanced/edmx/ssdl-spec) y especificación de [MSL](xref:ef6/modeling/designer/advanced/edmx/msl-spec).
@@ -676,7 +676,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 |:------------------------------------------------------------------------------------------------------------------------------------------------|:------------|:-------------------------------------------------------------------------------------------------|
 | **Nombre**                                                                                                                                        | Sí         | El nombre del tipo de entidad.                                                                     |
 | **BaseType**                                                                                                                                    | No          | El nombre de otro tipo de entidad que sea el tipo base del tipo de entidad que se define.  |
-| **Descripción breve**                                                                                                                                    | No          | **True** o **false**, dependiendo de si el tipo de entidad es un tipo abstracto.                 |
+| **Descripción**                                                                                                                                    | No          | **True** o **false**, dependiendo de si el tipo de entidad es un tipo abstracto.                 |
 | **OpenType**                                                                                                                                    | No          | **True** o **false** , dependiendo de si el tipo de entidad es un tipo de entidad abierto. <br/> [!NOTE] |
 | > el atributo **OpenType** solo es aplicable a los tipos de entidad que se definen en los modelos conceptuales que se usan con el Data Services ADO.net. |             |                                                                                                  |
 
@@ -1216,7 +1216,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo                                                         | Es obligatorio | Value                                                                                                                                                                                                                           |
 |:-----------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nombre**                                                               | Sí         | Nombre de la propiedad.                                                                                                                                                                                                       |
+| **Nombre**                                                               | Sí         | El nombre de la propiedad.                                                                                                                                                                                                       |
 | **Tipo**                                                               | Sí         | El tipo de valor de la propiedad. El tipo de valor de la propiedad debe ser un tipo **EDMSimpleType** o un tipo complejo (indicado mediante un nombre completo) que se encuentre dentro del ámbito del modelo.                                                 |
 | **Admisión de valores NULL**                                                           | No          | **True** (el valor predeterminado) o <strong>False</strong>, según si la propiedad puede tener un valor nulo. <br/> [!NOTE]                                                                                                   |
 | > en el CSDL v1, una propiedad de tipo complejo debe tener `Nullable="False"` . |             |                                                                                                                                                                                                                                 |
@@ -1293,7 +1293,7 @@ En la tabla siguiente se describen los atributos que se pueden aplicar al elemen
 
 | Nombre del atributo                                                     | Es obligatorio | Value                                                                                                                                                                                                                           |
 |:-------------------------------------------------------------------|:------------|:--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| **Nombre**                                                           | Sí         | Nombre de la propiedad.                                                                                                                                                                                                       |
+| **Nombre**                                                           | Sí         | El nombre de la propiedad.                                                                                                                                                                                                       |
 | **Tipo**                                                           | Sí         | El tipo de valor de la propiedad.                                                                                                                                                                                                 |
 | **Admisión de valores NULL**                                                       | No          | **True** (el valor predeterminado) o **False**, según si la propiedad puede tener un valor nulo. <br/> [!NOTE]                                                                                                                |
 | > en CSDL v1, una propiedad de tipo complejo debe tener `Nullable="False"` . |             |                                                                                                                                                                                                                                 |

@@ -1,14 +1,14 @@
 ---
 title: Métodos abreviados de teclado de Entity Framework Designer-EF6
 description: Entity Framework Designer métodos abreviados de teclado en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
-ms.openlocfilehash: 3552f2b9bfc499654bc1dce4a81d37cacc8b7996
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 90589419a52a198747eadee740775e2761bc757c
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073388"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064892"
 ---
 # <a name="entity-framework-designer-keyboard-shortcuts"></a>Métodos abreviados de teclado Entity Framework Designer
 Esta página proporciona una lista de shorcuts de teclado disponibles en las distintas pantallas de la Entity Framework Tools para Visual Studio.
@@ -83,7 +83,7 @@ Esta página proporciona una lista de shorcuts de teclado disponibles en las dis
 | **Flecha derecha**                                                                         | Moverse a la derecha                  | Mueve la entidad seleccionada a la derecha un incremento de la cuadrícula. <br/> Si se encuentra en una lista, se desplaza al siguiente subcampo relacionado.                                                                                                                             |
 | **Mayús + Flecha izquierda**                                                                  | Tamaño de la forma izquierda             | Reduce el ancho de la entidad seleccionada en un incremento de la cuadrícula.                                                                                                                                                                     |
 | **Mayús + Flecha derecha**                                                                 | Tamaño de la forma derecha            | Aumenta el ancho de la entidad seleccionada en un incremento de la cuadrícula.                                                                                                                                                                   |
-| **Página principal**                                                                                | Primer elemento del mismo nivel                  | Mueve el foco y la selección al primer objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                         |
+| **Inicio**                                                                                | Primer elemento del mismo nivel                  | Mueve el foco y la selección al primer objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                         |
 | **Fin**                                                                                 | Último elemento del mismo nivel                   | Mueve el foco y la selección al último objeto en la superficie de diseño en el mismo nivel del mismo nivel.                                                                                                                                          |
 | **CTRL+Inicio**                                                                         | Primer elemento del mismo nivel (foco)          | Igual que el primer elemento del mismo nivel, pero mueve el foco en lugar de mover el foco y la selección.                                                                                                                                                          |
 | **CTRL+Fin**                                                                          | Último elemento del mismo nivel (foco)           | Igual que el último elemento del mismo nivel, pero mueve el foco en lugar de mover el foco y la selección.                                                                                                                                                           |

@@ -1,15 +1,15 @@
 ---
 title: 'Versiones de Visual Studio: EF6'
 description: Versiones de Visual Studio y Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 07/05/2018
 uid: ef6/what-is-new/visual-studio
-ms.openlocfilehash: 90982c49f47c8967cf3a3ed91fa51a392d94636f
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: ba6d8255f1cb5393b2f0e3e404f4fd2d1f1621c4
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073635"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064242"
 ---
 # <a name="visual-studio-releases"></a>Versiones de Visual Studio
 

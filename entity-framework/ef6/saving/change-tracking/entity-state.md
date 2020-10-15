@@ -1,15 +1,15 @@
 ---
 title: 'Trabajar con Estados de entidad: EF6'
 description: Trabajar con Estados de entidad en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/saving/change-tracking/entity-state
-ms.openlocfilehash: 88c1b67b3eda02e79f7d10d5e46fdd3566361634
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 5373f7157882062e8a73b2bd414c6a8b9accdba4
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073774"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064463"
 ---
 # <a name="working-with-entity-states"></a>Trabajar con Estados de entidad
 En este tema se explica cómo agregar y adjuntar entidades a un contexto y cómo Entity Framework procesa estas durante el SaveChanges.

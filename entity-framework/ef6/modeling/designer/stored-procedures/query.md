@@ -1,15 +1,15 @@
 ---
 title: 'Procedimientos almacenados de consulta del diseñador: EF6'
 description: Procedimientos almacenados de consulta del diseñador en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/designer/stored-procedures/query
-ms.openlocfilehash: 4976c7d4f788e6e9524055a508f9c906b47c9ebb
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: d88bf70e232f5245023ab6683290503822d07463
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073206"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066023"
 ---
 # <a name="designer-query-stored-procedures"></a>Procedimientos almacenados de consulta del diseñador
 En este tutorial paso a paso se muestra cómo usar el Entity Framework Designer (EF Designer) para importar procedimientos almacenados en un modelo y, a continuación, llamar a los procedimientos almacenados importados para recuperar los resultados. 
@@ -19,7 +19,7 @@ Tenga en cuenta que Code First no admite la asignación a funciones o procedimie
 var query = context.Products.SqlQuery("EXECUTE [dbo].[GetAllProducts]")`;
 ```
 
-## <a name="prerequisites"></a>Prerrequisitos
+## <a name="prerequisites"></a>Requisitos previos
 
 Para completar este tutorial, necesitará:
 

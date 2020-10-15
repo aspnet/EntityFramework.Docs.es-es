@@ -1,15 +1,15 @@
 ---
 title: 'Especificación de SSDL: EF6'
 description: Especificación de SSDL en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/designer/advanced/edmx/ssdl-spec
-ms.openlocfilehash: dbcd4c771e8ca1324a0520f9c8ca13ba4661487b
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 33052967bb543048fc0885957cf1f37abfac9cd2
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070216"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066309"
 ---
 # <a name="ssdl-specification"></a>Especificación SSDL
 El lenguaje de definición de esquemas de almacenamiento (SSDL) es un lenguaje basado en XML que describe el modelo de almacenamiento de una aplicación Entity Framework.

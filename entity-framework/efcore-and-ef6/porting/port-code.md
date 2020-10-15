@@ -1,15 +1,15 @@
 ---
 title: 'Portabilidad de EF6 a EF Core: portabilidad de un modelo basado en código - EF'
 description: Información específica acerca de cómo migrar una aplicación de modelo basada en código de Entity Framework 6 a Entity Framework Core
-author: rowanmiller
+author: ajcvickers
 ms.date: 10/27/2016
 uid: efcore-and-ef6/porting/port-code
-ms.openlocfilehash: a5bbdc2ee95ea6bea96e24bee4588b524e0ffc58
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 819c3bc0eba140c023cdcd5038a4cd63c300ed4c
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073583"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064229"
 ---
 # <a name="porting-an-ef6-code-based-model-to-ef-core"></a>Portabilidad de un modelo basado en código de EF6 a EF Core
 
@@ -33,7 +33,7 @@ Como se describe en [Asegurarse de que EF Core funcionará para la aplicación](
 
 La mayoría de las aplicaciones EF6 almacenan la cadena de conexión en el archivo `App/Web.config` de las aplicaciones. En EF Core, esta cadena de conexión se lee mediante la API `ConfigurationManager`. Es posible que tenga que agregar una referencia al ensamblado del marco `System.Configuration` para poder usar esta API.
 
-``` csharp
+```csharp
 public class BloggingContext : DbContext
 {
     public DbSet<Blog> Blogs { get; set; }

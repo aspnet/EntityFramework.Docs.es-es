@@ -1,15 +1,15 @@
 ---
 title: Definición de Query-EF Designer-EF6
 description: Definir el diseñador de Query-EF en Entity Framework 6
-author: divega
+author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/modeling/designer/advanced/defining-query
-ms.openlocfilehash: b5d24b9f6c047eb8681a0343c768d1ffa70ca6b8
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 3640156a2ce97dccab563a18d3236aad3dc72ee0
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070346"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92066387"
 ---
 # <a name="defining-query---ef-designer"></a>Definir el diseñador de consultas-EF
 En este tutorial se muestra cómo agregar una consulta de definición y un tipo de entidad correspondiente a un modelo mediante el diseñador de EF. Una consulta de definición se usa normalmente para proporcionar una funcionalidad similar a la que proporciona una vista de base de datos, pero la vista se define en el modelo, no en la base de datos. Una consulta de definición permite ejecutar una instrucción SQL que se especifica en el elemento **DefiningQuery**   de un archivo. edmx. Para obtener más información, vea **DefiningQuery** en la [especificación de SSDL](xref:ef6/modeling/designer/advanced/edmx/ssdl-spec).
@@ -24,7 +24,7 @@ En este tema se muestra cómo realizar las siguientes tareas.
 -   Agregar un tipo de entidad al modelo
 -   Asignar la consulta de definición al tipo de entidad
 
-## <a name="prerequisites"></a>Prerrequisitos
+## <a name="prerequisites"></a>Requisitos previos
 
 Para completar este tutorial, necesitará:
 
