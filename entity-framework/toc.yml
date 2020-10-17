@@ -113,7 +113,7 @@
               href: core/modeling/generated-properties.md
             - name: Tokens de simultaneidad
               href: core/modeling/concurrency.md
-            - name: Propiedades reemplazadas
+            - name: Propiedades de propiedad reemplazada e indizador
               href: core/modeling/shadow-properties.md
             - name: Relaciones
               href: core/modeling/relationships.md
@@ -228,10 +228,15 @@
               items:
                 - name: Información general
                   href: core/providers/sql-server/index.md
+                - name: Asignaciones de funciones
+                  href: core/providers/sql-server/functions.md
                 - name: Índices
                   href: core/providers/sql-server/indexes.md
                 - name: Tablas optimizadas para memoria
                   href: core/providers/sql-server/memory-optimized-tables.md
+                - name: Datos espaciales
+                  displayName: GIS
+                  href: core/providers/sql-server/spatial.md
                 - name: "Especificación de opciones de Azure\_SQL Database"
                   href: core/providers/sql-server/azure-sql-database.md
             - name: SQLite
@@ -240,6 +245,13 @@
                   href: core/providers/sqlite/index.md
                 - name: Limitaciones de SQLite
                   href: core/providers/sqlite/limitations.md
+                - name: Asignaciones de funciones
+                  href: core/providers/sqlite/functions.md
+                - name: Datos espaciales
+                  displayName: GIS
+                  href: core/providers/sqlite/spatial.md
+                - name: Microsoft.Data.Sqlite >>
+                  href: /dotnet/standard/data/sqlite/
             - name: Cosmos
               items:
                 - name: Información general
@@ -248,6 +260,8 @@
                   href: core/providers/cosmos/unstructured-data.md
                 - name: Limitaciones de Cosmos
                   href: core/providers/cosmos/limitations.md
+                - name: Asignaciones de funciones
+                  href: core/providers/cosmos/functions.md
             - name: InMemory (para pruebas)
               href: core/providers/in-memory/index.md
             - name: Escritura de un proveedor de base de datos
