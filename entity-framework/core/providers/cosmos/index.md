@@ -2,14 +2,14 @@
 title: 'Proveedor de Azure Cosmos DB: EF Core'
 description: Documentación del proveedor de bases de datos que permite usar Entity Framework Core con SQL API de Azure Cosmos DB
 author: AndriySvyryd
-ms.date: 09/14/2020
+ms.date: 10/09/2020
 uid: core/providers/cosmos/index
-ms.openlocfilehash: 94ba29f3f2643e8f563a460e17dce9d15cb7c2df
-ms.sourcegitcommit: c0e6a00b64c2dcd8acdc0fe6d1b47703405cdf09
+ms.openlocfilehash: 26be2b604453aa2d5b21ae45f590b294639db887
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/24/2020
-ms.locfileid: "91210346"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92064055"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>Proveedor de Azure Cosmos DB para EF Core
 
@@ -35,7 +35,7 @@ dotnet add package Microsoft.EntityFrameworkCore.Cosmos
 
 ### <a name="visual-studio"></a>[Visual Studio](#tab/vs)
 
-``` powershell
+```powershell
 Install-Package Microsoft.EntityFrameworkCore.Cosmos
 ```
 
@@ -43,7 +43,7 @@ Install-Package Microsoft.EntityFrameworkCore.Cosmos
 
 ## <a name="get-started"></a>Introducción
 
-> [!TIP]  
+> [!TIP]
 > Puede ver en [GitHub un ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Cosmos) de este artículo.
 
 Al igual que para otros proveedores, el primer paso es llamar a [UseCosmos](/dotnet/api/Microsoft.EntityFrameworkCore.CosmosDbContextOptionsExtensions.UseCosmos):
@@ -115,7 +115,7 @@ En Cosmos, las entidades en propiedad se insertan en el mismo elemento que el pr
 
 Con esta configuración, el pedido del ejemplo anterior se almacena de esta manera:
 
-``` json
+```json
 {
     "Id": 1,
     "PartitionKey": "1",
@@ -143,7 +143,7 @@ No es necesario que las entidades en propiedad proporcionen valores de clave exp
 
 Se conservarán de esta manera:
 
-``` json
+```json
 {
     "Id": 1,
     "Discriminator": "Distributor",
@@ -183,7 +183,7 @@ Para evitar esta limitación, se podría crear y establecer el valor `id` de man
 
 Este es el JSON resultante:
 
-``` json
+```json
 {
     "Id": 1,
     "Discriminator": "Distributor",
@@ -201,3 +201,16 @@ Este es el JSON resultante:
     "_ts": 1572917100
 }
 ```
+
+## <a name="optimistic-concurrency-with-etags"></a>Simultaneidad optimista con mecanismos ETag
+
+> [!NOTE]
+> Se ha agregado compatibilidad con la simultaneidad de ETag en EF Core 5.0.
+
+Si necesita configurar un tipo de entidad para que use la [simultaneidad optimista](xref:core/modeling/concurrency), llame a `UseETagConcurrency`. Esta llamada creará una propiedad `_etag` en [estado de propiedad reemplazada](xref:core/modeling/shadow-properties) y la establecerá como el token de simultaneidad.
+
+[!code-csharp[Main](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=ETag)]
+
+Para facilitar la resolución de errores de simultaneidad, puede asignar el ETag a una propiedad de CLR mediante `IsETagConcurrency`.
+
+[!code-csharp[Main](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=ETagProperty)]
