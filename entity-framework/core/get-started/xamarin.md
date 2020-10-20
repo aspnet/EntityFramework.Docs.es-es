@@ -5,12 +5,12 @@ author: codemillmatt
 ms.date: 07/07/2020
 ms.author: masoucou
 uid: core/get-started/xamarin
-ms.openlocfilehash: b4a7e2260337d74329d309e9db32fe97a2131d73
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: 0552038d471e294834bed9e3bf1f05fd74c39192
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619289"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92062547"
 ---
 # <a name="getting-started-with-ef-core-and-xamarin"></a>Primeros pasos con EF Core y Xamarin
 
@@ -72,6 +72,14 @@ Vuelva a la página de la lista de blogs. Haga clic en **Eliminar todo** en la b
 Las secciones siguientes le guiarán a través del código del proyecto de ejemplo que lee, crea, actualiza y elimina datos de una base de datos de SQLite mediante EF Core con Xamarin.Forms.
 
 Se da por hecho que está familiarizado con los temas de Xamarin.Forms relacionados con la [visualización de datos](/xamarin/xamarin-forms/app-fundamentals/data-binding/) y la [navegación por las páginas](/xamarin/xamarin-forms/app-fundamentals/navigation/).
+
+> [!IMPORTANT]
+> Entity Framework Core usa la reflexión para invocar funciones que el enlazador de Xamarin.iOS puede quitar mientras está en las configuraciones de modo de **versión**. Puede evitarlo de dos maneras.
+> 
+> * La primera es agregar `--linkskip System.Core` a los **argumentos de mtouch adicionales** en las opciones de **compilación de iOS**.
+> * También puede establecer el **comportamiento del enlazador** de Xamarin.iOS en `Don't Link` en las opciones de **compilación de iOS**.
+> [En este artículo se explica más sobre el enlazador de Xamarin.iOS](/xamarin/ios/deploy-test/linker), incluido cómo establecer el comportamiento en Xamarin.iOS.
+> 
 
 ## <a name="entity-framework-core-nuget-packages"></a>Paquetes NuGet de Entity Framework Core
 

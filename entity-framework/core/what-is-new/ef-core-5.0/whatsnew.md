@@ -4,12 +4,12 @@ description: Información general sobre las nuevas características de EF Core 
 author: ajcvickers
 ms.date: 09/10/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew
-ms.openlocfilehash: 0605d021b46066c6af7b631c99e86c0e53caa8db
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: 8fa45bf31cb5f1a7e35134f9513a40469719f8c2
+ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90070762"
+ms.lasthandoff: 10/14/2020
+ms.locfileid: "92065620"
 ---
 # <a name="whats-new-in-ef-core-50"></a>Novedades en EF Core 5.0
 
@@ -25,7 +25,7 @@ EF Core 5.0 admite relaciones de varios a varios sin asignar explícitamente la
 
 Por ejemplo, considere estos tipos de entidad:
 
-```C#
+```csharp
 public class Post
 {
     public int Id { get; set; }
@@ -43,7 +43,7 @@ public class Tag
 
 Observe que `Post` contiene una colección de `Tags` y `Tag` contiene una colección de `Posts`. EF Core 5.0 reconoce esto como una relación de varios a varios por convención. Esto significa que no se requiere ningún código en `OnModelCreating`:
 
-```C#
+```csharp
 public class BlogContext : DbContext
 {
     public DbSet<Post> Posts { get; set; }
@@ -79,7 +79,7 @@ CREATE INDEX [IX_PostTag_TagsId] ON [PostTag] ([TagsId]);
 
 Al crear y asociar entidades `Blog` y `Post`, se producen automáticamente actualizaciones de la tabla de combinación. Por ejemplo:
 
-```C#
+```csharp
 var beginnerTag = new Tag {Text = "Beginner"};
 var advancedTag = new Tag {Text = "Advanced"};
 var efCoreTag = new Tag {Text = "EF Core"};
@@ -107,7 +107,7 @@ VALUES (@p6, @p7),
 
 En el caso de las consultas, Include y otras operaciones de consulta funcionan igual que para cualquier otra relación. Por ejemplo:
 
-```C#
+```csharp
 foreach (var post in context.Posts.Include(e => e.Tags))
 {
     Console.Write($"Post \"{post.Name}\" has tags");
@@ -134,17 +134,27 @@ ORDER BY [p].[Id], [t0].[PostsId], [t0].[TagsId], [t0].[Id]
 
 A diferencia de EF6, EF Core permite la personalización completa de la tabla de combinación. Por ejemplo, el código siguiente configura una relación de varios a varios que también tiene navegaciones a la entidad de combinación y en la que la entidad de combinación contiene una propiedad de carga:
 
-```c#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder
-        .Entity<Community>()
-        .HasMany(e => e.Members)
-        .WithMany(e => e.Memberships)
-        .UsingEntity<PersonCommunity>(
-            b => b.HasOne(e => e.Member).WithMany().HasForeignKey(e => e.MembersId),
-            b => b.HasOne(e => e.Membership).WithMany().HasForeignKey(e => e.MembershipsId))
-        .Property(e => e.MemberSince).HasDefaultValueSql("CURRENT_TIMESTAMP");
+        .Entity<Post>()
+        .HasMany(p => p.Tags)
+        .WithMany(p => p.Posts)
+        .UsingEntity<PostTag>(
+            j => j
+                .HasOne(pt => pt.Tag)
+                .WithMany()
+                .HasForeignKey(pt => pt.TagId),
+            j => j
+                .HasOne(pt => pt.Post)
+                .WithMany()
+                .HasForeignKey(pt => pt.PostId),
+            j =>
+            {
+                j.Property(pt => pt.PublicationDate).HasDefaultValueSql("CURRENT_TIMESTAMP");
+                j.HasKey(t => new { t.PostId, t.TagId });
+            });
 }
 ```
 
@@ -154,7 +164,7 @@ Normalmente, los tipos de entidad se asignan a tablas o vistas, de modo que EF C
 
 Por ejemplo, considere dos tablas: una con publicaciones modernas, la otra con publicaciones heredadas. La tabla de publicaciones modernas tiene algunas columnas adicionales, pero a efectos de nuestra aplicación queremos combinar las publicaciones modernas y las heredadas y asignarlas a un tipo de entidad con todas las propiedades necesarias:
 
-```c#
+```csharp
 public class Post
 {
     public int Id { get; set; }
@@ -167,7 +177,7 @@ public class Post
 
 En EF Core 5.0, se puede usar `ToSqlQuery` para asignar este tipo de entidad a una consulta que extrae y combina filas de ambas tablas:
 
-```c#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Post>().ToSqlQuery(
@@ -181,7 +191,7 @@ Observe que la tabla `legacy_posts` no tiene una columna `Category`, por lo que 
 
 Este tipo de entidad se puede usar de la manera normal para las consultas LINQ. Por ejemplo. La consulta LINQ:
 
-```c#
+```csharp
 var posts = context.Posts.Where(e => e.Blog.Name.Contains("Unicorn")).ToList();
 ```
 
@@ -230,7 +240,7 @@ EF Core 5.0 permite asignar el mismo tipo de CLR a varios tipos distintos de en
 
 Por ejemplo, el elemento DbContext siguiente configura el tipo de BCL `Dictionary<string, object>` como tipo de entidad de tipo compartido para productos y categorías.
 
-```c#
+```csharp
 public class ProductsContext : DbContext
 {
     public DbSet<Dictionary<string, object>> Products => Set<Dictionary<string, object>>("Product");
@@ -261,7 +271,7 @@ public class ProductsContext : DbContext
 
 Ahora se pueden agregar objetos de diccionario ("contenedores de propiedades") al contexto como instancias de entidad y guardarse. Por ejemplo:
 
-```c#
+```csharp
 var beverages = new Dictionary<string, object>
 {
     ["Name"] = "Beverages",
@@ -275,7 +285,7 @@ context.SaveChanges();
 
 Estas entidades se pueden consultar y actualizar de la manera normal:
 
-```c#
+```csharp
 var foods = context.Categories.Single(e => e["Name"] == "Foods");
 var marmite = context.Products.Single(e => e["Name"] == "Marmite");
 
@@ -291,7 +301,7 @@ EF Core 5.0 introduce tanto eventos de .NET como un interceptor EF Core que se 
 
 Los eventos son sencillos de usar; por ejemplo:
 
-```c#
+```csharp
 context.SavingChanges += (sender, args) =>
 {
     Console.WriteLine($"Saving changes for {((DbContext)sender).Database.GetConnectionString()}");
@@ -309,7 +319,7 @@ Tenga en lo siguiente:
 
 `ISaveChangesInterceptor` define el interceptor, pero a menudo es conveniente que se herede de `SaveChangesInterceptor` para evitar la implementación de todos los métodos. Por ejemplo:
 
-```c#
+```csharp
 public class MySaveChangesInterceptor : SaveChangesInterceptor
 {
     public override InterceptionResult<int> SavingChanges(
@@ -339,11 +349,11 @@ Tenga en lo siguiente:
 
 El inconveniente de los interceptores es que deben registrarse en DbContext cuando se construyen. Por ejemplo:
 
-```c#
-    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        => optionsBuilder
-            .AddInterceptors(new MySaveChangesInterceptor())
-            .UseSqlite("Data Source = test.db");
+```csharp
+protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    => optionsBuilder
+        .AddInterceptors(new MySaveChangesInterceptor())
+        .UseSqlite("Data Source = test.db");
 ```
 
 En cambio, los eventos se pueden registrar en la instancia de DbContext en cualquier momento.
@@ -356,7 +366,7 @@ Por ejemplo, es posible que un contexto de autorización y un contexto de inform
 
 En el código siguiente, el `AuthorizationContext` generará migraciones para los cambios en la tabla `Users`, pero el `ReportingContext` no lo hará, lo que impedirá que las migraciones entren en conflicto.
 
-```C#
+```csharp
 public class AuthorizationContext : DbContext
 {
     public DbSet<User> Users { get; set; }
@@ -377,7 +387,7 @@ public class ReportingContext : DbContext
 
 En EF Core 3.1, el extremo dependiente de una relación uno a uno se consideraba siempre opcional. Esto era más que evidente al usar entidades en propiedad. Por ejemplo, considere el siguiente modelo y configuración:
 
-```c#
+```csharp
 public class Person
 {
     public int Id { get; set; }
@@ -398,7 +408,7 @@ public class Address
 }
 ```
 
-```c#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Person>(b =>
@@ -442,7 +452,7 @@ Tenga en cuenta que todas las columnas aceptan valores NULL, aunque algunas de l
 
 En EF Core 5.0, la navegación de `HomeAddress` se puede configurar ahora como elemento dependiente necesario. Por ejemplo:
 
-```c#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Person>(b =>
@@ -570,7 +580,7 @@ Además, ahora hay un comando `Get-Migration` para la consola del administrador 
 
 Las propiedades de EF Core para tipos mutables personalizados [requieren un comparador de valores](xref:core/modeling/value-comparers) para que los cambios de propiedad se detecten correctamente. Ahora se pueden especificar como parte de la configuración de la conversión de valor para el tipo. Por ejemplo:
 
-```c#
+```csharp
 modelBuilder
     .Entity<EntityType>()
     .Property(e => e.MyProperty)
@@ -589,7 +599,7 @@ El miembro de la comunidad [@m4ss1m0g](https://github.com/m4ss1m0g) ha contribui
 
 Se ha agregado un método `TryGetValue` a `EntityEntry.CurrentValues` y `EntityEntry.OriginalValues`. Esto permite solicitar el valor de una propiedad sin comprobar primero si la propiedad está asignada en el modelo EF. Por ejemplo:
 
-```c#
+```csharp
 if (entry.CurrentValues.TryGetValue(propertyName, out var value))
 {
     Console.WriteLine(value);
@@ -621,7 +631,7 @@ EF Core 5.0 RC1 contiene algunas mejoras adicionales en la traducción de consu
 
 Por último, para RC1, EF Core ahora permite el uso de los métodos lambda en ModelBuilder para los campos y las propiedades. Por ejemplo, si por alguna razón es reacio a las propiedades y decide usar campos públicos, estos campos ahora se pueden asignar mediante los generadores de lambda:
 
-```c#
+```csharp
 public class Post
 {
     public int Id;
@@ -639,7 +649,7 @@ public class Blog
 }
 ```
 
-```c#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Blog>(b =>
@@ -669,7 +679,7 @@ De forma predeterminada, EF Core asigna una jerarquía de herencia de tipos .NET
 
 Por ejemplo, piense en este modelo con una jerarquía asignada:
 
-```c#
+```csharp
 public class Animal
 {
     public int Id { get; set; }
@@ -743,7 +753,7 @@ Tenga en cuenta que la creación de las restricciones de clave externa mostradas
 
 Los tipos de entidad pueden asignarse a tablas diferentes mediante atributos de asignación:
 
-```c#
+```csharp
 [Table("Animals")]
 public class Animal
 {
@@ -772,7 +782,7 @@ public class Dog : Pet
 
 O mediante la configuración `ModelBuilder`:
 
-```c#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder.Entity<Animal>().ToTable("Animals");
@@ -790,7 +800,7 @@ En comparación con otras bases de datos, SQLite está relativamente limitada en
 
 Por ejemplo, imagine que tenemos una tabla `Unicorns` creada para un tipo de entidad `Unicorn`:
 
-```c#
+```csharp
 public class Unicorn
 {
     public int Id { get; set; }
@@ -877,7 +887,7 @@ El modelo de EF Core requiere dos tipos de entidad para usar esta TVF:
 * Un tipo `Employee` que se asigna a la tabla Employees de la forma habitual.
 * Un tipo `Report` que coincide con la forma que devuelve la función TVF.
 
-```c#
+```csharp
 public class Employee
 {
     public int Id { get; set; }
@@ -889,7 +899,7 @@ public class Employee
 }
 ```
 
-```c#
+```csharp
 public class Report
 {
     public string Name { get; set; }
@@ -899,7 +909,7 @@ public class Report
 
 Estos tipos se deben incluir en el modelo de EF Core:
 
-```c#
+```csharp
 modelBuilder.Entity<Employee>();
 modelBuilder.Entity(typeof(Report)).HasNoKey();
 ```
@@ -908,14 +918,14 @@ Observe que `Report` no tiene ninguna clave principal, por lo que debe configura
 
 Por último, se debe asignar un método .NET a la función TVF en la base de datos. Este método se puede definir en DbContext mediante el método `FromExpression` nuevo:
 
-```c#
+```csharp
 public IQueryable<Report> GetReports(int managerId)
     => FromExpression(() => GetReports(managerId));
 ```
 
 Este método usa un parámetro y un tipo de valor devuelto que coinciden con la función TVF definida anteriormente. Después, el método se agrega al modelo de EF Core en OnModelCreating:
 
-```c#
+```csharp
 modelBuilder.HasDbFunction(() => GetReports(default));
 ```
 
@@ -923,7 +933,7 @@ modelBuilder.HasDbFunction(() => GetReports(default));
 
 Ahora podemos escribir consultas que llamen a `GetReports` y se creen sobre los resultados. Por ejemplo:
 
-```c#
+```csharp
 from e in context.Employees
 from rc in context.GetReports(e.Id)
 where rc.IsDeveloper == true
@@ -951,7 +961,7 @@ EF Core 5.0 permite asignar el mismo tipo de entidad a objetos de base de datos
 
 Por ejemplo, un tipo de entidad se puede asignar a una vista de base de datos y una tabla de base de datos:
 
-```c#
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     modelBuilder
@@ -963,7 +973,7 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 
 De forma predeterminada, EF Core consultará desde la vista y enviará actualizaciones a la tabla. Por ejemplo, ejecutar el código siguiente:
 
-```c#
+```csharp
 var blog = context.Set<Blog>().Single(e => e.Name == "One Unicorn");
 
 blog.Name = "1unicorn2";
@@ -988,7 +998,7 @@ SELECT @@ROWCOUNT;
 
 Las consultas divididas (vea más abajo) ahora se pueden configurar como valor predeterminado para cualquier consulta que ejecute DbContext. Esta configuración solo está disponible para los proveedores relacionales, por lo que debe especificarse como parte de la configuración de `UseProvider`. Por ejemplo:
 
-```c#
+```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
         .UseSqlServer(
@@ -1158,7 +1168,7 @@ Ahora, EF Core 5.0 permite dividir en varias consultas SQL una única consulta 
 
 Imaginemos, por ejemplo, que tenemos una consulta que extrae dos niveles de colecciones relacionadas mediante `Include`:
 
-```CSharp
+```csharp
 var artists = context.Artists
     .Include(e => e.Albums).ThenInclude(e => e.Tags)
     .ToList();
@@ -1179,7 +1189,7 @@ ORDER BY "a"."Id", "t0"."Id", "t0"."Id0"
 
 La nueva API `AsSplitQuery` se puede usar para cambiar este comportamiento. Por ejemplo:
 
-```CSharp
+```csharp
 var artists = context.Artists
     .AsSplitQuery()
     .Include(e => e.Albums).ThenInclude(e => e.Tags)
@@ -1213,7 +1223,7 @@ Tenga en cuenta que Inclusión filtrada con OrderBy, Skip o Take no se admite en
 
 `AsSplitQuery` también se puede usar cuando se carguen colecciones en proyecciones. Por ejemplo:
 
-```CSharp
+```csharp
 context.Artists
     .AsSplitQuery()
     .Select(e => new
@@ -1242,7 +1252,7 @@ Tenga en cuenta que solo se admite la materialización de la colección. Las com
 
 El nuevo IndexAttribute se puede colocar en un tipo de entidad a fin de especificar un índice para una sola columna. Por ejemplo:
 
-```CSharp
+```csharp
 [Index(nameof(FullName), IsUnique = true)]
 public class User
 {
@@ -1263,7 +1273,7 @@ CREATE UNIQUE INDEX [IX_Users_FullName]
 
 IndexAttribute también se puede usar para especificar un índice que abarque varias columnas. Por ejemplo:
 
-```CSharp
+```csharp
 [Index(nameof(FirstName), nameof(LastName), IsUnique = true)]
 public class User
 {
@@ -1291,7 +1301,7 @@ El seguimiento de la documentación se realiza mediante la incidencia [n.º 240
 
 Seguimos mejorando los mensajes de excepción que se generan cuando se produce un error en la traducción de una consulta. Por ejemplo, esta consulta usa la propiedad no asignada `IsSigned`:
 
-```CSharp
+```csharp
 var artists = context.Artists.Where(e => e.IsSigned).ToList();
 ```
 
@@ -1301,7 +1311,7 @@ EF Core producirá la siguiente excepción que indica que se produjo un error de
 
 Del mismo modo, ahora se generan mejores mensajes de excepción al intentar traducir comparaciones de cadenas con una semántica dependiente de la referencia cultural. Por ejemplo, esta consulta intenta usar `StringComparison.CurrentCulture`:
 
-```CSharp
+```csharp
 var artists = context.Artists
     .Where(e => e.Name.Equals("The Unicorns", StringComparison.CurrentCulture))
     .ToList();
@@ -1317,7 +1327,7 @@ El miembro de la comunidad [@Marusyk](https://github.com/Marusyk) ha contribuido
 
 EF Core expone un id. de transacción para la correlación de las transacciones entre llamadas. Este id. lo establece normalmente EF Core cuando se inicia una transacción. Si es la aplicación la que inicia la transacción, esta característica permite que la aplicación establezca de forma explícita el id. de transacción para que se ponga en correlación de forma correcta en todas las ubicaciones donde se use. Por ejemplo:
 
-```CSharp
+```csharp
 using (context.Database.UseTransaction(myTransaction, myId))
 {
    ...
@@ -1330,7 +1340,7 @@ El miembro de la comunidad [@ralmsdeveloper](https://github.com/ralmsdeveloper) 
 
 Ahora, la [clase estándar IPAddress](/dotnet/api/system.net.ipaddress) de .NET se asigna automáticamente a una columna de cadena para las bases de datos que aún no tienen compatibilidad nativa. Por ejemplo, valore la posibilidad de asignar este tipo de entidad:
 
-```CSharp
+```csharp
 public class Host
 {
     public int Id { get; set; }
@@ -1349,7 +1359,7 @@ CREATE TABLE [Host] (
 
 Las entidades se pueden agregar de la manera habitual:
 
-```CSharp
+```csharp
 context.AddRange(
     new Host { Address = IPAddress.Parse("127.0.0.1")},
     new Host { Address = IPAddress.Parse("0000:0000:0000:0000:0000:0000:0000:0001")});
@@ -1388,7 +1398,7 @@ El miembro de la comunidad [@dvoreckyaa](https://github.com/dvoreckyaa) ha contr
 
 Ahora se traducen FirstOrDefault y operadores similares para los caracteres de las cadenas. Por ejemplo, esta consulta LINQ:
 
-```CSharp
+```csharp
 context.Customers.Where(c => c.ContactName.FirstOrDefault() == 'A').ToList();
 ```
 
@@ -1404,7 +1414,7 @@ WHERE SUBSTRING([c].[ContactName], 1, 1) = N'A'
 
 Ahora, EF Core genera mejores consultas con bloques de casos. Por ejemplo, esta consulta LINQ:
 
-```CSharp
+```csharp
 context.Weapons
     .OrderBy(w => w.Name.CompareTo("Marcus' Lancer") == 0)
     .ThenBy(w => w.Id)
@@ -1446,7 +1456,7 @@ END, [w].[Id]");
 
 La intercalación predeterminada de una base de datos puede especificarse ahora en el modelo EF. Este pasará a las migraciones generadas para establecer la intercalación cuando se cree la base de datos. Por ejemplo:
 
-```CSharp
+```csharp
 modelBuilder.UseCollation("German_PhoneBook_CI_AS");
 ```
 
@@ -1459,18 +1469,18 @@ COLLATE German_PhoneBook_CI_AS;
 
 También se puede especificar la intercalación que se va a usar para columnas de bases de datos concretas. Por ejemplo:
 
-```CSharp
- modelBuilder
-     .Entity<User>()
-     .Property(e => e.Name)
-     .UseCollation("German_PhoneBook_CI_AS");
+```csharp
+modelBuilder
+    .Entity<User>()
+    .Property(e => e.Name)
+    .UseCollation("German_PhoneBook_CI_AS");
 ```
 
 En el caso de las que no usan migraciones, se aplica a las intercalaciones ingeniería inversa desde la base de datos, al aplicar scaffolding a DbContext.
 
 Por último, `EF.Functions.Collate()` permite realizar consultas ad-hoc mediante diferentes intercalaciones. Por ejemplo:
 
-```CSharp
+```csharp
 context.Users.Single(e => EF.Functions.Collate(e.Name, "French_CI_AS") == "Jean-Michel Jarre");
 ```
 
@@ -1496,7 +1506,7 @@ dotnet ef migrations add two --verbose --dev
 
 Este argumento pasará entonces a la factoría, donde se puede usar para controlar cómo se crea e inicializa el contexto. Por ejemplo:
 
-```CSharp
+```csharp
 public class MyDbContextFactory : IDesignTimeDbContextFactory<SomeDbContext>
 {
     public SomeDbContext CreateDbContext(string[] args)
@@ -1510,13 +1520,13 @@ En el problema [n.º 2419](https://github.com/dotnet/EntityFramework.Docs/issue
 
 Ahora se pueden configurar consultas de no seguimiento para hacer la resolución de identidad. Por ejemplo, la siguiente consulta creará una instancia de Blog para cada Post, aunque cada blog tenga la misma clave principal.
 
-```CSharp
+```csharp
 context.Posts.AsNoTracking().Include(e => e.Blog).ToList();
 ```
 
 Sin embargo, a costa de que por lo general sea ligeramente más lento y siempre use más memoria, se puede cambiar esta consulta para asegurarse de que solo se crea una instancia de Blog:
 
-```CSharp
+```csharp
 context.Posts.AsNoTracking().PerformIdentityResolution().Include(e => e.Blog).ToList();
 ```
 
@@ -1530,7 +1540,7 @@ La mayoría de las bases de datos permiten almacenar valores de columnas calcula
 
 EF Core 5.0 permite configurar las columnas calculadas como almacenadas. Por ejemplo:
 
-```CSharp
+```csharp
 modelBuilder
     .Entity<User>()
     .Property(e => e.SomethingComputed)
@@ -1547,7 +1557,7 @@ EF Core admite ahora columnas calculadas en las bases de datos de SQLite.
 
 Ahora se puede especificar la precisión y la escala de una propiedad mediante el generador de modelos. Por ejemplo:
 
-```CSharp
+```csharp
 modelBuilder
     .Entity<Blog>()
     .Property(b => b.Numeric)
@@ -1562,7 +1572,7 @@ En el problema [n.º 527](https://github.com/dotnet/EntityFramework.Docs/issues
 
 Ahora se puede especificar el factor de relleno al crear un índice en SQL Server. Por ejemplo:
 
-```CSharp
+```csharp
 modelBuilder
     .Entity<Customer>()
     .HasIndex(e => e.Name)
@@ -1575,7 +1585,7 @@ modelBuilder
 
 El método Include ahora admite el filtrado de las entidades incluidas. Por ejemplo:
 
-```CSharp
+```csharp
 var blogs = context.Blogs
     .Include(e => e.Posts.Where(p => p.Title.Contains("Cheese")))
     .ToList();
@@ -1585,7 +1595,7 @@ Esta consulta devolverá los blogs y las publicaciones asociadas, pero solo cuan
 
 Para reducir el número de las entidades incluidas, se puede usar Skip y Take. Por ejemplo:
 
-```CSharp
+```csharp
 var blogs = context.Blogs
     .Include(e => e.Posts.OrderByDescending(post => post.Title).Take(5)))
     .ToList();
@@ -1598,7 +1608,7 @@ Vea la [documentación de Include](xref:core/querying/related-data#filtered-incl
 
 Las propiedades de navegación se configuran principalmente al [definir relaciones](xref:core/modeling/relationships). No obstante, se puede usar el nuevo método `Navigation` cuando es necesario realizar una configuración adicional en las propiedades de navegación. Por ejemplo, para establecer un campo de respaldo de la navegación cuando el campo no se encuentre por convención:
 
-```CSharp
+```csharp
 modelBuilder.Entity<Blog>().Navigation(e => e.Posts).HasField("_myposts");
 ```
 
@@ -1635,7 +1645,7 @@ El uso de `EnableDetailedErrors` agregará una comprobación de valores NULL adi
 
 Por ejemplo:
 
-```CSharp
+```csharp
 protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     => optionsBuilder
         .EnableDetailedErrors()
@@ -1649,7 +1659,7 @@ En el problema [n.º 955](https://github.com/dotnet/EntityFramework.Docs/issues
 
 Ahora, es posible especificar en las consultas la clave de partición que va a usarse para una consulta determinada. Por ejemplo:
 
-```CSharp
+```csharp
 await context.Set<Customer>()
              .WithPartitionKey(myPartitionKey)
              .FirstAsync();
@@ -1661,7 +1671,7 @@ En el problema [n.º 2199](https://github.com/dotnet/EntityFramework.Docs/issue
 
 Se puede acceder con el nuevo método `EF.Functions.DataLength`. Por ejemplo:
 
-```CSharp
+```csharp
 var count = context.Orders.Count(c => 100 < EF.Functions.DataLength(c.OrderDate));
 ```
 
@@ -1671,7 +1681,7 @@ var count = context.Orders.Count(c => 100 < EF.Functions.DataLength(c.OrderDate)
 
 Ahora se puede usar un atributo de C# para especificar el campo de respaldo de una propiedad. Este atributo permite a EF Core seguir escribiendo y leyendo en el campo de respaldo como sucedería normalmente, incluso si no se puede encontrar el campo de respaldo automáticamente. Por ejemplo:
 
-```CSharp
+```csharp
 public class Blog
 {
     private string _mainTitle;
@@ -1741,7 +1751,7 @@ En el problema [n.º 1331](https://github.com/dotnet/EntityFramework.Docs/issues
 
 Ahora se pueden configurar los tipos de entidad para indicar que no tienen clave mediante el nuevo valor `KeylessAttribute`. Por ejemplo:
 
-```CSharp
+```csharp
 [Keyless]
 public class Address
 {
@@ -1789,7 +1799,7 @@ En el problema [n.º 2018](https://github.com/dotnet/EntityFramework.Docs/issues
 
 Las migraciones de EF Core 5.0 ahora pueden generar restricciones CHECK para las asignaciones de propiedades de enumeración. Por ejemplo:
 
-```SQL
+```sql
 MyEnumColumn VARCHAR(10) NOT NULL CHECK (MyEnumColumn IN ('Useful', 'Useless', 'Unknown'))
 ```
 
@@ -1799,7 +1809,7 @@ En el problema [n.º 2082](https://github.com/dotnet/EntityFramework.Docs/issues
 
 Se ha agregado un nuevo método `IsRelational`, además de los existentes, que son `IsSqlServer`, `IsSqlite` y `IsInMemory`. Se puede usar este método para comprobar si DbContext está usando algún proveedor de bases de datos relacionales. Por ejemplo:
 
-```CSharp
+```csharp
 protected override void OnModelCreating(ModelBuilder modelBuilder)
 {
     if (Database.IsRelational())
@@ -1815,7 +1825,7 @@ En el problema [n.º 2185](https://github.com/dotnet/EntityFramework.Docs/issues
 
 El proveedor de bases de datos de Azure Cosmos DB ya es compatible con la simultaneidad optimista mediante mecanismos ETag. Utilice el generador de modelos de OnModelCreating para confirmar un mecanismo ETag:
 
-```CSharp
+```csharp
 builder.Entity<Customer>().Property(c => c.ETag).IsEtagConcurrency();
 ```
 
@@ -1834,7 +1844,7 @@ Además, ahora se asignan las funciones de SQL Server que hay a continuación:
 
 Por ejemplo:
 
-```CSharp
+```csharp
 var count = context.Orders.Count(c => date > EF.Functions.DateFromParts(DateTime.Now.Year, 12, 25));
 
 ```
@@ -1853,7 +1863,7 @@ En el problema [n.º 2079](https://github.com/dotnet/EntityFramework.Docs/issues
 
 Las consultas que usan `Reverse` ahora se traducen. Por ejemplo:
 
-```CSharp
+```csharp
 context.Employees.OrderBy(e => e.EmployeeID).Reverse()
 ```
 
@@ -1863,7 +1873,7 @@ En el problema [n.º 2079](https://github.com/dotnet/EntityFramework.Docs/issues
 
 Las consultas que usan operadores bit a bit ahora se traducen en más casos, por ejemplo:
 
-```CSharp
+```csharp
 context.Orders.Where(o => ~o.OrderID == negatedId)
 ```
 
