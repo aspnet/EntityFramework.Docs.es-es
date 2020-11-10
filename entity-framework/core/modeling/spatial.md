@@ -4,12 +4,12 @@ description: Usar datos espaciales en un modelo de Entity Framework Core
 author: bricelam
 ms.date: 10/02/2020
 uid: core/modeling/spatial
-ms.openlocfilehash: 2c0cd7a8acf7e4b58eadf8805afa1fe4a1d6e949
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: fa9cf30ddb4291d96486934544b568b67b126846
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063938"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430526"
 ---
 # <a name="spatial-data"></a>Datos espaciales
 
@@ -78,7 +78,7 @@ En LINQ, los métodos y las propiedades NTS disponibles como funciones de base d
 
 ## <a name="reverse-engineering"></a>Ingeniería inversa
 
-Los paquetes de NuGet espaciales también habilitan los modelos de [ingeniería inversa](xref:core/managing-schemas/scaffolding) con propiedades espaciales, pero debe instalar el paquete ***antes*** de ejecutar `Scaffold-DbContext` o `dotnet ef dbcontext scaffold` . Si no lo hace, recibirá advertencias sobre cómo no encontrar las asignaciones de tipos para las columnas y se omitirán las columnas.
+Los paquetes de NuGet espaciales también habilitan los modelos de [ingeniería inversa](xref:core/managing-schemas/scaffolding) con propiedades espaciales, pero debe instalar el paquete * *_antes_* de ejecutar `Scaffold-DbContext` o `dotnet ef dbcontext scaffold` . Si no lo hace, recibirá advertencias sobre cómo no encontrar las asignaciones de tipos para las columnas y se omitirán las columnas.
 
 ## <a name="srid-ignored-during-client-operations"></a>SRID omitido durante las operaciones de cliente
 
@@ -97,9 +97,15 @@ Este es un ejemplo del uso de ProjNet4GeoAPI para calcular la distancia entre do
 
 ## <a name="additional-resources"></a>Recursos adicionales
 
+### <a name="database-specific-information"></a>Información específica de la base de datos
+
 Asegúrese de leer la documentación del proveedor para obtener información adicional sobre cómo trabajar con datos espaciales.
 
-* [Datos espaciales en el proveedor de SQL Server](xref:core/providers/sql-server/spatial)
+_ [Datos espaciales en el proveedor de SQL Server](xref:core/providers/sql-server/spatial)
 * [Datos espaciales en el proveedor de SQLite](xref:core/providers/sqlite/spatial)
 * [Datos espaciales en el proveedor Npgsql](https://www.npgsql.org/efcore/mapping/nts.html)
+
+### <a name="other-resources"></a>Otros recursos
+
 * [Documentos de NetTopologySuite](https://nettopologysuite.github.io/NetTopologySuite/)
+* [EF Core sesión reunión](https://www.youtube.com/watch?v=IHslY5rrxD0&list=PLdo4fOcmZ0oX-DBuRG4u58ZTAJgBAeQ-t&index=15)de la comunidad, centrándose en los datos espaciales y NetTopologySuite.

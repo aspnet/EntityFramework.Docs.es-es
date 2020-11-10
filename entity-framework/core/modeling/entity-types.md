@@ -4,12 +4,12 @@ description: Cómo configurar y asignar tipos de entidad mediante Entity Framewo
 author: roji
 ms.date: 10/06/2020
 uid: core/modeling/entity-types
-ms.openlocfilehash: bfefa29c08679a1524c00769b3495d75a301e2d3
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 9094193640e7cab6db3fed7ae0ab818a455156ca
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92062235"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429601"
 ---
 # <a name="entity-types"></a>Tipos de entidad
 
@@ -50,9 +50,9 @@ A veces resulta útil tener el mismo tipo de entidad asignado en varios `DbConte
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableExcludeFromMigrations.cs?name=TableExcludeFromMigrations&highlight=4)]
 
-Con esta configuración, las migraciones no crearán la `blogs` tabla, pero `Blog` se incluirán en el modelo y se pueden usar con normalidad.
+Con esta configuración, las migraciones no crearán la `AspNetUsers` tabla, pero `IdentityUser` se incluirán en el modelo y se pueden usar con normalidad.
 
-Si necesita empezar a administrar la tabla con las migraciones de nuevo, se debe crear una nueva migración en la que `blogs` no se excluya. La siguiente migración contendrá los cambios realizados en la tabla.
+Si necesita empezar a administrar la tabla con las migraciones de nuevo, se debe crear una nueva migración en la que `AspNetUsers` no se excluya. La siguiente migración contendrá los cambios realizados en la tabla.
 
 ## <a name="table-name"></a>Nombre de la tabla
 
@@ -68,7 +68,7 @@ Puede configurar manualmente el nombre de la tabla:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableName.cs?Name=TableName&highlight=3-4)]
 
-***
+**_
 
 ## <a name="table-schema"></a>Esquema de tabla
 
@@ -84,7 +84,7 @@ Puede configurar las tablas que se van a crear en un esquema específico de la s
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableNameAndSchema.cs?name=TableNameAndSchema&highlight=3-4)]
 
-***
+_**
 
 En lugar de especificar el esquema de cada tabla, también puede definir el esquema predeterminado en el nivel de modelo con la API fluida:
 
@@ -101,4 +101,7 @@ Los tipos de entidad pueden asignarse a vistas de base de datos mediante la API 
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ViewNameAndSchema.cs?name=ViewNameAndSchema&highlight=1)]
 
- La asignación a una vista quitará la asignación de tabla predeterminada, pero el tipo de entidad también se puede asignar explícitamente a una tabla. En este caso, la asignación de consultas se usará para las consultas y la asignación de tabla se usará para las actualizaciones.
+ La asignación a una vista quitará la asignación de tabla predeterminada, pero a partir de EF 5,0 el tipo de entidad también se puede asignar explícitamente a una tabla. En este caso, la asignación de consultas se usará para las consultas y la asignación de tabla se usará para las actualizaciones.
+
+> [!TIP]
+> Para probar los tipos de entidad asignados a las vistas mediante el proveedor en memoria, asígnelo a una consulta a través de `ToInMemoryQuery` . Vea un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing/ItemsWebApi/) mediante esta técnica para obtener más detalles.

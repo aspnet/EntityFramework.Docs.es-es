@@ -4,20 +4,51 @@ description: Administrar cadenas de conexión en entornos diferentes con Entity 
 author: bricelam
 ms.date: 10/27/2016
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: f657d39f66e6a757380ca25436a638b47c11cd12
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: fee7e8f6de1faa11203cfcdab033b73a0a8ef6ea
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92062326"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429733"
 ---
 # <a name="connection-strings"></a>Cadenas de conexión
 
 La mayoría de los proveedores de bases de datos requieren algún tipo de cadena de conexión para conectarse a la base de datos. A veces, esta cadena de conexión contiene información confidencial que debe protegerse. También es posible que necesite cambiar la cadena de conexión a medida que mueva la aplicación entre entornos, como desarrollo, pruebas y producción.
 
+## <a name="aspnet-core"></a>ASP.NET Core
+
+En ASP.NET Core el sistema de configuración es muy flexible y la cadena de conexión podría almacenarse en `appsettings.json` , una variable de entorno, el almacén de secretos de usuario u otro origen de configuración. Consulte la [sección configuración de la documentación de ASP.net Core](/aspnet/core/fundamentals/configuration) para obtener más detalles.
+
+Por ejemplo, puede usar la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager) para almacenar la contraseña de la base de datos y, a continuación, en la técnica scaffolding, usar una cadena de conexión que solo conste de `Name=<database-alias>` .
+
+```dotnetcli
+dotnet user-secrets set ConnectionStrings.YourDatabaseAlias "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=YourDatabase"
+dotnet ef dbcontext scaffold Name=ConnectionStrings.YourDatabaseAlias Microsoft.EntityFrameworkCore.SqlServer
+```
+
+O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appsettings.json` .
+
+```json
+{
+  "ConnectionStrings": {
+    "BloggingDatabase": "Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;"
+  },
+}
+```
+
+Después, el contexto se configura normalmente en `Startup.cs` con la cadena de conexión que se lee de la configuración. Tenga en cuenta que el `GetConnectionString()` método busca un valor de configuración cuya clave sea `ConnectionStrings:<connection string name>` . Debe importar el espacio de nombres [Microsoft.Extensions.Configprimario](/dotnet/api/microsoft.extensions.configuration) para usar este método de extensión.
+
+```csharp
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<BloggingContext>(options =>
+        options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
+}
+```
+
 ## <a name="winforms--wpf-applications"></a>Aplicaciones de WinForms & WPF
 
-Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexión probado y probado. La cadena de conexión debe agregarse al archivo de App.config de la aplicación (Web.config si usa ASP.NET). Si la cadena de conexión contiene información confidencial, como el nombre de usuario y la contraseña, puede proteger el contenido del archivo de configuración mediante la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager).
+Las aplicaciones WinForms, WPF y ASP.NET 4 tienen un patrón de cadena de conexión probado y probado. La cadena de conexión debe agregarse al archivo de App.config de la aplicación (Web.config si usa ASP.NET). Si la cadena de conexión contiene información confidencial, como el nombre de usuario y la contraseña, puede proteger el contenido del archivo de configuración mediante la [configuración protegida](/dotnet/framework/data/adonet/connection-strings-and-configuration-files#encrypting-configuration-file-sections-using-protected-configuration).
 
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
@@ -62,36 +93,5 @@ public class BloggingContext : DbContext
     {
             optionsBuilder.UseSqlite("Data Source=blogging.db");
     }
-}
-```
-
-## <a name="aspnet-core"></a>ASP.NET Core
-
-En ASP.NET Core el sistema de configuración es muy flexible y la cadena de conexión podría almacenarse en `appsettings.json` , una variable de entorno, el almacén de secretos de usuario u otro origen de configuración. Consulte la [sección configuración de la documentación de ASP.net Core](/aspnet/core/fundamentals/configuration) para obtener más detalles.
-
-Por ejemplo, puede usar la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager) para almacenar la contraseña de la base de datos y, a continuación, en la técnica scaffolding, usar una cadena de conexión que solo conste de `Name=<database-alias>` .
-
-```dotnetcli
-dotnet user-secrets set ConnectionStrings.YourDatabaseAlias "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=YourDatabase"
-dotnet ef dbcontext scaffold Name=ConnectionStrings.YourDatabaseAlias Microsoft.EntityFrameworkCore.SqlServer
-```
-
-O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appsettings.json` .
-
-```json
-{
-  "ConnectionStrings": {
-    "BloggingDatabase": "Server=(localdb)\\mssqllocaldb;Database=EFGetStarted.ConsoleApp.NewDb;Trusted_Connection=True;"
-  },
-}
-```
-
-Después, el contexto se configura normalmente en `Startup.cs` con la cadena de conexión que se lee de la configuración. Tenga en cuenta que el `GetConnectionString()` método busca un valor de configuración cuya clave sea `ConnectionStrings:<connection string name>` . Debe importar el espacio de nombres [Microsoft.Extensions.Configprimario](/dotnet/api/microsoft.extensions.configuration) para usar este método de extensión.
-
-```csharp
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddDbContext<BloggingContext>(options =>
-        options.UseSqlServer(Configuration.GetConnectionString("BloggingDatabase")));
 }
 ```

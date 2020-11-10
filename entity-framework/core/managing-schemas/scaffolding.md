@@ -4,12 +4,12 @@ description: Aplicar ingeniería inversa a un modelo a partir de una base de dat
 author: bricelam
 ms.date: 11/13/2018
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: e1b4ed8d5209688fbe5c89ae60cf0d981136305f
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 11ffa2e62136e47959ebbfd54ccb55c2b9e23e04
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92061975"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429772"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
 
@@ -17,7 +17,7 @@ La ingeniería inversa es el proceso de scaffolding de las clases de tipo de ent
 
 ## <a name="installing"></a>Instalación de
 
-Antes de la ingeniería inversa, deberá instalar las herramientas de [PMC](xref:core/miscellaneous/cli/powershell) (solo en Visual Studio) o las [herramientas](xref:core/miscellaneous/cli/dotnet)de la CLI. Vea los vínculos para obtener más información.
+Antes de la ingeniería inversa, deberá instalar las herramientas de [PMC](xref:core/cli/powershell) (solo en Visual Studio) o las [herramientas](xref:core/cli/dotnet)de la CLI. Vea los vínculos para obtener más información.
 
 También necesitará instalar un [proveedor de base de datos](xref:core/providers/index) adecuado para el esquema de la base de datos al que desea aplicar ingeniería inversa.
 
@@ -80,7 +80,7 @@ Para incluir varias tablas, use una matriz:
 Scaffold-DbContext ... -Tables Artist, Album
 ```
 
-***
+**_
 
 ## <a name="preserving-names"></a>Conservar nombres
 
@@ -108,7 +108,7 @@ public string Title { get; set; }
 
 ## <a name="dbcontext-name"></a>Nombre de DbContext
 
-El nombre de la clase DbContext con scaffolding será el nombre de la base de datos con sufijo de *contexto* de forma predeterminada. Para especificar otro, use `-Context` en PMC y `--context` en el CLI de .net Core.
+El nombre de la clase DbContext con scaffolding será el nombre de la base de datos con el sufijo _Context * de forma predeterminada. Para especificar otro, use `-Context` en PMC y `--context` en el CLI de .net Core.
 
 ## <a name="directories-and-namespaces"></a>Directorios y espacios de nombres
 
@@ -144,7 +144,7 @@ Scaffold-DbContext ... -Namespace Your.Namespace -ContextNamespace Your.DbContex
 
 ***
 
-## <a name="how-it-works"></a>Funcionamiento
+## <a name="how-it-works"></a>Cómo funciona
 
 La ingeniería inversa comienza leyendo el esquema de la base de datos. Lee información acerca de las tablas, columnas, restricciones e índices.
 
@@ -157,7 +157,7 @@ Por último, el modelo se usa para generar código. Las clases de tipo de entida
 * No todo lo relacionado con un modelo se puede representar mediante un esquema de la base de datos. Por ejemplo, la información sobre las [**jerarquías de herencia**](xref:core/modeling/inheritance), los [**tipos de propiedad**](xref:core/modeling/owned-entities)y la [**División de tablas**](xref:core/modeling/table-splitting) no están presentes en el esquema de la base de datos. Por este motivo, estas construcciones nunca se aplicarán a ingeniería inversa.
 * Además, es posible que **algunos tipos de columna** no sean compatibles con el proveedor de EF Core. Estas columnas no se incluirán en el modelo.
 * Puede definir [**tokens de simultaneidad**](xref:core/modeling/concurrency)en un modelo de EF Core para evitar que dos usuarios actualicen la misma entidad al mismo tiempo. Algunas bases de datos tienen un tipo especial para representar este tipo de columna (por ejemplo, rowversion en SQL Server), en cuyo caso se puede aplicar ingeniería inversa a esta información; sin embargo, no se aplicarán ingeniería inversa a otros tokens de simultaneidad.
-* [La característica de tipo de referencia que acepta valores NULL de C# 8](/dotnet/csharp/tutorials/nullable-reference-types) no se admite actualmente en técnicas de ingeniería inversa: EF Core siempre genera código C# que supone que la característica está deshabilitada. Por ejemplo, las columnas de texto que aceptan valores NULL se scaffolding como una propiedad con `string` el tipo, no `string?` , con la API fluida o las anotaciones de datos que se usan para configurar si una propiedad es obligatoria o no. Puede editar el código con scaffolding y reemplazarlo con anotaciones de nulabilidad de C#. El seguimiento de la compatibilidad con scaffolding para tipos de referencia que aceptan valores NULL se realiza mediante el problema [#15520](https://github.com/aspnet/EntityFrameworkCore/issues/15520).
+* [La característica de tipo de referencia que acepta valores NULL de C# 8](/dotnet/csharp/tutorials/nullable-reference-types) no se admite actualmente en técnicas de ingeniería inversa: EF Core siempre genera código C# que supone que la característica está deshabilitada. Por ejemplo, las columnas de texto que aceptan valores NULL se scaffolding como una propiedad con `string` el tipo, no `string?` , con la API fluida o las anotaciones de datos que se usan para configurar si una propiedad es obligatoria o no. Puede editar el código con scaffolding y reemplazarlo con anotaciones de nulabilidad de C#. El seguimiento de la compatibilidad con scaffolding para tipos de referencia que aceptan valores NULL se realiza mediante el problema [#15520](https://github.com/dotnet/efcore/issues/15520).
 
 ## <a name="customizing-the-model"></a>Personalización del modelo
 
@@ -173,7 +173,7 @@ Después de realizar cambios en la base de datos, puede que tenga que actualizar
 
 Sin embargo, los cambios más significativos no son tan sencillos como los que se realizan de forma manual. Un flujo de trabajo común consiste en volver a aplicar ingeniería inversa del modelo de la base de datos mediante `-Force` (PMC) o `--force` (CLI) para sobrescribir el modelo existente con uno actualizado.
 
-Otra característica solicitada comúnmente es la posibilidad de actualizar el modelo de la base de datos a la vez que se conserva la personalización, como cambiar el nombre, las jerarquías de tipos, etc. Use el [#831](https://github.com/aspnet/EntityFrameworkCore/issues/831) de problemas para realizar el seguimiento del progreso de esta característica.
+Otra característica solicitada comúnmente es la posibilidad de actualizar el modelo de la base de datos a la vez que se conserva la personalización, como cambiar el nombre, las jerarquías de tipos, etc. Use el [#831](https://github.com/dotnet/efcore/issues/831) de problemas para realizar el seguimiento del progreso de esta característica.
 
 > [!WARNING]
 > Si vuelve a aplicar ingeniería inversa al modelo desde la base de datos, se perderán los cambios realizados en los archivos.

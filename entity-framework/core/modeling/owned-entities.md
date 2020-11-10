@@ -4,12 +4,12 @@ description: Cómo configurar tipos de entidad o agregados de propiedad al usar 
 author: AndriySvyryd
 ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: a49d9aab735232dfd5a3db456410d527f94f3c18
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 36f756b70c9ad1727c48b5c789fd324c9dc6cd29
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063782"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429458"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidad en propiedad
 
@@ -36,6 +36,10 @@ También es posible utilizar el `OwnsOne` método en `OnModelCreating` para espe
 Si la `ShippingAddress` propiedad es privada en el `Order` tipo, puede usar la versión de cadena del `OwnsOne` método:
 
 [!code-csharp[OwnsOneString](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsOneString)]
+
+El modelo anterior se asigna al siguiente esquema de la base de datos:
+
+![Sceenshot del modelo de base de datos para la entidad que contiene la referencia de propiedad](_static/owned-entities-ownsone.png)
 
 Vea el [proyecto de ejemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/OwnedEntities) para obtener más contexto.
 
@@ -68,6 +72,10 @@ De forma predeterminada, la clave principal utilizada para el tipo de propiedad 
 Para configurar una llamada de clave principal diferente `HasKey` .
 
 [!code-csharp[OwnsMany](../../../samples/core/Modeling/OwnedEntities/OwnedEntityContext.cs?name=OwnsMany)]
+
+El modelo anterior se asigna al siguiente esquema de la base de datos:
+
+![Sceenshot del modelo de base de datos para la entidad que contiene la colección de propiedad](_static/owned-entities-ownsmany.png)
 
 ## <a name="mapping-owned-types-with-table-splitting"></a>Asignar tipos de propiedad con división de tabla
 
@@ -119,6 +127,10 @@ Observe la `WithOwner` llamada usada para definir la propiedad de navegación qu
 También es posible lograr este resultado con `OwnedAttribute` en `OrderDetails` y `StreetAddress` .
 
 Además, observe la `Navigation` llamada a. En EFCore 5,0, las propiedades de navegación a los tipos de propiedad se pueden configurar aún más [para las propiedades de navegación que no](xref:core/modeling/relationships#configuring-navigation-properties)son de propiedad.
+
+El modelo anterior se asigna al siguiente esquema de la base de datos:
+
+![Sceenshot del modelo de base de datos para la entidad que contiene referencias anidadas de propiedad](_static/owned-entities-nested.png)
 
 ## <a name="storing-owned-types-in-separate-tables"></a>Almacenar tipos de propiedad en tablas independientes
 

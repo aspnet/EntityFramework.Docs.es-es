@@ -4,12 +4,12 @@ description: Cómo configurar y asignar propiedades de entidad mediante Entity F
 author: roji
 ms.date: 05/27/2020
 uid: core/modeling/entity-properties
-ms.openlocfilehash: 99b0a9ee1e11714e98ebea8b2e6ac53bd2dc6e55
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 55c6f31543d4ce3257cf203eaf9fd2191301ea7e
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92062300"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429603"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
 
@@ -45,7 +45,7 @@ Si prefiere configurar las columnas con nombres diferentes, puede hacerlo como f
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnName.cs?Name=ColumnName&highlight=3-5)]
 
-***
+**_
 
 ## <a name="column-data-types"></a>Tipos de datos de columna
 
@@ -63,7 +63,7 @@ También puede configurar las columnas para especificar un tipo de datos exacto 
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnDataType.cs?name=ColumnDataType&highlight=5-6)]
 
-***
+_*_
 
 ### <a name="maximum-length"></a>Longitud máxima
 
@@ -82,7 +82,7 @@ En el ejemplo siguiente, la configuración de una longitud máxima de 500 hará 
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/MaxLength.cs?name=MaxLength&highlight=3-5)]
 
-***
+_*_
 
 ### <a name="precision-and-scale"></a>Precisión y escala
 
@@ -97,7 +97,7 @@ En el ejemplo siguiente, la configuración de la `Score` propiedad para que teng
 
 #### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
 
-Actualmente no es posible usar anotaciones de datos para configurar.
+La precisión y la escala no se pueden configurar actualmente a través de anotaciones de datos.
 
 #### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
 
@@ -106,7 +106,7 @@ Actualmente no es posible usar anotaciones de datos para configurar.
 > [!NOTE]
 > La escala nunca se define sin necesidad de definir primero la precisión, por lo que la API fluida para definir la escala es `HasPrecision(precision, scale)` .
 
-***
+_*_
 
 ## <a name="required-and-optional-properties"></a>Propiedades obligatorias y opcionales
 
@@ -116,18 +116,18 @@ Una propiedad se considera opcional si es válida para que la contenga `null` . 
 
 Por Convención, una propiedad cuyo tipo .NET pueda contener NULL se configurará como opcional, mientras que las propiedades cuyo tipo .NET no puede contener valores NULL se configurarán según sea necesario. Por ejemplo, todas las propiedades con tipos de valor .net ( `int` , `decimal` , `bool` , etc.) se configuran como necesario y todas las propiedades con tipos de valor de .net que aceptan valores NULL ( `int?` , `decimal?` , `bool?` , etc.) se configuran como opcionales.
 
-C# 8 presentó una nueva característica denominada [tipos de referencia que aceptan valores NULL](/dotnet/csharp/tutorials/nullable-reference-types), que permite anotar tipos de referencia, lo que indica si es válido que contengan null o not. Esta característica está deshabilitada de forma predeterminada y, si está habilitada, modifica el comportamiento de EF Core de la siguiente manera:
+C# 8 presentó una nueva característica denominada [tipos de referencia que aceptan valores NULL (NRT)](/dotnet/csharp/tutorials/nullable-reference-types), que permite anotar tipos de referencia, lo que indica si es válido para que contengan null o not. Esta característica está deshabilitada de forma predeterminada y afecta al comportamiento del EF Core de la siguiente manera:
 
-* Si los tipos de referencia que aceptan valores NULL están deshabilitados (el valor predeterminado), todas las propiedades con tipos de referencia de .NET se configuran como opcionales por Convención (por ejemplo, `string` ).
+_ Si los tipos de referencia que aceptan valores NULL están deshabilitados (el valor predeterminado), todas las propiedades con tipos de referencia de .NET se configuran como opcionales por Convención (por ejemplo, `string` ).
 * Si los tipos de referencia que aceptan valores NULL están habilitados, las propiedades se configurarán según la nulabilidad de C# de su tipo .NET: se `string?` configurarán como opcionales, pero se `string` configurarán según sea necesario.
 
 En el ejemplo siguiente se muestra un tipo de entidad con propiedades obligatorias y opcionales, con la característica de referencia que acepta valores NULL deshabilitada (valor predeterminado) y habilitada:
 
-#### <a name="without-nullable-reference-types-default"></a>[Sin tipos de referencia que aceptan valores NULL (valor predeterminado)](#tab/without-nrt)
+#### <a name="without-nrt-default"></a>[Sin NRT (valor predeterminado)](#tab/without-nrt)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/CustomerWithoutNullableReferenceTypes.cs?name=Customer&highlight=4-8)]
 
-#### <a name="with-nullable-reference-types"></a>[Con tipos de referencia que aceptan valores NULL](#tab/with-nrt)
+#### <a name="with-nrt"></a>[Con NRT](#tab/with-nrt)
 
 [!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Customer.cs?name=Customer&highlight=4-6)]
 

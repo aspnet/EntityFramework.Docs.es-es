@@ -4,12 +4,12 @@ description: Cómo configurar relaciones entre tipos de entidad al utilizar Enti
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/relationships
-ms.openlocfilehash: 71d960a15dfb938af1dcc7035dc2587df7ad4677
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 567d212ddf41f33ee32443d85d2a17234fbc026b
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063847"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430188"
 ---
 # <a name="relationships"></a>Relaciones
 
@@ -85,7 +85,7 @@ En este ejemplo, las propiedades resaltadas se usarán para configurar la relaci
 > Si la propiedad es la clave principal o es de un tipo no compatible con la clave principal, no se configurará como clave externa.
 
 > [!NOTE]
-> Antes de EF Core 3,0 la propiedad denominada exactamente igual que la propiedad de clave principal [también coincidía con la clave externa](https://github.com/aspnet/EntityFrameworkCore/issues/13274) .
+> Antes de EF Core 3,0 la propiedad denominada exactamente igual que la propiedad de clave principal [también coincidía con la clave externa](https://github.com/dotnet/efcore/issues/13274) .
 
 ### <a name="no-foreign-key-property"></a>No hay propiedad de clave externa
 
@@ -149,7 +149,7 @@ Si solo tiene una propiedad de navegación, hay sobrecargas sin parámetros de `
 ### <a name="configuring-navigation-properties"></a>Configurar propiedades de navegación
 
 > [!NOTE]
-> Esta característica se agregó en EF Core 5,0.
+> Esta característica se agregó en EF Core 5.0.
 
 Una vez creada la propiedad de navegación, puede que necesite configurarla más adelante.
 
@@ -194,7 +194,7 @@ Puede usar la sobrecarga de cadena de `HasForeignKey(...)` para configurar una p
 
 #### <a name="foreign-key-constraint-name"></a>Nombre de restricción de clave externa
 
-Por Convención, cuando el destino es una base de datos relacional, las restricciones Foreign Key se denominan FK_ <dependent type name> _<principal type name>_ <foreign key property name> . En el caso de las claves externas compuestas <foreign key property name> se convierte en una lista de nombres de propiedades de clave externa separadas por guiones bajos.
+Por Convención, cuando el destino es una base de datos relacional, las restricciones Foreign Key se denominan FK \_ \<dependent type name> \_ \<principal type name> \_ \<foreign key property name> . En el caso de las claves externas compuestas, \<foreign key property name> se convierte en una lista de nombres de propiedades de clave externa separadas por guiones bajos.
 
 También puede configurar el nombre de la restricción de la siguiente manera:
 
@@ -325,3 +325,10 @@ Los datos adicionales se pueden almacenar en el tipo de entidad de combinación,
 También puede representar una relación de varios a varios agregando el tipo de entidad de combinación y asignando dos relaciones uno a varios independientes.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToMany.cs?name=ManyToMany&highlight=11-14,16-19,39-46)]
+
+> [!NOTE]
+> Todavía no se ha agregado compatibilidad con la scaffolding de relaciones de varios a varios desde la base de datos. Consulte [problema de seguimiento](https://github.com/dotnet/efcore/issues/22475).
+
+## <a name="additional-resources"></a>Recursos adicionales
+
+* [EF Core sesión reunión](https://www.youtube.com/watch?v=W1sxepfIMRM&list=PLdo4fOcmZ0oX-DBuRG4u58ZTAJgBAeQ-t&index=32)de la comunidad, con un análisis profundo de varios a varios y de la infraestructura subyacente.

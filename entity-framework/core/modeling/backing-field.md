@@ -4,12 +4,12 @@ description: Configurar campos de respaldo para las propiedades de un modelo de 
 author: ajcvickers
 ms.date: 10/27/2016
 uid: core/modeling/backing-field
-ms.openlocfilehash: 4f5680b14c7f0e1fa5128d366f2960c4ae9b3735
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 0df54192da7365451e5213739df8117e66c5cd0f
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063691"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429668"
 ---
 # <a name="backing-fields"></a>Campos de respaldo
 
@@ -39,6 +39,8 @@ También puede configurar los campos de respaldo mediante una anotación de dato
 ### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/BackingField.cs?name=BackingField&highlight=5)]
+
+***
 
 ## <a name="field-and-property-access"></a>Acceso a campos y propiedades
 

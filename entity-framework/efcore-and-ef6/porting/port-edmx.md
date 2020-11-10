@@ -4,12 +4,12 @@ description: Información específica acerca de cómo migrar una aplicación de 
 author: ajcvickers
 ms.date: 10/27/2016
 uid: efcore-and-ef6/porting/port-edmx
-ms.openlocfilehash: 27b37ad1c2e3436ae96a71bc97e953763c48ee50
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 9c1b308318c9bf0325ece0b60ace646becc8de39
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92064268"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429226"
 ---
 # <a name="porting-an-ef6-edmx-based-model-to-ef-core"></a>Portabilidad de un modelo basado en EDMX de EF6 a EF Core
 
@@ -23,7 +23,7 @@ Instale el paquete NuGet `Microsoft.EntityFrameworkCore.Tools`.
 
 Ahora puede usar la funcionalidad de ingeniería inversa para crear un modelo basado en la base de datos existente.
 
-Ejecute el comando siguiente en la consola del Administrador de paquetes NuGet (Herramientas –> Administrador de paquetes NuGet –> Consola del Administrador de paquetes). Vea [Consola del Administrador de paquetes (Visual Studio)](xref:core/miscellaneous/cli/powershell) para conocer las opciones de comando para aplicar scaffolding a un subconjunto de tablas, etc.
+Ejecute el comando siguiente en la consola del Administrador de paquetes NuGet (Herramientas –> Administrador de paquetes NuGet –> Consola del Administrador de paquetes). Vea [Consola del Administrador de paquetes (Visual Studio)](xref:core/cli/powershell) para conocer las opciones de comando para aplicar scaffolding a un subconjunto de tablas, etc.
 
 ```powershell
 Scaffold-DbContext "<connection string>" <database provider name>

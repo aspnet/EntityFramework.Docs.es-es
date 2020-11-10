@@ -4,12 +4,12 @@ description: Usar la inicialización de datos para rellenar una base de datos co
 author: AndriySvyryd
 ms.date: 11/02/2018
 uid: core/modeling/data-seeding
-ms.openlocfilehash: f8284d7473c6fbcafde25d01ec0709c2d50b666f
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: fefa6232496cd250d52a436971251f59af09f5c6
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063704"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429681"
 ---
 # <a name="data-seeding"></a>Propagación de datos
 
@@ -66,6 +66,7 @@ Si el escenario incluye alguno de los siguientes, se recomienda usar la lógica 
 
 * Datos temporales para pruebas
 * Datos que dependen del estado de la base de datos
+* Los datos que son grandes (la propagación de datos se capturan en instantáneas de migración, y los datos grandes pueden conducir rápidamente a grandes archivos y a un rendimiento degradado).
 * Datos que necesitan que la base de datos genere valores clave, incluidas las entidades que usan claves alternativas como identidad.
 * Datos que requieren una transformación personalizada (que no se controlan mediante [conversiones de valores](xref:core/modeling/value-conversions)), como algunas operaciones hash de contraseñas.
 * Datos que requieren llamadas a la API externa, como ASP.NET Core roles de identidad y la creación de usuarios

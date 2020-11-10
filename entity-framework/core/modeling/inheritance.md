@@ -4,12 +4,12 @@ description: Cómo configurar la herencia de tipos de entidad mediante Entity Fr
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/inheritance
-ms.openlocfilehash: 47aae0d57d7203f0e6da5868bdc082ad85d59620
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 3ec6e7bd98f9c9716c460d69fc707d95e5e47a05
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063873"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429525"
 ---
 # <a name="inheritance"></a>Herencia
 
@@ -37,7 +37,7 @@ De forma predeterminada, EF asigna la herencia mediante el patrón *de tabla por
 
 El modelo anterior se asigna al siguiente esquema de la base de datos (tenga en cuenta la columna creado implícitamente `Discriminator` , que identifica qué tipo de `Blog` se almacena en cada fila).
 
-![imagen](_static/inheritance-tph-data.png)
+![Captura de pantalla de los resultados de la consulta de la jerarquía de entidades de blog mediante el patrón de tabla por jerarquía](_static/inheritance-tph-data.png)
 
 Puede configurar el nombre y el tipo de la columna discriminadora y los valores que se usan para identificar cada tipo en la jerarquía:
 
@@ -50,6 +50,10 @@ En los ejemplos anteriores, EF agregó el discriminador implícitamente como una
 Por último, el discriminador también se puede asignar a una propiedad .NET normal en la entidad:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/NonShadowDiscriminator.cs?name=NonShadowDiscriminator&highlight=4)]
+
+Al consultar las entidades derivadas, que usan el patrón TPH, EF Core agrega un predicado sobre la columna discriminadora en la consulta. Este filtro garantiza que no se obtienen filas adicionales para los tipos base o los tipos del mismo nivel que no están en el resultado. Este predicado de filtro se omite para el tipo de entidad base, ya que la consulta de la entidad base obtendrá resultados para todas las entidades de la jerarquía. Cuando se materializan los resultados de una consulta, si se llega a través de un valor de discriminador, que no está asignado a ningún tipo de entidad del modelo, se produce una excepción, ya que no sabemos cómo materializar los resultados. Este error solo se produce si la base de datos contiene filas con valores de discriminador que no están asignados en el modelo EF. Si tiene estos datos, puede marcar la asignación de discriminador en EF Core modelo como incompleta para indicar que siempre debemos agregar el predicado de filtro para consultar cualquier tipo de la jerarquía. `IsComplete(false)` la llamada a en la configuración del discriminador marca la asignación como incompleta.
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/DiscriminatorMappingIncomplete.cs?name=DiscriminatorMappingIncomplete&highlight=5)]
 
 ### <a name="shared-columns"></a>Columnas compartidas
 
