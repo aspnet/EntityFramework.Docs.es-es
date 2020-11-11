@@ -4,12 +4,12 @@ description: Interceptación de operaciones de base de datos y otros eventos
 author: ajcvickers
 ms.date: 10/08/2020
 uid: core/logging-events-diagnostics/interceptors
-ms.openlocfilehash: 6ee54c0bd45c55de1fae3e1949bfa2d5b3b2566e
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 61ec6968344798af8ecffb878a1e47a6a8e031cd
+ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431343"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94503207"
 ---
 # <a name="interceptors"></a>Interceptores
 
@@ -502,7 +502,7 @@ La idea general para la auditoría con el interceptor es:
 * Si SaveChanges se realiza correctamente, se actualiza el mensaje de auditoría para indicar que la operación se ha realizado correctamente.
 * Si se produce un error en SaveChanges, el mensaje de auditoría se actualiza para indicar el error.
 
-La primera fase se controla antes de que los cambios se envíen a la base de datos mediante invalidaciones de `ISaveChangesInterceptor.SavingChanges` <!-- Issue #2748 -->  y `ISaveChangesInterceptor.SavingChangesAsync`<!-- Issue #2748 -->.
+La primera fase se controla antes de que los cambios se envíen a la base de datos mediante invalidaciones de `ISaveChangesInterceptor.SavingChanges` <!-- Issue #2748 --> etc `ISaveChangesInterceptor.SavingChangesAsync`<!-- Issue #2748 -->.
 
 <!--
     public async ValueTask<InterceptionResult<int>> SavingChangesAsync(
@@ -594,7 +594,7 @@ Cada método de interceptor tiene un `eventData` parámetro que proporciona info
 El resultado es una `SaveChangesAudit` entidad con una colección de `EntityAudit` entidades, una para cada inserción, actualización o eliminación. A continuación, el interceptor inserta estas entidades en la base de datos de auditoría.
 
 > [!TIP]
-> ToString se invalida en cada EF Core clase de datos de evento para generar el mensaje de registro equivalente para el evento. Por ejemplo, al llamar a se `ContextInitializedEventData.ToString` genera "Entity Framework Core 5.0.0-RC. 2.20475.6 inicializado ' BlogsContext ' mediante el proveedor ' Microsoft. EntityFrameworkCore. SQLite ' con las opciones: None".
+> ToString se invalida en cada EF Core clase de datos de evento para generar el mensaje de registro equivalente para el evento. Por ejemplo, al llamar a se `ContextInitializedEventData.ToString` genera "Entity Framework Core 5.0.0 inicializado ' BlogsContext ' con el proveedor ' Microsoft. EntityFrameworkCore. SQLite ' con Options: None".
 
 #### <a name="detecting-success"></a>Detección correcta
 

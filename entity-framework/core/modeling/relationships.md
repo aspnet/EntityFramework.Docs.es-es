@@ -4,12 +4,12 @@ description: Cómo configurar relaciones entre tipos de entidad al utilizar Enti
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/relationships
-ms.openlocfilehash: 567d212ddf41f33ee32443d85d2a17234fbc026b
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: c92fa1904436ec43ff8918354a99440079e2a96a
+ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430188"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94503220"
 ---
 # <a name="relationships"></a>Relaciones
 
@@ -293,11 +293,11 @@ CREATE TABLE [Tags] (
 );
 
 CREATE TABLE [PostTag] (
-    [PostId] int NOT NULL,
-    [TagId] nvarchar(450) NOT NULL,
-    CONSTRAINT [PK_PostTag] PRIMARY KEY ([PostId], [TagId]),
-    CONSTRAINT [FK_PostTag_Posts_PostId] FOREIGN KEY ([PostId]) REFERENCES [Posts] ([PostId]) ON DELETE CASCADE,
-    CONSTRAINT [FK_PostTag_Tags_TagId] FOREIGN KEY ([TagId]) REFERENCES [Tags] ([TagId]) ON DELETE CASCADE
+    [PostsId] int NOT NULL,
+    [TagsId] nvarchar(450) NOT NULL,
+    CONSTRAINT [PK_PostTag] PRIMARY KEY ([PostsId], [TagsId]),
+    CONSTRAINT [FK_PostTag_Posts_PostsId] FOREIGN KEY ([PostsId]) REFERENCES [Posts] ([PostId]) ON DELETE CASCADE,
+    CONSTRAINT [FK_PostTag_Tags_TagsId] FOREIGN KEY ([TagsId]) REFERENCES [Tags] ([TagId]) ON DELETE CASCADE
 );
 ```
 
