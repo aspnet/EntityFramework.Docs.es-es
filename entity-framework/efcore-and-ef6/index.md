@@ -4,12 +4,12 @@ description: Instrucciones sobre cómo elegir entre EF6 y EF Core.
 author: ajcvickers
 ms.date: 01/23/2019
 uid: efcore-and-ef6/index
-ms.openlocfilehash: 02e5e20d270d1966154e9f564256c9afa9b2d5b4
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: e95bc572ac723dd22daa10117f5704f29ba97738
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90073622"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430461"
 ---
 # <a name="compare-ef-core--ef6"></a>Comparar EF Core y EF6
 
@@ -140,7 +140,7 @@ La columna EF Core indica la versión del producto en la que la característica 
 
 ### <a name="supported-platforms"></a>Plataformas compatibles
 
-EF Core 3.1 se ejecuta en .NET Core y .NET Framework a través del uso de .NET Standard 2.0. Sin embargo, EF Core 5.0 no se ejecutará en .NET Framework. Consulte [Plataformas](xref:core/platforms/index) para obtener más información.
+EF Core 3.1 se ejecuta en .NET Core y .NET Framework a través del uso de .NET Standard 2.0. Sin embargo, EF Core 5.0 no se ejecutará en .NET Framework. Consulte [Plataformas](xref:core/miscellaneous/platforms) para obtener más información.
 
 EF6.4 se ejecuta en .NET Core y .NET Framework a través de la compatibilidad con múltiples versiones.
 

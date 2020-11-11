@@ -4,16 +4,16 @@ description: Información sobre el proveedor de base de datos SQLite de Entity F
 author: bricelam
 ms.date: 10/27/2016
 uid: core/providers/sqlite/index
-ms.openlocfilehash: 2d221168c093271d220d4d8fbc7779c1a5aab701
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 6dac555456ed347b3eb07bbd0f2a89ab9179d20e
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063990"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430305"
 ---
 # <a name="sqlite-ef-core-database-provider"></a>Proveedor de base de datos SQLite para EF Core
 
-Este proveedor de base de datos permite usar Entity Framework Core con SQLite. Este proveedor se mantiene como parte del [proyecto Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore).
+Este proveedor de base de datos permite usar Entity Framework Core con SQLite. Este proveedor se mantiene como parte del [proyecto Entity Framework Core](https://github.com/dotnet/efcore).
 
 ## <a name="install"></a>Instalar
 

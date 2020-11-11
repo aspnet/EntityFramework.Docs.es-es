@@ -4,12 +4,12 @@ description: Información general sobre cómo migrar una aplicación de Entity F
 author: ajcvickers
 ms.date: 10/27/2016
 uid: efcore-and-ef6/porting/index
-ms.openlocfilehash: 0dfb4cc5f7c65aa081d0175708a0db95b0688e50
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: d50def47e65455c8cf5242cad4386f157148c0bc
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92064216"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429213"
 ---
 # <a name="porting-from-ef6-to-ef-core"></a>Portabilidad de EF6 a EF Core
 
@@ -33,17 +33,12 @@ En EF6, llamar `DbSet.Add()` en una entidad provoca una búsqueda recursiva de t
 
 **EF Core realiza una búsqueda recursiva similar, pero con algunas reglas ligeramente diferentes.**
 
-*  La entidad raíz siempre está en el estado de solicitada (agregada para `DbSet.Add` y sin cambios para `DbSet.Attach`).
-
-*  **Para las entidades que se encuentran durante la búsqueda recursiva de propiedades de navegación:**
-
-    *  **Si la clave principal de la entidad se genera en el almacén**
-
-        * Si la clave principal no se establece en un valor, el estado se establece en agregada. El valor de la clave principal se considera "no establecido" si se le asigna el valor predeterminado de CLR para el tipo de propiedad (por ejemplo, `0` para `int`, `null` para `string`, etc.).
-
-        * Si la clave principal no se establece en un valor, el estado se establece en sin cambios.
-
-    *  Si la clave principal no se genera en la base de datos, la entidad se coloca en el mismo estado que la raíz.
+* La entidad raíz siempre está en el estado de solicitada (agregada para `DbSet.Add` y sin cambios para `DbSet.Attach`).
+* **Para las entidades que se encuentran durante la búsqueda recursiva de propiedades de navegación:**
+  * **Si la clave principal de la entidad se genera en el almacén**
+    * Si la clave principal no se establece en un valor, el estado se establece en agregada. El valor de la clave principal se considera "no establecido" si se le asigna el valor predeterminado de CLR para el tipo de propiedad (por ejemplo, `0` para `int`, `null` para `string`, etc.).
+    * Si la clave principal no se establece en un valor, el estado se establece en sin cambios.
+  * Si la clave principal no se genera en la base de datos, la entidad se coloca en el mismo estado que la raíz.
 
 ### <a name="code-first-database-initialization"></a>Inicialización de la base de datos de Code First
 
