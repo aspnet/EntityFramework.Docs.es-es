@@ -5,12 +5,12 @@ author: jeremylikness
 ms.author: jeliknes
 ms.date: 07/24/2020
 uid: core/get-started/wpf
-ms.openlocfilehash: 1198da5c9564663ca26392b33462c727275a432d
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: f183064fafbe2d0e7b8dbdafa921169afc9ffe78
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89619305"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429928"
 ---
 # <a name="getting-started-with-wpf"></a>Introducción a WPF
 
@@ -25,16 +25,14 @@ Las capturas de pantalla y las listas de código de este tutorial se han tomado 
 
 ## <a name="pre-requisites"></a>Requisitos previos
 
-* Debe tener Visual Studio 2019 16.3 o posterior instalado con la **carga de trabajo de escritorio de .NET** seleccionada para completar este tutorial.
-    
-    Para obtener más información sobre cómo instalar la última versión de Visual Studio, vea [Instalación de Visual Studio](/visualstudio/install/install-visual-studio).
+Debe tener Visual Studio 2019 16.3 o posterior instalado con la **carga de trabajo de escritorio de .NET** seleccionada para completar este tutorial. Para obtener más información sobre cómo instalar la última versión de Visual Studio, vea [Instalación de Visual Studio](/visualstudio/install/install-visual-studio).
 
 ## <a name="create-the-application"></a>Crear la aplicación
 
 1. Apertura de Visual Studio
 2. En la ventana de inicio, elija **Crear proyecto**.
 3. Busque "WPF", elija **Aplicación WPF (.NET Core)** y después seleccione **Siguiente**.
-4. En la pantalla siguiente, asigne un nombre al proyecto, por ejemplo, **GetStartedWPF**, y elija **Crear**.
+4. En la pantalla siguiente, asigne un nombre al proyecto, por ejemplo, **GetStartedWPF** , y elija **Crear**.
 
 ## <a name="install-the-entity-framework-nuget-packages"></a>Instalación de los paquetes de NuGet Entity Framework
 
@@ -51,7 +49,7 @@ Las capturas de pantalla y las listas de código de este tutorial se han tomado 
 1. Repita los pasos para buscar `entityframeworkcore.proxies` e instalar **Microsoft.EntityFrameworkCore.Proxies**.
 
 > [!NOTE]
-> Al instalar el paquete de Sqlite, se extrae automáticamente el paquete de base **Microsoft.EntityFrameworkCore** relacionado. El paquete **Microsoft.EntityFrameworkCore.Proxies** proporciona compatibilidad con los datos de "carga diferida". Esto significa que, si tiene entidades con entidades secundarias, solo se capturan los elementos primarios en la carga inicial. Los proxies detectan cuándo se produce un intento de acceso a las entidades secundarias, y las cargan automáticamente a petición. 
+> Al instalar el paquete de Sqlite, se extrae automáticamente el paquete de base **Microsoft.EntityFrameworkCore** relacionado. El paquete **Microsoft.EntityFrameworkCore.Proxies** proporciona compatibilidad con los datos de "carga diferida". Esto significa que, si tiene entidades con entidades secundarias, solo se capturan los elementos primarios en la carga inicial. Los proxies detectan cuándo se produce un intento de acceso a las entidades secundarias, y las cargan automáticamente a petición.
 
 ## <a name="define-a-model"></a>Definición de un modelo
 
@@ -82,7 +80,7 @@ Agregue una nueva clase `ProductContext.cs` al proyecto con la siguiente definic
 [!code-csharp[](../../../samples/core/WPF/GetStartedWPF/GetStartedWPF/ProductContext.cs)]
 
 * `DbSet` informa a EF Core de qué entidades de C# se deben asignar a la base de datos.
-* Hay varias maneras de configurar `DbContext` de EF Core. Puede leer sobre ellas en: [Configuración de un DbContext](xref:core/miscellaneous/configuring-dbcontext).
+* Hay varias maneras de configurar `DbContext` de EF Core. Puede leer sobre ellas en: [Configuración de un DbContext](xref:core/dbcontext-configuration/index).
 * En este ejemplo se usa la invalidación `OnConfiguring` para especificar un archivo de datos de Sqlite.
 * La llamada a `UseLazyLoadingProxies` indica a EF Core que implemente la carga diferida, por lo que las entidades secundarias se cargan automáticamente cuando se obtiene acceso a ellas desde el elemento primario.
 
@@ -97,7 +95,7 @@ La propiedad **Products** de la clase **Category** y la propiedad **Category** d
 
 EF Core ofrece una opción para cargar automáticamente las entidades relacionadas desde la base de datos la primera vez que se accede a la propiedad de navegación. Con este tipo de carga (denominado carga diferida), tenga en cuenta que la primera vez que se accede a cada propiedad de navegación se ejecutará una consulta independiente en la base de datos si el contenido no está ya en el contexto.
 
-Al usar tipos de entidad "Plain Old C# Object" (POCO), EF Core logra la carga diferida mediante la creación de instancias de tipos de proxy derivados durante el tiempo de ejecución y, después, la invalidación de las propiedades virtuales de las clases para agregar el enlace de carga. Para obtener la carga diferida de los objetos relacionados, debe declarar captadores de propiedades de navegación como **público** y **virtual** (**Overridable** en Visual Basic), y la clase no debe **sellarse** (**NotOverridable** en Visual Basic). Al usar Database First, las propiedades de navegación se convierten automáticamente en virtuales para habilitar la carga diferida. 
+Al usar tipos de entidad "Plain Old C# Object" (POCO), EF Core logra la carga diferida mediante la creación de instancias de tipos de proxy derivados durante el tiempo de ejecución y, después, la invalidación de las propiedades virtuales de las clases para agregar el enlace de carga. Para obtener la carga diferida de los objetos relacionados, debe declarar captadores de propiedades de navegación como **público** y **virtual** ( **Overridable** en Visual Basic), y la clase no debe **sellarse** ( **NotOverridable** en Visual Basic). Al usar Database First, las propiedades de navegación se convierten automáticamente en virtuales para habilitar la carga diferida.
 
 ## <a name="bind-object-to-controls"></a>Enlace de objetos a controles
 
@@ -137,13 +135,13 @@ La vista de diseño debería tener un aspecto similar a este:
 Es el momento de agregar algunos controladores de eventos a la ventana principal.
 
 1. En la ventana de XAML, haga clic en el elemento **&lt;Ventana&gt;** , para seleccionar la ventana principal.
-1. En la ventana **Propiedades**, elija **Eventos** en la parte superior derecha y, a continuación, haga doble clic en el cuadro de texto que se encuentra a la derecha de la etiqueta **Cargado**.
+1. En la ventana **Propiedades** , elija **Eventos** en la parte superior derecha y, a continuación, haga doble clic en el cuadro de texto que se encuentra a la derecha de la etiqueta **Cargado**.
 
     ![Propiedades de la ventana principal](_static/wpf-tutorial-loaded.jpg)
 
 Esto lo lleva al código subyacente del formulario; ahora, se editará el código para usar el elemento `ProductContext` para ejecutar el acceso a los datos. Actualice el código como se muestra a continuación.
 
-El código declara una instancia de larga duración de `ProductContext`. El objeto `ProductContext` se utiliza para consultar y guardar datos en la base de datos. A continuación, se llama al método `Dispose()` en la instancia de `ProductContext` desde el método `OnClosing` invalidado.Los comentarios del código explican qué hace cada paso.
+El código declara una instancia de larga duración de `ProductContext`. El objeto `ProductContext` se utiliza para consultar y guardar datos en la base de datos. A continuación, se llama al método `Dispose()` en la instancia de `ProductContext` desde el método `OnClosing` invalidado. Los comentarios del código explican qué hace cada paso.
 
 **`MainWindow.xaml.cs`**
 
@@ -174,4 +172,4 @@ Esto sirve para el ejemplo de introducción, pero puede que necesite código adi
 
 ## <a name="next-steps"></a>Pasos siguientes
 
-Más información sobre la [Configuración de un DbContext](xref:core/miscellaneous/configuring-dbcontext).
+Más información sobre la [Configuración de un DbContext](xref:core/dbcontext-configuration/index).

@@ -5,12 +5,12 @@ author: codemillmatt
 ms.date: 07/07/2020
 ms.author: masoucou
 uid: core/get-started/xamarin
-ms.openlocfilehash: 0552038d471e294834bed9e3bf1f05fd74c39192
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: a08c5582b063f4a7748a43811c2bf28e8f3e5c14
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92062547"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429915"
 ---
 # <a name="getting-started-with-ef-core-and-xamarin"></a>Primeros pasos con EF Core y Xamarin
 
@@ -75,11 +75,11 @@ Se da por hecho que está familiarizado con los temas de Xamarin.Forms relaciona
 
 > [!IMPORTANT]
 > Entity Framework Core usa la reflexión para invocar funciones que el enlazador de Xamarin.iOS puede quitar mientras está en las configuraciones de modo de **versión**. Puede evitarlo de dos maneras.
-> 
+>
 > * La primera es agregar `--linkskip System.Core` a los **argumentos de mtouch adicionales** en las opciones de **compilación de iOS**.
 > * También puede establecer el **comportamiento del enlazador** de Xamarin.iOS en `Don't Link` en las opciones de **compilación de iOS**.
 > [En este artículo se explica más sobre el enlazador de Xamarin.iOS](/xamarin/ios/deploy-test/linker), incluido cómo establecer el comportamiento en Xamarin.iOS.
-> 
+>
 
 ## <a name="entity-framework-core-nuget-packages"></a>Paquetes NuGet de Entity Framework Core
 
@@ -206,6 +206,6 @@ En esta introducción, ha aprendido a usar una aplicación de Xamarin.Forms para
 
 Otros temas de Entity Framework Core de interés para los desarrolladores de Xamarin:
 
-* [Configuración de `DbContext`](xref:core/miscellaneous/configuring-dbcontext)
+* [Configuración de `DbContext`](xref:core/dbcontext-configuration/index)
 * Obtenga más información sobre las [expresiones de consulta LINQ](/dotnet/csharp/programming-guide/concepts/linq/basic-linq-query-operations).
 * [Configure su modelo](xref:core/modeling/index) para especificar aspectos como [requerido](xref:core/modeling/entity-properties#required-and-optional-properties) y [longitud máxima](xref:core/modeling/entity-properties#maximum-length).

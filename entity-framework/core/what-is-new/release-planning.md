@@ -4,12 +4,12 @@ description: Información sobre cómo se realizan la planificación y el lanzami
 author: ajcvickers
 ms.date: 01/28/2020
 uid: core/what-is-new/release-planning
-ms.openlocfilehash: 91a130b4ddae66f626bcff8e70283a7e03192542
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: f84b8cef40a74245575df6013d94fcda5738e229
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618563"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429149"
 ---
 # <a name="release-planning-process"></a>Proceso de planeamiento de versiones
 
@@ -25,7 +25,7 @@ Esto significa que, a su vez, el planeamiento de versiones es diferente para cad
 ### <a name="patch-releases"></a>Versiones de revisión
 
 Las versiones de revisión solo cambian la parte de "revisión" de la versión.
-Por ejemplo, EF Core 3.1.**1** es una versión en la que se han revisado los problemas encontrados en EF Core 3.1.**0**.
+Por ejemplo, EF Core 3.1. **1** es una versión en la que se han revisado los problemas encontrados en EF Core 3.1. **0**.
 
 Las versiones de revisión están diseñadas para corregir errores críticos para los clientes.
 Esto significa que las versiones de revisión no incluyen nuevas características.
@@ -36,14 +36,16 @@ Esto se debe a que es fundamental que las versiones de revisión no presenten nu
 Por lo tanto, el proceso de toma de decisiones enfatiza el alto valor y el riesgo bajo.
 
 Es más probable que revisemos un problema si se cumple una de las siguientes condiciones:
-  * Afecta a varios clientes.
-  * Es una regresión de una versión anterior.
-  * El error provoca daños en los datos.
+
+* Afecta a varios clientes.
+* Es una regresión de una versión anterior.
+* El error provoca daños en los datos.
 
 Es menos probable que revisemos un problema si se cumple una de las siguientes condiciones:
-  * Existen soluciones alternativas razonables.
-  * La corrección implica un alto riesgo de interrumpir algo más.
-  * El error es un caso límite.
+
+* Existen soluciones alternativas razonables.
+* La corrección implica un alto riesgo de interrumpir algo más.
+* El error es un caso límite.
 
 La dificultad aumenta gradualmente a lo largo de la vigencia de una versión de [soporte técnico a largo plazo (LTS)](https://dotnet.microsoft.com/platform/support/policy/dotnet-core). Esto se debe a que las versiones de LTS enfatizan la estabilidad.
 
@@ -52,9 +54,10 @@ La decisión final sobre si un problema se revisa o no la realizan los directore
 ### <a name="minor-releases"></a>Versiones secundarias
 
 Las versiones secundarias solo cambian la parte "secundaria" de la versión.
-Por ejemplo, EF Core 3.**1**.0 es una versión que mejora EF Core 3.**0**.0.
+Por ejemplo, EF Core 3. **1**.0 es una versión que mejora EF Core 3. **0**.0.
 
 Versiones secundarias:
+
 * Están diseñadas para mejorar la calidad y las características de la versión anterior.
 * Normalmente contienen correcciones de errores y nuevas características.
 * No incluyen cambios importantes intencionados.
@@ -63,9 +66,10 @@ Versiones secundarias:
 ### <a name="major-releases"></a>Versiones principales:
 
 Las versiones principales cambian el número de versión "principal" de EF.
-Por ejemplo, EF Core **3**.0.0 es una versión principal que da un gran paso adelante con respecto a EF Core 2.2.x.
+Por ejemplo, EF Core  **3**.0.0 es una versión principal que da un gran paso adelante con respecto a EF Core 2.2.x.
 
 Versiones principales:
+
 * Están diseñadas para mejorar la calidad y las características de la versión anterior.
 * Normalmente contienen correcciones de errores y nuevas características.
   * Algunas de las nuevas características pueden ser cambios fundamentales en el funcionamiento de EF Core.

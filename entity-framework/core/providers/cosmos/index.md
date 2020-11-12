@@ -4,19 +4,19 @@ description: Documentación del proveedor de bases de datos que permite usar Ent
 author: AndriySvyryd
 ms.date: 10/09/2020
 uid: core/providers/cosmos/index
-ms.openlocfilehash: 26be2b604453aa2d5b21ae45f590b294639db887
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 825517e79891378a61f9564c90dbf4522459e9d0
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92064055"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430329"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>Proveedor de Azure Cosmos DB para EF Core
 
 > [!NOTE]
 > Este proveedor es nuevo en EF Core 3.0.
 
-Este proveedor de base de datos permite usar Entity Framework Core con Azure Cosmos DB. Este proveedor se mantiene como parte del [proyecto Entity Framework Core](https://github.com/aspnet/EntityFrameworkCore).
+Este proveedor de base de datos permite usar Entity Framework Core con Azure Cosmos DB. Este proveedor se mantiene como parte del [proyecto Entity Framework Core](https://github.com/dotnet/efcore).
 
 Se recomienda encarecidamente que se familiarice con la [documentación sobre Azure Cosmos DB](/azure/cosmos-db/introduction) antes de leer esta sección.
 
@@ -103,9 +103,14 @@ De forma predeterminada, EF Core creará contenedores con la clave de partición
 > [!NOTE]
 >La propiedad de clave de partición puede ser de cualquier tipo, siempre y cuando se [convierta en una cadena](xref:core/modeling/value-conversions).
 
-Una vez configurada, la propiedad de clave de partición siempre debe tener un valor distinto de NULL. Al emitir una consulta, se puede agregar una condición para que sea una partición única.
+Una vez configurada, la propiedad de clave de partición siempre debe tener un valor distinto de NULL. Una consulta se puede convertir en partición única agregando una llamada `WithPartitionKey`.
 
-[!code-csharp[PartitionKey](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=PartitionKey)]
+[!code-csharp[PartitionKey](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=PartitionKey&highlight=15)]
+
+> [!NOTE]
+> `WithPartitionKey` se agregó en EF Core 5.0.
+
+Con carácter general, se recomienda agregar la clave de partición a la clave principal, ya que es lo que mejor refleja la semántica de servidor y permite algunas optimizaciones, por ejemplo, en `FindAsync`.
 
 ## <a name="embedded-entities"></a>Entidades insertadas
 

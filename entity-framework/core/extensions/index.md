@@ -4,12 +4,12 @@ description: Herramientas y extensiones externas para Entity Framework Core
 author: ErikEJ
 ms.date: 04/11/2020
 uid: core/extensions/index
-ms.openlocfilehash: 7c29203d802e801170ed10dca26e693d8ed19d2b
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: c7056bcb0831ae1919b3060aacf73dc5cb9c8cb1
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90072009"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429941"
 ---
 # <a name="ef-core-tools--extensions"></a>Herramientas y extensiones de EF Core
 
@@ -28,13 +28,13 @@ LLBLGen Pro es una solución de modelado de entidad compatible con Entity Framew
 
 ### <a name="devart-entity-developer"></a>Devart Entity Developer
 
-Entity Developer es un potente diseñador ORM para ADO.NET Entity Framework, NHibernate, LinqConnect, Telerik Data Access y LINQ to SQL. Permite diseñar modelos EF Core de forma visual mediante los enfoques Database First y Model First, así como generar código C# y de Visual Basic. Para EF Core: 1, 2, 3, 5.
+Entity Developer es un potente diseñador O/RM para ADO.NET Entity Framework, NHibernate, LinqConnect, Telerik Data Access y LINQ to SQL. Permite diseñar modelos EF Core de forma visual mediante los enfoques Database First y Model First, así como generar código C# y de Visual Basic. Para EF Core: 1, 2, 3, 5.
 
 [Sitio web](https://www.devart.com/entitydeveloper/)
 
 ### <a name="nhydrate-orm-for-entity-framework"></a>nHydrate ORM para Entity Framework
 
-ORM que crea clases extensibles y fuertemente tipadas para Entity Framework. El código generado es Entity Framework Core. No hay ninguna diferencia. Esto no es un reemplazo de EF ni un ORM personalizado. Es una capa de modelado visual que permite a un equipo administrar esquemas de base de datos complejos. Funciona bien con software SCM como GIT, lo que permite el acceso de varios usuarios al modelo con conflictos mínimos. El instalador realiza un seguimiento de los cambios del modelo y crea scripts de actualización. Para EF Core: 3.
+O/RM que crea clases extensibles y fuertemente tipadas para Entity Framework. El código generado es Entity Framework Core. No hay ninguna diferencia. Esto no es un reemplazo de EF ni un O/RM personalizado. Es una capa de modelado visual que permite a un equipo administrar esquemas de base de datos complejos. Funciona bien con software SCM como GIT, lo que permite el acceso de varios usuarios al modelo con conflictos mínimos. El instalador realiza un seguimiento de los cambios del modelo y crea scripts de actualización. Para EF Core: 3.
 
 [Sitio de GitHub](https://github.com/nHydrate/nHydrate)
 
@@ -46,7 +46,7 @@ EF Core Power Tools es una extensión de Visual Studio que expone varias tareas 
 
 ### <a name="entity-framework-visual-editor"></a>Editor visual de Entity Framework
 
-El Editor de objetos visuales de Entity Framework es una extensión de Visual Studio que agrega un diseñador ORM que permite generar objetos visuales de las clases EF 6 y EF Core. El código se genera mediante plantillas T4, por lo que se puede personalizar. Asimismo, admite enumeraciones y asociaciones de herencia, unidireccionales y bidireccionales, y permite asignar colores a las clases y agregar bloques de texto para explicar ciertas partes del diseño que puedan resultar difíciles de comprender. Para EF Core: 2.
+El Editor de objetos visuales de Entity Framework es una extensión de Visual Studio que agrega un diseñador O/RM que permite generar objetos visuales de las clases EF 6 y EF Core. El código se genera mediante plantillas T4, por lo que se puede personalizar. Asimismo, admite enumeraciones y asociaciones de herencia, unidireccionales y bidireccionales, y permite asignar colores a las clases y agregar bloques de texto para explicar ciertas partes del diseño que puedan resultar difíciles de comprender. Para EF Core: 2.
 
 [Marketplace](https://marketplace.visualstudio.com/items?itemName=michaelsawczyn.EFDesigner)
 
@@ -83,13 +83,13 @@ Geco (Generator Console) es un generador de código muy sencillo que se basa en 
 
 [Repositorio de GitHub](https://github.com/iQuarc/Geco)
 
-### <a name="entityframeworkcorescaffoldinghandlebars"></a>EntityFrameworkCore.Scaffolding.Handlebars 
+### <a name="entityframeworkcorescaffoldinghandlebars"></a>EntityFrameworkCore.Scaffolding.Handlebars
 
 Permite la personalización de clases con ingeniería inversa a partir de una base de datos existente mediante la cadena de herramientas de Entity Framework Core con las plantillas de Handlebars. Para EF Core: 2, 3.
 
 [Repositorio de GitHub](https://github.com/TrackableEntities/EntityFrameworkCore.Scaffolding.Handlebars)
 
-### <a name="neinlinqentityframeworkcore"></a>NeinLinq.EntityFrameworkCore 
+### <a name="neinlinqentityframeworkcore"></a>NeinLinq.EntityFrameworkCore
 
 NeinLinq amplía las características de proveedores LINQ como Entity Framework para permitir la reutilización de las funciones, la reescritura de las consultas y la creación de consultas dinámicas mediante selectores y predicados traducibles. Para EF Core: 2, 3.
 
@@ -143,13 +143,11 @@ Permita consultas completas de Entity Framework Core en el [historial temporal d
 
 [Repositorio de GitHub](https://github.com/VantageSoftware/EFCore.TimeTraveler)
 
-
 ### <a name="entityframeworkcoretemporaltables"></a>EntityFrameworkCore.TemporalTables
 
 Biblioteca de extensiones para Entity Framework Core que permite a los desarrolladores que usan SQL Server utilizar fácilmente tablas temporales. Para EF Core: 2.
 
 [Repositorio de GitHub](https://github.com/findulov/EntityFrameworkCore.TemporalTables)
-
 
 ### <a name="entityframeworkcorecacheable"></a>EntityFrameworkCore.Cacheable
 
@@ -236,3 +234,9 @@ Incluye compatibilidad con características SQL avanzadas como CTE, copia masiv
 Implementación de entidades de eliminación temporal. Para EF Core: 3.
 
 [NuGet](https://www.nuget.org/packages/EFCore.SoftDelete)
+
+### <a name="entityframeworkcoreconfigurationmanager"></a>EntityFrameworkCore.ConfigurationManager
+
+Extiende EF Core para resolver cadenas de conexión de App.config. Para EF Core: 3.
+
+[Repositorio de GitHub](https://github.com/efcore/EFCore.ConfigurationManager)

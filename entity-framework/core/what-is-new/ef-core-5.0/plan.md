@@ -4,12 +4,12 @@ description: Características planeadas para Entity Framework Core 5.0
 author: ajcvickers
 ms.date: 08/22/2020
 uid: core/what-is-new/ef-core-5.0/plan
-ms.openlocfilehash: 5ac7a48a70959b625b7c602ee48dc08a360bee73
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: f2639e41499f3bfca5942d613922fd97212fc2b9
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89618669"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429239"
 ---
 # <a name="plan-for-entity-framework-core-50"></a>Plan para Entity Framework Core 5.0
 
@@ -44,18 +44,18 @@ Hemos extraído algunas áreas o temas importantes que formarán la base de las 
 
 Jefes de desarrollo: @smitpatel, @AndriySvyryd y @lajones
 
-Número de seguimiento: [10508](https://github.com/aspnet/EntityFrameworkCore/issues/10508)
+Número de seguimiento: [10508](https://github.com/dotnet/efcore/issues/10508)
 
 Talla de camiseta: L
 
 Estado: ¡Listo!
 
-Varios a varios es la [característica más solicitada](https://github.com/aspnet/EntityFrameworkCore/issues/1368) (506 votos aproximadamente) en el trabajo pendiente de GitHub.
+Varios a varios es la [característica más solicitada](https://github.com/dotnet/efcore/issues/1368) (506 votos aproximadamente) en el trabajo pendiente de GitHub.
 
 La compatibilidad con las relaciones varios a varios se puede dividir en tres áreas principales:
 
 * Propiedades de navegación por omisión, que se describen en el siguiente tema.
-* Tipos de entidad de contenedor de propiedades. Permiten usar un tipo CLR estándar (por ejemplo, `Dictionary`) para las instancias de entidad, de modo que no se necesite un tipo CLR explícito para cada tipo de entidad. Número de seguimiento: [9914](https://github.com/aspnet/EntityFrameworkCore/issues/9914).
+* Tipos de entidad de contenedor de propiedades. Permiten usar un tipo CLR estándar (por ejemplo, `Dictionary`) para las instancias de entidad, de modo que no se necesite un tipo CLR explícito para cada tipo de entidad. Número de seguimiento: [9914](https://github.com/dotnet/efcore/issues/9914).
 * Facilitar la configuración de relaciones varios a varios.
 
 Además de la compatibilidad con la navegación por omisión, ahora vamos a incorporar estas otras áreas de varios a varios a EF Core 5.0 para proporcionar una experiencia completa.
@@ -64,7 +64,7 @@ Además de la compatibilidad con la navegación por omisión, ahora vamos a inco
 
 Jefes de desarrollo: @smitpatel y @AndriySvyryd
 
-Seguimiento realizado por [#19003](https://github.com/aspnet/EntityFrameworkCore/issues/19003)
+Seguimiento realizado por [#19003](https://github.com/dotnet/efcore/issues/19003)
 
 Talla de camiseta: L
 
@@ -79,7 +79,7 @@ Es posible que el tipo de entidad de tabla de combinación siga existiendo, pero
 
 Jefe de desarrollo: @AndriySvyryd y @smitpatel
 
-Seguimiento realizado por [#2266](https://github.com/aspnet/EntityFrameworkCore/issues/2266)
+Seguimiento realizado por [#2266](https://github.com/dotnet/efcore/issues/2266)
 
 Talla de camiseta: XL
 
@@ -91,7 +91,7 @@ TPT se va a incluir porque se trata de una característica muy solicitada (aprox
 
 Jefe de desarrollo: @maumar
 
-Seguimiento realizado por [#1833](https://github.com/aspnet/EntityFrameworkCore/issues/1833)
+Seguimiento realizado por [#1833](https://github.com/dotnet/efcore/issues/1833)
 
 Talla de camiseta: M
 
@@ -131,7 +131,7 @@ En EF Core 3.0, todas las dependencias, incluidos los tipos de propiedad, son o
 
 Jefes de desarrollo: @AndriySvyryd y @smitpatel
 
-Seguimiento realizado por [#17270](https://github.com/aspnet/EntityFrameworkCore/issues/17270)
+Seguimiento realizado por [#17270](https://github.com/dotnet/efcore/issues/17270)
 
 Talla de camiseta: L
 
@@ -302,7 +302,7 @@ Además de las características más importantes descritas antes, también hay m
 
 ## <a name="below-the-line"></a>Nivel inferior
 
-Seguimiento por [problemas etiquetados con `consider-for-next-release`](https://github.com/aspnet/EntityFrameworkCore/issues?q=is%3Aopen+is%3Aissue+label%3Aconsider-for-next-release)
+Seguimiento por [problemas etiquetados con `consider-for-next-release`](https://github.com/dotnet/efcore/issues?q=is%3Aopen+is%3Aissue+label%3Aconsider-for-next-release)
 
 Se trata de correcciones de errores y mejoras **no** programadas actualmente para la versión 5.0, pero que se considerarán objetivos de extensión en función del progreso realizado en el trabajo anterior.
 

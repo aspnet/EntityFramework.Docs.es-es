@@ -4,12 +4,12 @@ description: Instrucciones y notas para actualizar a Entity Framework Core 2.0
 author: ajcvickers
 ms.date: 08/13/2017
 uid: core/what-is-new/ef-core-2.0/upgrade
-ms.openlocfilehash: c7c736629209da99f191ceb0d4000d19f40414b9
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 5054661d308e7ea6acd433981dfb2af6026b7765
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063444"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430097"
 ---
 # <a name="upgrading-applications-from-previous-versions-to-ef-core-20"></a>Actualización de las aplicaciones de las versiones anteriores a EF Core 2.0
 
@@ -17,11 +17,11 @@ Hemos aprovechado la oportunidad de pulir bastante las API y los comportamientos
 
 La actualización de una aplicación existente a EF Core 2.0 puede requerir lo siguiente:
 
-1. Actualizar la implementación de la aplicación .NET de destino a una que admita .NET Standard 2.0. Vea [Implementaciones de .NET compatibles](xref:core/platforms/index) para obtener más detalles.
+1. Actualizar la implementación de la aplicación .NET de destino a una que admita .NET Standard 2.0. Vea [Implementaciones de .NET compatibles](xref:core/miscellaneous/platforms) para obtener más detalles.
 
 2. Identificar un proveedor para la base de datos de destino que sea compatible con EF Core 2.0. Vea debajo [EF Core 2.0 requiere un proveedor de base de datos 2.0](#ef-core-20-requires-a-20-database-provider).
 
-3. Actualizar todos los paquetes de EF Core (entorno de ejecución y herramientas) a la versión 2.0. Consulte [Instalación de EF Core](xref:core/get-started/install/index) para obtener información detallada.
+3. Actualizar todos los paquetes de EF Core (entorno de ejecución y herramientas) a la versión 2.0. Consulte [Instalación de EF Core](xref:core/get-started/overview/install) para obtener información detallada.
 
 4. Realizar los cambios de código necesarios para compensar los cambios importantes descritos en el resto de este documento.
 
@@ -58,7 +58,7 @@ namespace AspNetCoreDotNetCore2._0App
 }
 ```
 
-La adopción de este patrón nuevo al actualizar aplicaciones a la versión 2.0 es muy recomendable y necesaria para que funcionen características de producto como las migraciones de Entity Framework Core. La otra alternativa común es [implementar *IDesignTimeDbContextFactory\<TContext>* ](xref:core/miscellaneous/cli/dbcontext-creation#from-a-design-time-factory).
+La adopción de este patrón nuevo al actualizar aplicaciones a la versión 2.0 es muy recomendable y necesaria para que funcionen características de producto como las migraciones de Entity Framework Core. La otra alternativa común es [implementar *IDesignTimeDbContextFactory\<TContext>*](xref:core/cli/dbcontext-creation#from-a-design-time-factory).
 
 ## <a name="idbcontextfactory-renamed"></a>Cambio de nombre de IDbContextFactory
 
@@ -96,7 +96,7 @@ Nota: Estos cambios no deberían afectar a gran parte del código de aplicación
 
 Los id. de evento de los mensajes enviados a un elemento [ILogger](/dotnet/api/microsoft.extensions.logging.ilogger) han cambiado en la versión 2.0. Los identificadores de evento ahora son únicos en el código de EF Core. Ahora, estos mensajes también siguen el patrón estándar de registro estructurado que usa, por ejemplo, MVC.
 
-Las categorías de registrador también han cambiado. Ahora hay un conjunto conocido de categorías a las que se accede a través de [DbLoggerCategory](https://github.com/aspnet/EntityFrameworkCore/blob/rel/2.0.0/src/EFCore/DbLoggerCategory.cs).
+Las categorías de registrador también han cambiado. Ahora hay un conjunto conocido de categorías a las que se accede a través de [DbLoggerCategory](https://github.com/dotnet/efcore/blob/rel/2.0.0/src/EFCore/DbLoggerCategory.cs).
 
 Los eventos [DiagnosticSource](https://github.com/dotnet/corefx/blob/master/src/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) ahora usan los mismos nombres de id. de evento que los mensajes de `ILogger` correspondientes. Todas las cargas de evento son tipos nominales derivados de [EventData](/dotnet/api/microsoft.entityframeworkcore.diagnostics.eventdata).
 
