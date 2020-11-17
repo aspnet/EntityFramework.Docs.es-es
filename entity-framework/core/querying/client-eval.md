@@ -2,14 +2,14 @@
 title: 'Evaluación de cliente frente a servidor: EF Core'
 description: Evaluación de consultas de cliente y servidor con Entity Framework Core
 author: smitpatel
-ms.date: 10/03/2019
+ms.date: 11/09/2020
 uid: core/querying/client-eval
-ms.openlocfilehash: f2e80541439de8cc824c182e52400f730dd2af48
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: a1ddfb625be36cb05f01da08eb3be29512c54ab5
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92062716"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430149"
 ---
 # <a name="client-vs-server-evaluation"></a>Evaluación de cliente frente a servidor
 
@@ -46,6 +46,9 @@ En esos casos, puede participar de forma explícita en la evaluación de cliente
 
 [!code-csharp[Main](../../../samples/core/Querying/ClientEvaluation/Program.cs#ExplicitClientEvaluation)]
 
+> [!TIP]
+> Si está usando `AsAsyncEnumerable` y desea componer la consulta en mayor grado en el lado del cliente, puede usar la biblioteca [System.Interactive.Async](https://www.nuget.org/packages/System.Interactive.Async/) que define operadores para enumerables asincrónicos. Para obtener más información, vea [Operadores LINQ asincrónicos del lado cliente](xref:core/miscellaneous/async#client-side-async-linq-operators).
+
 ## <a name="potential-memory-leak-in-client-evaluation"></a>Posible fuga de memoria en la evaluación de cliente
 
 Como la traducción y compilación de consultas son costosas, EF Core almacena en caché el plan de consulta compilado. El delegado en caché puede usar el código de cliente mientras se realiza la evaluación de cliente de la proyección de nivel superior. EF Core genera parámetros para las partes evaluadas por el cliente del árbol y reutiliza el plan de consulta en el que reemplaza los valores de parámetro. Pero determinadas constantes del árbol de expresión no se pueden convertir en parámetros. Si el delegado en caché contiene ese tipo de constantes, esos objetos no se pueden recolectar como elementos no utilizados porque todavía se hace referencia a ellos. Si este tipo de objeto contiene un elemento DbContext u otros servicios, podría hacer que el uso de memoria de la aplicación crezca con el tiempo. Este comportamiento suele ser un signo de fuga de memoria. EF Core inicia una excepción cada vez que detecta constantes de un tipo que no se puede asignar mediante el proveedor de base de datos actual. Las causas comunes y sus soluciones son las siguientes:
@@ -58,7 +61,7 @@ Como la traducción y compilación de consultas son costosas, EF Core almacena e
 
 La sección siguiente se aplica a las versiones de EF Core anteriores a la 3.0.
 
-En las versiones anteriores de EF Core se admitía la evaluación de cliente en cualquier parte de la consulta, no solo en la proyección de nivel superior. Por ese motivo las consultas similares a la publicada en la sección [Evaluación de cliente no admitida](#unsupported-client-evaluation) funcionaban correctamente. Como este comportamiento podría provocar problemas de rendimiento inadvertidos, EF Core registró una advertencia de evaluación de cliente. Para obtener más información sobre cómo ver la salida de registro, vea [Registro](xref:core/miscellaneous/logging).
+En las versiones anteriores de EF Core se admitía la evaluación de cliente en cualquier parte de la consulta, no solo en la proyección de nivel superior. Por ese motivo las consultas similares a la publicada en la sección [Evaluación de cliente no admitida](#unsupported-client-evaluation) funcionaban correctamente. Como este comportamiento podría provocar problemas de rendimiento inadvertidos, EF Core registró una advertencia de evaluación de cliente. Para obtener más información sobre cómo ver la salida de registro, vea [Registro](xref:core/logging-events-diagnostics/index).
 
 Opcionalmente, en EF Core se permitía cambiar el comportamiento predeterminado para iniciar una excepción o no hacer nada al realizar la evaluación de cliente (excepto para la proyección). El comportamiento de inicio de excepción haría que fuese similar al de la versión 3.0. Para cambiar el comportamiento, debe configurar las advertencias al establecer las opciones del contexto, normalmente en `DbContext.OnConfiguring`, o bien en `Startup.cs` si usa ASP.NET Core.
 

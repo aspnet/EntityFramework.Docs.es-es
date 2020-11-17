@@ -4,12 +4,12 @@ description: Información general sobre las nuevas características de EF Core 
 author: ajcvickers
 ms.date: 09/10/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew
-ms.openlocfilehash: 8fa45bf31cb5f1a7e35134f9513a40469719f8c2
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 3efa883cdfac1ecd412112ef06c7763f1a7e12f1
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92065620"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94429252"
 ---
 # <a name="whats-new-in-ef-core-50"></a>Novedades en EF Core 5.0
 
@@ -47,7 +47,7 @@ Observe que `Post` contiene una colección de `Tags` y `Tag` contiene una colecc
 public class BlogContext : DbContext
 {
     public DbSet<Post> Posts { get; set; }
-    public DbSet<Blog> Blogs { get; set; }
+    public DbSet<Tag> Tags { get; set; }
 }
 ```
 
@@ -77,7 +77,7 @@ CREATE TABLE [PostTag] (
 CREATE INDEX [IX_PostTag_TagsId] ON [PostTag] ([TagsId]);
 ```
 
-Al crear y asociar entidades `Blog` y `Post`, se producen automáticamente actualizaciones de la tabla de combinación. Por ejemplo:
+Al crear y asociar entidades `Tag` y `Post`, se producen automáticamente actualizaciones de la tabla de combinación. Por ejemplo:
 
 ```csharp
 var beginnerTag = new Tag {Text = "Beginner"};
@@ -158,6 +158,9 @@ protected override void OnModelCreating(ModelBuilder modelBuilder)
 }
 ```
 
+> [!NOTE]
+> Todavía no se ha agregado compatibilidad con la aplicación de scaffolding a relaciones de varios a varios desde la base de datos. Vea la [incidencia de seguimiento](https://github.com/dotnet/efcore/issues/22475).
+
 ### <a name="map-entity-types-to-queries"></a>Asignación de tipos de entidad a consultas
 
 Normalmente, los tipos de entidad se asignan a tablas o vistas, de modo que EF Core extraerá el contenido de la tabla o vista al consultar ese tipo. EF Core 5.0 permite asignar un tipo de entidad a una "consulta de definición". (Esto se admitía parcialmente en versiones anteriores, pero se ha mejorado mucho y tiene otra sintaxis en EF Core 5.0).
@@ -214,13 +217,13 @@ Observe que la consulta configurada para el tipo de entidad se usa como elemento
 
 [Los contadores de eventos de .NET](https://devblogs.microsoft.com/dotnet/introducing-diagnostics-improvements-in-net-core-3-0/) son una manera eficaz de exponer las métricas de rendimiento de una aplicación. EF Core 5.0 incluye contadores de eventos en la categoría `Microsoft.EntityFrameworkCore`. Por ejemplo:
 
-```
+```console
 dotnet counters monitor Microsoft.EntityFrameworkCore -p 49496
 ```
 
 Esto indica a los contadores de dotnet que empiecen a recopilar eventos de EF Core para el proceso 49496. Esto genera una salida similar a la siguiente en la consola:
 
-```
+```console
 [Microsoft.EntityFrameworkCore]
     Active DbContexts                                               1
     Execution Strategy Operation Failures (Count / 1 sec)           0
@@ -314,6 +317,7 @@ context.SavedChanges += (sender, args) =>
 ```
 
 Tenga en lo siguiente:
+
 * El remitente del evento es la instancia de `DbContext`.
 * El elemento args del evento `SavedChanges` contiene el número de entidades guardadas en la base de datos.
 
@@ -344,6 +348,7 @@ public class MySaveChangesInterceptor : SaveChangesInterceptor
 ```
 
 Tenga en lo siguiente:
+
 * El interceptor tiene métodos sincrónicos y asincrónicos. Esto puede ser útil si tiene que realizar operaciones de E/S asincrónicas, como escribir en un servidor de auditoría.
 * El interceptor permite omitir SaveChanges mediante el mecanismo `InterceptionResult` común a todos los interceptores.
 
@@ -564,7 +569,7 @@ El miembro de la comunidad [@Psypher9](https://github.com/Psypher9) ha contribui
 
 El comando `dotnet ef migrations list` muestra ahora las migraciones que todavía no se han aplicado a la base de datos. Por ejemplo:
 
-```
+```console
 ajcvickers@avickers420u:~/AllTogetherNow/Daily$ dotnet ef migrations list
 Build started...
 Build succeeded.
@@ -839,6 +844,7 @@ PRAGMA foreign_keys = 1;
 ```
 
 Tenga en lo siguiente:
+
 * Se crea una tabla temporal con el esquema deseado para la nueva tabla.
 * Los datos se copian de la tabla actual en la tabla temporal.
 * La aplicación de clave externa está desactivada.
@@ -884,6 +890,7 @@ END
 ```
 
 El modelo de EF Core requiere dos tipos de entidad para usar esta TVF:
+
 * Un tipo `Employee` que se asigna a la tabla Employees de la forma habitual.
 * Un tipo `Report` que coincide con la forma que devuelve la función TVF.
 
@@ -1307,7 +1314,10 @@ var artists = context.Artists.Where(e => e.IsSigned).ToList();
 
 EF Core producirá la siguiente excepción que indica que se produjo un error de traducción porque no se asignó `IsSigned`:
 
-> Excepción no controlada. System.InvalidOperationException: No se ha podido traducir la expresión LINQ "DbSet<Artist>().Where(a => a.IsSigned)". Información adicional: Error al traducir el miembro "IsSigned" en el tipo de entidad "Artist". Es posible que el miembro especificado no se haya asignado. Vuelva a escribir la consulta de forma que se pueda traducir o cambie a la evaluación de cliente de manera explícita mediante la inserción de una llamada a AsEnumerable(), AsAsyncEnumerable(), ToList() o ToListAsync(). Vea https://go.microsoft.com/fwlink/?linkid=2101038 para obtener más información.
+```exception
+Unhandled exception. System.InvalidOperationException: The LINQ expression 'DbSet<Artist>()
+   .Where(a => a.IsSigned)' could not be translated. Additional information: Translation of member 'IsSigned' on entity type 'Artist' failed. Possibly the specified member is not mapped. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to either AsEnumerable(), AsAsyncEnumerable(), ToList(), or ToListAsync(). See <https://go.microsoft.com/fwlink/?linkid=2101038> for more information.
+```
 
 Del mismo modo, ahora se generan mejores mensajes de excepción al intentar traducir comparaciones de cadenas con una semántica dependiente de la referencia cultural. Por ejemplo, esta consulta intenta usar `StringComparison.CurrentCulture`:
 
@@ -1319,7 +1329,12 @@ var artists = context.Artists
 
 Ahora, EF Core producirá la siguiente excepción:
 
-> Excepción no controlada. System.InvalidOperationException: No se ha podido traducir la expresión LINQ "DbSet<Artist>().Where(a => a.Name.Equals(value: 'The Unicorns', comparisonType: CurrentCulture))". Información adicional: No se admite la traducción del método "string.Equals" que usa el argumento "StringComparison". Vea https://go.microsoft.com/fwlink/?linkid=2129535 para obtener más información. Vuelva a escribir la consulta de forma que se pueda traducir o cambie a la evaluación de cliente de manera explícita mediante la inserción de una llamada a AsEnumerable(), AsAsyncEnumerable(), ToList() o ToListAsync(). Vea https://go.microsoft.com/fwlink/?linkid=2101038 para obtener más información.
+```exception
+Unhandled exception. System.InvalidOperationException: The LINQ expression 'DbSet<Artist>()
+     .Where(a => a.Name.Equals(
+         value: "The Unicorns",
+         comparisonType: CurrentCulture))' could not be translated. Additional information: Translation of 'string.Equals' method which takes 'StringComparison' argument is not supported. See <https://go.microsoft.com/fwlink/?linkid=2129535> for more information. Either rewrite the query in a form that can be translated, or switch to client evaluation explicitly by inserting a call to either AsEnumerable(), AsAsyncEnumerable(), ToList(), or ToListAsync(). See <https://go.microsoft.com/fwlink/?linkid=2101038> for more information.
+```
 
 ### <a name="specify-transaction-id"></a>Especificación del id. de la transacción
 
@@ -1380,13 +1395,13 @@ Cuando se aplica scaffolding a un elemento DbContext desde una base de datos exi
 
 Para solucionar esto, ahora se puede indicar a los comandos de scaffolding que omitan la generación de OnConfiguring. Por ejemplo:
 
-```
+```console
 dotnet ef dbcontext scaffold "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook" Microsoft.EntityFrameworkCore.SqlServer --no-onconfiguring
 ```
 
 O bien, en la Consola del administrador de paquetes:
 
-```
+```console
 Scaffold-DbContext 'Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook' Microsoft.EntityFrameworkCore.SqlServer -NoOnConfiguring
 ```
 
@@ -1500,7 +1515,7 @@ En el problema [n.º 2273](https://github.com/dotnet/EntityFramework.Docs/issue
 
 Los argumentos se transmiten ahora desde la línea de comandos al método de `CreateDbContext` de [IDesignTimeDbContextFactory](/dotnet/api/microsoft.entityframeworkcore.design.idesigntimedbcontextfactory-1). Por ejemplo, para indicar que se trata de una compilación de desarrollo, se puede pasar un argumento personalizado (por ejemplo, `dev`) en la línea de comandos:
 
-```
+```console
 dotnet ef migrations add two --verbose --dev
 ```
 
@@ -1600,6 +1615,7 @@ var blogs = context.Blogs
     .Include(e => e.Posts.OrderByDescending(post => post.Title).Take(5)))
     .ToList();
 ```
+
 Esta consulta devolverá los blogs que tengan cinco publicaciones como máximo.
 
 Vea la [documentación de Include](xref:core/querying/related-data#filtered-include) para obtener información completa.
@@ -1633,7 +1649,7 @@ Ahora, además, también puede pasarse una cadena de conexión al comando `datab
 dotnet ef database update --connection "connection string"
 ```
 
-Para más información, consulte la [documentación sobre herramientas](xref:core/miscellaneous/cli/dotnet#dotnet-ef-database-update).
+Para más información, consulte la [documentación sobre herramientas](xref:core/cli/dotnet#dotnet-ef-database-update).
 
 También se han agregado parámetros equivalentes a los comandos de PowerShell que se usan en la consola del administrador de paquetes de VS.
 

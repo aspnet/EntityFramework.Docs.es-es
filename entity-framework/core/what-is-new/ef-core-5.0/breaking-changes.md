@@ -2,14 +2,14 @@
 title: 'Cambios importantes en EF Core 5.0: EF Core'
 description: Lista completa de los cambios importantes introducidos en Entity Framework Core 5.0
 author: bricelam
-ms.date: 09/24/2020
+ms.date: 11/07/2020
 uid: core/what-is-new/ef-core-5.0/breaking-changes
-ms.openlocfilehash: e64f2b387d236e96d0451f3d55b3241daaba32d8
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: e2537dbc1d5dba48450bd0fea7712054ba2fa622
+ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92065646"
+ms.lasthandoff: 11/11/2020
+ms.locfileid: "94503181"
 ---
 # <a name="breaking-changes-in-ef-core-50"></a>Cambios importantes en EF Core 5.0
 
@@ -21,6 +21,7 @@ Es posible que los siguientes cambios de API y comportamiento puedan interrumpir
 |:--------------------------------------------------------------------------------------------------------------------------------------|------------|
 | [El requisito relativo a la navegación de una entidad de seguridad a un elemento dependiente tiene una semántica diferente](#required-dependent).                                 | Media     |
 | [La definición de la consulta se reemplaza por métodos específicos del proveedor](#defining-query)                                                          | Media     |
+| [Las consultas no sobrescriben las navegaciones de referencia no nula](#nonnullreferences)                                                   | Media     |
 | [Se ha quitado el método HasGeometricDimension de la extensión de SQLite NTS](#geometric-sqlite)                                                   | Bajo        |
 | [Cosmos: la clave de partición se ha agregado ahora a la clave principal](#cosmos-partition-key)                                                        | Bajo        |
 | [Cosmos: el nombre de la propiedad `id` se ha cambiado a `__id`](#cosmos-id)                                                                                 | Bajo        |
@@ -29,29 +30,140 @@ Es posible que los siguientes cambios de API y comportamiento puedan interrumpir
 | [Se llama a los generadores de valores cuando se cambia el estado de la entidad de Desasociado a Sin cambios, Actualizado o Eliminado](#non-added-generation) | Bajo        |
 | [IMigrationsModelDiffer ahora usa IRelationalModel](#relational-model).                                                                 | Bajo        |
 | [Los discriminadores son de solo lectura](#read-only-discriminators).                                                                             | Bajo        |
-| [Los métodos EF.Functions específicos del proveedor se inician para el proveedor InMemory](#no-client-methods)                                              | Bajo        |
-| [IndexBuilder.HasName ahora está obsoleto](#index-obsolete)                                                                               | Baja        |
+| [Los métodos EF.Functions específicos del proveedor se inician para el proveedor InMemory](#no-client-methods)                                              | Baja        |
+| [IndexBuilder.HasName ahora está obsoleto](#index-obsolete)                                                                               | Bajo        |
 | [Ahora se incluye un pluralizador para el scaffolding de los modelos de ingeniería inversa](#pluralizer)                                                 | Bajo        |
+| [INavigationBase reemplaza a INavigation en algunas API para admitir la omisión de navegaciones](#inavigationbase)                                     | Bajo        |
+| [Ya no se admiten algunas consultas con colecciones correlacionadas que también usan `Distinct` o `GroupBy`](#collection-distinct-groupby) | Bajo        |
+| [No se admite el uso de una colección de tipo consultable en la proyección](#queryable-projection)                                          | Bajo        |
+
+## <a name="medium-impact-changes"></a>Cambios de impacto medio
+
+<a name="required-dependent"></a>
+
+### <a name="required-on-the-navigation-from-principal-to-dependent-has-different-semantics"></a>El requisito relativo a la navegación de una entidad de seguridad a un elemento dependiente tiene una semántica diferente.
+
+[Incidencia de seguimiento n.º 17286](https://github.com/dotnet/efcore/issues/17286)
+
+#### <a name="old-behavior"></a>Comportamiento anterior
+
+Solo las navegaciones a la entidad de seguridad se podían configurar como necesarias. Por lo tanto, el uso de `RequiredAttribute` en la navegación a un elemento dependiente (la entidad que contiene la clave externa) creaba en su lugar la clave externa en el tipo de entidad de definición.
+
+#### <a name="new-behavior"></a>Comportamiento nuevo
+
+Gracias a la compatibilidad agregada con los elementos dependientes necesarios, ahora es posible marcar cualquier navegación de referencia como obligatoria, lo que significa que, en el caso anterior, la clave externa se definirá en el otro lado de la relación y las propiedades no se marcarán como obligatorias.
+
+Llamar a `IsRequired` antes de especificar el extremo dependiente ahora es ambiguo:
+
+```csharp
+modelBuilder.Entity<Blog>()
+    .HasOne(b => b.BlogImage)
+    .WithOne(i => i.Blog)
+    .IsRequired()
+    .HasForeignKey<BlogImage>(b => b.BlogForeignKey);
+```
+
+#### <a name="why"></a>Por qué
+
+El comportamiento nuevo es obligatorio para habilitar la compatibilidad con los dependientes necesarios ([vea n.º 12100](https://github.com/dotnet/efcore/issues/12100)).
+
+#### <a name="mitigations"></a>Mitigaciones
+
+Quite `RequiredAttribute` de la navegación al elemento dependiente y colóquelo en su lugar en la navegación de la entidad de seguridad o configure la relación en `OnModelCreating`:
+
+```csharp
+modelBuilder.Entity<Blog>()
+    .HasOne(b => b.BlogImage)
+    .WithOne(i => i.Blog)
+    .HasForeignKey<BlogImage>(b => b.BlogForeignKey)
+    .IsRequired();
+```
+
+<a name="defining-query"></a>
+
+### <a name="defining-query-is-replaced-with-provider-specific-methods"></a>La definición de la consulta se reemplaza por métodos específicos del proveedor
+
+[Problema de seguimiento n.º 18903](https://github.com/dotnet/efcore/issues/18903)
+
+#### <a name="old-behavior"></a>Comportamiento anterior
+
+Los tipos de entidad se asignaban en la definición de consultas en el nivel básico. Cuando el tipo de entidad se usaba en la raíz de la consulta del tipo de entidad se sustituía por la consulta de definición de cualquier proveedor.
+
+#### <a name="new-behavior"></a>Comportamiento nuevo
+
+Las API de definición de consulta han quedado en desuso. Se introdujeron nuevas API específicas del proveedor.
+
+#### <a name="why"></a>Por qué
+
+Aunque la definición de consulta se implementaba como consulta de reemplazo siempre que se usaba la raíz de la consulta en la consulta, tenía algunos problemas:
+
+- Si la definición de consulta establece la proyección del tipo de entidad con `new { ... }` en el método `Select`, su identificación como entidad requería trabajo adicional y lo hacía incoherente con el modo en que EF Core trata los tipos nominales en la consulta.
+- En el caso de los proveedores relacionales `FromSql` todavía hay que pasar la cadena SQL en forma de expresión LINQ.
+
+Las definiciones de consulta se introdujeron inicialmente como vistas del lado cliente para su uso con el proveedor en memoria para las entidades sin clave (similares a las vistas de base de datos de las bases de datos relacionales). Esta definición facilita la prueba de la aplicación en la base de datos en memoria. Después, se convirtieron en ampliamente aplicables, lo que resultaba útil pero no era coherente y resultaba difícil de entender. Por tanto, decidimos simplificar el concepto. Hemos creado una consulta de definición basada en LINQ exclusiva para el proveedor en memoria, que tratamos de otra forma. Para más información, consulte [este problema](https://github.com/dotnet/efcore/issues/20023).
+
+#### <a name="mitigations"></a>Mitigaciones
+
+En el caso de los proveedores relacionales, use el método `ToSqlQuery` en `OnModelCreating` y pase una cadena SQL que se utilice como tipo de entidad.
+En el caso del proveedor en memoria, use el método `ToInMemoryQuery` en `OnModelCreating` y pase una consulta LINQ que se utilice como tipo de entidad.
+
+<a name="nonnullreferences"></a>
+
+### <a name="non-null-reference-navigations-are-not-overwritten-by-queries"></a>Las consultas no sobrescriben las navegaciones de referencia no nula
+
+[Incidencia de seguimiento n.º 2693](https://github.com/dotnet/EntityFramework.Docs/issues/2693)
+
+#### <a name="old-behavior"></a>Comportamiento anterior
+
+En EF Core 3.1, las instancias de la entidad de la base de datos sobrescribirán las navegaciones de referencia que se inicializan de manera diligente en valores que no sean NULL, con independencia de si coinciden o no los valores de claves. Sin embargo, en otros casos, EF Core 3.1 haría lo contrario y dejaría el valor no NULL existente.
+
+#### <a name="new-behavior"></a>Comportamiento nuevo
+
+A partir de EF Core 5.0, las instancias devueltas por una consulta nunca sobrescriben las navegaciones de referencia no NULL.
+
+Tenga en cuenta que todavía se admite la inicialización diligente de una navegación de _colección_ en una colección vacía.
+
+#### <a name="why"></a>Por qué
+
+La inicialización de una propiedad de navegación de referencia en una instancia de entidad "vacía" da como resultado un estado ambiguo. Por ejemplo:
+
+```csharp
+public class Blog
+{
+     public int Id { get; set; }
+     public Author Author { get; set; ) = new Author();
+}
+```
+
+Normalmente, una consulta de blogs y autores primero creará instancias `Blog` y, después, establecerá las instancias `Author` apropiadas en función de los datos devueltos por la base de datos. Sin embargo, en este caso, cada propiedad `Blog.Author` ya se ha inicializado en una instancia `Author` vacía. Excepto EF Core, no tiene ninguna manera de saber que esta instancia está "vacía". Por lo tanto, si se sobrescribe esta instancia, es posible que se elimine de forma silenciosa una instancia `Author` válida. Por lo tanto, EF Core 5.0 ahora no sobrescribe de forma coherente una navegación que ya está inicializada.
+
+Este nuevo comportamiento también se alinea con el comportamiento de EF6 en la mayoría de los casos, aunque en la investigación también encontramos algunos casos de incoherencia en EF6.  
+
+#### <a name="mitigations"></a>Mitigaciones
+
+Si se detecta esta interrupción, la solución consiste en detener la inicialización diligente de las propiedades de navegación de referencia.
+
+## <a name="low-impact-changes"></a>Cambios de impacto bajo
 
 <a name="geometric-sqlite"></a>
 
 ### <a name="removed-hasgeometricdimension-method-from-sqlite-nts-extension"></a>Se ha quitado el método HasGeometricDimension de la extensión de SQLite NTS
 
-[Problema de seguimiento n.º 14257](https://github.com/aspnet/EntityFrameworkCore/issues/14257)
+[Problema de seguimiento n.º 14257](https://github.com/dotnet/efcore/issues/14257)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
-Se ha utilizado HasGeometricDimension para habilitar dimensiones adicionales (Z y M) en columnas de geometría. Sin embargo, solo ha afectado a la creación de la base de datos. No era necesario especificarlo para consultar los valores con dimensiones adicionales. Tampoco ha funcionado correctamente al introducir o actualizar valores con dimensiones adicionales ([consulte el problema n.º 14257](https://github.com/aspnet/EntityFrameworkCore/issues/14257)).
+Se ha utilizado HasGeometricDimension para habilitar dimensiones adicionales (Z y M) en columnas de geometría. Sin embargo, solo ha afectado a la creación de la base de datos. No era necesario especificarlo para consultar los valores con dimensiones adicionales. Tampoco ha funcionado correctamente al introducir o actualizar valores con dimensiones adicionales ([consulte el problema n.º 14257](https://github.com/dotnet/efcore/issues/14257)).
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 Para habilitar la inserción y la actualización de valores de geometría con dimensiones adicionales (Z y M), la dimensión debe especificarse como parte del nombre del tipo de columna. Esta API coincide más estrechamente con el comportamiento subyacente de la función AddGeometryColumn de SpatiaLite.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 El uso de HasGeometricDimension después de especificar la dimensión en el tipo de columna es innecesario y redundante, por lo que se ha quitado HasGeometricDimension por completo.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Use `HasColumnType` para especificar la dimensión:
 
@@ -67,65 +179,25 @@ modelBuilder.Entity<GeoEntity>(
     });
 ```
 
-<a name="required-dependent"></a>
-
-### <a name="required-on-the-navigation-from-principal-to-dependent-has-different-semantics"></a>El requisito relativo a la navegación de una entidad de seguridad a un elemento dependiente tiene una semántica diferente.
-
-[Incidencia de seguimiento n.º 17286](https://github.com/aspnet/EntityFrameworkCore/issues/17286)
-
-**Comportamiento anterior**
-
-Solo las navegaciones a la entidad de seguridad se podían configurar como necesarias. Por lo tanto, el uso de `RequiredAttribute` en la navegación a un elemento dependiente (la entidad que contiene la clave externa) creaba en su lugar la clave externa en el tipo de entidad de definición.
-
-**Comportamiento nuevo**
-
-Gracias a la compatibilidad agregada con los elementos dependientes necesarios, ahora es posible marcar cualquier navegación de referencia como obligatoria, lo que significa que, en el caso anterior, la clave externa se definirá en el otro lado de la relación y las propiedades no se marcarán como obligatorias.
-
-Llamar a `IsRequired` antes de especificar el extremo dependiente ahora es ambiguo:
-
-```csharp
-modelBuilder.Entity<Blog>()
-    .HasOne(b => b.BlogImage)
-    .WithOne(i => i.Blog)
-    .IsRequired()
-    .HasForeignKey<BlogImage>(b => b.BlogForeignKey);
-```
-
-**Por qué**
-
-El comportamiento nuevo es obligatorio para habilitar la compatibilidad con los dependientes necesarios ([vea n.º 12100](https://github.com/dotnet/efcore/issues/12100)).
-
-**Mitigaciones**
-
-Quite `RequiredAttribute` de la navegación al elemento dependiente y colóquelo en su lugar en la navegación de la entidad de seguridad o configure la relación en `OnModelCreating`:
-
-```csharp
-modelBuilder.Entity<Blog>()
-    .HasOne(b => b.BlogImage)
-    .WithOne(i => i.Blog)
-    .HasForeignKey<BlogImage>(b => b.BlogForeignKey)
-    .IsRequired();
-```
-
 <a name="cosmos-partition-key"></a>
 
 ### <a name="cosmos-partition-key-is-now-added-to-the-primary-key"></a>Cosmos: la clave de partición se ha agregado ahora a la clave principal
 
-[Incidencia de seguimiento n.º 15289](https://github.com/aspnet/EntityFrameworkCore/issues/15289)
+[Incidencia de seguimiento n.º 15289](https://github.com/dotnet/efcore/issues/15289)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 La propiedad de clave de partición solo se agregaba a la clave alternativa que incluye `id`.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 La propiedad de clave de partición ahora también se agrega por convención a la clave principal.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 Este cambio hace que el modelo se alinee mejor con la semántica de Azure Cosmos DB y mejora el rendimiento de `Find` y algunas consultas.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Para evitar que la propiedad de clave de partición se agregue a la clave principal, configúrela en `OnModelCreating`.
 
@@ -138,21 +210,21 @@ modelBuilder.Entity<Blog>()
 
 ### <a name="cosmos-id-property-renamed-to-__id"></a>Cosmos: el nombre de la propiedad `id` se ha cambiado a `__id`
 
-[Problema de seguimiento n.º 17751](https://github.com/aspnet/EntityFrameworkCore/issues/17751)
+[Problema de seguimiento n.º 17751](https://github.com/dotnet/efcore/issues/17751)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 La propiedad Shadow asignada a la propiedad `id` de JSON también se llama `id`.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 La propiedad Shadow creada por convención se denomina ahora `__id`.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 Este cambio hace menos probable que la propiedad `id` entre en conflicto con una propiedad existente en el tipo de entidad.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Para volver al comportamiento de la versión 3.x, configure la propiedad `id` en `OnModelCreating`.
 
@@ -166,43 +238,43 @@ modelBuilder.Entity<Blog>()
 
 ### <a name="cosmos-byte-is-now-stored-as-a-base64-string-instead-of-a-number-array"></a>Cosmos: byte[] se almacena ahora como cadena Base64 y no como matriz de números
 
-[Problema de seguimiento n.º 17306](https://github.com/aspnet/EntityFrameworkCore/issues/17306)
+[Problema de seguimiento n.º 17306](https://github.com/dotnet/efcore/issues/17306)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 Las propiedades de tipo byte[] se almacenaban como matriz de números.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 Las propiedades de tipo byte[] se almacenan ahora como cadena Base64.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 Esta representación de byte [] se alinea mejor con las expectativas y es el comportamiento predeterminado de las principales bibliotecas de serialización de JSON.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
-Los datos existentes almacenados como matrices de números se seguirán consultando correctamente, pero actualmente no hay ninguna manera compatible de volver a cambiar el comportamiento de inserción. Si esta limitación bloquea su escenario, haga un comentario en [este problema](https://github.com/aspnet/EntityFrameworkCore/issues/17306)
+Los datos existentes almacenados como matrices de números se seguirán consultando correctamente, pero actualmente no hay ninguna manera compatible de volver a cambiar el comportamiento de inserción. Si esta limitación bloquea su escenario, haga un comentario en [este problema](https://github.com/dotnet/efcore/issues/17306)
 
 <a name="cosmos-metadata"></a>
 
 ### <a name="cosmos-getpropertyname-and-setpropertyname-were-renamed"></a>Cosmos: se ha cambiado el nombre de GetPropertyName y SetPropertyName
 
-[Problema de seguimiento n.º 17874](https://github.com/aspnet/EntityFrameworkCore/issues/17874)
+[Problema de seguimiento n.º 17874](https://github.com/dotnet/efcore/issues/17874)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 Anteriormente, se llamaba a los métodos de extensión `GetPropertyName` y `SetPropertyName`
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 La API antigua se ha quitado y se han agregado métodos nuevos: `GetJsonPropertyName` y `SetJsonPropertyName`.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 Este cambio elimina la ambigüedad en torno a lo que estos métodos configuran.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Use la API nueva.
 
@@ -210,21 +282,21 @@ Use la API nueva.
 
 ### <a name="value-generators-are-called-when-the-entity-state-is-changed-from-detached-to-unchanged-updated-or-deleted"></a>Se llama a los generadores de valores cuando se cambia el estado de la entidad de Desasociado a Sin cambios, Actualizado o Eliminado
 
-[Incidencia de seguimiento n.º 15289](https://github.com/aspnet/EntityFrameworkCore/issues/15289)
+[Incidencia de seguimiento n.º 15289](https://github.com/dotnet/efcore/issues/15289)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 Solo se llamaba a los generadores de valores cuando el estado de la entidad cambiaba a Agregado.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 Ahora se llama a los generadores de valores cuando se cambia el estado de la entidad de Desasociado a Sin cambios, Actualizado o Eliminado, y la propiedad incluye los valores predeterminados.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 Este cambio era necesario para mejorar la experiencia con propiedades que no se conservan en el almacén de datos y que su valor se genera siempre en el cliente.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Para evitar que se llame al generador de valores, asigne un valor no predeterminado a la propiedad antes de cambiar el estado.
 
@@ -232,21 +304,21 @@ Para evitar que se llame al generador de valores, asigne un valor no predetermin
 
 ### <a name="imigrationsmodeldiffer-now-uses-irelationalmodel"></a>IMigrationsModelDiffer ahora usa IRelationalModel.
 
-[Incidencia de seguimiento n.º 20305](https://github.com/aspnet/EntityFrameworkCore/issues/20305)
+[Incidencia de seguimiento n.º 20305](https://github.com/dotnet/efcore/issues/20305)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 `IMigrationsModelDiffer` API se definía mediante `IModel`.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 `IMigrationsModelDiffer` API ahora usa `IRelationalModel`. Sin embargo, la instantánea del modelo todavía contiene solo `IModel`, ya que este código forma parte de la aplicación y Entity Framework no puede cambiarla sin hacer un cambio más importante.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 `IRelationalModel` es una representación recién agregada del esquema de la base de datos. Su uso para encontrar diferencias es más rápido y preciso.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Use el código siguiente para comparar el modelo de `snapshot` con el modelo de `context`:
 
@@ -272,21 +344,21 @@ Tenemos previsto mejorar esta experiencia en la versión 6.0 ([vea n.º 22031](
 
 ### <a name="discriminators-are-read-only"></a>Los discriminadores son de solo lectura.
 
-[Incidencia de seguimiento n.º 21154](https://github.com/aspnet/EntityFrameworkCore/issues/21154)
+[Incidencia de seguimiento n.º 21154](https://github.com/dotnet/efcore/issues/21154)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 Era posible cambiar el valor del discriminador antes de llamar a `SaveChanges`.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 En el caso anterior, se producirá una excepción.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 EF no espera que el tipo de entidad cambie mientras se sigue realizando el seguimiento, por lo que cambiar el valor del discriminador deja el contexto en un estado incoherente, lo que podría dar como resultado un comportamiento inesperado.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Si es necesario cambiar el valor del discriminador y el contexto se va a eliminar inmediatamente después de llamar a `SaveChanges`, el discriminador se puede convertir en mutable:
 
@@ -296,53 +368,25 @@ modelBuilder.Entity<BaseEntity>()
     .Metadata.SetAfterSaveBehavior(PropertySaveBehavior.Save);
 ```
 
-<a name="defining-query"></a>
-
-### <a name="defining-query-is-replaced-with-provider-specific-methods"></a>La definición de la consulta se reemplaza por métodos específicos del proveedor
-
-[Problema de seguimiento n.º 18903](https://github.com/dotnet/efcore/issues/18903)
-
-**Comportamiento anterior**
-
-Los tipos de entidad se asignaban en la definición de consultas en el nivel básico. Cuando el tipo de entidad se usaba en la raíz de la consulta del tipo de entidad se sustituía por la consulta de definición de cualquier proveedor.
-
-**Comportamiento nuevo**
-
-Las API de definición de consulta han quedado en desuso. Se introdujeron nuevas API específicas del proveedor.
-
-**Por qué**
-
-Aunque la definición de consulta se implementaba como consulta de reemplazo siempre que se usaba la raíz de la consulta en la consulta, tenía algunos problemas:
-
-- Si la definición de consulta establece la proyección del tipo de entidad con `new { ... }` en el método `Select`, su identificación como entidad requería trabajo adicional y lo hacía incoherente con el modo en que EF Core trata los tipos nominales en la consulta.
-- En el caso de los proveedores relacionales `FromSql` todavía hay que pasar la cadena SQL en forma de expresión LINQ.
-
-Las definiciones de consulta se introdujeron inicialmente como vistas del lado cliente para su uso con el proveedor en memoria para las entidades sin clave (similares a las vistas de base de datos de las bases de datos relacionales). Esta definición facilita la prueba de la aplicación en la base de datos en memoria. Después, se convirtieron en ampliamente aplicables, lo que resultaba útil pero no era coherente y resultaba difícil de entender. Por tanto, decidimos simplificar el concepto. Hemos creado una consulta de definición basada en LINQ exclusiva para el proveedor en memoria, que tratamos de otra forma. Para más información, consulte [este problema](https://github.com/dotnet/efcore/issues/20023).
-
-**Mitigaciones**
-
-En el caso de los proveedores relacionales, use el método `ToSqlQuery` en `OnModelCreating` y pase una cadena SQL que se utilice como tipo de entidad.
-En el caso del proveedor en memoria, use el método `ToInMemoryQuery` en `OnModelCreating` y pase una consulta LINQ que se utilice como tipo de entidad.
-
 <a name="no-client-methods"></a>
 
 ### <a name="provider-specific-effunctions-methods-throw-for-inmemory-provider"></a>Los métodos EF.Functions específicos del proveedor se inician para el proveedor InMemory.
 
 [Incidencia de seguimiento n.º 20294](https://github.com/dotnet/efcore/issues/20294)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 Los métodos EF.Functions específicos del proveedor incluían la implementación para la ejecución del cliente, lo cual les permitía ejecutarse en el proveedor de InMemory. Por ejemplo, `EF.Functions.DateDiffDay` es un método específico de SQL Server que funcionaba en el proveedor InMemory.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 Los métodos específicos del proveedor se han actualizado para producir una excepción en el cuerpo del método a fin de bloquear su evaluación en el lado cliente.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 Los métodos específicos del proveedor se asignan a una función de base de datos. El cálculo realizado por la función de base de datos asignada no siempre se puede replicar en el lado cliente en LINQ. Esto puede provocar que el resultado del servidor sea diferente al ejecutar el mismo método en el cliente. Dado que estos métodos se usan en LINQ para traducir a funciones específicas de base de datos, no es necesario que se evalúen en el lado cliente. Dado que el proveedor InMemory es una base de datos *diferente*, estos métodos no están disponibles para este proveedor. Al intentar ejecutarlos para el proveedor InMemory o cualquier otro proveedor que no traduzca estos métodos, se produce una excepción.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Dado que no hay forma de imitar el comportamiento de las funciones de base de datos con precisión, debe probar las consultas que las contienen en el mismo tipo de base de datos que en producción.
 
@@ -352,19 +396,19 @@ Dado que no hay forma de imitar el comportamiento de las funciones de base de da
 
 [Incidencia de seguimiento n.º 21089](https://github.com/dotnet/efcore/issues/21089)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
 Anteriormente, solo se podía definir un índice en un conjunto determinado de propiedades. El nombre de la base de datos de un índice se configuró mediante IndexBuilder.HasName.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 Ahora se permiten varios índices en el mismo conjunto o las mismas propiedades. Ahora, estos índices se distinguen por un nombre en el modelo. Por convención, el nombre del modelo se utiliza como nombre de la base de datos; sin embargo, también se puede configurar de forma independiente utilizando HasDatabaseName.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 En el futuro, nos gustaría habilitar índices ascendentes y descendentes o índices con distintas intercalaciones en el mismo conjunto de propiedades. Este cambio nos hace dar otro paso en esa dirección.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Cualquier código que llamara anteriormente a IndexBuilder.HasName debe actualizarse para llamar a HasDatabaseName en su lugar.
 
@@ -372,22 +416,131 @@ Si su proyecto incluye migraciones generadas antes de la versión 2.0.0 de EF 
 
 <a name="pluralizer"></a>
 
-### <a name="a-pluarlizer-is-now-included-for-scaffolding-reverse-engineered-models"></a>Ahora se incluye un pluralizador para el scaffolding de los modelos de ingeniería inversa
+### <a name="a-pluralizer-is-now-included-for-scaffolding-reverse-engineered-models"></a>Ahora se incluye un pluralizador para el scaffolding de los modelos de ingeniería inversa
 
 [Incidencia de seguimiento n.º 11160](https://github.com/dotnet/efcore/issues/11160)
 
-**Comportamiento anterior**
+#### <a name="old-behavior"></a>Comportamiento anterior
 
-Anteriormente, tenía que instalar un paquete de pluralizador independiente para pluralizar los nombres de navegación de colección y DbSet y singularizar los nombres de tabla al aplicar scaffoding a DbContext y los tipos de entidad mediante la utilización de técnicas de ingeniería inversa en un esquema de base de datos.
+Anteriormente, tenía que instalar un paquete de pluralizador independiente para pluralizar los nombres de navegación de colección y DbSet y singularizar los nombres de tabla al aplicar scaffolding a DbContext y los tipos de entidad mediante la utilización de técnicas de ingeniería inversa en un esquema de base de datos.
 
-**Comportamiento nuevo**
+#### <a name="new-behavior"></a>Comportamiento nuevo
 
 EF Core incluye ahora un pluralizador que usa la biblioteca [Humanizer](https://github.com/Humanizr/Humanizer). Se trata de la misma biblioteca que Visual Studio usa para recomendar nombres de variable.
 
-**Por qué**
+#### <a name="why"></a>Por qué
 
 El uso de formas plurales de palabras para las propiedades de colección y de formas singulares para los tipos y las propiedades de referencia es idiomático en .NET.
 
-**Mitigaciones**
+#### <a name="mitigations"></a>Mitigaciones
 
 Para deshabilitar el pluralizador, use la opción `--no-pluralize` en `dotnet ef dbcontext scaffold` o el modificador `-NoPluralize` en `Scaffold-DbContext`.
+
+<a name="inavigationbase"></a>
+
+### <a name="inavigationbase-replaces-inavigation-in-some-apis-to-support-skip-navigations"></a>INavigationBase reemplaza a INavigation en algunas API para admitir la omisión de navegaciones
+
+[Incidencia de seguimiento n.º 2568](https://github.com/dotnet/EntityFramework.Docs/issues/2568)
+
+#### <a name="old-behavior"></a>Comportamiento anterior
+
+Las versiones de EF Core anteriores a la 5.0 solo admiten una forma de propiedad de navegación, representada por la interfaz `INavigation`.
+
+#### <a name="new-behavior"></a>Comportamiento nuevo
+
+EF Core 5.0 presenta relaciones varios a varios que usan las "navegaciones por omisión". Se representan mediante la interfaz `ISkipNavigation`, y la mayor parte de la funcionalidad de `INavigation` se ha insertado en una interfaz base común: `INavigationBase`.
+
+#### <a name="why"></a>Por qué
+
+La mayor parte de la funcionalidad entre las navegaciones normal y por omisión es la misma. Sin embargo, las navegaciones por omisión tienen una relación diferente con las claves externas con respecto a las navegaciones normales, ya que las claves externas implicadas no están directamente en ninguno de los extremos de la relación, sino en la entidad join.
+
+#### <a name="mitigations"></a>Mitigaciones
+
+En muchos casos, las aplicaciones pueden cambiar al uso de la nueva interfaz base sin realizar ningún otro cambio. Sin embargo, en los casos en los que se usa la navegación para acceder a las propiedades de clave externa, el código de aplicación se debe restringir solo a las navegaciones normales, o bien actualizarse para hacer lo adecuado para las navegaciones normal y por omisión.
+
+<a name="collection-distinct-groupby"></a>
+
+### <a name="some-queries-with-correlated-collection-that-also-use-distinct-or-groupby-are-no-longer-supported"></a>Ya no se admiten algunas consultas con colecciones correlacionadas que también usan `Distinct` o `GroupBy`
+
+[Incidencia de seguimiento n.º 15873](https://github.com/dotnet/efcore/issues/15873)
+
+**Comportamiento anterior**
+
+Anteriormente, las consultas que implicaban colecciones correlacionadas seguidas de `GroupBy`, así como algunas consultas con `Distinct` que permitimos ejecutar.
+
+Ejemplo de GroupBy:
+
+```csharp
+context.Parents
+    .Select(p => p.Children
+        .GroupBy(c => c.School)
+        .Select(g => g.Key))
+```
+
+Ejemplo de `Distinct`: en concreto, las consultas `Distinct` en las que la proyección de la colección interna no contiene la clave principal:
+
+```csharp
+context.Parents
+    .Select(p => p.Children
+        .Select(c => c.School)
+        .Distinct())
+```
+
+Estas consultas podrían devolver resultados incorrectos si la colección interna contuviera duplicados, pero funcionaría correctamente si todos los elementos de la colección interna fueran únicos.
+
+**Comportamiento nuevo**
+
+Estas consultas ya no son compatibles. Se produce una excepción que indica que no hay suficiente información para compilar los resultados correctamente.
+
+**Por qué**
+
+En el caso de los escenarios de colecciones correlacionadas, es necesario conocer la clave principal de la entidad para asignar entidades de colección al elemento primario correcto. Cuando la colección interna no utiliza `GroupBy` ni `Distinct`, la clave principal que falta se puede agregar simplemente a la proyección. Sin embargo, en el caso de `GroupBy` y `Distinct`, no se puede hacer porque cambiaría el resultado de la operación `GroupBy` o `Distinct`.
+
+**Mitigaciones**
+
+Vuelva a escribir la consulta para que no use las operaciones `GroupBy` o `Distinct` en la colección interna y, en su lugar, realice estas operaciones en el cliente.
+
+```csharp
+context.Parents
+    .Select(p => p.Children.Select(c => c.School))
+    .ToList()
+    .Select(x => x.GroupBy(c => c).Select(g => g.Key))
+```
+
+```csharp
+context.Parents
+    .Select(p => p.Children.Select(c => c.School))
+    .ToList()
+    .Select(x => x.Distinct())
+```
+
+<a name="queryable-projection"></a>
+
+### <a name="using-a-collection-of-queryable-type-in-projection-is-not-supported"></a>No se admite el uso de una colección de tipo consultable en la proyección
+
+[Incidencia de seguimiento n.º 16314](https://github.com/dotnet/efcore/issues/16314)
+
+**Comportamiento anterior**
+
+Anteriormente, era posible usar la colección de un tipo consultable dentro de la proyección en algunos casos, por ejemplo, como un argumento de un constructor `List<T>`:
+
+```csharp
+context.Blogs
+    .Select(b => new List<Post>(context.Posts.Where(p => p.BlogId == b.Id)))
+```
+
+**Comportamiento nuevo**
+
+Estas consultas ya no son compatibles. Se produce una excepción que indica que no se puede crear un objeto de tipo consultable y, además, se sugiere cómo corregir este problema.
+
+**Por qué**
+
+No se puede materializar un objeto de un tipo consultable, por lo que, en su lugar, se creará automáticamente con el tipo `List<T>`. Esto suele provocar una excepción debido a una falta de coincidencia de tipos que no era muy clara y podría ser sorprendente para algunos usuarios. Decidimos reconocer el patrón y producir una excepción más significativa.
+
+**Mitigaciones**
+
+Agregue la llamada a `ToList()` después del objeto consultable en la proyección:
+
+```csharp
+context.Blogs.Select(b => context.Posts.Where(p => p.BlogId == b.Id).ToList())
+```

@@ -2,14 +2,14 @@
 title: 'Consultas de seguimiento frente a consultas de no seguimiento: EF Core'
 description: Información sobre las consultas de seguimiento y no seguimiento en Entity Framework Core
 author: smitpatel
-ms.date: 10/10/2019
+ms.date: 11/09/2020
 uid: core/querying/tracking
-ms.openlocfilehash: dff6c14edcd69e7d16be8bab5fa3088c2c1288e1
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: b4c059f9a9b726697009589271e007bd1d2afd56
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063665"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430448"
 ---
 # <a name="tracking-vs-no-tracking-queries"></a>Consultas de seguimiento frente a consultas de no seguimiento
 
@@ -27,9 +27,11 @@ De manera predeterminada, las consultas que devuelven tipos de entidad son consu
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Program.cs#Tracking)]
 
+Cuando los resultados se devuelven en una consulta de seguimiento, EF Core comprobará si la entidad ya está en el contexto. Si EF Core encuentra una entidad existente, se devuelve la misma instancia. EF Core no sobrescribirá los valores actuales y originales de las propiedades de la entidad en la entrada con los valores de la base de datos. Si no se encuentra la entidad en el contexto, EF Core creará una nueva instancia de la entidad y la asociará al contexto. Los resultados de la consulta no contienen ninguna entidad, que se agrega al contexto pero aún no se guarda en la base de datos.
+
 ## <a name="no-tracking-queries"></a>Consultas de no seguimiento
 
-Las consultas de no seguimiento son útiles cuando los resultados se usan en un escenario de solo lectura. Su ejecución es más rápida porque no es necesario configurar la información de seguimiento de cambios. Si no necesita actualizar las entidades recuperadas de la base de datos, se debe usar una consulta de no seguimiento. Puede cambiar una consulta individual para que sea una consulta de no seguimiento.
+Las consultas de no seguimiento son útiles cuando los resultados se usan en un escenario de solo lectura. Su ejecución es más rápida porque no es necesario configurar la información de seguimiento de cambios. Si no necesita actualizar las entidades recuperadas de la base de datos, se debe usar una consulta de no seguimiento. Puede cambiar una consulta individual para que sea una consulta de no seguimiento. Una consulta de no seguimiento también proporcionará los resultados en función de lo que haya en la base de datos, sin tener en cuenta los cambios locales ni las entidades agregadas.
 
 [!code-csharp[Main](../../../samples/core/Querying/Tracking/Program.cs#NoTracking)]
 
@@ -40,6 +42,10 @@ También puede cambiar el comportamiento de seguimiento predeterminado en el niv
 ## <a name="identity-resolution"></a>Resolución de identidad
 
 Dado que una consulta de seguimiento usa la herramienta de seguimiento de cambios, EF Core realizará la resolución de identidades en una consulta de este tipo. Al materializar una entidad, EF Core devolverá la misma instancia de entidad de la herramienta de seguimiento de cambios si ya está en proceso de seguimiento. Si el resultado contiene la misma entidad varias veces, se devuelve la misma instancia con cada repetición. Las consultas de no seguimiento no usan la herramienta de seguimiento de cambios y no realizan la resolución de identidades. Así que, se devuelve una nueva instancia de la entidad incluso cuando la misma entidad está contenida en el resultado varias veces. Este comportamiento era diferente en las versiones anteriores a EF Core 3.0; consulte las [versiones anteriores](#previous-versions).
+
+A partir de EF Core 5.0, puede combinar los dos comportamientos anteriores en la misma consulta. Es decir, puede tener una consulta de no seguimiento, que llevará a cabo la resolución de identidades en los resultados. Al igual que el operador consultable `AsNoTracking()`, hemos agregado otro operador `AsNoTrackingWithIdentityResolution()`. También hay una entrada asociada agregada en la enumeración <xref:Microsoft.EntityFrameworkCore.QueryTrackingBehavior>. Cuando se configura la consulta para usar la resolución de identidad sin seguimiento, se usa un seguimiento de cambios independiente en segundo plano al generar los resultados de la consulta, por lo que cada instancia se materializa solo una vez. Dado que esta herramienta de seguimiento de cambios es diferente de la que se encuentra en el contexto, el contexto no realiza el seguimiento de los resultados. Una vez que se completa la enumeración de la consulta, la herramienta de seguimiento de cambios queda fuera de ámbito y se recopilan los elementos no utilizados según sea necesario.
+
+[!code-csharp[Main](../../../samples/core/Querying/Tracking/Program.cs#NoTrackingWithIdentityResolution)]
 
 ## <a name="tracking-and-custom-projections"></a>Seguimiento y proyecciones personalizadas
 

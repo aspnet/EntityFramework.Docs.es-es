@@ -4,12 +4,12 @@ description: Información detallada sobre los operadores de consulta LINQ más c
 author: smitpatel
 ms.date: 10/03/2019
 uid: core/querying/complex-query-operators
-ms.openlocfilehash: 03375e6c46a68a719df82572333f0a57e7de6262
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 84c2518972355d31cf5a6a7bafc57b44162412c8
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92062625"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430487"
 ---
 # <a name="complex-query-operators"></a>Operadores de consulta complejos
 
@@ -20,7 +20,7 @@ Language Integrated Query (LINQ) contiene muchos operadores complejos, que combi
 
 ## <a name="join"></a>Join
 
-El operador Join de LINQ permite conectar dos orígenes de datos en función del selector de claves de cada origen, lo que genera una tupla de valores cuando la clave coincide. Se traduce de forma natural a `INNER JOIN` en las bases de datos relacionales. Aunque Join de LINQ tiene selectores de clave externa e interna, la base de datos requiere una única condición de combinación. Por tanto, EF Core genera una condición de combinación que compara el selector de clave externa con el selector de clave interna para determinar si son iguales. Además, si los selectores de clave son tipos anónimos, EF Core genera una condición de combinación para comparar los componentes de igualdad.
+El operador Join de LINQ permite conectar dos orígenes de datos en función del selector de claves de cada origen, lo que genera una tupla de valores cuando la clave coincide. Se traduce de forma natural a `INNER JOIN` en las bases de datos relacionales. Aunque Join de LINQ tiene selectores de clave externa e interna, la base de datos requiere una única condición de combinación. Por tanto, EF Core genera una condición de combinación que compara el selector de clave externa con el selector de clave interna para determinar si son iguales.
 
 [!code-csharp[Main](../../../samples/core/Querying/ComplexQuery/Program.cs#Join)]
 
@@ -28,6 +28,16 @@ El operador Join de LINQ permite conectar dos orígenes de datos en función del
 SELECT [p].[PersonId], [p].[Name], [p].[PhotoId], [p0].[PersonPhotoId], [p0].[Caption], [p0].[Photo]
 FROM [PersonPhoto] AS [p0]
 INNER JOIN [Person] AS [p] ON [p0].[PersonPhotoId] = [p].[PhotoId]
+```
+
+Además, si los selectores de claves son tipos anónimos, EF Core genera una condición de combinación para comparar los componentes de igualdad.
+
+[!code-csharp[Main](../../../samples/core/Querying/ComplexQuery/Program.cs#JoinComposite)]
+
+```sql
+SELECT [p].[PersonId], [p].[Name], [p].[PhotoId], [p0].[PersonPhotoId], [p0].[Caption], [p0].[Photo]
+FROM [PersonPhoto] AS [p0]
+INNER JOIN [Person] AS [p] ON ([p0].[PersonPhotoId] = [p].[PhotoId] AND ([p0].[Caption] = N'SN'))
 ```
 
 ## <a name="groupjoin"></a>GroupJoin

@@ -1,6 +1,6 @@
-## <a name="entity-framework-docs"></a>Documentación de Entity Framework
+# <a name="entity-framework-docs"></a>Documentación de Entity Framework
 
-Este proyecto contiene el origen de la documentación de EF Core y EF6 que se encuentra en [docs.microsoft.com/ef](https://docs.microsoft.com/ef/). 
+Este proyecto contiene el origen de la documentación de EF Core y EF6 que se encuentra en [docs.microsoft.com/ef](https://docs.microsoft.com/ef/).
 
 Los problemas de documentación para EF Core y EF6 se deben archivar en este repositorio. Los problemas del producto (errores) se deben archivar en el [repositorio de EF Core](https://github.com/dotnet/efcore) o el [repositorio de EF6](https://github.com/dotnet/ef6), según corresponda.
 

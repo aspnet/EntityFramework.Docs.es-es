@@ -4,12 +4,12 @@ description: Uso de filtros de consulta globales para filtrar los resultados con
 author: maumar
 ms.date: 11/03/2017
 uid: core/querying/filters
-ms.openlocfilehash: 8a9eabd7e86864c9ebb4b1dc4a06bf7fc207d496
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 6436f9f8e2e09d44ef9528fd2022720d40095fe0
+ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92062612"
+ms.lasthandoff: 11/10/2020
+ms.locfileid: "94430136"
 ---
 # <a name="global-query-filters"></a>Filtros de consulta global
 
@@ -46,6 +46,21 @@ Las expresiones de predicado pasadas a las llamadas de `HasQueryFilter` ahora se
 ## <a name="use-of-navigations"></a>Uso de navegaciones
 
 También se pueden usar las navegaciones en la definición de filtros de consulta global. El uso de navegaciones en el filtro de consulta hará que los filtros de consulta se apliquen de forma recursiva. Cuando EF Core expande las navegaciones que se usan en los filtros de consulta, también aplica los filtros de consulta definidos en las entidades a las que se hace referencia.
+
+Para ilustrar esto, configure los filtros de consulta en `OnModelCreating` de la siguiente manera: [!code-csharp[Main](../../../samples/core/Querying/QueryFilters/FilteredBloggingContextRequired.cs#NavigationInFilter)]
+
+A continuación, consulte todas las entidades `Blog`: [!code-csharp[Main](../../../samples/core/Querying/QueryFilters/FilteredBloggingContextRequired.cs#QueriesNavigation)]
+
+Esta consulta genera el siguiente código SQL, que aplica los filtros de consulta definidos para las entidades `Blog` y `Post`:
+
+```sql
+SELECT [b].[BlogId], [b].[Name], [b].[Url]
+FROM [Blogs] AS [b]
+WHERE (
+    SELECT COUNT(*)
+    FROM [Posts] AS [p]
+    WHERE ([p].[Title] LIKE N'%fish%') AND ([b].[BlogId] = [p].[BlogId])) > 0
+```
 
 > [!NOTE]
 > Actualmente EF Core no detecta ciclos en las definiciones de filtros de consulta global, por lo que debe tener cuidado al definirlas. Si se especifican incorrectamente, los ciclos pueden provocar bucles infinitos durante la traslación de consultas.
