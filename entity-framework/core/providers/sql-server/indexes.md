@@ -4,12 +4,12 @@ description: Características de índice específicas del proveedor de SQL Serve
 author: roji
 ms.date: 9/1/2020
 uid: core/providers/sql-server/indexes
-ms.openlocfilehash: a01ab3d12f5bf5f05f0925c93d90c0ee40fe977c
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 66b4e3ce5ab1d4da855c106a6a2d2e75c43081f7
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92061871"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003165"
 ---
 # <a name="index-features-specific-to-the-entity-framework-core-sql-server-provider"></a>Características de índice específicas del proveedor de SQL Server de Entity Framework Core
 
@@ -28,7 +28,7 @@ Puede configurar un índice o una clave para agruparlos como se indica a continu
 ## <a name="fill-factor"></a>Factor de relleno
 
 > [!NOTE]
-> Esta característica se incluye por primera vez en EF Core 5.0.
+> Esta característica se presentó en EF Core 5,0.
 
 La opción de factor de relleno de índice se proporciona para ajustar el rendimiento y el almacenamiento de datos de índice. Para obtener más información, consulte [la documentación de SQL Server sobre el factor de relleno](/sql/relational-databases/indexes/specify-fill-factor-for-an-index).
 

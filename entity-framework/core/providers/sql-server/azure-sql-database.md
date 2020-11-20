@@ -4,17 +4,17 @@ description: Cómo especificar el nivel de servicio y de rendimiento para Azure 
 author: AndriySvyryd
 ms.date: 11/05/2019
 uid: core/providers/sql-server/azure-sql-database
-ms.openlocfilehash: 9b2cc5e0790beb41295dcea6ae30c4ad15b537fa
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: ad202336c2c2efdfe17776952f2a65e98222ecc0
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92065373"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003593"
 ---
 # <a name="specifying-azure-sql-database-options"></a>Especificación de opciones de Azure SQL Database
 
 >[!NOTE]
-> Esta API es nueva en EF Core 3,1.
+> Esta API se presentó en EF Core 3,1.
 
 Azure SQL Database proporciona [una variedad de opciones de precios](https://azure.microsoft.com/pricing/details/sql-database/single/) que normalmente se configuran a través de Azure portal. Sin embargo, si administra el esquema mediante [migraciones de EF Core](xref:core/managing-schemas/migrations/index) , puede especificar las opciones deseadas en el propio modelo.
 

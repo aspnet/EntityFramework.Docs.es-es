@@ -4,21 +4,21 @@ description: Usar datos espaciales en un modelo de Entity Framework Core
 author: bricelam
 ms.date: 10/02/2020
 uid: core/modeling/spatial
-ms.openlocfilehash: fa9cf30ddb4291d96486934544b568b67b126846
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: a38e75e150b3d3404f2ed7619d05ba478c411117
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430526"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003450"
 ---
 # <a name="spatial-data"></a>Datos espaciales
 
 > [!NOTE]
-> Esta característica se agregó en EF Core 2,2.
+> Esta característica se presentó en EF Core 2,2.
 
 Los datos espaciales representan la ubicación física y la forma de los objetos. Muchas bases de datos proporcionan compatibilidad con este tipo de datos, por lo que se puede indizar y consultar junto con otros datos. Entre los escenarios comunes se incluyen las consultas de objetos dentro de una distancia determinada desde una ubicación o la selección del objeto cuyo borde contiene una ubicación determinada. EF Core admite la asignación a tipos de datos espaciales mediante la biblioteca espacial NetTopologySuite.
 
-## <a name="installing"></a>Instalación de
+## <a name="installing"></a>Instalación
 
 Para usar los datos espaciales con EF Core, debe instalar el paquete NuGet de soporte adecuado. El paquete que necesita instalar depende del proveedor que esté usando.
 
@@ -78,7 +78,7 @@ En LINQ, los métodos y las propiedades NTS disponibles como funciones de base d
 
 ## <a name="reverse-engineering"></a>Ingeniería inversa
 
-Los paquetes de NuGet espaciales también habilitan los modelos de [ingeniería inversa](xref:core/managing-schemas/scaffolding) con propiedades espaciales, pero debe instalar el paquete * *_antes_* de ejecutar `Scaffold-DbContext` o `dotnet ef dbcontext scaffold` . Si no lo hace, recibirá advertencias sobre cómo no encontrar las asignaciones de tipos para las columnas y se omitirán las columnas.
+Los paquetes de NuGet espaciales también habilitan los modelos de [ingeniería inversa](xref:core/managing-schemas/scaffolding) con propiedades espaciales, pero debe instalar el paquete **_antes_* de ejecutar `Scaffold-DbContext` o `dotnet ef dbcontext scaffold` . Si no lo hace, recibirá advertencias sobre cómo no encontrar las asignaciones de tipos para las columnas y se omitirán las columnas.
 
 ## <a name="srid-ignored-during-client-operations"></a>SRID omitido durante las operaciones de cliente
 

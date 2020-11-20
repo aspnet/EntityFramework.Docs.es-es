@@ -4,12 +4,12 @@ description: Agregar, quitar y administrar de otro modo migraciones de esquemas 
 author: bricelam
 ms.date: 10/27/2020
 uid: core/managing-schemas/migrations/managing
-ms.openlocfilehash: 81f7cec54510d95b1e2432d56ff95110224fd9bf
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: ef5e1b9bb10d6f1cd428db2fee327ec513c3f528
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429861"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003281"
 ---
 # <a name="managing-migrations"></a>Administrar migraciones
 
@@ -38,11 +38,11 @@ Add-Migration AddBlogCreatedTimestamp
 
 El nombre de la migración se puede usar como mensaje de confirmación en un sistema de control de versiones. Por ejemplo, puede elegir un nombre como *AddBlogCreatedTimestamp* si el cambio es una nueva `CreatedTimestamp` propiedad en la `Blog` entidad.
 
-Se agregan tres archivos al proyecto en el directorio **Migraciones** :
+Se agregan tres archivos al proyecto en el directorio **Migraciones**:
 
-* **XXXXXXXXXXXXXX_AddCreatedTimestamp. CS** : el archivo de migraciones principal. Contiene las operaciones necesarias para aplicar la migración (en `Up`) y para revertirla (en `Down`).
-* **XXXXXXXXXXXXXX_AddCreatedTimestamp. Designer. CS** : el archivo de metadatos de migraciones. Contiene información que usa EF.
-* **MyContextModelSnapshot.cs** : instantánea del modelo actual. Se usa para determinar qué ha cambiado al agregar la siguiente migración.
+* **XXXXXXXXXXXXXX_AddCreatedTimestamp. CS**: el archivo de migraciones principal. Contiene las operaciones necesarias para aplicar la migración (en `Up`) y para revertirla (en `Down`).
+* **XXXXXXXXXXXXXX_AddCreatedTimestamp. Designer. CS**: el archivo de metadatos de migraciones. Contiene información que usa EF.
+* **MyContextModelSnapshot.cs**: instantánea del modelo actual. Se usa para determinar qué ha cambiado al agregar la siguiente migración.
 
 La marca de tiempo del nombre del archivo ayuda a mantenerlos ordenados cronológicamente para que se pueda ver la progresión de cambios.
 
@@ -210,7 +210,7 @@ dotnet ef migrations list
 ### <a name="visual-studio"></a>[Visual Studio](#tab/vs)
 
 > [!NOTE]
-> Este comando se agregó en EF Core 5,0.
+> Este comando se presentó en EF Core 5,0.
 
 ```powershell
 Get-Migration
@@ -220,7 +220,7 @@ Get-Migration
 
 ## <a name="resetting-all-migrations"></a>Restableciendo todas las migraciones
 
-En algunos casos extremos, puede que sea necesario quitar todas las migraciones y empezar de nuevo. Esto se puede hacer fácilmente eliminando la carpeta _ *Migrations* * y quitando la base de datos. en ese momento, puede crear una nueva migración inicial, que contendrá todo el esquema actual.
+En algunos casos extremos, puede que sea necesario quitar todas las migraciones y empezar de nuevo. Esto se puede hacer fácilmente eliminando la carpeta _ *Migrations** y quitando la base de datos. en ese momento, puede crear una nueva migración inicial, que contendrá todo el esquema actual.
 
 También es posible restablecer todas las migraciones y crear una sola sin perder los datos. A veces, esto se denomina "" "en" ", y implica algún trabajo manual:
 

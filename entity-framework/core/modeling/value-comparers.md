@@ -4,17 +4,17 @@ description: Usar comparadores de valores para controlar cómo EF Core compara l
 author: ajcvickers
 ms.date: 03/20/2020
 uid: core/modeling/value-comparers
-ms.openlocfilehash: d07aee866a542f55c4e1074c5782e67cb4035a89
-ms.sourcegitcommit: 7c3939504bb9da3f46bea3443638b808c04227c2
+ms.openlocfilehash: d59ab093c7e9d251aac80420972d3e35edabae0b
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/09/2020
-ms.locfileid: "89616679"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003619"
 ---
 # <a name="value-comparers"></a>Comparadores de valores
 
 > [!NOTE]  
-> Esta característica es nueva en EF Core 3,0.
+> Esta característica se presentó en EF Core 3,0.
 
 > [!TIP]  
 > El código de este documento se puede encontrar en GitHub como un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/ValueConversions/).

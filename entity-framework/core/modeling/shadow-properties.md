@@ -4,12 +4,12 @@ description: Configurar las propiedades de sombra e indexador en un modelo de En
 author: AndriySvyryd
 ms.date: 10/09/2020
 uid: core/modeling/shadow-properties
-ms.openlocfilehash: 180478212b683a271d2519cc1a4c79be5d3f11b9
-ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
+ms.openlocfilehash: d419de2da2a9fc29e675dde76e824217347d2e9c
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94503194"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003437"
 ---
 # <a name="shadow-and-indexer-properties"></a>Propiedades de sombra e indexador
 
@@ -63,7 +63,7 @@ Si el nombre proporcionado al `IndexerProperty` método coincide con el nombre d
 ## <a name="property-bag-entity-types"></a>Tipos de entidad de contenedor de propiedades
 
 > [!NOTE]
-> Se ha agregado compatibilidad con los tipos de entidad del contenedor de propiedades en EF Core 5,0.
+> La compatibilidad con los tipos de entidad del contenedor de propiedades se presentó en EF Core 5,0.
 
 Los tipos de entidad que contienen solo propiedades de indizador se conocen como tipos de entidad de contenedor de propiedades. Estos tipos de entidad no tienen propiedades de sombra; en su lugar, EF creará las propiedades del indexador. Actualmente solo `Dictionary<string, object>` se admite como un tipo de entidad de contenedor de propiedades. Debe configurarse como un tipo de entidad compartida con un nombre único y la `DbSet` propiedad correspondiente debe implementarse mediante una `Set` llamada.
 

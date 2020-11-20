@@ -4,12 +4,12 @@ description: Cómo configurar y asignar propiedades de entidad mediante Entity F
 author: roji
 ms.date: 05/27/2020
 uid: core/modeling/entity-properties
-ms.openlocfilehash: 55c6f31543d4ce3257cf203eaf9fd2191301ea7e
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 67ea6eb9cc62c01c16ef33d4d1d1597576ec8b3d
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429603"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003422"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
 
@@ -157,7 +157,7 @@ Una propiedad que sería opcional por Convención se puede configurar para que s
 ## <a name="column-collations"></a>Intercalaciones de columna
 
 > [!NOTE]
-> Esta característica se incluye por primera vez en EF Core 5.0.
+> Esta característica se presentó en EF Core 5,0.
 
 Una intercalación se puede definir en columnas de texto, determinando cómo se comparan y ordenan. Por ejemplo, el siguiente fragmento de código configura una columna de SQL Server para que no distinga entre mayúsculas y minúsculas:
 

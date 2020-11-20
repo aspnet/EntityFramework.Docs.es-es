@@ -4,23 +4,23 @@ description: Configuración de intercalaciones y distinción de mayúsculas y mi
 author: roji
 ms.date: 04/27/2020
 uid: core/miscellaneous/collations-and-case-sensitivity
-ms.openlocfilehash: cced7e11f7bf02223d3f181677ad1707c1da4051
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: eca68af6e658f76e1480b1e1083212f160fa765c
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429746"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003463"
 ---
 # <a name="collations-and-case-sensitivity"></a>Intercalaciones y distinción entre mayúsculas y minúsculas
 
 > [!NOTE]
-> Esta característica se incluye por primera vez en EF Core 5.0.
+> Esta característica se presentó en EF Core 5,0.
 
 El procesamiento de texto en las bases de datos puede ser un proceso complejo y requiere más atención al usuario de que se sospeche. Por un lado, las bases de datos varían considerablemente en el modo en que controlan el texto; por ejemplo, mientras que algunas bases de datos distinguen mayúsculas de minúsculas de forma predeterminada (por ejemplo, SQLite, PostgreSQL), otras no distinguen mayúsculas de minúsculas (SQL Server, MySQL). Además, debido al uso de índices, la distinción de mayúsculas y minúsculas y los aspectos similares pueden tener un impacto de gran alcance en el rendimiento de las consultas: aunque puede ser tentador utilizar `string.Lower` para forzar una comparación sin distinción entre mayúsculas y minúsculas en una base de datos que distingue mayúsculas de minúsculas, si lo hace, puede evitar que la aplicación use índices. En esta página se detalla cómo configurar la distinción de mayúsculas y minúsculas, o más en general, las intercalaciones y cómo hacerlo de manera eficaz sin poner en peligro el rendimiento de las consultas.
 
 ## <a name="introduction-to-collations"></a>Introducción a las intercalaciones
 
-Un concepto fundamental en el procesamiento de texto es la *Intercalación* , que es un conjunto de reglas que determinan cómo se ordenan y comparan la igualdad de los valores de texto. Por ejemplo, mientras que una intercalación que no distingue entre mayúsculas y minúsculas no tiene en cuenta las diferencias entre las letras mayúsculas y minúsculas para los fines de la comparación de igualdad, una intercalación que distingue entre mayúsculas y minúsculas no lo hace. Sin embargo, dado que la distinción de mayúsculas y minúsculas es dependiente de la referencia cultural (por ejemplo, `i` y `I` representa una letra diferente en Turco), existen varias intercalaciones que distinguen entre mayúsculas y minúsculas, cada una con su propio conjunto de reglas. El ámbito de las intercalaciones también se extiende más allá de la distinción entre mayúsculas y minúsculas y otros aspectos de los datos de caracteres. en alemán, por ejemplo, a veces es conveniente tratar (pero no siempre) `ä` `ae` como idéntico. Por último, las intercalaciones también definen cómo se *ordenan* los valores de texto: mientras que el alemán coloca `ä` después `a` de, sueco lo coloca al final del alfabeto.
+Un concepto fundamental en el procesamiento de texto es la *Intercalación*, que es un conjunto de reglas que determinan cómo se ordenan y comparan la igualdad de los valores de texto. Por ejemplo, mientras que una intercalación que no distingue entre mayúsculas y minúsculas no tiene en cuenta las diferencias entre las letras mayúsculas y minúsculas para los fines de la comparación de igualdad, una intercalación que distingue entre mayúsculas y minúsculas no lo hace. Sin embargo, dado que la distinción de mayúsculas y minúsculas es dependiente de la referencia cultural (por ejemplo, `i` y `I` representa una letra diferente en Turco), existen varias intercalaciones que distinguen entre mayúsculas y minúsculas, cada una con su propio conjunto de reglas. El ámbito de las intercalaciones también se extiende más allá de la distinción entre mayúsculas y minúsculas y otros aspectos de los datos de caracteres. en alemán, por ejemplo, a veces es conveniente tratar (pero no siempre) `ä` `ae` como idéntico. Por último, las intercalaciones también definen cómo se *ordenan* los valores de texto: mientras que el alemán coloca `ä` después `a` de, sueco lo coloca al final del alfabeto.
 
 Todas las operaciones de texto en una base de datos utilizan una intercalación, ya sea explícita o implícitamente, para determinar cómo la operación compara y ordena las cadenas. La lista real de intercalaciones disponibles y sus esquemas de nomenclatura son específicos de la base de datos; consulte [la sección siguiente](#database-specific-information) para obtener vínculos a las páginas de documentación relevantes de varias bases de datos. Afortunadamente, la base de datos normalmente permite definir una intercalación predeterminada en el nivel de base de datos o de columna, y especificar explícitamente qué intercalación debe usarse para las operaciones específicas en una consulta.
 

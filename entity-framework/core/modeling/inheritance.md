@@ -4,12 +4,12 @@ description: Cómo configurar la herencia de tipos de entidad mediante Entity Fr
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/inheritance
-ms.openlocfilehash: 3ec6e7bd98f9c9716c460d69fc707d95e5e47a05
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 33429bbc4a9941ff8ea98a8f99cc652c8ea26455
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429525"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003632"
 ---
 # <a name="inheritance"></a>Herencia
 
@@ -64,7 +64,7 @@ De forma predeterminada, cuando dos tipos de entidad del mismo nivel en la jerar
 ## <a name="table-per-type-configuration"></a>Configuración de tabla por tipo
 
 > [!NOTE]
-> La tabla por tipo (TPT) es una nueva característica de EF Core 5,0. La tabla por tipo específico (TPC) es compatible con EF6, pero aún no es compatible con EF Core.
+> La característica tabla por tipo (TPT) se presentó en EF Core 5,0. La tabla por tipo específico (TPC) es compatible con EF6, pero aún no es compatible con EF Core.
 
 En el patrón de asignación de TPT, todos los tipos se asignan a tablas individuales. Las propiedades que pertenecen solamente a un tipo base o a un tipo derivado se almacenan en una tabla que se asigna a ese tipo. Las tablas que se asignan a tipos derivados también almacenan una clave externa que une la tabla derivada con la tabla base.
 
