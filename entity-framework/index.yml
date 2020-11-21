@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 04/15/2020
-  ms.openlocfilehash: 6d10d0c8487114548ed70d5ad9b152010ccfbf69
-  ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+  ms.openlocfilehash: 71b676ca7890997c84aa6c80cfdbcf934406d7a9
+  ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
   ms.translationtype: HT
   ms.contentlocale: es-ES
-  ms.lasthandoff: 11/10/2020
-  ms.locfileid: "94429200"
+  ms.lasthandoff: 11/20/2020
+  ms.locfileid: "95003684"
 highlightedContent:
   items:
   - title: Entity Framework Core
@@ -36,9 +36,6 @@ highlightedContent:
   - title: Explorador de referencia de API
     itemType: reference
     url: /dotnet/api/?view=efcore-3.1
-  - title: Realizar la encuesta de EF Core 6
-    itemType: reference
-    url: https://www.surveymonkey.com/r/XRL3JBL
 additionalContent:
   sections:
   - title: Desarrollo con Entity Framework Core
