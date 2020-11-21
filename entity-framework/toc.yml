@@ -19,8 +19,6 @@
       items:
         - name: ¡Bienvenido!
           href: core/index.md
-        - name: Realizar la encuesta de EF Core 6 >>
-          href: 'https://www.surveymonkey.com/r/XRL3JBL'
         - name: Introducción
           items:
             - name: Información general sobre EF Core
@@ -216,6 +214,8 @@
               href: core/logging-events-diagnostics/interceptors.md
             - name: Escuchas de diagnóstico
               href: core/logging-events-diagnostics/diagnostic-listeners.md
+            - name: Contadores de eventos
+              href: core/logging-events-diagnostics/event-counters.md
         - name: Pruebas
           items:
             - name: Pruebas de código que usa EF Core
