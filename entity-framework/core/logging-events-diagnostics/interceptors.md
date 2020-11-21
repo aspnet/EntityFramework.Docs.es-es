@@ -4,20 +4,20 @@ description: Interceptación de operaciones de base de datos y otros eventos
 author: ajcvickers
 ms.date: 10/08/2020
 uid: core/logging-events-diagnostics/interceptors
-ms.openlocfilehash: 61ec6968344798af8ecffb878a1e47a6a8e031cd
-ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
+ms.openlocfilehash: 22d860a083c5ece9be109be630c3ce01dd742bf2
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94503207"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003423"
 ---
 # <a name="interceptors"></a>Interceptores
 
-Los interceptores de Entity Framework Core (EF Core) permiten la interceptación, modificación y/o supresión de operaciones de EF Core. Esto incluye operaciones de base de datos de bajo nivel, como la ejecución de un comando, así como operaciones de nivel superior, como llamadas a SaveChanges.
+Los interceptores de Entity Framework Core (EF Core) permiten la interceptación, modificación y/o supresión de operaciones de EF Core. Esto incluye operaciones de base de datos de bajo nivel tales como ejecutar un comando, así como operaciones de nivel superior tales como llamadas a SaveChanges.
 
-Los interceptores son diferentes del registro y los diagnósticos, ya que permiten modificar o suprimir la operación que se va a interceptar. El [registro sencillo](xref:core/logging-events-diagnostics/simple-logging) o [Microsoft. Extensions. Logging](xref:core/logging-events-diagnostics/extensions-logging) son mejores opciones de registro.
+Los interceptores son distintos del registro y el diagnóstico en que permiten la modificación o supresión de la operación que se intercepta. El [registro sencillo](xref:core/logging-events-diagnostics/simple-logging) o [Microsoft.Extensions.Logging](xref:core/logging-events-diagnostics/extensions-logging) son mejores opciones de registro.
 
-Los interceptores se registran por instancia de DbContext cuando se configura el contexto. Use un [agente de escucha de diagnóstico](xref:core/logging-events-diagnostics/diagnostic-listeners) para obtener la misma información, pero para todas las instancias de DbContext en el proceso.
+Los interceptores se registran por instancia de DbContext al configurarse el contexto. Use una [escucha de diagnóstico](xref:core/logging-events-diagnostics/diagnostic-listeners) para obtener la misma información, pero para todas las instancias de DbContext del proceso.
 
 ## <a name="registering-interceptors"></a>Registro de interceptores
 
@@ -56,8 +56,8 @@ Cada instancia de interceptor debe implementar una o más interfaces derivadas d
 ## <a name="database-interception"></a>Interceptación de base de datos
 
 > [!NOTE]
-> La interceptación de la base de datos se agregó en EF Core 3,0 y solo está disponible para los proveedores de bases de datos relacionales.
-> Se ha agregado compatibilidad con el punto de retorno en EF Core 5,0.
+> La intercepción de bases de datos se presentó en EF Core 3,0 y solo está disponible para los proveedores de bases de datos relacionales.
+> La compatibilidad con el punto de retorno se presentó en EF Core 5,0.
 
 La interceptación de base de datos de bajo nivel se divide en las tres interfaces que se muestran en la tabla siguiente.
 
@@ -396,7 +396,7 @@ Tenga en cuenta la salida del registro de que la aplicación sigue utilizando el
 ## <a name="savechanges-interception"></a>Interceptación de SaveChanges
 
 > [!NOTE]
-> Se ha agregado la intercepción de SaveChanges en EF Core 5,0.
+> La intercepción de SaveChanges se presentó en EF Core 5,0.
 
 > [!TIP]  
 > Puede [descargar el ejemplo de interceptor de SaveChanges](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/SaveChangesInterception) desde github.
@@ -502,7 +502,7 @@ La idea general para la auditoría con el interceptor es:
 * Si SaveChanges se realiza correctamente, se actualiza el mensaje de auditoría para indicar que la operación se ha realizado correctamente.
 * Si se produce un error en SaveChanges, el mensaje de auditoría se actualiza para indicar el error.
 
-La primera fase se controla antes de que los cambios se envíen a la base de datos mediante invalidaciones de `ISaveChangesInterceptor.SavingChanges` <!-- Issue #2748 --> etc `ISaveChangesInterceptor.SavingChangesAsync`<!-- Issue #2748 -->.
+La primera fase se controla antes de que los cambios se envíen a la base de datos mediante invalidaciones de `ISaveChangesInterceptor.SavingChanges` <!-- Issue #2748 -->  y `ISaveChangesInterceptor.SavingChangesAsync`<!-- Issue #2748 -->.
 
 <!--
     public async ValueTask<InterceptionResult<int>> SavingChangesAsync(

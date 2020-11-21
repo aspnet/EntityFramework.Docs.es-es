@@ -4,12 +4,12 @@ description: Cómo configurar relaciones entre tipos de entidad al utilizar Enti
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/relationships
-ms.openlocfilehash: c92fa1904436ec43ff8918354a99440079e2a96a
-ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
+ms.openlocfilehash: 716c034bd73d831996b727da18c2c1f83dd55290
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94503220"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003268"
 ---
 # <a name="relationships"></a>Relaciones
 
@@ -149,7 +149,7 @@ Si solo tiene una propiedad de navegación, hay sobrecargas sin parámetros de `
 ### <a name="configuring-navigation-properties"></a>Configurar propiedades de navegación
 
 > [!NOTE]
-> Esta característica se agregó en EF Core 5.0.
+> Esta característica se presentó en EF Core 5,0.
 
 Una vez creada la propiedad de navegación, puede que necesite configurarla más adelante.
 
@@ -269,7 +269,7 @@ Con esta configuración, las columnas correspondientes a se `ShippingAddress` ma
 > Si usa [tipos de referencia que no aceptan valores NULL](/dotnet/csharp/nullable-references) , `IsRequired` no es necesario llamar a.
 
 > [!NOTE]
-> La capacidad de configurar si el dependiente es necesario se agregó en EF Core 5,0.
+> La capacidad de configurar si el dependiente es necesario se presentó en EF Core 5,0.
 
 ### <a name="many-to-many"></a>Varios a varios
 
@@ -320,14 +320,14 @@ Los datos adicionales se pueden almacenar en el tipo de entidad de combinación,
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyPayload.cs?name=ManyToManyPayload)]
 
 > [!NOTE]
-> La capacidad de configurar relaciones varios a varios se agregó en EF Core 5,0, para la versión anterior, use el siguiente enfoque.
+> La capacidad de configurar relaciones varios a varios se presentó en EF Core 5,0, para la versión anterior, use el siguiente enfoque.
 
 También puede representar una relación de varios a varios agregando el tipo de entidad de combinación y asignando dos relaciones uno a varios independientes.
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToMany.cs?name=ManyToMany&highlight=11-14,16-19,39-46)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToMany.cs?name=ManyToMany&highlight=16-19,21-24)]
 
 > [!NOTE]
-> Todavía no se ha agregado compatibilidad con la scaffolding de relaciones de varios a varios desde la base de datos. Consulte [problema de seguimiento](https://github.com/dotnet/efcore/issues/22475).
+> Todavía no se ha agregado compatibilidad con la aplicación de scaffolding a relaciones de varios a varios desde la base de datos. Vea la [incidencia de seguimiento](https://github.com/dotnet/efcore/issues/22475).
 
 ## <a name="additional-resources"></a>Recursos adicionales
 

@@ -4,17 +4,17 @@ description: Registro desde un EF Core DbContext mediante LogTo
 author: ajcvickers
 ms.date: 10/03/2020
 uid: core/logging-events-diagnostics/simple-logging
-ms.openlocfilehash: 49619cc10ea098e39e71dde347e00bbc3c39b13a
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 274fca39c45c4e2ccfd47f3c4eeb0834e00d18aa
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431342"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003515"
 ---
-# <a name="simple-logging"></a>Registro simple
+# <a name="simple-logging"></a>Registro sencillo
 
 > [!NOTE]
-> Esta característica se agregó en EF Core 5.0.
+> Esta característica se presentó en EF Core 5,0.
 
 > [!TIP]  
 > Puede [descargar el ejemplo de este artículo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/SimpleLogging) en github.
@@ -26,7 +26,7 @@ Se puede usar el registro simple de Entity Framework Core (EF Core) para obtener
 
 ## <a name="configuration"></a>Configuración
 
-Se puede tener acceso a EF Core registros desde cualquier tipo de aplicación mediante el uso de [LogTo](https://github.com/dotnet/efcore/blob/ec3df8fd7e4ea4ebeebfa747619cef37b23ab2c6/src/EFCore/DbContextOptionsBuilder.cs#L135) <!-- Issue #2748 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> --> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
+Se puede acceder a los registros de EF Core desde cualquier tipo de aplicación mediante el uso de [LogTo](https://github.com/dotnet/efcore/blob/ec3df8fd7e4ea4ebeebfa747619cef37b23ab2c6/src/EFCore/DbContextOptionsBuilder.cs#L135) <!-- Issue #2748 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> --> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
 
 <!--
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -143,7 +143,7 @@ A todos los mensajes de registro se les asigna un <xref:Microsoft.Extensions.Log
 
 Cada mensaje de registro se asigna a una categoría de registrador jerárquico con nombre. Las categorías son:
 
-| Category                                             | error de Hadoop
+| Category                                             | Mensajes
 |:-----------------------------------------------------|-------------------------------------------------
 | Microsoft.EntityFrameworkCore                        | Todos los mensajes de EF Core
 | Microsoft. EntityFrameworkCore. Database               | Todas las interacciones de base de datos

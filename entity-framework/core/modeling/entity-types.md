@@ -4,12 +4,12 @@ description: Cómo configurar y asignar tipos de entidad mediante Entity Framewo
 author: roji
 ms.date: 10/06/2020
 uid: core/modeling/entity-types
-ms.openlocfilehash: 9094193640e7cab6db3fed7ae0ab818a455156ca
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 9d86b959b5e0360df6d782d8d1c1c2f9393fdf8b
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429601"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003502"
 ---
 # <a name="entity-types"></a>Tipos de entidad
 
@@ -44,7 +44,7 @@ Si no desea incluir un tipo en el modelo, puede excluirlo:
 ### <a name="excluding-from-migrations"></a>Exclusión de las migraciones
 
 > [!NOTE]
-> La capacidad de excluir las tablas de las migraciones se agregó en EF Core 5,0.
+> La capacidad de excluir las tablas de las migraciones se presentó en EF Core 5,0.
 
 A veces resulta útil tener el mismo tipo de entidad asignado en varios `DbContext` tipos. Esto es especialmente cierto cuando se usan [contextos delimitados](https://www.martinfowler.com/bliki/BoundedContext.html), para los que es común tener un `DbContext` tipo diferente para cada contexto enlazado.
 
