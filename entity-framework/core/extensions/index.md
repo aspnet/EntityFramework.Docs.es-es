@@ -4,12 +4,12 @@ description: Herramientas y extensiones externas para Entity Framework Core
 author: ErikEJ
 ms.date: 04/11/2020
 uid: core/extensions/index
-ms.openlocfilehash: c7056bcb0831ae1919b3060aacf73dc5cb9c8cb1
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: dc8125ab522b5b0c5126fda2d7c8093c2babdc29
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429941"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003307"
 ---
 # <a name="ef-core-tools--extensions"></a>Herramientas y extensiones de EF Core
 
@@ -240,3 +240,9 @@ Implementación de entidades de eliminación temporal. Para EF Core: 3.
 Extiende EF Core para resolver cadenas de conexión de App.config. Para EF Core: 3.
 
 [Repositorio de GitHub](https://github.com/efcore/EFCore.ConfigurationManager)
+
+### <a name="detached-mapper"></a>Asignador desasociado
+
+Un asignador de entidades DTO con control de composición/agregación (similar a GraphDiff). Para EF Core: 3.5.
+
+[NuGet](https://www.nuget.org/packages/Detached.Mappers.EntityFramework)

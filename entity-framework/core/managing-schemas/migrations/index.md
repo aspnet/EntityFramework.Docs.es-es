@@ -4,12 +4,12 @@ description: Información general sobre el uso de migraciones para administrar e
 author: bricelam
 ms.date: 10/28/2020
 uid: core/managing-schemas/migrations/index
-ms.openlocfilehash: 9f1c9e266d60b7ed4aed783bb8e01864c93867ea
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: b9547298714af59453aeae6d05742a03c067708b
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429824"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003400"
 ---
 # <a name="migrations-overview"></a>Descripción general de las migraciones
 
@@ -45,7 +45,7 @@ En primer lugar, tendrá que instalar las [herramientas de línea de comandos de
 
 ### <a name="create-your-first-migration"></a>Creación de la primera migración
 
-Ya está listo para agregar la primera migración. Indique a EF Core que cree una migración llamada **InitialCreate** :
+Ya está listo para agregar la primera migración. Indique a EF Core que cree una migración llamada **InitialCreate**:
 
 #### <a name="net-core-cli"></a>[CLI de .NET Core](#tab/dotnet-core-cli)
 
@@ -61,7 +61,7 @@ Add-Migration InitialCreate
 
 **_
 
-EF Core creará un directorio denominado _ *Migrations* * (Migraciones) en el proyecto y generará varios archivos. Es recomendable inspeccionar lo que EF Core ha generado exactamente y, posiblemente, rectificarlo, pero este paso se omitirá por ahora.
+EF Core creará un directorio denominado _ *Migrations** (Migraciones) en el proyecto y generará varios archivos. Es recomendable inspeccionar lo que EF Core ha generado exactamente y, posiblemente, rectificarlo, pero este paso se omitirá por ahora.
 
 ### <a name="create-your-database-and-schema"></a>Creación de la base de datos y el esquema
 
@@ -141,7 +141,7 @@ Tenga en cuenta que, en esta ocasión, EF detecta que la base de datos ya existe
 ### <a name="excluding-parts-of-your-model"></a>Exclusión de elementos del modelo
 
 > [!NOTE]
-> Esta característica se agregó en EF Core 5.0.
+> Esta característica se incluyó por primera vez en EF Core 5.0.
 
 En ocasiones, es posible que quiera consultar tipos de otro DbContext. Esto puede dar lugar a conflictos de migración. Para evitarlo, excluya el tipo de las migraciones de uno de los elementos DbContext.
 

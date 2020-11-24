@@ -4,12 +4,12 @@ description: Información general sobre el registro, los eventos, los intercepto
 author: ajcvickers
 ms.date: 10/01/2020
 uid: core/logging-events-diagnostics/index
-ms.openlocfilehash: fdf536dc6ec15e6e520d574b14527a4e7a7b1d72
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 2c44772b22112645f85cf0bffa680bc510ea5afb
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431145"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003528"
 ---
 # <a name="overview-of-logging-and-interception"></a>Información general sobre el registro y la interceptación
 
@@ -32,7 +32,7 @@ En la siguiente tabla se proporciona una referencia rápida para las diferencias
 ## <a name="simple-logging"></a>Registro sencillo
 
 > [!NOTE]
-> Esta característica se agregó en EF Core 5.0.
+> Esta característica se incluyó por primera vez en EF Core 5.0.
 
 Se puede acceder a los registros de EF Core desde cualquier tipo de aplicación mediante el uso de [LogTo](https://github.com/dotnet/efcore/blob/ec3df8fd7e4ea4ebeebfa747619cef37b23ab2c6/src/EFCore/DbContextOptionsBuilder.cs#L135) <!-- Issue #2748 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> --> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
 
@@ -55,7 +55,7 @@ Consulte [Usar Microsoft.Extensions.Logging en EF Core](xref:core/logging-events
 ## <a name="events"></a>Eventos
 
 > [!NOTE]
-> Se agregaron eventos adicionales en EF Core 5.0.
+> Se incluyeron eventos adicionales en EF Core 5.0.
 
 EF Core expone [eventos de .NET](/dotnet/standard/events/) para que actúen como devoluciones de llamada cuando ocurran ciertas cosas en el código EF Core. Los eventos son más sencillos que los interceptores y permiten un registro más flexible. Sin embargo, solo son sincrónicos y, por tanto, no pueden realizar operaciones de E/S asincrónicas sin bloqueo.
 
@@ -66,7 +66,7 @@ Consulte [Eventos de .NET en EF Core](xref:core/logging-events-diagnostics/event
 ## <a name="interception"></a>Interception
 
 > [!NOTE]
-> Esta característica se agregó en EF Core 3.0. Se agregaron interceptores adicionales en EF Core 5.0.
+> Esta característica se incluyó por primera vez en EF Core 3.0. Los interceptores adicionales se incluyeron por primera vez en EF Core 5.0.
 
 Los interceptores de EF Core habilitan la intercepción, la modificación o la supresión de operaciones de EF Core. Esto incluye operaciones de base de datos de bajo nivel tales como ejecutar un comando, así como operaciones de nivel superior tales como llamadas a SaveChanges.
 
