@@ -4,12 +4,12 @@ description: Traducción de consultas en consultas únicas y divididas en SQL co
 author: smitpatel
 ms.date: 10/03/2019
 uid: core/querying/single-split-queries
-ms.openlocfilehash: 1c99d931c01b99de199710ffe661e1aac7a37263
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: ba282a0c5242b2eb87d681906571036d4751f6ac
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431205"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003567"
 ---
 # <a name="single-vs-split-queries"></a>Consultas únicas frente a consultas divididas
 
@@ -29,7 +29,7 @@ Si un blog típico tiene varias entradas relacionadas, las filas de estas entrad
 ## <a name="split-queries"></a>Consultas divididas
 
 > [!NOTE]
-> Esta característica se incluye por primera vez en EF Core 5.0. Solo funciona cuando se usa `Include`. [Este problema](https://github.com/dotnet/efcore/issues/21234) realiza un seguimiento de la compatibilidad con la consulta dividida al cargar datos relacionados en la proyección sin `Include`.
+> Esta característica se incluyó por primera vez en EF Core 5.0. Solo funciona cuando se usa `Include`. [Este problema](https://github.com/dotnet/efcore/issues/21234) realiza un seguimiento de la compatibilidad con la consulta dividida al cargar datos relacionados en la proyección sin `Include`.
 
 EF le permite especificar que una consulta LINQ determinada se debe *dividir* en varias consultas SQL. En lugar de instrucciones JOIN, las consultas divididas generan una consulta SQL adicional por cada navegación de colección incluida:
 
