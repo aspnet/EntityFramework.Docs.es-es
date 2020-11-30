@@ -4,12 +4,12 @@ description: Carga diligente de datos relacionados con Entity Framework Core
 author: roji
 ms.date: 9/8/2020
 uid: core/querying/related-data/eager
-ms.openlocfilehash: bd9c9045c1c2707d69ee4070bea59ad8066789f3
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 66956fcd85bb21a08c69fa93b93c12382bbfc8eb
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430110"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003580"
 ---
 # <a name="eager-loading-of-related-data"></a>Carga diligente de datos relacionados
 
@@ -47,10 +47,15 @@ Es posible que quiera incluir varias entidades relacionadas para una de las enti
 
 [!code-csharp[Main](../../../../samples/core/Querying/RelatedData/Program.cs#MultipleLeafIncludes)]
 
+> [!TIP]
+> También puede cargar varias navegaciones mediante un único método `Include`. Esto es posible para las "cadenas" de navegación que son todas las referencias, o cuando terminan con una sola colección.
+
+[!code-csharp[Main](../../../../samples/core/Querying/RelatedData/Program.cs#IncludeMultipleNavigationsWithSingleInclude)]
+
 ## <a name="filtered-include"></a>Inclusión filtrada
 
 > [!NOTE]
-> Esta característica se incluye por primera vez en EF Core 5.0.
+> Esta característica se incluyó por primera vez en EF Core 5.0.
 
 Al aplicar la inclusión para cargar datos relacionados, puede agregar determinadas operaciones enumerables en la navegación de colección incluida, lo que permite filtrar y ordenar los resultados.
 

@@ -4,12 +4,12 @@ description: Administración de transacciones para obtener atomicidad al guardar
 author: roji
 ms.date: 9/26/2020
 uid: core/saving/transactions
-ms.openlocfilehash: 2cefe23068a40122b7a37c21536213456eef7b66
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: b5e1fa2a0bcc466f22f03fee7ecaef9dcea1efaf
+ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063626"
+ms.lasthandoff: 11/20/2020
+ms.locfileid: "95003554"
 ---
 # <a name="using-transactions"></a>Usar transacciones
 
@@ -34,7 +34,13 @@ Si bien todos los proveedores de bases de datos relacionales admiten transaccion
 
 ## <a name="savepoints"></a>Puntos de retorno
 
+> [!NOTE]
+> Esta característica se incluyó por primera vez en EF Core 5.0.
+
 Cuando se invoca a `SaveChanges` y ya hay una transacción en curso en el contexto, EF crea automáticamente un *punto de retorno* antes de guardar los datos. Los puntos de retorno son puntos dentro de una transacción de base de datos a los que se puede revertir más tarde en caso de que ocurra un error o por cualquier otro motivo. Si `SaveChanges` encuentra algún error, revierte automáticamente la transacción al punto de retorno, y la transacción se mantiene en el mismo estado que si nunca se hubiera iniciado. Esto le permite posiblemente corregir problemas y volver a intentar guardar, en particular cuando ocurren problemas de [simultaneidad optimista](xref:core/saving/concurrency).
+
+> [!WARNING]
+> Los puntos de retorno son incompatibles con los conjuntos de resultados activos múltiples de SQL Server y no se usan. Si se produce un error durante `SaveChanges`, es posible que la transacción se quede en un estado desconocido.
 
 También es posible administrar los puntos de retorno de forma manual, del mismo modo que con las transacciones. En el ejemplo siguiente se crea un punto de retorno dentro de una transacción y se revierte cuando se produce un error:
 
