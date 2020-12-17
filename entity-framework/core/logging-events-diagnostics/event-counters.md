@@ -4,12 +4,12 @@ description: Seguimiento EF Core rendimiento y diagnóstico de anomalías con lo
 author: roji
 ms.date: 11/17/2020
 uid: core/logging-events-diagnostics/event-counters
-ms.openlocfilehash: 46acfe82d8aeb7d16146bae0cc2cd4ff733e2831
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 73d360b266db3d3252defbf4a4035c0eb430e22e
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003694"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635827"
 ---
 # <a name="event-counters"></a>Contadores de eventos
 
@@ -77,7 +77,7 @@ Press p to pause, r to resume, q to quit.
 
 Nombre del contador                          | Descripción
 ------------------------------------- | ----
-Active DbContexts                     | El número de instancias de DbContext activas y no desechadas actualmente en la aplicación. Si este número crece continuamente, puede tener una fuga porque las instancias de DbContext no se desechan correctamente. Tenga en cuenta que si está habilitada la [agrupación de contexto](xref:core/miscellaneous/context-pooling) , este número incluye instancias de DbContext agrupadas que no se usan actualmente.
+Active DbContexts                     | El número de instancias de DbContext activas y no desechadas actualmente en la aplicación. Si este número crece continuamente, puede tener una fuga porque las instancias de DbContext no se desechan correctamente. Tenga en cuenta que si está habilitada la [agrupación de contexto](xref:core/performance/advanced-performance-topics#dbcontext-pooling) , este número incluye instancias de DbContext agrupadas que no se usan actualmente.
 Errores de operación de la estrategia de ejecución | Número de veces que una operación de base de datos no se pudo ejecutar. Si se habilita una estrategia de ejecución de reintento, esto incluye cada error individual en varios intentos en la misma operación. Se puede usar para detectar problemas transitorios con la infraestructura.
 Errores de simultaneidad optimista       | Número de veces `SaveChanges` que se produjo un error de simultaneidad optimista porque los datos del almacén de datos se cambiaron desde que el código lo cargó. Esto corresponde a un <xref:Microsoft.EntityFrameworkCore.DbUpdateConcurrencyException> que se está iniciando.
 Consultas                               | El número de consultas ejecutadas.

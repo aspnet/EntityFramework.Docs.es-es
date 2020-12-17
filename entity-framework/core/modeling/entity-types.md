@@ -4,12 +4,12 @@ description: Cómo configurar y asignar tipos de entidad mediante Entity Framewo
 author: roji
 ms.date: 10/06/2020
 uid: core/modeling/entity-types
-ms.openlocfilehash: 9d86b959b5e0360df6d782d8d1c1c2f9393fdf8b
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: ca8cb8560afe374218e763bc0476839187a40ece
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003502"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635775"
 ---
 # <a name="entity-types"></a>Tipos de entidad
 
@@ -84,7 +84,7 @@ Puede configurar las tablas que se van a crear en un esquema específico de la s
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableNameAndSchema.cs?name=TableNameAndSchema&highlight=3-4)]
 
-_**
+_*_
 
 En lugar de especificar el esquema de cada tabla, también puede definir el esquema predeterminado en el nivel de modelo con la API fluida:
 
@@ -105,3 +105,63 @@ Los tipos de entidad pueden asignarse a vistas de base de datos mediante la API 
 
 > [!TIP]
 > Para probar los tipos de entidad asignados a las vistas mediante el proveedor en memoria, asígnelo a una consulta a través de `ToInMemoryQuery` . Vea un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing/ItemsWebApi/) mediante esta técnica para obtener más detalles.
+
+## <a name="table-valued-function-mapping"></a>Asignación de funciones con valores de tabla
+
+Es posible asignar un tipo de entidad a una función con valores de tabla (TVF) en lugar de a una tabla de la base de datos. Para ilustrar esto, vamos a definir otra entidad que represente el blog con varias publicaciones. En el ejemplo, la entidad es una [entrada sin llave](xref:core/modeling/keyless-entity-types), pero no es necesario que sea.
+
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/EntityTypes.cs#BlogWithMultiplePostsEntity)]
+
+A continuación, cree la siguiente función con valores de tabla en la base de datos, que solo devuelve blogs con varias publicaciones, así como el número de entradas asociadas a cada uno de estos blogs:
+
+```sql
+CREATE FUNCTION dbo.BlogsWithMultiplePosts()
+RETURNS TABLE
+AS
+RETURN
+(
+    SELECT b.Url, COUNT(p.BlogId) AS PostCount
+    FROM Blogs AS b
+    JOIN Posts AS p ON b.BlogId = p.BlogId
+    GROUP BY b.BlogId, b.Url
+    HAVING COUNT(p.BlogId) > 1
+)
+```
+
+Ahora, la entidad `BlogWithMultiplePost` se puede asignar a esta función de la siguiente manera:
+
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/EntityTypes.cs#QueryableFunctionConfigurationToFunction)]
+
+> [!NOTE]
+> Para asignar una entidad a una función con valores de tabla, la función no debe tener parámetros.
+
+Convencionalmente, las propiedades de la entidad se asignarán a las columnas coincidentes devueltas por la función TVF. Si las columnas devueltas por TVF tienen un nombre diferente que la propiedad de entidad, se puede configurar mediante el `HasColumnName` método, al igual que cuando se asigna a una tabla normal.
+
+Cuando el tipo de entidad se asigna a una función con valores de tabla, la consulta:
+
+[!code-csharp[Main](../../../samples/core/Modeling/Conventions/Program.cs#ToFunctionQuery)]
+
+Produce el siguiente SQL:
+
+```sql
+SELECT [b].[Url], [b].[PostCount]
+FROM [dbo].[BlogsWithMultiplePosts]() AS [b]
+WHERE [b].[PostCount] > 3
+```
+
+## <a name="table-comments"></a>Comentarios de tabla
+
+Puede establecer un Comentario de texto arbitrario que se establece en la tabla de base de datos, lo que le permite documentar el esquema en la base de datos:
+
+### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
+
+> [!NOTE]
+> La configuración de comentarios a través de anotaciones de datos se presentó en EF Core 5,0.
+
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/TableComment.cs?name=TableComment&highlight=1)]
+
+### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableComment.cs?name=TableComment&highlight=4)]
+
+_**

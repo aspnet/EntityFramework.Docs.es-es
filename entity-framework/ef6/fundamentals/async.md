@@ -4,12 +4,12 @@ description: Consulta asincrónica y guardar en Entity Framework 6
 author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/async
-ms.openlocfilehash: 2b5f6f868cbf2e0699a943cf68c8568550f4ba36
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 77204f56e4dca63322c8ae2e1117318262f16f83
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063405"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635736"
 ---
 # <a name="async-query-and-save"></a>Consulta asincrónica y guardar
 > [!NOTE]
@@ -77,7 +77,7 @@ Usaremos el flujo de [trabajo Code First](xref:ef6/modeling/code-first/workflows
     }
 ```
 
- 
+ 
 
 ## <a name="create-a-synchronous-program"></a>Crear un programa sincrónico
 
@@ -137,32 +137,32 @@ Ahora que tenemos un modelo EF, vamos a escribir código que lo usa para realiza
     }
 ```
 
-Este código llama al método **PerformDatabaseOperations** , que guarda un nuevo **blog** en la base de datos y, a continuación, recupera todos los **blogs** de la base de datos y los imprime en la **consola**. Después, el programa escribe una comilla del día en la **consola**.
+Este código llama al `PerformDatabaseOperations` método, que guarda un nuevo **blog** en la base de datos y, a continuación, recupera todos los **blogs** de la base de datos y los imprime en la **consola**. Después, el programa escribe una comilla del día en la **consola**.
 
 Dado que el código es sincrónico, podemos observar el siguiente flujo de ejecución al ejecutar el programa:
 
-1.  **SaveChanges** comienza a introducir el nuevo **blog** en la base de datos
-2.  **SaveChanges** completado
+1.  `SaveChanges` comienza a introducir el nuevo **blog** en la base de datos
+2.  `SaveChanges` se completa
 3.  La consulta de todos los **blogs** se envía a la base de datos
 4.  Las devoluciones de consultas y los resultados se escriben en la **consola**
 5.  La oferta del día se escribe en la **consola**
 
-![Salida de sincronización](~/ef6/media/syncoutput.png) 
+![Salida de sincronización](~/ef6/media/syncoutput.png) 
 
- 
+ 
 
 ## <a name="making-it-asynchronous"></a>Convertirlo en asincrónico
 
 Ahora que tenemos nuestro programa en funcionamiento, podemos empezar a usar las nuevas palabras clave Async y Await. Hemos realizado los siguientes cambios en Program.cs
 
-1.  Línea 2: la instrucción using del espacio de nombres **System. Data. Entity** nos permite acceder a los métodos de extensión de EF Async.
-2.  Línea 4: la instrucción using del espacio de nombres **System. Threading. Tasks** nos permite usar el tipo de **tarea** .
-3.  Línea 12 & 18: estamos capturando como tarea que supervisa el progreso de **PerformSomeDatabaseOperations** (línea 12) y, después, bloqueando la ejecución del programa para que esta tarea se complete una vez que todo el trabajo para el programa se haya realizado (línea 18).
-4.  Línea 25: hemos actualizado **PerformSomeDatabaseOperations** para que se marque como **Async** y devuelva una **tarea**.
-5.  Línea 35: ahora se llama a la versión asincrónica de SaveChanges y se espera su finalización.
-6.  Línea 42: ahora se llama a la versión asincrónica de ToList y se espera en el resultado.
+1.  Línea 2: la instrucción using para el `System.Data.Entity` espacio de nombres nos permite acceder a los métodos de extensión de EF Async.
+2.  Línea 4: la instrucción using para el `System.Threading.Tasks` espacio de nombres nos permite usar el `Task` tipo.
+3.  Línea 12 & 18: se está realizando la captura como tarea que supervisa el progreso de `PerformSomeDatabaseOperations` (línea 12) y, después, bloqueando la ejecución del programa para que esta tarea se complete una vez completado todo el trabajo para el programa (línea 18).
+4.  Línea 25: `PerformSomeDatabaseOperations` hay una actualización que se debe marcar como `async` y devolver un `Task` .
+5.  Línea 35: ahora se llama a la versión asincrónica de `SaveChanges` y se espera que se complete.
+6.  Línea 42: ahora se llama a la versión asincrónica de `ToList` y se espera en el resultado.
 
-Para obtener una lista completa de los métodos de extensión disponibles en el espacio de nombres System. Data. Entity, consulte la clase QueryableExtensions. *También deberá agregar "Using System. Data. Entity" a las instrucciones using.*
+Para obtener una lista completa de los métodos de extensión disponibles en el `System.Data.Entity` espacio de nombres, consulte la `QueryableExtensions` clase. *También deberá agregar `using System.Data.Entity` las instrucciones using.*
 
 ``` csharp
     using System;
@@ -222,18 +222,18 @@ Para obtener una lista completa de los métodos de extensión disponibles en el 
 
 Ahora que el código es asincrónico, podemos observar otro flujo de ejecución cuando se ejecuta el programa:
 
-1. **SaveChanges** comienza a introducir el nuevo **blog** en la base de datos  
-    *Una vez que el comando se envía a la base de datos, no se necesita más tiempo de proceso en el subproceso administrado actual. El método **PerformDatabaseOperations** devuelve (aunque no ha terminado de ejecutarse) y continúa el flujo del programa en el método Main.*
+1. `SaveChanges` comienza a introducir el nuevo **blog** en la base de datos  
+    *Una vez que el comando se envía a la base de datos, no se necesita más tiempo de proceso en el subproceso administrado actual. El `PerformDatabaseOperations` método devuelve (aunque no ha terminado de ejecutarse) y continúa el flujo del programa en el método Main.*
 2. **La oferta del día se escribe en la consola**  
-    *Dado que no hay más trabajo que hacer en el método Main, el subproceso administrado se bloquea en la llamada de espera hasta que se completa la operación de base de datos. Una vez que se completa, se ejecutará el resto de **PerformDatabaseOperations** .*
-3.  **SaveChanges** completado  
+    *Dado que no hay más trabajo que hacer en el método Main, el subproceso administrado se bloquea en la `Wait` llamada hasta que se completa la operación de base de datos. Una vez que se completa, se ejecutará el resto de `PerformDatabaseOperations` .*
+3.  `SaveChanges` se completa  
 4.  La consulta de todos los **blogs** se envía a la base de datos  
     *De nuevo, el subproceso administrado es gratuito para realizar otro trabajo mientras la consulta se procesa en la base de datos. Dado que el resto de la ejecución se ha completado, el subproceso se detendrá simplemente en la llamada de espera.*
 5.  Las devoluciones de consultas y los resultados se escriben en la **consola**  
 
-![Salida asincrónica](~/ef6/media/asyncoutput.png) 
+![Salida asincrónica](~/ef6/media/asyncoutput.png) 
 
- 
+ 
 
 ## <a name="the-takeaway"></a>La ventaja
 

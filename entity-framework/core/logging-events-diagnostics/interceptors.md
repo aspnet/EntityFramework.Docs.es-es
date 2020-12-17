@@ -4,12 +4,12 @@ description: Interceptación de operaciones de base de datos y otros eventos
 author: ajcvickers
 ms.date: 10/08/2020
 uid: core/logging-events-diagnostics/interceptors
-ms.openlocfilehash: 22d860a083c5ece9be109be630c3ce01dd742bf2
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: fba9f3d02b8cf504c2cadca8eb844cd3e818e915
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003423"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635814"
 ---
 # <a name="interceptors"></a>Interceptores
 
@@ -182,7 +182,7 @@ public class AadAuthenticationInterceptor : DbConnectionInterceptor
 [!code-csharp[AadAuthenticationInterceptor](../../../samples/core/Miscellaneous/ConnectionInterception/AadAuthenticationInterceptor.cs?name=AadAuthenticationInterceptor)]
 
 > [!TIP]
-> [Microsoft. Data. SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) ahora admite la autenticación de AAD a través de la cadena de conexión. Consulte <xref:Microsoft.Data.SqlClient.SqlAuthenticationMethod> para obtener más información.
+> [Microsoft. Data. SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) ahora admite la autenticación de AAD a través de la cadena de conexión. Vea <xref:Microsoft.Data.SqlClient.SqlAuthenticationMethod> para obtener más información.
 
 > [!WARNING]
 > Observe que el interceptor produce si se realiza una llamada de sincronización para abrir la conexión. Esto se debe a que no hay ningún método no asincrónico para obtener el token de acceso y no hay [ninguna manera universal y sencilla de llamar a un método asincrónico desde el contexto no asincrónico sin arriesgarse al interbloqueo](https://devblogs.microsoft.com/dotnet/configureawait-faq/).
@@ -401,7 +401,7 @@ Tenga en cuenta la salida del registro de que la aplicación sigue utilizando el
 > [!TIP]  
 > Puede [descargar el ejemplo de interceptor de SaveChanges](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/SaveChangesInterception) desde github.
 
-<xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A><xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>los puntos de interceptación y se definen mediante el`ISaveChangesInterceptor` <!-- Issue #2748 --> interfaz. Como para otros interceptores, el `SaveChangesInterceptor` <!-- Issue #2748 --> la clase base con métodos no-OP se proporciona por comodidad.
+<xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A><xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>los puntos de interceptación y se definen mediante la <xref:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor> interfaz. En lo que se refiere a otros interceptores, la <xref:Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesInterceptor> clase base con métodos no-OP se proporciona por comodidad.
 
 > [!TIP]
 > Los interceptores son eficaces. Sin embargo, en muchos casos puede ser más fácil invalidar el método SaveChanges o usar los [eventos .net para SaveChanges](xref:core/logging-events-diagnostics/events) expuesto en DbContext.
@@ -502,7 +502,7 @@ La idea general para la auditoría con el interceptor es:
 * Si SaveChanges se realiza correctamente, se actualiza el mensaje de auditoría para indicar que la operación se ha realizado correctamente.
 * Si se produce un error en SaveChanges, el mensaje de auditoría se actualiza para indicar el error.
 
-La primera fase se controla antes de que los cambios se envíen a la base de datos mediante invalidaciones de `ISaveChangesInterceptor.SavingChanges` <!-- Issue #2748 -->  y `ISaveChangesInterceptor.SavingChangesAsync`<!-- Issue #2748 -->.
+La primera fase se controla antes de que los cambios se envíen a la base de datos mediante invalidaciones de <xref:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChanges%2A?displayProperty=nameWithType> y <xref:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavingChangesAsync%2A?displayProperty=nameWithType> .
 
 <!--
     public async ValueTask<InterceptionResult<int>> SavingChangesAsync(
@@ -538,7 +538,7 @@ La primera fase se controla antes de que los cambios se envíen a la base de dat
 -->
 [!code-csharp[SavingChanges](../../../samples/core/Miscellaneous/SaveChangesInterception/AuditingInterceptor.cs?name=SavingChanges)]
 
-La invalidación de los métodos de sincronización y Async garantiza que la auditoría se realizará independientemente de si se llama a SaveChanges o SaveChangesAsync. Observe también que la sobrecarga asincrónica es capaz de realizar la e/s asincrónica sin bloqueo en la base de datos de auditoría. Puede que desee iniciar el método Sync SavingChanges para asegurarse de que toda la e/s de la base de datos sea asincrónica. Esto requiere que la aplicación siempre llame a SaveChangesAsync y nunca a SaveChanges.
+La invalidación de los métodos de sincronización y Async garantiza que la auditoría se realizará independientemente de si `SaveChanges` `SaveChangesAsync` se llama a o. Observe también que la sobrecarga asincrónica es capaz de realizar la e/s asincrónica sin bloqueo en la base de datos de auditoría. Puede que desee iniciar desde el método Sync `SavingChanges` para asegurarse de que toda la e/s de la base de datos sea asincrónica. Esto requiere que la aplicación siempre llame a `SaveChangesAsync` y nunca `SaveChanges` .
 
 #### <a name="the-audit-message"></a>Mensaje de auditoría
 
@@ -598,7 +598,7 @@ El resultado es una `SaveChangesAudit` entidad con una colección de `EntityAudi
 
 #### <a name="detecting-success"></a>Detección correcta
 
-La entidad Audit se almacena en el interceptor para que se pueda tener acceso a ella de nuevo una vez que SaveChanges se realiza correctamente o se produce un error. Para que se realice correctamente, `ISaveChangesInterceptor.SavedChanges` <!-- Issue #2748 --> o bien `ISaveChangesInterceptor.SavedChangesAsync` <!-- Issue #2748 --> Se llama a .
+La entidad Audit se almacena en el interceptor para que se pueda tener acceso a ella de nuevo una vez que SaveChanges se realiza correctamente o se produce un error. Es si se realiza correctamente <xref:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavedChanges%2A?displayProperty=nameWithType> o <xref:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SavedChangesAsync%2A?displayProperty=nameWithType> se llama a.
 
 <!--
     public int SavedChanges(SaveChangesCompletedEventData eventData, int result)
@@ -638,7 +638,7 @@ La entidad de auditoría está asociada al contexto de auditoría, ya que ya exi
 
 #### <a name="detecting-failure"></a>Detección de errores
 
-El error se administra de forma muy similar a como se realiza correctamente, pero en el `ISaveChangesInterceptor.SaveChangesFailed` <!-- Issue #2748 --> o bien `ISaveChangesInterceptor.SaveChangesFailedAsync` <!-- Issue #2748 --> . Los datos del evento contienen la excepción que se produjo.
+El error se administra de forma muy similar a como se realiza correctamente, pero en el <xref:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SaveChangesFailed%2A?displayProperty=nameWithType> <xref:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor.SaveChangesFailedAsync%2A?displayProperty=nameWithType> método o. Los datos del evento contienen la excepción que se produjo.
 
 <!--
     public void SaveChangesFailed(DbContextErrorEventData eventData)

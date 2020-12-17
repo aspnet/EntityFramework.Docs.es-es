@@ -4,17 +4,17 @@ description: Registro desde un EF Core DbContext mediante LogTo
 author: ajcvickers
 ms.date: 10/03/2020
 uid: core/logging-events-diagnostics/simple-logging
-ms.openlocfilehash: 274fca39c45c4e2ccfd47f3c4eeb0834e00d18aa
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 076c4b12aa033b51a2b839686c520a76520ee415
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003515"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635619"
 ---
 # <a name="simple-logging"></a>Registro sencillo
 
 > [!NOTE]
-> Esta característica se presentó en EF Core 5,0.
+> Esta característica se incluyó por primera vez en EF Core 5.0.
 
 > [!TIP]  
 > Puede [descargar el ejemplo de este artículo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/SimpleLogging) en github.
@@ -26,7 +26,7 @@ Se puede usar el registro simple de Entity Framework Core (EF Core) para obtener
 
 ## <a name="configuration"></a>Configuración
 
-Se puede acceder a los registros de EF Core desde cualquier tipo de aplicación mediante el uso de [LogTo](https://github.com/dotnet/efcore/blob/ec3df8fd7e4ea4ebeebfa747619cef37b23ab2c6/src/EFCore/DbContextOptionsBuilder.cs#L135) <!-- Issue #2748 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> --> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
+Se puede tener acceso a EF Core registros desde cualquier tipo de aplicación mediante el uso de <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
 
 <!--
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -143,7 +143,7 @@ A todos los mensajes de registro se les asigna un <xref:Microsoft.Extensions.Log
 
 Cada mensaje de registro se asigna a una categoría de registrador jerárquico con nombre. Las categorías son:
 
-| Category                                             | Mensajes
+| Categoría                                             | error de Hadoop
 |:-----------------------------------------------------|-------------------------------------------------
 | Microsoft.EntityFrameworkCore                        | Todos los mensajes de EF Core
 | Microsoft. EntityFrameworkCore. Database               | Todas las interacciones de base de datos
@@ -188,7 +188,7 @@ Puesto que las categorías son jerárquicas, este ejemplo con la `Database` cate
 [!code-csharp[CustomFilter](../../../samples/core/Miscellaneous/Logging/SimpleLogging/Program.cs?name=CustomFilter)]
 
 > [!TIP]
-> El filtrado mediante filtros personalizados o el uso de cualquiera de las otras opciones que se muestran aquí es más eficaz que el filtrado en el delegado de LogTo. Esto se debe a que, si el filtro determina que el mensaje no se debe registrar, no se crea ni siquiera el mensaje de registro.
+> El filtrado mediante filtros personalizados o el uso de cualquiera de las otras opciones que se muestran aquí es más eficaz que el filtrado del `LogTo` delegado. Esto se debe a que, si el filtro determina que el mensaje no se debe registrar, no se crea ni siquiera el mensaje de registro.
 
 ## <a name="configuration-for-specific-messages"></a>Configuración de mensajes específicos
 
@@ -260,14 +260,14 @@ dbug: 10/6/2020 10:52:45.585 RelationalEventId.TransactionCommitted[20202] (Micr
       Committed transaction.
 ```
 
-Este contenido se puede personalizar pasando valores de [DbContextLoggerOptions](https://github.com/dotnet/efcore/blob/ec3df8fd7e4ea4ebeebfa747619cef37b23ab2c6/src/EFCore/Diagnostics/DbContextLoggerOptions.cs#L15) <!-- Issue #2748 <xref:Microsoft.EntityFrameworkCore.Diagnostics.DbContextLoggerOptions> -->, como se muestra en las secciones siguientes.
+Este contenido se puede personalizar pasando valores de <xref:Microsoft.EntityFrameworkCore.Diagnostics.DbContextLoggerOptions> , como se muestra en las secciones siguientes.
 
 > [!TIP]
 > Considere la posibilidad de usar [Microsoft. Extensions. Logging](/aspnet/core/fundamentals/logging) para obtener más control sobre el formato del registro.
 
 ### <a name="using-utc-time"></a>Usar la hora UTC
 
-De forma predeterminada, los timestamnps están diseñados para el consumo local durante la depuración. Use `DbContextLoggerOptions.DefaultWithUtcTime` para usar marcas de tiempo UTC independientes de la referencia cultural en su lugar, pero mantenga todo lo demás. Por ejemplo:
+De forma predeterminada, las marcas de tiempo están diseñadas para el consumo local durante la depuración. Use <xref:Microsoft.EntityFrameworkCore.Diagnostics.DbContextLoggerOptions.DefaultWithUtcTime?displayProperty=nameWithType> para usar marcas de tiempo UTC independientes de la referencia cultural en su lugar, pero mantenga todo lo demás. Por ejemplo:
 
 <!--
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -295,7 +295,7 @@ dbug: 2020-10-06T17:55:39.0351684Z RelationalEventId.TransactionCommitted[20202]
 
 ### <a name="single-line-logging"></a>Registro de una sola línea
 
-A veces resulta útil obtener exactamente una línea por cada mensaje de registro. Esto puede habilitarse mediante `DbContextLoggerOptions.SingleLine` . Por ejemplo:
+A veces resulta útil obtener exactamente una línea por cada mensaje de registro. Esto puede habilitarse mediante <xref:Microsoft.EntityFrameworkCore.Diagnostics.DbContextLoggerOptions.SingleLine?displayProperty=nameWithType> . Por ejemplo:
 
 <!--
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -316,7 +316,7 @@ dbug: 10/6/2020 10:52:45.725 RelationalEventId.TransactionCommitted[20202] (Micr
 
 ### <a name="other-content-options"></a>Otras opciones de contenido
 
-Otras marcas en [DbContextLoggerOptions](https://github.com/dotnet/efcore/blob/ec3df8fd7e4ea4ebeebfa747619cef37b23ab2c6/src/EFCore/Diagnostics/DbContextLoggerOptions.cs#L15) <!-- Issue #2748 <xref:Microsoft.EntityFrameworkCore.Diagnostics.DbContextLoggerOptions> --> se puede usar para reducir la cantidad de metadatos que se incluyen en el registro. Esto puede ser útil junto con el registro de una sola línea. Por ejemplo:
+Otras marcas de <xref:Microsoft.EntityFrameworkCore.Diagnostics.DbContextLoggerOptions> se pueden usar para reducir la cantidad de metadatos que se incluyen en el registro. Esto puede ser útil junto con el registro de una sola línea. Por ejemplo:
 
 <!--
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

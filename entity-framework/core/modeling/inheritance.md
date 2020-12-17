@@ -4,12 +4,12 @@ description: Cómo configurar la herencia de tipos de entidad mediante Entity Fr
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/inheritance
-ms.openlocfilehash: 33429bbc4a9941ff8ea98a8f99cc652c8ea26455
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 11bd653a53767aa732790b1222da1beff8ad26a9
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003632"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635762"
 ---
 # <a name="inheritance"></a>Herencia
 
@@ -90,6 +90,9 @@ CREATE TABLE [RssBlogs] (
 > [!NOTE]
 > Si se cambia el nombre de la restricción primary key, el nuevo nombre se aplicará a todas las tablas asignadas a la jerarquía, las versiones futuras de EF permitirán cambiar el nombre de la restricción solo para una tabla determinada cuando se corrija el [problema 19970](https://github.com/dotnet/efcore/issues/19970) .
 
-Si está empleando la configuración masiva, puede recuperar el nombre de columna de una tabla concreta mediante una llamada a <xref:Microsoft.EntityFrameworkCore.RelationalPropertyExtensions.GetColumnName%2A> .
+Si está empleando la configuración masiva, puede recuperar el nombre de columna de una tabla concreta mediante una llamada a <xref:Microsoft.EntityFrameworkCore.RelationalPropertyExtensions.GetColumnName(Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@)> .
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TPTConfiguration.cs?name=Metadata&highlight=10)]
+
+> [!WARNING]
+> En muchos casos, TPT muestra un rendimiento inferior en comparación con TPH. [Vea los documentos de rendimiento para obtener más información](xref:core/performance/modeling-for-performance#inheritance-mapping).

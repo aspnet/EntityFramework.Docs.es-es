@@ -4,19 +4,19 @@ description: Trabajo con servidores proxy en Entity Framework 6
 author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/proxies
-ms.openlocfilehash: 741fd72ee66b98ab132fb85f71c3101712e433fa
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: de44e891c074a8811e466d040f6451bea0f950f4
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063210"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635853"
 ---
 # <a name="working-with-proxies"></a>Trabajar con servidores proxy
 Al crear instancias de tipos de entidad POCO, Entity Framework a menudo crea instancias de un tipo derivado generado dinámicamente que actúa como un proxy para la entidad. Este proxy invalida algunas propiedades virtuales de la entidad para insertar enlaces para realizar acciones automáticamente cuando se tiene acceso a la propiedad. Por ejemplo, este mecanismo se usa para admitir la carga diferida de relaciones. Las técnicas que se muestran en este tema se aplican igualmente a los modelos creados con Code First y EF Designer.  
 
 ## <a name="disabling-proxy-creation"></a>Deshabilitar la creación de proxy  
 
-A veces resulta útil evitar que Entity Framework Cree instancias de proxy. Por ejemplo, la serialización de instancias que no son de proxy es considerablemente más fácil que serializar instancias de proxy. La creación del proxy se puede desactivar borrando la marca ProxyCreationEnabled. Un lugar donde podría hacer esto es en el constructor del contexto. Por ejemplo:  
+A veces resulta útil evitar que Entity Framework Cree instancias de proxy. Por ejemplo, la serialización de instancias que no son de proxy es considerablemente más fácil que serializar instancias de proxy. La creación del proxy se puede desactivar borrando la `ProxyCreationEnabled` marca. Un lugar donde podría hacer esto es en el constructor del contexto. Por ejemplo:  
 
 ``` csharp
 public class BloggingContext : DbContext
@@ -35,7 +35,7 @@ Tenga en cuenta que EF no creará servidores proxy para los tipos en los que no 
 
 ## <a name="explicitly-creating-an-instance-of-a-proxy"></a>Crear explícitamente una instancia de un proxy  
 
-No se creará una instancia de proxy si crea una instancia de una entidad mediante el operador new. Esto puede no ser un problema, pero si necesita crear una instancia de proxy (por ejemplo, para que la carga diferida o el seguimiento de cambios de proxy funcionen), puede hacerlo mediante el método Create de DbSet. Por ejemplo:  
+No se creará una instancia de proxy si crea una instancia de una entidad mediante el operador new. Esto puede no ser un problema, pero si necesita crear una instancia de proxy (por ejemplo, para que la carga diferida o el seguimiento de cambios de proxy funcionen), puede hacerlo mediante el `Create` método de `DbSet` . Por ejemplo:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -44,7 +44,7 @@ using (var context = new BloggingContext())
 }
 ```  
 
-La versión genérica de Create se puede usar si desea crear una instancia de un tipo de entidad derivada. Por ejemplo:  
+Se puede usar la versión genérica de `Create` si desea crear una instancia de un tipo de entidad derivada. Por ejemplo:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -53,17 +53,19 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Tenga en cuenta que el método Create no agrega ni adjunta la entidad creada al contexto.  
+Tenga en cuenta que el `Create` método no agrega ni adjunta la entidad creada al contexto.  
 
-Tenga en cuenta que el método Create solo creará una instancia del tipo de entidad si la creación de un tipo de proxy para la entidad no tiene ningún valor, ya que no haría nada. Por ejemplo, si el tipo de entidad está sellado y/o no tiene ninguna propiedad virtual, Create solo creará una instancia del tipo de entidad.  
+Tenga en cuenta que el `Create` método solo creará una instancia del tipo de entidad si la creación de un tipo de proxy para la entidad no tiene ningún valor, ya que no haría nada. Por ejemplo, si el tipo de entidad está sellado y/o no tiene ninguna propiedad virtual, `Create` solo creará una instancia del tipo de entidad.  
 
 ## <a name="getting-the-actual-entity-type-from-a-proxy-type"></a>Obtener el tipo de entidad real a partir de un tipo de proxy  
 
 Los tipos de proxy tienen nombres que tienen un aspecto similar al siguiente:  
 
-System.Data.Entity.DynamicProxies.Blog_5E43C6C196972BF0754973E48C9C941092D86818CD94005E9A759B70BF6E48E6  
+```
+System.Data.Entity.DynamicProxies.Blog_5E43C6C196972BF0754973E48C9C941092D86818CD94005E9A759B70BF6E48E6
+```
 
-Puede encontrar el tipo de entidad para este tipo de proxy mediante el método GetObjectType de ObjectContext. Por ejemplo:  
+Puede encontrar el tipo de entidad para este tipo de proxy mediante el `GetObjectType` método de `ObjectContext` . Por ejemplo:  
 
 ``` csharp
 using (var context = new BloggingContext())
@@ -73,4 +75,4 @@ using (var context = new BloggingContext())
 }
 ```  
 
-Tenga en cuenta que si el tipo pasado a GetObjectType es una instancia de un tipo de entidad que no es un tipo de proxy, el tipo de entidad se sigue devolviendo. Esto significa que siempre puede usar este método para obtener el tipo de entidad real sin ninguna otra comprobación para ver si el tipo es un tipo de proxy.  
+Tenga en cuenta que si el tipo que se pasa a `GetObjectType` es una instancia de un tipo de entidad que no es un tipo de proxy, el tipo de entidad se sigue devolviendo. Esto significa que siempre puede usar este método para obtener el tipo de entidad real sin ninguna otra comprobación para ver si el tipo es un tipo de proxy.  

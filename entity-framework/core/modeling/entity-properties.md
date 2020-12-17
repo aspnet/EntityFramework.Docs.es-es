@@ -4,12 +4,12 @@ description: Cómo configurar y asignar propiedades de entidad mediante Entity F
 author: roji
 ms.date: 05/27/2020
 uid: core/modeling/entity-properties
-ms.openlocfilehash: 67ea6eb9cc62c01c16ef33d4d1d1597576ec8b3d
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: fe6dd2c24b8f8ffffa8e0101f69966b7b7c74036
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003422"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635554"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
 
@@ -152,12 +152,12 @@ Una propiedad que sería opcional por Convención se puede configurar para que s
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?name=Required&highlight=3-5)]
 
-***
+**_
 
 ## <a name="column-collations"></a>Intercalaciones de columna
 
 > [!NOTE]
-> Esta característica se presentó en EF Core 5,0.
+> Esta característica se incluyó por primera vez en EF Core 5.0.
 
 Una intercalación se puede definir en columnas de texto, determinando cómo se comparan y ordenan. Por ejemplo, el siguiente fragmento de código configura una columna de SQL Server para que no distinga entre mayúsculas y minúsculas:
 
@@ -166,3 +166,20 @@ Una intercalación se puede definir en columnas de texto, determinando cómo se 
 Si todas las columnas de una base de datos necesitan usar una intercalación determinada, defina la intercalación en el nivel de base de datos en su lugar.
 
 Puede encontrar información general sobre la compatibilidad de EF Core con las intercalaciones en la página de documentación de la [Intercalación](xref:core/miscellaneous/collations-and-case-sensitivity).
+
+## <a name="column-comments"></a>Comentarios de columna
+
+Puede establecer un Comentario de texto arbitrario que se establece en la columna de base de datos, lo que le permite documentar el esquema en la base de datos:
+
+### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
+
+> [!NOTE]
+> La configuración de comentarios a través de anotaciones de datos se presentó en EF Core 5,0.
+
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnComment.cs?name=ColumnComment&highlight=4)]
+
+### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnComment.cs?name=ColumnComment&highlight=5)]
+
+_**

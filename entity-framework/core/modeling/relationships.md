@@ -4,12 +4,12 @@ description: Cómo configurar relaciones entre tipos de entidad al utilizar Enti
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/relationships
-ms.openlocfilehash: 716c034bd73d831996b727da18c2c1f83dd55290
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 9c8fe469c4e0b8714a36624ff5bcf236e5b1652f
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003268"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635749"
 ---
 # <a name="relationships"></a>Relaciones
 
@@ -149,7 +149,7 @@ Si solo tiene una propiedad de navegación, hay sobrecargas sin parámetros de `
 ### <a name="configuring-navigation-properties"></a>Configurar propiedades de navegación
 
 > [!NOTE]
-> Esta característica se presentó en EF Core 5,0.
+> Esta característica se incluyó por primera vez en EF Core 5.0.
 
 Una vez creada la propiedad de navegación, puede que necesite configurarla más adelante.
 
@@ -301,11 +301,13 @@ CREATE TABLE [PostTag] (
 );
 ```
 
-Internamente, EF crea un tipo de entidad para representar la tabla de combinación a la que se hará referencia como el tipo de entidad de combinación. No hay ningún tipo de CLR específico que se pueda usar para esto, por lo que `Dictionary<string, object>` se utiliza. Puede haber más de una relación de varios a varios en el modelo, por lo que el tipo de entidad de combinación debe recibir un nombre único, en este caso `PostTag` . La característica que lo permite se denomina tipo de entidad de tipo compartido.
+Internamente, EF crea un tipo de entidad para representar la tabla de combinación a la que se hará referencia como el tipo de entidad de combinación. `Dictionary<string, object>` se usa para controlar cualquier combinación de propiedades de clave externa, vea [tipos de entidad del contenedor de propiedades](shadow-properties.md#property-bag-entity-types) para obtener más información. Puede haber más de una relación de varios a varios en el modelo, por lo que el tipo de entidad de combinación debe recibir un nombre único, en este caso `PostTag` . La característica que lo permite se denomina tipo de entidad de tipo compartido.
 
-Las navegaciones de varios a varios se llaman omitir navegaciones, ya que omiten el tipo de entidad de combinación. Si está empleando la configuración masiva, todas las navegaciones de omitir se pueden obtener de `GetSkipNavigations` .
+Las navegaciones de varios a varios se llaman omitir navegaciones, ya que omiten el tipo de entidad de combinación. Si está empleando la configuración masiva, todas las navegaciones de omitir se pueden obtener de <xref:Microsoft.EntityFrameworkCore.Metadata.IEntityType.GetSkipNavigations%2A> .
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyShared.cs?name=Metadata)]
+
+#### <a name="join-entity-type-configuration"></a>Combinación de la configuración del tipo de entidad
 
 Es habitual aplicar la configuración al tipo de entidad de combinación. Esta acción se puede realizar a través de `UsingEntity` .
 
@@ -319,8 +321,16 @@ Los datos adicionales se pueden almacenar en el tipo de entidad de combinación,
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyPayload.cs?name=ManyToManyPayload)]
 
+#### <a name="joining-relationships-configuration"></a>Unirse a la configuración de relaciones
+
+EF usa relaciones de 2 1 a varios en el tipo de entidad de combinación para representar la relación de varios a varios. Puede configurar estas relaciones en los `UsingEntity` argumentos.
+
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/ManyToManyShared.cs?name=Components)]
+
 > [!NOTE]
 > La capacidad de configurar relaciones varios a varios se presentó en EF Core 5,0, para la versión anterior, use el siguiente enfoque.
+
+#### <a name="indirect-many-to-many-relationships"></a>Relaciones de varios a varios indirectas
 
 También puede representar una relación de varios a varios agregando el tipo de entidad de combinación y asignando dos relaciones uno a varios independientes.
 

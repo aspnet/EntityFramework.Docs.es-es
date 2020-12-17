@@ -4,21 +4,21 @@ description: Eventos .NET definidos por EF Core
 author: ajcvickers
 ms.date: 10/15/2020
 uid: core/logging-events-diagnostics/events
-ms.openlocfilehash: 21ee65b7a2c5155c4d5b45350f3f47bdcee22921
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 51c0bba5cf25e1d9ddd1fd9aebea50b9a03481a3
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431344"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635697"
 ---
 # <a name="net-events-in-ef-core"></a>Eventos .NET en EF Core
 
 > [!TIP]  
 > Puede [descargar el ejemplo de eventos](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Events) de github.
 
-Entity Framework Core (EF Core) expone [eventos .net](/dotnet/standard/events/) para que actúen como devoluciones de llamada cuando se producen ciertas cosas en el código EF Core. Los eventos son más sencillos que los [interceptores](xref:core/logging-events-diagnostics/interceptors) y permiten un registro más flexible. Sin embargo, solo se sincronizan y, por lo tanto, no pueden realizar e/s asincrónicas sin bloqueo.
+Entity Framework Core (EF Core) expone [eventos .net](/dotnet/standard/events/) para que actúen como devoluciones de llamada cuando se producen ciertas cosas en el código EF Core. Los eventos son más sencillos que los [interceptores](xref:core/logging-events-diagnostics/interceptors) y permiten un registro más flexible. Sin embargo, solo son sincrónicos y, por tanto, no pueden realizar operaciones de E/S asincrónicas sin bloqueo.
 
-Los eventos se registran por `DbContext` instancia. Use un [agente de escucha de diagnóstico](xref:core/logging-events-diagnostics/diagnostic-listeners) para obtener la misma información, pero para todas las instancias de DbContext en el proceso.
+Los eventos se registran por `DbContext` instancia. Use una [escucha de diagnóstico](xref:core/logging-events-diagnostics/diagnostic-listeners) para obtener la misma información, pero para todas las instancias de DbContext del proceso.
 
 ## <a name="events-raised-by-ef-core"></a>Eventos generados por EF Core
 
@@ -26,9 +26,9 @@ Los eventos siguientes los genera EF Core:
 
 | Evento | Versión introducida | Cuando se produce
 |:------|--------------------|-------
-| `DbContext.SavingChanges` <!-- Issue #2748 -->| 5.0 | Al principio de <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> o <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>
-| `DbContext.SavedChanges`  <!-- Issue #2748 -->| 5.0 | Al final de una operación correcta <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> o <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>
-| `DbContext.SaveChangesFailed`  <!-- Issue #2748 -->| 5.0 | Al final de un error <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> o <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>
+| <xref:Microsoft.EntityFrameworkCore.DbContext.SavingChanges?displayProperty=nameWithType> | 5.0 | Al principio de <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> o <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>
+| <xref:Microsoft.EntityFrameworkCore.DbContext.SavedChanges?displayProperty=nameWithType> | 5.0 | Al final de una operación correcta <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> o <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>
+| <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesFailed?displayProperty=nameWithType> | 5.0 | Al final de un error <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> o <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>
 | <xref:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.Tracked?displayProperty=nameWithType> | 2.1 | Cuando el contexto realiza un seguimiento de una entidad
 | <xref:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.StateChanged?displayProperty=nameWithType> | 2.1 | Cuando una entidad de la que se realiza un seguimiento cambia su estado
 

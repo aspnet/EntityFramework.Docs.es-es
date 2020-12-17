@@ -4,12 +4,12 @@ description: Uso de la resistencia de conexión para reintentar automáticamente
 author: AndriySvyryd
 ms.date: 11/15/2016
 uid: core/miscellaneous/connection-resiliency
-ms.openlocfilehash: db0666a49cbd41ef3eacf447eaeed1fb54ffcbf4
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: bcafdf5de26ecfd7539d426388154550a39332ab
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92061923"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635788"
 ---
 # <a name="connection-resiliency"></a>Resistencia de conexión
 
@@ -32,6 +32,9 @@ public void ConfigureServices(IServiceCollection services)
             providerOptions => providerOptions.EnableRetryOnFailure()));
 }
 ```
+
+> [!NOTE]
+> La habilitación del reintento en caso de error hace que EF almacene internamente el conjunto de resultados, lo que puede aumentar significativamente los requisitos de memoria para las consultas que devuelven conjuntos de resultados Consulte [almacenamiento en búfer y transmisión por secuencias](xref:core/performance/efficient-querying#buffering-and-streaming) para obtener más detalles.
 
 ## <a name="custom-execution-strategy"></a>Estrategia de ejecución personalizada
 
