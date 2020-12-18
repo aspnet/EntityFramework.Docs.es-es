@@ -4,12 +4,12 @@ description: Documentación del proveedor de bases de datos que permite usar Ent
 author: AndriySvyryd
 ms.date: 10/09/2020
 uid: core/providers/cosmos/index
-ms.openlocfilehash: b167f53515799efdaead232f44ad5eab37fb0b14
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 8bfce78465e8194544562c3ecac4d3398ca91265
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003606"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635593"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>Proveedor de Azure Cosmos DB para EF Core
 
@@ -103,12 +103,12 @@ De forma predeterminada, EF Core creará contenedores con la clave de partición
 > [!NOTE]
 >La propiedad de clave de partición puede ser de cualquier tipo, siempre y cuando se [convierta en una cadena](xref:core/modeling/value-conversions).
 
-Una vez configurada, la propiedad de clave de partición siempre debe tener un valor distinto de NULL. Una consulta se puede convertir en partición única agregando una llamada `WithPartitionKey`.
+Una vez configurada, la propiedad de clave de partición siempre debe tener un valor distinto de NULL. Una consulta se puede convertir en partición única agregando una llamada <xref:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.WithPartitionKey%2A>.
 
 [!code-csharp[PartitionKey](../../../../samples/core/Cosmos/ModelBuilding/Sample.cs?name=PartitionKey&highlight=15)]
 
 > [!NOTE]
-> `WithPartitionKey` se incluyó por primera vez en EF Core 5.0.
+> <xref:Microsoft.EntityFrameworkCore.CosmosQueryableExtensions.WithPartitionKey%2A> se incluyó por primera vez en EF Core 5.0.
 
 Con carácter general, se recomienda agregar la clave de partición a la clave principal, ya que es lo que mejor refleja la semántica de servidor y permite algunas optimizaciones, por ejemplo, en `FindAsync`.
 
@@ -212,10 +212,10 @@ Este es el JSON resultante:
 > [!NOTE]
 > La compatibilidad con la simultaneidad de ETag se incluyó por primera vez en EF Core 5.0.
 
-Si necesita configurar un tipo de entidad para que use la [simultaneidad optimista](xref:core/modeling/concurrency), llame a `UseETagConcurrency`. Esta llamada creará una propiedad `_etag` en [estado de propiedad reemplazada](xref:core/modeling/shadow-properties) y la establecerá como el token de simultaneidad.
+Si necesita configurar un tipo de entidad para que use la [simultaneidad optimista](xref:core/modeling/concurrency), llame a <xref:Microsoft.EntityFrameworkCore.CosmosEntityTypeBuilderExtensions.UseETagConcurrency%2A>. Esta llamada creará una propiedad `_etag` en [estado de propiedad reemplazada](xref:core/modeling/shadow-properties) y la establecerá como el token de simultaneidad.
 
 [!code-csharp[Main](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=ETag)]
 
-Para facilitar la resolución de errores de simultaneidad, puede asignar el ETag a una propiedad de CLR mediante `IsETagConcurrency`.
+Para facilitar la resolución de errores de simultaneidad, puede asignar el ETag a una propiedad de CLR mediante <xref:Microsoft.EntityFrameworkCore.CosmosPropertyBuilderExtensions.IsETagConcurrency%2A>.
 
 [!code-csharp[Main](../../../../samples/core/Cosmos/ModelBuilding/OrderContext.cs?name=ETagProperty)]
