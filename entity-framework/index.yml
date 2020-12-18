@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 04/15/2020
-  ms.openlocfilehash: 71b676ca7890997c84aa6c80cfdbcf934406d7a9
-  ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+  ms.openlocfilehash: 644d3ad0654e8d97835d4a2e6ee3d2ba3cbaf370
+  ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
   ms.translationtype: HT
   ms.contentlocale: es-ES
-  ms.lasthandoff: 11/20/2020
-  ms.locfileid: "95003684"
+  ms.lasthandoff: 12/17/2020
+  ms.locfileid: "97635840"
 highlightedContent:
   items:
   - title: Entity Framework Core
@@ -136,6 +136,8 @@ additionalContent:
         text: Consultas asincrónicas
       - url: core/querying/raw-sql.md
         text: Consultas SQL sin formato
+      - url: core/querying/user-defined-function-mapping.md
+        text: Asignación de funciones definidas por el usuario
       - url: core/querying/filters.md
         text: Filtros de consulta global
     - title: Administración de esquemas de base de datos
