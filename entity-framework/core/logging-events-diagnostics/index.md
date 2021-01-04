@@ -4,12 +4,12 @@ description: Información general sobre el registro, los eventos, los intercepto
 author: ajcvickers
 ms.date: 10/01/2020
 uid: core/logging-events-diagnostics/index
-ms.openlocfilehash: 2c44772b22112645f85cf0bffa680bc510ea5afb
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: d85a506167661523bf70b62d3a075a6248180d11
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003528"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635684"
 ---
 # <a name="overview-of-logging-and-interception"></a>Información general sobre el registro y la interceptación
 
@@ -34,7 +34,7 @@ En la siguiente tabla se proporciona una referencia rápida para las diferencias
 > [!NOTE]
 > Esta característica se incluyó por primera vez en EF Core 5.0.
 
-Se puede acceder a los registros de EF Core desde cualquier tipo de aplicación mediante el uso de [LogTo](https://github.com/dotnet/efcore/blob/ec3df8fd7e4ea4ebeebfa747619cef37b23ab2c6/src/EFCore/DbContextOptionsBuilder.cs#L135) <!-- Issue #2748 <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> --> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
+Se puede acceder a los registros de EF Core desde cualquier tipo de aplicación mediante el uso de <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
 
 <!--
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
