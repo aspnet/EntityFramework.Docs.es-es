@@ -8,7 +8,7 @@ ms.openlocfilehash: fe6dd2c24b8f8ffffa8e0101f69966b7b7c74036
 ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
+ms.lasthandoff: 12/19/2020
 ms.locfileid: "97635554"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
