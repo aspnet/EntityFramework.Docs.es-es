@@ -4,12 +4,12 @@ description: Lista completa de los cambios importantes introducidos en Entity Fr
 author: bricelam
 ms.date: 11/07/2020
 uid: core/what-is-new/ef-core-5.0/breaking-changes
-ms.openlocfilehash: e2537dbc1d5dba48450bd0fea7712054ba2fa622
-ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
+ms.openlocfilehash: 7a13c9a6f6bd299991c379ec490480e1fbb4ba46
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94503181"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635476"
 ---
 # <a name="breaking-changes-in-ef-core-50"></a>Cambios importantes en EF Core 5.0
 
@@ -29,8 +29,11 @@ Es posible que los siguientes cambios de API y comportamiento puedan interrumpir
 | [Cosmos: se ha cambiado el nombre de GetPropertyName y SetPropertyName](#cosmos-metadata)                                                          | Bajo        |
 | [Se llama a los generadores de valores cuando se cambia el estado de la entidad de Desasociado a Sin cambios, Actualizado o Eliminado](#non-added-generation) | Bajo        |
 | [IMigrationsModelDiffer ahora usa IRelationalModel](#relational-model).                                                                 | Bajo        |
+| [ToView() se trata de forma diferente en las migraciones](#toview)                                                                              | Bajo        |
+| [ToTable(null) marca el tipo de entidad como no asignado a una tabla](#totable)                                                              | Bajo        |
 | [Los discriminadores son de solo lectura](#read-only-discriminators).                                                                             | Bajo        |
-| [Los métodos EF.Functions específicos del proveedor se inician para el proveedor InMemory](#no-client-methods)                                              | Baja        |
+| [Los métodos EF.Functions específicos del proveedor se inician para el proveedor InMemory](#no-client-methods)                                              | Bajo        |
+| [IProperty.GetColumnName() está obsoleto](#getcolumnname-obsolete)                                                                  | Bajo        |
 | [IndexBuilder.HasName ahora está obsoleto](#index-obsolete)                                                                               | Bajo        |
 | [Ahora se incluye un pluralizador para el scaffolding de los modelos de ingeniería inversa](#pluralizer)                                                 | Bajo        |
 | [INavigationBase reemplaza a INavigation en algunas API para admitir la omisión de navegaciones](#inavigationbase)                                     | Bajo        |
@@ -340,6 +343,64 @@ var hasDifferences = modelDiffer.HasDifferences(
 
 Tenemos previsto mejorar esta experiencia en la versión 6.0 ([vea n.º 22031](https://github.com/dotnet/efcore/issues/22031)).
 
+<a name="toview"></a>
+
+### <a name="toview-is-treated-differently-by-migrations"></a>ToView() se trata de forma diferente en las migraciones
+
+[Incidencia de seguimiento n.º 2725](https://github.com/dotnet/efcore/issues/2725)
+
+#### <a name="old-behavior"></a>Comportamiento anterior
+
+Las llamadas a `ToView(string)` hacían que las migraciones omitieran el tipo de entidad y lo asignaran a una vista.
+
+#### <a name="new-behavior"></a>Comportamiento nuevo
+
+Ahora `ToView(string)` marca el tipo de entidad como no asignado a una tabla y lo asigna a una vista. Como resultado, la primera migración después de actualizar a EF Core 5 intenta quitar la tabla predeterminada para este tipo de entidad, puesto que ya no se omite.
+
+#### <a name="why"></a>Por qué
+
+EF Core ahora permite asignar un tipo de entidad a una tabla y una vista simultáneamente, de modo que `ToView` ya no es un indicador válido que las migraciones deben omitir.
+
+#### <a name="mitigations"></a>Mitigaciones
+
+Use el siguiente código para marcar la tabla asignada como excluida de las migraciones:
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>().ToTable("UserView", t => t.ExcludeFromMigrations());
+}
+```
+
+<a name="totable"></a>
+
+### <a name="totablenull-marks-the-entity-type-as-not-mapped-to-a-table"></a>ToTable(null) marca el tipo de entidad como no asignado a una tabla
+
+[Incidencia de seguimiento n.º 21172](https://github.com/dotnet/efcore/issues/21172)
+
+#### <a name="old-behavior"></a>Comportamiento anterior
+
+`ToTable(null)` restablecía el nombre de la tabla al valor predeterminado.
+
+#### <a name="new-behavior"></a>Comportamiento nuevo
+
+Ahora, `ToTable(null)` marca el tipo de entidad como no asignado a ninguna tabla.
+
+#### <a name="why"></a>Por qué
+
+EF Core ahora permite asignar un tipo de entidad a una tabla y una vista simultáneamente, de modo que `ToTable(null)` se usa para indicar que no está asignado a ninguna tabla.
+
+#### <a name="mitigations"></a>Mitigaciones
+
+Use el siguiente código para restablecer el nombre de la tabla al valor predeterminado si no está asignado a una vista o una función DbFunction:
+
+```csharp
+protected override void OnModelCreating(ModelBuilder modelBuilder)
+{
+    modelBuilder.Entity<User>().Metadata.RemoveAnnotation(RelationalAnnotationNames.TableName);
+}
+```
+
 <a name="read-only-discriminators"></a>
 
 ### <a name="discriminators-are-read-only"></a>Los discriminadores son de solo lectura.
@@ -389,6 +450,32 @@ Los métodos específicos del proveedor se asignan a una función de base de dat
 #### <a name="mitigations"></a>Mitigaciones
 
 Dado que no hay forma de imitar el comportamiento de las funciones de base de datos con precisión, debe probar las consultas que las contienen en el mismo tipo de base de datos que en producción.
+
+<a name="getcolumnname-obsolete"></a>
+
+### <a name="ipropertygetcolumnname-is-now-obsolete"></a>IProperty.GetColumnName() está obsoleto
+
+[Incidencia de seguimiento n.º 2266](https://github.com/dotnet/efcore/issues/2266)
+
+#### <a name="old-behavior"></a>Comportamiento anterior
+
+`GetColumnName()` devolvía el nombre de la columna a la que se asigna una propiedad.
+
+#### <a name="new-behavior"></a>Comportamiento nuevo
+
+`GetColumnName()` todavía devuelve el nombre de la columna a la que se asigna una propiedad, pero este comportamiento ahora es ambiguo, ya que EF Core 5 admite el modelo de tabla por tipo y la asignación simultánea a una vista o una función en la que estas asignaciones podrían usar nombres de columna diferentes para la misma propiedad.
+
+#### <a name="why"></a>Por qué
+
+Hemos marcado este método como obsoleto para guiar a los usuarios a una sobrecarga más precisa: <xref:Microsoft.EntityFrameworkCore.RelationalPropertyExtensions.GetColumnName(Microsoft.EntityFrameworkCore.Metadata.IProperty,Microsoft.EntityFrameworkCore.Metadata.StoreObjectIdentifier@)>.
+
+#### <a name="mitigations"></a>Mitigaciones
+
+Use el siguiente código para obtener el nombre de columna de una tabla específica:
+
+```csharp
+var columnName = property.GetColumnName(StoreObjectIdentifier.Table("Users", null)));
+```
 
 <a name="index-obsolete"></a>
 

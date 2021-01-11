@@ -4,12 +4,12 @@ description: Información general sobre las nuevas características de EF Core 
 author: ajcvickers
 ms.date: 09/10/2020
 uid: core/what-is-new/ef-core-5.0/whatsnew
-ms.openlocfilehash: 3efa883cdfac1ecd412112ef06c7763f1a7e12f1
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 7737a143b9478412cdafe3c2fe5e8d7a106c9a3f
+ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429252"
+ms.lasthandoff: 12/17/2020
+ms.locfileid: "97635502"
 ---
 # <a name="whats-new-in-ef-core-50"></a>Novedades en EF Core 5.0
 
@@ -715,7 +715,7 @@ CREATE TABLE [Animals] (
     [Species] nvarchar(max) NULL,
     [Discriminator] nvarchar(max) NOT NULL,
     [Name] nvarchar(max) NULL,
-    [EdcuationLevel] nvarchar(max) NULL,
+    [EducationLevel] nvarchar(max) NULL,
     [FavoriteToy] nvarchar(max) NULL,
     CONSTRAINT [PK_Animals] PRIMARY KEY ([Id])
 );
@@ -739,7 +739,7 @@ CREATE TABLE [Pets] (
 
 CREATE TABLE [Cats] (
     [Id] int NOT NULL,
-    [EdcuationLevel] nvarchar(max) NULL,
+    [EducationLevel] nvarchar(max) NULL,
     CONSTRAINT [PK_Cats] PRIMARY KEY ([Id]),
     CONSTRAINT [FK_Cats_Animals_Id] FOREIGN KEY ([Id]) REFERENCES [Animals] ([Id]) ON DELETE NO ACTION,
     CONSTRAINT [FK_Cats_Pets_Id] FOREIGN KEY ([Id]) REFERENCES [Pets] ([Id]) ON DELETE NO ACTION
@@ -775,7 +775,7 @@ public class Pet : Animal
 [Table("Cats")]
 public class Cat : Pet
 {
-    public string EdcuationLevel { get; set; }
+    public string EducationLevel { get; set; }
 }
 
 [Table("Dogs")]
