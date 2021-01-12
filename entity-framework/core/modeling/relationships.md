@@ -4,18 +4,18 @@ description: Cómo configurar relaciones entre tipos de entidad al utilizar Enti
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/relationships
-ms.openlocfilehash: 9c8fe469c4e0b8714a36624ff5bcf236e5b1652f
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: 2bc17365adb802f2e813077731ae70c68f8e3be3
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97635749"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129179"
 ---
 # <a name="relationships"></a>Relaciones
 
 Una relación define el modo en que dos entidades se relacionan entre sí. En una base de datos relacional, se representa mediante una restricción FOREIGN KEY.
 
-> [!NOTE]  
+> [!NOTE]
 > La mayoría de los ejemplos de este artículo usan una relación de uno a varios para demostrar los conceptos. Para obtener ejemplos de relaciones de uno a uno y de varios a varios, consulte la sección [otros patrones de relación](#other-relationship-patterns) al final del artículo.
 
 ## <a name="definition-of-terms"></a>Definición de términos
@@ -37,7 +37,7 @@ Hay una serie de términos que se usan para describir las relaciones
   * **Propiedad de navegación de referencia:** Propiedad de navegación que contiene una referencia a una sola entidad relacionada.
 
   * **Propiedad de navegación inversa:** Al discutir una propiedad de navegación determinada, este término hace referencia a la propiedad de navegación en el otro extremo de la relación.
-  
+
 * **Relación que hace referencia a sí misma:** Una relación en la que los tipos de entidad dependiente y principal son iguales.
 
 En el código siguiente se muestra una relación de uno a varios entre `Blog` y `Post`
@@ -62,7 +62,7 @@ En el código siguiente se muestra una relación de uno a varios entre `Blog` y 
 
 De forma predeterminada, se creará una relación cuando se detecte una propiedad de navegación en un tipo. Una propiedad se considera una propiedad de navegación si el tipo al que señala no se puede asignar como un tipo escalar por el proveedor de base de datos actual.
 
-> [!NOTE]  
+> [!NOTE]
 > Las relaciones detectadas por la Convención siempre tendrán como destino la clave principal de la entidad principal. Para elegir como destino una clave alternativa, se debe realizar una configuración adicional mediante la API fluida.
 
 ### <a name="fully-defined-relationships"></a>Relaciones totalmente definidas
@@ -178,7 +178,7 @@ Puede usar las anotaciones de datos para configurar qué propiedad se debe usar 
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Relationships/ForeignKey.cs?name=ForeignKey&highlight=17)]
 
-> [!TIP]  
+> [!TIP]
 > La `[ForeignKey]` anotación puede colocarse en cualquier propiedad de navegación de la relación. No es necesario que vaya a la propiedad de navegación en la clase de entidad dependiente.
 
 > [!NOTE]
@@ -208,7 +208,7 @@ No es necesario proporcionar una propiedad de navegación. Simplemente puede pro
 
 ### <a name="principal-key"></a>Clave principal
 
-Si desea que la clave externa haga referencia a una propiedad que no sea la clave principal, puede usar la API fluida para configurar la propiedad de clave principal de la relación. La propiedad que se configura como clave principal se configurará automáticamente como una [clave alternativa](xref:core/modeling/keys#alternate-keys).
+Si desea que la clave externa haga referencia a una propiedad que no sea la clave principal, puede usar la API fluida para configurar la propiedad de clave principal de la relación. La propiedad que se configura como clave principal se configurará automáticamente como [clave alternativa](xref:core/modeling/keys#alternate-keys).
 
 #### <a name="simple-key"></a>[Clave simple](#tab/simple-key)
 
@@ -218,7 +218,7 @@ Si desea que la clave externa haga referencia a una propiedad que no sea la clav
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Relationships/CompositePrincipalKey.cs?name=CompositePrincipalKey&highlight=11)]
 
-> [!WARNING]  
+> [!WARNING]
 > El orden en el que se especifican las propiedades de clave principal debe coincidir con el orden en que se especifican para la clave externa.
 
 ---
@@ -250,7 +250,7 @@ Una relación de uno a uno tiene una propiedad de navegación de referencia en a
 
 [!code-csharp[Main](../../../samples/core/Modeling/Conventions/Relationships/OneToOne.cs?name=OneToOne&highlight=6,15-16)]
 
-> [!NOTE]  
+> [!NOTE]
 > EF elegirá una de las entidades como dependiente en función de su capacidad para detectar una propiedad de clave externa. Si se elige la entidad equivocada como dependiente, puede usar la API fluida para corregir este problema.
 
 Al configurar la relación con la API fluida, se usan los `HasOne` `WithOne` métodos y.

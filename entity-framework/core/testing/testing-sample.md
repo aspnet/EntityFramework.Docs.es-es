@@ -11,12 +11,12 @@ no-loc:
 - Tags
 - items
 - tags
-ms.openlocfilehash: 9666bbde8ae9608dcebbea3ad37c51883960a942
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 7af516421a6ec3040b636507a6cd7976cabce3a9
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431370"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128802"
 ---
 # <a name="ef-core-testing-sample"></a>Ejemplo de prueba de EF Core
 

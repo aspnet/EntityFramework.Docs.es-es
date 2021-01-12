@@ -4,35 +4,35 @@ description: Uso de DiagnosticListener para el consumo global de diagnósticos d
 author: ajcvickers
 ms.date: 10/16/2020
 uid: core/logging-events-diagnostics/diagnostic-listeners
-ms.openlocfilehash: a2a962ac714cf80c42c269cee3770699aaa4c0c9
-ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
+ms.openlocfilehash: afb80aa8f05f70761e423f58653f681938079858
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94503233"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129270"
 ---
 # <a name="using-diagnostic-listeners-in-ef-core"></a>Uso de agentes de escucha de diagnóstico en EF Core
 
-> [!TIP]  
+> [!TIP]
 > Puede [descargar el ejemplo de este artículo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/DiagnosticListeners) en github.
 
-Los agentes de escucha de diagnóstico permiten escuchar cualquier evento de EF Core que se produzca en el proceso .NET actual. La <xref:System.Diagnostics.DiagnosticListener> clase forma parte de un [mecanismo común en .net](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) para obtener información de diagnóstico de aplicaciones en ejecución.
+Las escuchas de diagnóstico permiten escuchar cualquier evento de EF Core que se produzca en el proceso de .NET actual. La <xref:System.Diagnostics.DiagnosticListener> clase forma parte de un [mecanismo común en .net](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) para obtener información de diagnóstico de aplicaciones en ejecución.
 
-Los agentes de escucha de diagnóstico no son adecuados para obtener eventos de una única instancia de DbContext. Los [interceptores](xref:core/logging-events-diagnostics/interceptors) de EF Core proporcionan acceso a los mismos eventos con registro por contexto.
+Las escuchas de diagnóstico no son adecuadas para obtener eventos de una sola instancia de DbContext. Los [interceptores](xref:core/logging-events-diagnostics/interceptors) de EF Core proporcionan acceso a los mismos eventos con registro por contexto.
 
-Los agentes de escucha de diagnóstico no están diseñados para el registro. Considere la posibilidad de usar un [registro simple](xref:core/logging-events-diagnostics/simple-logging) o [Microsoft. Extensions. Logging](xref:core/logging-events-diagnostics/extensions-logging) para el registro.
+Las escuchas de diagnóstico no están diseñadas para el registro. Considere la posibilidad de usar un [registro simple](xref:core/logging-events-diagnostics/simple-logging) o [Microsoft. Extensions. Logging](xref:core/logging-events-diagnostics/extensions-logging) para el registro.
 
 ## <a name="example-observing-diagnostic-events"></a>Ejemplo: observación de eventos de diagnóstico
 
-La resolución de eventos EF Core es un proceso de dos pasos. En primer lugar [observer](/dotnet/standard/events/observer-design-pattern) , `DiagnosticListener` se debe crear un observador para sí mismo:
+La resolución de eventos EF Core es un proceso de dos pasos. En primer lugar [](/dotnet/standard/events/observer-design-pattern) , `DiagnosticListener` se debe crear un observador para sí mismo:
 
 <!--
 public class DiagnosticObserver : IObserver<DiagnosticListener>
 {
-    public void OnCompleted() 
+    public void OnCompleted()
         => throw new NotImplementedException();
-    
-    public void OnError(Exception error) 
+
+    public void OnError(Exception error)
         => throw new NotImplementedException();
 
     public void OnNext(DiagnosticListener value)
@@ -60,10 +60,10 @@ En segundo lugar, una vez que se encuentra el EF Core DiagnosticListener, se cre
 <!--
 public class KeyValueObserver : IObserver<KeyValuePair<string, object>>
 {
-    public void OnCompleted() 
+    public void OnCompleted()
         => throw new NotImplementedException();
-    
-    public void OnError(Exception error) 
+
+    public void OnError(Exception error)
         => throw new NotImplementedException();
 
     public void OnNext(KeyValuePair<string, object> value)
@@ -105,12 +105,12 @@ El [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/
         #region RegisterDiagnosticListener
         DiagnosticListener.AllListeners.Subscribe(new DiagnosticObserver());
         #endregion
-        
+
         using (var context = new BlogsContext())
         {
             context.Database.EnsureDeleted();
             context.Database.EnsureCreated();
-            
+
             context.Add(
                 new Blog
                 {

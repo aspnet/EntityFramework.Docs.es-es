@@ -4,12 +4,12 @@ description: Ejemplo que muestra cómo compartir una base de datos entre varias 
 author: ajcvickers
 ms.date: 04/25/2020
 uid: core/testing/sharing-databases
-ms.openlocfilehash: 95b756c80b983356a07fd836aa1b02f2835e6629
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 7a90a144271d5c34e9d5043aa439f84db805c6af
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431336"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128841"
 ---
 # <a name="sharing-databases-between-tests"></a>Compartir bases de datos entre pruebas
 
@@ -29,7 +29,7 @@ Esto requiere comprender lo siguiente:
 
 * Cómo compartir de forma segura objetos entre pruebas
 * Cuando el marco de pruebas ejecuta pruebas en paralelo
-* Cómo mantener la base de datos en un estado limpio para cada prueba  
+* Cómo mantener la base de datos en un estado limpio para cada prueba
 
 ## <a name="the-fixture"></a>El accesorio
 
@@ -65,7 +65,7 @@ Esto garantiza que la base de datos coincida con el modelo EF actual incluso si 
 La conexión a la base de datos se elimina cuando se desecha el accesorio.
 También puede considerar la posibilidad de eliminar la base de datos de prueba en este momento.
 Sin embargo, esto requerirá un recuento de referencias y bloqueo adicional si el accesorio se comparte con varias clases de prueba.
-Además, a menudo resulta útil tener la base de datos de prueba todavía disponible para la depuración de pruebas con errores.  
+Además, a menudo resulta útil tener la base de datos de prueba todavía disponible para la depuración de pruebas con errores.
 
 ## <a name="using-the-fixture"></a>Uso del accesorio
 

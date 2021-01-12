@@ -4,19 +4,19 @@ description: Uso de SQLite para probar una aplicación Entity Framework Core
 author: ajcvickers
 ms.date: 04/24/2020
 uid: core/testing/sqlite
-ms.openlocfilehash: ebfcd36bf236cb83cab8683a8c31d4752d437998
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: da2504cfe7997a10a5ee8c447b1c6ef00dd02369
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431374"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129062"
 ---
 # <a name="using-sqlite-to-test-an-ef-core-application"></a>Uso de SQLite para probar una aplicación EF Core
 
 > [!WARNING]
 > El uso de SQLite puede ser una manera eficaz de probar una aplicación EF Core.
 > Sin embargo, pueden surgir problemas en los que SQLite se comporta de forma diferente a otros sistemas de base de datos.
-> Vea [código de prueba que usa EF Core](xref:core/testing/index) para obtener una explicación de los problemas y las ventajas.  
+> Vea [código de prueba que usa EF Core](xref:core/testing/index) para obtener una explicación de los problemas y las ventajas.
 
 Este documento se basa en los conceptos presentados en el [ejemplo que muestra cómo probar las aplicaciones que usan EF Core](xref:core/testing/testing-sample).
 Los ejemplos de código que se muestran aquí provienen de este ejemplo.
@@ -33,7 +33,7 @@ Esto es fácil de usar con EF Core siempre que comprenda la duración de la base
 * La base de datos se elimina cuando se cierra la conexión con ella.
 
 EF Core usará una conexión que ya está abierta cuando se le proporcione una y nunca intentará cerrarla.
-Por lo tanto, la clave para usar EF Core con una base de datos SQLite en memoria es abrir la conexión antes de pasarla a EF.  
+Por lo tanto, la clave para usar EF Core con una base de datos SQLite en memoria es abrir la conexión antes de pasarla a EF.
 
 En el [ejemplo](xref:core/testing/testing-sample) se consigue con el código siguiente:
 

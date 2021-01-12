@@ -4,12 +4,12 @@ description: Guía de rendimiento para consultas eficaces con Entity Framework C
 author: roji
 ms.date: 12/1/2020
 uid: core/performance/efficient-querying
-ms.openlocfilehash: acd5388745e74a42925c8500ce610aef83e75384
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: e945a1e0f734d62ce8948904bcbe819455fcbefa
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97657740"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128490"
 ---
 # <a name="efficient-querying"></a>Consultas eficaces
 
@@ -136,7 +136,7 @@ info: Microsoft.EntityFrameworkCore.Database.Command[20101]
 
 ¿Qué ocurre aquí? ¿Por qué se envían todas estas consultas para los bucles simples anteriores? Con la carga diferida, las publicaciones de un blog solo se cargan (de forma diferida) cuando se tiene acceso a su propiedad posts. como resultado, cada iteración de la instrucción foreach interna desencadena una consulta de base de datos adicional, en su propio recorrido de ida y vuelta. Como resultado, después de que la consulta inicial cargue todos los blogs, tendrá otra consulta *por cada blog* y cargará todas sus entradas; a veces, esto se denomina el problema *N + 1* y puede causar problemas de rendimiento muy significativos.
 
-Suponiendo que vamos a necesitar todas las publicaciones de blogs, tiene sentido usar la carga diligente aquí en su lugar. Se puede usar el operador [include](xref:core/querying/related-data/eager#eager-loading) para realizar la carga, pero como solo se necesitan las direcciones URL de los blogs (y solo se deben [cargar los elementos necesarios](xref:core/performance/efficient-updating#project-only-properties-you-need)). En su lugar, usaremos una proyección:
+Suponiendo que vamos a necesitar todas las publicaciones de blogs, tiene sentido usar la carga diligente aquí en su lugar. Se puede usar el operador [include](xref:core/querying/related-data/eager#eager-loading) para realizar la carga, pero como solo se necesitan las direcciones URL de los blogs (y solo se deben [cargar los elementos necesarios](xref:core/performance/efficient-querying#project-only-properties-you-need)). En su lugar, usaremos una proyección:
 
 [!code-csharp[Main](../../../samples/core/Performance/Program.cs#EagerlyLoadRelatedAndProject)]
 
@@ -156,7 +156,7 @@ El hecho de que un búfer de consulta o secuencias dependa de cómo se evalúa:
 Si las consultas devuelven solo unos cuantos resultados, probablemente no tenga que preocuparse de ello. Sin embargo, si la consulta puede devolver un gran número de filas, merece la pena hacer streaming en lugar de almacenar en búfer.
 
 > [!NOTE]
-> Evite el uso de <xref:System.Linq.Enumerable.ToList%2A> o <xref:System.Linq.Enumerable.ToArray%2A> si piensa usar otro operador LINQ en el resultado; de esta forma, se almacenarán todos los resultados en la memoria. Utilice <xref:System.Linq.Enumerable.AsEnumerable%2A> en su lugar.
+> Evite el uso de <xref:System.Linq.Enumerable.ToList%2A> o <xref:System.Linq.Enumerable.ToArray%2A> si piensa usar otro operador LINQ en el resultado; de esta forma, se almacenarán todos los resultados en la memoria. En su lugar, use <xref:System.Linq.Enumerable.AsEnumerable%2A>.
 
 ### <a name="internal-buffering-by-ef"></a>Almacenamiento en búfer interno por EF
 
@@ -208,3 +208,7 @@ Para obtener más información, vea la página sobre [programación asincrónica
 
 > [!WARNING]
 > Evite mezclar código sincrónico y asincrónico en la misma aplicación: es muy fácil desencadenar problemas sutiles de colapso de grupos de subprocesos.
+
+## <a name="additional-resources"></a>Recursos adicionales
+
+Vea la [sección rendimiento](xref:core/querying/null-comparisons#writing-performant-queries) de la página de documentación de comparación nula para ver algunas prácticas recomendadas al comparar valores que aceptan valores NULL.

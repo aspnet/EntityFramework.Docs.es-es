@@ -4,12 +4,12 @@ description: Cómo configurar tipos de entidad o agregados de propiedad al usar 
 author: AndriySvyryd
 ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 36f756b70c9ad1727c48b5c789fd324c9dc6cd29
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 0cd6bfd25d4462509a3e6c112b892d652d29e45e
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429458"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128633"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidad en propiedad
 
@@ -48,7 +48,7 @@ Vea el [proyecto de ejemplo completo](https://github.com/dotnet/EntityFramework.
 
 ## <a name="implicit-keys"></a>Claves IMPLÍCITAS
 
-Los tipos de propiedad configurados con `OwnsOne` o detectados a través de una navegación de referencia siempre tienen una relación uno a uno con el propietario, por lo que no necesitan sus propios valores de clave, ya que los valores de clave externa son únicos. En el ejemplo anterior, el `StreetAddress` tipo no necesita definir una propiedad de clave.  
+Los tipos de propiedad configurados con `OwnsOne` o detectados a través de una navegación de referencia siempre tienen una relación uno a uno con el propietario, por lo que no necesitan sus propios valores de clave, ya que los valores de clave externa son únicos. En el ejemplo anterior, el `StreetAddress` tipo no necesita definir una propiedad de clave.
 
 Para entender cómo EF Core realiza el seguimiento de estos objetos, es útil saber que se crea una clave principal como una [propiedad de sombra](xref:core/modeling/shadow-properties) para el tipo de propiedad. El valor de la clave de una instancia del tipo de propiedad será el mismo que el valor de la clave de la instancia de propietario.
 
@@ -130,7 +130,7 @@ Además, observe la `Navigation` llamada a. En EFCore 5,0, las propiedades de na
 
 El modelo anterior se asigna al siguiente esquema de la base de datos:
 
-![Sceenshot del modelo de base de datos para la entidad que contiene referencias anidadas de propiedad](_static/owned-entities-nested.png)
+![Captura de pantalla del modelo de base de datos para la entidad que contiene referencias anidadas de propiedad](_static/owned-entities-nested.png)
 
 ## <a name="storing-owned-types-in-separate-tables"></a>Almacenar tipos de propiedad en tablas independientes
 

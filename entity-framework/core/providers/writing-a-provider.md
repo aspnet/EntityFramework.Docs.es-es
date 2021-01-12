@@ -4,19 +4,19 @@ description: Información sobre cómo escribir un nuevo proveedor de Entity Fram
 author: ajcvickers
 ms.date: 10/27/2016
 uid: core/providers/writing-a-provider
-ms.openlocfilehash: 898a7a50211e68400ee012daa542bed14bdcec1c
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: e66c5b94d826e35bb5148d57897a1081de4e9736
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430500"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128425"
 ---
 # <a name="writing-a-database-provider"></a>Escritura de un proveedor de base de datos
 
 Para obtener información sobre cómo escribir un proveedor de bases de datos de Entity Framework Core, consulte para [que pueda escribir un proveedor de EF Core](https://blog.oneunicorn.com/2016/11/11/so-you-want-to-write-an-ef-core-provider/) por [Arthur Vickers](https://github.com/ajcvickers).
 
 > [!NOTE]
-> Estas publicaciones no se han actualizado desde EF Core 1,1 y ha habido cambios significativos desde ese momento.  
+> Estas publicaciones no se han actualizado desde EF Core 1,1 y ha habido cambios significativos desde ese momento.
 El [problema 681](https://github.com/dotnet/EntityFramework.Docs/issues/681) está realizando el seguimiento de las actualizaciones de esta documentación.
 
 La EF Core código base es de código abierto y contiene varios proveedores de bases de datos que se pueden utilizar como referencia. Puede encontrar el código fuente en <https://github.com/dotnet/efcore> . También puede ser útil examinar el código para proveedores de terceros de uso frecuente, como [Npgsql](https://github.com/npgsql/Npgsql.EntityFrameworkCore.PostgreSQL), [Pomelo MySQL](https://github.com/PomeloFoundation/Pomelo.EntityFrameworkCore.MySql)y [SQL Server Compact](https://github.com/ErikEJ/EntityFramework.SqlServerCompact). En concreto, estos proyectos se configuran para extender desde y ejecutar pruebas funcionales que publicamos en NuGet. Se recomienda encarecidamente este tipo de instalación.

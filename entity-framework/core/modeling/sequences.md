@@ -4,16 +4,16 @@ description: Configurar secuencias en un modelo de Entity Framework Core
 author: roji
 ms.date: 12/18/2019
 uid: core/modeling/sequences
-ms.openlocfilehash: 8848a7237934091c1253ec61a37eea1c4326d1cb
-ms.sourcegitcommit: abda0872f86eefeca191a9a11bfca976bc14468b
+ms.openlocfilehash: e388bde11b1251564b37227e8884d2b8c34dc02e
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 09/14/2020
-ms.locfileid: "90071399"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128529"
 ---
 # <a name="sequences"></a>Secuencias
 
-> [!NOTE]  
+> [!NOTE]
 > Las secuencias son una característica que normalmente solo admiten las bases de datos relacionales. Si utiliza una base de datos no relacional como Cosmos, consulte la documentación de la base de datos para generar valores únicos.
 
 Una secuencia genera valores numéricos únicos y secuenciales en la base de datos. Las secuencias no están asociadas a una tabla específica y se pueden configurar varias tablas para que dibujen valores de la misma secuencia.

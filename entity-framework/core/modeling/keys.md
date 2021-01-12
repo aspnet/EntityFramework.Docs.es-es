@@ -4,12 +4,12 @@ description: Cómo configurar claves para tipos de entidad al utilizar Entity Fr
 author: AndriySvyryd
 ms.date: 11/06/2019
 uid: core/modeling/keys
-ms.openlocfilehash: ea744315514b19465aba9a311055a9b5e49fa3f8
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 805396a13227aa62ed86ac17c742d055d7a22bbf
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063795"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129192"
 ---
 # <a name="keys"></a>Claves
 

@@ -4,12 +4,12 @@ description: Características de índice específicas del proveedor de SQL Serve
 author: roji
 ms.date: 9/1/2020
 uid: core/providers/sql-server/indexes
-ms.openlocfilehash: 66b4e3ce5ab1d4da855c106a6a2d2e75c43081f7
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 42411a562b4741ba39b4eb855bb84c66e100456b
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003165"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129166"
 ---
 # <a name="index-features-specific-to-the-entity-framework-core-sql-server-provider"></a>Características de índice específicas del proveedor de SQL Server de Entity Framework Core
 
@@ -25,10 +25,13 @@ Puede configurar un índice o una clave para agruparlos como se indica a continu
 
 [!code-csharp[ClusteredIndex](../../../../samples/core/SqlServer/Indexes/ClusteredIndexContext.cs?name=ClusteredIndex)]
 
+> [!NOTE]
+> SQL Server solo admite un índice clúster por tabla y la clave principal está agrupada de forma predeterminada. Si desea tener un índice clúster en una columna que no sea de clave, debe hacer explícitamente que la clave no esté en clúster.
+
 ## <a name="fill-factor"></a>Factor de relleno
 
 > [!NOTE]
-> Esta característica se presentó en EF Core 5,0.
+> Esta característica se incluyó por primera vez en EF Core 5.0.
 
 La opción de factor de relleno de índice se proporciona para ajustar el rendimiento y el almacenamiento de datos de índice. Para obtener más información, consulte [la documentación de SQL Server sobre el factor de relleno](/sql/relational-databases/indexes/specify-fill-factor-for-an-index).
 

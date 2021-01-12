@@ -4,20 +4,20 @@ description: Registro desde un EF Core DbContext mediante LogTo
 author: ajcvickers
 ms.date: 10/03/2020
 uid: core/logging-events-diagnostics/simple-logging
-ms.openlocfilehash: 076c4b12aa033b51a2b839686c520a76520ee415
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: 5c2dc41122dfa3919d1e6a26b0760883d77ee1a0
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97635619"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129218"
 ---
 # <a name="simple-logging"></a>Registro sencillo
 
 > [!NOTE]
 > Esta característica se incluyó por primera vez en EF Core 5.0.
 
-> [!TIP]  
-> Puede [descargar el ejemplo de este artículo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/SimpleLogging) en github.
+> [!TIP]
+> Puede [descargar el ejemplo de este artículo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Logging/SimpleLogging) en github.
 
 Se puede usar el registro simple de Entity Framework Core (EF Core) para obtener fácilmente los registros durante el desarrollo y la depuración de aplicaciones. Esta forma de registro requiere una configuración mínima y ningún paquete de NuGet adicional.
 
@@ -26,7 +26,7 @@ Se puede usar el registro simple de Entity Framework Core (EF Core) para obtener
 
 ## <a name="configuration"></a>Configuración
 
-Se puede tener acceso a EF Core registros desde cualquier tipo de aplicación mediante el uso de <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
+Se puede acceder a los registros de EF Core desde cualquier tipo de aplicación mediante el uso de <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A> al [configurar una instancia de DbContext](xref:core/dbcontext-configuration/index). Esta configuración se realiza normalmente en una invalidación de <xref:Microsoft.EntityFrameworkCore.DbContext.OnConfiguring%2A?displayProperty=nameWithType>. Por ejemplo:
 
 <!--
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -62,7 +62,7 @@ El <xref:System.Console.WriteLine%2A?displayProperty=nameWithType> método se ut
 Para escribir en un archivo, es necesario crear un <xref:System.IO.StreamWriter> o similar para el archivo. El <xref:System.IO.StreamWriter.WriteLine%2A> método se puede usar como en los otros ejemplos anteriores. Recuerde asegurarse de que el archivo se cierra limpiamente eliminando el escritor cuando se desecha el contexto. Por ejemplo:
 
 <!--
-    private readonly StreamWriter _logStream = new StreamWriter("mylog.txt", append: true); 
+    private readonly StreamWriter _logStream = new StreamWriter("mylog.txt", append: true);
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         => optionsBuilder.LogTo(_logStream.WriteLine);
@@ -72,7 +72,7 @@ Para escribir en un archivo, es necesario crear un <xref:System.IO.StreamWriter>
         base.Dispose();
         _logStream.Dispose();
     }
-    
+
     public override async ValueTask DisposeAsync()
     {
         await base.DisposeAsync();
@@ -130,7 +130,7 @@ Cada mensaje de registro de EF Core se asigna a un nivel definido por la <xref:M
 
 A todos los mensajes de registro se les asigna un <xref:Microsoft.Extensions.Logging.EventId> . Se puede tener acceso a estos identificadores desde la <xref:Microsoft.EntityFrameworkCore.Diagnostics.CoreEventId> clase o la <xref:Microsoft.EntityFrameworkCore.Diagnostics.RelationalEventId> clase para mensajes específicos relacionales. Un proveedor de bases de datos también puede tener identificadores específicos del proveedor en una clase similar. Por ejemplo, <xref:Microsoft.EntityFrameworkCore.Diagnostics.SqlServerEventId> para el proveedor de SQL Server.
 
-`LogTo` se puede configurar para registrar solo los mensajes asociados a uno o varios identificadores de eventos. Por ejemplo, para registrar solo los mensajes para el contexto que se está inicializando o eliminando:  
+`LogTo` se puede configurar para registrar solo los mensajes asociados a uno o varios identificadores de eventos. Por ejemplo, para registrar solo los mensajes para el contexto que se está inicializando o eliminando:
 
 <!--
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -143,7 +143,7 @@ A todos los mensajes de registro se les asigna un <xref:Microsoft.Extensions.Log
 
 Cada mensaje de registro se asigna a una categoría de registrador jerárquico con nombre. Las categorías son:
 
-| Categoría                                             | error de Hadoop
+| Category                                             | Mensajes
 |:-----------------------------------------------------|-------------------------------------------------
 | Microsoft.EntityFrameworkCore                        | Todos los mensajes de EF Core
 | Microsoft. EntityFrameworkCore. Database               | Todas las interacciones de base de datos
