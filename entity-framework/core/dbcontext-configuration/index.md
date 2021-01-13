@@ -4,12 +4,12 @@ description: Patrones para crear y administrar instancias de DbContext con o sin
 author: ajcvickers
 ms.date: 11/07/2020
 uid: core/dbcontext-configuration/index
-ms.openlocfilehash: 93d5942fbc81ee0ae9aeff0c5c8b9e20b160d512
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: 10ed474df2c4c52e61083d9d671909be02cd8cef
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97635397"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129036"
 ---
 # <a name="dbcontext-lifetime-configuration-and-initialization"></a>Duración, configuración e inicialización de DbContext
 
@@ -48,7 +48,7 @@ Las aplicaciones de ASP.NET Core se [configuran mediante la inserción de depen
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            
+
             services.AddDbContext<ApplicationDbContext>(
                 options => options.UseSqlServer("name=ConnectionStrings:DefaultConnection"));
         }
@@ -303,7 +303,7 @@ En la tabla siguiente se incluyen ejemplos de métodos comunes a los que se llam
 |:-------------------------------------------------------------------------------------------|-------------------------------------------------------------|--------------
 | <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseQueryTrackingBehavior%2A>   | Establece el comportamiento de seguimiento predeterminado para las consultas.              | [Comportamiento del seguimiento de las consultas](xref:core/querying/tracking)
 | <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.LogTo%2A>                      | Una manera sencilla de obtener registros de EF Core (EF Core 5.0 y versiones posteriores)    | [Registro, eventos y diagnósticos](xref:core/logging-events-diagnostics/index)
-| <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseLoggerFactory%2A>           | Registra un generador de `Micrsofot.Extensions.Logging`.         | [Registro, eventos y diagnósticos](xref:core/logging-events-diagnostics/index)
+| <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.UseLoggerFactory%2A>           | Registra un generador de `Microsoft.Extensions.Logging`.         | [Registro, eventos y diagnósticos](xref:core/logging-events-diagnostics/index)
 | <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableSensitiveDataLogging%2A> | Incluye datos de aplicación en excepciones y registro.         | [Registro, eventos y diagnósticos](xref:core/logging-events-diagnostics/index)
 | <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.EnableDetailedErrors%2A>       | Errores de consulta más detallados (a costa del rendimiento).  | [Registro, eventos y diagnósticos](xref:core/logging-events-diagnostics/index)
 | <xref:Microsoft.EntityFrameworkCore.DbContextOptionsBuilder.ConfigureWarnings%2A>          | Omite o inicia advertencias y otros eventos.               | [Registro, eventos y diagnósticos](xref:core/logging-events-diagnostics/index)

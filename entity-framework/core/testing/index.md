@@ -4,12 +4,12 @@ description: Diferentes métodos para probar aplicaciones que usan Entity Framew
 author: ajcvickers
 ms.date: 04/22/2020
 uid: core/testing/index
-ms.openlocfilehash: db25a51ec83bff15ff8c8a959a5f1707dbcf7f0f
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: d94c40bdb1082473ee88e7c3c1fbfecee90ba4ff
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431157"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129075"
 ---
 # <a name="testing-code-that-uses-ef-core"></a>Pruebas de código que usa EF Core
 
@@ -19,7 +19,7 @@ Para probar el código que accede a una base de datos, es necesario:
 * Ejecutar consultas y actualizaciones en algún otro sistema de base de datos más fácil de administrar.
 * Usar dobles de prueba o algún otro mecanismo para evitar por completo el uso de una base de datos.
 
-En este documento se describen las ventajas y los inconvenientes de cada una de estas opciones, y se muestra cómo usar EF Core con cada método.  
+En este documento se describen las ventajas y los inconvenientes de cada una de estas opciones, y se muestra cómo usar EF Core con cada método.
 
 > [!TIP]
 > Eche un vistazo al [ejemplo de prueba de EF Core](xref:core/testing/testing-sample) para ver código que muestra los conceptos descritos aquí.
@@ -35,7 +35,7 @@ Básicamente, esto significa que, al cambiar de proveedor de base de datos, camb
 Dicho esto, en muchos casos esto funciona, ya que hay un alto grado de homogeneidad entre bases de datos relacionales.
 Esto es bueno y malo.
 Es bueno porque el cambio entre sistemas de bases de datos puede ser relativamente fácil.
-Es malo porque puede dar una falsa sensación de seguridad si la aplicación no se prueba por completo en el nuevo sistema de base de datos.  
+Es malo porque puede dar una falsa sensación de seguridad si la aplicación no se prueba por completo en el nuevo sistema de base de datos.
 
 ## <a name="approach-1-production-database-system"></a>Enfoque 1: Sistema de base de datos de producción
 
@@ -65,7 +65,7 @@ LocalDB también presenta algunos inconvenientes:
 Personalmente, nunca me ha parecido un problema que haya un servicio de base de datos ejecutándose en el equipo de desarrollo y, en general, recomendaría usar Developer Edition.
 Con todo, LocalDB puede ser adecuado para algunas personas, especialmente en equipos de desarrollo menos potentes.
 
-Otra manera de evitar que el sistema de base de datos se ejecute directamente en el equipo de desarrollo es [ejecutar SQL Server](/sql/linux/quickstart-install-connect-docker) (o cualquier otro sistema de base de datos) en un contenedor de Docker (o similar).  
+Otra manera de evitar que el sistema de base de datos se ejecute directamente en el equipo de desarrollo es [ejecutar SQL Server](/sql/linux/quickstart-install-connect-docker) (o cualquier otro sistema de base de datos) en un contenedor de Docker (o similar).
 
 ## <a name="approach-2-sqlite"></a>Enfoque 2: SQLite
 
