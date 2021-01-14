@@ -19,6 +19,8 @@
       items:
         - name: ¡Bienvenido!
           href: core/index.md
+        - name: "Novedades en EF Core\_5.0"
+          href: /ef/core/what-is-new/ef-core-5.0/whatsnew
         - name: Introducción
           items:
             - name: Información general sobre EF Core
@@ -41,6 +43,14 @@
               href: core/what-is-new/index.md
             - name: Proceso de planeamiento de versiones
               href: core/what-is-new/release-planning.md
+            - name: "EF\_Core\_6.0"
+              items:
+                - name: Plan de alto nivel
+                  href: core/what-is-new/ef-core-6.0/plan.md
+                - name: Novedades
+                  href: core/what-is-new/ef-core-6.0/whatsnew.md
+                - name: Cambios importantes
+                  href: core/what-is-new/ef-core-6.0/breaking-changes.md
             - name: "EF Core\_5.0"
               items:
                 - name: Plan de alto nivel
@@ -182,6 +192,8 @@
               href: core/querying/filters.md
             - name: Etiquetas de consulta
               href: core/querying/tags.md
+            - name: Comparaciones con valores NULL en las consultas
+              href: core/querying/null-comparisons.md
             - name: Funcionamiento de las consultas
               href: core/querying/how-query-works.md
         - name: Guardar datos
@@ -202,6 +214,24 @@
               href: core/saving/disconnected-entities.md
             - name: Valores explícitos para propiedades generadas
               href: core/saving/explicit-values-generated-properties.md
+        - name: Seguimiento de cambios
+          items:
+            - name: Información general
+              href: core/change-tracking/index.md
+            - name: Seguimiento explícito de entidades
+              href: core/change-tracking/explicit-tracking.md
+            - name: Acceso a entidades sometidas a seguimiento
+              href: core/change-tracking/entity-entries.md
+            - name: Cambio de las claves externas y las navegaciones
+              href: core/change-tracking/relationship-changes.md
+            - name: Detección y notificaciones de cambios
+              href: core/change-tracking/change-detection.md
+            - name: Resolución de identidad
+              href: core/change-tracking/identity-resolution.md
+            - name: Características adicionales de seguimiento de cambios
+              href: core/change-tracking/miscellaneous.md
+            - name: Depuración de la herramienta de seguimiento de cambios
+              href: core/change-tracking/debug-views.md
         - name: 'Registro, eventos y diagnósticos'
           items:
             - name: Información general
