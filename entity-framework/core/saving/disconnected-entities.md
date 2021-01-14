@@ -4,12 +4,12 @@ description: Trabajo con entidades desconectadas y sin seguimiento en varias ins
 author: ajcvickers
 ms.date: 10/27/2016
 uid: core/saving/disconnected-entities
-ms.openlocfilehash: f21cc71ef11ee4ef37618a68d5a5219e8174bf8b
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 4ddae08b68aa99fb81de77fed8a195c60927e0bb
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063574"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128854"
 ---
 # <a name="disconnected-entities"></a>Entidades desconectadas
 
@@ -45,7 +45,7 @@ Sin embargo, EF también tiene una manera integrada de hacer esto con cualquier 
 
 [!code-csharp[Main](../../../samples/core/Saving/Disconnected/Sample.cs#IsItNewGeneral)]
 
-> [!TIP]  
+> [!TIP]
 > Las claves se establecen tan pronto como el contexto hace seguimiento de las entidades, incluso si la entidad tiene el estado Added (Agregada). Esto resulta útil cuando se recorre un grafo de entidades y se decide qué hacer con cada una de ellas, como cuándo usar TrackGraph API. El valor de la clave solo se debe usar como se indica aquí _antes_ de cualquier llamada para hacer seguimiento de la entidad.
 
 ### <a name="with-other-keys"></a>Con otras claves
@@ -84,7 +84,7 @@ Estos son los pasos:
   * Luego usamos SetValues para establecer los valores de todas las propiedades de esta entidad en los valores que provienen del cliente.
   * La llamada a SetValues marcará la entidad para actualizarla según sea necesario.
 
-> [!TIP]  
+> [!TIP]
 > SetValues solo marcará como modificadas las propiedades que tengan valores distintos a los de la entidad con seguimiento. Esto significa que, cuando se envíe la actualización, solo se actualizarán las columnas que se hayan modificado realmente. (Si no se modificó nada, no se enviará ninguna actualización).
 
 ## <a name="working-with-graphs"></a>Trabajo con grafos

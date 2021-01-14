@@ -5,12 +5,12 @@ author: codemillmatt
 ms.date: 07/07/2020
 ms.author: masoucou
 uid: core/get-started/xamarin
-ms.openlocfilehash: a08c5582b063f4a7748a43811c2bf28e8f3e5c14
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: c19c70903926c2c8ff4b51cca7781859af7e3567
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429915"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128789"
 ---
 # <a name="getting-started-with-ef-core-and-xamarin"></a>Primeros pasos con EF Core y Xamarin
 
@@ -165,7 +165,7 @@ using (var blogContext = new BloggingContext())
 
 * Permite actualizar un registro existente.
   * La función `Save_Clicked` de `AddPostPage.xaml.cs` actualiza un objeto `Blog` existente con un `Post` nuevo.
-  
+
 ```csharp
 var newPost = new Post
 {

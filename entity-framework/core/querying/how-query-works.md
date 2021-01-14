@@ -4,12 +4,12 @@ description: Información general sobre cómo Entity Framework Core compila y ej
 author: ajcvickers
 ms.date: 03/17/2020
 uid: core/querying/how-query-works
-ms.openlocfilehash: 7b3014cf64f8467ccbec10598ea1bb47304dfe43
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 4f856bf7e084d020edee1585d5c6c64873a5ed15
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94430474"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129010"
 ---
 # <a name="how-queries-work"></a>Funcionamiento de las consultas
 
@@ -43,5 +43,5 @@ Las operaciones más comunes que generan que la consulta se envíe a la base de 
 * La iteración de los resultados en un bucle `for`
 * Uso de operadores como `ToList`, `ToArray`, `Single` y `Count`, o sobrecargas asincrónicas equivalentes
 
-> [!WARNING]  
+> [!WARNING]
 > **Valide siempre la entrada del usuario:** aunque EF Core protege contra los ataques por inyección de código SQL con el uso de parámetros y el escape de cadenas literales en consultas, no valida las entradas. Se debe realizar una validación apropiada, según los requisitos de la aplicación, antes de que los valores de los orígenes que no son de confianza se usen en consultas LINQ, se asignen a las propiedades de una entidad o se pasen a otras API de EF Core. Esto incluye cualquier intervención del usuario que se use para construir consultas de manera dinámica. Incluso al usar LINQ, si acepta la intervención del usuario para crear expresiones, necesita garantizar que solo se pueden construir las expresiones previstas.

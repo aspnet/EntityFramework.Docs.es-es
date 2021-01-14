@@ -4,18 +4,18 @@ description: Información básica sobre cómo agregar, actualizar y eliminar dat
 author: ajcvickers
 ms.date: 10/27/2016
 uid: core/saving/basic
-ms.openlocfilehash: c6288fc8ca79b78b6c377f25e3874211b38059b2
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 8c98f95dee85641f11af716290333b47f340bff8
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063639"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129114"
 ---
 # <a name="basic-save"></a>Guardado básico
 
 Obtenga información sobre cómo agregar, modificar y quitar datos mediante las clases de entidad y contexto.
 
-> [!TIP]  
+> [!TIP]
 > Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Saving/Basics/) de este artículo en GitHub.
 
 ## <a name="adding-data"></a>Agregar datos
@@ -24,7 +24,7 @@ Use el método *DbSet.Add* para agregar instancias nuevas de las clases de entid
 
 [!code-csharp[Main](../../../samples/core/Saving/Basics/Sample.cs#Add)]
 
-> [!TIP]  
+> [!TIP]
 > Los métodos Add, Attach y Update funcionan en todo el grafo de entidades que se pasaron a ellos, tal como se describe en la sección de [datos relacionados](xref:core/saving/related-data). También puede usar la propiedad EntityEntry.State para establecer el estado de una sola unidad. Por ejemplo, `context.Entry(blog).State = EntityState.Modified`.
 
 ## <a name="updating-data"></a>Actualización de datos
@@ -47,7 +47,7 @@ Si la entidad ya existe en la base de datos, se eliminará durante *SaveChanges*
 
 Puede combinar varias operaciones Add, Update y Remove en una sola llamada a *SaveChanges*.
 
-> [!NOTE]  
+> [!NOTE]
 > Para la mayoría de los proveedores de base de datos, *SaveChanges* es transaccional. Esto significa que todas las operaciones se realizarán correctamente o presentarán un error y que nunca se aplicarán de manera parcial.
 
 [!code-csharp[Main](../../../samples/core/Saving/Basics/Sample.cs#MultipleOperations)]

@@ -4,14 +4,14 @@ description: Traducción de consultas en consultas únicas y divididas en SQL co
 author: smitpatel
 ms.date: 10/03/2019
 uid: core/querying/single-split-queries
-ms.openlocfilehash: ba282a0c5242b2eb87d681906571036d4751f6ac
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 8615e7ba5247a90a1f980e9f7b1b23c81170971f
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003567"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128997"
 ---
-# <a name="single-vs-split-queries"></a>Consultas únicas frente a consultas divididas
+# <a name="split-queries"></a>Consultas divididas
 
 ## <a name="single-queries"></a>Consultas únicas
 
