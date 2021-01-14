@@ -2,20 +2,20 @@
 title: Herramientas y extensiones - EF Core
 description: Herramientas y extensiones externas para Entity Framework Core
 author: ErikEJ
-ms.date: 11/22/2020
+ms.date: 01/06/2021
 uid: core/extensions/index
-ms.openlocfilehash: 4136710567d0f6b088a0dd5ad9895d8b93313e5e
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: 1198cd586902cd6222a94225056d076c847c9197
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97635411"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98129023"
 ---
 # <a name="ef-core-tools--extensions"></a>Herramientas y extensiones de EF Core
 
 Estas herramientas y extensiones proporcionan más funcionalidades para Entity Framework Core 2.1 y versiones posteriores.
 
-> [!IMPORTANT]  
+> [!IMPORTANT]
 > Las extensiones están compiladas a partir de una gran variedad de orígenes, por lo que su mantenimiento no está incluido en el proyecto Entity Framework Core. En lo que respecta a las extensiones de terceros y para asegurarse de que cumplan sus requisitos, no se olvide de evaluar la calidad, las licencias, la compatibilidad, el soporte técnico, etc. En concreto, es posible que sea necesario actualizar una extensión compilada para una versión anterior de EF Core para que funcione con las versiones más recientes.
 
 ## <a name="tools"></a>Herramientas
@@ -36,7 +36,7 @@ Entity Developer es un potente diseñador O/RM para ADO.NET Entity Framework, NH
 
 O/RM que crea clases extensibles y fuertemente tipadas para Entity Framework. El código generado es Entity Framework Core. No hay ninguna diferencia. Esto no es un reemplazo de EF ni un O/RM personalizado. Es una capa de modelado visual que permite a un equipo administrar esquemas de base de datos complejos. Funciona bien con software SCM como GIT, lo que permite el acceso de varios usuarios al modelo con conflictos mínimos. El instalador realiza un seguimiento de los cambios del modelo y crea scripts de actualización. Para EF Core: 3.
 
-[Sitio de GitHub](https://github.com/nHydrate/nHydrate)
+[Repositorio de GitHub](https://github.com/nHydrate/nHydrate)
 
 ### <a name="ef-core-power-tools"></a>EF Core Power Tools
 
@@ -119,11 +119,23 @@ Recuperación del atributo [Index] (con extensión para la creación de modelos)
 
 [Repositorio de GitHub](https://github.com/jsakamoto/EntityFrameworkCore.IndexAttribute)
 
-### <a name="efcoreinmemoryhelpers"></a>EfCore.InMemoryHelpers
+### <a name="verifyentityframework"></a>Verify.EntityFramework
 
-Proporciona un contenedor alrededor del proveedor de la base de datos en memoria de EF Core. Así, hace que actúe de una forma más similar a la de un proveedor relacional. Para EF Core: 2.
+Extiende la [comprobación](https://github.com/VerifyTests/Verify) para permitir las pruebas de instantáneas con EntityFramework. Para EF Core: 3.5.
 
-[Repositorio de GitHub](https://github.com/SimonCropp/EfCore.InMemoryHelpers)
+[Repositorio de GitHub](https://github.com/VerifyTests/Verify.EntityFramework)
+
+### <a name="localdb"></a>LocalDb
+
+Proporciona un contenedor alrededor de [SQL Server Express LocalDB](https://docs.microsoft.com/sql/database-engine/configure-windows/sql-server-express-localdb) para simplificar las pruebas en ejecución en Entity Framework. Para EF Core: 3.5.
+
+[Repositorio de GitHub](https://github.com/SimonCropp/LocalDb)
+
+### <a name="effluentvalidation"></a>EfFluentValidation
+
+Agrega la compatibilidad de [FluentValidation](https://fluentvalidation.net/) a Entity Framework. Para EF Core: 3.5.
+
+[Repositorio de GitHub](https://github.com/SimonCropp/EfFluentValidation)
 
 ### <a name="efcoretemporalsupport"></a>EFCore.TemporalSupport
 
@@ -170,7 +182,7 @@ Amplía su DbContext con características como: Incluir filtro, Auditoría, Cach
 
 ### <a name="entity-framework-extensions"></a>Extensiones de Entity Framework
 
-Extiende su DbContext con operaciones masivas de alto rendimiento: BulkSaveChanges, BulkInsert, BulkUpdate, BulkDelete, BulkMerge y más. Para EF Core: 2, 3.
+Extiende su DbContext con operaciones masivas de alto rendimiento: BulkSaveChanges, BulkInsert, BulkUpdate, BulkDelete, BulkMerge y más. Para EF Core: 2, 3, 5.
 
 [Sitio web](https://entityframework-extensions.net/)
 
@@ -246,3 +258,21 @@ Extiende EF Core para resolver cadenas de conexión de App.config. Para EF Core:
 Un asignador de entidades DTO con control de composición/agregación (similar a GraphDiff). Para EF Core: 3.5.
 
 [NuGet](https://www.nuget.org/packages/Detached.Mappers.EntityFramework)
+
+### <a name="entityframeworkcoresqlitenodatime"></a>EntityFrameworkCore.Sqlite.NodaTime
+
+Agrega compatibilidad con los tipos [NodaTime](https://nodatime.org) cuando se usa [SQLite](https://sqlite.org). Para EF Core: 5.
+
+[Repositorio de GitHub](https://github.com/khellang/EFCore.Sqlite.NodaTime)
+
+### <a name="erikejentityframeworkcoresqlserverdacpac"></a>ErikEJ.EntityFrameworkCore.SqlServer.Dacpac
+
+Habilita la utilización de técnicas de ingeniería inversa en un modelo de EF Core a partir de un paquete de aplicación de capa de datos de SQL Server (.dacpac). Para EF Core: 3.5.
+
+[Wiki de GitHub](https://github.com/ErikEJ/EFCorePowerTools/wiki/ErikEJ.EntityFrameworkCore.SqlServer.Dacpac)
+
+### <a name="erikejentityframeworkcoredgmlbuilder"></a>ErikEJ.EntityFrameworkCore.DgmlBuilder
+
+Genera contenido de DGML (Graph) que visualiza su DbContext. Agrega el método de extensión AsDgml() a la clase DbContext. Para EF Core: 3.5.
+
+[Wiki de GitHub](https://github.com/ErikEJ/EFCorePowerTools/wiki/Inspect-your-DbContext-model)

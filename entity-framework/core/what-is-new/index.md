@@ -2,14 +2,14 @@
 title: Versiones y planeamiento de EF Core
 description: Versiones actuales de EF Core y detalles de programación o planeación para próximas versiones
 author: ajcvickers
-ms.date: 10/11/2020
+ms.date: 01/12/2021
 uid: core/what-is-new/index
-ms.openlocfilehash: 983a8b21d353481df4f1db232d00761e070d893b
-ms.sourcegitcommit: 42bbf7f68e92c364c5fff63092d3eb02229f568d
+ms.openlocfilehash: 18d8055840b5a38dc62d20e7e18c440b7360c9e4
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/11/2020
-ms.locfileid: "94503149"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128334"
 ---
 # <a name="ef-core-releases-and-planning"></a>Versiones y planeamiento de EF Core
 
@@ -48,9 +48,9 @@ Por lo general, no hacemos un planeamiento detallado más allá de la siguiente 
 
 ## <a name="ef-core-60"></a>EF Core 6.0
 
-La siguiente versión estable planeada es **EF Core 6.0** , programada para **noviembre de 2021**.
+La siguiente versión estable planeada es **EF Core 6.0**, programada para **noviembre de 2021**.
 
-Estamos trabajando en un plan de alto nivel basado en el [proceso de planeamiento de versiones](xref:core/what-is-new/release-planning).
+Se ha creado un [plan de alto nivel para EF Core 6.0](xref:core/what-is-new/ef-core-6.0/plan) siguiendo el [proceso de planeamiento de versiones](xref:core/what-is-new/release-planning) documentado.
 
 Sus comentarios sobre la planeación son importantes.
 La mejor manera de indicar la importancia de un problema es votar (pulgar arriba 👍) por ese problema en GitHub.
@@ -61,7 +61,7 @@ Estos datos se introducen en el proceso de planeación de la próxima versión.
 Los paquetes de EF Core 6.0 están **disponibles ahora** como
 
 * [Compilaciones diarias](https://github.com/dotnet/aspnetcore/blob/master/docs/DailyBuilds.md)
-  * Todas las características y correcciones de errores más recientes. Normalmente muy estable; se ejecutan más de 57 000 pruebas en cada compilación.
+  * Todas las características y correcciones de errores más recientes. Normalmente muy estable; se ejecutan más de 75 000 pruebas en cada compilación.
 
 Además, a medida que avanzamos, se enviarán versiones preliminares a NuGet con frecuencia. Tenga en cuenta que las versiones preliminares van a la zaga de las compilaciones diarias, pero están probadas para trabajar con las versiones preliminares de ASP.NET Core y .NET Core correspondientes.
 

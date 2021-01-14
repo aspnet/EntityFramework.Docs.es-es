@@ -10,12 +10,12 @@ metadata:
   author: WadePickett
   ms.author: wpickett
   ms.date: 04/15/2020
-  ms.openlocfilehash: 644d3ad0654e8d97835d4a2e6ee3d2ba3cbaf370
-  ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+  ms.openlocfilehash: 2ef9ee31ef84d779f911ec7c6da1e631889e693a
+  ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
   ms.translationtype: HT
   ms.contentlocale: es-ES
-  ms.lasthandoff: 12/17/2020
-  ms.locfileid: "97635840"
+  ms.lasthandoff: 01/12/2021
+  ms.locfileid: "98129296"
 highlightedContent:
   items:
   - title: Entity Framework Core
@@ -140,6 +140,8 @@ additionalContent:
         text: Asignación de funciones definidas por el usuario
       - url: core/querying/filters.md
         text: Filtros de consulta global
+      - url: core/querying/null-comparisons.md
+        text: Comparaciones con valores NULL en las consultas
     - title: Administración de esquemas de base de datos
       links:
       - url: core/managing-schemas/index.md

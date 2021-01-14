@@ -4,12 +4,12 @@ description: Información general de Entity Framework Core
 author: ajcvickers
 ms.date: 9/20/2020
 uid: core/index
-ms.openlocfilehash: ccb1fa4cbc0bd1a02e1aeb613475bfe4b2c1d118
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: f2905fc55419e196a6f5b8883cf2a2a76b8a1ab2
+ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429902"
+ms.lasthandoff: 01/12/2021
+ms.locfileid: "98128607"
 ---
 # <a name="entity-framework-core"></a>Entity Framework Core
 
@@ -53,7 +53,7 @@ Mientras que EF Core es bueno extrayendo muchos detalles de programación, exis
 * Tener un conocimiento medio o superior del servidor de base de datos subyacente es esencial para generar perfiles, diseñar, depurar y migrar datos en aplicaciones de producción de alto rendimiento (por ejemplo, conocer las claves principales y externas, las restricciones, los índices, la normalización, las instrucciones DML y DDL, los tipos de datos, los perfiles, etc.).
 * Pruebas funcionales y de integración.  Es importante replicar el entorno de producción de la forma más próxima posible para permitir lo siguiente:
   * Encontrar problemas en la aplicación que solo se revelan cuando se usa una edición o una versión específica del servidor de base de datos.
-  * Detectar cambios importantes al actualizar EF Core y otras dependencias (por ejemplo, agregar o actualizar marcos como ASP.NET Core, OData o Automapper). Estas dependencias pueden afectar a EF Core de formas imprevistas.
+  * Detectar cambios importantes al actualizar EF Core y otras dependencias (por ejemplo, agregar o actualizar marcos como ASP.NET Core, OData o AutoMapper). Estas dependencias pueden afectar a EF Core de formas imprevistas.
 * Pruebas de rendimiento y esfuerzo con cargas representativas. El uso irreflexivo de algunas características no escala bien. Por ejemplo, varias colecciones Includes, el uso intensivo de cargas diferidas, las consultas condicionales en columnas no indexadas, las inserciones y actualizaciones masivas con valores generados por el almacén, la falta de control de la simultaneidad, el uso de modelos grandes o unas directivas inadecuadas de almacenamiento en memoria caché.
 * Revisión de seguridad: por ejemplo, el control de las cadenas de conexión y otros secretos, los permisos de base de datos para operaciones de no implementación, la validación de entradas para SQL sin procesar o el cifrado de datos confidenciales.
 * Asegúrese de que las capacidades de registro y diagnóstico son suficientes y utilizables, por ejemplo, una configuración de registros adecuada, etiquetas de consulta y Application Insights.
