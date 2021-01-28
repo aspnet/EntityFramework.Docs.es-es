@@ -4,12 +4,12 @@ description: Guía de referencia de la consola del administrador de paquetes de 
 author: bricelam
 ms.date: 10/27/2020
 uid: core/cli/powershell
-ms.openlocfilehash: 4a1ab889fc1117b67252ace51fd3df4797b6c8d3
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 51f2dbcad0606a0d5571e96d7a7951cf595e2b9e
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431357"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983513"
 ---
 # <a name="entity-framework-core-tools-reference---package-manager-console-in-visual-studio"></a>Referencia de herramientas de Entity Framework Core: consola del administrador de paquetes en Visual Studio
 
@@ -19,7 +19,7 @@ Si no usa Visual Studio, se recomienda usar en su lugar las [herramientas de lí
 
 ## <a name="installing-the-tools"></a>Instalación de las herramientas
 
-Instale las herramientas de la consola del administrador de paquetes ejecutando el siguiente comando en la **consola del administrador de paquetes** :
+Instale las herramientas de la consola del administrador de paquetes ejecutando el siguiente comando en la **consola del administrador de paquetes**:
 
 ```powershell
 Install-Package Microsoft.EntityFrameworkCore.Tools
@@ -212,7 +212,7 @@ Scaffold-DbContext "Server=(localdb)\mssqllocaldb;Database=Blogging;Trusted_Conn
 En el ejemplo siguiente se lee la cadena de conexión de la configuración del proyecto, posiblemente establecida mediante la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager).
 
 ```powershell
-Scaffold-DbContext "Name=ConnectionStrings.Blogging" Microsoft.EntityFrameworkCore.SqlServer
+Scaffold-DbContext "Name=ConnectionStrings:Blogging" Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 ## <a name="script-dbcontext"></a>Script-DbContext

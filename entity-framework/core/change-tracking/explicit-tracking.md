@@ -4,27 +4,27 @@ description: Seguimiento explícito de las entidades con DbContext mediante agre
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/explicit-tracking
-ms.openlocfilehash: 28a6ec3e3c25dad70882b8681f78744a5979efe6
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 1428096b362c8016f7924c72ec9ac3e2f9203ed6
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129649"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983279"
 ---
 # <a name="explicitly-tracking-entities"></a>Seguimiento explícito de entidades
 
-Cada <xref:Microsoft.EntityFrameworkCore.DbContext> instancia realiza un seguimiento de los cambios realizados en las entidades. Estas entidades de las que se realiza un seguimiento convierten los cambios en la base de datos cuando <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> se llama a.
+Cada instancia de <xref:Microsoft.EntityFrameworkCore.DbContext> realiza un seguimiento de los cambios realizados en las entidades. Estas entidades de las que se realiza un seguimiento, a su vez, impulsan los cambios en la base de datos cuando se llama a <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A>.
 
-El seguimiento de cambios de Entity Framework Core (EF Core) funciona mejor cuando <xref:Microsoft.EntityFrameworkCore.DbContext> se utiliza la misma instancia para consultar las entidades y actualizarlas mediante una llamada a <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> . Esto se debe a que EF Core realiza un seguimiento automático del estado de las entidades consultadas y, a continuación, detecta los cambios realizados en estas entidades cuando se llama a SaveChanges. Este enfoque se trata en [Change Tracking en EF Core](xref:core/change-tracking/index).
+El seguimiento de cambios de Entity Framework Core (EF Core) funciona mejor cuando <xref:Microsoft.EntityFrameworkCore.DbContext> se utiliza la misma instancia para consultar las entidades y actualizarlas mediante una llamada a <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> . Esto se debe a que EF Core realiza un seguimiento automático del estado de las entidades consultadas y, a continuación, detecta los cambios realizados en estas entidades cuando se llama a SaveChanges. Este enfoque se trata en [Change Tracking en EF Core](xref:core/change-tracking/index).
 
 > [!TIP]
 > En este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de EF Core. Consulte [Change Tracking en EF Core](xref:core/change-tracking/index) para obtener más información sobre estos temas.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo desde GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/ChangeTrackingInEFCore).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/ChangeTrackingInEFCore).
 
 > [!TIP]
-> Para simplificar, en este documento se usan métodos sincrónicos y referencias como, por ejemplo, <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> sus equivalentes asincrónicos como <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A> . Llamar a y esperar el método asincrónico se puede sustituir a menos que se indique lo contrario.
+> Para simplificar, este documento utiliza métodos sincrónicos como <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A>, y hace referencia a ellos, en lugar de sus equivalentes asincrónicos como <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>. La llamada al método asincrónico y su espera pueden sustituirse a menos que se indique lo contrario.
 
 ## <a name="introduction"></a>Introducción
 
@@ -311,7 +311,7 @@ Post {Id: 2} Unchanged
 Este es exactamente el mismo estado final que el ejemplo anterior que usaba valores de clave explícitos.
 
 > [!TIP]
-> Todavía se puede establecer un valor de clave explícito incluso cuando se usan valores de clave generados. A continuación, EF Core intentará insertar con este valor de clave. Algunas configuraciones de base de datos, incluidas SQL Server con columnas de identidad, no admiten estas inserciones y se producirán.
+> Todavía se puede establecer un valor de clave explícito incluso cuando se usan valores de clave generados. A continuación, EF Core intentará insertar con este valor de clave. Algunas configuraciones de base de datos, incluidas SQL Server con columnas de identidad, no admiten estas inserciones y se producirán ([vea estos documentos para obtener una solución alternativa](xref:core/providers/sql-server/value-generation#inserting-explicit-values-into-identity-columns)).
 
 ## <a name="attaching-existing-entities"></a>Asociar entidades existentes
 
@@ -394,35 +394,6 @@ La llamada a SaveChanges en este momento no tendrá ningún efecto. Todas las en
 ### <a name="generated-key-values"></a>Valores de clave generados
 
 Como se mencionó anteriormente, [las propiedades de clave](xref:core/modeling/keys) de GUID y de entero se configuran para utilizar [los valores de clave generados automáticamente](xref:core/modeling/generated-properties) de forma predeterminada. Esto tiene una ventaja importante al trabajar con entidades desconectadas: un valor de clave no establecido indica que la entidad no se ha insertado todavía en la base de datos. Esto permite al seguimiento de cambios detectar automáticamente nuevas entidades y ponerlas en el `Added` Estado. Por ejemplo, considere la posibilidad de adjuntar este gráfico de un blog y publicaciones:
-
-```c#
-            context.Attach(
-                new Blog
-                {
-                    Id = 1,
-                    Name = ".NET Blog",
-                    Posts =
-                    {
-                        new Post
-                        {
-                            Id = 1,
-                            Title = "Announcing the Release of EF Core 5.0",
-                            Content = "Announcing the release of EF Core 5.0, a full featured cross-platform..."
-                        },
-                        new Post
-                        {
-                            Id = 2,
-                            Title = "Announcing F# 5",
-                            Content = "F# 5 is the latest version of F#, the functional programming language..."
-                        },
-                        new Post
-                        {
-                            Title = "Announcing .NET 5.0",
-                            Content = ".NET 5.0 includes many enhancements, including single file applications, more..."
-                        },
-                    }
-                });
-```
 
 <!--
             context.Attach(
@@ -922,7 +893,7 @@ Una vez completado SaveChanges, todas las entidades eliminadas se desasocian de 
 
 <xref:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.TrackGraph%2A?displayProperty=nameWithType> funciona como `Add` `Attach` y, `Update` salvo que genera una devolución de llamada para cada instancia de entidad antes de realizar el seguimiento. Esto permite usar la lógica personalizada para determinar cómo realizar un seguimiento de las entidades individuales de un gráfico.
 
-Por ejemplo, considere la regla EF Core usa al realizar el seguimiento de las entidades con valores de clave generados: Si el valor de KYE es cero, la entidad es nueva y debe insertarse. Vamos a ampliar esta regla para indicar si el valor de clave es negativo, se debe eliminar la entidad. Esto nos permite cambiar los valores de la clave principal en las entidades de un grafo desconectado para marcar las entidades eliminadas:
+Por ejemplo, considere la regla EF Core usa al realizar el seguimiento de las entidades con valores de clave generados: Si el valor de clave es cero, la entidad es nueva y debe insertarse. Vamos a ampliar esta regla para indicar si el valor de clave es negativo, se debe eliminar la entidad. Esto nos permite cambiar los valores de la clave principal en las entidades de un grafo desconectado para marcar las entidades eliminadas:
 
 <!--
             blog.Posts.Add(

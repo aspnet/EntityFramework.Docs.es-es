@@ -4,12 +4,12 @@ description: Administrar cadenas de conexión en entornos diferentes con Entity 
 author: bricelam
 ms.date: 10/27/2016
 uid: core/miscellaneous/connection-strings
-ms.openlocfilehash: fee7e8f6de1faa11203cfcdab033b73a0a8ef6ea
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 75e364eddd02087cffdffd1c152d1e988a99817b
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429733"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983565"
 ---
 # <a name="connection-strings"></a>Cadenas de conexión
 
@@ -22,8 +22,8 @@ En ASP.NET Core el sistema de configuración es muy flexible y la cadena de cone
 Por ejemplo, puede usar la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager) para almacenar la contraseña de la base de datos y, a continuación, en la técnica scaffolding, usar una cadena de conexión que solo conste de `Name=<database-alias>` .
 
 ```dotnetcli
-dotnet user-secrets set ConnectionStrings.YourDatabaseAlias "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=YourDatabase"
-dotnet ef dbcontext scaffold Name=ConnectionStrings.YourDatabaseAlias Microsoft.EntityFrameworkCore.SqlServer
+dotnet user-secrets set ConnectionStrings:YourDatabaseAlias "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=YourDatabase"
+dotnet ef dbcontext scaffold Name=ConnectionStrings:YourDatabaseAlias Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 O en el ejemplo siguiente se muestra la cadena de conexión almacenada en `appsettings.json` .

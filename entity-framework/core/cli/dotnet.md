@@ -4,12 +4,12 @@ description: Guía de referencia de las herramientas de CLI de .NET Core de Enti
 author: bricelam
 ms.date: 10/27/2020
 uid: core/cli/dotnet
-ms.openlocfilehash: 83989b8690236dbec3466cda78c204ab67fd10c4
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 60655c03a7fc29137ccb8d9304c94dac6b803cb2
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431358"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983591"
 ---
 # <a name="entity-framework-core-tools-reference---net-core-cli"></a>Referencia de herramientas de Entity Framework Core-CLI de .NET Core
 
@@ -223,8 +223,8 @@ dotnet ef dbcontext scaffold "Server=(localdb)\mssqllocaldb;Database=Blogging;Tr
 En el ejemplo siguiente se lee la cadena de conexión del conjunto de configuración del proyecto mediante la [herramienta Administrador de secretos](/aspnet/core/security/app-secrets#secret-manager).
 
 ```dotnetcli
-dotnet user-secrets set ConnectionStrings.Blogging "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Blogging"
-dotnet ef dbcontext scaffold Name=ConnectionStrings.Blogging Microsoft.EntityFrameworkCore.SqlServer
+dotnet user-secrets set ConnectionStrings:Blogging "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Blogging"
+dotnet ef dbcontext scaffold Name=ConnectionStrings:Blogging Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 ## <a name="dotnet-ef-dbcontext-script"></a>script de dbcontext de dotnet EF

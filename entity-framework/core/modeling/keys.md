@@ -2,18 +2,20 @@
 title: 'Claves: EF Core'
 description: Cómo configurar claves para tipos de entidad al utilizar Entity Framework Core
 author: AndriySvyryd
-ms.date: 11/06/2019
+ms.date: 1/10/2021
 uid: core/modeling/keys
-ms.openlocfilehash: 805396a13227aa62ed86ac17c742d055d7a22bbf
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: c79ab0445e80b0b6f4a8b49ef0d4c063bf938851
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129192"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983538"
 ---
 # <a name="keys"></a>Claves
 
 Una clave actúa como identificador único para cada instancia de la entidad. La mayoría de las entidades de EF tienen una sola clave, que se asigna al concepto de una *clave principal* en las bases de datos relacionales (para entidades sin claves, vea [entidades](xref:core/modeling/keyless-entity-types)sin clave). Las entidades pueden tener claves adicionales más allá de la clave principal (consulte [claves alternativas](#alternate-keys) para obtener más información).
+
+## <a name="configuring-a-primary-key"></a>Configuración de una clave principal
 
 Por Convención, se `Id` configurará una propiedad denominada o `<type name>Id` como la clave principal de una entidad.
 
@@ -24,11 +26,11 @@ Por Convención, se `Id` configurará una propiedad denominada o `<type name>Id`
 
 Puede configurar una única propiedad para que sea la clave principal de una entidad, como se indica a continuación:
 
-## <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
+### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
 
 [!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/KeySingle.cs?name=KeySingle&highlight=3)]
 
-## <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
+### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeySingle.cs?name=KeySingle&highlight=4)]
 
@@ -37,6 +39,10 @@ Puede configurar una única propiedad para que sea la clave principal de una ent
 También puede configurar varias propiedades para que sean la clave de una entidad, lo que se conoce como clave compuesta. Las claves compuestas solo se pueden configurar mediante la API fluida; las convenciones nunca configurarán una clave compuesta y no se pueden usar anotaciones de datos para configurar una.
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/KeyComposite.cs?name=KeyComposite&highlight=4)]
+
+## <a name="value-generation"></a>Generación de valor
+
+En el caso de las claves principales no compuestas y de GUID, EF Core configura la generación de valores por Convención. Por ejemplo, una clave principal numérica en SQL Server se configura automáticamente para que sea una columna de identidad. Para obtener más información, consulte [la documentación sobre la generación de valores](xref:core/modeling/generated-properties).
 
 ## <a name="primary-key-name"></a>Nombre de clave principal
 
@@ -51,7 +57,7 @@ Aunque EF Core admite el uso de propiedades de cualquier tipo primitivo como cla
 Las propiedades de clave deben tener siempre un valor no predeterminado al agregar una nueva entidad al contexto, pero [la base de datos generará](xref:core/modeling/generated-properties)algunos tipos. En ese caso, EF intentará generar un valor temporal cuando la entidad se agregue con fines de seguimiento. Después de llamar a [SaveChanges](/dotnet/api/Microsoft.EntityFrameworkCore.DbContext.SaveChanges) , el valor temporal se reemplazará por el valor generado por la base de datos.
 
 > [!Important]
-> Si una propiedad de clave tiene su valor generado por la base de datos y se especifica un valor no predeterminado al agregar una entidad, EF asumirá que la entidad ya existe en la base de datos e intentará actualizarla en lugar de insertar una nueva. Para evitar esto, desactive la generación de valores o vea [Cómo especificar valores explícitos para las propiedades generadas](xref:core/saving/explicit-values-generated-properties).
+> Si una propiedad de clave tiene su valor generado por la base de datos y se especifica un valor no predeterminado al agregar una entidad, EF asumirá que la entidad ya existe en la base de datos e intentará actualizarla en lugar de insertar una nueva. Para evitar esto, desactive la generación de valores o vea [Cómo especificar valores explícitos para las propiedades generadas](xref:core/modeling/generated-properties#overriding-value-generation).
 
 ## <a name="alternate-keys"></a>Claves alternativas
 

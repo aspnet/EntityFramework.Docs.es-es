@@ -4,12 +4,12 @@ description: Cómo cambiar las relaciones entre entidades manipulando las claves
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/relationship-changes
-ms.openlocfilehash: ac2110509b6748e85411dbb14989522465925ecf
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: b1ebe77ed29291beeef3708b603db026c38bbbec
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129648"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983617"
 ---
 # <a name="changing-foreign-keys-and-navigations"></a>Cambiar las claves externas y las navegaciones
 
@@ -25,7 +25,7 @@ Las navegaciones se pueden usar en ambos lados de la relación, solo en un lado 
 > En este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de EF Core. Consulte [Change Tracking en EF Core](xref:core/change-tracking/index) para obtener más información sobre estos temas.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo desde GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/ChangingFKsAndNavigations).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/ChangingFKsAndNavigations).
 
 ### <a name="example-model"></a>Modelo de ejemplo
 
@@ -184,8 +184,8 @@ La corrección de la relación también se produce entre las entidades devueltas
         var posts = context.Posts.ToList();
         Console.WriteLine(context.ChangeTracker.DebugView.LongView);
 -->
-[! code-CSharp[Relationship_fixup_2](../../../ samples / core / ChangeTracking / ChangingFKsAndNavigations / OptionalRelationshipsSamples.cs ? name = Relationship_fixup_2
-) ] Al mirar de nuevo las vistas de depuración, después de la primera consulta, solo se realiza el seguimiento de los dos blogs:
+[!code-csharp[Relationship_fixup_2](../../../samples/core/ChangeTracking/ChangingFKsAndNavigations/OptionalRelationshipsSamples.cs?name=Relationship_fixup_2)]
+Al mirar de nuevo las vistas de depuración, después de la primera consulta, solo se realiza el seguimiento de los dos blogs:
 
 ```output
 Blog {Id: 1} Unchanged
@@ -746,7 +746,7 @@ Post {Id: 4} Modified
 
 Tenga en lo siguiente:
 
-- El blog se marca como `Deleted` .
+- El blog se marca como `Deleted`.
 - Los recursos relacionados con el blog eliminado tienen un valor de FK null ( `BlogId: <null> FK Modified Originally 2` ) y una navegación de referencia nula ( `Blog: <null>` )
 - Cada publicación relacionada con el blog eliminado tiene un valor de FK null ( `BlogId: <null> FK Modified Originally 2` ) y una navegación de referencia nula ( `Blog: <null>` )
 
@@ -790,7 +790,7 @@ De forma predeterminada, la eliminación en cascada se produce tan pronto como l
 Las eliminaciones en cascada, así como la eliminación de huérfanos, se pueden forzar en cualquier momento llamando a <xref:Microsoft.EntityFrameworkCore.ChangeTracking.ChangeTracker.CascadeChanges?displayProperty=nameWithType> . Al combinarlo con el establecimiento del control de tiempo de eliminación en cascada en `Never` se garantizará que las eliminaciones en cascada no se produzcan a menos que se indique explícitamente EF Core.
 
 > [!TIP]
-> La eliminación en cascada y la eliminación de huérfanos están estrechamente relacionadas. Ambos dan como resultado la eliminación de entidades dependientes o secundarias cuando se interrumpe la relación con su entidad de seguridad o principal requerida. En el caso de la eliminación en cascada, este servidor tiene lugar porque el principal o el primario se eliminan. En el caso de los huérfanos, la entidad principal/primaria sigue existiendo, pero ya no está relacionada con las entidades dependientes o secundarias.
+> La eliminación en cascada y la eliminación de entidades huérfanas están estrechamente relacionadas. Ambas dan como resultado la eliminación de entidades dependientes o secundarias cuando se interrumpe su relación con la entidad de seguridad o primaria requerida. En el caso de la eliminación en cascada, esta interrupción de la relación tiene lugar porque se elimina la propia entidad de seguridad o primaria. En el caso de las entidades huérfanas, la entidad de seguridad o primaria sigue existiendo, pero ya no está relacionada con las entidades dependientes o secundarias.
 
 ## <a name="many-to-many-relationships"></a>Relaciones de varios a varios
 

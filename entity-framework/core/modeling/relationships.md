@@ -4,12 +4,12 @@ description: Cómo configurar relaciones entre tipos de entidad al utilizar Enti
 author: AndriySvyryd
 ms.date: 10/01/2020
 uid: core/modeling/relationships
-ms.openlocfilehash: 2bc17365adb802f2e813077731ae70c68f8e3be3
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 93d129435a3583ac5f741cc27952fb702f415a01
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129179"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983474"
 ---
 # <a name="relationships"></a>Relaciones
 
@@ -301,7 +301,10 @@ CREATE TABLE [PostTag] (
 );
 ```
 
-Internamente, EF crea un tipo de entidad para representar la tabla de combinación a la que se hará referencia como el tipo de entidad de combinación. `Dictionary<string, object>` se usa para controlar cualquier combinación de propiedades de clave externa, vea [tipos de entidad del contenedor de propiedades](shadow-properties.md#property-bag-entity-types) para obtener más información. Puede haber más de una relación de varios a varios en el modelo, por lo que el tipo de entidad de combinación debe recibir un nombre único, en este caso `PostTag` . La característica que lo permite se denomina tipo de entidad de tipo compartido.
+Internamente, EF crea un tipo de entidad para representar la tabla de combinación a la que se hará referencia como el tipo de entidad de combinación. `Dictionary<string, object>` Actualmente se utiliza para controlar cualquier combinación de propiedades de clave externa, consulte [tipos de entidad del contenedor de propiedades](shadow-properties.md#property-bag-entity-types) para obtener más información. Puede haber más de una relación de varios a varios en el modelo, por lo que el tipo de entidad de combinación debe recibir un nombre único, en este caso `PostTag` . La característica que lo permite se denomina tipo de entidad de tipo compartido.
+
+> [!IMPORTANT]
+> El tipo CLR que se usa para los tipos de entidad de combinación por Convención puede cambiar en futuras versiones para mejorar el rendimiento. No dependa del tipo de combinación a menos que se haya `Dictionary<string, object>` configurado explícitamente, como se describe en la sección siguiente.
 
 Las navegaciones de varios a varios se llaman omitir navegaciones, ya que omiten el tipo de entidad de combinación. Si está empleando la configuración masiva, todas las navegaciones de omitir se pueden obtener de <xref:Microsoft.EntityFrameworkCore.Metadata.IEntityType.GetSkipNavigations%2A> .
 

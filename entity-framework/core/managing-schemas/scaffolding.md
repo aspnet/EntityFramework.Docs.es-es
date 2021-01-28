@@ -4,18 +4,18 @@ description: Aplicar ingeniería inversa a un modelo a partir de una base de dat
 author: bricelam
 ms.date: 11/13/2018
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: 11ffa2e62136e47959ebbfd54ccb55c2b9e23e04
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 4cad43f4b1300e1ef3cb31e60d3e9890826d974d
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429772"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983578"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
 
 La ingeniería inversa es el proceso de scaffolding de las clases de tipo de entidad y una clase DbContext basada en un esquema de base de datos. Puede realizarse mediante el `Scaffold-DbContext` comando de EF Core herramientas de la consola del administrador de paquetes (PMC) o el `dotnet ef dbcontext scaffold` comando de las herramientas de la interfaz de la línea de comandos (CLI) de .net.
 
-## <a name="installing"></a>Instalación de
+## <a name="installing"></a>Instalación
 
 Antes de la ingeniería inversa, deberá instalar las herramientas de [PMC](xref:core/cli/powershell) (solo en Visual Studio) o las [herramientas](xref:core/cli/dotnet)de la CLI. Vea los vínculos para obtener más información.
 
@@ -48,8 +48,8 @@ Si tiene un proyecto de ASP.NET Core, puede usar la `Name=<connection-string>` s
 Esto funciona bien con la [herramienta de administración de secretos](/aspnet/core/security/app-secrets#secret-manager) para mantener la contraseña de la base de datos separada del código base.
 
 ```dotnetcli
-dotnet user-secrets set ConnectionStrings.Chinook "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook"
-dotnet ef dbcontext scaffold Name=ConnectionStrings.Chinook Microsoft.EntityFrameworkCore.SqlServer
+dotnet user-secrets set ConnectionStrings:Chinook "Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=Chinook"
+dotnet ef dbcontext scaffold Name=ConnectionStrings:Chinook Microsoft.EntityFrameworkCore.SqlServer
 ```
 
 ## <a name="provider-name"></a>Nombre del proveedor
