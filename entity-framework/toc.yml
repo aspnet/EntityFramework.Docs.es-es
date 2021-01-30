@@ -212,8 +212,6 @@
               href: core/saving/transactions.md
             - name: Entidades desconectadas
               href: core/saving/disconnected-entities.md
-            - name: Valores explícitos para propiedades generadas
-              href: core/saving/explicit-values-generated-properties.md
         - name: Seguimiento de cambios
           items:
             - name: Información general
@@ -298,6 +296,8 @@
               items:
                 - name: Información general
                   href: core/providers/sql-server/index.md
+                - name: Generación de valor
+                  href: core/providers/sql-server/value-generation.md
                 - name: Asignaciones de funciones
                   href: core/providers/sql-server/functions.md
                 - name: Índices
