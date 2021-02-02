@@ -4,12 +4,12 @@ description: Información general sobre el seguimiento de cambios para EF Core
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/index
-ms.openlocfilehash: 52223e5472b09271d19ac9449a3989b4a0e277f7
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 8cfa4590af07ec1715eb48ec0c7acb3426b6a6b4
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129525"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983266"
 ---
 # <a name="change-tracking-in-ef-core"></a>Herramienta de seguimiento de cambios en EF Core
 
@@ -50,7 +50,7 @@ DbContext está diseñado para representar una unidad de trabajo de corta duraci
 
 ## <a name="entity-states"></a>Estados de entidad
 
-Cada entidad está asociada a un elemento <xref:Microsoft.EntityFrameworkCore.EntityState>determinado:
+Cada entidad está asociada a un elemento <xref:Microsoft.EntityFrameworkCore.EntityState> determinado:
 
 - <xref:Microsoft.EntityFrameworkCore.DbContext> ya no realiza el seguimiento de las entidades `Detached`.
 - Las entidades `Added` son nuevas y aún no se han insertado en la base de datos. Esto significa que se insertarán cuando se llame a <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A>.
