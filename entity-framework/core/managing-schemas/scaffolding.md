@@ -8,7 +8,7 @@ ms.openlocfilehash: 4cad43f4b1300e1ef3cb31e60d3e9890826d974d
 ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/28/2021
+ms.lasthandoff: 02/05/2021
 ms.locfileid: "98983578"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
@@ -80,7 +80,7 @@ Para incluir varias tablas, use una matriz:
 Scaffold-DbContext ... -Tables Artist, Album
 ```
 
-**_
+***
 
 ## <a name="preserving-names"></a>Conservar nombres
 
@@ -108,7 +108,7 @@ public string Title { get; set; }
 
 ## <a name="dbcontext-name"></a>Nombre de DbContext
 
-El nombre de la clase DbContext con scaffolding será el nombre de la base de datos con el sufijo _Context * de forma predeterminada. Para especificar otro, use `-Context` en PMC y `--context` en el CLI de .net Core.
+El nombre de la clase DbContext con scaffolding será el nombre de la base de datos con sufijo de *contexto* de forma predeterminada. Para especificar otro, use `-Context` en PMC y `--context` en el CLI de .net Core.
 
 ## <a name="directories-and-namespaces"></a>Directorios y espacios de nombres
 
@@ -144,7 +144,7 @@ Scaffold-DbContext ... -Namespace Your.Namespace -ContextNamespace Your.DbContex
 
 ***
 
-## <a name="how-it-works"></a>Cómo funciona
+## <a name="how-it-works"></a>Funcionamiento
 
 La ingeniería inversa comienza leyendo el esquema de la base de datos. Lee información acerca de las tablas, columnas, restricciones e índices.
 

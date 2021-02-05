@@ -5,10 +5,10 @@ author: roji
 ms.date: 05/27/2020
 uid: core/modeling/entity-properties
 ms.openlocfilehash: fe6dd2c24b8f8ffffa8e0101f69966b7b7c74036
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/19/2020
+ms.lasthandoff: 02/05/2021
 ms.locfileid: "97635554"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
@@ -45,7 +45,7 @@ Si prefiere configurar las columnas con nombres diferentes, puede hacerlo como f
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnName.cs?Name=ColumnName&highlight=3-5)]
 
-**_
+***
 
 ## <a name="column-data-types"></a>Tipos de datos de columna
 
@@ -63,7 +63,7 @@ También puede configurar las columnas para especificar un tipo de datos exacto 
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnDataType.cs?name=ColumnDataType&highlight=5-6)]
 
-_*_
+***
 
 ### <a name="maximum-length"></a>Longitud máxima
 
@@ -82,7 +82,7 @@ En el ejemplo siguiente, la configuración de una longitud máxima de 500 hará 
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/MaxLength.cs?name=MaxLength&highlight=3-5)]
 
-_*_
+***
 
 ### <a name="precision-and-scale"></a>Precisión y escala
 
@@ -106,7 +106,7 @@ La precisión y la escala no se pueden configurar actualmente a través de anota
 > [!NOTE]
 > La escala nunca se define sin necesidad de definir primero la precisión, por lo que la API fluida para definir la escala es `HasPrecision(precision, scale)` .
 
-_*_
+***
 
 ## <a name="required-and-optional-properties"></a>Propiedades obligatorias y opcionales
 
@@ -118,7 +118,7 @@ Por Convención, una propiedad cuyo tipo .NET pueda contener NULL se configurar�
 
 C# 8 presentó una nueva característica denominada [tipos de referencia que aceptan valores NULL (NRT)](/dotnet/csharp/tutorials/nullable-reference-types), que permite anotar tipos de referencia, lo que indica si es válido para que contengan null o not. Esta característica está deshabilitada de forma predeterminada y afecta al comportamiento del EF Core de la siguiente manera:
 
-_ Si los tipos de referencia que aceptan valores NULL están deshabilitados (el valor predeterminado), todas las propiedades con tipos de referencia de .NET se configuran como opcionales por Convención (por ejemplo, `string` ).
+* Si los tipos de referencia que aceptan valores NULL están deshabilitados (el valor predeterminado), todas las propiedades con tipos de referencia de .NET se configuran como opcionales por Convención (por ejemplo, `string` ).
 * Si los tipos de referencia que aceptan valores NULL están habilitados, las propiedades se configurarán según la nulabilidad de C# de su tipo .NET: se `string?` configurarán como opcionales, pero se `string` configurarán según sea necesario.
 
 En el ejemplo siguiente se muestra un tipo de entidad con propiedades obligatorias y opcionales, con la característica de referencia que acepta valores NULL deshabilitada (valor predeterminado) y habilitada:
@@ -152,7 +152,7 @@ Una propiedad que sería opcional por Convención se puede configurar para que s
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/Required.cs?name=Required&highlight=3-5)]
 
-**_
+***
 
 ## <a name="column-collations"></a>Intercalaciones de columna
 
@@ -182,4 +182,4 @@ Puede establecer un Comentario de texto arbitrario que se establece en la column
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnComment.cs?name=ColumnComment&highlight=5)]
 
-_**
+***

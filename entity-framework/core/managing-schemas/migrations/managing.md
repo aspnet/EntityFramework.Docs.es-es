@@ -5,10 +5,10 @@ author: bricelam
 ms.date: 10/27/2020
 uid: core/managing-schemas/migrations/managing
 ms.openlocfilehash: ef5e1b9bb10d6f1cd428db2fee327ec513c3f528
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
+ms.lasthandoff: 02/05/2021
 ms.locfileid: "95003281"
 ---
 # <a name="managing-migrations"></a>Administrar migraciones
@@ -68,7 +68,7 @@ Add-Migration InitialCreate -OutputDir Your\Directory
 > [!NOTE]
 > En EF Core 5,0, también puede cambiar el espacio de nombres independientemente del directorio mediante `-Namespace` .
 
-**_
+***
 
 ## <a name="customize-migration-code"></a>Personalizar el código de migración
 
@@ -164,7 +164,7 @@ migrationBuilder.Sql(
 
 Se puede usar para administrar cualquier aspecto de la base de datos, incluidos:
 
-_ Procedimientos almacenados
+* Procedimientos almacenados
 * Búsqueda de texto completo
 * Funciones
 * Desencadenadores
@@ -216,11 +216,11 @@ dotnet ef migrations list
 Get-Migration
 ```
 
-**_
+***
 
 ## <a name="resetting-all-migrations"></a>Restableciendo todas las migraciones
 
-En algunos casos extremos, puede que sea necesario quitar todas las migraciones y empezar de nuevo. Esto se puede hacer fácilmente eliminando la carpeta _ *Migrations** y quitando la base de datos. en ese momento, puede crear una nueva migración inicial, que contendrá todo el esquema actual.
+En algunos casos extremos, puede que sea necesario quitar todas las migraciones y empezar de nuevo. Esto se puede hacer fácilmente si se elimina la carpeta **Migrations** y se quita la base de datos. en ese momento, puede crear una nueva migración inicial, que contendrá todo el esquema actual.
 
 También es posible restablecer todas las migraciones y crear una sola sin perder los datos. A veces, esto se denomina "" "en" ", y implica algún trabajo manual:
 

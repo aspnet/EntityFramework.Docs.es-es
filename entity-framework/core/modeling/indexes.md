@@ -5,10 +5,10 @@ author: roji
 ms.date: 12/16/2019
 uid: core/modeling/indexes
 ms.openlocfilehash: ab81b108c4ff518cf98b7e835da3553c0c41efed
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
+ms.lasthandoff: 02/05/2021
 ms.locfileid: "98128542"
 ---
 # <a name="indexes"></a>Índices
@@ -47,9 +47,9 @@ Un índice también puede abarcar más de una columna:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/IndexComposite.cs?name=Composite&highlight=4)]
 
-**_
+***
 
-Los índices de varias columnas, también conocidos como índices de _composite *, agilizan las consultas que filtran las columnas del índice, pero también las consultas que solo filtran las *primeras* columnas que se incluyen en el índice. Vea los [documentos de rendimiento](xref:core/performance/efficient-querying#use-indexes-properly) para obtener más información.
+Los índices de varias columnas, también conocidos como *índices compuestos*, agilizan las consultas que filtran las columnas del índice, pero también las consultas que solo filtran en las *primeras* columnas que se incluyen en el índice. Vea los [documentos de rendimiento](xref:core/performance/efficient-querying#use-indexes-properly) para obtener más información.
 
 ## <a name="index-uniqueness"></a>Unicidad del índice
 
