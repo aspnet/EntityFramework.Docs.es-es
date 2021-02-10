@@ -4,12 +4,12 @@ description: Información sobre las consultas de seguimiento y no seguimiento en
 author: smitpatel
 ms.date: 11/09/2020
 uid: core/querying/tracking
-ms.openlocfilehash: 1b3c1db702438390c0de4a2ad5d13e868a522b65
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: cb18125fb3453bb533981afb36480b12727cd6f2
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128906"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983422"
 ---
 # <a name="tracking-vs-no-tracking-queries"></a>Consultas de seguimiento frente a consultas de no seguimiento
 
@@ -75,7 +75,7 @@ Algunas de las reglas anteriores funcionaban de forma diferente antes de EF Core
 
 Antes de la versión 3.0, EF Core presentaba algunas diferencias en el modo en que se realizaba el seguimiento. Las diferencias destacables son las siguientes:
 
-- Como se explica en la página [Evaluación de cliente frente a servidor](xref:core/querying/client-eval), EF Core admitía la evaluación de clientes admitidos en cualquier parte de la consulta anterior antes de la versión 3.0. La evaluación de clientes provocaba la materialización de entidades, las cuales no formaban parte del resultado. Por lo tanto, EF Core analizaba el resultado para detectar de qué realizar el seguimiento. Este diseño tenía algunas diferencias, como se indica a continuación:
+- Como se explica en la página [Evaluación de cliente frente a servidor](xref:core/querying/client-eval), EF Core admitía la evaluación de clientes admitidos en cualquier parte de la consulta anterior antes de la versión 3.0. La evaluación de clientes provocaba la materialización de entidades, las cuales no formaban parte del resultado. Por lo tanto, EF Core analizaba el resultado para detectar de qué realizar el seguimiento. Este diseño tenía algunas diferencias, como se indica a continuación:
   - No se realizaba el seguimiento de la evaluación de clientes en la proyección, lo que provocaba la materialización pero no se devolvía la instancia de la entidad materializada. En el ejemplo siguiente no se realizaba un seguimiento de entidades `blog`.
     [!code-csharp[Main](../../../samples/core/Querying/Tracking/Program.cs#ClientProjection)]
 
@@ -83,4 +83,4 @@ Antes de la versión 3.0, EF Core presentaba algunas diferencias en el modo en q
     [!code-csharp[Main](../../../samples/core/Querying/Tracking/Program.cs#CustomProjection2)]
 
 - Siempre que los resultados de consulta contenían tipos de entidad sin clave, significaba que no se hacía un seguimiento de la consulta completa. Esto quiere decir que tampoco se realizaba un seguimiento de los tipos de entidad con claves que estaban en el resultado.
-- EF Coreó realizaba la resolución de identidades en consultas de no seguimiento. Se usaban referencias débiles para mantener el seguimiento de entidades que ya se habían devuelto. Por lo tanto, si un conjunto de resultados contenía la misma entidad varias veces, obtenía la misma instancia para cada caso. Sin embargo, si un resultado anterior con la misma identidad se salía del ámbito y generaba un elemento no utilizado, EF Core devolvía una nueva instancia.
+- EF Core realizaba la resolución de identidades en consultas de no seguimiento. Se usaban referencias débiles para mantener el seguimiento de entidades que ya se habían devuelto. Por lo tanto, si un conjunto de resultados contenía la misma entidad varias veces, obtenía la misma instancia para cada caso. Sin embargo, si un resultado anterior con la misma identidad se salía del ámbito y generaba un elemento no utilizado, EF Core devolvía una nueva instancia.

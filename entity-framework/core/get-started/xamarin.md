@@ -5,12 +5,12 @@ author: codemillmatt
 ms.date: 07/07/2020
 ms.author: masoucou
 uid: core/get-started/xamarin
-ms.openlocfilehash: c19c70903926c2c8ff4b51cca7781859af7e3567
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: e4a26d7a0c6909002be0974ee9fe1c5db7c1046a
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128789"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983604"
 ---
 # <a name="getting-started-with-ef-core-and-xamarin"></a>Primeros pasos con EF Core y Xamarin
 
@@ -78,8 +78,7 @@ Se da por hecho que está familiarizado con los temas de Xamarin.Forms relaciona
 >
 > * La primera es agregar `--linkskip System.Core` a los **argumentos de mtouch adicionales** en las opciones de **compilación de iOS**.
 > * También puede establecer el **comportamiento del enlazador** de Xamarin.iOS en `Don't Link` en las opciones de **compilación de iOS**.
-> [En este artículo se explica más sobre el enlazador de Xamarin.iOS](/xamarin/ios/deploy-test/linker), incluido cómo establecer el comportamiento en Xamarin.iOS.
->
+> [En este artículo se explica más sobre el enlazador de Xamarin.iOS](/xamarin/ios/deploy-test/linker), incluido cómo establecer el comportamiento en Xamarin.iOS. (Este enfoque no es idóneo, ya que puede dar lugar a un rechazo del almacén).
 
 ## <a name="entity-framework-core-nuget-packages"></a>Paquetes NuGet de Entity Framework Core
 

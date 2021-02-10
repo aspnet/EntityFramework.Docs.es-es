@@ -4,12 +4,12 @@ description: Configuración de comportamientos en cascada que se desencadenan cu
 author: ajcvickers
 ms.date: 01/07/2021
 uid: core/saving/cascade-delete
-ms.openlocfilehash: 7c35de900930cf42da0e534df76124b5fb19ca52
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 27ba84fa5d7e0d72e66ccbd96df9b6a5008791fb
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128867"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983344"
 ---
 # <a name="cascade-delete"></a>Eliminación en cascada
 
@@ -473,11 +473,11 @@ En la siguiente tabla se muestra el resultado de cada valor `OnDelete` en la res
 |:----------------------|--------------------------
 | Cascade               | ON DELETE CASCADE
 | Restringir              | ON DELETE NO ACTION
-| NoAction              | <database default>
+| NoAction              | database default
 | SetNull               | ON DELETE SET NULL
 | ClientSetNull         | ON DELETE NO ACTION
 | ClientCascade         | ON DELETE NO ACTION
-| ClientNoAction        | <database default>
+| ClientNoAction        | database default
 
 > [!NOTE]
 > Esta tabla es confusa y tenemos previsto revisarla en una versión futura. Consulte la [incidencia n.º 21252 de GitHub](https://github.com/dotnet/efcore/issues/21252).

@@ -4,12 +4,12 @@ description: Información sobre cómo se controlan en Entity Framework Core las
 author: maumar
 ms.date: 11/11/2020
 uid: core/querying/null-comparisons
-ms.openlocfilehash: d1235eb8df7fd22c7a930b3661ec38a99f75e5fa
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: fc63d0e0e6aea09e46b1700152312d4b74270219
+ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129564"
+ms.lasthandoff: 01/28/2021
+ms.locfileid: "98983357"
 ---
 # <a name="query-null-semantics"></a>Semántica de valores NULL en las consultas
 
@@ -77,7 +77,7 @@ La optimización también se puede usar para funciones definidas por el usuario.
 
 - La comparación de las columnas que no aceptan valores NULL es más sencilla y rápida que la de las columnas que aceptan valores NULL. Siempre que sea posible, considere la posibilidad de marcar las columnas como que no admiten valores NULL.
 
-- La comprobación de igualdad (`==`) es más sencilla y rápida que la de no igualdad (`!=`), ya que la consulta no necesita distinguir entre el resultado `null` y `false`. Use la comparación de igualdad siempre que sea posible; pero simplemente la negación de la comparación `==` es en realidad lo mismo que `!=`, por lo que no se mejora el rendimiento.
+- La comprobación de igualdad (`==`) es más sencilla y rápida que la de no igualdad (`!=`), ya que la consulta no necesita distinguir entre el resultado `null` y `false`. Use la comparación de igualdad siempre que sea posible. Sin embargo, simplemente la negación de la comparación `==` es en realidad lo mismo que `!=`, por lo que no se mejora el rendimiento.
 
 - En algunos casos, es posible simplificar una comparación compleja si se filtran de forma explícita los valores `null` de una columna; por ejemplo, cuando no hay ningún valor `null` o estos valores no son relevantes en el resultado. Considere el ejemplo siguiente:
 
