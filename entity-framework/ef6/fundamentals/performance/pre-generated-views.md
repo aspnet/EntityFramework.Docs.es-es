@@ -4,15 +4,15 @@ description: Vistas de asignación previamente generadas en Entity Framework 6
 author: ajcvickers
 ms.date: 10/23/2016
 uid: ef6/fundamentals/performance/pre-generated-views
-ms.openlocfilehash: 0c698e50f5c747d9953d9cf55dbbd8824ff8126d
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: bea0cdc59161068a8186ad2106516ba4f34910a9
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92062963"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543151"
 ---
 # <a name="pre-generated-mapping-views"></a>Vistas de asignación generadas previamente
-Antes de que el Entity Framework pueda ejecutar una consulta o guardar cambios en el origen de datos, debe generar un conjunto de vistas de asignación para tener acceso a la base de datos. Estas vistas de asignación son un conjunto de Entity SQL instrucción que representa la base de datos de forma abstracta y forman parte de los metadatos que se almacenan en caché por dominio de aplicación. Si crea varias instancias del mismo contexto en el mismo dominio de aplicación, volverán a usar las vistas de asignación de los metadatos almacenados en caché en lugar de volver a generarlas. Dado que la generación de la vista de asignación es una parte significativa del costo total de ejecutar la primera consulta, el Entity Framework permite generar previamente vistas de asignación e incluirlas en el proyecto compilado.Para obtener más información, vea  [consideraciones de rendimiento (Entity Framework)](xref:ef6/fundamentals/performance/perf-whitepaper).
+Antes de que el Entity Framework pueda ejecutar una consulta o guardar cambios en el origen de datos, debe generar un conjunto de vistas de asignación para tener acceso a la base de datos. Estas vistas de asignación son un conjunto de Entity SQL instrucción que representa la base de datos de forma abstracta y forman parte de los metadatos que se almacenan en caché por dominio de aplicación. Si crea varias instancias del mismo contexto en el mismo dominio de aplicación, volverán a usar las vistas de asignación de los metadatos almacenados en caché en lugar de volver a generarlas. Dado que la generación de la vista de asignación es una parte significativa del costo total de ejecutar la primera consulta, el Entity Framework permite generar previamente vistas de asignación e incluirlas en el proyecto compilado. Para obtener más información, vea  [consideraciones de rendimiento (Entity Framework)](xref:ef6/fundamentals/performance/perf-whitepaper).
 
 ## <a name="generating-mapping-views-with-the-ef-power-tools-community-edition"></a>Generación de vistas de asignación con EF Power Tools Community Edition
 
@@ -49,7 +49,7 @@ Las API para generar vistas se encuentran en la clase System. Data. Entity. Core
 Una vez que tenga el StorageMappingItemCollection, puede obtener acceso a los métodos GenerateViews y ComputeMappingHashValue.
 
 ``` csharp
-    public Dictionary\<EntitySetBase, DbMappingView> GenerateViews(IList<EdmSchemaError> errors)
+    public Dictionary<EntitySetBase, DbMappingView> GenerateViews(IList<EdmSchemaError> errors)
     public string ComputeMappingHashValue()
 ```
 

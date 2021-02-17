@@ -4,12 +4,12 @@ description: Guía de rendimiento para una actualización eficaz mediante Entity
 author: roji
 ms.date: 12/1/2020
 uid: core/performance/efficient-updating
-ms.openlocfilehash: 92766d2339fb04ed5ebc3123429171cc9be424b1
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: f8e222991af52cd7cae6089e95ad6634b6b949f8
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97657757"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543138"
 ---
 # <a name="efficient-updating"></a>Actualización eficaz
 
@@ -19,7 +19,7 @@ EF Core ayuda a minimizar los viajes de ida y vuelta agrupando automáticamente 
 
 [!code-csharp[Main](../../../samples/core/Performance/Program.cs#SaveChangesBatching)]
 
-Lo anterior carga un blog de la base de datos, cambia su nombre y, a continuación, agrega dos blogs nuevos; para aplicar esto, se envían a la base de datos dos instrucciones INSERT de SQL y una instrucción UPDATE. En lugar de enviarlos uno a uno, a medida que se agregan instancias de blog, EF Core realiza un seguimiento de estos cambios internamente y los ejecuta en un solo ida y vuelta cuando <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> se llama a.
+Lo anterior carga un blog de la base de datos, cambia su dirección URL y, a continuación, agrega dos blogs nuevos; para aplicar esto, se envían a la base de datos dos instrucciones INSERT de SQL y una instrucción UPDATE. En lugar de enviarlos uno a uno, a medida que se agregan instancias de blog, EF Core realiza un seguimiento de estos cambios internamente y los ejecuta en un solo ida y vuelta cuando <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> se llama a.
 
 El número de instrucciones que EF procesa por lotes en un único viaje de ida y vuelta depende del proveedor de base de datos utilizado. Por ejemplo, el análisis de rendimiento ha mostrado que el procesamiento por lotes sea menos eficaz para SQL Server cuando hay menos de 4 instrucciones implicadas. Del mismo modo, las ventajas del procesamiento por lotes se degradan después de alrededor de 40 instrucciones para SQL Server, por lo que EF Core solo ejecutará de forma predeterminada hasta 42 instrucciones en un único lote y ejecutará instrucciones adicionales en viajes de ida y vuelta independientes.
 

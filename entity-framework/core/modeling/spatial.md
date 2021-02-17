@@ -4,12 +4,12 @@ description: Usar datos espaciales en un modelo de Entity Framework Core
 author: bricelam
 ms.date: 10/02/2020
 uid: core/modeling/spatial
-ms.openlocfilehash: a38e75e150b3d3404f2ed7619d05ba478c411117
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 721aa2628d17b89b79160f8f658f8ef0dd78d6a6
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003450"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543294"
 ---
 # <a name="spatial-data"></a>Datos espaciales
 
@@ -18,7 +18,7 @@ ms.locfileid: "95003450"
 
 Los datos espaciales representan la ubicación física y la forma de los objetos. Muchas bases de datos proporcionan compatibilidad con este tipo de datos, por lo que se puede indizar y consultar junto con otros datos. Entre los escenarios comunes se incluyen las consultas de objetos dentro de una distancia determinada desde una ubicación o la selección del objeto cuyo borde contiene una ubicación determinada. EF Core admite la asignación a tipos de datos espaciales mediante la biblioteca espacial NetTopologySuite.
 
-## <a name="installing"></a>Instalación
+## <a name="installing"></a>Instalando
 
 Para usar los datos espaciales con EF Core, debe instalar el paquete NuGet de soporte adecuado. El paquete que necesita instalar depende del proveedor que esté usando.
 
@@ -78,15 +78,18 @@ En LINQ, los métodos y las propiedades NTS disponibles como funciones de base d
 
 ## <a name="reverse-engineering"></a>Ingeniería inversa
 
-Los paquetes de NuGet espaciales también habilitan los modelos de [ingeniería inversa](xref:core/managing-schemas/scaffolding) con propiedades espaciales, pero debe instalar el paquete **_antes_* de ejecutar `Scaffold-DbContext` o `dotnet ef dbcontext scaffold` . Si no lo hace, recibirá advertencias sobre cómo no encontrar las asignaciones de tipos para las columnas y se omitirán las columnas.
+Los paquetes de NuGet espaciales también habilitan los modelos de [ingeniería inversa](xref:core/managing-schemas/scaffolding) con propiedades espaciales, pero debe instalar el paquete ***antes*** de ejecutar `Scaffold-DbContext` o `dotnet ef dbcontext scaffold` . Si no lo hace, recibirá advertencias sobre cómo no encontrar las asignaciones de tipos para las columnas y se omitirán las columnas.
 
 ## <a name="srid-ignored-during-client-operations"></a>SRID omitido durante las operaciones de cliente
 
-NTS omite los valores de SRID durante las operaciones. Supone un sistema de coordenadas plano. Esto significa que si especifica coordenadas en términos de longitud y latitud, algunos valores evaluados por el cliente como la distancia, la longitud y el área estarán en grados, no en metros. Para valores más significativos, primero debe proyectar las coordenadas en otro sistema de coordenadas mediante una biblioteca como [ProjNet4GeoAPI](https://github.com/NetTopologySuite/ProjNet4GeoAPI) antes de calcular estos valores.
+NTS omite los valores de SRID durante las operaciones. Supone un sistema de coordenadas plano. Esto significa que si especifica coordenadas en términos de longitud y latitud, algunos valores evaluados por el cliente como la distancia, la longitud y el área estarán en grados, no en metros. Para valores más significativos, primero debe proyectar las coordenadas en otro sistema de coordenadas mediante una biblioteca como [ProjNet (para GeoAPI)](https://github.com/NetTopologySuite/ProjNet4GeoAPI).
+
+> [!NOTE]
+> Use el [paquete NuGet de ProjNet](https://www.nuget.org/packages/ProjNet/)más reciente, **no** el paquete anterior denominado ProjNet4GeoAPI.
 
 Si una operación es evaluada por el servidor mediante EF Core a través de SQL, la unidad del resultado se determinará por la base de datos.
 
-Este es un ejemplo del uso de ProjNet4GeoAPI para calcular la distancia entre dos ciudades.
+Este es un ejemplo del uso de ProjNet para calcular la distancia entre dos ciudades.
 
 [!code-csharp[](../../../samples/core/Spatial/Projections/GeometryExtensions.cs?name=snippet_GeometryExtensions)]
 
@@ -101,7 +104,7 @@ Este es un ejemplo del uso de ProjNet4GeoAPI para calcular la distancia entre do
 
 Asegúrese de leer la documentación del proveedor para obtener información adicional sobre cómo trabajar con datos espaciales.
 
-_ [Datos espaciales en el proveedor de SQL Server](xref:core/providers/sql-server/spatial)
+* [Datos espaciales en el proveedor de SQL Server](xref:core/providers/sql-server/spatial)
 * [Datos espaciales en el proveedor de SQLite](xref:core/providers/sqlite/spatial)
 * [Datos espaciales en el proveedor Npgsql](https://www.npgsql.org/efcore/mapping/nts.html)
 

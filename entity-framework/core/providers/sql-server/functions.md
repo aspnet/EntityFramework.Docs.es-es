@@ -2,14 +2,14 @@
 title: 'Asignaciones de función: proveedor de base de datos de Microsoft SQL Server-EF Core'
 description: Asignaciones de función del proveedor de base de datos de Microsoft SQL Server
 author: bricelam
-ms.date: 10/07/2020
+ms.date: 1/26/2021
 uid: core/providers/sql-server/functions
-ms.openlocfilehash: 8eb66521b00f2f4879a098200239849c7219a095
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: c39e81fca52854e7fa7d5b2e81b80511e8184b90
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92066575"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543229"
 ---
 # <a name="function-mappings-of-the-microsoft-sql-server-provider"></a>Asignaciones de función del proveedor de Microsoft SQL Server
 
@@ -20,8 +20,10 @@ En esta página se muestran los miembros de .NET que se traducen en SQL Function
 .NET                         | SQL                           | Agregado en
 ---------------------------- | ----------------------------- | --------
 bytes. Contains (valor)        | CHARINDEX ( @value , @bytes ) > 0 | EF Core 5.0
+bytes. Primero ()                | Substring ( @bytes , 1,1)       | EF Core 6.0
 bytes. Longitud                 | DATALENGTH ( @bytes )            | EF Core 5.0
 bytes. SequenceEqual (segundo)  | @bytes = @second              | EF Core 5.0
+bytes [i]                     | Substring ( @bytes , @i + 1,1)  | EF Core 6.0
 EF. Functions. DATALENGTH (Arg) | DATALENGTH ( @arg )              | EF Core 5.0
 
 ## <a name="conversion-functions"></a>Funciones de conversión
@@ -121,8 +123,9 @@ timeSpan. seconds                                            | DATEPART (segundo
 
 ## <a name="numeric-functions"></a>Funciones numéricas
 
-.NET                    | SQL
------------------------ | ---
+.NET                    | SQL                  | Agregado en
+----------------------- | -------------------- | --------
+EF. Functions. RANDOM ()   | RAND ()               | EF Core 6.0
 Math. ABS (valor)         | ABS ( @value )
 Math. ACOS (d)            | ACOS ( @d )
 Math. Asin (d)            | ASIN ( @d )
@@ -153,11 +156,12 @@ EF. Functions. Contains (propertyReference, searchCondition)               | Con
 EF. Functions. Contains (propertyReference, searchCondition, languageTerm) | Contains ( @propertyReference , @searchCondition , Language @languageTerm ) | EF Core 2.2
 EF. Functions. FreeText (propertyReference, freeText)                      | FREETEXT ( @propertyReference , @freeText )
 EF. Functions. FreeText (propertyReference, freeText, languageTerm)        | FREETEXT ( @propertyReference , @freeText , idioma @languageTerm )
+EF. Functions. IsNumeric (expresión)                                      | ISNUMERIC ( @expression )                                                 | EF Core 6.0
 EF. Functions. like (matchExpression, Pattern)                             | @matchExpression FORMA @pattern
 EF. Functions. like (matchExpression, Pattern, escapeCharacter)            | @matchExpression COMO @pattern escape @escapeCharacter
 String. Compare (strA, strB)                                              | CASE WHEN @strA = @strB 0... EXTREMO
 String@. Concat (str0, Str1)                                               | @str0 + @str1
-String@. IsNullOrEmpty (valor)                                             | @value ES NULL o @value = N ' '
+String@. IsNullOrEmpty (valor)                                             | @value ES NULL o es @value como N ' '
 String@. IsNullOrWhiteSpace (valor)                                        | @value ES NULL o LTRIM (RTRIM ( @value )) = N ' '
 Valorstring. CompareTo (strB)                                             | CASE WHEN @stringValue = @strB 0... EXTREMO
 Valorstring. Contains (valor)                                             | @stringValue COMO N '% ' + @value + n '% '
@@ -188,6 +192,6 @@ acepta valores NULL. GetValueOrDefault (defaultValue) | Coalesce ( @nullable , @
 > [!NOTE]
 > Algunos SQL se han simplificado con fines ilustrativos. El SQL real es más complejo para controlar un rango más amplio de valores.
 
-## <a name="see-also"></a>Consulta también
+## <a name="see-also"></a>Consulte también
 
 * [Asignaciones de funciones espaciales](xref:core/providers/sql-server/spatial#spatial-function-mappings)

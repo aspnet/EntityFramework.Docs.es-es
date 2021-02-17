@@ -4,12 +4,12 @@ description: Seguimiento explícito de las entidades con DbContext mediante agre
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/explicit-tracking
-ms.openlocfilehash: 1428096b362c8016f7924c72ec9ac3e2f9203ed6
-ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
+ms.openlocfilehash: 3d9142cecf272c635c3a041fe6c5d9c49a26c33d
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/28/2021
-ms.locfileid: "98983279"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543190"
 ---
 # <a name="explicitly-tracking-entities"></a>Seguimiento explícito de entidades
 
@@ -42,7 +42,7 @@ La aplicación web ahora debe volver a adjuntar estas entidades para que vuelvan
 > [!TIP]
 > Normalmente no es necesario adjuntar entidades a la _misma instancia de DbContext_ de la que se han consultado. No realice habitualmente una consulta sin seguimiento y, a continuación, asocie las entidades devueltas al mismo contexto. Esto será más lento que el uso de una consulta de seguimiento y puede dar lugar a problemas como los valores de las propiedades de sombra que faltan, lo que dificulta la obtención de derechos.
 
-### <a name="generated-verses-explicit-key-values"></a>Se generan valores de clave explícitos
+### <a name="generated-versus-explicit-key-values"></a>Valores de clave generados frente a explícitos
 
 De forma predeterminada, [las propiedades](xref:core/modeling/keys) Integer y de clave GUID están configuradas para utilizar [valores de clave generados automáticamente](xref:core/modeling/generated-properties). Esto tiene una **ventaja importante para el seguimiento de cambios: un valor de clave no establecido indica que la entidad es "nueva"**. Por "nuevo", nos referimos a que todavía no se ha insertado en la base de datos.
 

@@ -2,14 +2,14 @@
 title: 'Asignaciones de función: proveedor de Azure Cosmos DB-EF Core'
 description: Asignaciones de función del proveedor de EF Core de Azure Cosmos DB
 author: bricelam
-ms.date: 10/08/2020
+ms.date: 1/26/2021
 uid: core/providers/cosmos/functions
-ms.openlocfilehash: ffcf82fbe57ea16e6fc62f3c9c80c572b3e1ed91
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: d4d45ba7db50befb5eb775feed0af44468ee3f74
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92066537"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543593"
 ---
 # <a name="function-mappings-of-the-azure-cosmos-db-ef-core-provider"></a>Asignaciones de función del proveedor de EF Core de Azure Cosmos DB
 
@@ -18,6 +18,7 @@ En esta página se muestran los miembros de .NET que se traducen en SQL Function
 .NET                          | SQL                              | Agregado en
 ----------------------------- | -------------------------------- | --------
 Collection. Contains (Item)     | @item DE @collection
+EF. Functions. RANDOM ()         | RAND ()                           | EF Core 6.0
 Valorstring. Contains (valor)   | Contains ( @stringValue , @value )   | EF Core 5.0
 Valorstring. EndsWith (valor)   | ENDSWITH ( @stringValue , @value )   | EF Core 5.0
 Valorstring. FirstOrDefault ()  | IZQUIERDA ( @stringValue , 1)            | EF Core 5.0

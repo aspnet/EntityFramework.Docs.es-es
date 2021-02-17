@@ -4,12 +4,12 @@ description: Estrategias para aplicar migraciones de esquema a las bases de dato
 author: bricelam
 ms.date: 05/06/2020
 uid: core/managing-schemas/migrations/applying
-ms.openlocfilehash: 7ff84636fb0999941b832c6a2d65d77b0ad368c5
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: cb4e6f719ba5ab4ef70e2e1d06760db1de5658b4
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429862"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543606"
 ---
 # <a name="applying-migrations"></a>Aplicación de migraciones
 
@@ -88,7 +88,7 @@ Puede usar un valor `from` que sea más reciente que el valor `to` para generar 
 
 ***
 
-La generación de script acepta los dos argumentos siguientes en indica qué intervalo de migraciones se debe generar:
+La generación de script acepta los dos argumentos siguientes para indicar qué intervalo de migraciones se debe generar:
 
 * La migración **from** debe ser la última migración aplicada a la base de datos antes de ejecutar el script. Si no se han aplicado migraciones, especifique `0` (es el valor predeterminado).
 * La migración **to** debe ser la última migración que se va a aplicar a la base de datos después de ejecutar el script. El valor predeterminado es la última migración del proyecto.
@@ -111,13 +111,13 @@ dotnet ef migrations script --idempotent
 Script-Migration -Idempotent
 ```
 
-**_
+***
 
 ## <a name="command-line-tools"></a>Herramientas de línea de comandos
 
 Las herramientas de línea de comandos de EF se pueden usar para aplicar migraciones a una base de datos. Aunque es productivo para el desarrollo y las pruebas locales de las migraciones, este enfoque no es idóneo para la administración de bases de datos de producción:
 
-_ Los comandos SQL se aplican directamente a la herramienta, sin que el desarrollador tenga la oportunidad de inspeccionarlos o modificarlos. Esto puede ser peligroso en un entorno de producción.
+* Los comandos SQL se aplican directamente a la herramienta, sin que el desarrollador tenga la oportunidad de inspeccionarlos o modificarlos. Esto puede ser peligroso en un entorno de producción.
 * El SDK de .NET y la herramienta EF deben instalarse en servidores de producción.
 
 ### <a name="net-core-cli"></a>[CLI de .NET Core](#tab/dotnet-core-cli)

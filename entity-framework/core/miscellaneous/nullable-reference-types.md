@@ -4,12 +4,12 @@ description: Trabajar con tipos de referencia que aceptan valores NULL de C# al 
 author: roji
 ms.date: 09/09/2019
 uid: core/miscellaneous/nullable-reference-types
-ms.openlocfilehash: 749fef8560c6777dcb2314126b11d2dd6a3562f8
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 0747b1328458fbaddd9e3cca117e378bbad5b365
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128568"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543437"
 ---
 # <a name="working-with-nullable-reference-types"></a>Trabajar con tipos de referencia que aceptan valores NULL
 
@@ -28,7 +28,7 @@ La documentación principal sobre las propiedades obligatorias y opcionales y su
 
 Cuando se habilitan los tipos de referencia que aceptan valores NULL, el compilador de C# emite advertencias para cualquier propiedad no inicializada que no acepte valores NULL, ya que estos contendrían el valor null. Como resultado, no se puede usar la siguiente manera común de escribir tipos de entidad:
 
-[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/CustomerWithWarning.cs?name=CustomerWithWarning&highlight=4-5)]
+[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/CustomerWithWarning.cs?name=CustomerWithWarning&highlight=5-6)]
 
 El [enlace de constructor](xref:core/modeling/constructors) es una técnica útil para asegurarse de que se inicializan las propiedades que no aceptan valores NULL:
 
@@ -65,11 +65,11 @@ Otra estrategia consiste en usar propiedades automáticas que no aceptan valores
 
 Cuando se trabaja con relaciones opcionales, es posible encontrar advertencias del compilador en las que una excepción de referencia nula real sería imposible. Cuando se traducen y ejecutan las consultas LINQ, EF Core garantiza que si no existe una entidad relacionada opcional, cualquier navegación a ella simplemente se omitirá, en lugar de producirse. Sin embargo, el compilador no es consciente de esta garantía EF Core y genera advertencias como si la consulta LINQ se ejecutara en memoria, con LINQ to Objects. Como resultado, es necesario usar el operador null-permisivo (!) para notificar al compilador que no es posible un valor null real:
 
-[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Program.cs?range=46)]
+[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Program.cs?name=Navigating)]
 
 Se produce un problema similar al incluir varios niveles de relaciones entre las navegaciones opcionales:
 
-[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Program.cs?range=36-39&highlight=2)]
+[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/Program.cs?name=Including&highlight=2)]
 
 Si tiene que hacer esto mucho y los tipos de entidad en cuestión son principalmente (o exclusivamente) usados en consultas de EF Core, considere la posibilidad de hacer que las propiedades de navegación no acepten valores NULL y configurarlas como opcionales a través de la API fluida o las anotaciones de datos. Esto quitará todas las advertencias del compilador manteniendo la relación opcional; sin embargo, si las entidades se recorren fuera de EF Core, puede observar valores NULL, aunque las propiedades se anotan como que no aceptan valores NULL.
 

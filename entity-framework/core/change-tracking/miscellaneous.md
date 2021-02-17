@@ -4,12 +4,12 @@ description: Varias características y escenarios que implican EF Core el seguim
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/miscellaneous
-ms.openlocfilehash: db1e32948b2a60ad1b85e300bbbccd54d49a84e5
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 9eb3186f4eef300e4824dc86700497444ece4a2c
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129645"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543424"
 ---
 # <a name="additional-change-tracking-features"></a>Características de Change Tracking adicionales
 
@@ -19,9 +19,9 @@ En este documento se tratan varias características y escenarios que implican el
 > En este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de EF Core. Consulte [Change Tracking en EF Core](xref:core/change-tracking/index) para obtener más información sobre estos temas.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo desde GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/AdditionalChangeTrackingFeatures).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/AdditionalChangeTrackingFeatures).
 
-## <a name="add-verses-addasync"></a>Agregar no AddAsync
+## <a name="add-versus-addasync"></a>Diferencias entre `Add` y `AddAsync`
 
 Entity Framework Core (EF Core) proporciona métodos asincrónicos cada vez que se usa ese método, se puede producir una interacción con la base de datos. También se proporcionan métodos sincrónicos para evitar la sobrecarga cuando se usan bases de datos que no admiten el acceso asincrónico de alto rendimiento.
 
@@ -29,16 +29,16 @@ Entity Framework Core (EF Core) proporciona métodos asincrónicos cada vez que 
 
 Otros métodos similares como `Update` , `Attach` y `Remove` no tienen sobrecargas asincrónicas porque nunca generan nuevos valores de clave y, por lo tanto, no necesitan tener acceso a la base de datos.
 
-## <a name="addrange-updaterange-attachrange-and-removerange"></a>AddRange, UpdateRange, AttachRange y RemoveRange
+## <a name="addrange-updaterange-attachrange-and-removerange"></a>`AddRange`, `UpdateRange`, `AttachRange` y `RemoveRange`.
 
-<xref:Microsoft.EntityFrameworkCore.DbSet%601> y <xref:Microsoft.EntityFrameworkCore.DbContext> proporcionan versiones alternativas de `Add` , `Update` , `Attach` y `Remove` que aceptan varias instancias en una sola llamada. Estos métodos se llaman `AddRange` , `UpdateRange` , `AttachRange` y `RemoveRange` respectivamente.
+<xref:Microsoft.EntityFrameworkCore.DbSet%601> y <xref:Microsoft.EntityFrameworkCore.DbContext> proporcionan versiones alternativas de `Add` , `Update` , `Attach` y `Remove` que aceptan varias instancias en una sola llamada. Estos métodos son <xref:Microsoft.EntityFrameworkCore.DbSet%601.AddRange%2A> , <xref:Microsoft.EntityFrameworkCore.DbSet%601.UpdateRange%2A> , <xref:Microsoft.EntityFrameworkCore.DbSet%601.AttachRange%2A> y, <xref:Microsoft.EntityFrameworkCore.DbSet%601.RemoveRange%2A> respectivamente.
 
 Estos métodos se proporcionan por comodidad. El uso de un método "Range" tiene la misma funcionalidad que varias llamadas al método equivalente que no es de intervalo. No hay ninguna diferencia de rendimiento significativa entre los dos enfoques.
 
 > [!NOTE]
-> Esto es diferente de EF6, donde AddRange y agregan ambos automáticamente denominados DetectChanges, pero llamar varias veces a Add ha provocado que se llame a DetectChanges varias veces en lugar de una vez. Esto hizo que AddRange sea más eficaz en EF6. En EF Core, ninguno de estos métodos llama automáticamente a DetectChanges.
+> Esto es diferente de EF6, donde se `AddRange` llama a y a `Add` ambos automáticamente `DetectChanges` , pero la llamada `Add` varias veces hizo que DetectChanges se llamara varias veces en lugar de una vez. Esto hace que sea `AddRange` más eficaz en EF6. En EF Core, ninguno de estos métodos llama automáticamente a `DetectChanges` .
 
-## <a name="dbcontext-verses-dbset-methods"></a>DbContext, métodos DbSet
+## <a name="dbcontext-versus-dbset-methods"></a>DbContext frente a métodos DbSet
 
 Muchos métodos, incluidos `Add` , `Update` , `Attach` y `Remove` , tienen implementaciones en <xref:Microsoft.EntityFrameworkCore.DbSet%601> y <xref:Microsoft.EntityFrameworkCore.DbContext> . Estos métodos tienen _exactamente el mismo comportamiento para los_ tipos de entidad normales. Esto se debe a que el tipo CLR de la entidad se asigna a un solo tipo de entidad del modelo de EF Core. Por lo tanto, el tipo CLR define totalmente Dónde encaja la entidad en el modelo, por lo que el DbSet que se va a usar se puede determinar de forma implícita.
 
@@ -89,14 +89,14 @@ Al [cambiar las claves externas y las navegaciones](xref:core/change-tracking/re
 
             context.SaveChanges();
 -->
-[!code-csharp[DbContext_verses_DbSet_methods_1](../../../samples/core/ChangeTracking/AdditionalChangeTrackingFeatures/Samples.cs?name=DbContext_verses_DbSet_methods_1)]
+[!code-csharp[DbContext_versus_DbSet_methods_1](../../../samples/core/ChangeTracking/AdditionalChangeTrackingFeatures/Samples.cs?name=DbContext_versus_DbSet_methods_1)]
 
 Observe que <xref:Microsoft.EntityFrameworkCore.DbContext.Set%60%601(System.String)?displayProperty=nameWithType> se usa para crear un DbSet para el `PostTag` tipo de entidad. Este DbSet se puede usar para llamar a `Add` con la nueva instancia de la entidad join.
 
 > [!IMPORTANT]
 > El tipo CLR que se usa para los tipos de entidad de combinación por Convención puede cambiar en futuras versiones para mejorar el rendimiento. No dependa de ningún tipo de entidad de combinación concreta, a menos que se haya configurado explícitamente como se hace `Dictionary<string, int>` en el código anterior.
 
-## <a name="property-verses-field-access"></a>Propiedad que no tiene acceso a campos
+## <a name="property-versus-field-access"></a>Propiedad frente al acceso a campos
 
 A partir de EF Core 3,0, el acceso a las propiedades de la entidad usa el campo de respaldo de la propiedad de forma predeterminada. Esto es eficaz y evita que se desencadenen efectos secundarios al llamar a captadores y establecedores de propiedad. Por ejemplo, este es el modo en que la carga diferida puede evitar desencadenar bucles infinitos. Vea [campos de respaldo](xref:core/modeling/backing-field) para obtener más información sobre cómo configurar los campos de respaldo en el modelo.
 

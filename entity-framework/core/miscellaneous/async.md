@@ -4,12 +4,12 @@ description: Consulta y almacenamiento de datos de forma asincrónica con Entity
 author: roji
 ms.date: 9/2/2020
 uid: core/miscellaneous/async
-ms.openlocfilehash: 52b3ac20a50babbed6937ebe3365ac1947dcaef1
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 78c109e9fd73dbb0451f9e29562799e4d22d66c9
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128581"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543359"
 ---
 # <a name="asynchronous-programming"></a>Programación asincrónica
 
@@ -43,7 +43,7 @@ Tenga en cuenta que no hay versiones asincrónicas de algunos operadores LINQ, c
 
 ## <a name="client-side-async-linq-operators"></a>Operadores LINQ asincrónicos del lado cliente
 
-Los operadores LINQ Async descritos anteriormente solo se pueden usar en consultas EF: no se pueden usar con consultas LINQ to Objects del lado cliente. Para realizar operaciones LINQ asincrónicas en el lado cliente fuera de EF, use el [paquete System. Interactive. Async](https://www.nuget.org/packages/System.Interactive.Async); Este paquete puede ser especialmente útil para realizar operaciones en el cliente que no se pueden traducir para su evaluación en el servidor.
+Los operadores LINQ Async descritos anteriormente solo se pueden usar en consultas EF: no se pueden usar con consultas LINQ to Objects del lado cliente. Para realizar operaciones LINQ asincrónicas en el lado cliente fuera de EF, use el [paquete System. Linq. Async](https://www.nuget.org/packages/System.Linq.Async); Este paquete puede ser especialmente útil para realizar operaciones en el cliente que no se pueden traducir para su evaluación en el servidor.
 
 Desafortunadamente, la referencia a System. Interactive. Async produce errores de compilación de invocación ambigua en los operadores de LINQ aplicados al DbSets de EF; Esto hace que sea difícil usar tanto EF como System. Interactive. Async en el mismo proyecto. Para solucionar este problema, agregue la función de consulta a su DbSet:
 

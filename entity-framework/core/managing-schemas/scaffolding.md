@@ -4,18 +4,18 @@ description: Aplicar ingeniería inversa a un modelo a partir de una base de dat
 author: bricelam
 ms.date: 11/13/2018
 uid: core/managing-schemas/scaffolding
-ms.openlocfilehash: 4cad43f4b1300e1ef3cb31e60d3e9890826d974d
-ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
+ms.openlocfilehash: 0f33ee23393819aa86bf1e28ee0eca48110203f6
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "98983578"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543385"
 ---
 # <a name="reverse-engineering"></a> Ingeniería inversa
 
 La ingeniería inversa es el proceso de scaffolding de las clases de tipo de entidad y una clase DbContext basada en un esquema de base de datos. Puede realizarse mediante el `Scaffold-DbContext` comando de EF Core herramientas de la consola del administrador de paquetes (PMC) o el `dotnet ef dbcontext scaffold` comando de las herramientas de la interfaz de la línea de comandos (CLI) de .net.
 
-## <a name="installing"></a>Instalación
+## <a name="installing"></a>Instalando
 
 Antes de la ingeniería inversa, deberá instalar las herramientas de [PMC](xref:core/cli/powershell) (solo en Visual Studio) o las [herramientas](xref:core/cli/dotnet)de la CLI. Vea los vínculos para obtener más información.
 
@@ -171,7 +171,7 @@ También puede Agregar constructores, métodos, propiedades, etc. adicionales. u
 
 Después de realizar cambios en la base de datos, puede que tenga que actualizar el modelo de EF Core para reflejar los cambios. Si los cambios en la base de datos son sencillos, puede que sea más fácil realizar los cambios manualmente en el modelo de EF Core. Por ejemplo, cambiar el nombre de una tabla o columna, quitar una columna o actualizar el tipo de una columna son cambios triviales que se deben realizar en el código.
 
-Sin embargo, los cambios más significativos no son tan sencillos como los que se realizan de forma manual. Un flujo de trabajo común consiste en volver a aplicar ingeniería inversa del modelo de la base de datos mediante `-Force` (PMC) o `--force` (CLI) para sobrescribir el modelo existente con uno actualizado.
+Sin embargo, los cambios más importantes no son tan fáciles de hacer manualmente. Un flujo de trabajo común consiste en volver a aplicar ingeniería inversa del modelo de la base de datos mediante `-Force` (PMC) o `--force` (CLI) para sobrescribir el modelo existente con uno actualizado.
 
 Otra característica solicitada comúnmente es la posibilidad de actualizar el modelo de la base de datos a la vez que se conserva la personalización, como cambiar el nombre, las jerarquías de tipos, etc. Use el [#831](https://github.com/dotnet/efcore/issues/831) de problemas para realizar el seguimiento del progreso de esta característica.
 

@@ -4,12 +4,12 @@ description: Cómo configurar y asignar propiedades de entidad mediante Entity F
 author: roji
 ms.date: 05/27/2020
 uid: core/modeling/entity-properties
-ms.openlocfilehash: fe6dd2c24b8f8ffffa8e0101f69966b7b7c74036
-ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
+ms.openlocfilehash: 3c64f5ac1c86a83b6456df9e29472dc0b22d8524
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "97635554"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543372"
 ---
 # <a name="entity-properties"></a>Propiedades de entidad
 
@@ -57,11 +57,11 @@ También puede configurar las columnas para especificar un tipo de datos exacto 
 
 ### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnDataType.cs?name=ColumnDataType&highlight=4,6)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnDataType.cs?name=ColumnDataType&highlight=5,8)]
 
 ### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
 
-[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnDataType.cs?name=ColumnDataType&highlight=5-6)]
+[!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/ColumnDataType.cs?name=ColumnDataType&highlight=6-7)]
 
 ***
 
@@ -76,7 +76,7 @@ En el ejemplo siguiente, la configuración de una longitud máxima de 500 hará 
 
 #### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/MaxLength.cs?name=MaxLength&highlight=4)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/MaxLength.cs?name=MaxLength&highlight=5)]
 
 #### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
 
@@ -125,7 +125,7 @@ En el ejemplo siguiente se muestra un tipo de entidad con propiedades obligatori
 
 #### <a name="without-nrt-default"></a>[Sin NRT (valor predeterminado)](#tab/without-nrt)
 
-[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/CustomerWithoutNullableReferenceTypes.cs?name=Customer&highlight=4-8)]
+[!code-csharp[Main](../../../samples/core/Miscellaneous/NullableReferenceTypes/CustomerWithoutNullableReferenceTypes.cs?name=Customer&highlight=5,8)]
 
 #### <a name="with-nrt"></a>[Con NRT](#tab/with-nrt)
 
@@ -146,7 +146,7 @@ Una propiedad que sería opcional por Convención se puede configurar para que s
 
 #### <a name="data-annotations"></a>[Anotaciones de datos](#tab/data-annotations)
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Required.cs?name=Required&highlight=4)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/Required.cs?name=Required&highlight=5)]
 
 #### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
 
@@ -161,7 +161,7 @@ Una propiedad que sería opcional por Convención se puede configurar para que s
 
 Una intercalación se puede definir en columnas de texto, determinando cómo se comparan y ordenan. Por ejemplo, el siguiente fragmento de código configura una columna de SQL Server para que no distinga entre mayúsculas y minúsculas:
 
-[!code-csharp[Main](../../../samples/core/Miscellaneous/Collations/Program.cs?range=42-43)]
+[!code-csharp[Main](../../../samples/core/Miscellaneous/Collations/Program.cs?name=ColumnCollation)]
 
 Si todas las columnas de una base de datos necesitan usar una intercalación determinada, defina la intercalación en el nivel de base de datos en su lugar.
 
@@ -176,7 +176,7 @@ Puede establecer un Comentario de texto arbitrario que se establece en la column
 > [!NOTE]
 > La configuración de comentarios a través de anotaciones de datos se presentó en EF Core 5,0.
 
-[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnComment.cs?name=ColumnComment&highlight=4)]
+[!code-csharp[Main](../../../samples/core/Modeling/DataAnnotations/ColumnComment.cs?name=ColumnComment&highlight=5)]
 
 ### <a name="fluent-api"></a>[API fluida](#tab/fluent-api)
 

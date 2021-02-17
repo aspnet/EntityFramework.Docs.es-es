@@ -4,17 +4,17 @@ description: Configuración de intercalaciones y distinción de mayúsculas y mi
 author: roji
 ms.date: 04/27/2020
 uid: core/miscellaneous/collations-and-case-sensitivity
-ms.openlocfilehash: eca68af6e658f76e1480b1e1083212f160fa765c
-ms.sourcegitcommit: 788a56c2248523967b846bcca0e98c2ed7ef0d6b
+ms.openlocfilehash: 48e0a6b316742dc1467134ae81f90086bb93d011
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/20/2020
-ms.locfileid: "95003463"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543541"
 ---
 # <a name="collations-and-case-sensitivity"></a>Intercalaciones y distinción entre mayúsculas y minúsculas
 
 > [!NOTE]
-> Esta característica se presentó en EF Core 5,0.
+> Esta característica se incluyó por primera vez en EF Core 5.0.
 
 El procesamiento de texto en las bases de datos puede ser un proceso complejo y requiere más atención al usuario de que se sospeche. Por un lado, las bases de datos varían considerablemente en el modo en que controlan el texto; por ejemplo, mientras que algunas bases de datos distinguen mayúsculas de minúsculas de forma predeterminada (por ejemplo, SQLite, PostgreSQL), otras no distinguen mayúsculas de minúsculas (SQL Server, MySQL). Además, debido al uso de índices, la distinción de mayúsculas y minúsculas y los aspectos similares pueden tener un impacto de gran alcance en el rendimiento de las consultas: aunque puede ser tentador utilizar `string.Lower` para forzar una comparación sin distinción entre mayúsculas y minúsculas en una base de datos que distingue mayúsculas de minúsculas, si lo hace, puede evitar que la aplicación use índices. En esta página se detalla cómo configurar la distinción de mayúsculas y minúsculas, o más en general, las intercalaciones y cómo hacerlo de manera eficaz sin poner en peligro el rendimiento de las consultas.
 
@@ -30,7 +30,7 @@ En la mayoría de los sistemas de base de datos, se define una intercalación pr
 
 Al usar migraciones de EF Core para administrar el esquema de la base de datos, lo siguiente en el método del modelo `OnModelCreating` configura una base de datos SQL Server para que use una intercalación que distinga entre mayúsculas y minúsculas:
 
-[!code-csharp[Main](../../../samples/core/Miscellaneous/Collations/Program.cs?range=40)]
+[!code-csharp[Main](../../../samples/core/Miscellaneous/Collations/Program.cs?name=DatabaseCollation)]
 
 ## <a name="column-collation"></a>Intercalación de columnas
 
@@ -38,7 +38,7 @@ Las intercalaciones también se pueden definir en columnas de texto, invalidando
 
 Al usar migraciones de EF Core para administrar el esquema de la base de datos, lo siguiente configura la columna para `Name` que la propiedad no distinga entre mayúsculas y minúsculas en una base de datos que, de otro modo, está configurada para distinguir entre mayúsculas y minúsculas:
 
-[!code-csharp[Main](../../../samples/core/Miscellaneous/Collations/Program.cs?name=OnModelCreating&highlight=6)]
+[!code-csharp[Main](../../../samples/core/Miscellaneous/Collations/Program.cs?name=ColumnCollation)]
 
 ## <a name="explicit-collation-in-a-query"></a>Intercalación explícita en una consulta
 

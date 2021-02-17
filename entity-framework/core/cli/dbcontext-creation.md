@@ -4,12 +4,12 @@ description: Estrategias para crear un DbContext en tiempo de diseño con Entity
 author: bricelam
 ms.date: 10/27/2020
 uid: core/cli/dbcontext-creation
-ms.openlocfilehash: 144ed26dcf605dc29d53519ad2ea9cea58fb4e44
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 1a2c0e853047cf4ab54a320d0bef413a114e90bc
+ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94431361"
+ms.lasthandoff: 02/16/2021
+ms.locfileid: "100543411"
 ---
 # <a name="design-time-dbcontext-creation"></a>Creación de DbContext en tiempo de diseño
 
@@ -44,11 +44,11 @@ También puede indicar a las herramientas cómo crear su DbContext implementando
 > Antes de EFCore 5,0 `args` , el parámetro no se usaba (vea [este problema][8]).
 > Esto se corrigió en EFCore 5,0 y cualquier argumento adicional en tiempo de diseño se pasa a la aplicación a través de ese parámetro.
 
-Un generador en tiempo de diseño puede ser especialmente útil si necesita configurar DbContext de manera diferente para el tiempo de diseño que en tiempo de ejecución, si el `DbContext` constructor toma parámetros adicionales que no están registrados en di, si no usa di en absoluto, o si por alguna razón prefiere no tener un `CreateHostBuilder` método en la clase de la aplicación ASP.net Core `Main` .
+Un generador en tiempo de diseño puede ser especialmente útil si necesita configurar de `DbContext` forma diferente el tiempo de diseño que en tiempo de ejecución, si el `DbContext` constructor toma parámetros adicionales que no están registrados en di, si no usa di en absoluto, o si por alguna razón prefiere no tener un `CreateHostBuilder` método en la clase de la aplicación ASP.net Core `Main` .
 
 ## <a name="args"></a>Args
 
-Tanto IDesignTimeDbContextFactory. CreateDbContext como Program. CreateHostBuilder aceptan argumentos de la línea de comandos.
+<xref:Microsoft.EntityFrameworkCore.Design.IDesignTimeDbContextFactory%601.CreateDbContext%2A?displayProperty=nameWithType>Y `Program.CreateHostBuilder` aceptan argumentos de la línea de comandos.
 
 A partir de EF Core 5,0, puede especificar estos argumentos en las herramientas:
 
