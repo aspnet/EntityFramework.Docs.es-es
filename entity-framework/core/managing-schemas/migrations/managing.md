@@ -4,12 +4,12 @@ description: Agregar, quitar y administrar de otro modo migraciones de esquemas 
 author: bricelam
 ms.date: 10/27/2020
 uid: core/managing-schemas/migrations/managing
-ms.openlocfilehash: ef5e1b9bb10d6f1cd428db2fee327ec513c3f528
-ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
+ms.openlocfilehash: a6e64bde753ae34b6dccb10b228d1ea87a79357b
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "95003281"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024178"
 ---
 # <a name="managing-migrations"></a>Administrar migraciones
 
@@ -195,7 +195,7 @@ Remove-Migration
 Después de quitar la migración, puede realizar los cambios de modelo adicionales y volver a agregarla.
 
 > [!WARNING]
-> Tenga cuidado de no quitar las migraciones que ya se hayan aplicado a las bases de datos de producción. Si no lo hace, impedirá que pueda revertirla y puede romper las suposiciones realizadas por migraciones posteriores.
+> Evite quitar las migraciones que ya se hayan aplicado a las bases de datos de producción. Si lo hace, no podrá revertir esas migraciones desde las bases de datos y puede romper las suposiciones realizadas por migraciones posteriores.
 
 ## <a name="listing-migrations"></a>Enumerar migraciones
 
@@ -231,3 +231,8 @@ También es posible restablecer todas las migraciones y crear una sola sin perde
 
 > [!WARNING]
 > Cualquier [código de migración personalizado](#customize-migration-code) se perderá cuando se elimine la carpeta **Migrations** .  Las personalizaciones deben aplicarse a la nueva migración inicial manualmente para que se conserven.
+
+## <a name="additional-resources"></a>Recursos adicionales
+
+* [Entity Framework Core Tools Reference-CLI de .net Core](xref:core/cli/dotnet) : incluye comandos para actualizar, quitar, agregar, quitar, etc.
+* [Entity Framework Core herramientas referencia: consola del administrador de paquetes en Visual Studio](xref:core/cli/powershell) : incluye comandos para actualizar, quitar, agregar, quitar y mucho más.

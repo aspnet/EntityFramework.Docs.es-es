@@ -4,12 +4,12 @@ description: Cómo cambiar las relaciones entre entidades manipulando las claves
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/relationship-changes
-ms.openlocfilehash: b1ebe77ed29291beeef3708b603db026c38bbbec
-ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
+ms.openlocfilehash: 5d3a68a40ed8bd112c19bdaed466071b03e30a66
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/28/2021
-ms.locfileid: "98983617"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024412"
 ---
 # <a name="changing-foreign-keys-and-navigations"></a>Cambiar las claves externas y las navegaciones
 
@@ -25,7 +25,7 @@ Las navegaciones se pueden usar en ambos lados de la relación, solo en un lado 
 > En este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de EF Core. Consulte [Change Tracking en EF Core](xref:core/change-tracking/index) para obtener más información sobre estos temas.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/ChangingFKsAndNavigations).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/ChangeTracking/ChangingFKsAndNavigations).
 
 ### <a name="example-model"></a>Modelo de ejemplo
 
@@ -421,7 +421,7 @@ En función de esto, podemos ver que para trasladar una entrada de un blog a otr
 -->
 [!code-csharp[Fixup_for_added_or_deleted_entities_1](../../../samples/core/ChangeTracking/ChangingFKsAndNavigations/OptionalRelationshipsSamples.cs?name=Fixup_for_added_or_deleted_entities_1)]
 
-Por:
+A:
 
 <!--
         var post = vsBlog.Posts.Single(e => e.Title.StartsWith("Disassembly improvements"));

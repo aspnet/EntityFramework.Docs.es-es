@@ -4,12 +4,12 @@ description: Guía de rendimiento para consultas eficaces con Entity Framework C
 author: roji
 ms.date: 12/1/2020
 uid: core/performance/efficient-querying
-ms.openlocfilehash: e945a1e0f734d62ce8948904bcbe819455fcbefa
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: e14837b779f2fbe8d5bf10206c6a336a952fc35b
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128490"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023879"
 ---
 # <a name="efficient-querying"></a>Consultas eficaces
 
@@ -176,11 +176,11 @@ EF realiza un seguimiento de las instancias de la entidad de forma predeterminad
 * EF mantiene internamente un diccionario de instancias de las que se ha realizado un seguimiento. Cuando se cargan nuevos datos, EF comprueba el diccionario para ver si ya se ha realizado un seguimiento de una instancia para la clave de esa entidad (resolución de identidad). El mantenimiento y las búsquedas del diccionario tardan un tiempo en cargar los resultados de la consulta.
 * Antes de entregar una instancia cargada a la aplicación, EF realiza *instantáneas* de la instancia y mantiene la instantánea internamente. Cuando <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> se llama a, la instancia de la aplicación se compara con la instantánea para detectar los cambios que se van a conservar. La instantánea ocupa más memoria y el propio proceso de la instantánea lleva tiempo; a veces es posible especificar un comportamiento de la instantánea diferente, posiblemente más eficaz, a través de los [comparadores de valores](xref:core/modeling/value-comparers), o usar los proxies de seguimiento de cambios para omitir el proceso de la instantánea (aunque esto incluye su propio conjunto de desventajas).
 
-En los escenarios de solo lectura donde los cambios no se guardan en la base de datos, se pueden evitar las sobrecargas anteriores mediante el uso [de consultas sin seguimiento](xref:core/querying/tracking#no-tracking-queries). Sin embargo, puesto que las consultas sin seguimiento no realizan la resolución de identidad, una fila de base de datos a la que hacen referencia varias filas cargadas se materializará como una instancia diferente.
+En los escenarios de solo lectura donde los cambios no se guardan en la base de datos, se pueden evitar las sobrecargas anteriores mediante el uso [de consultas sin seguimiento](xref:core/querying/tracking#no-tracking-queries). Sin embargo, puesto que las consultas sin seguimiento no realizan la resolución de identidad, una fila de base de datos a la que hacen referencia varias filas cargadas se materializará como instancias diferentes.
 
 Para ilustrar, supongamos que estamos cargando un gran número de publicaciones de la base de datos, así como el blog al que se hace referencia en cada publicación. Si se producen 100 publicaciones para hacer referencia al mismo blog, una consulta de seguimiento lo detecta a través de la resolución de identidades y todas las instancias de post hacen referencia a la misma instancia de blog desduplicada. Por el contrario, una consulta sin seguimiento duplica el mismo blog 100 veces y el código de aplicación debe escribirse en consecuencia.
 
-Estos son los resultados de una prueba comparativa que compara el seguimiento con el comportamiento sin seguimiento de una consulta que carga 10 blogs con 20 publicaciones cada una. [El código fuente está disponible aquí](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Benchmarks/QueryTrackingBehavior.cs), no dude en usarlo como base para sus propias mediciones.
+Estos son los resultados de una prueba comparativa que compara el seguimiento con el comportamiento sin seguimiento de una consulta que carga 10 blogs con 20 publicaciones cada una. [El código fuente está disponible aquí](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Benchmarks/QueryTrackingBehavior.cs), no dude en usarlo como base para sus propias mediciones.
 
 |       Método | NumBlogs | NumPostsPerBlog |       Media |    Error |   StdDev |     Mediana | Proporción | RatioSD |   Gen. 0 |   Gen. 1 | Gen. 2 | Allocated |
 |------------- |--------- |---------------- |-----------:|---------:|---------:|-----------:|------:|--------:|--------:|--------:|------:|----------:|

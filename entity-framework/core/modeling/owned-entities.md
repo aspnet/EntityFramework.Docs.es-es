@@ -4,12 +4,12 @@ description: Cómo configurar tipos de entidad o agregados de propiedad al usar 
 author: AndriySvyryd
 ms.date: 11/06/2019
 uid: core/modeling/owned-entities
-ms.openlocfilehash: 0cd6bfd25d4462509a3e6c112b892d652d29e45e
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 4175c281254c25e957fd701c671f2d75c7789aab
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128633"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023957"
 ---
 # <a name="owned-entity-types"></a>Tipos de entidad en propiedad
 
@@ -41,7 +41,7 @@ El modelo anterior se asigna al siguiente esquema de la base de datos:
 
 ![Sceenshot del modelo de base de datos para la entidad que contiene la referencia de propiedad](_static/owned-entities-ownsone.png)
 
-Vea el [proyecto de ejemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/OwnedEntities) para obtener más contexto.
+Vea el [proyecto de ejemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Modeling/OwnedEntities) para obtener más contexto.
 
 > [!TIP]
 > El tipo de entidad de propiedad se puede marcar como requerido; consulte los [dependientes uno a uno obligatorios](xref:core/modeling/relationships#one-to-one) para obtener más información.

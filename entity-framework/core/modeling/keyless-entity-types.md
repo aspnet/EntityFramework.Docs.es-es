@@ -4,12 +4,12 @@ description: Configuración de tipos de entidad sin entrada mediante Entity Fram
 author: AndriySvyryd
 ms.date: 9/13/2019
 uid: core/modeling/keyless-entity-types
-ms.openlocfilehash: d1a60e0504b22623b97c1a4963d2e3f70faa365c
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 488b21767993474d3e90677ee1e480a970b09edb
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429512"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023944"
 ---
 # <a name="keyless-entity-types"></a>Tipos de entidad sin llave
 
@@ -60,7 +60,7 @@ Algunos de los escenarios de uso principales de los tipos de entidad sin llave s
 
 ## <a name="mapping-to-database-objects"></a>Asignar a objetos de base de datos
 
-La asignación de un tipo de entidad sin llave a un objeto de base de datos se consigue mediante el `ToTable` o la `ToView` API fluida. Desde la perspectiva de EF Core, el objeto de base de datos especificado en este método es una _vista_ , lo que significa que se trata como un origen de consulta de solo lectura y no puede ser el destino de las operaciones de actualización, inserción o eliminación. Sin embargo, esto no significa que el objeto de base de datos sea realmente necesario para ser una vista de base de datos. Como alternativa, puede tratarse de una tabla de base de datos que se tratará como de solo lectura. Por el contrario, en el caso de los tipos de entidad normales, EF Core supone que un objeto de base de datos especificado en el `ToTable` método se puede tratar como una _tabla_ , lo que significa que se puede usar como origen de la consulta, pero también como destino de las operaciones de actualización, eliminación e inserción. De hecho, puede especificar el nombre de una vista de base de datos en `ToTable` y todo debería funcionar bien siempre que la vista esté configurada para ser actualizable en la base de datos.
+La asignación de un tipo de entidad sin llave a un objeto de base de datos se consigue mediante el `ToTable` o la `ToView` API fluida. Desde la perspectiva de EF Core, el objeto de base de datos especificado en este método es una _vista_, lo que significa que se trata como un origen de consulta de solo lectura y no puede ser el destino de las operaciones de actualización, inserción o eliminación. Sin embargo, esto no significa que el objeto de base de datos sea realmente necesario para ser una vista de base de datos. Como alternativa, puede tratarse de una tabla de base de datos que se tratará como de solo lectura. Por el contrario, en el caso de los tipos de entidad normales, EF Core supone que un objeto de base de datos especificado en el `ToTable` método se puede tratar como una _tabla_, lo que significa que se puede usar como origen de la consulta, pero también como destino de las operaciones de actualización, eliminación e inserción. De hecho, puede especificar el nombre de una vista de base de datos en `ToTable` y todo debería funcionar bien siempre que la vista esté configurada para ser actualizable en la base de datos.
 
 > [!NOTE]
 > `ToView` supone que el objeto ya existe en la base de datos y que no lo crearán las migraciones.
@@ -70,7 +70,7 @@ La asignación de un tipo de entidad sin llave a un objeto de base de datos se c
 En el ejemplo siguiente se muestra cómo utilizar los tipos de entidad sin entrada para consultar una vista de base de datos.
 
 > [!TIP]
-> Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/KeylessEntityTypes) de este artículo en GitHub.
+> Puede ver un [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/KeylessEntityTypes) de este artículo en GitHub.
 
 En primer lugar, definimos un blog y un modelo post sencillos:
 
@@ -101,4 +101,4 @@ Por último, podemos consultar la vista de base de datos de la manera estándar:
 > Nota también hemos definido una propiedad de consulta de nivel de contexto (DbSet) para que actúe como raíz para las consultas en este tipo.
 
 > [!TIP]
-> Para probar los tipos de entidad sin entrada asignados a las vistas mediante el proveedor en memoria, asígnelo a una consulta a través de `ToInMemoryQuery` . Vea un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing/ItemsWebApi/) mediante esta técnica para obtener más detalles.
+> Para probar los tipos de entidad sin entrada asignados a las vistas mediante el proveedor en memoria, asígnelo a una consulta a través de `ToInMemoryQuery` . Vea un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/Testing/ItemsWebApi/) mediante esta técnica para obtener más detalles.

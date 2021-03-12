@@ -4,12 +4,12 @@ description: Documentación del proveedor de bases de datos que permite usar Ent
 author: AndriySvyryd
 ms.date: 10/09/2020
 uid: core/providers/cosmos/index
-ms.openlocfilehash: 8bfce78465e8194544562c3ecac4d3398ca91265
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: e4ceea32fda0d07e9dd19ac0de162c57b90b5f34
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97635593"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023840"
 ---
 # <a name="ef-core-azure-cosmos-db-provider"></a>Proveedor de Azure Cosmos DB para EF Core
 
@@ -44,7 +44,7 @@ Install-Package Microsoft.EntityFrameworkCore.Cosmos
 ## <a name="get-started"></a>Introducción
 
 > [!TIP]
-> Puede ver en [GitHub un ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Cosmos) de este artículo.
+> Puede ver en [GitHub un ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Cosmos) de este artículo.
 
 Al igual que para otros proveedores, el primer paso es llamar a [UseCosmos](/dotnet/api/Microsoft.EntityFrameworkCore.CosmosDbContextOptionsExtensions.UseCosmos):
 

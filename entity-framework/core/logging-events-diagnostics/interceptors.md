@@ -4,12 +4,12 @@ description: Interceptación de operaciones de base de datos y otros eventos
 author: ajcvickers
 ms.date: 10/08/2020
 uid: core/logging-events-diagnostics/interceptors
-ms.openlocfilehash: e3b2f1a0f1a97d211bcaba0633955a7fe9c0aa91
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 459c0495e9a2f81e2e84388988f04ca9787080cc
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128594"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024230"
 ---
 # <a name="interceptors"></a>Interceptores
 
@@ -76,7 +76,7 @@ Cada par de métodos tiene dos variaciones sincrónicas y asincrónicas. Esto pe
 ### <a name="example-command-interception-to-add-query-hints"></a>Ejemplo: intercepción de comandos para agregar sugerencias de consulta
 
 > [!TIP]
-> Puede [descargar el ejemplo de interceptor de comandos](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/CommandInterception) de github.
+> Puede [descargar el ejemplo de interceptor de comandos](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/CommandInterception) de github.
 
 <xref:Microsoft.EntityFrameworkCore.Diagnostics.IDbCommandInterceptor>Se puede utilizar para modificar SQL antes de enviarlo a la base de datos. En este ejemplo se muestra cómo modificar el SQL para incluir una sugerencia de consulta.
 
@@ -149,7 +149,7 @@ FROM [Blogs] AS [b]
 ### <a name="example-connection-interception-for-sql-azure-authentication-using-add"></a>Ejemplo: intercepción de conexión para la autenticación de SQL Azure mediante ADD
 
 > [!TIP]
-> Puede [descargar el ejemplo de interceptor de conexión](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/ConnectionInterception) desde github.
+> Puede [descargar el ejemplo de interceptor de conexión](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/ConnectionInterception) desde github.
 
 <xref:Microsoft.EntityFrameworkCore.Diagnostics.IDbConnectionInterceptor>Se puede utilizar para manipular el antes de que <xref:System.Data.Common.DbConnection> se utilice para conectarse a la base de datos. Se puede usar para obtener un token de acceso Azure Active Directory (AAD). Por ejemplo:
 
@@ -182,7 +182,7 @@ public class AadAuthenticationInterceptor : DbConnectionInterceptor
 [!code-csharp[AadAuthenticationInterceptor](../../../samples/core/Miscellaneous/ConnectionInterception/AadAuthenticationInterceptor.cs?name=AadAuthenticationInterceptor)]
 
 > [!TIP]
-> [Microsoft. Data. SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) ahora admite la autenticación de AAD a través de la cadena de conexión. Consulte <xref:Microsoft.Data.SqlClient.SqlAuthenticationMethod> para obtener más información.
+> [Microsoft. Data. SqlClient](https://www.nuget.org/packages/Microsoft.Data.SqlClient/) ahora admite la autenticación de AAD a través de la cadena de conexión. Vea <xref:Microsoft.Data.SqlClient.SqlAuthenticationMethod> para obtener más información.
 
 > [!WARNING]
 > Observe que el interceptor produce si se realiza una llamada de sincronización para abrir la conexión. Esto se debe a que no hay ningún método no asincrónico para obtener el token de acceso y no hay [ninguna manera universal y sencilla de llamar a un método asincrónico desde el contexto no asincrónico sin arriesgarse al interbloqueo](https://devblogs.microsoft.com/dotnet/configureawait-faq/).
@@ -193,7 +193,7 @@ public class AadAuthenticationInterceptor : DbConnectionInterceptor
 ### <a name="example-advanced-command-interception-for-caching"></a>Ejemplo: intercepción de comandos avanzada para el almacenamiento en caché
 
 > [!TIP]
-> Puede [descargar el ejemplo de interceptor de comandos avanzado](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/CachingInterception) de github.
+> Puede [descargar el ejemplo de interceptor de comandos avanzado](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/CachingInterception) de github.
 
 Los interceptores de EF Core pueden:
 
@@ -299,7 +299,7 @@ Si no hay ningún mensaje en caché disponible, o si ha expirado, el código ant
 
 #### <a name="demonstration"></a>Demostración
 
-El [ejemplo de interceptor de almacenamiento en caché](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/CachingInterception) contiene una aplicación de consola simple que consulta los mensajes diarios para probar el almacenamiento en caché:
+El [ejemplo de interceptor de almacenamiento en caché](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/CachingInterception) contiene una aplicación de consola simple que consulta los mensajes diarios para probar el almacenamiento en caché:
 
 <!--
         // 1. Initialize the database with some daily messages.
@@ -399,7 +399,7 @@ Tenga en cuenta la salida del registro de que la aplicación sigue utilizando el
 > La intercepción de SaveChanges se presentó en EF Core 5,0.
 
 > [!TIP]
-> Puede [descargar el ejemplo de interceptor de SaveChanges](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/SaveChangesInterception) desde github.
+> Puede [descargar el ejemplo de interceptor de SaveChanges](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/SaveChangesInterception) desde github.
 
 <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A><xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>los puntos de interceptación y se definen mediante la <xref:Microsoft.EntityFrameworkCore.Diagnostics.ISaveChangesInterceptor> interfaz. En lo que se refiere a otros interceptores, la <xref:Microsoft.EntityFrameworkCore.Diagnostics.SaveChangesInterceptor> clase base con métodos no-OP se proporciona por comodidad.
 
@@ -415,7 +415,7 @@ SaveChanges se puede interceptar para crear un registro de auditoría independie
 
 #### <a name="the-application-context"></a>El contexto de la aplicación
 
-El [ejemplo de auditoría](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/SaveChangesInterception) usa un DbContext sencillo con blogs y publicaciones.
+El [ejemplo de auditoría](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/SaveChangesInterception) usa un DbContext sencillo con blogs y publicaciones.
 
 <!--
 public class BlogsContext : DbContext
@@ -673,7 +673,7 @@ El error se administra de forma muy similar a como se realiza correctamente, per
 
 #### <a name="demonstration"></a>Demostración
 
-El [ejemplo de auditoría](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/SaveChangesInterception) contiene una aplicación de consola simple que realiza cambios en la base de datos de blogs y, a continuación, muestra la auditoría que se ha creado.
+El [ejemplo de auditoría](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/SaveChangesInterception) contiene una aplicación de consola simple que realiza cambios en la base de datos de blogs y, a continuación, muestra la auditoría que se ha creado.
 
 <!--
         // Insert, update, and delete some entities

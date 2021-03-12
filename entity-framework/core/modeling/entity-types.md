@@ -4,12 +4,12 @@ description: Cómo configurar y asignar tipos de entidad mediante Entity Framewo
 author: roji
 ms.date: 10/06/2020
 uid: core/modeling/entity-types
-ms.openlocfilehash: ca8cb8560afe374218e763bc0476839187a40ece
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: 6c8029b64210dd9bc69fd53d9a3b4aa06bf519e0
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97635775"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023996"
 ---
 # <a name="entity-types"></a>Tipos de entidad
 
@@ -68,7 +68,7 @@ Puede configurar manualmente el nombre de la tabla:
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableName.cs?Name=TableName&highlight=3-4)]
 
-**_
+***
 
 ## <a name="table-schema"></a>Esquema de tabla
 
@@ -84,7 +84,7 @@ Puede configurar las tablas que se van a crear en un esquema específico de la s
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableNameAndSchema.cs?name=TableNameAndSchema&highlight=3-4)]
 
-_*_
+***
 
 En lugar de especificar el esquema de cada tabla, también puede definir el esquema predeterminado en el nivel de modelo con la API fluida:
 
@@ -104,7 +104,7 @@ Los tipos de entidad pueden asignarse a vistas de base de datos mediante la API 
  La asignación a una vista quitará la asignación de tabla predeterminada, pero a partir de EF 5,0 el tipo de entidad también se puede asignar explícitamente a una tabla. En este caso, la asignación de consultas se usará para las consultas y la asignación de tabla se usará para las actualizaciones.
 
 > [!TIP]
-> Para probar los tipos de entidad asignados a las vistas mediante el proveedor en memoria, asígnelo a una consulta a través de `ToInMemoryQuery` . Vea un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing/ItemsWebApi/) mediante esta técnica para obtener más detalles.
+> Para probar los tipos de entidad asignados a las vistas mediante el proveedor en memoria, asígnelo a una consulta a través de `ToInMemoryQuery` . Vea un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/Testing/ItemsWebApi/) mediante esta técnica para obtener más detalles.
 
 ## <a name="table-valued-function-mapping"></a>Asignación de funciones con valores de tabla
 
@@ -164,4 +164,4 @@ Puede establecer un Comentario de texto arbitrario que se establece en la tabla 
 
 [!code-csharp[Main](../../../samples/core/Modeling/FluentAPI/TableComment.cs?name=TableComment&highlight=4)]
 
-_**
+***

@@ -4,12 +4,12 @@ description: Diagnóstico del rendimiento de Entity Framework Core e identificac
 author: roji
 ms.date: 12/1/2020
 uid: core/performance/performance-diagnosis
-ms.openlocfilehash: 9416acf3326056ef7a5d732c4bd456dac751167b
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: 85ffd1826723ad97bdcce517781f920c193e4286
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97657739"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023853"
 ---
 # <a name="performance-diagnosis"></a>Diagnóstico de rendimiento
 
@@ -98,7 +98,7 @@ Para obtener más información, consulte la página dedicada en los [contadores 
 Al final del día, a veces es necesario saber si una forma determinada de escribir o ejecutar una consulta es más rápida que otra. Es importante no asumir ni especular la respuesta, y es muy fácil reunir una prueba comparativa rápida para obtener la respuesta. Al escribir las pruebas comparativas, se recomienda encarecidamente usar la biblioteca [BenchmarkDotNet](https://benchmarkdotnet.org/index.html) conocida, que controla muchos problemas que los usuarios encuentran al intentar escribir sus propias pruebas comparativas: ¿ha realizado algunas iteraciones de preparación? ¿Cuántas iteraciones ejecuta realmente la prueba comparativa y por qué? Echemos un vistazo a lo que tiene un banco de pruebas con EF Core.
 
 > [!TIP]
-> El proyecto de prueba comparativa completa para el origen siguiente está disponible [aquí](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Benchmarks/AverageBlogRanking.cs). Se recomienda copiarla y usarla como plantilla para sus propias pruebas comparativas.
+> El proyecto de prueba comparativa completa para el origen siguiente está disponible [aquí](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Benchmarks/AverageBlogRanking.cs). Se recomienda copiarla y usarla como plantilla para sus propias pruebas comparativas.
 
 Como escenario de pruebas comparativas simples, vamos a comparar los siguientes métodos diferentes para calcular el promedio de clasificación de todos los blogs de nuestra base de datos:
 
@@ -107,7 +107,7 @@ Como escenario de pruebas comparativas simples, vamos a comparar los siguientes 
 * Evite la carga de todas las instancias de la entidad de blog, ya que solo tiene que proyectar la clasificación. Nos evita transferir las demás columnas innecesarias del tipo de entidad de blog.
 * Calcule el promedio en la base de datos haciéndolo parte de la consulta. Esta es la forma más rápida, ya que todo se calcula en la base de datos y solo el resultado se transfiere de nuevo al cliente.
 
-Con BenchmarkDotNet, se escribe el código que se va a comparar como un método simple, al igual que una prueba unitaria-y BenchmarkDotNet ejecuta automáticamente cada método para un número suficiente de iteraciones, lo que mide de forma confiable cuánto tiempo tarda y cuánta memoria se asigna. Este es el método diferente ([el código de prueba comparativa completa se puede ver aquí](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Benchmarks/AverageBlogRanking.cs)):
+Con BenchmarkDotNet, se escribe el código que se va a comparar como un método simple, al igual que una prueba unitaria-y BenchmarkDotNet ejecuta automáticamente cada método para un número suficiente de iteraciones, lo que mide de forma confiable cuánto tiempo tarda y cuánta memoria se asigna. Este es el método diferente ([el código de prueba comparativa completa se puede ver aquí](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Benchmarks/AverageBlogRanking.cs)):
 
 ### <a name="load-entities"></a>[Cargar entidades](#tab/load-entities)
 
@@ -132,8 +132,8 @@ Los resultados se muestran a continuación, como se imprime en BenchmarkDotNet:
 |                 Método |       Media |    Error |   StdDev |     Mediana | Proporción | RatioSD |    Gen. 0 |   Gen. 1 | Gen. 2 |  Allocated |
 |----------------------- |-----------:|---------:|---------:|-----------:|------:|--------:|---------:|--------:|------:|-----------:|
 |           LoadEntities | 2.860,4 EE. UU. | 54,31 EE. UU. | 93,68 EE. UU. | 2.844,5 EE. UU. |  4.55 |    0,33 | 210,9375 | 70,3125 |     - | 1309,56 KB |
-| LoadEntitiesNoTracking | 1.353,0 EE. UU. | 21,26 EE. UU. | 18,85 EE. UU. | 1.355,6 EE. UU. |  2.10 |    0.14 |  87,8906 |  3,9063 |     - |  540,09 KB |
-|     ProjectOnlyRanking |   910,9 EE. UU. | 20,91 EE. UU. | 61,65 EE. UU. |   892,9 EE. UU. |  1,46 |    0.14 |  41,0156 |  0,9766 |     - |  252,08 KB |
+| LoadEntitiesNoTracking | 1.353,0 EE. UU. | 21,26 EE. UU. | 18,85 EE. UU. | 1.355,6 EE. UU. |  2.10 |    0,14 |  87,8906 |  3,9063 |     - |  540,09 KB |
+|     ProjectOnlyRanking |   910,9 EE. UU. | 20,91 EE. UU. | 61,65 EE. UU. |   892,9 EE. UU. |  1,46 |    0,14 |  41,0156 |  0,9766 |     - |  252,08 KB |
 |    CalculateInDatabase |   627,1 EE. UU. | 14,58 EE. UU. | 42,54 EE. UU. |   626,4 EE. UU. |  1.00 |    0.00 |   4,8828 |       - |     - |   33,27 KB |
 
 > [!NOTE]

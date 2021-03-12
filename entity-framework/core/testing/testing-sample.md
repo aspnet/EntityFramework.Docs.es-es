@@ -11,24 +11,24 @@ no-loc:
 - Tags
 - items
 - tags
-ms.openlocfilehash: 7af516421a6ec3040b636507a6cd7976cabce3a9
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: a1c858333ee8ebe5a0ad82358c518c86576cdd32
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98128802"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023463"
 ---
 # <a name="ef-core-testing-sample"></a>Ejemplo de prueba de EF Core
 
 > [!TIP]
-> El código de este documento se puede encontrar en GitHub como un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing/ItemsWebApi/).
+> El código de este documento se puede encontrar en GitHub como un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/Testing/ItemsWebApi/).
 > Tenga en cuenta que se espera que algunas de estas pruebas **produzcan un error**. Los motivos para ello se explican a continuación.
 
 Este documento le guía a través de un ejemplo para probar el código que usa EF Core.
 
 ## <a name="the-application"></a>Aplicación
 
-El [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Testing/ItemsWebApi/) contiene dos proyectos:
+El [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/Testing/ItemsWebApi/) contiene dos proyectos:
 
 - ItemsWebApi: una [API Web muy sencilla respaldada por ASP.net Core](/aspnet/core/tutorials/first-web-api) con un solo controlador
 - Pruebas: un proyecto de prueba de [xUnit](https://xunit.net/) para probar el controlador
@@ -43,7 +43,7 @@ El modelo de respaldo de esta API tiene dos tipos Items de entidad: y Tags .
   - Si un elemento se etiqueta con la misma etiqueta más de una vez, se incrementa el recuento de la etiqueta existente con esa etiqueta en lugar de crear una nueva etiqueta.
 - La eliminación de Item debe eliminar todos los asociados Tags .
 
-#### <a name="the-no-locitem-entity-type"></a>El Item tipo de entidad
+#### <a name="the-item-entity-type"></a>El Item tipo de entidad
 
 El `Item` tipo de entidad:
 
@@ -68,7 +68,7 @@ Observe que el tipo de entidad restringe la manera en que se puede usar para ref
   - Además, no Tag define una propiedad de clave externa.
     En su lugar, EF creará y administrará una propiedad en el estado de sombra.
 
-#### <a name="the-no-loctag-entity-type"></a>El Tag tipo de entidad
+#### <a name="the-tag-entity-type"></a>El Tag tipo de entidad
 
 El `Tag` tipo de entidad:
 
@@ -80,7 +80,7 @@ Y su configuración en `DbContext.OnModelCreating` :
 
 De forma similar a Item , Tag oculta su clave principal y hace que la `Label` propiedad sea de solo lectura.
 
-### <a name="the-no-locitemscontroller"></a>El Items controlador
+### <a name="the-itemscontroller"></a>El Items controlador
 
 El controlador de API Web es bastante básico.
 Obtiene un `DbContext` del contenedor de inserción de dependencias a través de la inserción de constructores:

@@ -4,12 +4,12 @@ description: Usar comparadores de valores para controlar cómo EF Core compara l
 author: ajcvickers
 ms.date: 01/16/2021
 uid: core/modeling/value-comparers
-ms.openlocfilehash: 5c5e5beee72230a331a8e1c88a2020dc5ad88ecf
-ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
+ms.openlocfilehash: 9318b41479b43b327c76a11cc99b4f7695fa88d3
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/28/2021
-ms.locfileid: "98983487"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023905"
 ---
 # <a name="value-comparers"></a>Comparadores de valores
 
@@ -17,9 +17,9 @@ ms.locfileid: "98983487"
 > Esta característica se incluyó por primera vez en EF Core 3.0.
 
 > [!TIP]
-> El código de este documento se puede encontrar en GitHub como un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/ValueConversions/).
+> El código de este documento se puede encontrar en GitHub como un [ejemplo ejecutable](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Modeling/ValueConversions/).
 
-## <a name="background"></a>Información previa
+## <a name="background"></a>Fondo
 
 El [seguimiento de cambios](xref:core/change-tracking/index) significa que EF Core determina automáticamente qué cambios realizó la aplicación en una instancia de entidad cargada, de modo que esos cambios se pueden volver a guardar en la base de datos cuando <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> se llama a. Normalmente, EF Core realiza esta tarea tomando una *instantánea* de la instancia cuando se carga desde la base de datos y *comparando* esa instantánea con la instancia entregada a la aplicación.
 

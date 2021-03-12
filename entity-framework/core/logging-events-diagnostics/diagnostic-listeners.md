@@ -4,17 +4,17 @@ description: Uso de DiagnosticListener para el consumo global de diagnósticos d
 author: ajcvickers
 ms.date: 10/16/2020
 uid: core/logging-events-diagnostics/diagnostic-listeners
-ms.openlocfilehash: afb80aa8f05f70761e423f58653f681938079858
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 7035acaa6d306e73a0a2c071532ece0d8e9a0a1d
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129270"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024256"
 ---
 # <a name="using-diagnostic-listeners-in-ef-core"></a>Uso de agentes de escucha de diagnóstico en EF Core
 
 > [!TIP]
-> Puede [descargar el ejemplo de este artículo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/DiagnosticListeners) en github.
+> Puede [descargar el ejemplo de este artículo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/DiagnosticListeners) en github.
 
 Las escuchas de diagnóstico permiten escuchar cualquier evento de EF Core que se produzca en el proceso de .NET actual. La <xref:System.Diagnostics.DiagnosticListener> clase forma parte de un [mecanismo común en .net](https://github.com/dotnet/runtime/blob/master/src/libraries/System.Diagnostics.DiagnosticSource/src/DiagnosticSourceUsersGuide.md) para obtener información de diagnóstico de aplicaciones en ejecución.
 
@@ -97,7 +97,7 @@ Por ejemplo, el código anterior controla los <xref:Microsoft.EntityFrameworkCor
 > [!TIP]
 > ToString se invalida en cada EF Core clase de datos de evento para generar el mensaje de registro equivalente para el evento. Por ejemplo, al llamar a se `ContextInitializedEventData.ToString` genera "Entity Framework Core 5.0.0 inicializado ' BlogsContext ' con el proveedor ' Microsoft. EntityFrameworkCore. SQLite ' con Options: None".
 
-El [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/DiagnosticListeners) contiene una aplicación de consola simple que realiza cambios en la base de datos de blogs e imprime los eventos de diagnóstico encontrados.
+El [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/DiagnosticListeners) contiene una aplicación de consola simple que realiza cambios en la base de datos de blogs e imprime los eventos de diagnóstico encontrados.
 
 <!--
     public static void Main()

@@ -4,12 +4,12 @@ description: Usar EntityEntry, DbContext. Entries y DbSet. local para tener acce
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/entity-entries
-ms.openlocfilehash: f385016aba61535f33e34c622dd43ce6dc823fc5
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: 758d21f44dfeb8b1de2702165df0d705edfb91b6
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129641"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024516"
 ---
 # <a name="accessing-tracked-entities"></a>Acceso a entidades sometidas a seguimiento
 
@@ -26,7 +26,7 @@ Cada una de ellas se describe con más detalle en las secciones siguientes.
 > En este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de EF Core. Consulte [Change Tracking en EF Core](xref:core/change-tracking/index) para obtener más información sobre estos temas.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo desde GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/AccessingTrackedEntities).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/ChangeTracking/AccessingTrackedEntities).
 
 ## <a name="using-dbcontextentry-and-entityentry-instances"></a>Usar instancias de DbContext. entry e EntityEntry
 
@@ -541,7 +541,7 @@ Tenga en cuenta que la publicación eliminada se quita de la vista local y se in
 
 <xref:Microsoft.EntityFrameworkCore.DbSet%601.Local?displayProperty=nameWithType> devuelve una instancia de <xref:Microsoft.EntityFrameworkCore.ChangeTracking.LocalView%601>. Se trata de una implementación de <xref:System.Collections.Generic.ICollection%601> que genera y responde a las notificaciones cuando se agregan y quitan entidades de la colección. (Este es el mismo concepto que <xref:System.Collections.ObjectModel.ObservableCollection%601> , pero se implementa como una proyección sobre las entradas de seguimiento de cambios de EF Core existentes, en lugar de como una colección independiente).
 
-Las notificaciones de la vista local se enlazan al seguimiento de cambios de DbContext de modo que la vista local permanece sincronizada con DbContext. Concretamente:
+Las notificaciones de la vista local se enlazan al seguimiento de cambios de DbContext de modo que la vista local permanece sincronizada con DbContext. De manera específica:
 
 - Agregar una nueva entidad a `DbSet.Local` hace que el DbContext realice el seguimiento, normalmente en el `Added` Estado. (Si la entidad ya tiene un valor de clave generado, se realiza el seguimiento como `Unchanged` en su lugar).
 - Al quitar una entidad de `DbSet.Local` , se marca como `Deleted` .

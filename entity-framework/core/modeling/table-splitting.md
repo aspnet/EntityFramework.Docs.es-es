@@ -4,12 +4,12 @@ description: Cómo configurar la división de tablas mediante Entity Framework C
 author: AndriySvyryd
 ms.date: 01/03/2020
 uid: core/modeling/table-splitting
-ms.openlocfilehash: 71d332ec3f500f48e12863c71ac44ce4d60699f0
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 43261ea0dab57528ab14faf7f455c0ed72d1bfc3
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063041"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023931"
 ---
 # <a name="table-splitting"></a>División de tablas
 
@@ -32,7 +32,7 @@ Además de la configuración necesaria, llamamos `Property(o => o.Status).HasCol
 [!code-csharp[TableSplittingConfiguration](../../../samples/core/Modeling/TableSplitting/TableSplittingContext.cs?name=TableSplitting)]
 
 > [!TIP]
-> Vea el [proyecto de ejemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/TableSplitting) para obtener más contexto.
+> Vea el [proyecto de ejemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Modeling/TableSplitting) para obtener más contexto.
 
 ## <a name="usage"></a>Uso
 
@@ -43,7 +43,7 @@ Guardar y consultar entidades mediante la división de tablas se realiza de la m
 ## <a name="optional-dependent-entity"></a>Entidad dependiente opcional
 
 > [!NOTE]
-> Esta característica se presentó en EF Core 3,0.
+> Esta característica se incluyó por primera vez en EF Core 3.0.
 
 Si todas las columnas utilizadas por una entidad dependiente están `NULL` en la base de datos, no se creará ninguna instancia para ella cuando se realice la consulta. Esto permite el modelado de una entidad dependiente opcional, donde la propiedad Relationship de la entidad de seguridad sería null. Tenga en cuenta que esto también ocurrirá si todas las propiedades del dependiente son opcionales y se establecen en `null` , lo que podría no ser el esperado.
 

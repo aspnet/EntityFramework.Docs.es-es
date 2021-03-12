@@ -4,21 +4,21 @@ description: Configuración de convertidores de valores en un modelo de Entity F
 author: ajcvickers
 ms.date: 01/16/2021
 uid: core/modeling/value-conversions
-ms.openlocfilehash: d9d3753c7f0b257a2109e4af1f587df913c15b44
-ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
+ms.openlocfilehash: 114a18e41804c85c97791047aa915c2ec38dea15
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/28/2021
-ms.locfileid: "98983448"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023892"
 ---
 # <a name="value-conversions"></a>Conversiones de valores
 
 Los convertidores de valores permiten convertir los valores de propiedad al leer o escribir en la base de datos. Esta conversión puede ser de un valor a otro del mismo tipo (por ejemplo, cifrar cadenas) o de un valor de un tipo a un valor de otro tipo (por ejemplo, convertir valores de enumeración en cadenas en la base de datos y desde ellas).
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/ValueConversions/).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Modeling/ValueConversions/).
 
-## <a name="overview"></a>Introducción
+## <a name="overview"></a>Información general
 
 Los convertidores de valores se especifican en términos de `ModelClrType` y `ProviderClrType` . El tipo de modelo es el tipo .NET de la propiedad en el tipo de entidad. El tipo de proveedor es el tipo .NET que entiende el proveedor de base de datos. Por ejemplo, para guardar las enumeraciones como cadenas en la base de datos, el tipo de modelo es el tipo de la enumeración y el tipo de proveedor es `String` . Estos dos tipos pueden ser iguales.
 
@@ -258,7 +258,7 @@ Tenga en cuenta que todos los convertidores integrados no tienen estado y, por t
 
 ## <a name="column-facets-and-mapping-hints"></a>Aspectos de las columnas y sugerencias de asignación
 
-Algunos tipos de base de datos tienen aspectos que modifican la forma en que se almacenan. Entre ellos, se incluye:
+Algunos tipos de base de datos tienen aspectos que modifican la forma en que se almacenan. Entre ellas se incluyen las siguientes:
 
 * Precisión y escala para decimales y columnas de fecha y hora
 * Tamaño/longitud de las columnas binarias y de cadena

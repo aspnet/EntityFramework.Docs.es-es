@@ -4,12 +4,12 @@ description: Usar la inicialización de datos para rellenar una base de datos co
 author: AndriySvyryd
 ms.date: 11/02/2018
 uid: core/modeling/data-seeding
-ms.openlocfilehash: fefa6232496cd250d52a436971251f59af09f5c6
-ms.sourcegitcommit: f3512e3a98e685a3ba409c1d0157ce85cc390cf4
+ms.openlocfilehash: 812d64ff2455e90436fc8c41e27f28115e207ff3
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 11/10/2020
-ms.locfileid: "94429681"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024048"
 ---
 # <a name="data-seeding"></a>Propagación de datos
 
@@ -44,7 +44,7 @@ Los tipos de entidad de propiedad se pueden inicializar de una manera similar:
 
 [!code-csharp[OwnedTypeSeed](../../../samples/core/Modeling/DataSeeding/DataSeedingContext.cs?name=OwnedTypeSeed)]
 
-Vea el [proyecto de ejemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Modeling/DataSeeding) para obtener más contexto.
+Vea el [proyecto de ejemplo completo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Modeling/DataSeeding) para obtener más contexto.
 
 Una vez que se han agregado los datos al modelo, se deben usar las [migraciones](xref:core/managing-schemas/migrations/index) para aplicar los cambios.
 

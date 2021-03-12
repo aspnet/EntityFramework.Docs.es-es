@@ -4,12 +4,12 @@ description: Varias características y escenarios que implican EF Core el seguim
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/miscellaneous
-ms.openlocfilehash: 9eb3186f4eef300e4824dc86700497444ece4a2c
-ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
+ms.openlocfilehash: 63d96227b6862e920d900a5cc3f1f85d7c6d85ac
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100543424"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024438"
 ---
 # <a name="additional-change-tracking-features"></a>Características de Change Tracking adicionales
 
@@ -19,7 +19,7 @@ En este documento se tratan varias características y escenarios que implican el
 > En este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de EF Core. Consulte [Change Tracking en EF Core](xref:core/change-tracking/index) para obtener más información sobre estos temas.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/AdditionalChangeTrackingFeatures).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/ChangeTracking/AdditionalChangeTrackingFeatures).
 
 ## <a name="add-versus-addasync"></a>Diferencias entre `Add` y `AddAsync`
 

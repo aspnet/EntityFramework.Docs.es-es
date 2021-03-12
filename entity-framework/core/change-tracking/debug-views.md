@@ -4,12 +4,12 @@ description: Uso de ChangeTracker DebugView y mensajes de registro para depurar 
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/debug-views
-ms.openlocfilehash: 76108120cf7f532d085fef12121bb639b065add0
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: cda81728beb5ffbc8604c191e84b3553a7343ec0
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129639"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023177"
 ---
 # <a name="change-tracker-debugging"></a>Depuración de Change Tracker
 
@@ -22,7 +22,7 @@ El seguimiento de cambios de Entity Framework Core (EF Core) genera dos tipos de
 > En este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de EF Core. Consulte [Change Tracking en EF Core](xref:core/change-tracking/index) para obtener más información sobre estos temas.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo desde GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/ChangeTrackerDebugging).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/ChangeTracking/ChangeTrackerDebugging).
 
 ## <a name="change-tracker-debug-view"></a>Vista de depuración de Change Tracker
 

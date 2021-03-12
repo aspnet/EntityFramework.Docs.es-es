@@ -4,12 +4,12 @@ description: Seguimiento explícito de las entidades con DbContext mediante agre
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/explicit-tracking
-ms.openlocfilehash: 3d9142cecf272c635c3a041fe6c5d9c49a26c33d
-ms.sourcegitcommit: 704240349e18b6404e5a809f5b7c9d365b152e2e
+ms.openlocfilehash: a0e51db4a70338e725ed40caa57a7f02245f0707
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/16/2021
-ms.locfileid: "100543190"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024477"
 ---
 # <a name="explicitly-tracking-entities"></a>Seguimiento explícito de entidades
 
@@ -21,10 +21,10 @@ El seguimiento de cambios de Entity Framework Core (EF Core) funciona mejor cuan
 > En este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de EF Core. Consulte [Change Tracking en EF Core](xref:core/change-tracking/index) para obtener más información sobre estos temas.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/ChangeTrackingInEFCore).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/ChangeTracking/ChangeTrackingInEFCore).
 
 > [!TIP]
-> Para simplificar, este documento utiliza métodos sincrónicos como <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A>, y hace referencia a ellos, en lugar de sus equivalentes asincrónicos como <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A>. La llamada al método asincrónico y su espera pueden sustituirse a menos que se indique lo contrario.
+> Para simplificar, en este documento se usan métodos sincrónicos y referencias, como <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> en lugar de sus equivalentes asincrónicos como <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChangesAsync%2A> . La llamada al método asincrónico y su espera pueden sustituirse a menos que se indique lo contrario.
 
 ## <a name="introduction"></a>Introducción
 

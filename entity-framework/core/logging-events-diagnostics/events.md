@@ -4,17 +4,17 @@ description: Eventos .NET definidos por EF Core
 author: ajcvickers
 ms.date: 10/15/2020
 uid: core/logging-events-diagnostics/events
-ms.openlocfilehash: 0888009af0bedfb63690e72c4a0e08979a9e9cf3
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: c26032d19d7bc05d30d4576534c7425da4472072
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129257"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024243"
 ---
 # <a name="net-events-in-ef-core"></a>Eventos .NET en EF Core
 
 > [!TIP]
-> Puede [descargar el ejemplo de eventos](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Events) de github.
+> Puede [descargar el ejemplo de eventos](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/Events) de github.
 
 Entity Framework Core (EF Core) expone [eventos .net](/dotnet/standard/events/) para que actúen como devoluciones de llamada cuando se producen ciertas cosas en el código EF Core. Los eventos son más sencillos que los [interceptores](xref:core/logging-events-diagnostics/interceptors) y permiten un registro más flexible. Sin embargo, solo son sincrónicos y, por tanto, no pueden realizar operaciones de E/S asincrónicas sin bloqueo.
 
@@ -90,7 +90,7 @@ Este método tiene la firma adecuada que se va a usar como controlador de evento
 
 Ambos eventos son necesarios porque las nuevas entidades desencadenan `Tracked` eventos cuando se realiza el seguimiento por primera vez. `StateChanged` los eventos solo se activan para las entidades que cambian de estado mientras _ya_ se están realizando el seguimiento.
 
-El [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Miscellaneous/Events) de este ejemplo contiene una aplicación de consola simple que realiza cambios en la base de datos de blogs:
+El [ejemplo](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Miscellaneous/Events) de este ejemplo contiene una aplicación de consola simple que realiza cambios en la base de datos de blogs:
 
 <!--
         using (var context = new BlogsContext())

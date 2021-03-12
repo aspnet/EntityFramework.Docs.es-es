@@ -4,12 +4,12 @@ description: Modelado eficaz al usar Entity Framework Core
 author: roji
 ms.date: 12/1/2020
 uid: core/performance/modeling-for-performance
-ms.openlocfilehash: fc16ec67c3865aa7b7a95519463ca7493a2709b0
-ms.sourcegitcommit: 4860d036ea0fb392c28799907bcc924c987d2d7b
+ms.openlocfilehash: 882398189cc828798c1682f849fac524d90d317f
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 12/17/2020
-ms.locfileid: "97657752"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023866"
 ---
 # <a name="modeling-for-performance"></a>Modelado de rendimiento
 
@@ -56,7 +56,7 @@ A veces, los usuarios eligen TPT porque parece ser la técnica de "limpiador"; u
 
 Sin embargo, la medición muestra que TPT en la mayoría de los casos es la técnica de asignación inferior desde un punto de vista del rendimiento. Cuando todos los datos de TPH proceden de una sola tabla, las consultas de TPT deben combinarse con varias tablas y las combinaciones son una de las principales fuentes de problemas de rendimiento de las bases de datos relacionales. Las bases de datos también suelen tratar bien con columnas vacías, y las características como [SQL Server columnas dispersas](/sql/relational-databases/tables/use-sparse-columns) pueden reducir aún más esta sobrecarga.
 
-Para ver un ejemplo concreto, [vea este criterio de referencia](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Benchmarks/Inheritance.cs) que configura un modelo simple con una jerarquía de 7 tipos; 5000 las filas se inicializan para cada tipo: total de 35000 filas, y la prueba comparativa simplemente carga todas las filas de la base de datos:
+Para ver un ejemplo concreto, [vea este criterio de referencia](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Benchmarks/Inheritance.cs) que configura un modelo simple con una jerarquía de 7 tipos; 5000 las filas se inicializan para cada tipo: total de 35000 filas, y la prueba comparativa simplemente carga todas las filas de la base de datos:
 
 | Método |     Media |   Error |  StdDev |     Gen. 0 |     Gen. 1 |     Gen. 2 | Allocated |
 |------- |---------:|--------:|--------:|----------:|----------:|----------:|----------:|

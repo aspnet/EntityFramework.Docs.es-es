@@ -4,21 +4,21 @@ description: Detección de cambios de propiedad y relación mediante DetectChang
 author: ajcvickers
 ms.date: 12/30/2020
 uid: core/change-tracking/change-detection
-ms.openlocfilehash: 39dc66a3ba74be89d3e470cfe788a357401965d1
-ms.sourcegitcommit: 032a1767d7a6e42052a005f660b80372c6521e7e
+ms.openlocfilehash: fae8bdb1a89478531535b377f4ba8b02d1c848f4
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 01/12/2021
-ms.locfileid: "98129640"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023190"
 ---
 # <a name="change-detection-and-notifications"></a>Detección y notificaciones de cambios
 
-Cada <xref:Microsoft.EntityFrameworkCore.DbContext> instancia realiza un seguimiento de los cambios realizados en las entidades. Estas entidades de las que se realiza un seguimiento convierten los cambios en la base de datos cuando <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A> se llama a. Esto se trata en [Change Tracking en EF Core](xref:core/change-tracking/index), y en este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de Entity Framework Core (EF Core).
+Cada instancia de <xref:Microsoft.EntityFrameworkCore.DbContext> realiza un seguimiento de los cambios realizados en las entidades. Estas entidades de las que se realiza un seguimiento, a su vez, impulsan los cambios en la base de datos cuando se llama a <xref:Microsoft.EntityFrameworkCore.DbContext.SaveChanges%2A>. Esto se trata en [Change Tracking en EF Core](xref:core/change-tracking/index), y en este documento se da por supuesto que se entienden los Estados de las entidades y los aspectos básicos del seguimiento de cambios de Entity Framework Core (EF Core).
 
 El seguimiento de los cambios de propiedades y relaciones requiere que DbContext pueda detectar estos cambios. En este documento se explica cómo se produce esta detección y cómo usar las notificaciones de propiedad o los proxies de seguimiento de cambios para forzar la detección inmediata de los cambios.
 
 > [!TIP]
-> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo desde GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/ChangeTracking/ChangeDetectionAndNotifications).
+> Puede ejecutar y depurar en todo el código de este documento [descargando el código de ejemplo de GitHub](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/ChangeTracking/ChangeDetectionAndNotifications).
 
 ## <a name="snapshot-change-tracking"></a>Seguimiento de cambios de instantánea
 
@@ -306,7 +306,7 @@ Los diferentes <xref:Microsoft.EntityFrameworkCore.ChangeTrackingStrategy> valor
 
 | ChangeTrackingStrategy                              | Interfaces necesarias                                      | Necesita DetectChanges | Valores originales de instantáneas
 |:----------------------------------------------------|--------------------------------------------------------|---------------------|--------------------------
-| Instantánea                                            | None                                                   | Sí                 | Sí
+| Instantánea                                            | Ninguno                                                   | Sí                 | Sí
 | ChangedNotifications                                | INotifyPropertyChanged                                 | No                  | Sí
 | ChangingAndChangedNotifications                     | INotifyPropertyChanged y INotifyPropertyChanging     | No                  | No
 | ChangingAndChangedNotificationsWithOriginalValues   | INotifyPropertyChanged y INotifyPropertyChanging     | No                  | Sí

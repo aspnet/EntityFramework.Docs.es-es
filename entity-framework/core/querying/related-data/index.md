@@ -4,12 +4,12 @@ description: Diferentes estrategias para cargar datos relacionados con Entity Fr
 author: roji
 ms.date: 9/11/2020
 uid: core/querying/related-data
-ms.openlocfilehash: a86cae91dbfbf5ebcf820c6afb72d812e278dc66
-ms.sourcegitcommit: 0a25c03fa65ae6e0e0e3f66bac48d59eceb96a5a
+ms.openlocfilehash: 8d7fa1ac5673fe4289b18c5b8e12563683463fe8
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: HT
 ms.contentlocale: es-ES
-ms.lasthandoff: 10/14/2020
-ms.locfileid: "92063678"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103023723"
 ---
 # <a name="loading-related-data"></a>Carga de datos relacionados
 
@@ -20,4 +20,4 @@ Entity Framework Core permite usar las propiedades de navegación del modelo par
 * **[Carga diferida](xref:core/querying/related-data/lazy)** significa que los datos relacionados se cargan de manera transparente desde la base de datos cuando se accede a la propiedad de navegación.
 
 > [!TIP]
-> Puede ver los [ejemplos](https://github.com/dotnet/EntityFramework.Docs/tree/master/samples/core/Querying/RelatedData) que hay en esta sección en GitHub.
+> Puede ver los [ejemplos](https://github.com/dotnet/EntityFramework.Docs/tree/main/samples/core/Querying/RelatedData) que hay en esta sección en GitHub.
