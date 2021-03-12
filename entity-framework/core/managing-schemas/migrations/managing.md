@@ -4,31 +4,31 @@ description: Agregar, quitar y administrar de otro modo migraciones de esquemas 
 author: bricelam
 ms.date: 10/27/2020
 uid: core/managing-schemas/migrations/managing
-ms.openlocfilehash: ef5e1b9bb10d6f1cd428db2fee327ec513c3f528
-ms.sourcegitcommit: 7700840119b1639275f3b64836e7abb59103f2e7
+ms.openlocfilehash: a6e64bde753ae34b6dccb10b228d1ea87a79357b
+ms.sourcegitcommit: 4798ab8d04c1fdbe6dd204d94d770fcbf309d09b
 ms.translationtype: MT
 ms.contentlocale: es-ES
-ms.lasthandoff: 02/05/2021
-ms.locfileid: "95003281"
+ms.lasthandoff: 03/11/2021
+ms.locfileid: "103024178"
 ---
-# <a name="managing-migrations"></a><span data-ttu-id="4f71d-103">Administrar migraciones</span><span class="sxs-lookup"><span data-stu-id="4f71d-103">Managing Migrations</span></span>
+# <a name="managing-migrations"></a><span data-ttu-id="a64c7-103">Administrar migraciones</span><span class="sxs-lookup"><span data-stu-id="a64c7-103">Managing Migrations</span></span>
 
-<span data-ttu-id="4f71d-104">A medida que cambia el modelo, las migraciones se agregan y se quitan como parte del desarrollo normal y los archivos de migración se protegen en el control de código fuente del proyecto.</span><span class="sxs-lookup"><span data-stu-id="4f71d-104">As your model changes, migrations are added and removed as part of normal development, and the migration files are checked into your project's source control.</span></span> <span data-ttu-id="4f71d-105">Para administrar las migraciones, primero debe instalar las [herramientas de línea de comandos de EF Core](xref:core/cli/index).</span><span class="sxs-lookup"><span data-stu-id="4f71d-105">To manage migrations, you must first install the [EF Core command-line tools](xref:core/cli/index).</span></span>
+<span data-ttu-id="a64c7-104">A medida que cambia el modelo, las migraciones se agregan y se quitan como parte del desarrollo normal y los archivos de migración se protegen en el control de código fuente del proyecto.</span><span class="sxs-lookup"><span data-stu-id="a64c7-104">As your model changes, migrations are added and removed as part of normal development, and the migration files are checked into your project's source control.</span></span> <span data-ttu-id="a64c7-105">Para administrar las migraciones, primero debe instalar las [herramientas de línea de comandos de EF Core](xref:core/cli/index).</span><span class="sxs-lookup"><span data-stu-id="a64c7-105">To manage migrations, you must first install the [EF Core command-line tools](xref:core/cli/index).</span></span>
 
 > [!TIP]
-> <span data-ttu-id="4f71d-106">Si `DbContext` está en un ensamblado diferente al del proyecto de inicio, puede especificar de manera explícita los proyectos de destino e inicio tanto en las [herramientas de la Consola del Administrador de paquetes](xref:core/cli/powershell#target-and-startup-project) como en las [herramientas de la CLI de .NET Core](xref:core/cli/dotnet#target-project-and-startup-project).</span><span class="sxs-lookup"><span data-stu-id="4f71d-106">If the `DbContext` is in a different assembly than the startup project, you can explicitly specify the target and startup projects in either the [Package Manager Console tools](xref:core/cli/powershell#target-and-startup-project) or the [.NET Core CLI tools](xref:core/cli/dotnet#target-project-and-startup-project).</span></span>
+> <span data-ttu-id="a64c7-106">Si `DbContext` está en un ensamblado diferente al del proyecto de inicio, puede especificar de manera explícita los proyectos de destino e inicio tanto en las [herramientas de la Consola del Administrador de paquetes](xref:core/cli/powershell#target-and-startup-project) como en las [herramientas de la CLI de .NET Core](xref:core/cli/dotnet#target-project-and-startup-project).</span><span class="sxs-lookup"><span data-stu-id="a64c7-106">If the `DbContext` is in a different assembly than the startup project, you can explicitly specify the target and startup projects in either the [Package Manager Console tools](xref:core/cli/powershell#target-and-startup-project) or the [.NET Core CLI tools](xref:core/cli/dotnet#target-project-and-startup-project).</span></span>
 
-## <a name="add-a-migration"></a><span data-ttu-id="4f71d-107">Agregar una migración</span><span class="sxs-lookup"><span data-stu-id="4f71d-107">Add a migration</span></span>
+## <a name="add-a-migration"></a><span data-ttu-id="a64c7-107">Agregar una migración</span><span class="sxs-lookup"><span data-stu-id="a64c7-107">Add a migration</span></span>
 
-<span data-ttu-id="4f71d-108">Una vez cambiado el modelo, puede Agregar una migración para ese cambio:</span><span class="sxs-lookup"><span data-stu-id="4f71d-108">After your model has been changed, you can add a migration for that change:</span></span>
+<span data-ttu-id="a64c7-108">Una vez cambiado el modelo, puede Agregar una migración para ese cambio:</span><span class="sxs-lookup"><span data-stu-id="a64c7-108">After your model has been changed, you can add a migration for that change:</span></span>
 
-### <a name="net-core-cli"></a>[<span data-ttu-id="4f71d-109">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="4f71d-109">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+### <a name="net-core-cli"></a>[<span data-ttu-id="a64c7-109">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="a64c7-109">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
 ```dotnetcli
 dotnet ef migrations add AddBlogCreatedTimestamp
 ```
 
-### <a name="visual-studio"></a>[<span data-ttu-id="4f71d-110">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="4f71d-110">Visual Studio</span></span>](#tab/vs)
+### <a name="visual-studio"></a>[<span data-ttu-id="a64c7-110">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a64c7-110">Visual Studio</span></span>](#tab/vs)
 
 ```powershell
 Add-Migration AddBlogCreatedTimestamp
@@ -36,47 +36,47 @@ Add-Migration AddBlogCreatedTimestamp
 
 ***
 
-<span data-ttu-id="4f71d-111">El nombre de la migración se puede usar como mensaje de confirmación en un sistema de control de versiones.</span><span class="sxs-lookup"><span data-stu-id="4f71d-111">The migration name can be used like a commit message in a version control system.</span></span> <span data-ttu-id="4f71d-112">Por ejemplo, puede elegir un nombre como *AddBlogCreatedTimestamp* si el cambio es una nueva `CreatedTimestamp` propiedad en la `Blog` entidad.</span><span class="sxs-lookup"><span data-stu-id="4f71d-112">For example, you might choose a name like *AddBlogCreatedTimestamp* if the change is a new `CreatedTimestamp` property on your `Blog` entity.</span></span>
+<span data-ttu-id="a64c7-111">El nombre de la migración se puede usar como mensaje de confirmación en un sistema de control de versiones.</span><span class="sxs-lookup"><span data-stu-id="a64c7-111">The migration name can be used like a commit message in a version control system.</span></span> <span data-ttu-id="a64c7-112">Por ejemplo, puede elegir un nombre como *AddBlogCreatedTimestamp* si el cambio es una nueva `CreatedTimestamp` propiedad en la `Blog` entidad.</span><span class="sxs-lookup"><span data-stu-id="a64c7-112">For example, you might choose a name like *AddBlogCreatedTimestamp* if the change is a new `CreatedTimestamp` property on your `Blog` entity.</span></span>
 
-<span data-ttu-id="4f71d-113">Se agregan tres archivos al proyecto en el directorio **Migraciones**:</span><span class="sxs-lookup"><span data-stu-id="4f71d-113">Three files are added to your project under the **Migrations** directory:</span></span>
+<span data-ttu-id="a64c7-113">Se agregan tres archivos al proyecto en el directorio **Migraciones**:</span><span class="sxs-lookup"><span data-stu-id="a64c7-113">Three files are added to your project under the **Migrations** directory:</span></span>
 
-* <span data-ttu-id="4f71d-114">**XXXXXXXXXXXXXX_AddCreatedTimestamp. CS**: el archivo de migraciones principal.</span><span class="sxs-lookup"><span data-stu-id="4f71d-114">**XXXXXXXXXXXXXX_AddCreatedTimestamp.cs**--The main migrations file.</span></span> <span data-ttu-id="4f71d-115">Contiene las operaciones necesarias para aplicar la migración (en `Up`) y para revertirla (en `Down`).</span><span class="sxs-lookup"><span data-stu-id="4f71d-115">Contains the operations necessary to apply the migration (in `Up`) and to revert it (in `Down`).</span></span>
-* <span data-ttu-id="4f71d-116">**XXXXXXXXXXXXXX_AddCreatedTimestamp. Designer. CS**: el archivo de metadatos de migraciones.</span><span class="sxs-lookup"><span data-stu-id="4f71d-116">**XXXXXXXXXXXXXX_AddCreatedTimestamp.Designer.cs**--The migrations metadata file.</span></span> <span data-ttu-id="4f71d-117">Contiene información que usa EF.</span><span class="sxs-lookup"><span data-stu-id="4f71d-117">Contains information used by EF.</span></span>
-* <span data-ttu-id="4f71d-118">**MyContextModelSnapshot.cs**: instantánea del modelo actual.</span><span class="sxs-lookup"><span data-stu-id="4f71d-118">**MyContextModelSnapshot.cs**--A snapshot of your current model.</span></span> <span data-ttu-id="4f71d-119">Se usa para determinar qué ha cambiado al agregar la siguiente migración.</span><span class="sxs-lookup"><span data-stu-id="4f71d-119">Used to determine what changed when adding the next migration.</span></span>
+* <span data-ttu-id="a64c7-114">**XXXXXXXXXXXXXX_AddCreatedTimestamp. CS**: el archivo de migraciones principal.</span><span class="sxs-lookup"><span data-stu-id="a64c7-114">**XXXXXXXXXXXXXX_AddCreatedTimestamp.cs**--The main migrations file.</span></span> <span data-ttu-id="a64c7-115">Contiene las operaciones necesarias para aplicar la migración (en `Up`) y para revertirla (en `Down`).</span><span class="sxs-lookup"><span data-stu-id="a64c7-115">Contains the operations necessary to apply the migration (in `Up`) and to revert it (in `Down`).</span></span>
+* <span data-ttu-id="a64c7-116">**XXXXXXXXXXXXXX_AddCreatedTimestamp. Designer. CS**: el archivo de metadatos de migraciones.</span><span class="sxs-lookup"><span data-stu-id="a64c7-116">**XXXXXXXXXXXXXX_AddCreatedTimestamp.Designer.cs**--The migrations metadata file.</span></span> <span data-ttu-id="a64c7-117">Contiene información que usa EF.</span><span class="sxs-lookup"><span data-stu-id="a64c7-117">Contains information used by EF.</span></span>
+* <span data-ttu-id="a64c7-118">**MyContextModelSnapshot.cs**: instantánea del modelo actual.</span><span class="sxs-lookup"><span data-stu-id="a64c7-118">**MyContextModelSnapshot.cs**--A snapshot of your current model.</span></span> <span data-ttu-id="a64c7-119">Se usa para determinar qué ha cambiado al agregar la siguiente migración.</span><span class="sxs-lookup"><span data-stu-id="a64c7-119">Used to determine what changed when adding the next migration.</span></span>
 
-<span data-ttu-id="4f71d-120">La marca de tiempo del nombre del archivo ayuda a mantenerlos ordenados cronológicamente para que se pueda ver la progresión de cambios.</span><span class="sxs-lookup"><span data-stu-id="4f71d-120">The timestamp in the filename helps keep them ordered chronologically so you can see the progression of changes.</span></span>
+<span data-ttu-id="a64c7-120">La marca de tiempo del nombre del archivo ayuda a mantenerlos ordenados cronológicamente para que se pueda ver la progresión de cambios.</span><span class="sxs-lookup"><span data-stu-id="a64c7-120">The timestamp in the filename helps keep them ordered chronologically so you can see the progression of changes.</span></span>
 
-### <a name="namespaces"></a><span data-ttu-id="4f71d-121">Espacios de nombres</span><span class="sxs-lookup"><span data-stu-id="4f71d-121">Namespaces</span></span>
+### <a name="namespaces"></a><span data-ttu-id="a64c7-121">Espacios de nombres</span><span class="sxs-lookup"><span data-stu-id="a64c7-121">Namespaces</span></span>
 
-<span data-ttu-id="4f71d-122">Puede mover los archivos de Migraciones y cambiar su espacio de nombres manualmente cuando quiera.</span><span class="sxs-lookup"><span data-stu-id="4f71d-122">You are free to move Migrations files and change their namespace manually.</span></span> <span data-ttu-id="4f71d-123">Se crean nuevas migraciones como elementos del mismo nivel de la última migración.</span><span class="sxs-lookup"><span data-stu-id="4f71d-123">New migrations are created as siblings of the last migration.</span></span> <span data-ttu-id="4f71d-124">También puede especificar el directorio en el momento de la generación como se indica a continuación:</span><span class="sxs-lookup"><span data-stu-id="4f71d-124">Alternatively, you can specify the directory at generation time as follows:</span></span>
+<span data-ttu-id="a64c7-122">Puede mover los archivos de Migraciones y cambiar su espacio de nombres manualmente cuando quiera.</span><span class="sxs-lookup"><span data-stu-id="a64c7-122">You are free to move Migrations files and change their namespace manually.</span></span> <span data-ttu-id="a64c7-123">Se crean nuevas migraciones como elementos del mismo nivel de la última migración.</span><span class="sxs-lookup"><span data-stu-id="a64c7-123">New migrations are created as siblings of the last migration.</span></span> <span data-ttu-id="a64c7-124">También puede especificar el directorio en el momento de la generación como se indica a continuación:</span><span class="sxs-lookup"><span data-stu-id="a64c7-124">Alternatively, you can specify the directory at generation time as follows:</span></span>
 
-#### <a name="net-core-cli"></a>[<span data-ttu-id="4f71d-125">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="4f71d-125">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+#### <a name="net-core-cli"></a>[<span data-ttu-id="a64c7-125">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="a64c7-125">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
 ```dotnetcli
 dotnet ef migrations add InitialCreate --output-dir Your/Directory
 ```
 
 > [!NOTE]
-> <span data-ttu-id="4f71d-126">En EF Core 5,0, también puede cambiar el espacio de nombres independientemente del directorio mediante `--namespace` .</span><span class="sxs-lookup"><span data-stu-id="4f71d-126">In EF Core 5.0, you can also change the namespace independently of the directory using `--namespace`.</span></span>
+> <span data-ttu-id="a64c7-126">En EF Core 5,0, también puede cambiar el espacio de nombres independientemente del directorio mediante `--namespace` .</span><span class="sxs-lookup"><span data-stu-id="a64c7-126">In EF Core 5.0, you can also change the namespace independently of the directory using `--namespace`.</span></span>
 
-#### <a name="visual-studio"></a>[<span data-ttu-id="4f71d-127">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="4f71d-127">Visual Studio</span></span>](#tab/vs)
+#### <a name="visual-studio"></a>[<span data-ttu-id="a64c7-127">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a64c7-127">Visual Studio</span></span>](#tab/vs)
 
 ```powershell
 Add-Migration InitialCreate -OutputDir Your\Directory
 ```
 
 > [!NOTE]
-> <span data-ttu-id="4f71d-128">En EF Core 5,0, también puede cambiar el espacio de nombres independientemente del directorio mediante `-Namespace` .</span><span class="sxs-lookup"><span data-stu-id="4f71d-128">In EF Core 5.0, you can also change the namespace independently of the directory using `-Namespace`.</span></span>
+> <span data-ttu-id="a64c7-128">En EF Core 5,0, también puede cambiar el espacio de nombres independientemente del directorio mediante `-Namespace` .</span><span class="sxs-lookup"><span data-stu-id="a64c7-128">In EF Core 5.0, you can also change the namespace independently of the directory using `-Namespace`.</span></span>
 
 ***
 
-## <a name="customize-migration-code"></a><span data-ttu-id="4f71d-129">Personalizar el código de migración</span><span class="sxs-lookup"><span data-stu-id="4f71d-129">Customize migration code</span></span>
+## <a name="customize-migration-code"></a><span data-ttu-id="a64c7-129">Personalizar el código de migración</span><span class="sxs-lookup"><span data-stu-id="a64c7-129">Customize migration code</span></span>
 
-<span data-ttu-id="4f71d-130">Aunque en general EF Core crea migraciones precisas, siempre debe revisar el código y asegurarse de que se corresponde con el cambio deseado; en algunos casos, incluso es necesario hacerlo.</span><span class="sxs-lookup"><span data-stu-id="4f71d-130">While EF Core generally creates accurate migrations, you should always review the code and make sure it corresponds to the desired change; in some cases, it is even necessary to do so.</span></span>
+<span data-ttu-id="a64c7-130">Aunque en general EF Core crea migraciones precisas, siempre debe revisar el código y asegurarse de que se corresponde con el cambio deseado; en algunos casos, incluso es necesario hacerlo.</span><span class="sxs-lookup"><span data-stu-id="a64c7-130">While EF Core generally creates accurate migrations, you should always review the code and make sure it corresponds to the desired change; in some cases, it is even necessary to do so.</span></span>
 
-### <a name="column-renames"></a><span data-ttu-id="4f71d-131">Cambiar nombre de columna</span><span class="sxs-lookup"><span data-stu-id="4f71d-131">Column renames</span></span>
+### <a name="column-renames"></a><span data-ttu-id="a64c7-131">Cambiar nombre de columna</span><span class="sxs-lookup"><span data-stu-id="a64c7-131">Column renames</span></span>
 
-<span data-ttu-id="4f71d-132">Un ejemplo importante donde se requiere la personalización de las migraciones es al cambiar el nombre de una propiedad.</span><span class="sxs-lookup"><span data-stu-id="4f71d-132">One notable example where customizing migrations is required is when renaming a property.</span></span> <span data-ttu-id="4f71d-133">Por ejemplo, si cambia el nombre de una propiedad de `Name` a `FullName` , EF Core generará la siguiente migración:</span><span class="sxs-lookup"><span data-stu-id="4f71d-133">For example, if you rename a property from `Name` to `FullName`, EF Core will generate the following migration:</span></span>
+<span data-ttu-id="a64c7-132">Un ejemplo importante donde se requiere la personalización de las migraciones es al cambiar el nombre de una propiedad.</span><span class="sxs-lookup"><span data-stu-id="a64c7-132">One notable example where customizing migrations is required is when renaming a property.</span></span> <span data-ttu-id="a64c7-133">Por ejemplo, si cambia el nombre de una propiedad de `Name` a `FullName` , EF Core generará la siguiente migración:</span><span class="sxs-lookup"><span data-stu-id="a64c7-133">For example, if you rename a property from `Name` to `FullName`, EF Core will generate the following migration:</span></span>
 
 ```csharp
 migrationBuilder.DropColumn(
@@ -89,7 +89,7 @@ migrationBuilder.AddColumn<string>(
     nullable: true);
 ```
 
-<span data-ttu-id="4f71d-134">Por lo general, EF Core no puede saber si la intención es quitar una columna y crear una nueva (dos cambios independientes) y cuándo debe cambiarse el nombre de una columna.</span><span class="sxs-lookup"><span data-stu-id="4f71d-134">EF Core is generally unable to know when the intention is to drop a column and create a new one (two separate changes), and when a column should be renamed.</span></span> <span data-ttu-id="4f71d-135">Si la migración anterior se aplica tal cual, se perderán todos los nombres de cliente.</span><span class="sxs-lookup"><span data-stu-id="4f71d-135">If the above migration is applied as-is, all your customer names will be lost.</span></span> <span data-ttu-id="4f71d-136">Para cambiar el nombre de una columna, reemplace la migración anterior generada por lo siguiente:</span><span class="sxs-lookup"><span data-stu-id="4f71d-136">To rename a column, replace the above generated migration with the following:</span></span>
+<span data-ttu-id="a64c7-134">Por lo general, EF Core no puede saber si la intención es quitar una columna y crear una nueva (dos cambios independientes) y cuándo debe cambiarse el nombre de una columna.</span><span class="sxs-lookup"><span data-stu-id="a64c7-134">EF Core is generally unable to know when the intention is to drop a column and create a new one (two separate changes), and when a column should be renamed.</span></span> <span data-ttu-id="a64c7-135">Si la migración anterior se aplica tal cual, se perderán todos los nombres de cliente.</span><span class="sxs-lookup"><span data-stu-id="a64c7-135">If the above migration is applied as-is, all your customer names will be lost.</span></span> <span data-ttu-id="a64c7-136">Para cambiar el nombre de una columna, reemplace la migración anterior generada por lo siguiente:</span><span class="sxs-lookup"><span data-stu-id="a64c7-136">To rename a column, replace the above generated migration with the following:</span></span>
 
 ```csharp
 migrationBuilder.RenameColumn(
@@ -99,11 +99,11 @@ migrationBuilder.RenameColumn(
 ```
 
 > [!TIP]
-> <span data-ttu-id="4f71d-137">El proceso de scaffolding de la migración advierte si una operación puede ocasionar una pérdida de datos (como el borrado de una columna).</span><span class="sxs-lookup"><span data-stu-id="4f71d-137">The migration scaffolding process warns when an operation might result in data loss (like dropping a column).</span></span> <span data-ttu-id="4f71d-138">Si aparece dicha advertencia, asegúrese especialmente de revisar el código de las migraciones para mayor precisión.</span><span class="sxs-lookup"><span data-stu-id="4f71d-138">If you see that warning, be especially sure to review the migrations code for accuracy.</span></span>
+> <span data-ttu-id="a64c7-137">El proceso de scaffolding de la migración advierte si una operación puede ocasionar una pérdida de datos (como el borrado de una columna).</span><span class="sxs-lookup"><span data-stu-id="a64c7-137">The migration scaffolding process warns when an operation might result in data loss (like dropping a column).</span></span> <span data-ttu-id="a64c7-138">Si aparece dicha advertencia, asegúrese especialmente de revisar el código de las migraciones para mayor precisión.</span><span class="sxs-lookup"><span data-stu-id="a64c7-138">If you see that warning, be especially sure to review the migrations code for accuracy.</span></span>
 
-### <a name="adding-raw-sql"></a><span data-ttu-id="4f71d-139">Agregar SQL sin procesar</span><span class="sxs-lookup"><span data-stu-id="4f71d-139">Adding raw SQL</span></span>
+### <a name="adding-raw-sql"></a><span data-ttu-id="a64c7-139">Agregar SQL sin procesar</span><span class="sxs-lookup"><span data-stu-id="a64c7-139">Adding raw SQL</span></span>
 
-<span data-ttu-id="4f71d-140">Aunque el cambio de nombre de una columna se puede lograr a través de una API integrada, en muchos casos no es posible.</span><span class="sxs-lookup"><span data-stu-id="4f71d-140">While renaming a column can be achieved via a built-in API, in many cases that is not possible.</span></span> <span data-ttu-id="4f71d-141">Por ejemplo, es posible que desee reemplazar `FirstName` `LastName` las propiedades y existentes por una sola `FullName` propiedad nueva.</span><span class="sxs-lookup"><span data-stu-id="4f71d-141">For example, we may want to replace existing `FirstName` and `LastName` properties with a single, new `FullName` property.</span></span> <span data-ttu-id="4f71d-142">La migración generada por EF Core será la siguiente:</span><span class="sxs-lookup"><span data-stu-id="4f71d-142">The migration generated by EF Core will be the following:</span></span>
+<span data-ttu-id="a64c7-140">Aunque el cambio de nombre de una columna se puede lograr a través de una API integrada, en muchos casos no es posible.</span><span class="sxs-lookup"><span data-stu-id="a64c7-140">While renaming a column can be achieved via a built-in API, in many cases that is not possible.</span></span> <span data-ttu-id="a64c7-141">Por ejemplo, es posible que desee reemplazar `FirstName` `LastName` las propiedades y existentes por una sola `FullName` propiedad nueva.</span><span class="sxs-lookup"><span data-stu-id="a64c7-141">For example, we may want to replace existing `FirstName` and `LastName` properties with a single, new `FullName` property.</span></span> <span data-ttu-id="a64c7-142">La migración generada por EF Core será la siguiente:</span><span class="sxs-lookup"><span data-stu-id="a64c7-142">The migration generated by EF Core will be the following:</span></span>
 
 ```csharp
 migrationBuilder.DropColumn(
@@ -120,7 +120,7 @@ migrationBuilder.AddColumn<string>(
     nullable: true);
 ```
 
-<span data-ttu-id="4f71d-143">Como antes, esto provocaría una pérdida de datos no deseada.</span><span class="sxs-lookup"><span data-stu-id="4f71d-143">As before, this would cause unwanted data loss.</span></span> <span data-ttu-id="4f71d-144">Para transferir los datos de las columnas anteriores, se reorganizan las migraciones y se introduce una operación SQL sin procesar de la siguiente manera:</span><span class="sxs-lookup"><span data-stu-id="4f71d-144">To transfer the data from the old columns, we rearrange the migrations and introduce a raw SQL operation as follows:</span></span>
+<span data-ttu-id="a64c7-143">Como antes, esto provocaría una pérdida de datos no deseada.</span><span class="sxs-lookup"><span data-stu-id="a64c7-143">As before, this would cause unwanted data loss.</span></span> <span data-ttu-id="a64c7-144">Para transferir los datos de las columnas anteriores, se reorganizan las migraciones y se introduce una operación SQL sin procesar de la siguiente manera:</span><span class="sxs-lookup"><span data-stu-id="a64c7-144">To transfer the data from the old columns, we rearrange the migrations and introduce a raw SQL operation as follows:</span></span>
 
 ```csharp
 migrationBuilder.AddColumn<string>(
@@ -143,11 +143,11 @@ migrationBuilder.DropColumn(
     table: "Customer");
 ```
 
-### <a name="arbitrary-changes-via-raw-sql"></a><span data-ttu-id="4f71d-145">Cambios arbitrarios a través de SQL sin formato</span><span class="sxs-lookup"><span data-stu-id="4f71d-145">Arbitrary changes via raw SQL</span></span>
+### <a name="arbitrary-changes-via-raw-sql"></a><span data-ttu-id="a64c7-145">Cambios arbitrarios a través de SQL sin formato</span><span class="sxs-lookup"><span data-stu-id="a64c7-145">Arbitrary changes via raw SQL</span></span>
 
-<span data-ttu-id="4f71d-146">SQL sin formato también se puede usar para administrar objetos de base de datos que EF Core no tienen en cuenta.</span><span class="sxs-lookup"><span data-stu-id="4f71d-146">Raw SQL can also be used to manage database objects that EF Core isn't aware of.</span></span> <span data-ttu-id="4f71d-147">Para ello, agregue una migración sin realizar ningún cambio en el modelo; se generará una migración vacía, que se puede rellenar con operaciones SQL sin procesar.</span><span class="sxs-lookup"><span data-stu-id="4f71d-147">To do this, add a migration without making any model change; an empty migration will be generated, which you can then populate with raw SQL operations.</span></span>
+<span data-ttu-id="a64c7-146">SQL sin formato también se puede usar para administrar objetos de base de datos que EF Core no tienen en cuenta.</span><span class="sxs-lookup"><span data-stu-id="a64c7-146">Raw SQL can also be used to manage database objects that EF Core isn't aware of.</span></span> <span data-ttu-id="a64c7-147">Para ello, agregue una migración sin realizar ningún cambio en el modelo; se generará una migración vacía, que se puede rellenar con operaciones SQL sin procesar.</span><span class="sxs-lookup"><span data-stu-id="a64c7-147">To do this, add a migration without making any model change; an empty migration will be generated, which you can then populate with raw SQL operations.</span></span>
 
-<span data-ttu-id="4f71d-148">Por ejemplo, la siguiente migración crea un SQL Server procedimiento almacenado:</span><span class="sxs-lookup"><span data-stu-id="4f71d-148">For example, the following migration creates a SQL Server stored procedure:</span></span>
+<span data-ttu-id="a64c7-148">Por ejemplo, la siguiente migración crea un SQL Server procedimiento almacenado:</span><span class="sxs-lookup"><span data-stu-id="a64c7-148">For example, the following migration creates a SQL Server stored procedure:</span></span>
 
 ```csharp
 migrationBuilder.Sql(
@@ -160,31 +160,31 @@ migrationBuilder.Sql(
 ```
 
 > [!TIP]
-> <span data-ttu-id="4f71d-149">`EXEC` se utiliza cuando una instrucción debe ser la primera o solo una en un lote de SQL.</span><span class="sxs-lookup"><span data-stu-id="4f71d-149">`EXEC` is used when a statement must be the first or only one in a SQL batch.</span></span> <span data-ttu-id="4f71d-150">También se puede usar para solucionar los errores del analizador en scripts de migración idempotente que se pueden producir cuando las columnas a las que se hace referencia no existen actualmente en una tabla.</span><span class="sxs-lookup"><span data-stu-id="4f71d-150">It can also be used to work around parser errors in idempotent migration scripts that can occur when referenced columns don't currently exist on a table.</span></span>
+> <span data-ttu-id="a64c7-149">`EXEC` se utiliza cuando una instrucción debe ser la primera o solo una en un lote de SQL.</span><span class="sxs-lookup"><span data-stu-id="a64c7-149">`EXEC` is used when a statement must be the first or only one in a SQL batch.</span></span> <span data-ttu-id="a64c7-150">También se puede usar para solucionar los errores del analizador en scripts de migración idempotente que se pueden producir cuando las columnas a las que se hace referencia no existen actualmente en una tabla.</span><span class="sxs-lookup"><span data-stu-id="a64c7-150">It can also be used to work around parser errors in idempotent migration scripts that can occur when referenced columns don't currently exist on a table.</span></span>
 
-<span data-ttu-id="4f71d-151">Se puede usar para administrar cualquier aspecto de la base de datos, incluidos:</span><span class="sxs-lookup"><span data-stu-id="4f71d-151">This can be used to manage any aspect of your database, including:</span></span>
+<span data-ttu-id="a64c7-151">Se puede usar para administrar cualquier aspecto de la base de datos, incluidos:</span><span class="sxs-lookup"><span data-stu-id="a64c7-151">This can be used to manage any aspect of your database, including:</span></span>
 
-* <span data-ttu-id="4f71d-152">Procedimientos almacenados</span><span class="sxs-lookup"><span data-stu-id="4f71d-152">Stored procedures</span></span>
-* <span data-ttu-id="4f71d-153">Búsqueda de texto completo</span><span class="sxs-lookup"><span data-stu-id="4f71d-153">Full-Text Search</span></span>
-* <span data-ttu-id="4f71d-154">Funciones</span><span class="sxs-lookup"><span data-stu-id="4f71d-154">Functions</span></span>
-* <span data-ttu-id="4f71d-155">Desencadenadores</span><span class="sxs-lookup"><span data-stu-id="4f71d-155">Triggers</span></span>
-* <span data-ttu-id="4f71d-156">Vistas</span><span class="sxs-lookup"><span data-stu-id="4f71d-156">Views</span></span>
+* <span data-ttu-id="a64c7-152">Procedimientos almacenados</span><span class="sxs-lookup"><span data-stu-id="a64c7-152">Stored procedures</span></span>
+* <span data-ttu-id="a64c7-153">Búsqueda de texto completo</span><span class="sxs-lookup"><span data-stu-id="a64c7-153">Full-Text Search</span></span>
+* <span data-ttu-id="a64c7-154">Funciones</span><span class="sxs-lookup"><span data-stu-id="a64c7-154">Functions</span></span>
+* <span data-ttu-id="a64c7-155">Desencadenadores</span><span class="sxs-lookup"><span data-stu-id="a64c7-155">Triggers</span></span>
+* <span data-ttu-id="a64c7-156">Vistas</span><span class="sxs-lookup"><span data-stu-id="a64c7-156">Views</span></span>
 
-<span data-ttu-id="4f71d-157">En la mayoría de los casos, EF Core ajustará automáticamente cada migración en su propia transacción al aplicar las migraciones.</span><span class="sxs-lookup"><span data-stu-id="4f71d-157">In most cases, EF Core will automatically wrap each migration in its own transaction when applying migrations.</span></span> <span data-ttu-id="4f71d-158">Desafortunadamente, algunas operaciones de migración no se pueden realizar en una transacción en algunas bases de datos. en estos casos, puede rechazar la transacción pasando `suppressTransaction: true` a `migrationBuilder.Sql` .</span><span class="sxs-lookup"><span data-stu-id="4f71d-158">Unfortunately, some migrations operations cannot be performed within a transaction in some databases; for these cases, you may opt out of the transaction by passing `suppressTransaction: true` to `migrationBuilder.Sql`.</span></span>
+<span data-ttu-id="a64c7-157">En la mayoría de los casos, EF Core ajustará automáticamente cada migración en su propia transacción al aplicar las migraciones.</span><span class="sxs-lookup"><span data-stu-id="a64c7-157">In most cases, EF Core will automatically wrap each migration in its own transaction when applying migrations.</span></span> <span data-ttu-id="a64c7-158">Desafortunadamente, algunas operaciones de migración no se pueden realizar en una transacción en algunas bases de datos. en estos casos, puede rechazar la transacción pasando `suppressTransaction: true` a `migrationBuilder.Sql` .</span><span class="sxs-lookup"><span data-stu-id="a64c7-158">Unfortunately, some migrations operations cannot be performed within a transaction in some databases; for these cases, you may opt out of the transaction by passing `suppressTransaction: true` to `migrationBuilder.Sql`.</span></span>
 
-<span data-ttu-id="4f71d-159">Si `DbContext` está en un ensamblado diferente al del proyecto de inicio, puede especificar de manera explícita los proyectos de destino e inicio tanto en las [herramientas de la Consola del Administrador de paquetes](xref:core/cli/powershell#target-and-startup-project) como en las [herramientas de la CLI de .NET Core](xref:core/cli/dotnet#target-project-and-startup-project).</span><span class="sxs-lookup"><span data-stu-id="4f71d-159">If the `DbContext` is in a different assembly than the startup project, you can explicitly specify the target and startup projects in either the [Package Manager Console tools](xref:core/cli/powershell#target-and-startup-project) or the [.NET Core CLI tools](xref:core/cli/dotnet#target-project-and-startup-project).</span></span>
+<span data-ttu-id="a64c7-159">Si `DbContext` está en un ensamblado diferente al del proyecto de inicio, puede especificar de manera explícita los proyectos de destino e inicio tanto en las [herramientas de la Consola del Administrador de paquetes](xref:core/cli/powershell#target-and-startup-project) como en las [herramientas de la CLI de .NET Core](xref:core/cli/dotnet#target-project-and-startup-project).</span><span class="sxs-lookup"><span data-stu-id="a64c7-159">If the `DbContext` is in a different assembly than the startup project, you can explicitly specify the target and startup projects in either the [Package Manager Console tools](xref:core/cli/powershell#target-and-startup-project) or the [.NET Core CLI tools](xref:core/cli/dotnet#target-project-and-startup-project).</span></span>
 
-## <a name="remove-a-migration"></a><span data-ttu-id="4f71d-160">Quitar una migración</span><span class="sxs-lookup"><span data-stu-id="4f71d-160">Remove a migration</span></span>
+## <a name="remove-a-migration"></a><span data-ttu-id="a64c7-160">Quitar una migración</span><span class="sxs-lookup"><span data-stu-id="a64c7-160">Remove a migration</span></span>
 
-<span data-ttu-id="4f71d-161">A veces uno agrega una migración y se da cuenta de que debe realizar cambios adicionales en el modelo de EF Core antes de aplicarla.</span><span class="sxs-lookup"><span data-stu-id="4f71d-161">Sometimes you add a migration and realize you need to make additional changes to your EF Core model before applying it.</span></span> <span data-ttu-id="4f71d-162">Para quitar la última migración, use este comando.</span><span class="sxs-lookup"><span data-stu-id="4f71d-162">To remove the last migration, use this command.</span></span>
+<span data-ttu-id="a64c7-161">A veces uno agrega una migración y se da cuenta de que debe realizar cambios adicionales en el modelo de EF Core antes de aplicarla.</span><span class="sxs-lookup"><span data-stu-id="a64c7-161">Sometimes you add a migration and realize you need to make additional changes to your EF Core model before applying it.</span></span> <span data-ttu-id="a64c7-162">Para quitar la última migración, use este comando.</span><span class="sxs-lookup"><span data-stu-id="a64c7-162">To remove the last migration, use this command.</span></span>
 
-### <a name="net-core-cli"></a>[<span data-ttu-id="4f71d-163">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="4f71d-163">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+### <a name="net-core-cli"></a>[<span data-ttu-id="a64c7-163">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="a64c7-163">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
 ```dotnetcli
 dotnet ef migrations remove
 ```
 
-### <a name="visual-studio"></a>[<span data-ttu-id="4f71d-164">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="4f71d-164">Visual Studio</span></span>](#tab/vs)
+### <a name="visual-studio"></a>[<span data-ttu-id="a64c7-164">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a64c7-164">Visual Studio</span></span>](#tab/vs)
 
 ```powershell
 Remove-Migration
@@ -192,25 +192,25 @@ Remove-Migration
 
 ***
 
-<span data-ttu-id="4f71d-165">Después de quitar la migración, puede realizar los cambios de modelo adicionales y volver a agregarla.</span><span class="sxs-lookup"><span data-stu-id="4f71d-165">After removing the migration, you can make the additional model changes and add it again.</span></span>
+<span data-ttu-id="a64c7-165">Después de quitar la migración, puede realizar los cambios de modelo adicionales y volver a agregarla.</span><span class="sxs-lookup"><span data-stu-id="a64c7-165">After removing the migration, you can make the additional model changes and add it again.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="4f71d-166">Tenga cuidado de no quitar las migraciones que ya se hayan aplicado a las bases de datos de producción.</span><span class="sxs-lookup"><span data-stu-id="4f71d-166">Take care not to remove any migrations which are already applied to production databases.</span></span> <span data-ttu-id="4f71d-167">Si no lo hace, impedirá que pueda revertirla y puede romper las suposiciones realizadas por migraciones posteriores.</span><span class="sxs-lookup"><span data-stu-id="4f71d-167">Not doing so will prevent you from being able to revert it, and may break the assumptions made by subsequent migrations.</span></span>
+> <span data-ttu-id="a64c7-166">Evite quitar las migraciones que ya se hayan aplicado a las bases de datos de producción.</span><span class="sxs-lookup"><span data-stu-id="a64c7-166">Avoid removing any migrations which have already been applied to production databases.</span></span> <span data-ttu-id="a64c7-167">Si lo hace, no podrá revertir esas migraciones desde las bases de datos y puede romper las suposiciones realizadas por migraciones posteriores.</span><span class="sxs-lookup"><span data-stu-id="a64c7-167">Doing so means you won't be able to revert those migrations from the databases, and may break the assumptions made by subsequent migrations.</span></span>
 
-## <a name="listing-migrations"></a><span data-ttu-id="4f71d-168">Enumerar migraciones</span><span class="sxs-lookup"><span data-stu-id="4f71d-168">Listing migrations</span></span>
+## <a name="listing-migrations"></a><span data-ttu-id="a64c7-168">Enumerar migraciones</span><span class="sxs-lookup"><span data-stu-id="a64c7-168">Listing migrations</span></span>
 
-<span data-ttu-id="4f71d-169">Puede enumerar todas las migraciones existentes como se indica a continuación:</span><span class="sxs-lookup"><span data-stu-id="4f71d-169">You can list all existing migrations as follows:</span></span>
+<span data-ttu-id="a64c7-169">Puede enumerar todas las migraciones existentes como se indica a continuación:</span><span class="sxs-lookup"><span data-stu-id="a64c7-169">You can list all existing migrations as follows:</span></span>
 
-### <a name="net-core-cli"></a>[<span data-ttu-id="4f71d-170">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="4f71d-170">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
+### <a name="net-core-cli"></a>[<span data-ttu-id="a64c7-170">CLI de .NET Core</span><span class="sxs-lookup"><span data-stu-id="a64c7-170">.NET Core CLI</span></span>](#tab/dotnet-core-cli)
 
 ```dotnetcli
 dotnet ef migrations list
 ```
 
-### <a name="visual-studio"></a>[<span data-ttu-id="4f71d-171">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="4f71d-171">Visual Studio</span></span>](#tab/vs)
+### <a name="visual-studio"></a>[<span data-ttu-id="a64c7-171">Visual Studio</span><span class="sxs-lookup"><span data-stu-id="a64c7-171">Visual Studio</span></span>](#tab/vs)
 
 > [!NOTE]
-> <span data-ttu-id="4f71d-172">Este comando se presentó en EF Core 5,0.</span><span class="sxs-lookup"><span data-stu-id="4f71d-172">This command was introduced in EF Core 5.0.</span></span>
+> <span data-ttu-id="a64c7-172">Este comando se presentó en EF Core 5,0.</span><span class="sxs-lookup"><span data-stu-id="a64c7-172">This command was introduced in EF Core 5.0.</span></span>
 
 ```powershell
 Get-Migration
@@ -218,16 +218,21 @@ Get-Migration
 
 ***
 
-## <a name="resetting-all-migrations"></a><span data-ttu-id="4f71d-173">Restableciendo todas las migraciones</span><span class="sxs-lookup"><span data-stu-id="4f71d-173">Resetting all migrations</span></span>
+## <a name="resetting-all-migrations"></a><span data-ttu-id="a64c7-173">Restableciendo todas las migraciones</span><span class="sxs-lookup"><span data-stu-id="a64c7-173">Resetting all migrations</span></span>
 
-<span data-ttu-id="4f71d-174">En algunos casos extremos, puede que sea necesario quitar todas las migraciones y empezar de nuevo.</span><span class="sxs-lookup"><span data-stu-id="4f71d-174">In some extreme cases, it may be necessary to remove all migrations and start over.</span></span> <span data-ttu-id="4f71d-175">Esto se puede hacer fácilmente si se elimina la carpeta **Migrations** y se quita la base de datos. en ese momento, puede crear una nueva migración inicial, que contendrá todo el esquema actual.</span><span class="sxs-lookup"><span data-stu-id="4f71d-175">This can be easily done by deleting your **Migrations** folder and dropping your database; at that point you can create a new initial migration, which will contain you entire current schema.</span></span>
+<span data-ttu-id="a64c7-174">En algunos casos extremos, puede que sea necesario quitar todas las migraciones y empezar de nuevo.</span><span class="sxs-lookup"><span data-stu-id="a64c7-174">In some extreme cases, it may be necessary to remove all migrations and start over.</span></span> <span data-ttu-id="a64c7-175">Esto se puede hacer fácilmente si se elimina la carpeta **Migrations** y se quita la base de datos. en ese momento, puede crear una nueva migración inicial, que contendrá todo el esquema actual.</span><span class="sxs-lookup"><span data-stu-id="a64c7-175">This can be easily done by deleting your **Migrations** folder and dropping your database; at that point you can create a new initial migration, which will contain you entire current schema.</span></span>
 
-<span data-ttu-id="4f71d-176">También es posible restablecer todas las migraciones y crear una sola sin perder los datos.</span><span class="sxs-lookup"><span data-stu-id="4f71d-176">It's also possible to reset all migrations and create a single one without losing your data.</span></span> <span data-ttu-id="4f71d-177">A veces, esto se denomina "" "en" ", y implica algún trabajo manual:</span><span class="sxs-lookup"><span data-stu-id="4f71d-177">This is sometimes called "squashing", and involves some manual work:</span></span>
+<span data-ttu-id="a64c7-176">También es posible restablecer todas las migraciones y crear una sola sin perder los datos.</span><span class="sxs-lookup"><span data-stu-id="a64c7-176">It's also possible to reset all migrations and create a single one without losing your data.</span></span> <span data-ttu-id="a64c7-177">A veces, esto se denomina "" "en" ", y implica algún trabajo manual:</span><span class="sxs-lookup"><span data-stu-id="a64c7-177">This is sometimes called "squashing", and involves some manual work:</span></span>
 
-* <span data-ttu-id="4f71d-178">Eliminación de la carpeta **Migrations**</span><span class="sxs-lookup"><span data-stu-id="4f71d-178">Delete your **Migrations** folder</span></span>
-* <span data-ttu-id="4f71d-179">Cree una nueva migración y genere un script SQL para ella.</span><span class="sxs-lookup"><span data-stu-id="4f71d-179">Create a new migration and generate a SQL script for it</span></span>
-* <span data-ttu-id="4f71d-180">En la base de datos, elimine todas las filas de la tabla de historial de migraciones</span><span class="sxs-lookup"><span data-stu-id="4f71d-180">In your database, delete all rows from the migrations history table</span></span>
-* <span data-ttu-id="4f71d-181">Inserte una sola fila en el historial de migraciones para registrar que la primera migración ya se ha aplicado, ya que las tablas ya están allí.</span><span class="sxs-lookup"><span data-stu-id="4f71d-181">Insert a single row into the migrations history, to record that the first migration has already been applied, since your tables are already there.</span></span> <span data-ttu-id="4f71d-182">La instrucción INSERT SQL es la última operación del script SQL que se generó anteriormente.</span><span class="sxs-lookup"><span data-stu-id="4f71d-182">The insert SQL is the last operation in the SQL script generated above.</span></span>
+* <span data-ttu-id="a64c7-178">Eliminación de la carpeta **Migrations**</span><span class="sxs-lookup"><span data-stu-id="a64c7-178">Delete your **Migrations** folder</span></span>
+* <span data-ttu-id="a64c7-179">Cree una nueva migración y genere un script SQL para ella.</span><span class="sxs-lookup"><span data-stu-id="a64c7-179">Create a new migration and generate a SQL script for it</span></span>
+* <span data-ttu-id="a64c7-180">En la base de datos, elimine todas las filas de la tabla de historial de migraciones</span><span class="sxs-lookup"><span data-stu-id="a64c7-180">In your database, delete all rows from the migrations history table</span></span>
+* <span data-ttu-id="a64c7-181">Inserte una sola fila en el historial de migraciones para registrar que la primera migración ya se ha aplicado, ya que las tablas ya están allí.</span><span class="sxs-lookup"><span data-stu-id="a64c7-181">Insert a single row into the migrations history, to record that the first migration has already been applied, since your tables are already there.</span></span> <span data-ttu-id="a64c7-182">La instrucción INSERT SQL es la última operación del script SQL que se generó anteriormente.</span><span class="sxs-lookup"><span data-stu-id="a64c7-182">The insert SQL is the last operation in the SQL script generated above.</span></span>
 
 > [!WARNING]
-> <span data-ttu-id="4f71d-183">Cualquier [código de migración personalizado](#customize-migration-code) se perderá cuando se elimine la carpeta **Migrations** .</span><span class="sxs-lookup"><span data-stu-id="4f71d-183">Any [custom migration code](#customize-migration-code) will be lost when the **Migrations** folder is deleted.</span></span>  <span data-ttu-id="4f71d-184">Las personalizaciones deben aplicarse a la nueva migración inicial manualmente para que se conserven.</span><span class="sxs-lookup"><span data-stu-id="4f71d-184">Any customizations must be applied to the new initial migration manually in order to be preserved.</span></span>
+> <span data-ttu-id="a64c7-183">Cualquier [código de migración personalizado](#customize-migration-code) se perderá cuando se elimine la carpeta **Migrations** .</span><span class="sxs-lookup"><span data-stu-id="a64c7-183">Any [custom migration code](#customize-migration-code) will be lost when the **Migrations** folder is deleted.</span></span>  <span data-ttu-id="a64c7-184">Las personalizaciones deben aplicarse a la nueva migración inicial manualmente para que se conserven.</span><span class="sxs-lookup"><span data-stu-id="a64c7-184">Any customizations must be applied to the new initial migration manually in order to be preserved.</span></span>
+
+## <a name="additional-resources"></a><span data-ttu-id="a64c7-185">Recursos adicionales</span><span class="sxs-lookup"><span data-stu-id="a64c7-185">Additional resources</span></span>
+
+* <span data-ttu-id="a64c7-186">[Entity Framework Core Tools Reference-CLI de .net Core](xref:core/cli/dotnet) : incluye comandos para actualizar, quitar, agregar, quitar, etc.</span><span class="sxs-lookup"><span data-stu-id="a64c7-186">[Entity Framework Core tools reference - .NET Core CLI](xref:core/cli/dotnet) : Includes commands to update, drop, add, remove, and  more.</span></span>
+* <span data-ttu-id="a64c7-187">[Entity Framework Core herramientas referencia: consola del administrador de paquetes en Visual Studio](xref:core/cli/powershell) : incluye comandos para actualizar, quitar, agregar, quitar y mucho más.</span><span class="sxs-lookup"><span data-stu-id="a64c7-187">[Entity Framework Core tools reference - Package Manager Console in Visual Studio](xref:core/cli/powershell) : Includes commands to update, drop, add, remove, and  more.</span></span>
